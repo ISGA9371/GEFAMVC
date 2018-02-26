@@ -12,13 +12,50 @@
         <title>GEFA Index</title>
 
 
+        <!-- Estilos -->
+        <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <script th:src="@{js/bootstrap.min.js}"></script>
+
+        <!--Script generales-->
+        <link rel="stylesheet" th:src="@{css/estilosGF.css}">
+
+
+        <!--Scripts para campos de texto-->
+        <link rel="stylesheet" th:src="@{css/material-components-web.css}">
+        <script th:src="@{js/material-components-web.js}"></script>
+
+
+        <!--Estilos para los combos-->
+        <link rel="stylesheet" th:src="@{css/select.css}">
+        <script th:src="@{js/ready.js}"></script>
+
+
     </head>
 
     <body>
+
+        <!--Encabezado que vive en otra ventana-->
         <div th:replace="layout/header :: cabeceraPrincipal"></div>
 
-        <p>Este es el index de Gefa y aqui debe comenzar la diversion</p>
+        <!--Div principal y contenedor de toda la ventana-->
+        <div class="container">
 
+            <!--Clase row, contenedora de las secciones de la ventana-->
+            <div class="row">
+
+                <!--Dentro de esta seccion se dividen las 12 columnas que estan en la ventana-->
+                <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book;">
+                    <p>Este es el index de Gefa y aqui debe ir el contenido de la ventana</p>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <!--Footer que debe ir en todas las ventanas-->
+        <div th:replace="layout/header :: cabeceraPrincipal"></div>
     </body>
 
 </html>
