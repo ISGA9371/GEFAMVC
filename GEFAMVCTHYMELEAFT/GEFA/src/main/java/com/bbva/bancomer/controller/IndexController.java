@@ -4,18 +4,31 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class IndexController {
 
-//    @GetMapping("/")
-//    public String index(Model m) {
-//        m.addAttribute("someAttribute", "someValue");
-//        return "indexGefa";
-//    }
-
     @RequestMapping(value="/")
     public String home(){
+
         return "indexGefa";
+
     }
+
+    @RequestMapping(value = "/buscar", method = RequestMethod.GET)
+    public String datosPendientes(Model model, @RequestParam("nomVentana")String nomVentana, @RequestParam("seleccion")String seleccion) {
+
+        if(seleccion.equals("F")){
+
+            return "fabrica/"+nomVentana;
+
+        }else{
+
+            return "presupuestos/"+nomVentana;
+        }
+
+    }
+
 }

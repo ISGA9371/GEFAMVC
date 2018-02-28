@@ -64,10 +64,12 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     }
 
     @Override
-    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/css/**").addResourceLocations("/public/css/");
-        registry.addResourceHandler("/img/**").addResourceLocations("/public/img/");
-        registry.addResourceHandler("/js/**").addResourceLocations("/public/js/");
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/css/**").addResourceLocations("WEB-INF/public/css/");
+        registry.addResourceHandler("/img/**").addResourceLocations("WEB-INF/public/img/");
+        registry.addResourceHandler("/js/**").addResourceLocations("WEB-INF/public/js/");
+        registry.addResourceHandler("/fonts/**").addResourceLocations("WEB-INF/public/fonts/");
+
 
     }
 
