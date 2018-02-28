@@ -9,26 +9,29 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>GEFA Index</title>
+        <title>Index Gefa</title>
 
 
         <!-- Estilos -->
-        <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
-        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-        <script th:src="@{js/bootstrap.min.js}"></script>
+        <script type="text/javascript" th:src="@{js/jquery-3.2.1.min.js}"></script>
+        <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}">
+        <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
 
         <!--Script generales-->
-        <link rel="stylesheet" th:src="@{css/estilosGF.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{css/estilosGF.css}">
 
 
         <!--Scripts para campos de texto-->
-        <link rel="stylesheet" th:src="@{css/material-components-web.css}">
-        <script th:src="@{js/material-components-web.js}"></script>
+        <link rel="stylesheet" type="text/css" th:href="@{css/material-components-web.css}">
+        <script type="text/javascript" th:src="@{js/material-components-web.js}"></script>
 
 
         <!--Estilos para los combos-->
-        <link rel="stylesheet" th:src="@{css/select.css}">
-        <script th:src="@{js/ready.js}"></script>
+        <link rel="stylesheet" type="text/css" th:href="@{css/select.css}">
+        <script type="text/javascript" th:src="@{js/ready.js}"></script>
+
+        <!--Propias de la ventana-->
+        <script type="text/javascript" th:src="@{js/fn_IndexGefa.js}"></script>
 
 
     </head>
@@ -37,6 +40,13 @@
 
         <!--Encabezado que vive en otra ventana-->
         <div th:replace="layout/header :: cabeceraPrincipal"></div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 
         <!--Div principal y contenedor de toda la ventana-->
         <div class="container">
@@ -46,16 +56,29 @@
 
                 <!--Dentro de esta seccion se dividen las 12 columnas que estan en la ventana-->
                 <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book;">
+
                     <p>Este es el index de Gefa y aqui debe ir el contenido de la ventana</p>
+                    Coloca el nombre de la ventana de FABRICA que quieres ver
+                    <input type="text" id="ventanaIr" value=""/>
+                    <button type="button" id="" onclick="botonIr('F')" class="btn btn-primary">Ir</button>
+
+                </div>
+
+                <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book;">
+
+                    Coloca el nombre de la ventana de PRESUPUESTO que quieres ver
+                    <input type="text" id="ventanaIrP" value=""/>
+                    <button type="button" id="" onclick="botonIr('P')" class="btn btn-primary">Ir</button>
+
                 </div>
 
 
             </div>
 
         </div>
-
+        <br>
         <!--Footer que debe ir en todas las ventanas-->
-        <div th:replace="layout/header :: cabeceraPrincipal"></div>
+        <div th:replace="layout/footer :: FooterPrincipal"></div>
     </body>
 
 </html>
