@@ -1,2 +1,6 @@
-com\bbva\bancomer\config\AppConfig.class
+com\bbva\bancomer\config\JPAPersistenceConfig.class
+com\bbva\bancomer\config\SpringWebInitializer.class
 com\bbva\bancomer\controller\IndexController.class
+com\bbva\bancomer\config\AppConfig.class
+com\bbva\bancomer\business\model\Cliente.class
+com\bbva\bancomer\business\repository\ClienteRepository.class
