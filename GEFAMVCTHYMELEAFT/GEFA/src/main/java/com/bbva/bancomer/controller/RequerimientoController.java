@@ -3,8 +3,6 @@ package com.bbva.bancomer.controller;
 
 import com.bbva.bancomer.business.model.Requerimiento;
 import com.bbva.bancomer.business.service.RequerimientoService;
-import org.apache.commons.logging.LogFactory;
-import org.apache.commons.logging.impl.LogFactoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
