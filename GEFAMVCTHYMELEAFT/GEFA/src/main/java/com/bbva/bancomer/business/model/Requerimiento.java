@@ -6,13 +6,13 @@ import com.sun.istack.internal.Nullable;
 import javax.persistence.*;
 
 @Entity
-@Table(name="thge017_requerim")
+@Table(name="THGE017_REQUERIM")
 public class Requerimiento {
 
     @Id
     //@GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="CD_REQUERIMIENTO")
-    private Integer cd_requerimiento;
+    private int cd_requerimiento;
 
     @Column(name="NB_REQUERIMIENTO")
     private String nb_requerimiento;
