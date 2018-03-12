@@ -39,7 +39,7 @@ public class RequerimientoController {
     public String guardaRequerimiento(@ModelAttribute("requerimiento") Requerimiento requerimiento){
         requerimientoService.agregaRequerimiento(requerimiento);
         System.out.print("LLega");
-        return "/requerimiento/ModificaRequerimiento";
+        return "redirect:/requerimiento/ModificaRequerimiento";
 
     }
 

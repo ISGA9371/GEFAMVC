@@ -41,6 +41,7 @@
         <form action="#" th:action="@{/requerimiento/guardaReq}" th:object="${requerimiento}" method="post">
 
             <!--HIDDEN PARA PRUEBAS-->
+            <input type="number" th:field="*{cd_requerimiento}" >
             <input type="text" th:field="*{nb_requerimiento}" >
             <input type="number" th:field="*{cd_nivel}" >
             <input type="number" th:field="*{cd_tecnologia}">

@@ -10,9 +10,9 @@ import javax.persistence.*;
 public class Requerimiento {
 
     @Id
-    @GeneratedValue
+    //@GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="CD_REQUERIMIENTO")
-    private int cd_requerimiento;
+    private Integer cd_requerimiento;
 
     @Column(name="NB_REQUERIMIENTO")
     private String nb_requerimiento;
@@ -32,7 +32,7 @@ public class Requerimiento {
     @Column(name="CD_TIPO_SERVICIO")
     private int cd_tipo_servicio;
 
-    @Column(name="CD_TIPO_PROYECTO")
+    @Column(name="CD_TIPO_PROY")
     private int cd_tipo_proyecto;
 
     @Column(name="CD_APLICACION")
@@ -41,7 +41,7 @@ public class Requerimiento {
     @Column(name="CD_CANAL")
     private int cd_canal;
 
-    @Column(name="NU_HORA_REC")
+    @Column(name="NU_HORA_REQ")
     private double nu_hora_rec;
 
     @Column(name="CD_SCRUM")
@@ -65,7 +65,7 @@ public class Requerimiento {
     @Column(name="ST_FACTURADO")
     private int st_facturado;
 
-    @Column(name="TM_ALTA_REC")
+    @Column(name="TM_ALTA_REQ")
     private String tm_alta_rec;
 
     @Column(name="NU_FACTURABLE")
