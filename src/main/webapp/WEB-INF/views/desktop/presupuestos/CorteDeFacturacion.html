@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Corte de Facturación</title>
+
+
+    <!-- Estilos -->
+    <script type="text/javascript" th:src="@{js/jquery-3.2.1.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+
+    <!--Script generales-->
+    <link rel="stylesheet" type="text/css" th:href="@{css/estilosGF.css}">
+
+
+    <!--Scripts para campos de texto-->
+    <link rel="stylesheet" type="text/css" th:href="@{css/material-components-web.css}">
+    <script type="text/javascript" th:src="@{js/material-components-web.js}"></script>
+
+
+    <!--Estilos Calendario-->
+    <link href="@{css/bootstrap-datetimepicker.css}" rel="stylesheet">
+    <script async="" src="@{js/analytics.js}"></script>
+    <script type="text/javascript" src="@{js/bootstrap.min.js}"></script>
+    <script src="@{js/moment-with-locales.js}"></script>
+    <script src="@{js/bootstrap-datetimepicker.js}"></script>
+
+</head>
+<style>
+    #demo-wrapper {
+        padding: 4px;
+        padding-left: 0;
+    }
+
+    /* Hack to work around style-loader asynchronously loading styles. */
+    /* Equivalent to using mdc-typography's subheading2, which is used in the sass file. */
+    .mdc-select {
+        font-family: Roboto, sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: .04em;
+    }
+
+    .example {
+        max-width: 400px;
+        margin: 24px;
+        padding: 24px;
+    }
+</style>
+<script type="text/javascript">
+    function mostrar(){
+        document.getElementById('EstadoLinea').style.display = 'inline';}
+
+
+    $(function () {
+        $('#datetimepicker4').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+    });
+</script>
+<body>
+<div class="container">
+    <br>
+    <div class="row">
+        <table class="col-md-12">
+            <tr>
+                <td><div class="col-md-10" align="center" style="font-size:30; font-family:BBVA Web Book">Seguimiento Corte de Facturacion</div></td>
+                <td><button type="button" class="btn btn-primary">Generar Corte</button></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <div>
+        <div class="col-md-12" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Criterios de Busqueda</div>
+    </div>
+    <br>
+    <table class="col-md-12" >
+        <tr>
+            <td class="col-md-4" align="center">
+                <div class="dog1">
+                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker4' />
+                        <label for="demo-input" class="mdc-text-field__label">Fecha de Envio</label>
+                    </div>
+                </div>
+            </td>
+            <td class="col-md-4" align="center">
+                <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                    <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="PEP">
+                    <label for="demo-input" class="mdc-text-field__label">PEP</label>
+                </div>
+            </td>
+            <td class="col-md-4" align="center">
+                <div id="Direccion-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                        <div class="mdc-select__label">Direccion</div>
+                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__bottom-line"></div>
+                    </div>
+                    <div class="mdc-menu mdc-select__menu col-md-3" >
+                        <ul class="mdc-list mdc-menu__items">
+                            <li class="mdc-list-item" role="option" tabindex="0">
+                                Direccion 1
+                            </li>
+                            <li class="mdc-list-item" role="option" tabindex="0">
+                                Direccion 2
+                            </li>
+                            <li class="mdc-list-item" role="option" tabindex="0">
+                                Direccion 3
+                            </li>
+                            <li class="mdc-list-item" role="option" tabindex="0">
+                                Direccion 4
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-md-4" align="center">
+                <div id="Subdireccion-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                        <div class="mdc-select__label">Subdireccion</div>
+                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__bottom-line"></div>
+                    </div>
+                    <div class="mdc-menu mdc-select__menu col-md-3" >
+                        <ul class="mdc-list mdc-menu__items">
+                            <li class="mdc-list-item" role="option" tabindex="0">
+                                Subdireccion 1
+                            </li>
+                            <li class="mdc-list-item" role="option" tabindex="0">
+                                Subdireccion 2
+                            </li>
+                            <li class="mdc-list-item" role="option" tabindex="0">
+                                Subdireccion 3
+                            </li>
+                            <li class="mdc-list-item" role="option" tabindex="0">
+                                Subdireccion 4
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </td>
+            <td class="col-md-4" align="center">
+                <div id="Estado-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                        <div class="mdc-select__label">Estado</div>
+                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__bottom-line"></div>
+                    </div>
+                    <div class="mdc-menu mdc-select__menu col-md-3" >
+                        <ul class="mdc-list mdc-menu__items">
+                            <li class="mdc-list-item" role="option" tabindex="0">
+                                Estado 1
+                            </li>
+                            <li class="mdc-list-item" role="option" tabindex="0">
+                                Estado 2
+                            </li>
+                            <li class="mdc-list-item" role="option" tabindex="0">
+                                Estado 3
+                            </li>
+                            <li class="mdc-list-item" role="option" tabindex="0">
+                                Estado 4
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </td>
+            <td class="col-md-4" align="center">
+                <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                    <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="Requerimiento">
+                    <label for="demo-input" class="mdc-text-field__label">Requerimiento.</label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-md-4" align="center">
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                    <input type="text"  class="mdc-text-field__input" id="Estatus">
+                    <label for="demo-input" class="mdc-text-field__label">Estatus</label>
+                </div>
+            </td>
+            <td class="col-md-4" align="center">
+                <table align="right">
+                    <tr>
+                        <td align="right">
+                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" align="right" style="background-color:#F4F4F4; width:90%">
+                                <input type="text"  class="mdc-text-field__input" id="rango_fecha">
+                                <label for="demo-input" class="mdc-text-field__label">Rango de Fecha del</label>
+                            </div>
+                        </td>
+                        <td align="right">
+                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" align="right" style="background-color:#F4F4F4; width:90%">
+                                <input type="text"  class="mdc-text-field__input" id="al">
+                                <label for="demo-input" class="mdc-text-field__label">al</label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+            <td class="col-md-4" align="center">
+
+            </td>
+        </tr>
+    </table>
+
+    <table class="col-md-12" align="center" >
+        <tr style="height:72px">
+            <td class="col-md-4" align="center">
+
+            </td>
+            <td class="col-md-4" align="center">
+                <button type="button" class="btn btn-primary">Buscar</button>
+                <button type="button" class="btn btn-primary">Limpiar</button>
+            </td>
+            <td class="col-md-4" align="center">
+
+            </td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <div>
+        <br>
+        <div class="col-md-12" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Resultado de la Busqueda</div>
+    </div>
+    <br >
+    <table class="table table-striped" style="font-size:12;">
+        <thead>
+        <tr>
+            <th >
+
+            </th>
+            <th >
+                Fecha de Corte
+            </th>
+            <th>
+                Requerimeintos
+            </th>
+            <th>
+                Direccion
+            </th>
+            <th>
+                Subdireccion
+            </th>
+            <th>
+                Responsable
+            </th>
+            <th>
+                Empresa
+            </th>
+            <th>
+                Monto
+            </th>
+            <th>
+                Alertas
+            </th>
+            <th>
+                Estado
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-info" onclick="mostrar('tr1')">
+            <td >
+                <input type="radio">
+            </td>
+            <td >
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+        </tr>
+        <tr id="tr1" style="display:none">
+            <td colspan="3">
+                DIRECCION 2
+            </td>
+            <td colspan="2">
+                DIRECCION 2
+            </td>
+            <td colspan="2">
+                SUBDIRECTOR 2
+            </td>
+            <td colspan="2">
+                OTRO DATO
+            </td>
+            <td colspan="2">
+                NUMEROS
+            </td >
+            <td colspan="3">
+                OTRAS HORAS
+            </td>
+
+        </tr>
+        <tr class="table-info" onclick="mostrar('tr2')">
+            <td >
+                <input type="radio">
+            </td>
+            <td >
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+        </tr>
+        <tr id="tr2" style="display:none">
+            <td colspan="3">
+                DIRECCION 2
+            </td>
+            <td colspan="2">
+                DIRECCION 2
+            </td>
+            <td colspan="2">
+                SUBDIRECTOR 2
+            </td>
+            <td colspan="2">
+                OTRO DATO
+            </td>
+            <td colspan="2">
+                NUMEROS
+            </td >
+            <td colspan="3">
+                OTRAS HORAS
+            </td>
+
+        </tr>
+        <tr class="table-info" onclick="mostrar('tr3')">
+            <td >
+                <input type="radio">
+            </td>
+            <td >
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+        </tr>
+        <tr id="tr3" style="display:none">
+            <td colspan="3">
+                DIRECCION 2
+            </td>
+            <td colspan="2">
+                DIRECCION 2
+            </td>
+            <td colspan="2">
+                SUBDIRECTOR 2
+            </td>
+            <td colspan="2">
+                OTRO DATO
+            </td>
+            <td colspan="2">
+                NUMEROS
+            </td >
+            <td colspan="3">
+                OTRAS HORAS
+            </td>
+
+        </tr>
+        <tr class="table-info" onclick="mostrar('tr4')">
+            <td >
+                <input type="radio">
+            </td>
+            <td >
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+        </tr>
+        <tr id="tr4" style="display:none">
+            <td colspan="3">
+                DIRECCION 2
+            </td>
+            <td colspan="2">
+                DIRECCION 2
+            </td>
+            <td colspan="2">
+                SUBDIRECTOR 2
+            </td>
+            <td colspan="2">
+                OTRO DATO
+            </td>
+            <td colspan="2">
+                NUMEROS
+            </td >
+            <td colspan="3">
+                OTRAS HORAS
+            </td>
+
+        </tr>
+        <tr class="table-info" onclick="mostrar('tr5')">
+            <td >
+                <input type="radio">
+            </td>
+            <td >
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+            <td>
+                CONTENIDO
+            </td>
+        </tr>
+        <tr id="tr5" style="display:none">
+            <td colspan="3">
+                DIRECCION 2
+            </td>
+            <td colspan="2">
+                DIRECCION 2
+            </td>
+            <td colspan="2">
+                SUBDIRECTOR 2
+            </td>
+            <td colspan="2">
+                OTRO DATO
+            </td>
+            <td colspan="2">
+                NUMEROS
+            </td >
+            <td colspan="3">
+                OTRAS HORAS
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <table class="col-md-12" align="center" >
+        <tr>
+            <td class="col-md-4" align="center">
+
+            </td>
+            <td class="col-md-4" align="center">
+                <button type="button" class="btn btn-primary">Importar Solicitud</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </td>
+            <td class="col-md-4" align="center">
+
+            </td>
+        </tr>
+    </table>
+
+
+    <br>
+
+</div>
+</body>
+
+<script>mdc.autoInit()</script>
+<style rel="stylesheet">
+    .mdc-text-field__input {
+        border-bottom-color: rgba(15, 50, 242, 0.5);
+    }
+</style>
+
+<script>
+    demoReady(function() {
+        mdc.select.MDCSelect.attachTo(document.getElementById('Direccion-js-select'));
+        mdc.select.MDCSelect.attachTo(document.getElementById('Subdireccion-js-select'));
+        mdc.select.MDCSelect.attachTo(document.getElementById('Estado-js-select'));
+    });
+
+
+
+    function mostrar(valor){
+
+
+        if(document.getElementById(valor).style.display==""){
+
+            document.getElementById(valor).style.display="none";
+
+        }else{
+
+            document.getElementById(valor).style.display="";
+
+        }
+
+
+    }
+
+    inicio();
+</script>
+
+</html>

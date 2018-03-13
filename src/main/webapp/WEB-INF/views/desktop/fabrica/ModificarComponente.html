@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Modificar Componente</title>
+
+
+    <!-- Estilos -->
+    <script type="text/javascript" th:src="@{js/jquery-3.2.1.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+
+    <!--Script generales-->
+    <link rel="stylesheet" type="text/css" th:href="@{css/estilosGF.css}">
+
+
+    <!--Scripts para campos de texto-->
+    <link rel="stylesheet" type="text/css" th:href="@{css/material-components-web.css}">
+    <script type="text/javascript" th:src="@{js/material-components-web.js}"></script>
+
+
+    <!--Estilos para los combos-->
+    <link rel="stylesheet" type="text/css" th:href="@{css/select.css}">
+    <script type="text/javascript" th:src="@{js/ready.js}"></script>
+
+</head>
+
+<body>
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-md-12" align="center" style="font-size:30px; font-family:BBVA Web Book">Modificar Componente</div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos del Componente</div>
+        <table class="col-md-12" >
+            <tr>
+                <td class="col-md-4" align="center">
+                    <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                        <label for="demo-input" class="mdc-text-field__label">Nombre del Componente</label>
+                    </div>
+                </td>
+                <td class="col-md-4" align="center">
+                    <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                        <label for="demo-input" class="mdc-text-field__label">Version</label>
+                    </div>
+                </td>
+                <td class="col-md-4" align="center">
+                    <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                        <label for="demo-input" class="mdc-text-field__label">Dirección</label>
+                    </div>
+                </td>
+            <tr style="height:72px">
+                <td class="col-md-4" align="center">
+                    <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                        <label for="demo-input" class="mdc-text-field__label">Subdirección</label>
+                    </div>
+                </td>
+                <td class="col-md-4" align="center">
+                    <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                        <label for="demo-input" class="mdc-text-field__label">Empresa</label>
+                    </div>
+                </td>
+                <td class="col-md-4" align="center">
+                    <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                        <label for="demo-input" class="mdc-text-field__label">Tecnologia</label>
+                    </div>
+                </td>
+            </tr>
+            <tr style="height:72px">
+                <td class="col-md-4" align="center">
+                    <div id="nuemod-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                            <div class="mdc-select__label">Nuevo/Modficado</div>
+                            <div class="mdc-select__selected-text"></div>
+                            <div class="mdc-select__bottom-line"></div>
+                        </div>
+                        <div class="mdc-menu mdc-select__menu col-md-3" >
+                            <ul class="mdc-list mdc-menu__items">
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Nuevo/Modficado 1
+                                </li>
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Nuevo/Modficado 2
+                                </li>
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Nuevo/Modficado 3
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+                <td class="col-md-4" align="center">
+                    <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                        <label for="demo-input" class="mdc-text-field__label">Requerimiento</label>
+                    </div>
+                </td>
+            </tr>
+            <tr style="height:72px">
+                <td class="col-md-4" align="center">
+                    <div id="tipini-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                            <div class="mdc-select__label">Tipologia Inicial</div>
+                            <div class="mdc-select__selected-text"></div>
+                            <div class="mdc-select__bottom-line"></div>
+                        </div>
+                        <div class="mdc-menu mdc-select__menu col-md-3" >
+                            <ul class="mdc-list mdc-menu__items">
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Tipologia Inicial 1
+                                </li>
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Tipologia Inicial 2
+                                </li>
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Tipologia Inicial 3
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+                <td class="col-md-4" align="center">
+                    <div id="difini-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                            <div class="mdc-select__label">Dificultad Inicial</div>
+                            <div class="mdc-select__selected-text"></div>
+                            <div class="mdc-select__bottom-line"></div>
+                        </div>
+                        <div class="mdc-menu mdc-select__menu col-md-3" >
+                            <ul class="mdc-list mdc-menu__items">
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Dificultad Inicial 1
+                                </li>
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Dificultad Inicial 2
+                                </li>
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Dificultad Inicial 3
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+                <td class="col-md-4" align="center">
+                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type="text"  class="mdc-text-field__input" id="demo-input">
+                        <label for="demo-input" class="mdc-text-field__label">Horas Iniciales</label>
+                    </div>
+                </td>
+            </tr>
+            <tr style="height:72px">
+                <td class="col-md-4" align="center">
+                    <div id="tipfin-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                            <div class="mdc-select__label">Tipologia Final</div>
+                            <div class="mdc-select__selected-text"></div>
+                            <div class="mdc-select__bottom-line"></div>
+                        </div>
+                        <div class="mdc-menu mdc-select__menu col-md-3" >
+                            <ul class="mdc-list mdc-menu__items">
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Tipologia Final 1
+                                </li>
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Tipologia Final 2
+                                </li>
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Tipologia Final 3
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+                <td class="col-md-4" align="center">
+                    <div id="difin-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                            <div class="mdc-select__label">Dificultad Final</div>
+                            <div class="mdc-select__selected-text"></div>
+                            <div class="mdc-select__bottom-line"></div>
+                        </div>
+                        <div class="mdc-menu mdc-select__menu col-md-3" >
+                            <ul class="mdc-list mdc-menu__items">
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Dificultad Final 1
+                                </li>
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Dificultad Final 2
+                                </li>
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Dificultad Final 3
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+                <td class="col-md-4" align="center">
+                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type="text"  class="mdc-text-field__input" id="demo-input">
+                        <label for="demo-input" class="mdc-text-field__label">Horas Finales</label>
+                    </div>
+                </td>
+            </tr>
+            <td class="col-md-4" align="center">
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                    <input type="text"  class="mdc-text-field__input" id="demo-input">
+                    <label for="demo-input" class="mdc-text-field__label">F. Real CGF>Fact Diseño</label>
+                </div>
+            </td>
+            <td class="col-md-4" align="center">
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                    <input type="text"  class="mdc-text-field__input" id="demo-input">
+                    <label for="demo-input" class="mdc-text-field__label">F. Prevista Fact>CGF Software</label>
+                </div>
+            </td>
+            <td class="col-md-4" align="center">
+                <div id="estatus-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                        <div class="mdc-select__label">Estatus Tipif.</div>
+                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__bottom-line"></div>
+                    </div>
+                    <div class="mdc-menu mdc-select__menu col-md-3" >
+                        <ul class="mdc-list mdc-menu__items">
+                            <li class="mdc-list-item" role="option" tabindex="0">
+                                Estatus Tipif. 1
+                            </li>
+                            <li class="mdc-list-item" role="option" tabindex="0">
+                                Estatus Tipif. 2
+                            </li>
+                            <li class="mdc-list-item" role="option" tabindex="0">
+                                Estatus Tipif. 3
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </td>
+            </tr>
+            <tr>
+                <td class="col-md-4" align="center">
+                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type="text"  class="mdc-text-field__input" id="demo-input">
+                        <label for="demo-input" class="mdc-text-field__label">F. Negociada Fact>CGF Software</label>
+                    </div>
+                </td>
+                <td class="col-md-4" align="center">
+                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type="text"  class="mdc-text-field__input" id="demo-input">
+                        <label for="demo-input" class="mdc-text-field__label">F. Real Fact>CGF Software</label>
+                    </div>
+                </td>
+                <td class="col-md-4" align="center">
+                    <div id="facturado-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                            <div class="mdc-select__label">Facturado</div>
+                            <div class="mdc-select__selected-text"></div>
+                            <div class="mdc-select__bottom-line"></div>
+                        </div>
+                        <div class="mdc-menu mdc-select__menu col-md-3" >
+                            <ul class="mdc-list mdc-menu__items">
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    Si
+                                </li>
+                                <li class="mdc-list-item" role="option" tabindex="0">
+                                    No
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4" align="center">
+                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type="text"  class="mdc-text-field__input" id="demo-input">
+                        <label for="demo-input" class="mdc-text-field__label">Mes</label>
+                    </div>
+                </td>
+                <td class="col-md-4" align="center">
+                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type="text"  class="mdc-text-field__input" id="demo-input">
+                        <label for="demo-input" class="mdc-text-field__label">Año</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <table class="col-md-12" >
+            <tr>
+                <br>
+                <br>
+                <td class="col-md-6" align="Center">
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-primary">Eliminar</button>
+                    <button type="button" class="btn btn-primary">Cancelar</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+</body>
+
+<script>mdc.autoInit()</script>
+<style rel="stylesheet">
+    .mdc-text-field__input {
+        border-bottom-color: rgba(15, 50, 242, 0.5);
+    }
+</style>
+
+<script>
+    demoReady(function() {
+        mdc.select.MDCSelect.attachTo(document.getElementById('nuemod-js-select'));
+        mdc.select.MDCSelect.attachTo(document.getElementById('tipini-js-select'));
+        mdc.select.MDCSelect.attachTo(document.getElementById('difini-js-select'));
+        mdc.select.MDCSelect.attachTo(document.getElementById('tipfin-js-select'));
+        mdc.select.MDCSelect.attachTo(document.getElementById('difin-js-select'));
+        mdc.select.MDCSelect.attachTo(document.getElementById('estatus-js-select'));
+        mdc.select.MDCSelect.attachTo(document.getElementById('facturado-js-select'));
+    });
+</script>
+
+</html>
