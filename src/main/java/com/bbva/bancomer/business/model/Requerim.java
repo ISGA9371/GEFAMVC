@@ -48,7 +48,7 @@ public class Requerim implements Serializable {
     private List<Factura> facturaList;
     @JoinColumn(name = "CD_USUARIO_GESTOR", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private Usuario cdUsuarioGestor;
+    private User cdUserGestor;
     @JoinColumn(name = "CD_TIPO_SERVICIO", referencedColumnName = "CD_TIPO_SERVICIO", nullable = false)
     @ManyToOne(optional = false)
     private TipoServ cdTipoServicio;
@@ -57,7 +57,7 @@ public class Requerim implements Serializable {
     private Tecnologia cdTecnologia;
     @JoinColumn(name = "CD_EMPRESA", referencedColumnName = "CD_EMPRESA", nullable = false)
     @ManyToOne(optional = false)
-    private Empresa cdEmpresa;
+    private Company cdCompany;
     @JoinColumn(name = "ST_REQUERIMIENTO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Estado stRequerimiento;
@@ -66,7 +66,7 @@ public class Requerim implements Serializable {
     private Nivel cdNivel;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private Usuario cdUsuarioResp;
+    private User cdUserResp;
     @JoinColumn(name = "CD_APLICACION", referencedColumnName = "CD_APLICACION")
     @ManyToOne
     private Aplicacion cdAplicacion;
@@ -183,12 +183,12 @@ public class Requerim implements Serializable {
         this.facturaList = facturaList;
     }
 
-    public Usuario getCdUsuarioGestor() {
-        return cdUsuarioGestor;
+    public User getCdUserGestor() {
+        return cdUserGestor;
     }
 
-    public void setCdUsuarioGestor(Usuario cdUsuarioGestor) {
-        this.cdUsuarioGestor = cdUsuarioGestor;
+    public void setCdUserGestor(User cdUserGestor) {
+        this.cdUserGestor = cdUserGestor;
     }
 
     public TipoServ getCdTipoServicio() {
@@ -207,12 +207,12 @@ public class Requerim implements Serializable {
         this.cdTecnologia = cdTecnologia;
     }
 
-    public Empresa getCdEmpresa() {
-        return cdEmpresa;
+    public Company getCdCompany() {
+        return cdCompany;
     }
 
-    public void setCdEmpresa(Empresa cdEmpresa) {
-        this.cdEmpresa = cdEmpresa;
+    public void setCdCompany(Company cdCompany) {
+        this.cdCompany = cdCompany;
     }
 
     public Estado getStRequerimiento() {
@@ -231,12 +231,12 @@ public class Requerim implements Serializable {
         this.cdNivel = cdNivel;
     }
 
-    public Usuario getCdUsuarioResp() {
-        return cdUsuarioResp;
+    public User getCdUserResp() {
+        return cdUserResp;
     }
 
-    public void setCdUsuarioResp(Usuario cdUsuarioResp) {
-        this.cdUsuarioResp = cdUsuarioResp;
+    public void setCdUserResp(User cdUserResp) {
+        this.cdUserResp = cdUserResp;
     }
 
     public Aplicacion getCdAplicacion() {

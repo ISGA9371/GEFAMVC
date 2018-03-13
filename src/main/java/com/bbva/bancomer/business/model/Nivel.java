@@ -33,7 +33,7 @@ public class Nivel implements Serializable {
     @OneToMany(mappedBy = "cdNivelSubdir")
     private List<Traspaso> traspasoList;
     @OneToMany(mappedBy = "cdNivel")
-    private List<Usuario> usuarioList;
+    private List<User> userList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdNivel")
     private List<Requerim> requerimList;
     @JoinColumn(name = "CD_TIPO_NIVEL", referencedColumnName = "CD_TIPO_NIVEL", nullable = false)
@@ -46,7 +46,7 @@ public class Nivel implements Serializable {
     private Nivel cdNivelSuperior;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private Usuario cdUsuarioResp;
+    private User cdUserResp;
 
     public Nivel() {
     }
@@ -93,12 +93,12 @@ public class Nivel implements Serializable {
         this.traspasoList = traspasoList;
     }
 
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public List<User> getUserList() {
+        return userList;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 
     public List<Requerim> getRequerimList() {
@@ -133,12 +133,12 @@ public class Nivel implements Serializable {
         this.cdNivelSuperior = cdNivelSuperior;
     }
 
-    public Usuario getCdUsuarioResp() {
-        return cdUsuarioResp;
+    public User getCdUserResp() {
+        return cdUserResp;
     }
 
-    public void setCdUsuarioResp(Usuario cdUsuarioResp) {
-        this.cdUsuarioResp = cdUsuarioResp;
+    public void setCdUserResp(User cdUserResp) {
+        this.cdUserResp = cdUserResp;
     }
 
     @Override

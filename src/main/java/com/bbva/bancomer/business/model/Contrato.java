@@ -34,7 +34,7 @@ public class Contrato implements Serializable {
     private Tecnologia cdTecnologia;
     @JoinColumn(name = "CD_EMPRESA", referencedColumnName = "CD_EMPRESA", nullable = false)
     @ManyToOne(optional = false)
-    private Empresa cdEmpresa;
+    private Company cdCompany;
     @JoinColumn(name = "ST_CONTRATO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Estado stContrato;
@@ -100,12 +100,12 @@ public class Contrato implements Serializable {
         this.cdTecnologia = cdTecnologia;
     }
 
-    public Empresa getCdEmpresa() {
-        return cdEmpresa;
+    public Company getCdCompany() {
+        return cdCompany;
     }
 
-    public void setCdEmpresa(Empresa cdEmpresa) {
-        this.cdEmpresa = cdEmpresa;
+    public void setCdCompany(Company cdCompany) {
+        this.cdCompany = cdCompany;
     }
 
     public Estado getStContrato() {

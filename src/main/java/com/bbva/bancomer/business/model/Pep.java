@@ -63,10 +63,10 @@ public class Pep implements Serializable {
     private Estado stDyd;
     @JoinColumn(name = "CD_USUARIO_SOLIC", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
-    private Usuario cdUsuarioSolic;
+    private User cdUserSolic;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
-    private Usuario cdUsuarioResp;
+    private User cdUserResp;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
     private Area cdArea;
@@ -226,20 +226,20 @@ public class Pep implements Serializable {
         this.stDyd = stDyd;
     }
 
-    public Usuario getCdUsuarioSolic() {
-        return cdUsuarioSolic;
+    public User getCdUserSolic() {
+        return cdUserSolic;
     }
 
-    public void setCdUsuarioSolic(Usuario cdUsuarioSolic) {
-        this.cdUsuarioSolic = cdUsuarioSolic;
+    public void setCdUserSolic(User cdUserSolic) {
+        this.cdUserSolic = cdUserSolic;
     }
 
-    public Usuario getCdUsuarioResp() {
-        return cdUsuarioResp;
+    public User getCdUserResp() {
+        return cdUserResp;
     }
 
-    public void setCdUsuarioResp(Usuario cdUsuarioResp) {
-        this.cdUsuarioResp = cdUsuarioResp;
+    public void setCdUserResp(User cdUserResp) {
+        this.cdUserResp = cdUserResp;
     }
 
     public Area getCdArea() {

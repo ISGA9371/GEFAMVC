@@ -27,7 +27,7 @@ public class Estado implements Serializable {
     @Column(name = "NB_ESTADO", nullable = false, length = 50)
     private String nbEstado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stEmpresa")
-    private List<Empresa> empresaList;
+    private List<Company> companyList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stPep")
     private List<Pep> pepList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stDyd")
@@ -35,7 +35,7 @@ public class Estado implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stTarifa")
     private List<Tarifa> tarifaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stEstadoUsuario")
-    private List<Usuario> usuarioList;
+    private List<User> userList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stPepFact")
     private List<Factura> facturaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stPago")
@@ -98,12 +98,12 @@ public class Estado implements Serializable {
         this.nbEstado = nbEstado;
     }
 
-    public List<Empresa> getEmpresaList() {
-        return empresaList;
+    public List<Company> getCompanyList() {
+        return companyList;
     }
 
-    public void setEmpresaList(List<Empresa> empresaList) {
-        this.empresaList = empresaList;
+    public void setCompanyList(List<Company> companyList) {
+        this.companyList = companyList;
     }
 
     public List<Pep> getPepList() {
@@ -130,12 +130,12 @@ public class Estado implements Serializable {
         this.tarifaList = tarifaList;
     }
 
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public List<User> getUserList() {
+        return userList;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 
     public List<Factura> getFacturaList() {

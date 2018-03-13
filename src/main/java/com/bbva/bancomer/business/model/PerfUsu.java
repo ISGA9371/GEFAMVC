@@ -28,7 +28,7 @@ public class PerfUsu implements Serializable {
     @Column(name = "NB_PERFIL", nullable = false, length = 25)
     private String nbPerfil;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPerfUsu")
-    private List<Usuario> usuarioList;
+    private List<User> userList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPerfilRec")
     private List<CtrlExt> ctrlExtList;
 
@@ -60,12 +60,12 @@ public class PerfUsu implements Serializable {
         this.nbPerfil = nbPerfil;
     }
 
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public List<User> getUserList() {
+        return userList;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 
     public List<CtrlExt> getCtrlExtList() {

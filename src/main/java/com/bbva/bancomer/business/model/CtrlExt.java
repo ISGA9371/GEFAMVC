@@ -89,16 +89,16 @@ public class CtrlExt implements Serializable {
     private Date fhAlta;
     @JoinColumn(name = "CD_EMPRESA", referencedColumnName = "CD_EMPRESA", nullable = false)
     @ManyToOne(optional = false)
-    private Empresa cdEmpresa;
+    private Company cdCompany;
     @JoinColumn(name = "ST_REC_EXT", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Estado stRecExt;
     @JoinColumn(name = "CD_USUARIO_GESTOR", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
-    private Usuario cdUsuarioGestor;
+    private User cdUserGestor;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private Usuario cdUsuarioResp;
+    private User cdUserResp;
     @JoinColumn(name = "CD_PAIS", referencedColumnName = "CD_PAIS", nullable = false)
     @ManyToOne(optional = false)
     private Pais cdPais;
@@ -359,12 +359,12 @@ public class CtrlExt implements Serializable {
         this.fhAlta = fhAlta;
     }
 
-    public Empresa getCdEmpresa() {
-        return cdEmpresa;
+    public Company getCdCompany() {
+        return cdCompany;
     }
 
-    public void setCdEmpresa(Empresa cdEmpresa) {
-        this.cdEmpresa = cdEmpresa;
+    public void setCdCompany(Company cdCompany) {
+        this.cdCompany = cdCompany;
     }
 
     public Estado getStRecExt() {
@@ -375,20 +375,20 @@ public class CtrlExt implements Serializable {
         this.stRecExt = stRecExt;
     }
 
-    public Usuario getCdUsuarioGestor() {
-        return cdUsuarioGestor;
+    public User getCdUserGestor() {
+        return cdUserGestor;
     }
 
-    public void setCdUsuarioGestor(Usuario cdUsuarioGestor) {
-        this.cdUsuarioGestor = cdUsuarioGestor;
+    public void setCdUserGestor(User cdUserGestor) {
+        this.cdUserGestor = cdUserGestor;
     }
 
-    public Usuario getCdUsuarioResp() {
-        return cdUsuarioResp;
+    public User getCdUserResp() {
+        return cdUserResp;
     }
 
-    public void setCdUsuarioResp(Usuario cdUsuarioResp) {
-        this.cdUsuarioResp = cdUsuarioResp;
+    public void setCdUserResp(User cdUserResp) {
+        this.cdUserResp = cdUserResp;
     }
 
     public Pais getCdPais() {

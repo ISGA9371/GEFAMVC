@@ -45,7 +45,7 @@ public class Traspaso implements Serializable {
     private Nivel cdNivelSubdir;
     @JoinColumn(name = "CD_USU_RESP_DYD", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
-    private Usuario cdUsuRespDyd;
+    private User cdUsuRespDyd;
 
     public Traspaso() {
     }
@@ -123,11 +123,11 @@ public class Traspaso implements Serializable {
         this.cdNivelSubdir = cdNivelSubdir;
     }
 
-    public Usuario getCdUsuRespDyd() {
+    public User getCdUsuRespDyd() {
         return cdUsuRespDyd;
     }
 
-    public void setCdUsuRespDyd(Usuario cdUsuRespDyd) {
+    public void setCdUsuRespDyd(User cdUsuRespDyd) {
         this.cdUsuRespDyd = cdUsuRespDyd;
     }
 

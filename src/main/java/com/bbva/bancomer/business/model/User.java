@@ -16,29 +16,29 @@ import java.util.List;
 @Table(name = "thge011_usuario", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_USUARIO_CORP"})})
 @NamedQueries({
-        @NamedQuery(name = "Usuario.findAll", query = "SELECT t FROM Usuario t")})
-public class Usuario implements Serializable {
+        @NamedQuery(name = "User.findAll", query = "SELECT t FROM User t")})
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_USUARIO", nullable = false)
-    private Integer cdUsuario;
+    private Integer userId;
     @Basic(optional = false)
     @Column(name = "CD_USUARIO_CORP", nullable = false, length = 10)
     private String cdUsuarioCorp;
     @Basic(optional = false)
     @Column(name = "NB_USUARIO", nullable = false, length = 50)
-    private String nbUsuario;
+    private String userName;
     @Basic(optional = false)
     @Column(name = "NB_APELL_PAT", nullable = false, length = 30)
-    private String nbApellPat;
+    private String userFirstName;
     @Column(name = "NB_APELL_MAT", length = 30)
-    private String nbApellMat;
+    private String userSecondName;
     @Column(name = "CD_CONTRASENA", length = 9)
-    private String cdContrasena;
+    private String userPassword;
     @Column(name = "TX_CORREO_ELECTR", length = 70)
-    private String txCorreoElectr;
+    private String userEmail;
     @OneToMany(mappedBy = "cdUsuarioSolic")
     private List<Pep> pepList;
     @OneToMany(mappedBy = "cdUsuarioResp")
@@ -83,26 +83,26 @@ public class Usuario implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuarioResp")
     private List<Nivel> nivelList;
 
-    public Usuario() {
+    public User() {
     }
 
-    public Usuario(Integer cdUsuario) {
-        this.cdUsuario = cdUsuario;
+    public User(Integer userId) {
+        this.userId = userId;
     }
 
-    public Usuario(Integer cdUsuario, String cdUsuarioCorp, String nbUsuario, String nbApellPat) {
-        this.cdUsuario = cdUsuario;
+    public User(Integer userId, String cdUsuarioCorp, String userName, String userFirstName) {
+        this.userId = userId;
         this.cdUsuarioCorp = cdUsuarioCorp;
-        this.nbUsuario = nbUsuario;
-        this.nbApellPat = nbApellPat;
+        this.userName = userName;
+        this.userFirstName = userFirstName;
     }
 
-    public Integer getCdUsuario() {
-        return cdUsuario;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setCdUsuario(Integer cdUsuario) {
-        this.cdUsuario = cdUsuario;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getCdUsuarioCorp() {
@@ -113,44 +113,44 @@ public class Usuario implements Serializable {
         this.cdUsuarioCorp = cdUsuarioCorp;
     }
 
-    public String getNbUsuario() {
-        return nbUsuario;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNbUsuario(String nbUsuario) {
-        this.nbUsuario = nbUsuario;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getNbApellPat() {
-        return nbApellPat;
+    public String getUserFirstName() {
+        return userFirstName;
     }
 
-    public void setNbApellPat(String nbApellPat) {
-        this.nbApellPat = nbApellPat;
+    public void setUserFirstName(String userFirstName) {
+        this.userFirstName = userFirstName;
     }
 
-    public String getNbApellMat() {
-        return nbApellMat;
+    public String getUserSecondName() {
+        return userSecondName;
     }
 
-    public void setNbApellMat(String nbApellMat) {
-        this.nbApellMat = nbApellMat;
+    public void setUserSecondName(String userSecondName) {
+        this.userSecondName = userSecondName;
     }
 
-    public String getCdContrasena() {
-        return cdContrasena;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setCdContrasena(String cdContrasena) {
-        this.cdContrasena = cdContrasena;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
-    public String getTxCorreoElectr() {
-        return txCorreoElectr;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setTxCorreoElectr(String txCorreoElectr) {
-        this.txCorreoElectr = txCorreoElectr;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public List<Pep> getPepList() {
@@ -316,18 +316,18 @@ public class Usuario implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdUsuario != null ? cdUsuario.hashCode() : 0);
+        hash += (userId != null ? userId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Usuario)) {
+        if (!(object instanceof User)) {
             return false;
         }
-        Usuario other = (Usuario) object;
-        if ((this.cdUsuario == null && other.cdUsuario != null) || (this.cdUsuario != null && !this.cdUsuario.equals(other.cdUsuario))) {
+        User other = (User) object;
+        if ((this.userId == null && other.userId != null) || (this.userId != null && !this.userId.equals(other.userId))) {
             return false;
         }
         return true;
@@ -335,7 +335,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bbva.Usuario[ cdUsuario=" + cdUsuario + " ]";
+        return "com.bbva.User[ userId=" + userId + " ]";
     }
 
 }

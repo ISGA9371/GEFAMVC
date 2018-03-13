@@ -84,10 +84,10 @@ public class Modif implements Serializable {
     private Componente cdComponente;
     @JoinColumn(name = "CD_USU_PETICION", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private Usuario cdUsuPeticion;
+    private User cdUsuPeticion;
     @JoinColumn(name = "CD_RESP_RESOL", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private Usuario cdRespResol;
+    private User cdRespResol;
     @JoinColumn(name = "CD_PRIORIDAD_USU", referencedColumnName = "CD_PRIORIDAD", nullable = false)
     @ManyToOne(optional = false)
     private Prioridad cdPrioridadUsu;
@@ -303,19 +303,19 @@ public class Modif implements Serializable {
         this.cdComponente = cdComponente;
     }
 
-    public Usuario getCdUsuPeticion() {
+    public User getCdUsuPeticion() {
         return cdUsuPeticion;
     }
 
-    public void setCdUsuPeticion(Usuario cdUsuPeticion) {
+    public void setCdUsuPeticion(User cdUsuPeticion) {
         this.cdUsuPeticion = cdUsuPeticion;
     }
 
-    public Usuario getCdRespResol() {
+    public User getCdRespResol() {
         return cdRespResol;
     }
 
-    public void setCdRespResol(Usuario cdRespResol) {
+    public void setCdRespResol(User cdRespResol) {
         this.cdRespResol = cdRespResol;
     }
 

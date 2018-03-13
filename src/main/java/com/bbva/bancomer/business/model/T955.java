@@ -60,7 +60,7 @@ public class T955 implements Serializable {
     private Estado cdEdoDefecto;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private Usuario cdUsuarioResp;
+    private User cdUserResp;
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Requerim requerim;
@@ -223,12 +223,12 @@ public class T955 implements Serializable {
         this.cdEdoDefecto = cdEdoDefecto;
     }
 
-    public Usuario getCdUsuarioResp() {
-        return cdUsuarioResp;
+    public User getCdUserResp() {
+        return cdUserResp;
     }
 
-    public void setCdUsuarioResp(Usuario cdUsuarioResp) {
-        this.cdUsuarioResp = cdUsuarioResp;
+    public void setCdUserResp(User cdUserResp) {
+        this.cdUserResp = cdUserResp;
     }
 
     public Requerim getRequerim() {

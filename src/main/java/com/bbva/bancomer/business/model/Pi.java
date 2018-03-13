@@ -34,10 +34,10 @@ public class Pi implements Serializable {
     private List<Requerim> requerimList;
     @JoinColumn(name = "CD_DUENO_PROD", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
-    private Usuario cdDuenoProd;
+    private User cdDuenoProd;
     @JoinColumn(name = "CD_EXPERTO_SCRUM", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
-    private Usuario cdExpertoScrum;
+    private User cdExpertoScrum;
     @JoinColumn(name = "CD_TIPO_PI", referencedColumnName = "CD_TIPO_PI", nullable = false)
     @ManyToOne(optional = false)
     private TipoPi cdTipoPi;
@@ -90,19 +90,19 @@ public class Pi implements Serializable {
         this.requerimList = requerimList;
     }
 
-    public Usuario getCdDuenoProd() {
+    public User getCdDuenoProd() {
         return cdDuenoProd;
     }
 
-    public void setCdDuenoProd(Usuario cdDuenoProd) {
+    public void setCdDuenoProd(User cdDuenoProd) {
         this.cdDuenoProd = cdDuenoProd;
     }
 
-    public Usuario getCdExpertoScrum() {
+    public User getCdExpertoScrum() {
         return cdExpertoScrum;
     }
 
-    public void setCdExpertoScrum(Usuario cdExpertoScrum) {
+    public void setCdExpertoScrum(User cdExpertoScrum) {
         this.cdExpertoScrum = cdExpertoScrum;
     }
 

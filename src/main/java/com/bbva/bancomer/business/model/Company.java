@@ -15,14 +15,14 @@ import java.util.List;
 @Entity
 @Table(name = "thge003_empresa", catalog = "gestion_factoria", schema = "")
 @NamedQueries({
-        @NamedQuery(name = "Empresa.findAll", query = "SELECT t FROM Empresa t")})
-public class Empresa implements Serializable {
+        @NamedQuery(name = "Company.findAll", query = "SELECT t FROM Company t")})
+public class Company implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_EMPRESA", nullable = false)
-    private Integer cdEmpresa;
+    private Integer companyId;
     @Basic(optional = false)
     @Column(name = "NB_COMERC_EMPRESA", nullable = false, length = 45)
     private String nbComercEmpresa;
@@ -38,36 +38,36 @@ public class Empresa implements Serializable {
     @JoinColumn(name = "ST_EMPRESA", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Estado stEmpresa;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdEmpresa")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
     private List<Tarifa> tarifaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdEmpresa")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
     private List<Requerim> requerimList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdEmpresa")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
     private List<Contrato> contratoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdEmpresa")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
     private List<CtrlExt> ctrlExtList;
 
-    public Empresa() {
+    public Company() {
     }
 
-    public Empresa(Integer cdEmpresa) {
-        this.cdEmpresa = cdEmpresa;
+    public Company(Integer companyId) {
+        this.companyId = companyId;
     }
 
-    public Empresa(Integer cdEmpresa, String nbComercEmpresa, String nbRazonSocEmp, String nuProveedor, int cdArea) {
-        this.cdEmpresa = cdEmpresa;
+    public Company(Integer companyId, String nbComercEmpresa, String nbRazonSocEmp, String nuProveedor, int cdArea) {
+        this.companyId = companyId;
         this.nbComercEmpresa = nbComercEmpresa;
         this.nbRazonSocEmp = nbRazonSocEmp;
         this.nuProveedor = nuProveedor;
         this.cdArea = cdArea;
     }
 
-    public Integer getCdEmpresa() {
-        return cdEmpresa;
+    public Integer getCompanyId() {
+        return companyId;
     }
 
-    public void setCdEmpresa(Integer cdEmpresa) {
-        this.cdEmpresa = cdEmpresa;
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
     }
 
     public String getNbComercEmpresa() {
@@ -145,18 +145,18 @@ public class Empresa implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdEmpresa != null ? cdEmpresa.hashCode() : 0);
+        hash += (companyId != null ? companyId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Empresa)) {
+        if (!(object instanceof Company)) {
             return false;
         }
-        Empresa other = (Empresa) object;
-        if ((this.cdEmpresa == null && other.cdEmpresa != null) || (this.cdEmpresa != null && !this.cdEmpresa.equals(other.cdEmpresa))) {
+        Company other = (Company) object;
+        if ((this.companyId == null && other.companyId != null) || (this.companyId != null && !this.companyId.equals(other.companyId))) {
             return false;
         }
         return true;
@@ -164,7 +164,7 @@ public class Empresa implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bbva.Empresa[ cdEmpresa=" + cdEmpresa + " ]";
+        return "com.bbva.Company[ companyId=" + companyId + " ]";
     }
 
 }

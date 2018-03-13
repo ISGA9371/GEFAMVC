@@ -48,10 +48,10 @@ public class Duda implements Serializable {
     private Componente cdComponente;
     @JoinColumn(name = "CD_USU_PETICION", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private Usuario cdUsuPeticion;
+    private User cdUsuPeticion;
     @JoinColumn(name = "CD_USU_RESP", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
-    private Usuario cdUsuResp;
+    private User cdUsuResp;
     @JoinColumn(name = "CD_PRIORIDAD", referencedColumnName = "CD_PRIORIDAD", nullable = false)
     @ManyToOne(optional = false)
     private Prioridad cdPrioridad;
@@ -145,19 +145,19 @@ public class Duda implements Serializable {
         this.cdComponente = cdComponente;
     }
 
-    public Usuario getCdUsuPeticion() {
+    public User getCdUsuPeticion() {
         return cdUsuPeticion;
     }
 
-    public void setCdUsuPeticion(Usuario cdUsuPeticion) {
+    public void setCdUsuPeticion(User cdUsuPeticion) {
         this.cdUsuPeticion = cdUsuPeticion;
     }
 
-    public Usuario getCdUsuResp() {
+    public User getCdUsuResp() {
         return cdUsuResp;
     }
 
-    public void setCdUsuResp(Usuario cdUsuResp) {
+    public void setCdUsuResp(User cdUsuResp) {
         this.cdUsuResp = cdUsuResp;
     }
 
