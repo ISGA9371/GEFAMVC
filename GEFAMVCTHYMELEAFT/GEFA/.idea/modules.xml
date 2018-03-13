@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GEFA.iml" filepath="$PROJECT_DIR$/GEFA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/GEFA.iml" filepath="$PROJECT_DIR$/.idea/GEFA.iml" />
     </modules>
   </component>
 </project>
