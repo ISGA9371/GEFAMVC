@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "TADO002_CLIENTE") //este es el NOMBRE DE LA TABLA EN LA BASE
 public class Cliente {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY) //ESTO ES PARA CUANDO ES INT AUTO INCREMENT
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //ESTO ES PARA CUANDO ES INT AUTO INCREMENT
     @Column(name = "cd_idcl") //NOMBRE DE LA COLUMNA EN LAB ASE
     private Integer id;
 
