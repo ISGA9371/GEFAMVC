@@ -28,17 +28,17 @@ public class Area implements Serializable {
     @Column(name = "NB_AREA", nullable = false, length = 50)
     private String nbArea;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdArea")
-    private List<Pep> pepList;
+    private List<Budget> pepList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdArea")
-    private List<Tarifa> tarifaList;
+    private List<Fare> fareList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdArea")
-    private List<Requerim> requerimList;
+    private List<Requirement> requirementList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdArea")
-    private List<Contrato> contratoList;
+    private List<Contract> contractList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdArea")
-    private List<CtrlExt> ctrlExtList;
+    private List<ExternalUser> externalUserList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "thge030Area")
-    private List<TipoServ> tipoServList;
+    private List<ServiceType> serviceTypeList;
 
     public Area() {
     }
@@ -68,52 +68,52 @@ public class Area implements Serializable {
         this.nbArea = nbArea;
     }
 
-    public List<Pep> getPepList() {
+    public List<Budget> getPepList() {
         return pepList;
     }
 
-    public void setPepList(List<Pep> pepList) {
+    public void setPepList(List<Budget> pepList) {
         this.pepList = pepList;
     }
 
-    public List<Tarifa> getTarifaList() {
-        return tarifaList;
+    public List<Fare> getFareList() {
+        return fareList;
     }
 
-    public void setTarifaList(List<Tarifa> tarifaList) {
-        this.tarifaList = tarifaList;
+    public void setFareList(List<Fare> fareList) {
+        this.fareList = fareList;
     }
 
-    public List<Requerim> getRequerimList() {
-        return requerimList;
+    public List<Requirement> getRequirementList() {
+        return requirementList;
     }
 
-    public void setRequerimList(List<Requerim> requerimList) {
-        this.requerimList = requerimList;
+    public void setRequirementList(List<Requirement> requirementList) {
+        this.requirementList = requirementList;
     }
 
-    public List<Contrato> getContratoList() {
-        return contratoList;
+    public List<Contract> getContractList() {
+        return contractList;
     }
 
-    public void setContratoList(List<Contrato> contratoList) {
-        this.contratoList = contratoList;
+    public void setContractList(List<Contract> contractList) {
+        this.contractList = contractList;
     }
 
-    public List<CtrlExt> getCtrlExtList() {
-        return ctrlExtList;
+    public List<ExternalUser> getExternalUserList() {
+        return externalUserList;
     }
 
-    public void setCtrlExtList(List<CtrlExt> ctrlExtList) {
-        this.ctrlExtList = ctrlExtList;
+    public void setExternalUserList(List<ExternalUser> externalUserList) {
+        this.externalUserList = externalUserList;
     }
 
-    public List<TipoServ> getTipoServList() {
-        return tipoServList;
+    public List<ServiceType> getServiceTypeList() {
+        return serviceTypeList;
     }
 
-    public void setTipoServList(List<TipoServ> tipoServList) {
-        this.tipoServList = tipoServList;
+    public void setServiceTypeList(List<ServiceType> serviceTypeList) {
+        this.serviceTypeList = serviceTypeList;
     }
 
     @Override

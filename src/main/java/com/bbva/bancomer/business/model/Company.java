@@ -37,15 +37,15 @@ public class Company implements Serializable {
     private int cdArea;
     @JoinColumn(name = "ST_EMPRESA", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Estado stEmpresa;
+    private Status stEmpresa;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
-    private List<Tarifa> tarifaList;
+    private List<Fare> fareList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
-    private List<Requerim> requerimList;
+    private List<Requirement> requirementList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
-    private List<Contrato> contratoList;
+    private List<Contract> contractList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
-    private List<CtrlExt> ctrlExtList;
+    private List<ExternalUser> externalUserList;
 
     public Company() {
     }
@@ -102,44 +102,44 @@ public class Company implements Serializable {
         this.cdArea = cdArea;
     }
 
-    public Estado getStEmpresa() {
+    public Status getStEmpresa() {
         return stEmpresa;
     }
 
-    public void setStEmpresa(Estado stEmpresa) {
+    public void setStEmpresa(Status stEmpresa) {
         this.stEmpresa = stEmpresa;
     }
 
-    public List<Tarifa> getTarifaList() {
-        return tarifaList;
+    public List<Fare> getFareList() {
+        return fareList;
     }
 
-    public void setTarifaList(List<Tarifa> tarifaList) {
-        this.tarifaList = tarifaList;
+    public void setFareList(List<Fare> fareList) {
+        this.fareList = fareList;
     }
 
-    public List<Requerim> getRequerimList() {
-        return requerimList;
+    public List<Requirement> getRequirementList() {
+        return requirementList;
     }
 
-    public void setRequerimList(List<Requerim> requerimList) {
-        this.requerimList = requerimList;
+    public void setRequirementList(List<Requirement> requirementList) {
+        this.requirementList = requirementList;
     }
 
-    public List<Contrato> getContratoList() {
-        return contratoList;
+    public List<Contract> getContractList() {
+        return contractList;
     }
 
-    public void setContratoList(List<Contrato> contratoList) {
-        this.contratoList = contratoList;
+    public void setContractList(List<Contract> contractList) {
+        this.contractList = contractList;
     }
 
-    public List<CtrlExt> getCtrlExtList() {
-        return ctrlExtList;
+    public List<ExternalUser> getExternalUserList() {
+        return externalUserList;
     }
 
-    public void setCtrlExtList(List<CtrlExt> ctrlExtList) {
-        this.ctrlExtList = ctrlExtList;
+    public void setExternalUserList(List<ExternalUser> externalUserList) {
+        this.externalUserList = externalUserList;
     }
 
     @Override

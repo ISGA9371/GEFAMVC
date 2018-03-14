@@ -54,37 +54,37 @@ public class T955 implements Serializable {
     private Date fhRealCierre;
     @JoinColumn(name = "CD_ENTORNO", referencedColumnName = "CD_ENTORNO", nullable = false)
     @ManyToOne(optional = false)
-    private Entorno cdEntorno;
+    private Environment cdEnvironment;
     @JoinColumn(name = "CD_EDO_DEFECTO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Estado cdEdoDefecto;
+    private Status cdEdoDefecto;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
     private User cdUserResp;
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Requerim requerim;
+    private Requirement requirement;
     @JoinColumn(name = "CD_T926", referencedColumnName = "CD_T926", nullable = false)
     @ManyToOne(optional = false)
     private T926 cdT926;
     @JoinColumn(name = "CD_C204", referencedColumnName = "CD_C204", nullable = false)
     @ManyToOne(optional = false)
-    private C204 cdC204;
+    private TestCaseC204 cdTestCaseC204;
     @JoinColumn(name = "CD_SEVERIDAD", referencedColumnName = "CD_SEVERIDAD", nullable = false)
     @ManyToOne(optional = false)
-    private Severidad cdSeveridad;
+    private Severity cdSeverity;
     @JoinColumn(name = "CD_ACEPTA_RES_COR", referencedColumnName = "CD_ACEPTA_RES_COR")
     @ManyToOne
-    private AcResCor cdAceptaResCor;
+    private ResponsibleArea cdAceptaResCor;
     @JoinColumn(name = "CD_CAUSA_RECHAZO", referencedColumnName = "CD_CAUSA_RECHAZO")
     @ManyToOne
-    private CausaRech cdCausaRechazo;
+    private CauseRejection cdCausaRechazo;
     @JoinColumn(name = "CD_CAUSA_CIERRE", referencedColumnName = "CD_CONS_CAUSA_C")
     @ManyToOne
-    private CausaCier cdCausaCierre;
+    private CauseClosure cdCausaCierre;
     @JoinColumn(name = "CD_RESULT_VERIF", referencedColumnName = "CD_CONS_RESUL_VER")
     @ManyToOne
-    private ResVerif cdResultVerif;
+    private VerificationResult cdResultVerif;
 
     public T955() {
     }
@@ -207,19 +207,19 @@ public class T955 implements Serializable {
         this.fhRealCierre = fhRealCierre;
     }
 
-    public Entorno getCdEntorno() {
-        return cdEntorno;
+    public Environment getCdEnvironment() {
+        return cdEnvironment;
     }
 
-    public void setCdEntorno(Entorno cdEntorno) {
-        this.cdEntorno = cdEntorno;
+    public void setCdEnvironment(Environment cdEnvironment) {
+        this.cdEnvironment = cdEnvironment;
     }
 
-    public Estado getCdEdoDefecto() {
+    public Status getCdEdoDefecto() {
         return cdEdoDefecto;
     }
 
-    public void setCdEdoDefecto(Estado cdEdoDefecto) {
+    public void setCdEdoDefecto(Status cdEdoDefecto) {
         this.cdEdoDefecto = cdEdoDefecto;
     }
 
@@ -231,12 +231,12 @@ public class T955 implements Serializable {
         this.cdUserResp = cdUserResp;
     }
 
-    public Requerim getRequerim() {
-        return requerim;
+    public Requirement getRequirement() {
+        return requirement;
     }
 
-    public void setRequerim(Requerim requerim) {
-        this.requerim = requerim;
+    public void setRequirement(Requirement requirement) {
+        this.requirement = requirement;
     }
 
     public T926 getCdT926() {
@@ -247,51 +247,51 @@ public class T955 implements Serializable {
         this.cdT926 = cdT926;
     }
 
-    public C204 getCdC204() {
-        return cdC204;
+    public TestCaseC204 getCdTestCaseC204() {
+        return cdTestCaseC204;
     }
 
-    public void setCdC204(C204 cdC204) {
-        this.cdC204 = cdC204;
+    public void setCdTestCaseC204(TestCaseC204 cdTestCaseC204) {
+        this.cdTestCaseC204 = cdTestCaseC204;
     }
 
-    public Severidad getCdSeveridad() {
-        return cdSeveridad;
+    public Severity getCdSeverity() {
+        return cdSeverity;
     }
 
-    public void setCdSeveridad(Severidad cdSeveridad) {
-        this.cdSeveridad = cdSeveridad;
+    public void setCdSeverity(Severity cdSeverity) {
+        this.cdSeverity = cdSeverity;
     }
 
-    public AcResCor getCdAceptaResCor() {
+    public ResponsibleArea getCdAceptaResCor() {
         return cdAceptaResCor;
     }
 
-    public void setCdAceptaResCor(AcResCor cdAceptaResCor) {
+    public void setCdAceptaResCor(ResponsibleArea cdAceptaResCor) {
         this.cdAceptaResCor = cdAceptaResCor;
     }
 
-    public CausaRech getCdCausaRechazo() {
+    public CauseRejection getCdCausaRechazo() {
         return cdCausaRechazo;
     }
 
-    public void setCdCausaRechazo(CausaRech cdCausaRechazo) {
+    public void setCdCausaRechazo(CauseRejection cdCausaRechazo) {
         this.cdCausaRechazo = cdCausaRechazo;
     }
 
-    public CausaCier getCdCausaCierre() {
+    public CauseClosure getCdCausaCierre() {
         return cdCausaCierre;
     }
 
-    public void setCdCausaCierre(CausaCier cdCausaCierre) {
+    public void setCdCausaCierre(CauseClosure cdCausaCierre) {
         this.cdCausaCierre = cdCausaCierre;
     }
 
-    public ResVerif getCdResultVerif() {
+    public VerificationResult getCdResultVerif() {
         return cdResultVerif;
     }
 
-    public void setCdResultVerif(ResVerif cdResultVerif) {
+    public void setCdResultVerif(VerificationResult cdResultVerif) {
         this.cdResultVerif = cdResultVerif;
     }
 

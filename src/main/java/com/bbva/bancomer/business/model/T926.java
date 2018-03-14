@@ -37,14 +37,14 @@ public class T926 implements Serializable {
     private Integer nuDefectoReal;
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false)
     @ManyToOne(optional = false)
-    private Requerim cdRequerimiento;
+    private Requirement cdRequerimiento;
     @JoinColumn(name = "CD_CRITICIDAD", referencedColumnName = "CD_CRITICIDAD")
     @ManyToOne
-    private Criticidad cdCriticidad;
+    private Criticity cdCriticity;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdT926")
     private List<T955> t955List;
     @OneToMany(mappedBy = "cdT926")
-    private List<C204> c204List;
+    private List<TestCaseC204> testCaseC204List;
 
     public T926() {
     }
@@ -107,20 +107,20 @@ public class T926 implements Serializable {
         this.nuDefectoReal = nuDefectoReal;
     }
 
-    public Requerim getCdRequerimiento() {
+    public Requirement getCdRequerimiento() {
         return cdRequerimiento;
     }
 
-    public void setCdRequerimiento(Requerim cdRequerimiento) {
+    public void setCdRequerimiento(Requirement cdRequerimiento) {
         this.cdRequerimiento = cdRequerimiento;
     }
 
-    public Criticidad getCdCriticidad() {
-        return cdCriticidad;
+    public Criticity getCdCriticity() {
+        return cdCriticity;
     }
 
-    public void setCdCriticidad(Criticidad cdCriticidad) {
-        this.cdCriticidad = cdCriticidad;
+    public void setCdCriticity(Criticity cdCriticity) {
+        this.cdCriticity = cdCriticity;
     }
 
     public List<T955> getT955List() {
@@ -131,12 +131,12 @@ public class T926 implements Serializable {
         this.t955List = t955List;
     }
 
-    public List<C204> getC204List() {
-        return c204List;
+    public List<TestCaseC204> getTestCaseC204List() {
+        return testCaseC204List;
     }
 
-    public void setC204List(List<C204> c204List) {
-        this.c204List = c204List;
+    public void setTestCaseC204List(List<TestCaseC204> testCaseC204List) {
+        this.testCaseC204List = testCaseC204List;
     }
 
     @Override

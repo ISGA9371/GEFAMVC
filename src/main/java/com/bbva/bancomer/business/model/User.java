@@ -40,48 +40,48 @@ public class User implements Serializable {
     @Column(name = "TX_CORREO_ELECTR", length = 70)
     private String userEmail;
     @OneToMany(mappedBy = "cdUsuarioSolic")
-    private List<Pep> pepList;
+    private List<Budget> pepList;
     @OneToMany(mappedBy = "cdUsuarioResp")
-    private List<Pep> pepList1;
+    private List<Budget> pepList1;
     @OneToMany(mappedBy = "cdUsuRespDyd")
-    private List<Traspaso> traspasoList;
+    private List<Transfer> transferList;
     @JoinColumn(name = "ST_ESTADO_USUARIO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Estado stEstadoUsuario;
+    private Status stStatusUsuario;
     @JoinColumn(name = "CD_NIVEL", referencedColumnName = "CD_NIVEL")
     @ManyToOne
-    private Nivel cdNivel;
+    private Level cdLevel;
     @JoinColumn(name = "CD_PERF_USU", referencedColumnName = "CD_TIPO_PERFIL", nullable = false)
     @ManyToOne(optional = false)
-    private PerfUsu cdPerfUsu;
+    private ProfileType cdProfileType;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuarioGestor")
-    private List<Requerim> requerimList;
+    private List<Requirement> requirementList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuarioResp")
-    private List<Requerim> requerimList1;
+    private List<Requirement> requirementList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuPeticion")
-    private List<Modif> modifList;
+    private List<Modification> modificationList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdRespResol")
-    private List<Modif> modifList1;
+    private List<Modification> modificationList1;
     @OneToMany(mappedBy = "cdDuenoProd")
-    private List<Pi> piList;
+    private List<ProgramIncrement> programIncrementList;
     @OneToMany(mappedBy = "cdExpertoScrum")
-    private List<Pi> piList1;
+    private List<ProgramIncrement> programIncrementList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuPeticion")
-    private List<Duda> dudaList;
+    private List<Doubt> doubtList;
     @OneToMany(mappedBy = "cdUsuResp")
-    private List<Duda> dudaList1;
+    private List<Doubt> doubtList1;
     @OneToMany(mappedBy = "cdUsuarioGestor")
-    private List<CtrlExt> ctrlExtList;
+    private List<ExternalUser> externalUserList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuarioResp")
-    private List<CtrlExt> ctrlExtList1;
+    private List<ExternalUser> externalUserList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuarioResp")
     private List<T955> t955List;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuPeticion")
-    private List<Incidencia> incidenciaList;
+    private List<Issue> issueList;
     @OneToMany(mappedBy = "cdUsuResp")
-    private List<Incidencia> incidenciaList1;
+    private List<Issue> issueList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuarioResp")
-    private List<Nivel> nivelList;
+    private List<Level> levelList;
 
     public User() {
     }
@@ -153,132 +153,132 @@ public class User implements Serializable {
         this.userEmail = userEmail;
     }
 
-    public List<Pep> getPepList() {
+    public List<Budget> getPepList() {
         return pepList;
     }
 
-    public void setPepList(List<Pep> pepList) {
+    public void setPepList(List<Budget> pepList) {
         this.pepList = pepList;
     }
 
-    public List<Pep> getPepList1() {
+    public List<Budget> getPepList1() {
         return pepList1;
     }
 
-    public void setPepList1(List<Pep> pepList1) {
+    public void setPepList1(List<Budget> pepList1) {
         this.pepList1 = pepList1;
     }
 
-    public List<Traspaso> getTraspasoList() {
-        return traspasoList;
+    public List<Transfer> getTransferList() {
+        return transferList;
     }
 
-    public void setTraspasoList(List<Traspaso> traspasoList) {
-        this.traspasoList = traspasoList;
+    public void setTransferList(List<Transfer> transferList) {
+        this.transferList = transferList;
     }
 
-    public Estado getStEstadoUsuario() {
-        return stEstadoUsuario;
+    public Status getStStatusUsuario() {
+        return stStatusUsuario;
     }
 
-    public void setStEstadoUsuario(Estado stEstadoUsuario) {
-        this.stEstadoUsuario = stEstadoUsuario;
+    public void setStStatusUsuario(Status stStatusUsuario) {
+        this.stStatusUsuario = stStatusUsuario;
     }
 
-    public Nivel getCdNivel() {
-        return cdNivel;
+    public Level getCdLevel() {
+        return cdLevel;
     }
 
-    public void setCdNivel(Nivel cdNivel) {
-        this.cdNivel = cdNivel;
+    public void setCdLevel(Level cdLevel) {
+        this.cdLevel = cdLevel;
     }
 
-    public PerfUsu getCdPerfUsu() {
-        return cdPerfUsu;
+    public ProfileType getCdProfileType() {
+        return cdProfileType;
     }
 
-    public void setCdPerfUsu(PerfUsu cdPerfUsu) {
-        this.cdPerfUsu = cdPerfUsu;
+    public void setCdProfileType(ProfileType cdProfileType) {
+        this.cdProfileType = cdProfileType;
     }
 
-    public List<Requerim> getRequerimList() {
-        return requerimList;
+    public List<Requirement> getRequirementList() {
+        return requirementList;
     }
 
-    public void setRequerimList(List<Requerim> requerimList) {
-        this.requerimList = requerimList;
+    public void setRequirementList(List<Requirement> requirementList) {
+        this.requirementList = requirementList;
     }
 
-    public List<Requerim> getRequerimList1() {
-        return requerimList1;
+    public List<Requirement> getRequirementList1() {
+        return requirementList1;
     }
 
-    public void setRequerimList1(List<Requerim> requerimList1) {
-        this.requerimList1 = requerimList1;
+    public void setRequirementList1(List<Requirement> requirementList1) {
+        this.requirementList1 = requirementList1;
     }
 
-    public List<Modif> getModifList() {
-        return modifList;
+    public List<Modification> getModificationList() {
+        return modificationList;
     }
 
-    public void setModifList(List<Modif> modifList) {
-        this.modifList = modifList;
+    public void setModificationList(List<Modification> modificationList) {
+        this.modificationList = modificationList;
     }
 
-    public List<Modif> getModifList1() {
-        return modifList1;
+    public List<Modification> getModificationList1() {
+        return modificationList1;
     }
 
-    public void setModifList1(List<Modif> modifList1) {
-        this.modifList1 = modifList1;
+    public void setModificationList1(List<Modification> modificationList1) {
+        this.modificationList1 = modificationList1;
     }
 
-    public List<Pi> getPiList() {
-        return piList;
+    public List<ProgramIncrement> getProgramIncrementList() {
+        return programIncrementList;
     }
 
-    public void setPiList(List<Pi> piList) {
-        this.piList = piList;
+    public void setProgramIncrementList(List<ProgramIncrement> programIncrementList) {
+        this.programIncrementList = programIncrementList;
     }
 
-    public List<Pi> getPiList1() {
-        return piList1;
+    public List<ProgramIncrement> getProgramIncrementList1() {
+        return programIncrementList1;
     }
 
-    public void setPiList1(List<Pi> piList1) {
-        this.piList1 = piList1;
+    public void setProgramIncrementList1(List<ProgramIncrement> programIncrementList1) {
+        this.programIncrementList1 = programIncrementList1;
     }
 
-    public List<Duda> getDudaList() {
-        return dudaList;
+    public List<Doubt> getDoubtList() {
+        return doubtList;
     }
 
-    public void setDudaList(List<Duda> dudaList) {
-        this.dudaList = dudaList;
+    public void setDoubtList(List<Doubt> doubtList) {
+        this.doubtList = doubtList;
     }
 
-    public List<Duda> getDudaList1() {
-        return dudaList1;
+    public List<Doubt> getDoubtList1() {
+        return doubtList1;
     }
 
-    public void setDudaList1(List<Duda> dudaList1) {
-        this.dudaList1 = dudaList1;
+    public void setDoubtList1(List<Doubt> doubtList1) {
+        this.doubtList1 = doubtList1;
     }
 
-    public List<CtrlExt> getCtrlExtList() {
-        return ctrlExtList;
+    public List<ExternalUser> getExternalUserList() {
+        return externalUserList;
     }
 
-    public void setCtrlExtList(List<CtrlExt> ctrlExtList) {
-        this.ctrlExtList = ctrlExtList;
+    public void setExternalUserList(List<ExternalUser> externalUserList) {
+        this.externalUserList = externalUserList;
     }
 
-    public List<CtrlExt> getCtrlExtList1() {
-        return ctrlExtList1;
+    public List<ExternalUser> getExternalUserList1() {
+        return externalUserList1;
     }
 
-    public void setCtrlExtList1(List<CtrlExt> ctrlExtList1) {
-        this.ctrlExtList1 = ctrlExtList1;
+    public void setExternalUserList1(List<ExternalUser> externalUserList1) {
+        this.externalUserList1 = externalUserList1;
     }
 
     public List<T955> getT955List() {
@@ -289,28 +289,28 @@ public class User implements Serializable {
         this.t955List = t955List;
     }
 
-    public List<Incidencia> getIncidenciaList() {
-        return incidenciaList;
+    public List<Issue> getIssueList() {
+        return issueList;
     }
 
-    public void setIncidenciaList(List<Incidencia> incidenciaList) {
-        this.incidenciaList = incidenciaList;
+    public void setIssueList(List<Issue> issueList) {
+        this.issueList = issueList;
     }
 
-    public List<Incidencia> getIncidenciaList1() {
-        return incidenciaList1;
+    public List<Issue> getIssueList1() {
+        return issueList1;
     }
 
-    public void setIncidenciaList1(List<Incidencia> incidenciaList1) {
-        this.incidenciaList1 = incidenciaList1;
+    public void setIssueList1(List<Issue> issueList1) {
+        this.issueList1 = issueList1;
     }
 
-    public List<Nivel> getNivelList() {
-        return nivelList;
+    public List<Level> getLevelList() {
+        return levelList;
     }
 
-    public void setNivelList(List<Nivel> nivelList) {
-        this.nivelList = nivelList;
+    public void setLevelList(List<Level> levelList) {
+        this.levelList = levelList;
     }
 
     @Override

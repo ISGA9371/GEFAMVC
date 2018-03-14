@@ -1,7 +1,7 @@
 package com.bbva.bancomer.controller;
 
 
-import com.bbva.bancomer.business.model.Requerimiento;
+import com.bbva.bancomer.business.model._Requerimiento;
 import com.bbva.bancomer.business.service.RequerimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import sun.rmi.runtime.Log;
 
 @Controller
 @RequestMapping("/requerimiento")
@@ -30,13 +29,13 @@ public class RequerimientoController {
     public ModelAndView entraRequerimiento(){
 
         ModelAndView modelReq = new ModelAndView(REQUERIMIENTO_VISTA);
-        modelReq.addObject("requerimiento", new Requerimiento());
+        modelReq.addObject("requerimiento", new _Requerimiento());
 
         return modelReq;
     }
 
     @PostMapping("/guardaReq")
-    public String guardaRequerimiento(@ModelAttribute("requerimiento") Requerimiento requerimiento){
+    public String guardaRequerimiento(@ModelAttribute("requerimiento") _Requerimiento requerimiento){
         requerimientoService.agregaRequerimiento(requerimiento);
         System.out.print("LLega");
         return "redirect:/requerimiento/ModificaRequerimiento";
