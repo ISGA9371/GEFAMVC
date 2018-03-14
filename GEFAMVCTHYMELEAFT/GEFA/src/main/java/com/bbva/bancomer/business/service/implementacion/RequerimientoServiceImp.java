@@ -12,13 +12,11 @@ import java.util.List;
 @Service("requerimientoServiceImp")
 public class RequerimientoServiceImp implements RequerimientoService {
 
-    @Autowired
-    @Qualifier("requerimientoJpaRepository")
     private RequerimientoJpaRepository requerimientoJpaRepository;
 
     @Override
     public List<Requerimiento> listaTodosRequerimientos() {
-        return requerimientoJpaRepository.findAll();
+        return (List<Requerimiento>) requerimientoJpaRepository.findAll();
     }
 
     @Override
@@ -31,5 +29,17 @@ public class RequerimientoServiceImp implements RequerimientoService {
         return requerimientoJpaRepository.save(requerimiento);
     }
 
+    @Override
+    public Requerimiento buscaRequerimiento(Integer id) {
+        if(requerimientoJpaRepository.findById(id).isPresent())
+            return requerimientoJpaRepository.findById(id).get();
+        else
+            return null;
+    }
+
+    @Autowired
+    public void setRequerimientoJpaRepository(RequerimientoJpaRepository requerimientoJpaRepository){
+        this.requerimientoJpaRepository = requerimientoJpaRepository;
+    }
 
 }

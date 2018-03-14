@@ -12,40 +12,40 @@ public class Requerimiento {
     @Id
     //@GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="CD_REQUERIMIENTO")
-    private int cd_requerimiento;
+    private Integer cd_requerimiento;
 
     @Column(name="NB_REQUERIMIENTO")
     private String nb_requerimiento;
 
     @Column(name="CD_NIVEL")
-    private int cd_nivel;
+    private Integer cd_nivel;
 
     @Column(name="CD_TECNOLOGIA")
-    private int cd_tecnologia;
+    private Integer cd_tecnologia;
 
     @Column(name="CD_EMPRESA")
-    private int cd_empresa;
+    private Integer cd_empresa;
 
     @Column(name="CD_AREA")
-    private int cd_area;
+    private Integer cd_area;
 
     @Column(name="CD_TIPO_SERVICIO")
-    private int cd_tipo_servicio;
+    private Integer cd_tipo_servicio;
 
     @Column(name="CD_TIPO_PROY")
-    private int cd_tipo_proyecto;
+    private Integer cd_tipo_proyecto;
 
     @Column(name="CD_APLICACION")
-    private int cd_aplicacion;
+    private Integer cd_aplicacion;
 
     @Column(name="CD_CANAL")
-    private int cd_canal;
+    private Integer cd_canal;
 
     @Column(name="NU_HORA_REQ")
-    private double nu_hora_rec;
+    private Double nu_hora_rec;
 
     @Column(name="CD_SCRUM")
-    private int cd_scrum;
+    private Integer cd_scrum;
 
     @Column(name="CD_USUARIO_RESP")
     private String cd_usuario_resp;
@@ -54,29 +54,29 @@ public class Requerimiento {
     private String cd_usuario_gestor;
 
     @Column(name="ST_REQUERIMIENTO")
-    private int st_requerimiento;
+    private Integer st_requerimiento;
 
     @Column(name="NU_HRS_TOT")
-    private int nu_hrs_tot;
+    private Integer nu_hrs_tot;
 
     @Column(name="NU_HRS_FACT")
-    private int nu_hrs_fact;
+    private Integer nu_hrs_fact;
 
     @Column(name="ST_FACTURADO")
-    private int st_facturado;
+    private Integer st_facturado;
 
     @Column(name="TM_ALTA_REQ")
     private String tm_alta_rec;
 
     @Column(name="NU_FACTURABLE")
-    private int nu_facturable;
+    private Integer nu_facturable;
 
     //Cosntructor por defecto para Hibernate
     public Requerimiento(){}
 
 
     //Constructor Nuestro
-    public Requerimiento(int cd_requerimiento, String nb_requerimiento, int cd_nivel, int cd_tecnologia, int cd_empresa, int cd_area, int cd_tipo_servicio, int cd_tipo_proyecto, int cd_aplicacion, int cd_canal, double nu_hora_rec, int cd_scrum, String cd_usuario_resp, String cd_usuario_gestor, int st_requerimiento, int nu_hrs_tot, int nu_hrs_fact, int st_facturado, String tm_alta_rec, int nu_facturable) {
+    public Requerimiento(Integer cd_requerimiento, String nb_requerimiento, Integer cd_nivel, Integer cd_tecnologia, Integer cd_empresa, Integer cd_area, Integer cd_tipo_servicio, Integer cd_tipo_proyecto, Integer cd_aplicacion, Integer cd_canal, Double nu_hora_rec, Integer cd_scrum, String cd_usuario_resp, String cd_usuario_gestor, Integer st_requerimiento, Integer nu_hrs_tot, Integer nu_hrs_fact, Integer st_facturado, String tm_alta_rec, Integer nu_facturable) {
         this.cd_requerimiento = cd_requerimiento;
         this.nb_requerimiento = nb_requerimiento;
         this.cd_nivel = cd_nivel;
@@ -99,11 +99,11 @@ public class Requerimiento {
         this.nu_facturable = nu_facturable;
     }
 
-    public int getCd_requerimiento() {
+    public Integer getCd_requerimiento() {
         return cd_requerimiento;
     }
 
-    public void setCd_requerimiento(int cd_requerimiento) {
+    public void setCd_requerimiento(Integer cd_requerimiento) {
         this.cd_requerimiento = cd_requerimiento;
     }
 
@@ -115,83 +115,83 @@ public class Requerimiento {
         this.nb_requerimiento = nb_requerimiento;
     }
 
-    public int getCd_nivel() {
+    public Integer getCd_nivel() {
         return cd_nivel;
     }
 
-    public void setCd_nivel(int cd_nivel) {
+    public void setCd_nivel(Integer cd_nivel) {
         this.cd_nivel = cd_nivel;
     }
 
-    public int getCd_tecnologia() {
+    public Integer getCd_tecnologia() {
         return cd_tecnologia;
     }
 
-    public void setCd_tecnologia(int cd_tecnologia) {
+    public void setCd_tecnologia(Integer cd_tecnologia) {
         this.cd_tecnologia = cd_tecnologia;
     }
 
-    public int getCd_empresa() {
+    public Integer getCd_empresa() {
         return cd_empresa;
     }
 
-    public void setCd_empresa(int cd_empresa) {
+    public void setCd_empresa(Integer cd_empresa) {
         this.cd_empresa = cd_empresa;
     }
 
-    public int getCd_area() {
+    public Integer getCd_area() {
         return cd_area;
     }
 
-    public void setCd_area(int cd_area) {
+    public void setCd_area(Integer cd_area) {
         this.cd_area = cd_area;
     }
 
-    public int getCd_tipo_servicio() {
+    public Integer getCd_tipo_servicio() {
         return cd_tipo_servicio;
     }
 
-    public void setCd_tipo_servicio(int cd_tipo_servicio) {
+    public void setCd_tipo_servicio(Integer cd_tipo_servicio) {
         this.cd_tipo_servicio = cd_tipo_servicio;
     }
 
-    public int getCd_tipo_proyecto() {
+    public Integer getCd_tipo_proyecto() {
         return cd_tipo_proyecto;
     }
 
-    public void setCd_tipo_proyecto(int cd_tipo_proyecto) {
+    public void setCd_tipo_proyecto(Integer cd_tipo_proyecto) {
         this.cd_tipo_proyecto = cd_tipo_proyecto;
     }
 
-    public int getCd_aplicacion() {
+    public Integer getCd_aplicacion() {
         return cd_aplicacion;
     }
 
-    public void setCd_aplicacion(int cd_aplicacion) {
+    public void setCd_aplicacion(Integer cd_aplicacion) {
         this.cd_aplicacion = cd_aplicacion;
     }
 
-    public int getCd_canal() {
+    public Integer getCd_canal() {
         return cd_canal;
     }
 
-    public void setCd_canal(int cd_canal) {
+    public void setCd_canal(Integer cd_canal) {
         this.cd_canal = cd_canal;
     }
 
-    public double getNu_hora_rec() {
+    public Double getNu_hora_rec() {
         return nu_hora_rec;
     }
 
-    public void setNu_hora_rec(double nu_hora_rec) {
+    public void setNu_hora_rec(Double nu_hora_rec) {
         this.nu_hora_rec = nu_hora_rec;
     }
 
-    public int getCd_scrum() {
+    public Integer getCd_scrum() {
         return cd_scrum;
     }
 
-    public void setCd_scrum(int cd_scrum) {
+    public void setCd_scrum(Integer cd_scrum) {
         this.cd_scrum = cd_scrum;
     }
 
@@ -211,35 +211,35 @@ public class Requerimiento {
         this.cd_usuario_gestor = cd_usuario_gestor;
     }
 
-    public int getSt_requerimiento() {
+    public Integer getSt_requerimiento() {
         return st_requerimiento;
     }
 
-    public void setSt_requerimiento(int st_requerimiento) {
+    public void setSt_requerimiento(Integer st_requerimiento) {
         this.st_requerimiento = st_requerimiento;
     }
 
-    public int getNu_hrs_tot() {
+    public Integer getNu_hrs_tot() {
         return nu_hrs_tot;
     }
 
-    public void setNu_hrs_tot(int nu_hrs_tot) {
+    public void setNu_hrs_tot(Integer nu_hrs_tot) {
         this.nu_hrs_tot = nu_hrs_tot;
     }
 
-    public int getNu_hrs_fact() {
+    public Integer getNu_hrs_fact() {
         return nu_hrs_fact;
     }
 
-    public void setNu_hrs_fact(int nu_hrs_fact) {
+    public void setNu_hrs_fact(Integer nu_hrs_fact) {
         this.nu_hrs_fact = nu_hrs_fact;
     }
 
-    public int getSt_facturado() {
+    public Integer getSt_facturado() {
         return st_facturado;
     }
 
-    public void setSt_facturado(int st_facturado) {
+    public void setSt_facturado(Integer st_facturado) {
         this.st_facturado = st_facturado;
     }
 
@@ -251,11 +251,11 @@ public class Requerimiento {
         this.tm_alta_rec = tm_alta_rec;
     }
 
-    public int getNu_facturable() {
+    public Integer getNu_facturable() {
         return nu_facturable;
     }
 
-    public void setNu_facturable(int nu_facturable) {
+    public void setNu_facturable(Integer nu_facturable) {
         this.nu_facturable = nu_facturable;
     }
 

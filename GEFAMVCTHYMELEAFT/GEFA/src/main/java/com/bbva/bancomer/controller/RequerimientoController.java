@@ -6,12 +6,12 @@ import com.bbva.bancomer.business.service.RequerimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import sun.rmi.runtime.Log;
+
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/requerimiento")
@@ -20,10 +20,9 @@ public class RequerimientoController {
     private static final String REQUERIMIENTO_VISTA = "fabrica/AltaDeRequerimiento";
     private static final String MODIFICA_REQ_VISTA = "fabrica/ModificarRequerimiento";
 
-
-    @Autowired
-    @Qualifier("requerimientoServiceImp")
     private RequerimientoService requerimientoService;
+
+    private static final Logger log = Logger.getLogger(RequerimientoController.class.getName());
 
 
     @GetMapping("/inicialRequerimiento")
@@ -43,12 +42,21 @@ public class RequerimientoController {
 
     }
 
-    @GetMapping("/ModificaRequerimiento")
-    public ModelAndView buscaRequerimiento(){
+    @GetMapping("/{id}")
+    public String buscaRequerimiento(Model model, @PathVariable Integer id ){
 
-        ModelAndView modelReq = new ModelAndView(MODIFICA_REQ_VISTA);
+        log.info("ID "+id);
 
-        return modelReq;
+        Requerimiento requerimiento = requerimientoService.buscaRequerimiento(id);
+
+        model.addAttribute("req",requerimiento);
+
+        return MODIFICA_REQ_VISTA;
+    }
+
+    @Autowired
+    public void setRequerimientoService(RequerimientoService requerimientoService){
+        this.requerimientoService = requerimientoService;
     }
 
 }
