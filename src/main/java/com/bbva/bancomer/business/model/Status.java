@@ -34,7 +34,7 @@ public class Status implements Serializable {
     private List<Budget> pepList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stTarifa")
     private List<Fare> fareList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stEstadoUsuario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stStatusUsuario")
     private List<User> userList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stPepFact")
     private List<Invoice> invoiceList;
@@ -54,7 +54,7 @@ public class Status implements Serializable {
     private List<Access> accessList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stDuda")
     private List<Doubt> doubtList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stEstado")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stStatus")
     private List<Typology> typologyList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stRecExt")
     private List<ExternalUser> externalUserList;

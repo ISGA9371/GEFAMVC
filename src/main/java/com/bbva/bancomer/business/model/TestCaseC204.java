@@ -36,7 +36,7 @@ public class TestCaseC204 implements Serializable {
     @Lob
     @Column(name = "TX_EVIDENCIA_PBA")
     private byte[] txEvidenciaPba;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdC204")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTestCaseC204")
     private List<T955> t955List;
     @JoinColumn(name = "CD_T926", referencedColumnName = "CD_T926")
     @ManyToOne

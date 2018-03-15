@@ -19,7 +19,7 @@ import java.util.Properties;
 @Configuration
 @EnableJpaRepositories(basePackages = {"com.bbva.bancomer.business.repository"})
 @EnableTransactionManagement
-public class JPAPersistenceConfig{
+public class JPAPersistenceConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -36,37 +36,37 @@ public class JPAPersistenceConfig{
     /*TODO AQUI EN DATASOURCE CAMBIAR LA URL POR LA DE SU BASE DEDATOS, EL USER Y EL PASS.
      * CHECAR SI LOS PARAMETROS ADICIONALES DE LA CONEXION TAMBIEN LES APLICAN */
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://23.251.150.233:3306/GESTION_FACTORIA?serverTimezone=America/Mexico_City&"+
-                            "useSSL=false&zeroDateTimeBehavior=convertToNull");
-        dataSource.setUsername( "gefaapp" );
-        dataSource.setPassword( "g3f4dbapp" );
+        dataSource.setUrl("jdbc:mysql://23.251.150.233:3306/GESTION_FACTORIA?serverTimezone=America/Mexico_City&" +
+                "useSSL=false&zeroDateTimeBehavior=convertToNull");
+        dataSource.setUsername("gefaapp");
+        dataSource.setPassword("g3f4dbapp");
         return dataSource;
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(emf);
         return transactionManager;
     }
 
     @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
     private Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-        properties.setProperty("show_sql","true");
-        properties.setProperty("format_sql","true");
-        properties.setProperty("use_sql_comments","true");
+        properties.setProperty("show_sql", "true");
+        properties.setProperty("format_sql", "true");
+        properties.setProperty("use_sql_comments", "true");
+        properties.setProperty("hibernate.hbm2ddl.auto", "validate");
         return properties;
     }
-
 
 
 }

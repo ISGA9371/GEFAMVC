@@ -27,15 +27,15 @@ public class Technology implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_TECNOLOGIA", nullable = false, length = 25)
     private String nbTecnologia;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTecnologia")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTechnology")
     private List<Fare> fareList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTecnologia")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTechnology")
     private List<Application> applicationList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTecnologia")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTechnology")
     private List<Requirement> requirementList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTecnologia")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTechnology")
     private List<Contract> contractList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTecnologia")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTechnology")
     private List<Product> productList;
 
     public Technology() {

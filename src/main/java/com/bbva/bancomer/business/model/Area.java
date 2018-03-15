@@ -37,8 +37,8 @@ public class Area implements Serializable {
     private List<Contract> contractList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdArea")
     private List<ExternalUser> externalUserList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "thge030Area")
-    private List<ServiceType> serviceTypeList;
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "thge030Area")
+    private List<ServiceType_> serviceTypeList;*/
 
     public Area() {
     }
@@ -107,14 +107,14 @@ public class Area implements Serializable {
     public void setExternalUserList(List<ExternalUser> externalUserList) {
         this.externalUserList = externalUserList;
     }
-
-    public List<ServiceType> getServiceTypeList() {
+    /*
+    public List<ServiceType_> getServiceTypeList() {
         return serviceTypeList;
     }
 
-    public void setServiceTypeList(List<ServiceType> serviceTypeList) {
+    public void setServiceTypeList(List<ServiceType_> serviceTypeList) {
         this.serviceTypeList = serviceTypeList;
-    }
+    }*/
 
     @Override
     public int hashCode() {

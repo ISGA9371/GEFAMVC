@@ -39,9 +39,9 @@ public class User implements Serializable {
     private String userPassword;
     @Column(name = "TX_CORREO_ELECTR", length = 70)
     private String userEmail;
-    @OneToMany(mappedBy = "cdUsuarioSolic")
+    @OneToMany(mappedBy = "cdUserSolic")
     private List<Budget> pepList;
-    @OneToMany(mappedBy = "cdUsuarioResp")
+    @OneToMany(mappedBy = "cdUserResp")
     private List<Budget> pepList1;
     @OneToMany(mappedBy = "cdUsuRespDyd")
     private List<Transfer> transferList;
@@ -54,9 +54,9 @@ public class User implements Serializable {
     @JoinColumn(name = "CD_PERF_USU", referencedColumnName = "CD_TIPO_PERFIL", nullable = false)
     @ManyToOne(optional = false)
     private ProfileType cdProfileType;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuarioGestor")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUserGestor")
     private List<Requirement> requirementList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuarioResp")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUserResp")
     private List<Requirement> requirementList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuPeticion")
     private List<Modification> modificationList;
@@ -70,17 +70,17 @@ public class User implements Serializable {
     private List<Doubt> doubtList;
     @OneToMany(mappedBy = "cdUsuResp")
     private List<Doubt> doubtList1;
-    @OneToMany(mappedBy = "cdUsuarioGestor")
+    @OneToMany(mappedBy = "cdUserGestor")
     private List<ExternalUser> externalUserList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuarioResp")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUserResp")
     private List<ExternalUser> externalUserList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuarioResp")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUserResp")
     private List<T955> t955List;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuPeticion")
     private List<Issue> issueList;
     @OneToMany(mappedBy = "cdUsuResp")
     private List<Issue> issueList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuarioResp")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUserResp")
     private List<Level> levelList;
 
     public User() {

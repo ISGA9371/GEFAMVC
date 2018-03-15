@@ -27,7 +27,7 @@ public class StatusType implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_TIPO_EDO", nullable = false, length = 50)
     private String nbTipoEdo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTipoEdo")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdStatusType")
     private List<Status> statusList;
 
     public StatusType() {

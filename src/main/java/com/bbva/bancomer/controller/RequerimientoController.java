@@ -1,10 +1,9 @@
 package com.bbva.bancomer.controller;
 
 
-import com.bbva.bancomer.business.model._Requerimiento;
+import com.bbva.bancomer.business.model.Requerimiento;
 import com.bbva.bancomer.business.service.RequerimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,16 +24,16 @@ public class RequerimientoController {
 
 
     @GetMapping("/inicialRequerimiento")
-    public ModelAndView entraRequerimiento(){
+    public ModelAndView entraRequerimiento() {
 
         ModelAndView modelReq = new ModelAndView(REQUERIMIENTO_VISTA);
-        modelReq.addObject("requerimiento", new _Requerimiento());
+        modelReq.addObject("requerimiento", new Requerimiento());
 
         return modelReq;
     }
 
     @PostMapping("/guardaReq")
-    public String guardaRequerimiento(@ModelAttribute("requerimiento") _Requerimiento requerimiento){
+    public String guardaRequerimiento(@ModelAttribute("requerimiento") Requerimiento requerimiento) {
         requerimientoService.agregaRequerimiento(requerimiento);
         System.out.print("LLega");
         return "redirect:/requerimiento/ModificaRequerimiento";
@@ -42,19 +41,19 @@ public class RequerimientoController {
     }
 
     @GetMapping("/{id}")
-    public String buscaRequerimiento(Model model, @PathVariable Integer id ){
+    public String buscaRequerimiento(Model model, @PathVariable Integer id) {
 
-        log.info("ID "+id);
+        log.info("ID " + id);
 
         Requerimiento requerimiento = requerimientoService.buscaRequerimiento(id);
 
-        model.addAttribute("req",requerimiento);
+        model.addAttribute("req", requerimiento);
 
         return MODIFICA_REQ_VISTA;
     }
 
     @Autowired
-    public void setRequerimientoService(RequerimientoService requerimientoService){
+    public void setRequerimientoService(RequerimientoService requerimientoService) {
         this.requerimientoService = requerimientoService;
     }
 

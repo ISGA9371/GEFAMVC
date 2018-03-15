@@ -38,13 +38,13 @@ public class Company implements Serializable {
     @JoinColumn(name = "ST_EMPRESA", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status stEmpresa;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdCompany")
     private List<Fare> fareList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdCompany")
     private List<Requirement> requirementList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdCompany")
     private List<Contract> contractList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdCompany")
     private List<ExternalUser> externalUserList;
 
     public Company() {

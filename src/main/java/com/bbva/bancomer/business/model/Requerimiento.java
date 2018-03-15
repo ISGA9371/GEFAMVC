@@ -1,78 +1,80 @@
 package com.bbva.bancomer.business.model;
 
 
-import com.sun.istack.internal.Nullable;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="THGE017_REQUERIM")
+@Table(name = "THGE017_REQUERIM")
 public class Requerimiento {
 
     @Id
     //@GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="CD_REQUERIMIENTO")
+    @Column(name = "CD_REQUERIMIENTO")
     private Integer cd_requerimiento;
 
-    @Column(name="NB_REQUERIMIENTO")
+    @Column(name = "NB_REQUERIMIENTO")
     private String nb_requerimiento;
 
-    @Column(name="CD_NIVEL")
+    @Column(name = "CD_NIVEL")
     private Integer cd_nivel;
 
-    @Column(name="CD_TECNOLOGIA")
+    @Column(name = "CD_TECNOLOGIA")
     private Integer cd_tecnologia;
 
-    @Column(name="CD_EMPRESA")
+    @Column(name = "CD_EMPRESA")
     private Integer cd_empresa;
 
-    @Column(name="CD_AREA")
+    @Column(name = "CD_AREA")
     private Integer cd_area;
 
-    @Column(name="CD_TIPO_SERVICIO")
+    @Column(name = "CD_TIPO_SERVICIO")
     private Integer cd_tipo_servicio;
 
-    @Column(name="CD_TIPO_PROY")
+    @Column(name = "CD_TIPO_PROY")
     private Integer cd_tipo_proyecto;
 
-    @Column(name="CD_APLICACION")
+    @Column(name = "CD_APLICACION")
     private Integer cd_aplicacion;
 
-    @Column(name="CD_CANAL")
+    @Column(name = "CD_CANAL")
     private Integer cd_canal;
 
-    @Column(name="NU_HORA_REQ")
+    @Column(name = "NU_HORA_REQ")
     private Double nu_hora_rec;
 
-    @Column(name="CD_SCRUM")
+    @Column(name = "CD_SCRUM")
     private Integer cd_scrum;
 
-    @Column(name="CD_USUARIO_RESP")
+    @Column(name = "CD_USUARIO_RESP")
     private String cd_usuario_resp;
 
-    @Column(name="CD_USUARIO_GESTOR")
+    @Column(name = "CD_USUARIO_GESTOR")
     private String cd_usuario_gestor;
 
-    @Column(name="ST_REQUERIMIENTO")
+    @Column(name = "ST_REQUERIMIENTO")
     private Integer st_requerimiento;
 
-    @Column(name="NU_HRS_TOT")
+    @Column(name = "NU_HRS_TOT")
     private Integer nu_hrs_tot;
 
-    @Column(name="NU_HRS_FACT")
+    @Column(name = "NU_HRS_FACT")
     private Integer nu_hrs_fact;
 
-    @Column(name="ST_FACTURADO")
+    @Column(name = "ST_FACTURADO")
     private Integer st_facturado;
 
-    @Column(name="TM_ALTA_REQ")
+    @Column(name = "TM_ALTA_REQ")
     private String tm_alta_rec;
 
-    @Column(name="NU_FACTURABLE")
+    @Column(name = "NU_FACTURABLE")
     private Integer nu_facturable;
 
     //Cosntructor por defecto para Hibernate
-    public Requerimiento(){}
+    public Requerimiento() {
+    }
 
 
     //Constructor Nuestro

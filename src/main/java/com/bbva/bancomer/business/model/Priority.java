@@ -27,11 +27,11 @@ public class Priority implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_PRIORIDAD", nullable = false, length = 25)
     private String nbPrioridad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPrioridadUsu")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPriorityUsu")
     private List<Modification> modificationList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPrioridad")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPriority")
     private List<Doubt> doubtList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPrioridad")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPriority")
     private List<Issue> issueList;
 
     public Priority() {

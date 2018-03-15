@@ -8,6 +8,6 @@ package com.bbva.bancomer.business.model;
 /**
  * @author Guevara
  */
-public class ServiceType {
+public class ServiceTypePK_ {
 
 }

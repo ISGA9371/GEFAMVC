@@ -34,7 +34,7 @@ public class Application implements Serializable {
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Technology cdTechnology;
-    @OneToMany(mappedBy = "cdAplicacion")
+    @OneToMany(mappedBy = "cdApplication")
     private List<Requirement> requirementList;
 
     public Application() {

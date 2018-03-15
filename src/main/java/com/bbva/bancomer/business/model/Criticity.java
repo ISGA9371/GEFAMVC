@@ -27,7 +27,7 @@ public class Criticity implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_CRITICIDAD", nullable = false, length = 10)
     private String nbCriticidad;
-    @OneToMany(mappedBy = "cdCriticidad")
+    @OneToMany(mappedBy = "cdCriticity")
     private List<T926> t926List;
 
     public Criticity() {

@@ -27,7 +27,7 @@ public class Environment implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_ENTORNO", nullable = false, length = 25)
     private String nbEntorno;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdEntorno")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdEnvironment")
     private List<T955> t955List;
 
     public Environment() {

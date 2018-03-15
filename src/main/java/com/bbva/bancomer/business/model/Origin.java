@@ -27,7 +27,7 @@ public class Origin implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_ORIGEN", nullable = false, length = 50)
     private String nbOrigen;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdOrigen")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdOrigin")
     private List<Modification> modificationList;
 
     public Origin() {

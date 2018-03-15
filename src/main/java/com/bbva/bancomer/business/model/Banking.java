@@ -27,7 +27,7 @@ public class Banking implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_BANCA", nullable = false, length = 50)
     private String nbBanca;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdBanca")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdBanking")
     private List<Budget> pepList;
 
     public Banking() {

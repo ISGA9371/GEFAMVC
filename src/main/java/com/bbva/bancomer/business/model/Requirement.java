@@ -49,9 +49,9 @@ public class Requirement implements Serializable {
     @JoinColumn(name = "CD_USUARIO_GESTOR", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
     private User cdUserGestor;
-    @JoinColumn(name = "CD_TIPO_SERVICIO", referencedColumnName = "CD_TIPO_SERVICIO", nullable = false)
+    /*@JoinColumn(name = "CD_TIPO_SERVICIO", referencedColumnName = "CD_TIPO_SERVICIO", nullable = false)
     @ManyToOne(optional = false)
-    private ServiceType cdTipoServicio;
+    private ServiceType_ cdTipoServicio;*/
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Technology cdTechnology;
@@ -86,7 +86,7 @@ public class Requirement implements Serializable {
     private List<BudgetRequirement> budgetRequirementList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdRequerimiento")
     private List<T926> t926List;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "thge017Requerim")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<T955> t955List;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdRequerimiento")
     private List<Component> componentList;
@@ -190,14 +190,14 @@ public class Requirement implements Serializable {
     public void setCdUserGestor(User cdUserGestor) {
         this.cdUserGestor = cdUserGestor;
     }
-
-    public ServiceType getCdTipoServicio() {
+    /*
+    public ServiceType_ getCdTipoServicio() {
         return cdTipoServicio;
     }
 
-    public void setCdTipoServicio(ServiceType cdTipoServicio) {
+    public void setCdTipoServicio(ServiceType_ cdTipoServicio) {
         this.cdTipoServicio = cdTipoServicio;
-    }
+    }*/
 
     public Technology getCdTechnology() {
         return cdTechnology;
