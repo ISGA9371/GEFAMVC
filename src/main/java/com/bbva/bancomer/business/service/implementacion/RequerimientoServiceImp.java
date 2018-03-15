@@ -4,7 +4,6 @@ import com.bbva.bancomer.business.model.Requerimiento;
 import com.bbva.bancomer.business.repository.RequerimientoJpaRepository;
 import com.bbva.bancomer.business.service.RequerimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,14 +30,14 @@ public class RequerimientoServiceImp implements RequerimientoService {
 
     @Override
     public Requerimiento buscaRequerimiento(Integer id) {
-        if(requerimientoJpaRepository.findById(id).isPresent())
+        if (requerimientoJpaRepository.findById(id).isPresent())
             return requerimientoJpaRepository.findById(id).get();
         else
             return null;
     }
 
     @Autowired
-    public void setRequerimientoJpaRepository(RequerimientoJpaRepository requerimientoJpaRepository){
+    public void setRequerimientoJpaRepository(RequerimientoJpaRepository requerimientoJpaRepository) {
         this.requerimientoJpaRepository = requerimientoJpaRepository;
     }
 

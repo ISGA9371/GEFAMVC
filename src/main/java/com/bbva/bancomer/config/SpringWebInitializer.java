@@ -5,9 +5,7 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 public class SpringWebInitializer implements WebApplicationInitializer {
@@ -25,7 +23,7 @@ public class SpringWebInitializer implements WebApplicationInitializer {
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
         servletContext.addFilter("Encoding Filter", characterEncodingFilter)
-                .addMappingForUrlPatterns(null,false,"/*");
+                .addMappingForUrlPatterns(null, false, "/*");
 
     }
 }
