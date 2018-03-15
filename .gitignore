@@ -1,0 +1,6 @@
+# IDE
+/.idea
+# Compiled source #
+###################
+/target
+/*.iml
