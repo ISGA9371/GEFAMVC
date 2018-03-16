@@ -15,8 +15,6 @@ import java.util.List;
 @Entity
 @Table(name = "thge034_banca", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_BANCA"})})
-@NamedQueries({
-        @NamedQuery(name = "Banking.findAll", query = "SELECT t FROM Banking t")})
 public class Banking implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -16,59 +16,56 @@ import java.util.List;
 @Table(name = "thge053_causa_cier", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_CAUSA_CIERRE"})
         , @UniqueConstraint(columnNames = {"NB_CAUSA_CIERRE"})})
-@NamedQueries({
-        @NamedQuery(name = "CauseClosure.findAll", query = "SELECT t FROM CauseClosure t")})
 public class CauseClosure implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_CONS_CAUSA_C", nullable = false)
-    private Integer cdConsCausaC;
+    private Integer causeClosureSerial;
     @Basic(optional = false)
     @Column(name = "CD_CAUSA_CIERRE", nullable = false)
-    private int cdCausaCierre;
+    private int causeClosureId;
     @Basic(optional = false)
     @Column(name = "NB_CAUSA_CIERRE", nullable = false, length = 25)
-    private String nbCausaCierre;
-    @OneToMany(mappedBy = "cdCausaCierre")
+    private String causeClosureName;
+    @OneToMany(mappedBy = "causeClosure")
     private List<T955> t955List;
 
     public CauseClosure() {
     }
 
-    public CauseClosure(Integer cdConsCausaC) {
-        this.cdConsCausaC = cdConsCausaC;
+    public CauseClosure(Integer causeClosureSerial) {
+        this.causeClosureSerial = causeClosureSerial;
     }
 
-    public CauseClosure(Integer cdConsCausaC, int cdCausaCierre, String nbCausaCierre) {
-        this.cdConsCausaC = cdConsCausaC;
-        this.cdCausaCierre = cdCausaCierre;
-        this.nbCausaCierre = nbCausaCierre;
+    public CauseClosure(Integer causeClosureSerial, int causeClosureId, String causeClosureName) {
+        this.causeClosureSerial = causeClosureSerial;
+        this.causeClosureId = causeClosureId;
+        this.causeClosureName = causeClosureName;
     }
 
-    public Integer getCdConsCausaC() {
-        return cdConsCausaC;
+    public Integer getCauseClosureSerial() {
+        return causeClosureSerial;
     }
 
-    public void setCdConsCausaC(Integer cdConsCausaC) {
-        this.cdConsCausaC = cdConsCausaC;
+    public void setCauseClosureSerial(Integer causeClosureSerial) {
+        this.causeClosureSerial = causeClosureSerial;
     }
 
-    public int getCdCausaCierre() {
-        return cdCausaCierre;
+    public int getCauseClosureId() {
+        return causeClosureId;
     }
 
-    public void setCdCausaCierre(int cdCausaCierre) {
-        this.cdCausaCierre = cdCausaCierre;
+    public void setCauseClosureId(int causeClosureId) {
+        this.causeClosureId = causeClosureId;
     }
 
-    public String getNbCausaCierre() {
-        return nbCausaCierre;
+    public String getCauseClosureName() {
+        return causeClosureName;
     }
 
-    public void setNbCausaCierre(String nbCausaCierre) {
-        this.nbCausaCierre = nbCausaCierre;
+    public void setCauseClosureName(String causeClosureName) {
+        this.causeClosureName = causeClosureName;
     }
 
     public List<T955> getT955List() {
@@ -82,26 +79,22 @@ public class CauseClosure implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdConsCausaC != null ? cdConsCausaC.hashCode() : 0);
+        hash += (causeClosureSerial != null ? causeClosureSerial.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof CauseClosure)) {
             return false;
         }
         CauseClosure other = (CauseClosure) object;
-        if ((this.cdConsCausaC == null && other.cdConsCausaC != null) || (this.cdConsCausaC != null && !this.cdConsCausaC.equals(other.cdConsCausaC))) {
-            return false;
-        }
-        return true;
+        return (this.causeClosureSerial != null || other.causeClosureSerial == null) && (this.causeClosureSerial == null || this.causeClosureSerial.equals(other.causeClosureSerial));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.CauseClosure[ cdConsCausaC=" + cdConsCausaC + " ]";
+        return "com.bbva.CauseClosure[ causeClosureSerial=" + causeClosureSerial + " ]";
     }
 
 }

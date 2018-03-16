@@ -14,10 +14,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "thge003_empresa", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "Company.findAll", query = "SELECT t FROM Company t")})
 public class Company implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -25,27 +22,27 @@ public class Company implements Serializable {
     private Integer companyId;
     @Basic(optional = false)
     @Column(name = "NB_COMERC_EMPRESA", nullable = false, length = 45)
-    private String nbComercEmpresa;
+    private String companyName;
     @Basic(optional = false)
     @Column(name = "NB_RAZON_SOC_EMP", nullable = false, length = 45)
-    private String nbRazonSocEmp;
+    private String companyBusinessName;
     @Basic(optional = false)
     @Column(name = "NU_PROVEEDOR", nullable = false, length = 6)
-    private String nuProveedor;
+    private String companySupplierNumber;
     @Basic(optional = false)
     @Column(name = "CD_AREA", nullable = false)
-    private int cdArea;
+    private int areaId;
     @JoinColumn(name = "ST_EMPRESA", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stEmpresa;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdCompany")
-    private List<Fare> fareList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdCompany")
-    private List<Requirement> requirementList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdCompany")
-    private List<Contract> contractList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdCompany")
-    private List<ExternalUser> externalUserList;
+    private Status status;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
+    private List<Fare> fares;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
+    private List<Requirement> requirements;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
+    private List<Contract> contracts;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
+    private List<ExternalUser> externalUsers;
 
     public Company() {
     }
@@ -54,12 +51,12 @@ public class Company implements Serializable {
         this.companyId = companyId;
     }
 
-    public Company(Integer companyId, String nbComercEmpresa, String nbRazonSocEmp, String nuProveedor, int cdArea) {
+    public Company(Integer companyId, String companyName, String companyBusinessName, String companySupplierNumber, int areaId) {
         this.companyId = companyId;
-        this.nbComercEmpresa = nbComercEmpresa;
-        this.nbRazonSocEmp = nbRazonSocEmp;
-        this.nuProveedor = nuProveedor;
-        this.cdArea = cdArea;
+        this.companyName = companyName;
+        this.companyBusinessName = companyBusinessName;
+        this.companySupplierNumber = companySupplierNumber;
+        this.areaId = areaId;
     }
 
     public Integer getCompanyId() {
@@ -70,76 +67,76 @@ public class Company implements Serializable {
         this.companyId = companyId;
     }
 
-    public String getNbComercEmpresa() {
-        return nbComercEmpresa;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setNbComercEmpresa(String nbComercEmpresa) {
-        this.nbComercEmpresa = nbComercEmpresa;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
-    public String getNbRazonSocEmp() {
-        return nbRazonSocEmp;
+    public String getCompanyBusinessName() {
+        return companyBusinessName;
     }
 
-    public void setNbRazonSocEmp(String nbRazonSocEmp) {
-        this.nbRazonSocEmp = nbRazonSocEmp;
+    public void setCompanyBusinessName(String companyBusinessName) {
+        this.companyBusinessName = companyBusinessName;
     }
 
-    public String getNuProveedor() {
-        return nuProveedor;
+    public String getCompanySupplierNumber() {
+        return companySupplierNumber;
     }
 
-    public void setNuProveedor(String nuProveedor) {
-        this.nuProveedor = nuProveedor;
+    public void setCompanySupplierNumber(String companySupplierNumber) {
+        this.companySupplierNumber = companySupplierNumber;
     }
 
-    public int getCdArea() {
-        return cdArea;
+    public int getAreaId() {
+        return areaId;
     }
 
-    public void setCdArea(int cdArea) {
-        this.cdArea = cdArea;
+    public void setAreaId(int areaId) {
+        this.areaId = areaId;
     }
 
-    public Status getStEmpresa() {
-        return stEmpresa;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStEmpresa(Status stEmpresa) {
-        this.stEmpresa = stEmpresa;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public List<Fare> getFareList() {
-        return fareList;
+    public List<Fare> getFares() {
+        return fares;
     }
 
-    public void setFareList(List<Fare> fareList) {
-        this.fareList = fareList;
+    public void setFares(List<Fare> fares) {
+        this.fares = fares;
     }
 
-    public List<Requirement> getRequirementList() {
-        return requirementList;
+    public List<Requirement> getRequirements() {
+        return requirements;
     }
 
-    public void setRequirementList(List<Requirement> requirementList) {
-        this.requirementList = requirementList;
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
     }
 
-    public List<Contract> getContractList() {
-        return contractList;
+    public List<Contract> getContracts() {
+        return contracts;
     }
 
-    public void setContractList(List<Contract> contractList) {
-        this.contractList = contractList;
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 
-    public List<ExternalUser> getExternalUserList() {
-        return externalUserList;
+    public List<ExternalUser> getExternalUsers() {
+        return externalUsers;
     }
 
-    public void setExternalUserList(List<ExternalUser> externalUserList) {
-        this.externalUserList = externalUserList;
+    public void setExternalUsers(List<ExternalUser> externalUsers) {
+        this.externalUsers = externalUsers;
     }
 
     @Override
@@ -151,15 +148,11 @@ public class Company implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Company)) {
             return false;
         }
         Company other = (Company) object;
-        if ((this.companyId == null && other.companyId != null) || (this.companyId != null && !this.companyId.equals(other.companyId))) {
-            return false;
-        }
-        return true;
+        return (this.companyId != null || other.companyId == null) && (this.companyId == null || this.companyId.equals(other.companyId));
     }
 
     @Override

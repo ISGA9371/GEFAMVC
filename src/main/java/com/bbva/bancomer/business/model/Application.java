@@ -96,15 +96,11 @@ public class Application implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Application)) {
             return false;
         }
         Application other = (Application) object;
-        if ((this.applicationSerial == null && other.applicationSerial != null) || (this.applicationSerial != null && !this.applicationSerial.equals(other.applicationSerial))) {
-            return false;
-        }
-        return true;
+        return (this.applicationSerial != null || other.applicationSerial == null) && (this.applicationSerial == null || this.applicationSerial.equals(other.applicationSerial));
     }
 
     @Override

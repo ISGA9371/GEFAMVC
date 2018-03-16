@@ -16,92 +16,85 @@ import java.util.List;
 @Table(name = "thge056_canal", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_CANAL"})
         , @UniqueConstraint(columnNames = {"NB_CANAL"})})
-@NamedQueries({
-        @NamedQuery(name = "Channel.findAll", query = "SELECT t FROM Channel t")})
 public class Channel implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_CONS_CANAL", nullable = false)
-    private Integer cdConsCanal;
+    private Integer channelSerial;
     @Basic(optional = false)
     @Column(name = "CD_CANAL", nullable = false)
-    private int cdCanal;
+    private int channelId;
     @Basic(optional = false)
     @Column(name = "NB_CANAL", nullable = false, length = 50)
-    private String nbCanal;
-    @OneToMany(mappedBy = "cdCanal")
-    private List<Requirement> requirementList;
+    private String channelName;
+    @OneToMany(mappedBy = "channel")
+    private List<Requirement> requirements;
 
     public Channel() {
     }
 
-    public Channel(Integer cdConsCanal) {
-        this.cdConsCanal = cdConsCanal;
+    public Channel(Integer channelSerial) {
+        this.channelSerial = channelSerial;
     }
 
-    public Channel(Integer cdConsCanal, int cdCanal, String nbCanal) {
-        this.cdConsCanal = cdConsCanal;
-        this.cdCanal = cdCanal;
-        this.nbCanal = nbCanal;
+    public Channel(Integer channelSerial, int channelId, String channelName) {
+        this.channelSerial = channelSerial;
+        this.channelId = channelId;
+        this.channelName = channelName;
     }
 
-    public Integer getCdConsCanal() {
-        return cdConsCanal;
+    public Integer getChannelSerial() {
+        return channelSerial;
     }
 
-    public void setCdConsCanal(Integer cdConsCanal) {
-        this.cdConsCanal = cdConsCanal;
+    public void setChannelSerial(Integer channelSerial) {
+        this.channelSerial = channelSerial;
     }
 
-    public int getCdCanal() {
-        return cdCanal;
+    public int getChannelId() {
+        return channelId;
     }
 
-    public void setCdCanal(int cdCanal) {
-        this.cdCanal = cdCanal;
+    public void setChannelId(int channelId) {
+        this.channelId = channelId;
     }
 
-    public String getNbCanal() {
-        return nbCanal;
+    public String getChannelName() {
+        return channelName;
     }
 
-    public void setNbCanal(String nbCanal) {
-        this.nbCanal = nbCanal;
+    public void setChannelName(String channelName) {
+        this.channelName = channelName;
     }
 
-    public List<Requirement> getRequirementList() {
-        return requirementList;
+    public List<Requirement> getRequirements() {
+        return requirements;
     }
 
-    public void setRequirementList(List<Requirement> requirementList) {
-        this.requirementList = requirementList;
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdConsCanal != null ? cdConsCanal.hashCode() : 0);
+        hash += (channelSerial != null ? channelSerial.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Channel)) {
             return false;
         }
         Channel other = (Channel) object;
-        if ((this.cdConsCanal == null && other.cdConsCanal != null) || (this.cdConsCanal != null && !this.cdConsCanal.equals(other.cdConsCanal))) {
-            return false;
-        }
-        return true;
+        return (this.channelSerial != null || other.channelSerial == null) && (this.channelSerial == null || this.channelSerial.equals(other.channelSerial));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Channel[ cdConsCanal=" + cdConsCanal + " ]";
+        return "com.bbva.Channel[ channelSerial=" + channelSerial + " ]";
     }
 
 }

@@ -15,90 +15,83 @@ import java.util.List;
 @Entity
 @Table(name = "thge037_entidad", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_ENTIDAD"})})
-@NamedQueries({
-        @NamedQuery(name = "Corporation.findAll", query = "SELECT t FROM Corporation t")})
 public class Corporation implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_ENTIDAD", nullable = false)
-    private Integer cdEntidad;
+    private Integer corporationId;
     @Basic(optional = false)
     @Column(name = "NB_ENTIDAD", nullable = false, length = 25)
-    private String nbEntidad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdEntidad")
-    private List<Budget> pepList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdEntidad")
-    private List<Contract> contractList;
+    private String corporationName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "corporation")
+    private List<Budget> budgets;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "corporation")
+    private List<Contract> contracts;
 
     public Corporation() {
     }
 
-    public Corporation(Integer cdEntidad) {
-        this.cdEntidad = cdEntidad;
+    public Corporation(Integer corporationId) {
+        this.corporationId = corporationId;
     }
 
-    public Corporation(Integer cdEntidad, String nbEntidad) {
-        this.cdEntidad = cdEntidad;
-        this.nbEntidad = nbEntidad;
+    public Corporation(Integer corporationId, String corporationName) {
+        this.corporationId = corporationId;
+        this.corporationName = corporationName;
     }
 
-    public Integer getCdEntidad() {
-        return cdEntidad;
+    public Integer getCorporationId() {
+        return corporationId;
     }
 
-    public void setCdEntidad(Integer cdEntidad) {
-        this.cdEntidad = cdEntidad;
+    public void setCorporationId(Integer corporationId) {
+        this.corporationId = corporationId;
     }
 
-    public String getNbEntidad() {
-        return nbEntidad;
+    public String getCorporationName() {
+        return corporationName;
     }
 
-    public void setNbEntidad(String nbEntidad) {
-        this.nbEntidad = nbEntidad;
+    public void setCorporationName(String corporationName) {
+        this.corporationName = corporationName;
     }
 
-    public List<Budget> getPepList() {
-        return pepList;
+    public List<Budget> getBudgets() {
+        return budgets;
     }
 
-    public void setPepList(List<Budget> pepList) {
-        this.pepList = pepList;
+    public void setBudgets(List<Budget> budgets) {
+        this.budgets = budgets;
     }
 
-    public List<Contract> getContractList() {
-        return contractList;
+    public List<Contract> getContracts() {
+        return contracts;
     }
 
-    public void setContractList(List<Contract> contractList) {
-        this.contractList = contractList;
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdEntidad != null ? cdEntidad.hashCode() : 0);
+        hash += (corporationId != null ? corporationId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Corporation)) {
             return false;
         }
         Corporation other = (Corporation) object;
-        if ((this.cdEntidad == null && other.cdEntidad != null) || (this.cdEntidad != null && !this.cdEntidad.equals(other.cdEntidad))) {
-            return false;
-        }
-        return true;
+        return (this.corporationId != null || other.corporationId == null) && (this.corporationId == null || this.corporationId.equals(other.corporationId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Corporation[ cdEntidad=" + cdEntidad + " ]";
+        return "com.bbva.Corporation[ corporationId=" + corporationId + " ]";
     }
 
 }

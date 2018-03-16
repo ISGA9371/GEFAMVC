@@ -14,92 +14,85 @@ import java.util.List;
  */
 @Entity
 @Table(name = "thge014_pais", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "Country.findAll", query = "SELECT t FROM Country t")})
 public class Country implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_PAIS", nullable = false)
-    private Integer cdPais;
+    private Integer countryId;
     @Basic(optional = false)
     @Column(name = "NB_PAIS", nullable = false, length = 50)
-    private String nbPais;
+    private String countryName;
     @Basic(optional = false)
     @Column(name = "NB_NACIONALIDAD", nullable = false, length = 50)
-    private String nbNacionalidad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPais")
-    private List<ExternalUser> externalUserList;
+    private String countryNacionality;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
+    private List<ExternalUser> externalUsers;
 
     public Country() {
     }
 
-    public Country(Integer cdPais) {
-        this.cdPais = cdPais;
+    public Country(Integer countryId) {
+        this.countryId = countryId;
     }
 
-    public Country(Integer cdPais, String nbPais, String nbNacionalidad) {
-        this.cdPais = cdPais;
-        this.nbPais = nbPais;
-        this.nbNacionalidad = nbNacionalidad;
+    public Country(Integer countryId, String countryName, String countryNacionality) {
+        this.countryId = countryId;
+        this.countryName = countryName;
+        this.countryNacionality = countryNacionality;
     }
 
-    public Integer getCdPais() {
-        return cdPais;
+    public Integer getCountryId() {
+        return countryId;
     }
 
-    public void setCdPais(Integer cdPais) {
-        this.cdPais = cdPais;
+    public void setCountryId(Integer countryId) {
+        this.countryId = countryId;
     }
 
-    public String getNbPais() {
-        return nbPais;
+    public String getCountryName() {
+        return countryName;
     }
 
-    public void setNbPais(String nbPais) {
-        this.nbPais = nbPais;
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
-    public String getNbNacionalidad() {
-        return nbNacionalidad;
+    public String getCountryNacionality() {
+        return countryNacionality;
     }
 
-    public void setNbNacionalidad(String nbNacionalidad) {
-        this.nbNacionalidad = nbNacionalidad;
+    public void setCountryNacionality(String countryNacionality) {
+        this.countryNacionality = countryNacionality;
     }
 
-    public List<ExternalUser> getExternalUserList() {
-        return externalUserList;
+    public List<ExternalUser> getExternalUsers() {
+        return externalUsers;
     }
 
-    public void setExternalUserList(List<ExternalUser> externalUserList) {
-        this.externalUserList = externalUserList;
+    public void setExternalUsers(List<ExternalUser> externalUsers) {
+        this.externalUsers = externalUsers;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdPais != null ? cdPais.hashCode() : 0);
+        hash += (countryId != null ? countryId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Country)) {
             return false;
         }
         Country other = (Country) object;
-        if ((this.cdPais == null && other.cdPais != null) || (this.cdPais != null && !this.cdPais.equals(other.cdPais))) {
-            return false;
-        }
-        return true;
+        return (this.countryId != null || other.countryId == null) && (this.countryId == null || this.countryId.equals(other.countryId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Country[ cdPais=" + cdPais + " ]";
+        return "com.bbva.Country[ countryId=" + countryId + " ]";
     }
 
 }

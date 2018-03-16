@@ -15,10 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "thge033_tipo_asig", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_TIPO_ASIG"})})
-@NamedQueries({
-        @NamedQuery(name = "AssignationType.findAll", query = "SELECT t FROM AssignationType t")})
 public class AssignationType implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)

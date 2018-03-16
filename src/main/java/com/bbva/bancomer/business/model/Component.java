@@ -15,271 +15,263 @@ import java.util.List;
  */
 @Entity
 @Table(name = "thge009_componente", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "Component.findAll", query = "SELECT t FROM Component t")})
 public class Component implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_COMPONENTE", nullable = false)
-    private Integer cdComponente;
+    private Integer componentId;
     @Basic(optional = false)
     @Column(name = "NB_COMPONENTE", nullable = false, length = 45)
-    private String nbComponente;
+    private String componentName;
     @Basic(optional = false)
     @Column(name = "TX_VENTREGA", nullable = false, length = 9)
-    private String txVentrega;
+    private String componentVersion;
     @Basic(optional = false)
     @Column(name = "TP_NVO_MOD", nullable = false, length = 10)
-    private String tpNvoMod;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    private String componentNewMod;
     @Column(name = "IM_COSTE_EMP", precision = 22)
-    private Double imCosteEmp;
+    private Double componentFinalCost;
     @Column(name = "IM_COSTE_INIC", precision = 22)
-    private Double imCosteInic;
+    private Double componentStartCost;
     @Column(name = "TX_COM_TIPIF_EMP", length = 600)
-    private String txComTipifEmp;
+    private String componentType;
     @Basic(optional = false)
     @Column(name = "FH_NEG_EMP_CGF_SW", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fhNegEmpCgfSw;
+    private Date componentPossibleDeliverDate;
     @Basic(optional = false)
     @Column(name = "FH_PRV_EMP_CGF_SW", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fhPrvEmpCgfSw;
+    private Date componentPreviewDeliverDate;
     @Basic(optional = false)
     @Column(name = "FH_R_CGF_EMP_DIS", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fhRCgfEmpDis;
+    private Date componentDesignRealDeliverDate;
     @Column(name = "FH_R_EMP_CGF_SW")
     @Temporal(TemporalType.DATE)
-    private Date fhREmpCgfSw;
+    private Date componentRealDeliverDate;
     @Column(name = "TM_ALTA_COMP")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date tmAltaComp;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdComponente")
-    private List<Modification> modificationList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdComponente")
-    private List<Doubt> doubtList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdComponente")
-    private List<Issue> issueList;
+    private Date componentUploadDate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
+    private List<Modification> modifications;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
+    private List<Doubt> doubts;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
+    private List<Issue> issues;
     @JoinColumn(name = "ST_TIPIFICACION", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stTipificacion;
+    private Status statusTypology;
     @JoinColumn(name = "ST_COMPONENTE", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stComponente;
+    private Status status;
     @JoinColumn(name = "CD_TIPOLOGIA", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private Typology cdTypology;
+    private Typology typology;
     @JoinColumn(name = "CD_TIPOLOGIA_EMP", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private Typology cdTypologyEmp;
+    private Typology typologyEmp;
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false)
     @ManyToOne(optional = false)
-    private Requirement cdRequerimiento;
+    private Requirement requirement;
 
     public Component() {
     }
 
-    public Component(Integer cdComponente) {
-        this.cdComponente = cdComponente;
+    public Component(Integer componentId) {
+        this.componentId = componentId;
     }
 
-    public Component(Integer cdComponente, String nbComponente, String txVentrega, String tpNvoMod, Date fhNegEmpCgfSw, Date fhPrvEmpCgfSw, Date fhRCgfEmpDis) {
-        this.cdComponente = cdComponente;
-        this.nbComponente = nbComponente;
-        this.txVentrega = txVentrega;
-        this.tpNvoMod = tpNvoMod;
-        this.fhNegEmpCgfSw = fhNegEmpCgfSw;
-        this.fhPrvEmpCgfSw = fhPrvEmpCgfSw;
-        this.fhRCgfEmpDis = fhRCgfEmpDis;
+    public Component(Integer componentId, String componentName, String componentVersion, String componentNewMod, Date componentPossibleDeliverDate, Date componentPreviewDeliverDate, Date componentDesignRealDeliverDate) {
+        this.componentId = componentId;
+        this.componentName = componentName;
+        this.componentVersion = componentVersion;
+        this.componentNewMod = componentNewMod;
+        this.componentPossibleDeliverDate = componentPossibleDeliverDate;
+        this.componentPreviewDeliverDate = componentPreviewDeliverDate;
+        this.componentDesignRealDeliverDate = componentDesignRealDeliverDate;
     }
 
-    public Integer getCdComponente() {
-        return cdComponente;
+    public Integer getComponentId() {
+        return componentId;
     }
 
-    public void setCdComponente(Integer cdComponente) {
-        this.cdComponente = cdComponente;
+    public void setComponentId(Integer componentId) {
+        this.componentId = componentId;
     }
 
-    public String getNbComponente() {
-        return nbComponente;
+    public String getComponentName() {
+        return componentName;
     }
 
-    public void setNbComponente(String nbComponente) {
-        this.nbComponente = nbComponente;
+    public void setComponentName(String componentName) {
+        this.componentName = componentName;
     }
 
-    public String getTxVentrega() {
-        return txVentrega;
+    public String getComponentVersion() {
+        return componentVersion;
     }
 
-    public void setTxVentrega(String txVentrega) {
-        this.txVentrega = txVentrega;
+    public void setComponentVersion(String componentVersion) {
+        this.componentVersion = componentVersion;
     }
 
-    public String getTpNvoMod() {
-        return tpNvoMod;
+    public String getComponentNewMod() {
+        return componentNewMod;
     }
 
-    public void setTpNvoMod(String tpNvoMod) {
-        this.tpNvoMod = tpNvoMod;
+    public void setComponentNewMod(String componentNewMod) {
+        this.componentNewMod = componentNewMod;
     }
 
-    public Double getImCosteEmp() {
-        return imCosteEmp;
+    public Double getComponentFinalCost() {
+        return componentFinalCost;
     }
 
-    public void setImCosteEmp(Double imCosteEmp) {
-        this.imCosteEmp = imCosteEmp;
+    public void setComponentFinalCost(Double componentFinalCost) {
+        this.componentFinalCost = componentFinalCost;
     }
 
-    public Double getImCosteInic() {
-        return imCosteInic;
+    public Double getComponentStartCost() {
+        return componentStartCost;
     }
 
-    public void setImCosteInic(Double imCosteInic) {
-        this.imCosteInic = imCosteInic;
+    public void setComponentStartCost(Double componentStartCost) {
+        this.componentStartCost = componentStartCost;
     }
 
-    public String getTxComTipifEmp() {
-        return txComTipifEmp;
+    public String getComponentType() {
+        return componentType;
     }
 
-    public void setTxComTipifEmp(String txComTipifEmp) {
-        this.txComTipifEmp = txComTipifEmp;
+    public void setComponentType(String componentType) {
+        this.componentType = componentType;
     }
 
-    public Date getFhNegEmpCgfSw() {
-        return fhNegEmpCgfSw;
+    public Date getComponentPossibleDeliverDate() {
+        return componentPossibleDeliverDate;
     }
 
-    public void setFhNegEmpCgfSw(Date fhNegEmpCgfSw) {
-        this.fhNegEmpCgfSw = fhNegEmpCgfSw;
+    public void setComponentPossibleDeliverDate(Date componentPossibleDeliverDate) {
+        this.componentPossibleDeliverDate = componentPossibleDeliverDate;
     }
 
-    public Date getFhPrvEmpCgfSw() {
-        return fhPrvEmpCgfSw;
+    public Date getComponentPreviewDeliverDate() {
+        return componentPreviewDeliverDate;
     }
 
-    public void setFhPrvEmpCgfSw(Date fhPrvEmpCgfSw) {
-        this.fhPrvEmpCgfSw = fhPrvEmpCgfSw;
+    public void setComponentPreviewDeliverDate(Date componentPreviewDeliverDate) {
+        this.componentPreviewDeliverDate = componentPreviewDeliverDate;
     }
 
-    public Date getFhRCgfEmpDis() {
-        return fhRCgfEmpDis;
+    public Date getComponentDesignRealDeliverDate() {
+        return componentDesignRealDeliverDate;
     }
 
-    public void setFhRCgfEmpDis(Date fhRCgfEmpDis) {
-        this.fhRCgfEmpDis = fhRCgfEmpDis;
+    public void setComponentDesignRealDeliverDate(Date componentDesignRealDeliverDate) {
+        this.componentDesignRealDeliverDate = componentDesignRealDeliverDate;
     }
 
-    public Date getFhREmpCgfSw() {
-        return fhREmpCgfSw;
+    public Date getComponentRealDeliverDate() {
+        return componentRealDeliverDate;
     }
 
-    public void setFhREmpCgfSw(Date fhREmpCgfSw) {
-        this.fhREmpCgfSw = fhREmpCgfSw;
+    public void setComponentRealDeliverDate(Date componentRealDeliverDate) {
+        this.componentRealDeliverDate = componentRealDeliverDate;
     }
 
-    public Date getTmAltaComp() {
-        return tmAltaComp;
+    public Date getComponentUploadDate() {
+        return componentUploadDate;
     }
 
-    public void setTmAltaComp(Date tmAltaComp) {
-        this.tmAltaComp = tmAltaComp;
+    public void setComponentUploadDate(Date componentUploadDate) {
+        this.componentUploadDate = componentUploadDate;
     }
 
-    public List<Modification> getModificationList() {
-        return modificationList;
+    public List<Modification> getModifications() {
+        return modifications;
     }
 
-    public void setModificationList(List<Modification> modificationList) {
-        this.modificationList = modificationList;
+    public void setModifications(List<Modification> modifications) {
+        this.modifications = modifications;
     }
 
-    public List<Doubt> getDoubtList() {
-        return doubtList;
+    public List<Doubt> getDoubts() {
+        return doubts;
     }
 
-    public void setDoubtList(List<Doubt> doubtList) {
-        this.doubtList = doubtList;
+    public void setDoubts(List<Doubt> doubts) {
+        this.doubts = doubts;
     }
 
-    public List<Issue> getIssueList() {
-        return issueList;
+    public List<Issue> getIssues() {
+        return issues;
     }
 
-    public void setIssueList(List<Issue> issueList) {
-        this.issueList = issueList;
+    public void setIssues(List<Issue> issues) {
+        this.issues = issues;
     }
 
-    public Status getStTipificacion() {
-        return stTipificacion;
+    public Status getStatusTypology() {
+        return statusTypology;
     }
 
-    public void setStTipificacion(Status stTipificacion) {
-        this.stTipificacion = stTipificacion;
+    public void setStatusTypology(Status statusTypology) {
+        this.statusTypology = statusTypology;
     }
 
-    public Status getStComponente() {
-        return stComponente;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStComponente(Status stComponente) {
-        this.stComponente = stComponente;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public Typology getCdTypology() {
-        return cdTypology;
+    public Typology getTypology() {
+        return typology;
     }
 
-    public void setCdTypology(Typology cdTypology) {
-        this.cdTypology = cdTypology;
+    public void setTypology(Typology typology) {
+        this.typology = typology;
     }
 
-    public Typology getCdTypologyEmp() {
-        return cdTypologyEmp;
+    public Typology getTypologyEmp() {
+        return typologyEmp;
     }
 
-    public void setCdTypologyEmp(Typology cdTypologyEmp) {
-        this.cdTypologyEmp = cdTypologyEmp;
+    public void setTypologyEmp(Typology typologyEmp) {
+        this.typologyEmp = typologyEmp;
     }
 
-    public Requirement getCdRequerimiento() {
-        return cdRequerimiento;
+    public Requirement getRequirement() {
+        return requirement;
     }
 
-    public void setCdRequerimiento(Requirement cdRequerimiento) {
-        this.cdRequerimiento = cdRequerimiento;
+    public void setRequirement(Requirement requirement) {
+        this.requirement = requirement;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdComponente != null ? cdComponente.hashCode() : 0);
+        hash += (componentId != null ? componentId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Component)) {
             return false;
         }
         Component other = (Component) object;
-        if ((this.cdComponente == null && other.cdComponente != null) || (this.cdComponente != null && !this.cdComponente.equals(other.cdComponente))) {
-            return false;
-        }
-        return true;
+        return (this.componentId != null || other.componentId == null) && (this.componentId == null || this.componentId.equals(other.componentId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Component[ cdComponente=" + cdComponente + " ]";
+        return "com.bbva.Component[ componentId=" + componentId + " ]";
     }
 
 }

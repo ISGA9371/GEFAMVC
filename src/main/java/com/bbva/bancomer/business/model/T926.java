@@ -40,7 +40,7 @@ public class T926 implements Serializable {
     private Requirement cdRequerimiento;
     @JoinColumn(name = "CD_CRITICIDAD", referencedColumnName = "CD_CRITICIDAD")
     @ManyToOne
-    private Criticity cdCriticity;
+    private Critical cdCritical;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdT926")
     private List<T955> t955List;
     @OneToMany(mappedBy = "cdT926")
@@ -115,12 +115,12 @@ public class T926 implements Serializable {
         this.cdRequerimiento = cdRequerimiento;
     }
 
-    public Criticity getCdCriticity() {
-        return cdCriticity;
+    public Critical getCdCritical() {
+        return cdCritical;
     }
 
-    public void setCdCriticity(Criticity cdCriticity) {
-        this.cdCriticity = cdCriticity;
+    public void setCdCritical(Critical cdCritical) {
+        this.cdCritical = cdCritical;
     }
 
     public List<T955> getT955List() {

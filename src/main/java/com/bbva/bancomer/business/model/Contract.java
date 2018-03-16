@@ -13,156 +13,149 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "thge036_contrato", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "Contract.findAll", query = "SELECT t FROM Contract t")})
 public class Contract implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_CONTRATO", nullable = false)
-    private Integer cdContrato;
+    private Integer contractId;
     @Column(name = "CD_PEDIDO", length = 10)
-    private String cdPedido;
+    private String orderId;
     @Column(name = "NU_POSICION")
-    private Integer nuPosicion;
+    private Integer contractPosition;
     @Basic(optional = false)
     @Column(name = "NU_ANO_CONTRATO", nullable = false)
-    private int nuAnoContrato;
+    private int contractYear;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private Technology cdTechnology;
+    private Technology technology;
     @JoinColumn(name = "CD_EMPRESA", referencedColumnName = "CD_EMPRESA", nullable = false)
     @ManyToOne(optional = false)
-    private Company cdCompany;
+    private Company company;
     @JoinColumn(name = "ST_CONTRATO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stContrato;
+    private Status status;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
-    private Area cdArea;
+    private Area area;
     @JoinColumn(name = "CD_ENTIDAD", referencedColumnName = "CD_ENTIDAD", nullable = false)
     @ManyToOne(optional = false)
-    private Corporation cdCorporation;
+    private Corporation corporation;
     @JoinColumn(name = "CD_NATURALEZA", referencedColumnName = "CD_NATURALEZA", nullable = false)
     @ManyToOne(optional = false)
-    private Nature cdNature;
+    private Nature nature;
 
     public Contract() {
     }
 
-    public Contract(Integer cdContrato) {
-        this.cdContrato = cdContrato;
+    public Contract(Integer contractId) {
+        this.contractId = contractId;
     }
 
-    public Contract(Integer cdContrato, int nuAnoContrato) {
-        this.cdContrato = cdContrato;
-        this.nuAnoContrato = nuAnoContrato;
+    public Contract(Integer contractId, int contractYear) {
+        this.contractId = contractId;
+        this.contractYear = contractYear;
     }
 
-    public Integer getCdContrato() {
-        return cdContrato;
+    public Integer getContractId() {
+        return contractId;
     }
 
-    public void setCdContrato(Integer cdContrato) {
-        this.cdContrato = cdContrato;
+    public void setContractId(Integer contractId) {
+        this.contractId = contractId;
     }
 
-    public String getCdPedido() {
-        return cdPedido;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setCdPedido(String cdPedido) {
-        this.cdPedido = cdPedido;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
-    public Integer getNuPosicion() {
-        return nuPosicion;
+    public Integer getContractPosition() {
+        return contractPosition;
     }
 
-    public void setNuPosicion(Integer nuPosicion) {
-        this.nuPosicion = nuPosicion;
+    public void setContractPosition(Integer contractPosition) {
+        this.contractPosition = contractPosition;
     }
 
-    public int getNuAnoContrato() {
-        return nuAnoContrato;
+    public int getContractYear() {
+        return contractYear;
     }
 
-    public void setNuAnoContrato(int nuAnoContrato) {
-        this.nuAnoContrato = nuAnoContrato;
+    public void setContractYear(int contractYear) {
+        this.contractYear = contractYear;
     }
 
-    public Technology getCdTechnology() {
-        return cdTechnology;
+    public Technology getTechnology() {
+        return technology;
     }
 
-    public void setCdTechnology(Technology cdTechnology) {
-        this.cdTechnology = cdTechnology;
+    public void setTechnology(Technology technology) {
+        this.technology = technology;
     }
 
-    public Company getCdCompany() {
-        return cdCompany;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCdCompany(Company cdCompany) {
-        this.cdCompany = cdCompany;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
-    public Status getStContrato() {
-        return stContrato;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStContrato(Status stContrato) {
-        this.stContrato = stContrato;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public Area getCdArea() {
-        return cdArea;
+    public Area getArea() {
+        return area;
     }
 
-    public void setCdArea(Area cdArea) {
-        this.cdArea = cdArea;
+    public void setArea(Area area) {
+        this.area = area;
     }
 
-    public Corporation getCdCorporation() {
-        return cdCorporation;
+    public Corporation getCorporation() {
+        return corporation;
     }
 
-    public void setCdCorporation(Corporation cdCorporation) {
-        this.cdCorporation = cdCorporation;
+    public void setCorporation(Corporation corporation) {
+        this.corporation = corporation;
     }
 
-    public Nature getCdNature() {
-        return cdNature;
+    public Nature getNature() {
+        return nature;
     }
 
-    public void setCdNature(Nature cdNature) {
-        this.cdNature = cdNature;
+    public void setNature(Nature nature) {
+        this.nature = nature;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdContrato != null ? cdContrato.hashCode() : 0);
+        hash += (contractId != null ? contractId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Contract)) {
             return false;
         }
         Contract other = (Contract) object;
-        if ((this.cdContrato == null && other.cdContrato != null) || (this.cdContrato != null && !this.cdContrato.equals(other.cdContrato))) {
-            return false;
-        }
-        return true;
+        return (this.contractId != null || other.contractId == null) && (this.contractId == null || this.contractId.equals(other.contractId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Contract[ cdContrato=" + cdContrato + " ]";
+        return "com.bbva.Contract[ contractId=" + contractId + " ]";
     }
 
 }

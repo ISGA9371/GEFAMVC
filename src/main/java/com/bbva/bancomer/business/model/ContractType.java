@@ -14,70 +14,63 @@ import java.io.Serializable;
 @Entity
 @Table(name = "thge032_tipo_cont", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_TIPO_CONTRATO"})})
-@NamedQueries({
-        @NamedQuery(name = "ContractType.findAll", query = "SELECT t FROM ContractType t")})
 public class ContractType implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_TIPO_CONTRATO", nullable = false)
-    private Integer cdTipoContrato;
+    private Integer contractTypeId;
     @Basic(optional = false)
     @Column(name = "NB_TIPO_CONTRATO", nullable = false, length = 25)
-    private String nbTipoContrato;
+    private String contractTypeName;
 
     public ContractType() {
     }
 
-    public ContractType(Integer cdTipoContrato) {
-        this.cdTipoContrato = cdTipoContrato;
+    public ContractType(Integer contractTypeId) {
+        this.contractTypeId = contractTypeId;
     }
 
-    public ContractType(Integer cdTipoContrato, String nbTipoContrato) {
-        this.cdTipoContrato = cdTipoContrato;
-        this.nbTipoContrato = nbTipoContrato;
+    public ContractType(Integer contractTypeId, String contractTypeName) {
+        this.contractTypeId = contractTypeId;
+        this.contractTypeName = contractTypeName;
     }
 
-    public Integer getCdTipoContrato() {
-        return cdTipoContrato;
+    public Integer getContractTypeId() {
+        return contractTypeId;
     }
 
-    public void setCdTipoContrato(Integer cdTipoContrato) {
-        this.cdTipoContrato = cdTipoContrato;
+    public void setContractTypeId(Integer contractTypeId) {
+        this.contractTypeId = contractTypeId;
     }
 
-    public String getNbTipoContrato() {
-        return nbTipoContrato;
+    public String getContractTypeName() {
+        return contractTypeName;
     }
 
-    public void setNbTipoContrato(String nbTipoContrato) {
-        this.nbTipoContrato = nbTipoContrato;
+    public void setContractTypeName(String contractTypeName) {
+        this.contractTypeName = contractTypeName;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdTipoContrato != null ? cdTipoContrato.hashCode() : 0);
+        hash += (contractTypeId != null ? contractTypeId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof ContractType)) {
             return false;
         }
         ContractType other = (ContractType) object;
-        if ((this.cdTipoContrato == null && other.cdTipoContrato != null) || (this.cdTipoContrato != null && !this.cdTipoContrato.equals(other.cdTipoContrato))) {
-            return false;
-        }
-        return true;
+        return (this.contractTypeId != null || other.contractTypeId == null) && (this.contractTypeId == null || this.contractTypeId.equals(other.contractTypeId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.ContractType[ cdTipoContrato=" + cdTipoContrato + " ]";
+        return "com.bbva.ContractType[ contractTypeId=" + contractTypeId + " ]";
     }
 
 }

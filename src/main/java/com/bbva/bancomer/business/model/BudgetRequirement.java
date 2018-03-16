@@ -15,118 +15,110 @@ import java.util.List;
  */
 @Entity
 @Table(name = "thge040_pep_req", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "BudgetRequirement.findAll", query = "SELECT t FROM BudgetRequirement t")})
 public class BudgetRequirement implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_PEP_REQ", nullable = false)
-    private Integer cdPepReq;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    private Integer budgetRequirementId;
     @Column(name = "IM_PEP", precision = 22)
-    private Double imPep;
+    private Double budgetRequirementValue;
     @Column(name = "CT_HORAS_PEP", precision = 22)
-    private Double ctHorasPep;
+    private Double budgetRequirementHours;
     @Column(name = "TM_PEP_REQ")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date tmPepReq;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPepReq")
-    private List<Invoice> invoiceList;
+    private Date budgetRequirementDate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "budgetRequirement")
+    private List<Invoice> invoices;
     @JoinColumn(name = "CD_PEP", referencedColumnName = "CD_PEP", nullable = false)
     @ManyToOne(optional = false)
-    private Budget cdPep;
+    private Budget budget;
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false)
     @ManyToOne(optional = false)
-    private Requirement cdRequerimiento;
+    private Requirement requirement;
 
     public BudgetRequirement() {
     }
 
-    public BudgetRequirement(Integer cdPepReq) {
-        this.cdPepReq = cdPepReq;
+    public BudgetRequirement(Integer budgetRequirementId) {
+        this.budgetRequirementId = budgetRequirementId;
     }
 
-    public Integer getCdPepReq() {
-        return cdPepReq;
+    public Integer getBudgetRequirementId() {
+        return budgetRequirementId;
     }
 
-    public void setCdPepReq(Integer cdPepReq) {
-        this.cdPepReq = cdPepReq;
+    public void setBudgetRequirementId(Integer budgetRequirementId) {
+        this.budgetRequirementId = budgetRequirementId;
     }
 
-    public Double getImPep() {
-        return imPep;
+    public Double getBudgetRequirementValue() {
+        return budgetRequirementValue;
     }
 
-    public void setImPep(Double imPep) {
-        this.imPep = imPep;
+    public void setBudgetRequirementValue(Double budgetRequirementValue) {
+        this.budgetRequirementValue = budgetRequirementValue;
     }
 
-    public Double getCtHorasPep() {
-        return ctHorasPep;
+    public Double getBudgetRequirementHours() {
+        return budgetRequirementHours;
     }
 
-    public void setCtHorasPep(Double ctHorasPep) {
-        this.ctHorasPep = ctHorasPep;
+    public void setBudgetRequirementHours(Double budgetRequirementHours) {
+        this.budgetRequirementHours = budgetRequirementHours;
     }
 
-    public Date getTmPepReq() {
-        return tmPepReq;
+    public Date getBudgetRequirementDate() {
+        return budgetRequirementDate;
     }
 
-    public void setTmPepReq(Date tmPepReq) {
-        this.tmPepReq = tmPepReq;
+    public void setBudgetRequirementDate(Date budgetRequirementDate) {
+        this.budgetRequirementDate = budgetRequirementDate;
     }
 
-    public List<Invoice> getInvoiceList() {
-        return invoiceList;
+    public List<Invoice> getInvoices() {
+        return invoices;
     }
 
-    public void setInvoiceList(List<Invoice> invoiceList) {
-        this.invoiceList = invoiceList;
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
     }
 
-    public Budget getCdPep() {
-        return cdPep;
+    public Budget getBudget() {
+        return budget;
     }
 
-    public void setCdPep(Budget cdPep) {
-        this.cdPep = cdPep;
+    public void setBudget(Budget budget) {
+        this.budget = budget;
     }
 
-    public Requirement getCdRequerimiento() {
-        return cdRequerimiento;
+    public Requirement getRequirement() {
+        return requirement;
     }
 
-    public void setCdRequerimiento(Requirement cdRequerimiento) {
-        this.cdRequerimiento = cdRequerimiento;
+    public void setRequirement(Requirement requirement) {
+        this.requirement = requirement;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdPepReq != null ? cdPepReq.hashCode() : 0);
+        hash += (budgetRequirementId != null ? budgetRequirementId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof BudgetRequirement)) {
             return false;
         }
         BudgetRequirement other = (BudgetRequirement) object;
-        if ((this.cdPepReq == null && other.cdPepReq != null) || (this.cdPepReq != null && !this.cdPepReq.equals(other.cdPepReq))) {
-            return false;
-        }
-        return true;
+        return (this.budgetRequirementId != null || other.budgetRequirementId == null) && (this.budgetRequirementId == null || this.budgetRequirementId.equals(other.budgetRequirementId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.BudgetRequirement[ cdPepReq=" + cdPepReq + " ]";
+        return "com.bbva.BudgetRequirement[ budgetRequirementId=" + budgetRequirementId + " ]";
     }
 
 }
