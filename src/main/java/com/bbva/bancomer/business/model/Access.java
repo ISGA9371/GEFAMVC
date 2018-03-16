@@ -14,105 +14,98 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "thge058_ctrl_acc", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "Access.findAll", query = "SELECT t FROM Access t")})
 public class Access implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_ACCESO", nullable = false)
-    private Integer cdAcceso;
+    private Integer accessId;
     @Basic(optional = false)
     @Column(name = "CD_EXTERNO", nullable = false)
-    private int cdExterno;
+    private int externalUserId;
     @Basic(optional = false)
     @Column(name = "FH_VIGENCIA", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fhVigencia;
+    private Date effectiveDate;
     @JoinColumn(name = "ST_ACCESO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stAcceso;
+    private Status status;
     @JoinColumn(name = "CD_SEDE", referencedColumnName = "CD_SEDE", nullable = false)
     @ManyToOne(optional = false)
-    private Workplace cdWorkplace;
+    private Workplace workplace;
 
     public Access() {
     }
 
-    public Access(Integer cdAcceso) {
-        this.cdAcceso = cdAcceso;
+    public Access(Integer accessId) {
+        this.accessId = accessId;
     }
 
-    public Access(Integer cdAcceso, int cdExterno, Date fhVigencia) {
-        this.cdAcceso = cdAcceso;
-        this.cdExterno = cdExterno;
-        this.fhVigencia = fhVigencia;
+    public Access(Integer accessId, int externalUserId, Date effectiveDate) {
+        this.accessId = accessId;
+        this.externalUserId = externalUserId;
+        this.effectiveDate = effectiveDate;
     }
 
-    public Integer getCdAcceso() {
-        return cdAcceso;
+    public Integer getAccessId() {
+        return accessId;
     }
 
-    public void setCdAcceso(Integer cdAcceso) {
-        this.cdAcceso = cdAcceso;
+    public void setAccessId(Integer accessId) {
+        this.accessId = accessId;
     }
 
-    public int getCdExterno() {
-        return cdExterno;
+    public int getExternalUserId() {
+        return externalUserId;
     }
 
-    public void setCdExterno(int cdExterno) {
-        this.cdExterno = cdExterno;
+    public void setExternalUserId(int externalUserId) {
+        this.externalUserId = externalUserId;
     }
 
-    public Date getFhVigencia() {
-        return fhVigencia;
+    public Date getEffectiveDate() {
+        return effectiveDate;
     }
 
-    public void setFhVigencia(Date fhVigencia) {
-        this.fhVigencia = fhVigencia;
+    public void setEffectiveDate(Date effectiveDate) {
+        this.effectiveDate = effectiveDate;
     }
 
-    public Status getStAcceso() {
-        return stAcceso;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStAcceso(Status stAcceso) {
-        this.stAcceso = stAcceso;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public Workplace getCdWorkplace() {
-        return cdWorkplace;
+    public Workplace getWorkplace() {
+        return workplace;
     }
 
-    public void setCdWorkplace(Workplace cdWorkplace) {
-        this.cdWorkplace = cdWorkplace;
+    public void setWorkplace(Workplace workplace) {
+        this.workplace = workplace;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdAcceso != null ? cdAcceso.hashCode() : 0);
+        hash += (accessId != null ? accessId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Access)) {
             return false;
         }
         Access other = (Access) object;
-        if ((this.cdAcceso == null && other.cdAcceso != null) || (this.cdAcceso != null && !this.cdAcceso.equals(other.cdAcceso))) {
-            return false;
-        }
-        return true;
+        return (this.accessId != null || other.accessId == null) && (this.accessId == null || this.accessId.equals(other.accessId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Access[ cdAcceso=" + cdAcceso + " ]";
+        return "com.bbva.Access[ accessId=" + accessId + " ]";
     }
 
 }

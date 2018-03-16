@@ -15,111 +15,98 @@ import java.util.List;
 @Entity
 @Table(name = "thge030_area", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_AREA"})})
-@NamedQueries({
-        @NamedQuery(name = "Area.findAll", query = "SELECT t FROM Area t")})
 public class Area implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_AREA", nullable = false)
-    private Integer cdArea;
+    private Integer areaId;
     @Basic(optional = false)
     @Column(name = "NB_AREA", nullable = false, length = 50)
-    private String nbArea;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdArea")
-    private List<Budget> pepList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdArea")
-    private List<Fare> fareList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdArea")
-    private List<Requirement> requirementList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdArea")
-    private List<Contract> contractList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdArea")
-    private List<ExternalUser> externalUserList;
-    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "thge030Area")
-    private List<ServiceType_> serviceTypeList;*/
+    private String areaName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+    private List<Budget> budgets;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+    private List<Fare> fares;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+    private List<Requirement> requirements;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+    private List<Contract> contracts;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+    private List<ExternalUser> externalUsers;
 
     public Area() {
     }
 
-    public Area(Integer cdArea) {
-        this.cdArea = cdArea;
+    public Area(Integer areaId) {
+        this.areaId = areaId;
     }
 
-    public Area(Integer cdArea, String nbArea) {
-        this.cdArea = cdArea;
-        this.nbArea = nbArea;
+    public Area(Integer areaId, String areaName) {
+        this.areaId = areaId;
+        this.areaName = areaName;
     }
 
-    public Integer getCdArea() {
-        return cdArea;
+    public Integer getAreaId() {
+        return areaId;
     }
 
-    public void setCdArea(Integer cdArea) {
-        this.cdArea = cdArea;
+    public void setAreaId(Integer areaId) {
+        this.areaId = areaId;
     }
 
-    public String getNbArea() {
-        return nbArea;
+    public String getAreaName() {
+        return areaName;
     }
 
-    public void setNbArea(String nbArea) {
-        this.nbArea = nbArea;
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
     }
 
-    public List<Budget> getPepList() {
-        return pepList;
+    public List<Budget> getBudgets() {
+        return budgets;
     }
 
-    public void setPepList(List<Budget> pepList) {
-        this.pepList = pepList;
+    public void setBudgets(List<Budget> budgets) {
+        this.budgets = budgets;
     }
 
-    public List<Fare> getFareList() {
-        return fareList;
+    public List<Fare> getFares() {
+        return fares;
     }
 
-    public void setFareList(List<Fare> fareList) {
-        this.fareList = fareList;
+    public void setFares(List<Fare> fares) {
+        this.fares = fares;
     }
 
-    public List<Requirement> getRequirementList() {
-        return requirementList;
+    public List<Requirement> getRequirements() {
+        return requirements;
     }
 
-    public void setRequirementList(List<Requirement> requirementList) {
-        this.requirementList = requirementList;
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
     }
 
-    public List<Contract> getContractList() {
-        return contractList;
+    public List<Contract> getContracts() {
+        return contracts;
     }
 
-    public void setContractList(List<Contract> contractList) {
-        this.contractList = contractList;
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 
-    public List<ExternalUser> getExternalUserList() {
-        return externalUserList;
+    public List<ExternalUser> getExternalUsers() {
+        return externalUsers;
     }
 
-    public void setExternalUserList(List<ExternalUser> externalUserList) {
-        this.externalUserList = externalUserList;
+    public void setExternalUsers(List<ExternalUser> externalUsers) {
+        this.externalUsers = externalUsers;
     }
-    /*
-    public List<ServiceType_> getServiceTypeList() {
-        return serviceTypeList;
-    }
-
-    public void setServiceTypeList(List<ServiceType_> serviceTypeList) {
-        this.serviceTypeList = serviceTypeList;
-    }*/
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdArea != null ? cdArea.hashCode() : 0);
+        hash += (areaId != null ? areaId.hashCode() : 0);
         return hash;
     }
 
@@ -130,7 +117,7 @@ public class Area implements Serializable {
             return false;
         }
         Area other = (Area) object;
-        if ((this.cdArea == null && other.cdArea != null) || (this.cdArea != null && !this.cdArea.equals(other.cdArea))) {
+        if ((this.areaId == null && other.areaId != null) || (this.areaId != null && !this.areaId.equals(other.areaId))) {
             return false;
         }
         return true;
@@ -138,7 +125,7 @@ public class Area implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bbva.Area[ cdArea=" + cdArea + " ]";
+        return "com.bbva.Area[ areaId=" + areaId + " ]";
     }
 
 }

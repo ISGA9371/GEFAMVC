@@ -16,84 +16,81 @@ import java.util.List;
 @Table(name = "thge057_aplicacion", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_APLICACION"})
         , @UniqueConstraint(columnNames = {"NB_APLICACION"})})
-@NamedQueries({
-        @NamedQuery(name = "Application.findAll", query = "SELECT t FROM Application t")})
 public class Application implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_CONS_APLIC", nullable = false)
-    private Integer cdConsAplic;
+    private Integer applicationSerial;
     @Basic(optional = false)
     @Column(name = "CD_APLICACION", nullable = false)
-    private int cdAplicacion;
+    private int applicationId;
     @Basic(optional = false)
     @Column(name = "NB_APLICACION", nullable = false, length = 50)
-    private String nbAplicacion;
+    private String applicationName;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private Technology cdTechnology;
-    @OneToMany(mappedBy = "cdApplication")
-    private List<Requirement> requirementList;
+    private Technology technology;
+    @OneToMany(mappedBy = "application")
+    private List<Requirement> requirements;
 
     public Application() {
     }
 
-    public Application(Integer cdConsAplic) {
-        this.cdConsAplic = cdConsAplic;
+    public Application(Integer applicationSerial) {
+        this.applicationSerial = applicationSerial;
     }
 
-    public Application(Integer cdConsAplic, int cdAplicacion, String nbAplicacion) {
-        this.cdConsAplic = cdConsAplic;
-        this.cdAplicacion = cdAplicacion;
-        this.nbAplicacion = nbAplicacion;
+    public Application(Integer applicationSerial, int applicationId, String applicationName) {
+        this.applicationSerial = applicationSerial;
+        this.applicationId = applicationId;
+        this.applicationName = applicationName;
     }
 
-    public Integer getCdConsAplic() {
-        return cdConsAplic;
+    public Integer getApplicationSerial() {
+        return applicationSerial;
     }
 
-    public void setCdConsAplic(Integer cdConsAplic) {
-        this.cdConsAplic = cdConsAplic;
+    public void setApplicationSerial(Integer applicationSerial) {
+        this.applicationSerial = applicationSerial;
     }
 
-    public int getCdAplicacion() {
-        return cdAplicacion;
+    public int getApplicationId() {
+        return applicationId;
     }
 
-    public void setCdAplicacion(int cdAplicacion) {
-        this.cdAplicacion = cdAplicacion;
+    public void setApplicationId(int applicationId) {
+        this.applicationId = applicationId;
     }
 
-    public String getNbAplicacion() {
-        return nbAplicacion;
+    public String getApplicationName() {
+        return applicationName;
     }
 
-    public void setNbAplicacion(String nbAplicacion) {
-        this.nbAplicacion = nbAplicacion;
+    public void setApplicationName(String applicationName) {
+        this.applicationName = applicationName;
     }
 
-    public Technology getCdTechnology() {
-        return cdTechnology;
+    public Technology getTechnology() {
+        return technology;
     }
 
-    public void setCdTechnology(Technology cdTechnology) {
-        this.cdTechnology = cdTechnology;
+    public void setTechnology(Technology technology) {
+        this.technology = technology;
     }
 
-    public List<Requirement> getRequirementList() {
-        return requirementList;
+    public List<Requirement> getRequirements() {
+        return requirements;
     }
 
-    public void setRequirementList(List<Requirement> requirementList) {
-        this.requirementList = requirementList;
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdConsAplic != null ? cdConsAplic.hashCode() : 0);
+        hash += (applicationSerial != null ? applicationSerial.hashCode() : 0);
         return hash;
     }
 
@@ -104,7 +101,7 @@ public class Application implements Serializable {
             return false;
         }
         Application other = (Application) object;
-        if ((this.cdConsAplic == null && other.cdConsAplic != null) || (this.cdConsAplic != null && !this.cdConsAplic.equals(other.cdConsAplic))) {
+        if ((this.applicationSerial == null && other.applicationSerial != null) || (this.applicationSerial != null && !this.applicationSerial.equals(other.applicationSerial))) {
             return false;
         }
         return true;
@@ -112,7 +109,7 @@ public class Application implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bbva.Application[ cdConsAplic=" + cdConsAplic + " ]";
+        return "com.bbva.Application[ applicationSerial=" + applicationSerial + " ]";
     }
 
 }

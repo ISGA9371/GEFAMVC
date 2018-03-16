@@ -23,72 +23,68 @@ public class Banking implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "CD_BANCA", nullable = false)
-    private Integer cdBanca;
+    private Integer bankingId;
     @Basic(optional = false)
     @Column(name = "NB_BANCA", nullable = false, length = 50)
-    private String nbBanca;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdBanking")
-    private List<Budget> pepList;
+    private String bankingName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "banking")
+    private List<Budget> budgets;
 
     public Banking() {
     }
 
-    public Banking(Integer cdBanca) {
-        this.cdBanca = cdBanca;
+    public Banking(Integer bankingId) {
+        this.bankingId = bankingId;
     }
 
-    public Banking(Integer cdBanca, String nbBanca) {
-        this.cdBanca = cdBanca;
-        this.nbBanca = nbBanca;
+    public Banking(Integer bankingId, String bankingName) {
+        this.bankingId = bankingId;
+        this.bankingName = bankingName;
     }
 
-    public Integer getCdBanca() {
-        return cdBanca;
+    public Integer getBankingId() {
+        return bankingId;
     }
 
-    public void setCdBanca(Integer cdBanca) {
-        this.cdBanca = cdBanca;
+    public void setBankingId(Integer bankingId) {
+        this.bankingId = bankingId;
     }
 
-    public String getNbBanca() {
-        return nbBanca;
+    public String getBankingName() {
+        return bankingName;
     }
 
-    public void setNbBanca(String nbBanca) {
-        this.nbBanca = nbBanca;
+    public void setBankingName(String bankingName) {
+        this.bankingName = bankingName;
     }
 
-    public List<Budget> getPepList() {
-        return pepList;
+    public List<Budget> getBudgets() {
+        return budgets;
     }
 
-    public void setPepList(List<Budget> pepList) {
-        this.pepList = pepList;
+    public void setBudgets(List<Budget> budgets) {
+        this.budgets = budgets;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdBanca != null ? cdBanca.hashCode() : 0);
+        hash += (bankingId != null ? bankingId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Banking)) {
             return false;
         }
         Banking other = (Banking) object;
-        if ((this.cdBanca == null && other.cdBanca != null) || (this.cdBanca != null && !this.cdBanca.equals(other.cdBanca))) {
-            return false;
-        }
-        return true;
+        return (this.bankingId != null || other.bankingId == null) && (this.bankingId == null || this.bankingId.equals(other.bankingId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Banking[ cdBanca=" + cdBanca + " ]";
+        return "com.bbva.Banking[ bankingId=" + bankingId + " ]";
     }
 
 }

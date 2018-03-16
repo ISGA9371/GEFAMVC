@@ -15,304 +15,295 @@ import java.util.List;
 @Entity
 @Table(name = "thge007_pep", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_PEP"})})
-@NamedQueries({
-        @NamedQuery(name = "Budget.findAll", query = "SELECT t FROM Budget t")})
 public class Budget implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_CONSEC_PEP", nullable = false)
-    private Integer cdConsecPep;
+    private Integer budgetSerial;
     @Basic(optional = false)
     @Column(name = "CD_PEP", nullable = false, length = 15)
-    private String cdPep;
+    private String budgetId;
     @Column(name = "NB_DENOMINAC_PEP", length = 50)
-    private String nbDenominacPep;
+    private String budgetDenomination;
     @Basic(optional = false)
     @Column(name = "NU_EJERCICIO", nullable = false)
-    private int nuEjercicio;
+    private int budgetExercise;
     @Basic(optional = false)
     @Column(name = "TX_CENTRO_CTO", nullable = false, length = 10)
-    private String txCentroCto;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    private String budgetCenterCto;
     @Column(name = "IM_PRESUPUESTO", precision = 22)
-    private Double imPresupuesto;
+    private Double budgetQuantity;
     @Column(name = "IM_AUTORIZADO", precision = 22)
-    private Double imAutorizado;
+    private Double budgetAuthorized;
     @Column(name = "IM_COMPR_SOL", precision = 22)
-    private Double imComprSol;
+    private Double budgetRequest;
     @Column(name = "IM_COMPR_PEND", precision = 22)
-    private Double imComprPend;
+    private Double budgetPending;
     @Column(name = "IM_REALIZADO", precision = 22)
-    private Double imRealizado;
+    private Double budgetDone;
     @Column(name = "IM_DISPONIBLE", precision = 22)
-    private Double imDisponible;
+    private Double budgetAvailable;
     @Column(name = "IM_INCURRIDO_PBAS", precision = 22)
-    private Double imIncurridoPbas;
+    private Double budgetIncurredPbas;
     @Column(name = "IM_IMCURRIDO_FSW", precision = 22)
-    private Double imImcurridoFsw;
-    @Lob
+    private Double budgetIncurredFsw;
     @Column(name = "TP_DESLIZADO")
-    private byte[] tpDeslizado;
+    private byte[] budgetSlipped;
     @JoinColumn(name = "ST_PEP", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stPep;
+    private Status budgetStatus;
     @JoinColumn(name = "ST_DYD", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stDyd;
+    private Status statusDyd;
     @JoinColumn(name = "CD_USUARIO_SOLIC", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
-    private User cdUserSolic;
+    private User userSender;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
-    private User cdUserResp;
+    private User userReceiver;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
-    private Area cdArea;
+    private Area area;
     @JoinColumn(name = "CD_BANCA", referencedColumnName = "CD_BANCA", nullable = false)
     @ManyToOne(optional = false)
-    private Banking cdBanking;
+    private Banking banking;
     @JoinColumn(name = "CD_ENTIDAD", referencedColumnName = "CD_ENTIDAD", nullable = false)
     @ManyToOne(optional = false)
-    private Corporation cdCorporation;
+    private Corporation corporation;
     @JoinColumn(name = "CD_NATURALEZA", referencedColumnName = "CD_NATURALEZA", nullable = false)
     @ManyToOne(optional = false)
-    private Nature cdNature;
-    @OneToMany(mappedBy = "cdPep")
-    private List<Transfer> transferList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPep")
-    private List<BudgetRequirement> budgetRequirementList;
+    private Nature nature;
+    @OneToMany(mappedBy = "budget")
+    private List<Transfer> transfers;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "budget")
+    private List<BudgetRequirement> budgetRequirements;
 
     public Budget() {
     }
 
-    public Budget(Integer cdConsecPep) {
-        this.cdConsecPep = cdConsecPep;
+    public Budget(Integer budgetSerial) {
+        this.budgetSerial = budgetSerial;
     }
 
-    public Budget(Integer cdConsecPep, String cdPep, int nuEjercicio, String txCentroCto) {
-        this.cdConsecPep = cdConsecPep;
-        this.cdPep = cdPep;
-        this.nuEjercicio = nuEjercicio;
-        this.txCentroCto = txCentroCto;
+    public Budget(Integer budgetSerial, String budgetId, int budgetExercise, String budgetCenterCto) {
+        this.budgetSerial = budgetSerial;
+        this.budgetId = budgetId;
+        this.budgetExercise = budgetExercise;
+        this.budgetCenterCto = budgetCenterCto;
     }
 
-    public Integer getCdConsecPep() {
-        return cdConsecPep;
+    public Integer getBudgetSerial() {
+        return budgetSerial;
     }
 
-    public void setCdConsecPep(Integer cdConsecPep) {
-        this.cdConsecPep = cdConsecPep;
+    public void setBudgetSerial(Integer budgetSerial) {
+        this.budgetSerial = budgetSerial;
     }
 
-    public String getCdPep() {
-        return cdPep;
+    public String getBudgetId() {
+        return budgetId;
     }
 
-    public void setCdPep(String cdPep) {
-        this.cdPep = cdPep;
+    public void setBudgetId(String budgetId) {
+        this.budgetId = budgetId;
     }
 
-    public String getNbDenominacPep() {
-        return nbDenominacPep;
+    public String getBudgetDenomination() {
+        return budgetDenomination;
     }
 
-    public void setNbDenominacPep(String nbDenominacPep) {
-        this.nbDenominacPep = nbDenominacPep;
+    public void setBudgetDenomination(String budgetDenomination) {
+        this.budgetDenomination = budgetDenomination;
     }
 
-    public int getNuEjercicio() {
-        return nuEjercicio;
+    public int getBudgetExercise() {
+        return budgetExercise;
     }
 
-    public void setNuEjercicio(int nuEjercicio) {
-        this.nuEjercicio = nuEjercicio;
+    public void setBudgetExercise(int budgetExercise) {
+        this.budgetExercise = budgetExercise;
     }
 
-    public String getTxCentroCto() {
-        return txCentroCto;
+    public String getBudgetCenterCto() {
+        return budgetCenterCto;
     }
 
-    public void setTxCentroCto(String txCentroCto) {
-        this.txCentroCto = txCentroCto;
+    public void setBudgetCenterCto(String budgetCenterCto) {
+        this.budgetCenterCto = budgetCenterCto;
     }
 
-    public Double getImPresupuesto() {
-        return imPresupuesto;
+    public Double getBudgetQuantity() {
+        return budgetQuantity;
     }
 
-    public void setImPresupuesto(Double imPresupuesto) {
-        this.imPresupuesto = imPresupuesto;
+    public void setBudgetQuantity(Double budgetQuantity) {
+        this.budgetQuantity = budgetQuantity;
     }
 
-    public Double getImAutorizado() {
-        return imAutorizado;
+    public Double getBudgetAuthorized() {
+        return budgetAuthorized;
     }
 
-    public void setImAutorizado(Double imAutorizado) {
-        this.imAutorizado = imAutorizado;
+    public void setBudgetAuthorized(Double budgetAuthorized) {
+        this.budgetAuthorized = budgetAuthorized;
     }
 
-    public Double getImComprSol() {
-        return imComprSol;
+    public Double getBudgetRequest() {
+        return budgetRequest;
     }
 
-    public void setImComprSol(Double imComprSol) {
-        this.imComprSol = imComprSol;
+    public void setBudgetRequest(Double budgetRequest) {
+        this.budgetRequest = budgetRequest;
     }
 
-    public Double getImComprPend() {
-        return imComprPend;
+    public Double getBudgetPending() {
+        return budgetPending;
     }
 
-    public void setImComprPend(Double imComprPend) {
-        this.imComprPend = imComprPend;
+    public void setBudgetPending(Double budgetPending) {
+        this.budgetPending = budgetPending;
     }
 
-    public Double getImRealizado() {
-        return imRealizado;
+    public Double getBudgetDone() {
+        return budgetDone;
     }
 
-    public void setImRealizado(Double imRealizado) {
-        this.imRealizado = imRealizado;
+    public void setBudgetDone(Double budgetDone) {
+        this.budgetDone = budgetDone;
     }
 
-    public Double getImDisponible() {
-        return imDisponible;
+    public Double getBudgetAvailable() {
+        return budgetAvailable;
     }
 
-    public void setImDisponible(Double imDisponible) {
-        this.imDisponible = imDisponible;
+    public void setBudgetAvailable(Double budgetAvailable) {
+        this.budgetAvailable = budgetAvailable;
     }
 
-    public Double getImIncurridoPbas() {
-        return imIncurridoPbas;
+    public Double getBudgetIncurredPbas() {
+        return budgetIncurredPbas;
     }
 
-    public void setImIncurridoPbas(Double imIncurridoPbas) {
-        this.imIncurridoPbas = imIncurridoPbas;
+    public void setBudgetIncurredPbas(Double budgetIncurredPbas) {
+        this.budgetIncurredPbas = budgetIncurredPbas;
     }
 
-    public Double getImImcurridoFsw() {
-        return imImcurridoFsw;
+    public Double getBudgetIncurredFsw() {
+        return budgetIncurredFsw;
     }
 
-    public void setImImcurridoFsw(Double imImcurridoFsw) {
-        this.imImcurridoFsw = imImcurridoFsw;
+    public void setBudgetIncurredFsw(Double budgetIncurredFsw) {
+        this.budgetIncurredFsw = budgetIncurredFsw;
     }
 
-    public byte[] getTpDeslizado() {
-        return tpDeslizado;
+    public byte[] getBudgetSlipped() {
+        return budgetSlipped;
     }
 
-    public void setTpDeslizado(byte[] tpDeslizado) {
-        this.tpDeslizado = tpDeslizado;
+    public void setBudgetSlipped(byte[] budgetSlipped) {
+        this.budgetSlipped = budgetSlipped;
     }
 
-    public Status getStPep() {
-        return stPep;
+    public Status getBudgetStatus() {
+        return budgetStatus;
     }
 
-    public void setStPep(Status stPep) {
-        this.stPep = stPep;
+    public void setBudgetStatus(Status budgetStatus) {
+        this.budgetStatus = budgetStatus;
     }
 
-    public Status getStDyd() {
-        return stDyd;
+    public Status getStatusDyd() {
+        return statusDyd;
     }
 
-    public void setStDyd(Status stDyd) {
-        this.stDyd = stDyd;
+    public void setStatusDyd(Status statusDyd) {
+        this.statusDyd = statusDyd;
     }
 
-    public User getCdUserSolic() {
-        return cdUserSolic;
+    public User getUserSender() {
+        return userSender;
     }
 
-    public void setCdUserSolic(User cdUserSolic) {
-        this.cdUserSolic = cdUserSolic;
+    public void setUserSender(User userSender) {
+        this.userSender = userSender;
     }
 
-    public User getCdUserResp() {
-        return cdUserResp;
+    public User getUserReceiver() {
+        return userReceiver;
     }
 
-    public void setCdUserResp(User cdUserResp) {
-        this.cdUserResp = cdUserResp;
+    public void setUserReceiver(User userReceiver) {
+        this.userReceiver = userReceiver;
     }
 
-    public Area getCdArea() {
-        return cdArea;
+    public Area getArea() {
+        return area;
     }
 
-    public void setCdArea(Area cdArea) {
-        this.cdArea = cdArea;
+    public void setArea(Area area) {
+        this.area = area;
     }
 
-    public Banking getCdBanking() {
-        return cdBanking;
+    public Banking getBanking() {
+        return banking;
     }
 
-    public void setCdBanking(Banking cdBanking) {
-        this.cdBanking = cdBanking;
+    public void setBanking(Banking banking) {
+        this.banking = banking;
     }
 
-    public Corporation getCdCorporation() {
-        return cdCorporation;
+    public Corporation getCorporation() {
+        return corporation;
     }
 
-    public void setCdCorporation(Corporation cdCorporation) {
-        this.cdCorporation = cdCorporation;
+    public void setCorporation(Corporation corporation) {
+        this.corporation = corporation;
     }
 
-    public Nature getCdNature() {
-        return cdNature;
+    public Nature getNature() {
+        return nature;
     }
 
-    public void setCdNature(Nature cdNature) {
-        this.cdNature = cdNature;
+    public void setNature(Nature nature) {
+        this.nature = nature;
     }
 
-    public List<Transfer> getTransferList() {
-        return transferList;
+    public List<Transfer> getTransfers() {
+        return transfers;
     }
 
-    public void setTransferList(List<Transfer> transferList) {
-        this.transferList = transferList;
+    public void setTransfers(List<Transfer> transfers) {
+        this.transfers = transfers;
     }
 
-    public List<BudgetRequirement> getBudgetRequirementList() {
-        return budgetRequirementList;
+    public List<BudgetRequirement> getBudgetRequirements() {
+        return budgetRequirements;
     }
 
-    public void setBudgetRequirementList(List<BudgetRequirement> budgetRequirementList) {
-        this.budgetRequirementList = budgetRequirementList;
+    public void setBudgetRequirements(List<BudgetRequirement> budgetRequirements) {
+        this.budgetRequirements = budgetRequirements;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdConsecPep != null ? cdConsecPep.hashCode() : 0);
+        hash += (budgetSerial != null ? budgetSerial.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Budget)) {
             return false;
         }
         Budget other = (Budget) object;
-        if ((this.cdConsecPep == null && other.cdConsecPep != null) || (this.cdConsecPep != null && !this.cdConsecPep.equals(other.cdConsecPep))) {
-            return false;
-        }
-        return true;
+        return (this.budgetSerial != null || other.budgetSerial == null) && (this.budgetSerial == null || this.budgetSerial.equals(other.budgetSerial));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Budget[ cdConsecPep=" + cdConsecPep + " ]";
+        return "com.bbva.Budget[ budgetSerial=" + budgetSerial + " ]";
     }
 
 }

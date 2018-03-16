@@ -23,72 +23,68 @@ public class AssignationType implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "CD_TIPO_ASIG", nullable = false)
-    private Integer cdTipoAsig;
+    private Integer assignationTypeId;
     @Basic(optional = false)
     @Column(name = "NB_TIPO_ASIG", nullable = false, length = 25)
-    private String nbTipoAsig;
+    private String assignationTypeName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdAssignationType")
-    private List<ExternalUser> externalUserList;
+    private List<ExternalUser> externalUsers;
 
     public AssignationType() {
     }
 
-    public AssignationType(Integer cdTipoAsig) {
-        this.cdTipoAsig = cdTipoAsig;
+    public AssignationType(Integer assignationTypeId) {
+        this.assignationTypeId = assignationTypeId;
     }
 
-    public AssignationType(Integer cdTipoAsig, String nbTipoAsig) {
-        this.cdTipoAsig = cdTipoAsig;
-        this.nbTipoAsig = nbTipoAsig;
+    public AssignationType(Integer assignationTypeId, String assignationTypeName) {
+        this.assignationTypeId = assignationTypeId;
+        this.assignationTypeName = assignationTypeName;
     }
 
-    public Integer getCdTipoAsig() {
-        return cdTipoAsig;
+    public Integer getAssignationTypeId() {
+        return assignationTypeId;
     }
 
-    public void setCdTipoAsig(Integer cdTipoAsig) {
-        this.cdTipoAsig = cdTipoAsig;
+    public void setAssignationTypeId(Integer assignationTypeId) {
+        this.assignationTypeId = assignationTypeId;
     }
 
-    public String getNbTipoAsig() {
-        return nbTipoAsig;
+    public String getAssignationTypeName() {
+        return assignationTypeName;
     }
 
-    public void setNbTipoAsig(String nbTipoAsig) {
-        this.nbTipoAsig = nbTipoAsig;
+    public void setAssignationTypeName(String assignationTypeName) {
+        this.assignationTypeName = assignationTypeName;
     }
 
-    public List<ExternalUser> getExternalUserList() {
-        return externalUserList;
+    public List<ExternalUser> getExternalUsers() {
+        return externalUsers;
     }
 
-    public void setExternalUserList(List<ExternalUser> externalUserList) {
-        this.externalUserList = externalUserList;
+    public void setExternalUsers(List<ExternalUser> externalUsers) {
+        this.externalUsers = externalUsers;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdTipoAsig != null ? cdTipoAsig.hashCode() : 0);
+        hash += (assignationTypeId != null ? assignationTypeId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof AssignationType)) {
             return false;
         }
         AssignationType other = (AssignationType) object;
-        if ((this.cdTipoAsig == null && other.cdTipoAsig != null) || (this.cdTipoAsig != null && !this.cdTipoAsig.equals(other.cdTipoAsig))) {
-            return false;
-        }
-        return true;
+        return (this.assignationTypeId != null || other.assignationTypeId == null) && (this.assignationTypeId == null || this.assignationTypeId.equals(other.assignationTypeId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.AssignationType[ cdTipoAsig=" + cdTipoAsig + " ]";
+        return "com.bbva.AssignationType[ assignationTypeId=" + assignationTypeId + " ]";
     }
 
 }
