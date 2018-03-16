@@ -67,9 +67,9 @@ public class User implements Serializable {
     private List<Doubt> doubts;
     @OneToMany(mappedBy = "userReceiver")
     private List<Doubt> doubtList;
-    @OneToMany(mappedBy = "userManager")
+    @OneToMany(mappedBy = "manager")
     private List<ExternalUser> externalUsers;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "responsible")
     private List<ExternalUser> externalUserList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<T955> t955List;

@@ -24,7 +24,7 @@ public class AssignationType implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_TIPO_ASIG", nullable = false, length = 25)
     private String assignationTypeName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdAssignationType")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "assignationType")
     private List<ExternalUser> externalUsers;
 
     public AssignationType() {

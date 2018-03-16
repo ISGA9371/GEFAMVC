@@ -27,7 +27,7 @@ public class ProgramIncrement implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_SCRUM", nullable = false, length = 100)
     private String programIncrementScrumName;
-    @OneToMany(mappedBy = "programIncrement")
+    @OneToMany(mappedBy = "programIncrementScrum")
     private List<Requirement> requirements;
     @JoinColumn(name = "CD_DUENO_PROD", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne

@@ -36,7 +36,7 @@ public class TestCaseC204 implements Serializable {
     private List<T955> t955List;
     @JoinColumn(name = "CD_T926", referencedColumnName = "CD_T926")
     @ManyToOne
-    private T926 cdT926;
+    private T926 t926;
     @JoinColumn(name = "CD_PRIORIDAD_CP", referencedColumnName = "CD_PRIORIDAD_CP", nullable = false)
     @ManyToOne(optional = false)
     private PriorityTestCase priorityTestCase;
@@ -115,12 +115,12 @@ public class TestCaseC204 implements Serializable {
         this.t955List = t955List;
     }
 
-    public T926 getCdT926() {
-        return cdT926;
+    public T926 getT926() {
+        return t926;
     }
 
-    public void setCdT926(T926 cdT926) {
-        this.cdT926 = cdT926;
+    public void setT926(T926 t926) {
+        this.t926 = t926;
     }
 
     public PriorityTestCase getPriorityTestCase() {

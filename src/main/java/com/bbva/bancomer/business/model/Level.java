@@ -13,7 +13,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge010_nivel", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "thge010_nivel", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_NIVEL"})})
 public class Level implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -43,7 +43,7 @@ public class Level implements Serializable {
     private Level levelSuperior;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private User userReceivers;
+    private User user;
 
     public Level() {
     }
@@ -130,12 +130,12 @@ public class Level implements Serializable {
         this.levelSuperior = levelSuperior;
     }
 
-    public User getUserReceivers() {
-        return userReceivers;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserReceivers(User userReceivers) {
-        this.userReceivers = userReceivers;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

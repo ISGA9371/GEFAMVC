@@ -39,10 +39,9 @@ public class JPAPersistenceConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://23.251.150.233:3306/GESTION_FACTORIA?serverTimezone=America/Mexico_City&" +
-                "useSSL=false&zeroDateTimeBehavior=convertToNull");
-        dataSource.setUsername("gefaapp");
-        dataSource.setPassword("g3f4dbapp");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/gestion_factoria?serverTimezone=America/Mexico_City&user=root");
+        dataSource.setUsername("root");
+        dataSource.setPassword("");
         return dataSource;
     }
 
@@ -64,7 +63,7 @@ public class JPAPersistenceConfig {
         properties.setProperty("show_sql", "true");
         properties.setProperty("format_sql", "true");
         properties.setProperty("use_sql_comments", "true");
-        properties.setProperty("hibernate.hbm2ddl.auto", "validate");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         return properties;
     }
 
