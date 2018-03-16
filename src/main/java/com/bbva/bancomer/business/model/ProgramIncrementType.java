@@ -14,80 +14,73 @@ import java.util.List;
  */
 @Entity
 @Table(name = "thge013_tipo_pi", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "ProgramIncrementType.findAll", query = "SELECT t FROM ProgramIncrementType t")})
 public class ProgramIncrementType implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_TIPO_PI", nullable = false)
-    private Integer cdTipoPi;
+    private Integer programIncrementTypeId;
     @Basic(optional = false)
     @Column(name = "NB_PI", nullable = false, length = 25)
-    private String nbPi;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTipoPi")
-    private List<ProgramIncrement> programIncrementList;
+    private String ProgramIncrementTypeName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "programIncrementType")
+    private List<ProgramIncrement> programIncrements;
 
     public ProgramIncrementType() {
     }
 
-    public ProgramIncrementType(Integer cdTipoPi) {
-        this.cdTipoPi = cdTipoPi;
+    public ProgramIncrementType(Integer programIncrementTypeId) {
+        this.programIncrementTypeId = programIncrementTypeId;
     }
 
-    public ProgramIncrementType(Integer cdTipoPi, String nbPi) {
-        this.cdTipoPi = cdTipoPi;
-        this.nbPi = nbPi;
+    public ProgramIncrementType(Integer programIncrementTypeId, String ProgramIncrementTypeName) {
+        this.programIncrementTypeId = programIncrementTypeId;
+        this.ProgramIncrementTypeName = ProgramIncrementTypeName;
     }
 
-    public Integer getCdTipoPi() {
-        return cdTipoPi;
+    public Integer getProgramIncrementTypeId() {
+        return programIncrementTypeId;
     }
 
-    public void setCdTipoPi(Integer cdTipoPi) {
-        this.cdTipoPi = cdTipoPi;
+    public void setProgramIncrementTypeId(Integer programIncrementTypeId) {
+        this.programIncrementTypeId = programIncrementTypeId;
     }
 
-    public String getNbPi() {
-        return nbPi;
+    public String getProgramIncrementTypeName() {
+        return ProgramIncrementTypeName;
     }
 
-    public void setNbPi(String nbPi) {
-        this.nbPi = nbPi;
+    public void setProgramIncrementTypeName(String programIncrementTypeName) {
+        this.ProgramIncrementTypeName = programIncrementTypeName;
     }
 
-    public List<ProgramIncrement> getProgramIncrementList() {
-        return programIncrementList;
+    public List<ProgramIncrement> getProgramIncrements() {
+        return programIncrements;
     }
 
-    public void setProgramIncrementList(List<ProgramIncrement> programIncrementList) {
-        this.programIncrementList = programIncrementList;
+    public void setProgramIncrements(List<ProgramIncrement> programIncrements) {
+        this.programIncrements = programIncrements;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdTipoPi != null ? cdTipoPi.hashCode() : 0);
+        hash += (programIncrementTypeId != null ? programIncrementTypeId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof ProgramIncrementType)) {
             return false;
         }
         ProgramIncrementType other = (ProgramIncrementType) object;
-        if ((this.cdTipoPi == null && other.cdTipoPi != null) || (this.cdTipoPi != null && !this.cdTipoPi.equals(other.cdTipoPi))) {
-            return false;
-        }
-        return true;
+        return (this.programIncrementTypeId != null || other.programIncrementTypeId == null) && (this.programIncrementTypeId == null || this.programIncrementTypeId.equals(other.programIncrementTypeId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.ProgramIncrementType[ cdTipoPi=" + cdTipoPi + " ]";
+        return "com.bbva.ProgramIncrementType[ programIncrementTypeId=" + programIncrementTypeId + " ]";
     }
 
 }

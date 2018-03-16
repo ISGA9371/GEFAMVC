@@ -13,102 +13,95 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge015_prioridad", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "thge015_prioridad", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_PRIORIDAD"})})
-@NamedQueries({
-        @NamedQuery(name = "Priority.findAll", query = "SELECT t FROM Priority t")})
 public class Priority implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_PRIORIDAD", nullable = false)
-    private Integer cdPrioridad;
+    private Integer priorityId;
     @Basic(optional = false)
     @Column(name = "NB_PRIORIDAD", nullable = false, length = 25)
-    private String nbPrioridad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPriorityUsu")
-    private List<Modification> modificationList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPriority")
-    private List<Doubt> doubtList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPriority")
-    private List<Issue> issueList;
+    private String priorityName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "priority")
+    private List<Modification> modifications;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "priority")
+    private List<Doubt> doubts;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "priority")
+    private List<Issue> issues;
 
     public Priority() {
     }
 
-    public Priority(Integer cdPrioridad) {
-        this.cdPrioridad = cdPrioridad;
+    public Priority(Integer priorityId) {
+        this.priorityId = priorityId;
     }
 
-    public Priority(Integer cdPrioridad, String nbPrioridad) {
-        this.cdPrioridad = cdPrioridad;
-        this.nbPrioridad = nbPrioridad;
+    public Priority(Integer priorityId, String priorityName) {
+        this.priorityId = priorityId;
+        this.priorityName = priorityName;
     }
 
-    public Integer getCdPrioridad() {
-        return cdPrioridad;
+    public Integer getPriorityId() {
+        return priorityId;
     }
 
-    public void setCdPrioridad(Integer cdPrioridad) {
-        this.cdPrioridad = cdPrioridad;
+    public void setPriorityId(Integer priorityId) {
+        this.priorityId = priorityId;
     }
 
-    public String getNbPrioridad() {
-        return nbPrioridad;
+    public String getPriorityName() {
+        return priorityName;
     }
 
-    public void setNbPrioridad(String nbPrioridad) {
-        this.nbPrioridad = nbPrioridad;
+    public void setPriorityName(String priorityName) {
+        this.priorityName = priorityName;
     }
 
-    public List<Modification> getModificationList() {
-        return modificationList;
+    public List<Modification> getModifications() {
+        return modifications;
     }
 
-    public void setModificationList(List<Modification> modificationList) {
-        this.modificationList = modificationList;
+    public void setModifications(List<Modification> modifications) {
+        this.modifications = modifications;
     }
 
-    public List<Doubt> getDoubtList() {
-        return doubtList;
+    public List<Doubt> getDoubts() {
+        return doubts;
     }
 
-    public void setDoubtList(List<Doubt> doubtList) {
-        this.doubtList = doubtList;
+    public void setDoubts(List<Doubt> doubts) {
+        this.doubts = doubts;
     }
 
-    public List<Issue> getIssueList() {
-        return issueList;
+    public List<Issue> getIssues() {
+        return issues;
     }
 
-    public void setIssueList(List<Issue> issueList) {
-        this.issueList = issueList;
+    public void setIssues(List<Issue> issues) {
+        this.issues = issues;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdPrioridad != null ? cdPrioridad.hashCode() : 0);
+        hash += (priorityId != null ? priorityId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Priority)) {
             return false;
         }
         Priority other = (Priority) object;
-        if ((this.cdPrioridad == null && other.cdPrioridad != null) || (this.cdPrioridad != null && !this.cdPrioridad.equals(other.cdPrioridad))) {
-            return false;
-        }
-        return true;
+        return (this.priorityId != null || other.priorityId == null) && (this.priorityId == null || this.priorityId.equals(other.priorityId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Priority[ cdPrioridad=" + cdPrioridad + " ]";
+        return "com.bbva.Priority[ priorityId=" + priorityId + " ]";
     }
 
 }

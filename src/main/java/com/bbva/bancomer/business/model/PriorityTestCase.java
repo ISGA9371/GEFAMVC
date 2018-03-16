@@ -13,49 +13,46 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge045_prioridad_cp", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "thge045_prioridad_cp", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_PRIORIDAD_CP"})})
-@NamedQueries({
-        @NamedQuery(name = "PriorityTestCase.findAll", query = "SELECT t FROM PriorityTestCase t")})
 public class PriorityTestCase implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_PRIORIDAD_CP", nullable = false)
-    private Integer cdPrioridadCp;
+    private Integer priorityTestCaseId;
     @Basic(optional = false)
     @Column(name = "NB_PRIORIDAD_CP", nullable = false, length = 25)
-    private String nbPrioridadCp;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPrioridadCp")
+    private String priorityTestCaseName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "priorityTestCase")
     private List<TestCaseC204> testCaseC204List;
 
     public PriorityTestCase() {
     }
 
-    public PriorityTestCase(Integer cdPrioridadCp) {
-        this.cdPrioridadCp = cdPrioridadCp;
+    public PriorityTestCase(Integer priorityTestCaseId) {
+        this.priorityTestCaseId = priorityTestCaseId;
     }
 
-    public PriorityTestCase(Integer cdPrioridadCp, String nbPrioridadCp) {
-        this.cdPrioridadCp = cdPrioridadCp;
-        this.nbPrioridadCp = nbPrioridadCp;
+    public PriorityTestCase(Integer priorityTestCaseId, String priorityTestCaseName) {
+        this.priorityTestCaseId = priorityTestCaseId;
+        this.priorityTestCaseName = priorityTestCaseName;
     }
 
-    public Integer getCdPrioridadCp() {
-        return cdPrioridadCp;
+    public Integer getPriorityTestCaseId() {
+        return priorityTestCaseId;
     }
 
-    public void setCdPrioridadCp(Integer cdPrioridadCp) {
-        this.cdPrioridadCp = cdPrioridadCp;
+    public void setPriorityTestCaseId(Integer priorityTestCaseId) {
+        this.priorityTestCaseId = priorityTestCaseId;
     }
 
-    public String getNbPrioridadCp() {
-        return nbPrioridadCp;
+    public String getPriorityTestCaseName() {
+        return priorityTestCaseName;
     }
 
-    public void setNbPrioridadCp(String nbPrioridadCp) {
-        this.nbPrioridadCp = nbPrioridadCp;
+    public void setPriorityTestCaseName(String priorityTestCaseName) {
+        this.priorityTestCaseName = priorityTestCaseName;
     }
 
     public List<TestCaseC204> getTestCaseC204List() {
@@ -69,26 +66,22 @@ public class PriorityTestCase implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdPrioridadCp != null ? cdPrioridadCp.hashCode() : 0);
+        hash += (priorityTestCaseId != null ? priorityTestCaseId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof PriorityTestCase)) {
             return false;
         }
         PriorityTestCase other = (PriorityTestCase) object;
-        if ((this.cdPrioridadCp == null && other.cdPrioridadCp != null) || (this.cdPrioridadCp != null && !this.cdPrioridadCp.equals(other.cdPrioridadCp))) {
-            return false;
-        }
-        return true;
+        return (this.priorityTestCaseId != null || other.priorityTestCaseId == null) && (this.priorityTestCaseId == null || this.priorityTestCaseId.equals(other.priorityTestCaseId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.PriorityTestCase[ cdPrioridadCp=" + cdPrioridadCp + " ]";
+        return "com.bbva.PriorityTestCase[ priorityTestCaseId=" + priorityTestCaseId + " ]";
     }
 
 }

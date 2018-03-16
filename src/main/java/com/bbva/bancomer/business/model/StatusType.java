@@ -13,49 +13,46 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge008_tipo_edo", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "thge008_tipo_edo", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_TIPO_EDO"})})
-@NamedQueries({
-        @NamedQuery(name = "StatusType.findAll", query = "SELECT t FROM StatusType t")})
 public class StatusType implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_TIPO_EDO", nullable = false)
-    private Integer cdTipoEdo;
+    private Integer statusTypeId;
     @Basic(optional = false)
     @Column(name = "NB_TIPO_EDO", nullable = false, length = 50)
-    private String nbTipoEdo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdStatusType")
+    private String statusTypeName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusType")
     private List<Status> statusList;
 
     public StatusType() {
     }
 
-    public StatusType(Integer cdTipoEdo) {
-        this.cdTipoEdo = cdTipoEdo;
+    public StatusType(Integer statusTypeId) {
+        this.statusTypeId = statusTypeId;
     }
 
-    public StatusType(Integer cdTipoEdo, String nbTipoEdo) {
-        this.cdTipoEdo = cdTipoEdo;
-        this.nbTipoEdo = nbTipoEdo;
+    public StatusType(Integer statusTypeId, String statusTypeName) {
+        this.statusTypeId = statusTypeId;
+        this.statusTypeName = statusTypeName;
     }
 
-    public Integer getCdTipoEdo() {
-        return cdTipoEdo;
+    public Integer getStatusTypeId() {
+        return statusTypeId;
     }
 
-    public void setCdTipoEdo(Integer cdTipoEdo) {
-        this.cdTipoEdo = cdTipoEdo;
+    public void setStatusTypeId(Integer statusTypeId) {
+        this.statusTypeId = statusTypeId;
     }
 
-    public String getNbTipoEdo() {
-        return nbTipoEdo;
+    public String getStatusTypeName() {
+        return statusTypeName;
     }
 
-    public void setNbTipoEdo(String nbTipoEdo) {
-        this.nbTipoEdo = nbTipoEdo;
+    public void setStatusTypeName(String statusTypeName) {
+        this.statusTypeName = statusTypeName;
     }
 
     public List<Status> getStatusList() {
@@ -69,26 +66,22 @@ public class StatusType implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdTipoEdo != null ? cdTipoEdo.hashCode() : 0);
+        hash += (statusTypeId != null ? statusTypeId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof StatusType)) {
             return false;
         }
         StatusType other = (StatusType) object;
-        if ((this.cdTipoEdo == null && other.cdTipoEdo != null) || (this.cdTipoEdo != null && !this.cdTipoEdo.equals(other.cdTipoEdo))) {
-            return false;
-        }
-        return true;
+        return (this.statusTypeId != null || other.statusTypeId == null) && (this.statusTypeId == null || this.statusTypeId.equals(other.statusTypeId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.StatusType[ cdTipoEdo=" + cdTipoEdo + " ]";
+        return "com.bbva.StatusType[ statusTypeId=" + statusTypeId + " ]";
     }
 
 }

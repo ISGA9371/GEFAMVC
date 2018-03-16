@@ -14,91 +14,84 @@ import java.util.List;
  */
 @Entity
 @Table(name = "thge021_sbclas_rec", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "RequirementSubClassification.findAll", query = "SELECT t FROM RequirementSubClassification t")})
 public class RequirementSubClassification implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_SBCLAS_REC", nullable = false)
-    private Integer cdSbclasRec;
+    private Integer requirementSubClassificationId;
     @Basic(optional = false)
     @Column(name = "NB_SBCLAS_REC", nullable = false, length = 45)
-    private String nbSbclasRec;
+    private String requirementSubClassificationName;
     @JoinColumn(name = "CD_CLASIF_REC", referencedColumnName = "CD_CLASIF_REC", nullable = false)
     @ManyToOne(optional = false)
-    private RequirementClassification cdRequirementClassification;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdSbclasRec")
-    private List<ExternalUser> externalUserList;
+    private RequirementClassification requirementClassification;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirementSubClassification")
+    private List<ExternalUser> externalUsers;
 
     public RequirementSubClassification() {
     }
 
-    public RequirementSubClassification(Integer cdSbclasRec) {
-        this.cdSbclasRec = cdSbclasRec;
+    public RequirementSubClassification(Integer requirementSubClassificationId) {
+        this.requirementSubClassificationId = requirementSubClassificationId;
     }
 
-    public RequirementSubClassification(Integer cdSbclasRec, String nbSbclasRec) {
-        this.cdSbclasRec = cdSbclasRec;
-        this.nbSbclasRec = nbSbclasRec;
+    public RequirementSubClassification(Integer requirementSubClassificationId, String requirementSubClassificationName) {
+        this.requirementSubClassificationId = requirementSubClassificationId;
+        this.requirementSubClassificationName = requirementSubClassificationName;
     }
 
-    public Integer getCdSbclasRec() {
-        return cdSbclasRec;
+    public Integer getRequirementSubClassificationId() {
+        return requirementSubClassificationId;
     }
 
-    public void setCdSbclasRec(Integer cdSbclasRec) {
-        this.cdSbclasRec = cdSbclasRec;
+    public void setRequirementSubClassificationId(Integer requirementSubClassificationId) {
+        this.requirementSubClassificationId = requirementSubClassificationId;
     }
 
-    public String getNbSbclasRec() {
-        return nbSbclasRec;
+    public String getRequirementSubClassificationName() {
+        return requirementSubClassificationName;
     }
 
-    public void setNbSbclasRec(String nbSbclasRec) {
-        this.nbSbclasRec = nbSbclasRec;
+    public void setRequirementSubClassificationName(String requirementSubClassificationName) {
+        this.requirementSubClassificationName = requirementSubClassificationName;
     }
 
-    public RequirementClassification getCdRequirementClassification() {
-        return cdRequirementClassification;
+    public RequirementClassification getRequirementClassification() {
+        return requirementClassification;
     }
 
-    public void setCdRequirementClassification(RequirementClassification cdRequirementClassification) {
-        this.cdRequirementClassification = cdRequirementClassification;
+    public void setRequirementClassification(RequirementClassification requirementClassification) {
+        this.requirementClassification = requirementClassification;
     }
 
-    public List<ExternalUser> getExternalUserList() {
-        return externalUserList;
+    public List<ExternalUser> getExternalUsers() {
+        return externalUsers;
     }
 
-    public void setExternalUserList(List<ExternalUser> externalUserList) {
-        this.externalUserList = externalUserList;
+    public void setExternalUsers(List<ExternalUser> externalUsers) {
+        this.externalUsers = externalUsers;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdSbclasRec != null ? cdSbclasRec.hashCode() : 0);
+        hash += (requirementSubClassificationId != null ? requirementSubClassificationId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof RequirementSubClassification)) {
             return false;
         }
         RequirementSubClassification other = (RequirementSubClassification) object;
-        if ((this.cdSbclasRec == null && other.cdSbclasRec != null) || (this.cdSbclasRec != null && !this.cdSbclasRec.equals(other.cdSbclasRec))) {
-            return false;
-        }
-        return true;
+        return (this.requirementSubClassificationId != null || other.requirementSubClassificationId == null) && (this.requirementSubClassificationId == null || this.requirementSubClassificationId.equals(other.requirementSubClassificationId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.RequirementSubClassification[ cdSbclasRec=" + cdSbclasRec + " ]";
+        return "com.bbva.RequirementSubClassification[ requirementSubClassificationId=" + requirementSubClassificationId + " ]";
     }
 
 }

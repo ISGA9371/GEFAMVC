@@ -14,10 +14,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "thge005_estado", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "Status.findAll", query = "SELECT t FROM Status t")})
 public class Status implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -49,22 +46,22 @@ public class Status implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Modification> modificationList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Contract> contractList;
+    private List<Contract> contracts;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Access> accessList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Doubt> doubtList;
+    private List<Doubt> doubts;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Typology> typologyList;
+    private List<Typology> typologies;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<ExternalUser> externalUserList;
+    private List<ExternalUser> externalUsers;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<T955> t955List;
     @OneToMany(mappedBy = "status")
-    private List<Issue> issueList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stTipificacion")
+    private List<Issue> issues;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusTypology")
     private List<Component> componentList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stComponente")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Component> componentList1;
     @JoinColumn(name = "CD_TIPO_EDO", referencedColumnName = "CD_TIPO_EDO", nullable = false)
     @ManyToOne(optional = false)
@@ -186,12 +183,12 @@ public class Status implements Serializable {
         this.modificationList1 = modificationList1;
     }
 
-    public List<Contract> getContractList() {
-        return contractList;
+    public List<Contract> getContracts() {
+        return contracts;
     }
 
-    public void setContractList(List<Contract> contractList) {
-        this.contractList = contractList;
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 
     public List<Access> getAccessList() {
@@ -202,28 +199,28 @@ public class Status implements Serializable {
         this.accessList = accessList;
     }
 
-    public List<Doubt> getDoubtList() {
-        return doubtList;
+    public List<Doubt> getDoubts() {
+        return doubts;
     }
 
-    public void setDoubtList(List<Doubt> doubtList) {
-        this.doubtList = doubtList;
+    public void setDoubts(List<Doubt> doubts) {
+        this.doubts = doubts;
     }
 
-    public List<Typology> getTypologyList() {
-        return typologyList;
+    public List<Typology> getTypologies() {
+        return typologies;
     }
 
-    public void setTypologyList(List<Typology> typologyList) {
-        this.typologyList = typologyList;
+    public void setTypologies(List<Typology> typologies) {
+        this.typologies = typologies;
     }
 
-    public List<ExternalUser> getExternalUserList() {
-        return externalUserList;
+    public List<ExternalUser> getExternalUsers() {
+        return externalUsers;
     }
 
-    public void setExternalUserList(List<ExternalUser> externalUserList) {
-        this.externalUserList = externalUserList;
+    public void setExternalUsers(List<ExternalUser> externalUsers) {
+        this.externalUsers = externalUsers;
     }
 
     public List<T955> getT955List() {
@@ -234,12 +231,12 @@ public class Status implements Serializable {
         this.t955List = t955List;
     }
 
-    public List<Issue> getIssueList() {
-        return issueList;
+    public List<Issue> getIssues() {
+        return issues;
     }
 
-    public void setIssueList(List<Issue> issueList) {
-        this.issueList = issueList;
+    public void setIssues(List<Issue> issues) {
+        this.issues = issues;
     }
 
     public List<Component> getComponentList() {

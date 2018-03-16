@@ -21,255 +21,255 @@ public class Requirement implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "CD_REQUERIMIENTO", nullable = false)
-    private Integer cdRequerimiento;
+    private Integer requirementId;
     @Basic(optional = false)
     @Column(name = "NB_REQUERIMIENTO", nullable = false, length = 100)
-    private String nbRequerimiento;
+    private String requirementName;
     @Column(name = "NU_HORA_REQ", precision = 22)
-    private Double nuHoraReq;
+    private Double requirementHour;
     @Column(name = "NU_HRS_TOT")
-    private Integer nuHrsTot;
+    private Integer requirementTotalHours;
     @Column(name = "NU_HRS_FACT")
-    private Integer nuHrsFact;
+    private Integer requirementBilledHours;
     @Column(name = "NU_HRS_SIN_FACT")
-    private Integer nuHrsSinFact;
+    private Integer requirementNoBilledHours;
     @Column(name = "ST_FACTURADO")
-    private Short stFacturado;
+    private Short requirementBilled;
     @Column(name = "TM_ALTA_REQ")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date tmAltaReq;
+    private Date requirementDateUpload;
     @Column(name = "NU_FACTURABLE")
-    private Short nuFacturable;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdRequerimiento")
-    private List<Invoice> invoiceList;
+    private Short requirementCanBilled;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
+    private List<Invoice> invoices;
     @JoinColumn(name = "CD_USUARIO_GESTOR", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private User cdUserGestor;
+    private User userManager;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private Technology cdTechnology;
+    private Technology technology;
     @JoinColumn(name = "CD_EMPRESA", referencedColumnName = "CD_EMPRESA", nullable = false)
     @ManyToOne(optional = false)
-    private Company cdCompany;
+    private Company company;
     @JoinColumn(name = "ST_REQUERIMIENTO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stRequerimiento;
+    private Status status;
     @JoinColumn(name = "CD_NIVEL", referencedColumnName = "CD_NIVEL", nullable = false)
     @ManyToOne(optional = false)
-    private Level cdLevel;
+    private Level level;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private User cdUserResp;
+    private User user;
     @JoinColumn(name = "CD_APLICACION", referencedColumnName = "CD_APLICACION")
     @ManyToOne
-    private Application cdApplication;
+    private Application application;
     @JoinColumn(name = "CD_SCRUM", referencedColumnName = "CD_SCRUM")
     @ManyToOne
-    private ProgramIncrement cdScrum;
+    private ProgramIncrement programIncrementScrum;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
-    private Area cdArea;
+    private Area area;
     @JoinColumn(name = "CD_TIPO_PROY", referencedColumnName = "CD_TIPO_PROY", nullable = false)
     @ManyToOne(optional = false)
-    private ProjectType cdProjectType;
+    private ProjectType projectType;
     @JoinColumn(name = "CD_CANAL", referencedColumnName = "CD_CANAL")
     @ManyToOne
-    private Channel cdChannel;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdRequerimiento")
-    private List<BudgetRequirement> budgetRequirementList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdRequerimiento")
+    private Channel channel;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
+    private List<BudgetRequirement> budgetRequirements;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<T926> t926List;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<T955> t955List;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdRequerimiento")
-    private List<Component> componentList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
+    private List<Component> components;
 
     public Requirement() {
     }
 
-    public Requirement(Integer cdRequerimiento) {
-        this.cdRequerimiento = cdRequerimiento;
+    public Requirement(Integer requirementId) {
+        this.requirementId = requirementId;
     }
 
-    public Requirement(Integer cdRequerimiento, String nbRequerimiento) {
-        this.cdRequerimiento = cdRequerimiento;
-        this.nbRequerimiento = nbRequerimiento;
+    public Requirement(Integer requirementId, String requirementName) {
+        this.requirementId = requirementId;
+        this.requirementName = requirementName;
     }
 
-    public Integer getCdRequerimiento() {
-        return cdRequerimiento;
+    public Integer getRequirementId() {
+        return requirementId;
     }
 
-    public void setCdRequerimiento(Integer cdRequerimiento) {
-        this.cdRequerimiento = cdRequerimiento;
+    public void setRequirementId(Integer requirementId) {
+        this.requirementId = requirementId;
     }
 
-    public String getNbRequerimiento() {
-        return nbRequerimiento;
+    public String getRequirementName() {
+        return requirementName;
     }
 
-    public void setNbRequerimiento(String nbRequerimiento) {
-        this.nbRequerimiento = nbRequerimiento;
+    public void setRequirementName(String requirementName) {
+        this.requirementName = requirementName;
     }
 
-    public Double getNuHoraReq() {
-        return nuHoraReq;
+    public Double getRequirementHour() {
+        return requirementHour;
     }
 
-    public void setNuHoraReq(Double nuHoraReq) {
-        this.nuHoraReq = nuHoraReq;
+    public void setRequirementHour(Double requirementHour) {
+        this.requirementHour = requirementHour;
     }
 
-    public Integer getNuHrsTot() {
-        return nuHrsTot;
+    public Integer getRequirementTotalHours() {
+        return requirementTotalHours;
     }
 
-    public void setNuHrsTot(Integer nuHrsTot) {
-        this.nuHrsTot = nuHrsTot;
+    public void setRequirementTotalHours(Integer requirementTotalHours) {
+        this.requirementTotalHours = requirementTotalHours;
     }
 
-    public Integer getNuHrsFact() {
-        return nuHrsFact;
+    public Integer getRequirementBilledHours() {
+        return requirementBilledHours;
     }
 
-    public void setNuHrsFact(Integer nuHrsFact) {
-        this.nuHrsFact = nuHrsFact;
+    public void setRequirementBilledHours(Integer requirementBilledHours) {
+        this.requirementBilledHours = requirementBilledHours;
     }
 
-    public Integer getNuHrsSinFact() {
-        return nuHrsSinFact;
+    public Integer getRequirementNoBilledHours() {
+        return requirementNoBilledHours;
     }
 
-    public void setNuHrsSinFact(Integer nuHrsSinFact) {
-        this.nuHrsSinFact = nuHrsSinFact;
+    public void setRequirementNoBilledHours(Integer requirementNoBilledHours) {
+        this.requirementNoBilledHours = requirementNoBilledHours;
     }
 
-    public Short getStFacturado() {
-        return stFacturado;
+    public Short getRequirementBilled() {
+        return requirementBilled;
     }
 
-    public void setStFacturado(Short stFacturado) {
-        this.stFacturado = stFacturado;
+    public void setRequirementBilled(Short requirementBilled) {
+        this.requirementBilled = requirementBilled;
     }
 
-    public Date getTmAltaReq() {
-        return tmAltaReq;
+    public Date getRequirementDateUpload() {
+        return requirementDateUpload;
     }
 
-    public void setTmAltaReq(Date tmAltaReq) {
-        this.tmAltaReq = tmAltaReq;
+    public void setRequirementDateUpload(Date requirementDateUpload) {
+        this.requirementDateUpload = requirementDateUpload;
     }
 
-    public Short getNuFacturable() {
-        return nuFacturable;
+    public Short getRequirementCanBilled() {
+        return requirementCanBilled;
     }
 
-    public void setNuFacturable(Short nuFacturable) {
-        this.nuFacturable = nuFacturable;
+    public void setRequirementCanBilled(Short requirementCanBilled) {
+        this.requirementCanBilled = requirementCanBilled;
     }
 
-    public List<Invoice> getInvoiceList() {
-        return invoiceList;
+    public List<Invoice> getInvoices() {
+        return invoices;
     }
 
-    public void setInvoiceList(List<Invoice> invoiceList) {
-        this.invoiceList = invoiceList;
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
     }
 
-    public User getCdUserGestor() {
-        return cdUserGestor;
+    public User getUserManager() {
+        return userManager;
     }
 
-    public void setCdUserGestor(User cdUserGestor) {
-        this.cdUserGestor = cdUserGestor;
+    public void setUserManager(User userManager) {
+        this.userManager = userManager;
     }
 
-    public Technology getCdTechnology() {
-        return cdTechnology;
+    public Technology getTechnology() {
+        return technology;
     }
 
-    public void setCdTechnology(Technology cdTechnology) {
-        this.cdTechnology = cdTechnology;
+    public void setTechnology(Technology technology) {
+        this.technology = technology;
     }
 
-    public Company getCdCompany() {
-        return cdCompany;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCdCompany(Company cdCompany) {
-        this.cdCompany = cdCompany;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
-    public Status getStRequerimiento() {
-        return stRequerimiento;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStRequerimiento(Status stRequerimiento) {
-        this.stRequerimiento = stRequerimiento;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public Level getCdLevel() {
-        return cdLevel;
+    public Level getLevel() {
+        return level;
     }
 
-    public void setCdLevel(Level cdLevel) {
-        this.cdLevel = cdLevel;
+    public void setLevel(Level level) {
+        this.level = level;
     }
 
-    public User getCdUserResp() {
-        return cdUserResp;
+    public User getUser() {
+        return user;
     }
 
-    public void setCdUserResp(User cdUserResp) {
-        this.cdUserResp = cdUserResp;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Application getCdApplication() {
-        return cdApplication;
+    public Application getApplication() {
+        return application;
     }
 
-    public void setCdApplication(Application cdApplication) {
-        this.cdApplication = cdApplication;
+    public void setApplication(Application application) {
+        this.application = application;
     }
 
-    public ProgramIncrement getCdScrum() {
-        return cdScrum;
+    public ProgramIncrement getProgramIncrementScrum() {
+        return programIncrementScrum;
     }
 
-    public void setCdScrum(ProgramIncrement cdScrum) {
-        this.cdScrum = cdScrum;
+    public void setProgramIncrementScrum(ProgramIncrement programIncrementScrum) {
+        this.programIncrementScrum = programIncrementScrum;
     }
 
-    public Area getCdArea() {
-        return cdArea;
+    public Area getArea() {
+        return area;
     }
 
-    public void setCdArea(Area cdArea) {
-        this.cdArea = cdArea;
+    public void setArea(Area area) {
+        this.area = area;
     }
 
-    public ProjectType getCdProjectType() {
-        return cdProjectType;
+    public ProjectType getProjectType() {
+        return projectType;
     }
 
-    public void setCdProjectType(ProjectType cdProjectType) {
-        this.cdProjectType = cdProjectType;
+    public void setProjectType(ProjectType projectType) {
+        this.projectType = projectType;
     }
 
-    public Channel getCdChannel() {
-        return cdChannel;
+    public Channel getChannel() {
+        return channel;
     }
 
-    public void setCdChannel(Channel cdChannel) {
-        this.cdChannel = cdChannel;
+    public void setChannel(Channel channel) {
+        this.channel = channel;
     }
 
-    public List<BudgetRequirement> getBudgetRequirementList() {
-        return budgetRequirementList;
+    public List<BudgetRequirement> getBudgetRequirements() {
+        return budgetRequirements;
     }
 
-    public void setBudgetRequirementList(List<BudgetRequirement> budgetRequirementList) {
-        this.budgetRequirementList = budgetRequirementList;
+    public void setBudgetRequirements(List<BudgetRequirement> budgetRequirements) {
+        this.budgetRequirements = budgetRequirements;
     }
 
     public List<T926> getT926List() {
@@ -288,18 +288,18 @@ public class Requirement implements Serializable {
         this.t955List = t955List;
     }
 
-    public List<Component> getComponentList() {
-        return componentList;
+    public List<Component> getComponents() {
+        return components;
     }
 
-    public void setComponentList(List<Component> componentList) {
-        this.componentList = componentList;
+    public void setComponents(List<Component> components) {
+        this.components = components;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdRequerimiento != null ? cdRequerimiento.hashCode() : 0);
+        hash += (requirementId != null ? requirementId.hashCode() : 0);
         return hash;
     }
 
@@ -309,12 +309,12 @@ public class Requirement implements Serializable {
             return false;
         }
         Requirement other = (Requirement) object;
-        return (this.cdRequerimiento != null || other.cdRequerimiento == null) && (this.cdRequerimiento == null || this.cdRequerimiento.equals(other.cdRequerimiento));
+        return (this.requirementId != null || other.requirementId == null) && (this.requirementId == null || this.requirementId.equals(other.requirementId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Requirement[ cdRequerimiento=" + cdRequerimiento + " ]";
+        return "com.bbva.Requirement[ requirementId=" + requirementId + " ]";
     }
 
 }

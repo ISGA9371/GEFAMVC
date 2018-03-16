@@ -1,6 +1,5 @@
 package com.bbva.bancomer.business.service.implementacion;
 
-import com.bbva.bancomer.business.model.Requerimiento;
 import com.bbva.bancomer.business.repository.RequerimientoJpaRepository;
 import com.bbva.bancomer.business.service.RequerimientoService;
 import org.springframework.beans.factory.annotation.Autowired;

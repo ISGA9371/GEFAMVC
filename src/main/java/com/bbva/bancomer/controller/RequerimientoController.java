@@ -1,7 +1,6 @@
 package com.bbva.bancomer.controller;
 
 
-import com.bbva.bancomer.business.model.Requerimiento;
 import com.bbva.bancomer.business.service.RequerimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

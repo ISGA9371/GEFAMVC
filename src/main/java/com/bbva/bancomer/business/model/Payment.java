@@ -14,143 +14,136 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge041_seg_pago", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "thge041_seg_pago", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_SEG_PAGO"})})
-@NamedQueries({
-        @NamedQuery(name = "Payment.findAll", query = "SELECT t FROM Payment t")})
 public class Payment implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_CONS_SEG_PAGO", nullable = false)
-    private Integer cdConsSegPago;
+    private Integer paymentSerial;
     @Basic(optional = false)
     @Column(name = "CD_SEG_PAGO", nullable = false)
-    private int cdSegPago;
+    private int paymentId;
     @Column(name = "NU_POS_SOL_PEDIDO")
-    private Integer nuPosSolPedido;
+    private Integer paymentPosition;
     @Column(name = "NU_PEDIDO", length = 10)
-    private String nuPedido;
+    private String paymentOrder;
     @Column(name = "NU_POSICION_PED")
-    private Integer nuPosicionPed;
+    private Integer paymentOrderPosition;
     @Column(name = "NU_HOJA_ENTRADA", length = 10)
-    private String nuHojaEntrada;
+    private String paymentInPaper;
     @Column(name = "NU_RECEPCION", length = 10)
-    private String nuRecepcion;
+    private String paymentReception;
     @Column(name = "FH_RECEPCION")
     @Temporal(TemporalType.DATE)
-    private Date fhRecepcion;
-    @OneToMany(mappedBy = "cdSegPago")
-    private List<Invoice> invoiceList;
+    private Date paymentReceptionDate;
+    @OneToMany(mappedBy = "payment")
+    private List<Invoice> invoices;
 
     public Payment() {
     }
 
-    public Payment(Integer cdConsSegPago) {
-        this.cdConsSegPago = cdConsSegPago;
+    public Payment(Integer paymentSerial) {
+        this.paymentSerial = paymentSerial;
     }
 
-    public Payment(Integer cdConsSegPago, int cdSegPago) {
-        this.cdConsSegPago = cdConsSegPago;
-        this.cdSegPago = cdSegPago;
+    public Payment(Integer paymentSerial, int paymentId) {
+        this.paymentSerial = paymentSerial;
+        this.paymentId = paymentId;
     }
 
-    public Integer getCdConsSegPago() {
-        return cdConsSegPago;
+    public Integer getPaymentSerial() {
+        return paymentSerial;
     }
 
-    public void setCdConsSegPago(Integer cdConsSegPago) {
-        this.cdConsSegPago = cdConsSegPago;
+    public void setPaymentSerial(Integer paymentSerial) {
+        this.paymentSerial = paymentSerial;
     }
 
-    public int getCdSegPago() {
-        return cdSegPago;
+    public int getPaymentId() {
+        return paymentId;
     }
 
-    public void setCdSegPago(int cdSegPago) {
-        this.cdSegPago = cdSegPago;
+    public void setPaymentId(int paymentId) {
+        this.paymentId = paymentId;
     }
 
-    public Integer getNuPosSolPedido() {
-        return nuPosSolPedido;
+    public Integer getPaymentPosition() {
+        return paymentPosition;
     }
 
-    public void setNuPosSolPedido(Integer nuPosSolPedido) {
-        this.nuPosSolPedido = nuPosSolPedido;
+    public void setPaymentPosition(Integer paymentPosition) {
+        this.paymentPosition = paymentPosition;
     }
 
-    public String getNuPedido() {
-        return nuPedido;
+    public String getPaymentOrder() {
+        return paymentOrder;
     }
 
-    public void setNuPedido(String nuPedido) {
-        this.nuPedido = nuPedido;
+    public void setPaymentOrder(String paymentOrder) {
+        this.paymentOrder = paymentOrder;
     }
 
-    public Integer getNuPosicionPed() {
-        return nuPosicionPed;
+    public Integer getPaymentOrderPosition() {
+        return paymentOrderPosition;
     }
 
-    public void setNuPosicionPed(Integer nuPosicionPed) {
-        this.nuPosicionPed = nuPosicionPed;
+    public void setPaymentOrderPosition(Integer paymentOrderPosition) {
+        this.paymentOrderPosition = paymentOrderPosition;
     }
 
-    public String getNuHojaEntrada() {
-        return nuHojaEntrada;
+    public String getPaymentInPaper() {
+        return paymentInPaper;
     }
 
-    public void setNuHojaEntrada(String nuHojaEntrada) {
-        this.nuHojaEntrada = nuHojaEntrada;
+    public void setPaymentInPaper(String paymentInPaper) {
+        this.paymentInPaper = paymentInPaper;
     }
 
-    public String getNuRecepcion() {
-        return nuRecepcion;
+    public String getPaymentReception() {
+        return paymentReception;
     }
 
-    public void setNuRecepcion(String nuRecepcion) {
-        this.nuRecepcion = nuRecepcion;
+    public void setPaymentReception(String paymentReception) {
+        this.paymentReception = paymentReception;
     }
 
-    public Date getFhRecepcion() {
-        return fhRecepcion;
+    public Date getPaymentReceptionDate() {
+        return paymentReceptionDate;
     }
 
-    public void setFhRecepcion(Date fhRecepcion) {
-        this.fhRecepcion = fhRecepcion;
+    public void setPaymentReceptionDate(Date paymentReceptionDate) {
+        this.paymentReceptionDate = paymentReceptionDate;
     }
 
-    public List<Invoice> getInvoiceList() {
-        return invoiceList;
+    public List<Invoice> getInvoices() {
+        return invoices;
     }
 
-    public void setInvoiceList(List<Invoice> invoiceList) {
-        this.invoiceList = invoiceList;
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdConsSegPago != null ? cdConsSegPago.hashCode() : 0);
+        hash += (paymentSerial != null ? paymentSerial.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Payment)) {
             return false;
         }
         Payment other = (Payment) object;
-        if ((this.cdConsSegPago == null && other.cdConsSegPago != null) || (this.cdConsSegPago != null && !this.cdConsSegPago.equals(other.cdConsSegPago))) {
-            return false;
-        }
-        return true;
+        return (this.paymentSerial != null || other.paymentSerial == null) && (this.paymentSerial == null || this.paymentSerial.equals(other.paymentSerial));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Payment[ cdConsSegPago=" + cdConsSegPago + " ]";
+        return "com.bbva.Payment[ paymentSerial=" + paymentSerial + " ]";
     }
 
 }

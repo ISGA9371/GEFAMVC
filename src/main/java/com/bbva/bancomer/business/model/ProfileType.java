@@ -13,73 +13,70 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge016_perf_usu", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "thge016_perf_usu", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_PERFIL"})})
-@NamedQueries({
-        @NamedQuery(name = "ProfileType.findAll", query = "SELECT t FROM ProfileType t")})
 public class ProfileType implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_TIPO_PERFIL", nullable = false)
-    private Integer cdTipoPerfil;
+    private Integer profileTypeId;
     @Basic(optional = false)
     @Column(name = "NB_PERFIL", nullable = false, length = 25)
-    private String nbPerfil;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPerfUsu")
-    private List<User> userList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPerfilRec")
-    private List<ExternalUser> externalUserList;
+    private String profileTypeName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "profileType")
+    private List<User> users;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "profileType")
+    private List<ExternalUser> externalUsers;
 
     public ProfileType() {
     }
 
-    public ProfileType(Integer cdTipoPerfil) {
-        this.cdTipoPerfil = cdTipoPerfil;
+    public ProfileType(Integer profileTypeId) {
+        this.profileTypeId = profileTypeId;
     }
 
-    public ProfileType(Integer cdTipoPerfil, String nbPerfil) {
-        this.cdTipoPerfil = cdTipoPerfil;
-        this.nbPerfil = nbPerfil;
+    public ProfileType(Integer profileTypeId, String profileTypeName) {
+        this.profileTypeId = profileTypeId;
+        this.profileTypeName = profileTypeName;
     }
 
-    public Integer getCdTipoPerfil() {
-        return cdTipoPerfil;
+    public Integer getProfileTypeId() {
+        return profileTypeId;
     }
 
-    public void setCdTipoPerfil(Integer cdTipoPerfil) {
-        this.cdTipoPerfil = cdTipoPerfil;
+    public void setProfileTypeId(Integer profileTypeId) {
+        this.profileTypeId = profileTypeId;
     }
 
-    public String getNbPerfil() {
-        return nbPerfil;
+    public String getProfileTypeName() {
+        return profileTypeName;
     }
 
-    public void setNbPerfil(String nbPerfil) {
-        this.nbPerfil = nbPerfil;
+    public void setProfileTypeName(String profileTypeName) {
+        this.profileTypeName = profileTypeName;
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
-    public List<ExternalUser> getExternalUserList() {
-        return externalUserList;
+    public List<ExternalUser> getExternalUsers() {
+        return externalUsers;
     }
 
-    public void setExternalUserList(List<ExternalUser> externalUserList) {
-        this.externalUserList = externalUserList;
+    public void setExternalUsers(List<ExternalUser> externalUsers) {
+        this.externalUsers = externalUsers;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdTipoPerfil != null ? cdTipoPerfil.hashCode() : 0);
+        hash += (profileTypeId != null ? profileTypeId.hashCode() : 0);
         return hash;
     }
 
@@ -90,7 +87,7 @@ public class ProfileType implements Serializable {
             return false;
         }
         ProfileType other = (ProfileType) object;
-        if ((this.cdTipoPerfil == null && other.cdTipoPerfil != null) || (this.cdTipoPerfil != null && !this.cdTipoPerfil.equals(other.cdTipoPerfil))) {
+        if ((this.profileTypeId == null && other.profileTypeId != null) || (this.profileTypeId != null && !this.profileTypeId.equals(other.profileTypeId))) {
             return false;
         }
         return true;
@@ -98,7 +95,7 @@ public class ProfileType implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bbva.ProfileType[ cdTipoPerfil=" + cdTipoPerfil + " ]";
+        return "com.bbva.ProfileType[ profileTypeId=" + profileTypeId + " ]";
     }
 
 }

@@ -13,82 +13,75 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge023_programa", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "thge023_programa", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_PROGRAMA"})})
-@NamedQueries({
-        @NamedQuery(name = "Program.findAll", query = "SELECT t FROM Program t")})
 public class Program implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_PROGRAMA", nullable = false)
-    private Integer cdPrograma;
+    private Integer programId;
     @Basic(optional = false)
     @Column(name = "NB_PROGRAMA", nullable = false, length = 50)
-    private String nbPrograma;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPrograma")
-    private List<ProgramIncrement> programIncrementList;
+    private String programName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "program")
+    private List<ProgramIncrement> programIncrements;
 
     public Program() {
     }
 
-    public Program(Integer cdPrograma) {
-        this.cdPrograma = cdPrograma;
+    public Program(Integer programId) {
+        this.programId = programId;
     }
 
-    public Program(Integer cdPrograma, String nbPrograma) {
-        this.cdPrograma = cdPrograma;
-        this.nbPrograma = nbPrograma;
+    public Program(Integer programId, String programName) {
+        this.programId = programId;
+        this.programName = programName;
     }
 
-    public Integer getCdPrograma() {
-        return cdPrograma;
+    public Integer getProgramId() {
+        return programId;
     }
 
-    public void setCdPrograma(Integer cdPrograma) {
-        this.cdPrograma = cdPrograma;
+    public void setProgramId(Integer programId) {
+        this.programId = programId;
     }
 
-    public String getNbPrograma() {
-        return nbPrograma;
+    public String getProgramName() {
+        return programName;
     }
 
-    public void setNbPrograma(String nbPrograma) {
-        this.nbPrograma = nbPrograma;
+    public void setProgramName(String programName) {
+        this.programName = programName;
     }
 
-    public List<ProgramIncrement> getProgramIncrementList() {
-        return programIncrementList;
+    public List<ProgramIncrement> getProgramIncrements() {
+        return programIncrements;
     }
 
-    public void setProgramIncrementList(List<ProgramIncrement> programIncrementList) {
-        this.programIncrementList = programIncrementList;
+    public void setProgramIncrements(List<ProgramIncrement> programIncrements) {
+        this.programIncrements = programIncrements;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdPrograma != null ? cdPrograma.hashCode() : 0);
+        hash += (programId != null ? programId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Program)) {
             return false;
         }
         Program other = (Program) object;
-        if ((this.cdPrograma == null && other.cdPrograma != null) || (this.cdPrograma != null && !this.cdPrograma.equals(other.cdPrograma))) {
-            return false;
-        }
-        return true;
+        return (this.programId != null || other.programId == null) && (this.programId == null || this.programId.equals(other.programId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Program[ cdPrograma=" + cdPrograma + " ]";
+        return "com.bbva.Program[ programId=" + programId + " ]";
     }
 
 }

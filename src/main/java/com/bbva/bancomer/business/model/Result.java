@@ -15,47 +15,44 @@ import java.util.List;
 @Entity
 @Table(name = "thge047_result_obt", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_RESUL_ONTENIDO"})})
-@NamedQueries({
-        @NamedQuery(name = "Result.findAll", query = "SELECT t FROM Result t")})
 public class Result implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_RESUL_OBTENIDO", nullable = false)
-    private Integer cdResulObtenido;
+    private Integer resultId;
     @Basic(optional = false)
     @Column(name = "NB_RESUL_ONTENIDO", nullable = false, length = 25)
-    private String nbResulOntenido;
-    @OneToMany(mappedBy = "cdResulObtenido")
+    private String resultName;
+    @OneToMany(mappedBy = "result")
     private List<TestCaseC204> testCaseC204List;
 
     public Result() {
     }
 
-    public Result(Integer cdResulObtenido) {
-        this.cdResulObtenido = cdResulObtenido;
+    public Result(Integer resultId) {
+        this.resultId = resultId;
     }
 
-    public Result(Integer cdResulObtenido, String nbResulOntenido) {
-        this.cdResulObtenido = cdResulObtenido;
-        this.nbResulOntenido = nbResulOntenido;
+    public Result(Integer resultId, String resultName) {
+        this.resultId = resultId;
+        this.resultName = resultName;
     }
 
-    public Integer getCdResulObtenido() {
-        return cdResulObtenido;
+    public Integer getResultId() {
+        return resultId;
     }
 
-    public void setCdResulObtenido(Integer cdResulObtenido) {
-        this.cdResulObtenido = cdResulObtenido;
+    public void setResultId(Integer resultId) {
+        this.resultId = resultId;
     }
 
-    public String getNbResulOntenido() {
-        return nbResulOntenido;
+    public String getResultName() {
+        return resultName;
     }
 
-    public void setNbResulOntenido(String nbResulOntenido) {
-        this.nbResulOntenido = nbResulOntenido;
+    public void setResultName(String resultName) {
+        this.resultName = resultName;
     }
 
     public List<TestCaseC204> getTestCaseC204List() {
@@ -69,26 +66,22 @@ public class Result implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdResulObtenido != null ? cdResulObtenido.hashCode() : 0);
+        hash += (resultId != null ? resultId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Result)) {
             return false;
         }
         Result other = (Result) object;
-        if ((this.cdResulObtenido == null && other.cdResulObtenido != null) || (this.cdResulObtenido != null && !this.cdResulObtenido.equals(other.cdResulObtenido))) {
-            return false;
-        }
-        return true;
+        return (this.resultId != null || other.resultId == null) && (this.resultId == null || this.resultId.equals(other.resultId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Result[ cdResulObtenido=" + cdResulObtenido + " ]";
+        return "com.bbva.Result[ resultId=" + resultId + " ]";
     }
 
 }

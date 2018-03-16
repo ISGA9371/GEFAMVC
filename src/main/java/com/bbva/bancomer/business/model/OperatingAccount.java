@@ -13,93 +13,88 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge055_cta_oper", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "thge055_cta_oper", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NU_CTA_OPERATIVA"})
         , @UniqueConstraint(columnNames = {"CD_CTA_OPER"})})
 public class OperatingAccount implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_CONS_CTA_OPER", nullable = false)
-    private Integer cdConsCtaOper;
+    private Integer operatingAccountSerial;
     @Basic(optional = false)
     @Column(name = "CD_CTA_OPER", nullable = false)
-    private int cdCtaOper;
+    private int operatingAccountId;
     @Basic(optional = false)
     @Column(name = "NU_CTA_OPERATIVA", nullable = false, length = 8)
-    private String nuCtaOperativa;
-    @OneToMany(mappedBy = "cdCtaOper")
-    private List<Invoice> invoiceList;
+    private String operatingAccountValue;
+    @OneToMany(mappedBy = "operatingAccount")
+    private List<Invoice> invoices;
 
     public OperatingAccount() {
     }
 
-    public OperatingAccount(Integer cdConsCtaOper) {
-        this.cdConsCtaOper = cdConsCtaOper;
+    public OperatingAccount(Integer operatingAccountSerial) {
+        this.operatingAccountSerial = operatingAccountSerial;
     }
 
-    public OperatingAccount(Integer cdConsCtaOper, int cdCtaOper, String nuCtaOperativa) {
-        this.cdConsCtaOper = cdConsCtaOper;
-        this.cdCtaOper = cdCtaOper;
-        this.nuCtaOperativa = nuCtaOperativa;
+    public OperatingAccount(Integer operatingAccountSerial, int operatingAccountId, String operatingAccountValue) {
+        this.operatingAccountSerial = operatingAccountSerial;
+        this.operatingAccountId = operatingAccountId;
+        this.operatingAccountValue = operatingAccountValue;
     }
 
-    public Integer getCdConsCtaOper() {
-        return cdConsCtaOper;
+    public Integer getOperatingAccountSerial() {
+        return operatingAccountSerial;
     }
 
-    public void setCdConsCtaOper(Integer cdConsCtaOper) {
-        this.cdConsCtaOper = cdConsCtaOper;
+    public void setOperatingAccountSerial(Integer operatingAccountSerial) {
+        this.operatingAccountSerial = operatingAccountSerial;
     }
 
-    public int getCdCtaOper() {
-        return cdCtaOper;
+    public int getOperatingAccountId() {
+        return operatingAccountId;
     }
 
-    public void setCdCtaOper(int cdCtaOper) {
-        this.cdCtaOper = cdCtaOper;
+    public void setOperatingAccountId(int operatingAccountId) {
+        this.operatingAccountId = operatingAccountId;
     }
 
-    public String getNuCtaOperativa() {
-        return nuCtaOperativa;
+    public String getOperatingAccountValue() {
+        return operatingAccountValue;
     }
 
-    public void setNuCtaOperativa(String nuCtaOperativa) {
-        this.nuCtaOperativa = nuCtaOperativa;
+    public void setOperatingAccountValue(String operatingAccountValue) {
+        this.operatingAccountValue = operatingAccountValue;
     }
 
-    public List<Invoice> getInvoiceList() {
-        return invoiceList;
+    public List<Invoice> getInvoices() {
+        return invoices;
     }
 
-    public void setInvoiceList(List<Invoice> invoiceList) {
-        this.invoiceList = invoiceList;
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdConsCtaOper != null ? cdConsCtaOper.hashCode() : 0);
+        hash += (operatingAccountSerial != null ? operatingAccountSerial.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof OperatingAccount)) {
             return false;
         }
         OperatingAccount other = (OperatingAccount) object;
-        if ((this.cdConsCtaOper == null && other.cdConsCtaOper != null) || (this.cdConsCtaOper != null && !this.cdConsCtaOper.equals(other.cdConsCtaOper))) {
-            return false;
-        }
-        return true;
+        return (this.operatingAccountSerial != null || other.operatingAccountSerial == null) && (this.operatingAccountSerial == null || this.operatingAccountSerial.equals(other.operatingAccountSerial));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.OperatingAccount[ cdConsCtaOper=" + cdConsCtaOper + " ]";
+        return "com.bbva.OperatingAccount[ operatingAccountSerial=" + operatingAccountSerial + " ]";
     }
 
 }

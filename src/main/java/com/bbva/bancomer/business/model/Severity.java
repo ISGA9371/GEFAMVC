@@ -13,49 +13,46 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge050_severidad", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "thge050_severidad", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_SEVERIDAD"})})
-@NamedQueries({
-        @NamedQuery(name = "Severity.findAll", query = "SELECT t FROM Severity t")})
 public class Severity implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_SEVERIDAD", nullable = false)
-    private Integer cdSeveridad;
+    private Integer severityId;
     @Basic(optional = false)
     @Column(name = "NB_SEVERIDAD", nullable = false, length = 25)
-    private String nbSeveridad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdSeveridad")
+    private String severityName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "severity")
     private List<T955> t955List;
 
     public Severity() {
     }
 
-    public Severity(Integer cdSeveridad) {
-        this.cdSeveridad = cdSeveridad;
+    public Severity(Integer severityId) {
+        this.severityId = severityId;
     }
 
-    public Severity(Integer cdSeveridad, String nbSeveridad) {
-        this.cdSeveridad = cdSeveridad;
-        this.nbSeveridad = nbSeveridad;
+    public Severity(Integer severityId, String severityName) {
+        this.severityId = severityId;
+        this.severityName = severityName;
     }
 
-    public Integer getCdSeveridad() {
-        return cdSeveridad;
+    public Integer getSeverityId() {
+        return severityId;
     }
 
-    public void setCdSeveridad(Integer cdSeveridad) {
-        this.cdSeveridad = cdSeveridad;
+    public void setSeverityId(Integer severityId) {
+        this.severityId = severityId;
     }
 
-    public String getNbSeveridad() {
-        return nbSeveridad;
+    public String getSeverityName() {
+        return severityName;
     }
 
-    public void setNbSeveridad(String nbSeveridad) {
-        this.nbSeveridad = nbSeveridad;
+    public void setSeverityName(String severityName) {
+        this.severityName = severityName;
     }
 
     public List<T955> getT955List() {
@@ -69,26 +66,22 @@ public class Severity implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdSeveridad != null ? cdSeveridad.hashCode() : 0);
+        hash += (severityId != null ? severityId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Severity)) {
             return false;
         }
         Severity other = (Severity) object;
-        if ((this.cdSeveridad == null && other.cdSeveridad != null) || (this.cdSeveridad != null && !this.cdSeveridad.equals(other.cdSeveridad))) {
-            return false;
-        }
-        return true;
+        return (this.severityId != null || other.severityId == null) && (this.severityId == null || this.severityId.equals(other.severityId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Severity[ cdSeveridad=" + cdSeveridad + " ]";
+        return "com.bbva.Severity[ severityId=" + severityId + " ]";
     }
 
 }

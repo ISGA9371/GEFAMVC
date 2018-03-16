@@ -14,8 +14,6 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "thge048_t955", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "T955.findAll", query = "SELECT t FROM T955 t")})
 public class T955 implements Serializable {
 
     private static final long serialVersionUID = 1L;

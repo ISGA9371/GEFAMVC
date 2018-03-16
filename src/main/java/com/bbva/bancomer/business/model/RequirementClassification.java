@@ -13,82 +13,76 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge020_clasif_rec", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "thge020_clasif_rec", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_CLASIF_REC"})})
-@NamedQueries({
-        @NamedQuery(name = "RequirementClassification.findAll", query = "SELECT t FROM RequirementClassification t")})
 public class RequirementClassification implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_CLASIF_REC", nullable = false)
-    private Integer cdClasifRec;
+    private Integer requirementClassificationId;
     @Basic(optional = false)
     @Column(name = "NB_CLASIF_REC", nullable = false, length = 50)
-    private String nbClasifRec;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdClasifRec")
-    private List<RequirementSubClassification> sbclasRecList;
+    private String requirementClassificationName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirementClassification")
+    private List<RequirementSubClassification> requirementSubClassifications;
 
     public RequirementClassification() {
     }
 
-    public RequirementClassification(Integer cdClasifRec) {
-        this.cdClasifRec = cdClasifRec;
+    public RequirementClassification(Integer requirementClassificationId) {
+        this.requirementClassificationId = requirementClassificationId;
     }
 
-    public RequirementClassification(Integer cdClasifRec, String nbClasifRec) {
-        this.cdClasifRec = cdClasifRec;
-        this.nbClasifRec = nbClasifRec;
+    public RequirementClassification(Integer requirementClassificationId, String requirementClassificationName) {
+        this.requirementClassificationId = requirementClassificationId;
+        this.requirementClassificationName = requirementClassificationName;
     }
 
-    public Integer getCdClasifRec() {
-        return cdClasifRec;
+    public Integer getRequirementClassificationId() {
+        return requirementClassificationId;
     }
 
-    public void setCdClasifRec(Integer cdClasifRec) {
-        this.cdClasifRec = cdClasifRec;
+    public void setRequirementClassificationId(Integer requirementClassificationId) {
+        this.requirementClassificationId = requirementClassificationId;
     }
 
-    public String getNbClasifRec() {
-        return nbClasifRec;
+    public String getRequirementClassificationName() {
+        return requirementClassificationName;
     }
 
-    public void setNbClasifRec(String nbClasifRec) {
-        this.nbClasifRec = nbClasifRec;
+    public void setRequirementClassificationName(String requirementClassificationName) {
+        this.requirementClassificationName = requirementClassificationName;
     }
 
-    public List<RequirementSubClassification> getSbclasRecList() {
-        return sbclasRecList;
+    public List<RequirementSubClassification> getRequirementSubClassifications() {
+        return requirementSubClassifications;
     }
 
-    public void setSbclasRecList(List<RequirementSubClassification> sbclasRecList) {
-        this.sbclasRecList = sbclasRecList;
+    public void setRequirementSubClassifications(List<RequirementSubClassification> requirementSubClassifications) {
+        this.requirementSubClassifications = requirementSubClassifications;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdClasifRec != null ? cdClasifRec.hashCode() : 0);
+        hash += (requirementClassificationId != null ? requirementClassificationId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof RequirementClassification)) {
             return false;
         }
         RequirementClassification other = (RequirementClassification) object;
-        if ((this.cdClasifRec == null && other.cdClasifRec != null) || (this.cdClasifRec != null && !this.cdClasifRec.equals(other.cdClasifRec))) {
-            return false;
-        }
-        return true;
+        return (this.requirementClassificationId != null || other.requirementClassificationId == null) && (this.requirementClassificationId == null || this.requirementClassificationId.equals(other.requirementClassificationId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.RequirementClassification[ cdClasifRec=" + cdClasifRec + " ]";
+        return "com.bbva.RequirementClassification[ requirementClassificationId=" + requirementClassificationId + " ]";
     }
 
 }

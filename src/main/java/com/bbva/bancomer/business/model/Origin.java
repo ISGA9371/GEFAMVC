@@ -13,82 +13,75 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge019_origen", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "thge019_origen", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_ORIGEN"})})
-@NamedQueries({
-        @NamedQuery(name = "Origin.findAll", query = "SELECT t FROM Origin t")})
 public class Origin implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_ORIGEN", nullable = false)
-    private Integer cdOrigen;
+    private Integer originId;
     @Basic(optional = false)
     @Column(name = "NB_ORIGEN", nullable = false, length = 50)
-    private String nbOrigen;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdOrigin")
-    private List<Modification> modificationList;
+    private String originName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "origin")
+    private List<Modification> modifications;
 
     public Origin() {
     }
 
-    public Origin(Integer cdOrigen) {
-        this.cdOrigen = cdOrigen;
+    public Origin(Integer originId) {
+        this.originId = originId;
     }
 
-    public Origin(Integer cdOrigen, String nbOrigen) {
-        this.cdOrigen = cdOrigen;
-        this.nbOrigen = nbOrigen;
+    public Origin(Integer originId, String originName) {
+        this.originId = originId;
+        this.originName = originName;
     }
 
-    public Integer getCdOrigen() {
-        return cdOrigen;
+    public Integer getOriginId() {
+        return originId;
     }
 
-    public void setCdOrigen(Integer cdOrigen) {
-        this.cdOrigen = cdOrigen;
+    public void setOriginId(Integer originId) {
+        this.originId = originId;
     }
 
-    public String getNbOrigen() {
-        return nbOrigen;
+    public String getOriginName() {
+        return originName;
     }
 
-    public void setNbOrigen(String nbOrigen) {
-        this.nbOrigen = nbOrigen;
+    public void setOriginName(String originName) {
+        this.originName = originName;
     }
 
-    public List<Modification> getModificationList() {
-        return modificationList;
+    public List<Modification> getModifications() {
+        return modifications;
     }
 
-    public void setModificationList(List<Modification> modificationList) {
-        this.modificationList = modificationList;
+    public void setModifications(List<Modification> modifications) {
+        this.modifications = modifications;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdOrigen != null ? cdOrigen.hashCode() : 0);
+        hash += (originId != null ? originId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Origin)) {
             return false;
         }
         Origin other = (Origin) object;
-        if ((this.cdOrigen == null && other.cdOrigen != null) || (this.cdOrigen != null && !this.cdOrigen.equals(other.cdOrigen))) {
-            return false;
-        }
-        return true;
+        return (this.originId != null || other.originId == null) && (this.originId == null || this.originId.equals(other.originId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Origin[ cdOrigen=" + cdOrigen + " ]";
+        return "com.bbva.Origin[ originId=" + originId + " ]";
     }
 
 }

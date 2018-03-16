@@ -13,81 +13,74 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "thge018_producto", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "Product.findAll", query = "SELECT t FROM Product t")})
 public class Product implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_PRODUCTO", nullable = false, length = 3)
-    private String cdProducto;
+    private String productId;
     @Basic(optional = false)
     @Column(name = "NB_PRODUCTO", nullable = false, length = 50)
-    private String nbProducto;
+    private String productName;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private Technology cdTechnology;
+    private Technology technology;
 
     public Product() {
     }
 
-    public Product(String cdProducto) {
-        this.cdProducto = cdProducto;
+    public Product(String productId) {
+        this.productId = productId;
     }
 
-    public Product(String cdProducto, String nbProducto) {
-        this.cdProducto = cdProducto;
-        this.nbProducto = nbProducto;
+    public Product(String productId, String productName) {
+        this.productId = productId;
+        this.productName = productName;
     }
 
-    public String getCdProducto() {
-        return cdProducto;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setCdProducto(String cdProducto) {
-        this.cdProducto = cdProducto;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
-    public String getNbProducto() {
-        return nbProducto;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setNbProducto(String nbProducto) {
-        this.nbProducto = nbProducto;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public Technology getCdTechnology() {
-        return cdTechnology;
+    public Technology getTechnology() {
+        return technology;
     }
 
-    public void setCdTechnology(Technology cdTechnology) {
-        this.cdTechnology = cdTechnology;
+    public void setTechnology(Technology technology) {
+        this.technology = technology;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdProducto != null ? cdProducto.hashCode() : 0);
+        hash += (productId != null ? productId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Product)) {
             return false;
         }
         Product other = (Product) object;
-        if ((this.cdProducto == null && other.cdProducto != null) || (this.cdProducto != null && !this.cdProducto.equals(other.cdProducto))) {
-            return false;
-        }
-        return true;
+        return (this.productId != null || other.productId == null) && (this.productId == null || this.productId.equals(other.productId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Product[ cdProducto=" + cdProducto + " ]";
+        return "com.bbva.Product[ productId=" + productId + " ]";
     }
 
 }

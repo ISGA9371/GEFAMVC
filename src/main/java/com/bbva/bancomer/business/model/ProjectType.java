@@ -13,82 +13,75 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge035_tipo_proy", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "thge035_tipo_proy", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_TIPO_PROY"})})
-@NamedQueries({
-        @NamedQuery(name = "ProjectType.findAll", query = "SELECT t FROM ProjectType t")})
 public class ProjectType implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_TIPO_PROY", nullable = false)
-    private Integer cdTipoProy;
+    private Integer projectTypeId;
     @Basic(optional = false)
     @Column(name = "NB_TIPO_PROY", nullable = false, length = 25)
-    private String nbTipoProy;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTipoProy")
-    private List<Requirement> requirementList;
+    private String projectTypeName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectType")
+    private List<Requirement> requirements;
 
     public ProjectType() {
     }
 
-    public ProjectType(Integer cdTipoProy) {
-        this.cdTipoProy = cdTipoProy;
+    public ProjectType(Integer projectTypeId) {
+        this.projectTypeId = projectTypeId;
     }
 
-    public ProjectType(Integer cdTipoProy, String nbTipoProy) {
-        this.cdTipoProy = cdTipoProy;
-        this.nbTipoProy = nbTipoProy;
+    public ProjectType(Integer projectTypeId, String projectTypeName) {
+        this.projectTypeId = projectTypeId;
+        this.projectTypeName = projectTypeName;
     }
 
-    public Integer getCdTipoProy() {
-        return cdTipoProy;
+    public Integer getProjectTypeId() {
+        return projectTypeId;
     }
 
-    public void setCdTipoProy(Integer cdTipoProy) {
-        this.cdTipoProy = cdTipoProy;
+    public void setProjectTypeId(Integer projectTypeId) {
+        this.projectTypeId = projectTypeId;
     }
 
-    public String getNbTipoProy() {
-        return nbTipoProy;
+    public String getProjectTypeName() {
+        return projectTypeName;
     }
 
-    public void setNbTipoProy(String nbTipoProy) {
-        this.nbTipoProy = nbTipoProy;
+    public void setProjectTypeName(String projectTypeName) {
+        this.projectTypeName = projectTypeName;
     }
 
-    public List<Requirement> getRequirementList() {
-        return requirementList;
+    public List<Requirement> getRequirements() {
+        return requirements;
     }
 
-    public void setRequirementList(List<Requirement> requirementList) {
-        this.requirementList = requirementList;
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdTipoProy != null ? cdTipoProy.hashCode() : 0);
+        hash += (projectTypeId != null ? projectTypeId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof ProjectType)) {
             return false;
         }
         ProjectType other = (ProjectType) object;
-        if ((this.cdTipoProy == null && other.cdTipoProy != null) || (this.cdTipoProy != null && !this.cdTipoProy.equals(other.cdTipoProy))) {
-            return false;
-        }
-        return true;
+        return (this.projectTypeId != null || other.projectTypeId == null) && (this.projectTypeId == null || this.projectTypeId.equals(other.projectTypeId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.ProjectType[ cdTipoProy=" + cdTipoProy + " ]";
+        return "com.bbva.ProjectType[ projectTypeId=" + projectTypeId + " ]";
     }
 
 }
