@@ -1,0 +1,152 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.bbva.bancomer.business.model;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * @author Guevara
+ */
+@Entity
+@Table(name = "thge006_tipologia", catalog = "gestion_factoria", schema = "")
+public class Typology implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "CD_TIPOLOGIA", nullable = false)
+    private Integer typologyId;
+    @Basic(optional = false)
+    @Column(name = "CD_PRODUCTO", nullable = false, length = 3)
+    private String typologyProductId;
+    @Basic(optional = false)
+    @Column(name = "TP_COMPONENTE", nullable = false, length = 10)
+    private String typologyComponent;
+    @Column(name = "NU_DIFICULTAD")
+    private Character typologySeverity;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "NU_HRS_DIFICULTAD", precision = 12)
+    private Float typologySeverityHours;
+    @Basic(optional = false)
+    @Column(name = "NU_ANO", nullable = false)
+    private int typologyYear;
+    @JoinColumn(name = "ST_ESTADO", referencedColumnName = "CD_ESTADO", nullable = false)
+    @ManyToOne(optional = false)
+    private Status status;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "typology")
+    private List<Component> components;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "typologyEmp")
+    private List<Component> componentList;
+
+    public Typology() {
+    }
+
+    public Typology(Integer typologyId) {
+        this.typologyId = typologyId;
+    }
+
+    public Typology(Integer typologyId, String typologyProductId, String typologyComponent, int typologyYear) {
+        this.typologyId = typologyId;
+        this.typologyProductId = typologyProductId;
+        this.typologyComponent = typologyComponent;
+        this.typologyYear = typologyYear;
+    }
+
+    public Integer getTypologyId() {
+        return typologyId;
+    }
+
+    public void setTypologyId(Integer typologyId) {
+        this.typologyId = typologyId;
+    }
+
+    public String getTypologyProductId() {
+        return typologyProductId;
+    }
+
+    public void setTypologyProductId(String typologyProductId) {
+        this.typologyProductId = typologyProductId;
+    }
+
+    public String getTypologyComponent() {
+        return typologyComponent;
+    }
+
+    public void setTypologyComponent(String typologyComponent) {
+        this.typologyComponent = typologyComponent;
+    }
+
+    public Character getTypologySeverity() {
+        return typologySeverity;
+    }
+
+    public void setTypologySeverity(Character typologySeverity) {
+        this.typologySeverity = typologySeverity;
+    }
+
+    public Float getTypologySeverityHours() {
+        return typologySeverityHours;
+    }
+
+    public void setTypologySeverityHours(Float typologySeverityHours) {
+        this.typologySeverityHours = typologySeverityHours;
+    }
+
+    public int getTypologyYear() {
+        return typologyYear;
+    }
+
+    public void setTypologyYear(int typologyYear) {
+        this.typologyYear = typologyYear;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public List<Component> getComponents() {
+        return components;
+    }
+
+    public void setComponents(List<Component> components) {
+        this.components = components;
+    }
+
+    public List<Component> getComponentList() {
+        return componentList;
+    }
+
+    public void setComponentList(List<Component> componentList) {
+        this.componentList = componentList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (typologyId != null ? typologyId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Typology)) {
+            return false;
+        }
+        Typology other = (Typology) object;
+        return (this.typologyId != null || other.typologyId == null) && (this.typologyId == null || this.typologyId.equals(other.typologyId));
+    }
+
+    @Override
+    public String toString() {
+        return "com.bbva.Typology[ typologyId=" + typologyId + " ]";
+    }
+
+}
