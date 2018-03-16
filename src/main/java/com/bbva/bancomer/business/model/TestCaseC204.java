@@ -14,101 +14,97 @@ import java.util.List;
  */
 @Entity
 @Table(name = "thge044_c204", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "TestCaseC204.findAll", query = "SELECT t FROM TestCaseC204 t")})
 public class TestCaseC204 implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_C204", nullable = false)
-    private Integer cdC204;
+    private Integer testCaseC204Id;
     @Basic(optional = false)
     @Column(name = "CD_CASO_PRUEBA", nullable = false, length = 12)
-    private String cdCasoPrueba;
+    private String testCaseId;
     @Column(name = "TX_COND_DTO_ENTR", length = 200)
-    private String txCondDtoEntr;
+    private String testCaseC204Condition;
     @Column(name = "NB_DESC_CASO", length = 1000)
-    private String nbDescCaso;
-    @Lob
+    private String testCaseC204Description;
     @Column(name = "NB_RESULT_ESP")
-    private byte[] nbResultEsp;
+    private byte[] testCaseC204ExpectedResult;
     @Lob
     @Column(name = "TX_EVIDENCIA_PBA")
-    private byte[] txEvidenciaPba;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTestCaseC204")
+    private byte[] testCaseC204EvidencePba;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "testCaseC204")
     private List<T955> t955List;
     @JoinColumn(name = "CD_T926", referencedColumnName = "CD_T926")
     @ManyToOne
     private T926 cdT926;
     @JoinColumn(name = "CD_PRIORIDAD_CP", referencedColumnName = "CD_PRIORIDAD_CP", nullable = false)
     @ManyToOne(optional = false)
-    private PriorityTestCase cdPriorityTestCase;
+    private PriorityTestCase priorityTestCase;
     @JoinColumn(name = "CD_CATEGORIA_CASO", referencedColumnName = "CD_CATEGORIA_CASO", nullable = false)
     @ManyToOne(optional = false)
-    private TestCaseCategory cdCategoriaCaso;
+    private TestCaseCategory testCaseCategory;
     @JoinColumn(name = "CD_RESUL_OBTENIDO", referencedColumnName = "CD_RESUL_OBTENIDO")
     @ManyToOne
-    private Result cdResulObtenido;
+    private Result result;
 
     public TestCaseC204() {
     }
 
-    public TestCaseC204(Integer cdC204) {
-        this.cdC204 = cdC204;
+    public TestCaseC204(Integer testCaseC204Id) {
+        this.testCaseC204Id = testCaseC204Id;
     }
 
-    public TestCaseC204(Integer cdC204, String cdCasoPrueba) {
-        this.cdC204 = cdC204;
-        this.cdCasoPrueba = cdCasoPrueba;
+    public TestCaseC204(Integer testCaseC204Id, String testCaseId) {
+        this.testCaseC204Id = testCaseC204Id;
+        this.testCaseId = testCaseId;
     }
 
-    public Integer getCdC204() {
-        return cdC204;
+    public Integer getTestCaseC204Id() {
+        return testCaseC204Id;
     }
 
-    public void setCdC204(Integer cdC204) {
-        this.cdC204 = cdC204;
+    public void setTestCaseC204Id(Integer testCaseC204Id) {
+        this.testCaseC204Id = testCaseC204Id;
     }
 
-    public String getCdCasoPrueba() {
-        return cdCasoPrueba;
+    public String getTestCaseId() {
+        return testCaseId;
     }
 
-    public void setCdCasoPrueba(String cdCasoPrueba) {
-        this.cdCasoPrueba = cdCasoPrueba;
+    public void setTestCaseId(String testCaseId) {
+        this.testCaseId = testCaseId;
     }
 
-    public String getTxCondDtoEntr() {
-        return txCondDtoEntr;
+    public String getTestCaseC204Condition() {
+        return testCaseC204Condition;
     }
 
-    public void setTxCondDtoEntr(String txCondDtoEntr) {
-        this.txCondDtoEntr = txCondDtoEntr;
+    public void setTestCaseC204Condition(String testCaseC204Condition) {
+        this.testCaseC204Condition = testCaseC204Condition;
     }
 
-    public String getNbDescCaso() {
-        return nbDescCaso;
+    public String getTestCaseC204Description() {
+        return testCaseC204Description;
     }
 
-    public void setNbDescCaso(String nbDescCaso) {
-        this.nbDescCaso = nbDescCaso;
+    public void setTestCaseC204Description(String testCaseC204Description) {
+        this.testCaseC204Description = testCaseC204Description;
     }
 
-    public byte[] getNbResultEsp() {
-        return nbResultEsp;
+    public byte[] getTestCaseC204ExpectedResult() {
+        return testCaseC204ExpectedResult;
     }
 
-    public void setNbResultEsp(byte[] nbResultEsp) {
-        this.nbResultEsp = nbResultEsp;
+    public void setTestCaseC204ExpectedResult(byte[] testCaseC204ExpectedResult) {
+        this.testCaseC204ExpectedResult = testCaseC204ExpectedResult;
     }
 
-    public byte[] getTxEvidenciaPba() {
-        return txEvidenciaPba;
+    public byte[] getTestCaseC204EvidencePba() {
+        return testCaseC204EvidencePba;
     }
 
-    public void setTxEvidenciaPba(byte[] txEvidenciaPba) {
-        this.txEvidenciaPba = txEvidenciaPba;
+    public void setTestCaseC204EvidencePba(byte[] testCaseC204EvidencePba) {
+        this.testCaseC204EvidencePba = testCaseC204EvidencePba;
     }
 
     public List<T955> getT955List() {
@@ -127,53 +123,49 @@ public class TestCaseC204 implements Serializable {
         this.cdT926 = cdT926;
     }
 
-    public PriorityTestCase getCdPriorityTestCase() {
-        return cdPriorityTestCase;
+    public PriorityTestCase getPriorityTestCase() {
+        return priorityTestCase;
     }
 
-    public void setCdPriorityTestCase(PriorityTestCase cdPriorityTestCase) {
-        this.cdPriorityTestCase = cdPriorityTestCase;
+    public void setPriorityTestCase(PriorityTestCase priorityTestCase) {
+        this.priorityTestCase = priorityTestCase;
     }
 
-    public TestCaseCategory getCdCategoriaCaso() {
-        return cdCategoriaCaso;
+    public TestCaseCategory getTestCaseCategory() {
+        return testCaseCategory;
     }
 
-    public void setCdCategoriaCaso(TestCaseCategory cdCategoriaCaso) {
-        this.cdCategoriaCaso = cdCategoriaCaso;
+    public void setTestCaseCategory(TestCaseCategory testCaseCategory) {
+        this.testCaseCategory = testCaseCategory;
     }
 
-    public Result getCdResulObtenido() {
-        return cdResulObtenido;
+    public Result getResult() {
+        return result;
     }
 
-    public void setCdResulObtenido(Result cdResulObtenido) {
-        this.cdResulObtenido = cdResulObtenido;
+    public void setResult(Result result) {
+        this.result = result;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdC204 != null ? cdC204.hashCode() : 0);
+        hash += (testCaseC204Id != null ? testCaseC204Id.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof TestCaseC204)) {
             return false;
         }
         TestCaseC204 other = (TestCaseC204) object;
-        if ((this.cdC204 == null && other.cdC204 != null) || (this.cdC204 != null && !this.cdC204.equals(other.cdC204))) {
-            return false;
-        }
-        return true;
+        return (this.testCaseC204Id != null || other.testCaseC204Id == null) && (this.testCaseC204Id == null || this.testCaseC204Id.equals(other.testCaseC204Id));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.TestCaseC204[ cdC204=" + cdC204 + " ]";
+        return "com.bbva.TestCaseC204[ testCaseC204Id=" + testCaseC204Id + " ]";
     }
 
 }

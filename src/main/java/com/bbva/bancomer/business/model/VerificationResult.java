@@ -13,62 +13,59 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge054_res_verif", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "thge054_res_verif", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_RESULT_VERIF"})
         , @UniqueConstraint(columnNames = {"CD_RESULT_VERIF"})})
-@NamedQueries({
-        @NamedQuery(name = "VerificationResult.findAll", query = "SELECT t FROM VerificationResult t")})
 public class VerificationResult implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_CONS_RESUL_VER", nullable = false)
-    private Integer cdConsResulVer;
+    private Integer verificationResultSerial;
     @Basic(optional = false)
     @Column(name = "CD_RESULT_VERIF", nullable = false)
-    private int cdResultVerif;
+    private int verificationResultId;
     @Basic(optional = false)
     @Column(name = "NB_RESULT_VERIF", nullable = false, length = 25)
-    private String nbResultVerif;
-    @OneToMany(mappedBy = "cdResultVerif")
+    private String verificationResultName;
+    @OneToMany(mappedBy = "verificationResult")
     private List<T955> t955List;
 
     public VerificationResult() {
     }
 
-    public VerificationResult(Integer cdConsResulVer) {
-        this.cdConsResulVer = cdConsResulVer;
+    public VerificationResult(Integer verificationResultSerial) {
+        this.verificationResultSerial = verificationResultSerial;
     }
 
-    public VerificationResult(Integer cdConsResulVer, int cdResultVerif, String nbResultVerif) {
-        this.cdConsResulVer = cdConsResulVer;
-        this.cdResultVerif = cdResultVerif;
-        this.nbResultVerif = nbResultVerif;
+    public VerificationResult(Integer verificationResultSerial, int verificationResultId, String verificationResultName) {
+        this.verificationResultSerial = verificationResultSerial;
+        this.verificationResultId = verificationResultId;
+        this.verificationResultName = verificationResultName;
     }
 
-    public Integer getCdConsResulVer() {
-        return cdConsResulVer;
+    public Integer getVerificationResultSerial() {
+        return verificationResultSerial;
     }
 
-    public void setCdConsResulVer(Integer cdConsResulVer) {
-        this.cdConsResulVer = cdConsResulVer;
+    public void setVerificationResultSerial(Integer verificationResultSerial) {
+        this.verificationResultSerial = verificationResultSerial;
     }
 
-    public int getCdResultVerif() {
-        return cdResultVerif;
+    public int getVerificationResultId() {
+        return verificationResultId;
     }
 
-    public void setCdResultVerif(int cdResultVerif) {
-        this.cdResultVerif = cdResultVerif;
+    public void setVerificationResultId(int verificationResultId) {
+        this.verificationResultId = verificationResultId;
     }
 
-    public String getNbResultVerif() {
-        return nbResultVerif;
+    public String getVerificationResultName() {
+        return verificationResultName;
     }
 
-    public void setNbResultVerif(String nbResultVerif) {
-        this.nbResultVerif = nbResultVerif;
+    public void setVerificationResultName(String verificationResultName) {
+        this.verificationResultName = verificationResultName;
     }
 
     public List<T955> getT955List() {
@@ -82,26 +79,22 @@ public class VerificationResult implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdConsResulVer != null ? cdConsResulVer.hashCode() : 0);
+        hash += (verificationResultSerial != null ? verificationResultSerial.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof VerificationResult)) {
             return false;
         }
         VerificationResult other = (VerificationResult) object;
-        if ((this.cdConsResulVer == null && other.cdConsResulVer != null) || (this.cdConsResulVer != null && !this.cdConsResulVer.equals(other.cdConsResulVer))) {
-            return false;
-        }
-        return true;
+        return (this.verificationResultSerial != null || other.verificationResultSerial == null) && (this.verificationResultSerial == null || this.verificationResultSerial.equals(other.verificationResultSerial));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.VerificationResult[ cdConsResulVer=" + cdConsResulVer + " ]";
+        return "com.bbva.VerificationResult[ verificationResultSerial=" + verificationResultSerial + " ]";
     }
 
 }

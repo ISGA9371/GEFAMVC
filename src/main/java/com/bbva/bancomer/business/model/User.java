@@ -13,12 +13,9 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge011_usuario", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "thge011_usuario", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_USUARIO_CORP"})})
-@NamedQueries({
-        @NamedQuery(name = "User.findAll", query = "SELECT t FROM User t")})
 public class User implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -26,7 +23,7 @@ public class User implements Serializable {
     private Integer userId;
     @Basic(optional = false)
     @Column(name = "CD_USUARIO_CORP", nullable = false, length = 10)
-    private String cdUsuarioCorp;
+    private String userCorp;
     @Basic(optional = false)
     @Column(name = "NB_USUARIO", nullable = false, length = 50)
     private String userName;
@@ -39,49 +36,49 @@ public class User implements Serializable {
     private String userPassword;
     @Column(name = "TX_CORREO_ELECTR", length = 70)
     private String userEmail;
-    @OneToMany(mappedBy = "cdUserSolic")
-    private List<Budget> pepList;
-    @OneToMany(mappedBy = "cdUserResp")
-    private List<Budget> pepList1;
-    @OneToMany(mappedBy = "cdUsuRespDyd")
-    private List<Transfer> transferList;
+    @OneToMany(mappedBy = "userSender")
+    private List<Budget> budgets;
+    @OneToMany(mappedBy = "userReceiver")
+    private List<Budget> budgetList;
+    @OneToMany(mappedBy = "user")
+    private List<Transfer> transfers;
     @JoinColumn(name = "ST_ESTADO_USUARIO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stStatusUsuario;
+    private Status status;
     @JoinColumn(name = "CD_NIVEL", referencedColumnName = "CD_NIVEL")
     @ManyToOne
-    private Level cdLevel;
+    private Level level;
     @JoinColumn(name = "CD_PERF_USU", referencedColumnName = "CD_TIPO_PERFIL", nullable = false)
     @ManyToOne(optional = false)
-    private ProfileType cdProfileType;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUserGestor")
+    private ProfileType profileType;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userManager")
+    private List<Requirement> requirements;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Requirement> requirementList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUserResp")
-    private List<Requirement> requirementList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuPeticion")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userSender")
+    private List<Modification> modifications;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userReceiver")
     private List<Modification> modificationList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdRespResol")
-    private List<Modification> modificationList1;
-    @OneToMany(mappedBy = "cdDuenoProd")
+    @OneToMany(mappedBy = "userOwner")
+    private List<ProgramIncrement> programIncrements;
+    @OneToMany(mappedBy = "userScrumMaster")
     private List<ProgramIncrement> programIncrementList;
-    @OneToMany(mappedBy = "cdExpertoScrum")
-    private List<ProgramIncrement> programIncrementList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuPeticion")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userSender")
+    private List<Doubt> doubts;
+    @OneToMany(mappedBy = "userReceiver")
     private List<Doubt> doubtList;
-    @OneToMany(mappedBy = "cdUsuResp")
-    private List<Doubt> doubtList1;
-    @OneToMany(mappedBy = "cdUserGestor")
+    @OneToMany(mappedBy = "userManager")
+    private List<ExternalUser> externalUsers;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<ExternalUser> externalUserList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUserResp")
-    private List<ExternalUser> externalUserList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUserResp")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<T955> t955List;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUsuPeticion")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userSender")
+    private List<Issue> issues;
+    @OneToMany(mappedBy = "userReceiver")
     private List<Issue> issueList;
-    @OneToMany(mappedBy = "cdUsuResp")
-    private List<Issue> issueList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdUserResp")
-    private List<Level> levelList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Level> levels;
 
     public User() {
     }
@@ -90,9 +87,9 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
-    public User(Integer userId, String cdUsuarioCorp, String userName, String userFirstName) {
+    public User(Integer userId, String userCorp, String userName, String userFirstName) {
         this.userId = userId;
-        this.cdUsuarioCorp = cdUsuarioCorp;
+        this.userCorp = userCorp;
         this.userName = userName;
         this.userFirstName = userFirstName;
     }
@@ -105,12 +102,12 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
-    public String getCdUsuarioCorp() {
-        return cdUsuarioCorp;
+    public String getUserCorp() {
+        return userCorp;
     }
 
-    public void setCdUsuarioCorp(String cdUsuarioCorp) {
-        this.cdUsuarioCorp = cdUsuarioCorp;
+    public void setUserCorp(String userCorp) {
+        this.userCorp = userCorp;
     }
 
     public String getUserName() {
@@ -153,52 +150,60 @@ public class User implements Serializable {
         this.userEmail = userEmail;
     }
 
-    public List<Budget> getPepList() {
-        return pepList;
+    public List<Budget> getBudgets() {
+        return budgets;
     }
 
-    public void setPepList(List<Budget> pepList) {
-        this.pepList = pepList;
+    public void setBudgets(List<Budget> budgets) {
+        this.budgets = budgets;
     }
 
-    public List<Budget> getPepList1() {
-        return pepList1;
+    public List<Budget> getBudgetList() {
+        return budgetList;
     }
 
-    public void setPepList1(List<Budget> pepList1) {
-        this.pepList1 = pepList1;
+    public void setBudgetList(List<Budget> budgetList) {
+        this.budgetList = budgetList;
     }
 
-    public List<Transfer> getTransferList() {
-        return transferList;
+    public List<Transfer> getTransfers() {
+        return transfers;
     }
 
-    public void setTransferList(List<Transfer> transferList) {
-        this.transferList = transferList;
+    public void setTransfers(List<Transfer> transfers) {
+        this.transfers = transfers;
     }
 
-    public Status getStStatusUsuario() {
-        return stStatusUsuario;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStStatusUsuario(Status stStatusUsuario) {
-        this.stStatusUsuario = stStatusUsuario;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public Level getCdLevel() {
-        return cdLevel;
+    public Level getLevel() {
+        return level;
     }
 
-    public void setCdLevel(Level cdLevel) {
-        this.cdLevel = cdLevel;
+    public void setLevel(Level level) {
+        this.level = level;
     }
 
-    public ProfileType getCdProfileType() {
-        return cdProfileType;
+    public ProfileType getProfileType() {
+        return profileType;
     }
 
-    public void setCdProfileType(ProfileType cdProfileType) {
-        this.cdProfileType = cdProfileType;
+    public void setProfileType(ProfileType profileType) {
+        this.profileType = profileType;
+    }
+
+    public List<Requirement> getRequirements() {
+        return requirements;
+    }
+
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
     }
 
     public List<Requirement> getRequirementList() {
@@ -209,12 +214,12 @@ public class User implements Serializable {
         this.requirementList = requirementList;
     }
 
-    public List<Requirement> getRequirementList1() {
-        return requirementList1;
+    public List<Modification> getModifications() {
+        return modifications;
     }
 
-    public void setRequirementList1(List<Requirement> requirementList1) {
-        this.requirementList1 = requirementList1;
+    public void setModifications(List<Modification> modifications) {
+        this.modifications = modifications;
     }
 
     public List<Modification> getModificationList() {
@@ -225,12 +230,12 @@ public class User implements Serializable {
         this.modificationList = modificationList;
     }
 
-    public List<Modification> getModificationList1() {
-        return modificationList1;
+    public List<ProgramIncrement> getProgramIncrements() {
+        return programIncrements;
     }
 
-    public void setModificationList1(List<Modification> modificationList1) {
-        this.modificationList1 = modificationList1;
+    public void setProgramIncrements(List<ProgramIncrement> programIncrements) {
+        this.programIncrements = programIncrements;
     }
 
     public List<ProgramIncrement> getProgramIncrementList() {
@@ -241,12 +246,12 @@ public class User implements Serializable {
         this.programIncrementList = programIncrementList;
     }
 
-    public List<ProgramIncrement> getProgramIncrementList1() {
-        return programIncrementList1;
+    public List<Doubt> getDoubts() {
+        return doubts;
     }
 
-    public void setProgramIncrementList1(List<ProgramIncrement> programIncrementList1) {
-        this.programIncrementList1 = programIncrementList1;
+    public void setDoubts(List<Doubt> doubts) {
+        this.doubts = doubts;
     }
 
     public List<Doubt> getDoubtList() {
@@ -257,12 +262,12 @@ public class User implements Serializable {
         this.doubtList = doubtList;
     }
 
-    public List<Doubt> getDoubtList1() {
-        return doubtList1;
+    public List<ExternalUser> getExternalUsers() {
+        return externalUsers;
     }
 
-    public void setDoubtList1(List<Doubt> doubtList1) {
-        this.doubtList1 = doubtList1;
+    public void setExternalUsers(List<ExternalUser> externalUsers) {
+        this.externalUsers = externalUsers;
     }
 
     public List<ExternalUser> getExternalUserList() {
@@ -273,20 +278,20 @@ public class User implements Serializable {
         this.externalUserList = externalUserList;
     }
 
-    public List<ExternalUser> getExternalUserList1() {
-        return externalUserList1;
-    }
-
-    public void setExternalUserList1(List<ExternalUser> externalUserList1) {
-        this.externalUserList1 = externalUserList1;
-    }
-
     public List<T955> getT955List() {
         return t955List;
     }
 
     public void setT955List(List<T955> t955List) {
         this.t955List = t955List;
+    }
+
+    public List<Issue> getIssues() {
+        return issues;
+    }
+
+    public void setIssues(List<Issue> issues) {
+        this.issues = issues;
     }
 
     public List<Issue> getIssueList() {
@@ -297,20 +302,12 @@ public class User implements Serializable {
         this.issueList = issueList;
     }
 
-    public List<Issue> getIssueList1() {
-        return issueList1;
+    public List<Level> getLevels() {
+        return levels;
     }
 
-    public void setIssueList1(List<Issue> issueList1) {
-        this.issueList1 = issueList1;
-    }
-
-    public List<Level> getLevelList() {
-        return levelList;
-    }
-
-    public void setLevelList(List<Level> levelList) {
-        this.levelList = levelList;
+    public void setLevels(List<Level> levels) {
+        this.levels = levels;
     }
 
     @Override
@@ -322,15 +319,11 @@ public class User implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof User)) {
             return false;
         }
         User other = (User) object;
-        if ((this.userId == null && other.userId != null) || (this.userId != null && !this.userId.equals(other.userId))) {
-            return false;
-        }
-        return true;
+        return (this.userId != null || other.userId == null) && (this.userId == null || this.userId.equals(other.userId));
     }
 
     @Override

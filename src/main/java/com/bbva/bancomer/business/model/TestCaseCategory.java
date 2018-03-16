@@ -15,47 +15,44 @@ import java.util.List;
 @Entity
 @Table(name = "thge046_cat_caso", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_CATEGORIA_CASO"})})
-@NamedQueries({
-        @NamedQuery(name = "TestCaseCategory.findAll", query = "SELECT t FROM TestCaseCategory t")})
 public class TestCaseCategory implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_CATEGORIA_CASO", nullable = false)
-    private Integer cdCategoriaCaso;
+    private Integer testCaseCategoryId;
     @Basic(optional = false)
     @Column(name = "NB_CATEGORIA_CASO", nullable = false, length = 50)
-    private String nbCategoriaCaso;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdCategoriaCaso")
+    private String testCaseCategoryName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "testCaseCategory")
     private List<TestCaseC204> testCaseC204List;
 
     public TestCaseCategory() {
     }
 
-    public TestCaseCategory(Integer cdCategoriaCaso) {
-        this.cdCategoriaCaso = cdCategoriaCaso;
+    public TestCaseCategory(Integer testCaseCategoryId) {
+        this.testCaseCategoryId = testCaseCategoryId;
     }
 
-    public TestCaseCategory(Integer cdCategoriaCaso, String nbCategoriaCaso) {
-        this.cdCategoriaCaso = cdCategoriaCaso;
-        this.nbCategoriaCaso = nbCategoriaCaso;
+    public TestCaseCategory(Integer testCaseCategoryId, String testCaseCategoryName) {
+        this.testCaseCategoryId = testCaseCategoryId;
+        this.testCaseCategoryName = testCaseCategoryName;
     }
 
-    public Integer getCdCategoriaCaso() {
-        return cdCategoriaCaso;
+    public Integer getTestCaseCategoryId() {
+        return testCaseCategoryId;
     }
 
-    public void setCdCategoriaCaso(Integer cdCategoriaCaso) {
-        this.cdCategoriaCaso = cdCategoriaCaso;
+    public void setTestCaseCategoryId(Integer testCaseCategoryId) {
+        this.testCaseCategoryId = testCaseCategoryId;
     }
 
-    public String getNbCategoriaCaso() {
-        return nbCategoriaCaso;
+    public String getTestCaseCategoryName() {
+        return testCaseCategoryName;
     }
 
-    public void setNbCategoriaCaso(String nbCategoriaCaso) {
-        this.nbCategoriaCaso = nbCategoriaCaso;
+    public void setTestCaseCategoryName(String testCaseCategoryName) {
+        this.testCaseCategoryName = testCaseCategoryName;
     }
 
     public List<TestCaseC204> getTestCaseC204List() {
@@ -69,26 +66,22 @@ public class TestCaseCategory implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdCategoriaCaso != null ? cdCategoriaCaso.hashCode() : 0);
+        hash += (testCaseCategoryId != null ? testCaseCategoryId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof TestCaseCategory)) {
             return false;
         }
         TestCaseCategory other = (TestCaseCategory) object;
-        if ((this.cdCategoriaCaso == null && other.cdCategoriaCaso != null) || (this.cdCategoriaCaso != null && !this.cdCategoriaCaso.equals(other.cdCategoriaCaso))) {
-            return false;
-        }
-        return true;
+        return (this.testCaseCategoryId != null || other.testCaseCategoryId == null) && (this.testCaseCategoryId == null || this.testCaseCategoryId.equals(other.testCaseCategoryId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.TestCaseCategory[ cdCategoriaCaso=" + cdCategoriaCaso + " ]";
+        return "com.bbva.TestCaseCategory[ testCaseCategoryId=" + testCaseCategoryId + " ]";
     }
 
 }

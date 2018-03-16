@@ -14,106 +14,110 @@ import java.util.List;
  */
 @Entity
 @Table(name = "thge006_tipologia", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "Typology.findAll", query = "SELECT t FROM Typology t")})
 public class Typology implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-
     @Column(name = "CD_TIPOLOGIA", nullable = false)
-    private Integer cdTipologia;
+    private Integer typologyId;
     @Basic(optional = false)
     @Column(name = "CD_PRODUCTO", nullable = false, length = 3)
-    private String cdProducto;
+    private String typologyProductId;
     @Basic(optional = false)
     @Column(name = "TP_COMPONENTE", nullable = false, length = 10)
-    private String tpComponente;
+    private String typologyComponent;
     @Column(name = "NU_DIFICULTAD")
-    private Character nuDificultad;
+    private Character typologySeverity;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "NU_HRS_DIFICULTAD", precision = 12)
-    private Float nuHrsDificultad;
+    private Float typologySeverityHours;
     @Basic(optional = false)
     @Column(name = "NU_ANO", nullable = false)
-    private int nuAno;
+    private int typologyYear;
     @JoinColumn(name = "ST_ESTADO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stStatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTipologia")
+    private Status status;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "typology")
+    private List<Component> components;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "typologyEmp")
     private List<Component> componentList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTipologiaEmp")
-    private List<Component> componentList1;
 
     public Typology() {
     }
 
-    public Typology(Integer cdTipologia) {
-        this.cdTipologia = cdTipologia;
+    public Typology(Integer typologyId) {
+        this.typologyId = typologyId;
     }
 
-    public Typology(Integer cdTipologia, String cdProducto, String tpComponente, int nuAno) {
-        this.cdTipologia = cdTipologia;
-        this.cdProducto = cdProducto;
-        this.tpComponente = tpComponente;
-        this.nuAno = nuAno;
+    public Typology(Integer typologyId, String typologyProductId, String typologyComponent, int typologyYear) {
+        this.typologyId = typologyId;
+        this.typologyProductId = typologyProductId;
+        this.typologyComponent = typologyComponent;
+        this.typologyYear = typologyYear;
     }
 
-    public Integer getCdTipologia() {
-        return cdTipologia;
+    public Integer getTypologyId() {
+        return typologyId;
     }
 
-    public void setCdTipologia(Integer cdTipologia) {
-        this.cdTipologia = cdTipologia;
+    public void setTypologyId(Integer typologyId) {
+        this.typologyId = typologyId;
     }
 
-    public String getCdProducto() {
-        return cdProducto;
+    public String getTypologyProductId() {
+        return typologyProductId;
     }
 
-    public void setCdProducto(String cdProducto) {
-        this.cdProducto = cdProducto;
+    public void setTypologyProductId(String typologyProductId) {
+        this.typologyProductId = typologyProductId;
     }
 
-    public String getTpComponente() {
-        return tpComponente;
+    public String getTypologyComponent() {
+        return typologyComponent;
     }
 
-    public void setTpComponente(String tpComponente) {
-        this.tpComponente = tpComponente;
+    public void setTypologyComponent(String typologyComponent) {
+        this.typologyComponent = typologyComponent;
     }
 
-    public Character getNuDificultad() {
-        return nuDificultad;
+    public Character getTypologySeverity() {
+        return typologySeverity;
     }
 
-    public void setNuDificultad(Character nuDificultad) {
-        this.nuDificultad = nuDificultad;
+    public void setTypologySeverity(Character typologySeverity) {
+        this.typologySeverity = typologySeverity;
     }
 
-    public Float getNuHrsDificultad() {
-        return nuHrsDificultad;
+    public Float getTypologySeverityHours() {
+        return typologySeverityHours;
     }
 
-    public void setNuHrsDificultad(Float nuHrsDificultad) {
-        this.nuHrsDificultad = nuHrsDificultad;
+    public void setTypologySeverityHours(Float typologySeverityHours) {
+        this.typologySeverityHours = typologySeverityHours;
     }
 
-    public int getNuAno() {
-        return nuAno;
+    public int getTypologyYear() {
+        return typologyYear;
     }
 
-    public void setNuAno(int nuAno) {
-        this.nuAno = nuAno;
+    public void setTypologyYear(int typologyYear) {
+        this.typologyYear = typologyYear;
     }
 
-    public Status getStStatus() {
-        return stStatus;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStStatus(Status stStatus) {
-        this.stStatus = stStatus;
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public List<Component> getComponents() {
+        return components;
+    }
+
+    public void setComponents(List<Component> components) {
+        this.components = components;
     }
 
     public List<Component> getComponentList() {
@@ -124,37 +128,25 @@ public class Typology implements Serializable {
         this.componentList = componentList;
     }
 
-    public List<Component> getComponentList1() {
-        return componentList1;
-    }
-
-    public void setComponentList1(List<Component> componentList1) {
-        this.componentList1 = componentList1;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdTipologia != null ? cdTipologia.hashCode() : 0);
+        hash += (typologyId != null ? typologyId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Typology)) {
             return false;
         }
         Typology other = (Typology) object;
-        if ((this.cdTipologia == null && other.cdTipologia != null) || (this.cdTipologia != null && !this.cdTipologia.equals(other.cdTipologia))) {
-            return false;
-        }
-        return true;
+        return (this.typologyId != null || other.typologyId == null) && (this.typologyId == null || this.typologyId.equals(other.typologyId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Typology[ cdTipologia=" + cdTipologia + " ]";
+        return "com.bbva.Typology[ typologyId=" + typologyId + " ]";
     }
 
 }

@@ -15,65 +15,60 @@ import java.io.Serializable;
  */
 @Embeddable
 public class T955PK implements Serializable {
-
     @Basic(optional = false)
     @Column(name = "CD_DEFECTO", nullable = false)
-    private int cdDefecto;
+    private int t955Id;
     @Basic(optional = false)
     @Column(name = "CD_REQUERIMIENTO", nullable = false)
-    private int cdRequerimiento;
+    private int requirementId;
 
     public T955PK() {
     }
 
-    public T955PK(int cdDefecto, int cdRequerimiento) {
-        this.cdDefecto = cdDefecto;
-        this.cdRequerimiento = cdRequerimiento;
+    public T955PK(int t955Id, int requirementId) {
+        this.t955Id = t955Id;
+        this.requirementId = requirementId;
     }
 
-    public int getCdDefecto() {
-        return cdDefecto;
+    public int getT955Id() {
+        return t955Id;
     }
 
-    public void setCdDefecto(int cdDefecto) {
-        this.cdDefecto = cdDefecto;
+    public void setT955Id(int t955Id) {
+        this.t955Id = t955Id;
     }
 
-    public int getCdRequerimiento() {
-        return cdRequerimiento;
+    public int getRequirementId() {
+        return requirementId;
     }
 
-    public void setCdRequerimiento(int cdRequerimiento) {
-        this.cdRequerimiento = cdRequerimiento;
+    public void setRequirementId(int requirementId) {
+        this.requirementId = requirementId;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) cdDefecto;
-        hash += (int) cdRequerimiento;
+        hash += (int) t955Id;
+        hash += (int) requirementId;
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof T955PK)) {
             return false;
         }
         T955PK other = (T955PK) object;
-        if (this.cdDefecto != other.cdDefecto) {
+        if (this.t955Id != other.t955Id) {
             return false;
         }
-        if (this.cdRequerimiento != other.cdRequerimiento) {
-            return false;
-        }
-        return true;
+        return this.requirementId == other.requirementId;
     }
 
     @Override
     public String toString() {
-        return "com.bbva.T955PK[ cdDefecto=" + cdDefecto + ", cdRequerimiento=" + cdRequerimiento + " ]";
+        return "com.bbva.T955PK[ t955Id=" + t955Id + ", requirementId=" + requirementId + " ]";
     }
 
 }

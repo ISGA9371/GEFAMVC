@@ -15,74 +15,72 @@ import java.util.Date;
 @Entity
 @Table(name = "thge048_t955", catalog = "gestion_factoria", schema = "")
 public class T955 implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected T955PK t955PK;
     @Basic(optional = false)
     @Column(name = "TX_NIVEL_PBA", nullable = false, length = 50)
-    private String txNivelPba;
+    private String t955LevelPba;
     @Basic(optional = false)
     @Column(name = "FH_IDENTIFICACION", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fhIdentificacion;
+    private Date t955IdentificationDate;
     @Column(name = "TX_MODULO_PAQ", length = 50)
-    private String txModuloPaq;
-    @Lob
+    private String t955ModuloPackage;
     @Column(name = "TX_EVIDENCIA_PBA")
-    private byte[] txEvidenciaPba;
+    private byte[] t955EvidencePba;
     @Column(name = "NB_DESC_HALLAZGO", length = 500)
-    private String nbDescHallazgo;
+    private String t955Description;
     @Column(name = "TX_RESUL_ESPERADO", length = 500)
-    private String txResulEsperado;
+    private String t955ExpectedResult;
     @Column(name = "TX_COM_AREA_RESOL", length = 500)
-    private String txComAreaResol;
+    private String t955AreaResponsible;
     @Column(name = "FH_ATENC_PREV")
     @Temporal(TemporalType.DATE)
-    private Date fhAtencPrev;
+    private Date t955AttentionDate;
     @Column(name = "NU_PERIODO_CORREC")
-    private Integer nuPeriodoCorrec;
+    private Integer t955Fixes;
     @Column(name = "TX_COMENT_F_PBA", length = 500)
-    private String txComentFPba;
+    private String t955CommentsPba;
     @Column(name = "FH_SOLIC_VERIF")
     @Temporal(TemporalType.DATE)
-    private Date fhSolicVerif;
+    private Date t955VerificationDate;
     @Column(name = "FH_REAL_CIERRE")
     @Temporal(TemporalType.DATE)
-    private Date fhRealCierre;
+    private Date t955RealDate;
     @JoinColumn(name = "CD_ENTORNO", referencedColumnName = "CD_ENTORNO", nullable = false)
     @ManyToOne(optional = false)
-    private Environment cdEnvironment;
+    private Environment environment;
     @JoinColumn(name = "CD_EDO_DEFECTO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status cdEdoDefecto;
+    private Status status;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private User cdUserResp;
+    private User user;
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Requirement requirement;
     @JoinColumn(name = "CD_T926", referencedColumnName = "CD_T926", nullable = false)
     @ManyToOne(optional = false)
-    private T926 cdT926;
+    private T926 t926;
     @JoinColumn(name = "CD_C204", referencedColumnName = "CD_C204", nullable = false)
     @ManyToOne(optional = false)
-    private TestCaseC204 cdTestCaseC204;
+    private TestCaseC204 testCaseC204;
     @JoinColumn(name = "CD_SEVERIDAD", referencedColumnName = "CD_SEVERIDAD", nullable = false)
     @ManyToOne(optional = false)
-    private Severity cdSeverity;
+    private Severity severity;
     @JoinColumn(name = "CD_ACEPTA_RES_COR", referencedColumnName = "CD_ACEPTA_RES_COR")
     @ManyToOne
-    private ResponsibleArea cdAceptaResCor;
+    private ResponsibleArea responsibleArea;
     @JoinColumn(name = "CD_CAUSA_RECHAZO", referencedColumnName = "CD_CAUSA_RECHAZO")
     @ManyToOne
-    private CauseRejection cdCausaRechazo;
+    private CauseRejection causeRejection;
     @JoinColumn(name = "CD_CAUSA_CIERRE", referencedColumnName = "CD_CONS_CAUSA_C")
     @ManyToOne
-    private CauseClosure cdCausaCierre;
+    private CauseClosure causeClosure;
     @JoinColumn(name = "CD_RESULT_VERIF", referencedColumnName = "CD_CONS_RESUL_VER")
     @ManyToOne
-    private VerificationResult cdResultVerif;
+    private VerificationResult verificationResult;
 
     public T955() {
     }
@@ -91,10 +89,10 @@ public class T955 implements Serializable {
         this.t955PK = t955PK;
     }
 
-    public T955(T955PK t955PK, String txNivelPba, Date fhIdentificacion) {
+    public T955(T955PK t955PK, String t955LevelPba, Date T955IdentificationDate) {
         this.t955PK = t955PK;
-        this.txNivelPba = txNivelPba;
-        this.fhIdentificacion = fhIdentificacion;
+        this.t955LevelPba = t955LevelPba;
+        this.t955IdentificationDate = T955IdentificationDate;
     }
 
     public T955(int cdDefecto, int cdRequerimiento) {
@@ -109,124 +107,124 @@ public class T955 implements Serializable {
         this.t955PK = t955PK;
     }
 
-    public String getTxNivelPba() {
-        return txNivelPba;
+    public String getT955LevelPba() {
+        return t955LevelPba;
     }
 
-    public void setTxNivelPba(String txNivelPba) {
-        this.txNivelPba = txNivelPba;
+    public void setT955LevelPba(String t955LevelPba) {
+        this.t955LevelPba = t955LevelPba;
     }
 
-    public Date getFhIdentificacion() {
-        return fhIdentificacion;
+    public Date getT955IdentificationDate() {
+        return t955IdentificationDate;
     }
 
-    public void setFhIdentificacion(Date fhIdentificacion) {
-        this.fhIdentificacion = fhIdentificacion;
+    public void setT955IdentificationDate(Date t955IdentificationDate) {
+        this.t955IdentificationDate = t955IdentificationDate;
     }
 
-    public String getTxModuloPaq() {
-        return txModuloPaq;
+    public String getT955ModuloPackage() {
+        return t955ModuloPackage;
     }
 
-    public void setTxModuloPaq(String txModuloPaq) {
-        this.txModuloPaq = txModuloPaq;
+    public void setT955ModuloPackage(String t955ModuloPackage) {
+        this.t955ModuloPackage = t955ModuloPackage;
     }
 
-    public byte[] getTxEvidenciaPba() {
-        return txEvidenciaPba;
+    public byte[] getT955EvidencePba() {
+        return t955EvidencePba;
     }
 
-    public void setTxEvidenciaPba(byte[] txEvidenciaPba) {
-        this.txEvidenciaPba = txEvidenciaPba;
+    public void setT955EvidencePba(byte[] t955EvidencePba) {
+        this.t955EvidencePba = t955EvidencePba;
     }
 
-    public String getNbDescHallazgo() {
-        return nbDescHallazgo;
+    public String getT955Description() {
+        return t955Description;
     }
 
-    public void setNbDescHallazgo(String nbDescHallazgo) {
-        this.nbDescHallazgo = nbDescHallazgo;
+    public void setT955Description(String t955Description) {
+        this.t955Description = t955Description;
     }
 
-    public String getTxResulEsperado() {
-        return txResulEsperado;
+    public String getT955ExpectedResult() {
+        return t955ExpectedResult;
     }
 
-    public void setTxResulEsperado(String txResulEsperado) {
-        this.txResulEsperado = txResulEsperado;
+    public void setT955ExpectedResult(String t955ExpectedResult) {
+        this.t955ExpectedResult = t955ExpectedResult;
     }
 
-    public String getTxComAreaResol() {
-        return txComAreaResol;
+    public String getT955AreaResponsible() {
+        return t955AreaResponsible;
     }
 
-    public void setTxComAreaResol(String txComAreaResol) {
-        this.txComAreaResol = txComAreaResol;
+    public void setT955AreaResponsible(String t955AreaResponsible) {
+        this.t955AreaResponsible = t955AreaResponsible;
     }
 
-    public Date getFhAtencPrev() {
-        return fhAtencPrev;
+    public Date getT955AttentionDate() {
+        return t955AttentionDate;
     }
 
-    public void setFhAtencPrev(Date fhAtencPrev) {
-        this.fhAtencPrev = fhAtencPrev;
+    public void setT955AttentionDate(Date t955AttentionDate) {
+        this.t955AttentionDate = t955AttentionDate;
     }
 
-    public Integer getNuPeriodoCorrec() {
-        return nuPeriodoCorrec;
+    public Integer getT955Fixes() {
+        return t955Fixes;
     }
 
-    public void setNuPeriodoCorrec(Integer nuPeriodoCorrec) {
-        this.nuPeriodoCorrec = nuPeriodoCorrec;
+    public void setT955Fixes(Integer t955Fixes) {
+        this.t955Fixes = t955Fixes;
     }
 
-    public String getTxComentFPba() {
-        return txComentFPba;
+    public String getT955CommentsPba() {
+        return t955CommentsPba;
     }
 
-    public void setTxComentFPba(String txComentFPba) {
-        this.txComentFPba = txComentFPba;
+    public void setT955CommentsPba(String t955CommentsPba) {
+        this.t955CommentsPba = t955CommentsPba;
     }
 
-    public Date getFhSolicVerif() {
-        return fhSolicVerif;
+    public Date getT955VerificationDate() {
+        return t955VerificationDate;
     }
 
-    public void setFhSolicVerif(Date fhSolicVerif) {
-        this.fhSolicVerif = fhSolicVerif;
+    public void setT955VerificationDate(Date t955VerificationDate) {
+        this.t955VerificationDate = t955VerificationDate;
     }
 
-    public Date getFhRealCierre() {
-        return fhRealCierre;
+    public Date getT955RealDate() {
+        return t955RealDate;
     }
 
-    public void setFhRealCierre(Date fhRealCierre) {
-        this.fhRealCierre = fhRealCierre;
+    public void setT955RealDate(Date t955RealDate) {
+        this.t955RealDate = t955RealDate;
     }
 
-    public Environment getCdEnvironment() {
-        return cdEnvironment;
+    public Environment getEnvironment() {
+        return environment;
     }
 
-    public void setCdEnvironment(Environment cdEnvironment) {
-        this.cdEnvironment = cdEnvironment;
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
     }
 
-    public Status getCdEdoDefecto() {
-        return cdEdoDefecto;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setCdEdoDefecto(Status cdEdoDefecto) {
-        this.cdEdoDefecto = cdEdoDefecto;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public User getCdUserResp() {
-        return cdUserResp;
+    public User getUser() {
+        return user;
     }
 
-    public void setCdUserResp(User cdUserResp) {
-        this.cdUserResp = cdUserResp;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Requirement getRequirement() {
@@ -237,60 +235,60 @@ public class T955 implements Serializable {
         this.requirement = requirement;
     }
 
-    public T926 getCdT926() {
-        return cdT926;
+    public T926 getT926() {
+        return t926;
     }
 
-    public void setCdT926(T926 cdT926) {
-        this.cdT926 = cdT926;
+    public void setT926(T926 t926) {
+        this.t926 = t926;
     }
 
-    public TestCaseC204 getCdTestCaseC204() {
-        return cdTestCaseC204;
+    public TestCaseC204 getTestCaseC204() {
+        return testCaseC204;
     }
 
-    public void setCdTestCaseC204(TestCaseC204 cdTestCaseC204) {
-        this.cdTestCaseC204 = cdTestCaseC204;
+    public void setTestCaseC204(TestCaseC204 testCaseC204) {
+        this.testCaseC204 = testCaseC204;
     }
 
-    public Severity getCdSeverity() {
-        return cdSeverity;
+    public Severity getSeverity() {
+        return severity;
     }
 
-    public void setCdSeverity(Severity cdSeverity) {
-        this.cdSeverity = cdSeverity;
+    public void setSeverity(Severity severity) {
+        this.severity = severity;
     }
 
-    public ResponsibleArea getCdAceptaResCor() {
-        return cdAceptaResCor;
+    public ResponsibleArea getResponsibleArea() {
+        return responsibleArea;
     }
 
-    public void setCdAceptaResCor(ResponsibleArea cdAceptaResCor) {
-        this.cdAceptaResCor = cdAceptaResCor;
+    public void setResponsibleArea(ResponsibleArea responsibleArea) {
+        this.responsibleArea = responsibleArea;
     }
 
-    public CauseRejection getCdCausaRechazo() {
-        return cdCausaRechazo;
+    public CauseRejection getCauseRejection() {
+        return causeRejection;
     }
 
-    public void setCdCausaRechazo(CauseRejection cdCausaRechazo) {
-        this.cdCausaRechazo = cdCausaRechazo;
+    public void setCauseRejection(CauseRejection causeRejection) {
+        this.causeRejection = causeRejection;
     }
 
-    public CauseClosure getCdCausaCierre() {
-        return cdCausaCierre;
+    public CauseClosure getCauseClosure() {
+        return causeClosure;
     }
 
-    public void setCdCausaCierre(CauseClosure cdCausaCierre) {
-        this.cdCausaCierre = cdCausaCierre;
+    public void setCauseClosure(CauseClosure causeClosure) {
+        this.causeClosure = causeClosure;
     }
 
-    public VerificationResult getCdResultVerif() {
-        return cdResultVerif;
+    public VerificationResult getVerificationResult() {
+        return verificationResult;
     }
 
-    public void setCdResultVerif(VerificationResult cdResultVerif) {
-        this.cdResultVerif = cdResultVerif;
+    public void setVerificationResult(VerificationResult verificationResult) {
+        this.verificationResult = verificationResult;
     }
 
     @Override
@@ -302,15 +300,11 @@ public class T955 implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof T955)) {
             return false;
         }
         T955 other = (T955) object;
-        if ((this.t955PK == null && other.t955PK != null) || (this.t955PK != null && !this.t955PK.equals(other.t955PK))) {
-            return false;
-        }
-        return true;
+        return (this.t955PK != null || other.t955PK == null) && (this.t955PK == null || this.t955PK.equals(other.t955PK));
     }
 
     @Override

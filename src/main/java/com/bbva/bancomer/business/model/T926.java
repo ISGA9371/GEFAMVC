@@ -27,11 +27,11 @@ public class T926 implements Serializable {
     @Column(name = "NB_FUNCION", nullable = false, length = 100)
     private String t926FunctionName;
     @Column(name = "NU_DEFECTO_ESTIM")
-    private Integer t926Defects;
+    private Integer t926Issues;
     @Column(name = "NU_CASO_ESTIM")
     private Integer t926Cases;
     @Column(name = "NU_DEFECTO_REAL")
-    private Integer t926RealDefects;
+    private Integer t926RealIssues;
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false)
     @ManyToOne(optional = false)
     private Requirement requirement;
@@ -80,12 +80,12 @@ public class T926 implements Serializable {
         this.t926FunctionName = t926FunctionName;
     }
 
-    public Integer getT926Defects() {
-        return t926Defects;
+    public Integer getT926Issues() {
+        return t926Issues;
     }
 
-    public void setT926Defects(Integer t926Defects) {
-        this.t926Defects = t926Defects;
+    public void setT926Issues(Integer t926Issues) {
+        this.t926Issues = t926Issues;
     }
 
     public Integer getT926Cases() {
@@ -96,12 +96,12 @@ public class T926 implements Serializable {
         this.t926Cases = t926Cases;
     }
 
-    public Integer getT926RealDefects() {
-        return t926RealDefects;
+    public Integer getT926RealIssues() {
+        return t926RealIssues;
     }
 
-    public void setT926RealDefects(Integer t926RealDefects) {
-        this.t926RealDefects = t926RealDefects;
+    public void setT926RealIssues(Integer t926RealIssues) {
+        this.t926RealIssues = t926RealIssues;
     }
 
     public Requirement getRequirement() {

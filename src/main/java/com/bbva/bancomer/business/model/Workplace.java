@@ -13,51 +13,48 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge025_sede", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "thge025_sede", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_SEDE"})})
-@NamedQueries({
-        @NamedQuery(name = "Workplace.findAll", query = "SELECT t FROM Workplace t")})
 public class Workplace implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_SEDE", nullable = false)
-    private Integer cdSede;
+    private Integer workplaceId;
     @Basic(optional = false)
     @Column(name = "NB_SEDE", nullable = false, length = 25)
-    private String nbSede;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdSede")
+    private String workplaceName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "workplace")
     private List<Access> accessList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdSede")
-    private List<ExternalUser> externalUserList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "workplace")
+    private List<ExternalUser> externalUsers;
 
     public Workplace() {
     }
 
-    public Workplace(Integer cdSede) {
-        this.cdSede = cdSede;
+    public Workplace(Integer workplaceId) {
+        this.workplaceId = workplaceId;
     }
 
-    public Workplace(Integer cdSede, String nbSede) {
-        this.cdSede = cdSede;
-        this.nbSede = nbSede;
+    public Workplace(Integer workplaceId, String workplaceName) {
+        this.workplaceId = workplaceId;
+        this.workplaceName = workplaceName;
     }
 
-    public Integer getCdSede() {
-        return cdSede;
+    public Integer getWorkplaceId() {
+        return workplaceId;
     }
 
-    public void setCdSede(Integer cdSede) {
-        this.cdSede = cdSede;
+    public void setWorkplaceId(Integer workplaceId) {
+        this.workplaceId = workplaceId;
     }
 
-    public String getNbSede() {
-        return nbSede;
+    public String getWorkplaceName() {
+        return workplaceName;
     }
 
-    public void setNbSede(String nbSede) {
-        this.nbSede = nbSede;
+    public void setWorkplaceName(String workplaceName) {
+        this.workplaceName = workplaceName;
     }
 
     public List<Access> getAccessList() {
@@ -68,37 +65,33 @@ public class Workplace implements Serializable {
         this.accessList = accessList;
     }
 
-    public List<ExternalUser> getExternalUserList() {
-        return externalUserList;
+    public List<ExternalUser> getExternalUsers() {
+        return externalUsers;
     }
 
-    public void setExternalUserList(List<ExternalUser> externalUserList) {
-        this.externalUserList = externalUserList;
+    public void setExternalUsers(List<ExternalUser> externalUsers) {
+        this.externalUsers = externalUsers;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdSede != null ? cdSede.hashCode() : 0);
+        hash += (workplaceId != null ? workplaceId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Workplace)) {
             return false;
         }
         Workplace other = (Workplace) object;
-        if ((this.cdSede == null && other.cdSede != null) || (this.cdSede != null && !this.cdSede.equals(other.cdSede))) {
-            return false;
-        }
-        return true;
+        return (this.workplaceId != null || other.workplaceId == null) && (this.workplaceId == null || this.workplaceId.equals(other.workplaceId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Workplace[ cdSede=" + cdSede + " ]";
+        return "com.bbva.Workplace[ workplaceId=" + workplaceId + " ]";
     }
 
 }

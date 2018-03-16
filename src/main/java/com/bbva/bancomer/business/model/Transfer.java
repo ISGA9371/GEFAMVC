@@ -14,146 +14,139 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "thge012_traspaso", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "Transfer.findAll", query = "SELECT t FROM Transfer t")})
 public class Transfer implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_TRASPASO", nullable = false)
-    private Integer cdTraspaso;
+    private Integer transferId;
     @Basic(optional = false)
     @Column(name = "FH_TRASPASO", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fhTraspaso;
+    private Date transferDate;
     @Column(name = "FH_RETIRO")
     @Temporal(TemporalType.DATE)
-    private Date fhRetiro;
+    private Date transferWithdrawalDate;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "IM_TRASPASO", precision = 22)
-    private Double imTraspaso;
+    private Double transferValue;
     @Column(name = "IM_RETIRO", precision = 22)
-    private Double imRetiro;
+    private Double transferWithdrawalValue;
     @Column(name = "TX_COMENTARIO", length = 200)
-    private String txComentario;
+    private String transferComment;
     @JoinColumn(name = "CD_PEP", referencedColumnName = "CD_PEP")
     @ManyToOne
-    private Budget cdPep;
+    private Budget budget;
     @JoinColumn(name = "CD_NIVEL_SUBDIR", referencedColumnName = "CD_NIVEL")
     @ManyToOne
-    private Level cdLevelSubdir;
+    private Level level;
     @JoinColumn(name = "CD_USU_RESP_DYD", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
-    private User cdUsuRespDyd;
+    private User user;
 
     public Transfer() {
     }
 
-    public Transfer(Integer cdTraspaso) {
-        this.cdTraspaso = cdTraspaso;
+    public Transfer(Integer transferId) {
+        this.transferId = transferId;
     }
 
-    public Transfer(Integer cdTraspaso, Date fhTraspaso) {
-        this.cdTraspaso = cdTraspaso;
-        this.fhTraspaso = fhTraspaso;
+    public Transfer(Integer transferId, Date transferDate) {
+        this.transferId = transferId;
+        this.transferDate = transferDate;
     }
 
-    public Integer getCdTraspaso() {
-        return cdTraspaso;
+    public Integer getTransferId() {
+        return transferId;
     }
 
-    public void setCdTraspaso(Integer cdTraspaso) {
-        this.cdTraspaso = cdTraspaso;
+    public void setTransferId(Integer transferId) {
+        this.transferId = transferId;
     }
 
-    public Date getFhTraspaso() {
-        return fhTraspaso;
+    public Date getTransferDate() {
+        return transferDate;
     }
 
-    public void setFhTraspaso(Date fhTraspaso) {
-        this.fhTraspaso = fhTraspaso;
+    public void setTransferDate(Date transferDate) {
+        this.transferDate = transferDate;
     }
 
-    public Date getFhRetiro() {
-        return fhRetiro;
+    public Date getTransferWithdrawalDate() {
+        return transferWithdrawalDate;
     }
 
-    public void setFhRetiro(Date fhRetiro) {
-        this.fhRetiro = fhRetiro;
+    public void setTransferWithdrawalDate(Date transferWithdrawalDate) {
+        this.transferWithdrawalDate = transferWithdrawalDate;
     }
 
-    public Double getImTraspaso() {
-        return imTraspaso;
+    public Double getTransferValue() {
+        return transferValue;
     }
 
-    public void setImTraspaso(Double imTraspaso) {
-        this.imTraspaso = imTraspaso;
+    public void setTransferValue(Double transferValue) {
+        this.transferValue = transferValue;
     }
 
-    public Double getImRetiro() {
-        return imRetiro;
+    public Double getTransferWithdrawalValue() {
+        return transferWithdrawalValue;
     }
 
-    public void setImRetiro(Double imRetiro) {
-        this.imRetiro = imRetiro;
+    public void setTransferWithdrawalValue(Double transferWithdrawalValue) {
+        this.transferWithdrawalValue = transferWithdrawalValue;
     }
 
-    public String getTxComentario() {
-        return txComentario;
+    public String getTransferComment() {
+        return transferComment;
     }
 
-    public void setTxComentario(String txComentario) {
-        this.txComentario = txComentario;
+    public void setTransferComment(String transferComment) {
+        this.transferComment = transferComment;
     }
 
-    public Budget getCdPep() {
-        return cdPep;
+    public Budget getBudget() {
+        return budget;
     }
 
-    public void setCdPep(Budget cdPep) {
-        this.cdPep = cdPep;
+    public void setBudget(Budget budget) {
+        this.budget = budget;
     }
 
-    public Level getCdLevelSubdir() {
-        return cdLevelSubdir;
+    public Level getLevel() {
+        return level;
     }
 
-    public void setCdLevelSubdir(Level cdLevelSubdir) {
-        this.cdLevelSubdir = cdLevelSubdir;
+    public void setLevel(Level level) {
+        this.level = level;
     }
 
-    public User getCdUsuRespDyd() {
-        return cdUsuRespDyd;
+    public User getUser() {
+        return user;
     }
 
-    public void setCdUsuRespDyd(User cdUsuRespDyd) {
-        this.cdUsuRespDyd = cdUsuRespDyd;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdTraspaso != null ? cdTraspaso.hashCode() : 0);
+        hash += (transferId != null ? transferId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Transfer)) {
             return false;
         }
         Transfer other = (Transfer) object;
-        if ((this.cdTraspaso == null && other.cdTraspaso != null) || (this.cdTraspaso != null && !this.cdTraspaso.equals(other.cdTraspaso))) {
-            return false;
-        }
-        return true;
+        return (this.transferId != null || other.transferId == null) && (this.transferId == null || this.transferId.equals(other.transferId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Transfer[ cdTraspaso=" + cdTraspaso + " ]";
+        return "com.bbva.Transfer[ transferId=" + transferId + " ]";
     }
 
 }

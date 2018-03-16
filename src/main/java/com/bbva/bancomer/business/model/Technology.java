@@ -15,120 +15,113 @@ import java.util.List;
 @Entity
 @Table(name = "thge002_tecnologia", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_TECNOLOGIA"})})
-@NamedQueries({
-        @NamedQuery(name = "Technology.findAll", query = "SELECT t FROM Technology t")})
 public class Technology implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_TECNOLOGIA", nullable = false)
-    private Integer cdTecnologia;
+    private Integer technologyId;
     @Basic(optional = false)
     @Column(name = "NB_TECNOLOGIA", nullable = false, length = 25)
-    private String nbTecnologia;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTechnology")
-    private List<Fare> fareList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTechnology")
-    private List<Application> applicationList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTechnology")
-    private List<Requirement> requirementList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTechnology")
-    private List<Contract> contractList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTechnology")
-    private List<Product> productList;
+    private String technologyName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "technology")
+    private List<Fare> fares;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "technology")
+    private List<Application> applications;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "technology")
+    private List<Requirement> requirements;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "technology")
+    private List<Contract> contracts;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "technology")
+    private List<Product> products;
 
     public Technology() {
     }
 
-    public Technology(Integer cdTecnologia) {
-        this.cdTecnologia = cdTecnologia;
+    public Technology(Integer technologyId) {
+        this.technologyId = technologyId;
     }
 
-    public Technology(Integer cdTecnologia, String nbTecnologia) {
-        this.cdTecnologia = cdTecnologia;
-        this.nbTecnologia = nbTecnologia;
+    public Technology(Integer technologyId, String technologyName) {
+        this.technologyId = technologyId;
+        this.technologyName = technologyName;
     }
 
-    public Integer getCdTecnologia() {
-        return cdTecnologia;
+    public Integer getTechnologyId() {
+        return technologyId;
     }
 
-    public void setCdTecnologia(Integer cdTecnologia) {
-        this.cdTecnologia = cdTecnologia;
+    public void setTechnologyId(Integer technologyId) {
+        this.technologyId = technologyId;
     }
 
-    public String getNbTecnologia() {
-        return nbTecnologia;
+    public String getTechnologyName() {
+        return technologyName;
     }
 
-    public void setNbTecnologia(String nbTecnologia) {
-        this.nbTecnologia = nbTecnologia;
+    public void setTechnologyName(String technologyName) {
+        this.technologyName = technologyName;
     }
 
-    public List<Fare> getFareList() {
-        return fareList;
+    public List<Fare> getFares() {
+        return fares;
     }
 
-    public void setFareList(List<Fare> fareList) {
-        this.fareList = fareList;
+    public void setFares(List<Fare> fares) {
+        this.fares = fares;
     }
 
-    public List<Application> getApplicationList() {
-        return applicationList;
+    public List<Application> getApplications() {
+        return applications;
     }
 
-    public void setApplicationList(List<Application> applicationList) {
-        this.applicationList = applicationList;
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
     }
 
-    public List<Requirement> getRequirementList() {
-        return requirementList;
+    public List<Requirement> getRequirements() {
+        return requirements;
     }
 
-    public void setRequirementList(List<Requirement> requirementList) {
-        this.requirementList = requirementList;
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
     }
 
-    public List<Contract> getContractList() {
-        return contractList;
+    public List<Contract> getContracts() {
+        return contracts;
     }
 
-    public void setContractList(List<Contract> contractList) {
-        this.contractList = contractList;
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdTecnologia != null ? cdTecnologia.hashCode() : 0);
+        hash += (technologyId != null ? technologyId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Technology)) {
             return false;
         }
         Technology other = (Technology) object;
-        if ((this.cdTecnologia == null && other.cdTecnologia != null) || (this.cdTecnologia != null && !this.cdTecnologia.equals(other.cdTecnologia))) {
-            return false;
-        }
-        return true;
+        return (this.technologyId != null || other.technologyId == null) && (this.technologyId == null || this.technologyId.equals(other.technologyId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Technology[ cdTecnologia=" + cdTecnologia + " ]";
+        return "com.bbva.Technology[ technologyId=" + technologyId + " ]";
     }
 
 }
