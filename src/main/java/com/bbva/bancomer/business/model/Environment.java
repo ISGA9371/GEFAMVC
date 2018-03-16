@@ -13,49 +13,46 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge049_entorno", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
+@Table(name = "thge049_entorno", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_ENTORNO"})})
-@NamedQueries({
-        @NamedQuery(name = "Environment.findAll", query = "SELECT t FROM Environment t")})
 public class Environment implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_ENTORNO", nullable = false)
-    private Integer cdEntorno;
+    private Integer environmentId;
     @Basic(optional = false)
     @Column(name = "NB_ENTORNO", nullable = false, length = 25)
-    private String nbEntorno;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdEnvironment")
+    private String environmentName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "environment")
     private List<T955> t955List;
 
     public Environment() {
     }
 
-    public Environment(Integer cdEntorno) {
-        this.cdEntorno = cdEntorno;
+    public Environment(Integer environmentId) {
+        this.environmentId = environmentId;
     }
 
-    public Environment(Integer cdEntorno, String nbEntorno) {
-        this.cdEntorno = cdEntorno;
-        this.nbEntorno = nbEntorno;
+    public Environment(Integer environmentId, String environmentName) {
+        this.environmentId = environmentId;
+        this.environmentName = environmentName;
     }
 
-    public Integer getCdEntorno() {
-        return cdEntorno;
+    public Integer getEnvironmentId() {
+        return environmentId;
     }
 
-    public void setCdEntorno(Integer cdEntorno) {
-        this.cdEntorno = cdEntorno;
+    public void setEnvironmentId(Integer environmentId) {
+        this.environmentId = environmentId;
     }
 
-    public String getNbEntorno() {
-        return nbEntorno;
+    public String getEnvironmentName() {
+        return environmentName;
     }
 
-    public void setNbEntorno(String nbEntorno) {
-        this.nbEntorno = nbEntorno;
+    public void setEnvironmentName(String environmentName) {
+        this.environmentName = environmentName;
     }
 
     public List<T955> getT955List() {
@@ -69,26 +66,22 @@ public class Environment implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdEntorno != null ? cdEntorno.hashCode() : 0);
+        hash += (environmentId != null ? environmentId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Environment)) {
             return false;
         }
         Environment other = (Environment) object;
-        if ((this.cdEntorno == null && other.cdEntorno != null) || (this.cdEntorno != null && !this.cdEntorno.equals(other.cdEntorno))) {
-            return false;
-        }
-        return true;
+        return (this.environmentId != null || other.environmentId == null) && (this.environmentId == null || this.environmentId.equals(other.environmentId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Environment[ cdEntorno=" + cdEntorno + " ]";
+        return "com.bbva.Environment[ environmentId=" + environmentId + " ]";
     }
 
 }

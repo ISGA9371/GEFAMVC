@@ -13,7 +13,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge025_sede", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
+@Table(name = "thge025_sede", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_SEDE"})})
 @NamedQueries({
         @NamedQuery(name = "Workplace.findAll", query = "SELECT t FROM Workplace t")})

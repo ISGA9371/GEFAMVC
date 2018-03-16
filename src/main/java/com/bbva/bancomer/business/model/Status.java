@@ -22,45 +22,45 @@ public class Status implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "CD_ESTADO", nullable = false)
-    private Integer cdEstado;
+    private Integer statusId;
     @Basic(optional = false)
     @Column(name = "NB_ESTADO", nullable = false, length = 50)
-    private String nbEstado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stEmpresa")
-    private List<Company> companyList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stPep")
-    private List<Budget> pepList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stDyd")
-    private List<Budget> pepList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stTarifa")
-    private List<Fare> fareList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stStatusUsuario")
-    private List<User> userList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stPepFact")
-    private List<Invoice> invoiceList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stPago")
-    private List<Invoice> invoiceList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stFactHrsProy")
-    private List<Invoice> invoiceList2;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stRequerimiento")
-    private List<Requirement> requirementList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stModificacion")
+    private String statusName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<Company> companies;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "budgetStatus")
+    private List<Budget> budgets;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusDyd")
+    private List<Budget> budgetsDyd;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<Fare> fares;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<User> users;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusBudget")
+    private List<Invoice> budgetInvoices;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<Invoice> invoices;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusHours")
+    private List<Invoice> hourInvoices;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<Requirement> requirements;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "modificationStatus")
     private List<Modification> modificationList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stTipif")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Modification> modificationList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stContrato")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Contract> contractList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stAcceso")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Access> accessList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stDuda")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Doubt> doubtList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stStatus")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Typology> typologyList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stRecExt")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<ExternalUser> externalUserList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdEdoDefecto")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<T955> t955List;
-    @OneToMany(mappedBy = "stIncidencia")
+    @OneToMany(mappedBy = "status")
     private List<Issue> issueList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stTipificacion")
     private List<Component> componentList;
@@ -68,106 +68,106 @@ public class Status implements Serializable {
     private List<Component> componentList1;
     @JoinColumn(name = "CD_TIPO_EDO", referencedColumnName = "CD_TIPO_EDO", nullable = false)
     @ManyToOne(optional = false)
-    private StatusType cdStatusType;
+    private StatusType statusType;
 
     public Status() {
     }
 
-    public Status(Integer cdEstado) {
-        this.cdEstado = cdEstado;
+    public Status(Integer statusId) {
+        this.statusId = statusId;
     }
 
-    public Status(Integer cdEstado, String nbEstado) {
-        this.cdEstado = cdEstado;
-        this.nbEstado = nbEstado;
+    public Status(Integer statusId, String statusName) {
+        this.statusId = statusId;
+        this.statusName = statusName;
     }
 
-    public Integer getCdEstado() {
-        return cdEstado;
+    public Integer getStatusId() {
+        return statusId;
     }
 
-    public void setCdEstado(Integer cdEstado) {
-        this.cdEstado = cdEstado;
+    public void setStatusId(Integer statusId) {
+        this.statusId = statusId;
     }
 
-    public String getNbEstado() {
-        return nbEstado;
+    public String getStatusName() {
+        return statusName;
     }
 
-    public void setNbEstado(String nbEstado) {
-        this.nbEstado = nbEstado;
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
     }
 
-    public List<Company> getCompanyList() {
-        return companyList;
+    public List<Company> getCompanies() {
+        return companies;
     }
 
-    public void setCompanyList(List<Company> companyList) {
-        this.companyList = companyList;
+    public void setCompanies(List<Company> companies) {
+        this.companies = companies;
     }
 
-    public List<Budget> getPepList() {
-        return pepList;
+    public List<Budget> getBudgets() {
+        return budgets;
     }
 
-    public void setPepList(List<Budget> pepList) {
-        this.pepList = pepList;
+    public void setBudgets(List<Budget> budgets) {
+        this.budgets = budgets;
     }
 
-    public List<Budget> getPepList1() {
-        return pepList1;
+    public List<Budget> getBudgetsDyd() {
+        return budgetsDyd;
     }
 
-    public void setPepList1(List<Budget> pepList1) {
-        this.pepList1 = pepList1;
+    public void setBudgetsDyd(List<Budget> budgetsDyd) {
+        this.budgetsDyd = budgetsDyd;
     }
 
-    public List<Fare> getFareList() {
-        return fareList;
+    public List<Fare> getFares() {
+        return fares;
     }
 
-    public void setFareList(List<Fare> fareList) {
-        this.fareList = fareList;
+    public void setFares(List<Fare> fares) {
+        this.fares = fares;
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
-    public List<Invoice> getInvoiceList() {
-        return invoiceList;
+    public List<Invoice> getBudgetInvoices() {
+        return budgetInvoices;
     }
 
-    public void setInvoiceList(List<Invoice> invoiceList) {
-        this.invoiceList = invoiceList;
+    public void setBudgetInvoices(List<Invoice> budgetInvoices) {
+        this.budgetInvoices = budgetInvoices;
     }
 
-    public List<Invoice> getInvoiceList1() {
-        return invoiceList1;
+    public List<Invoice> getInvoices() {
+        return invoices;
     }
 
-    public void setInvoiceList1(List<Invoice> invoiceList1) {
-        this.invoiceList1 = invoiceList1;
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
     }
 
-    public List<Invoice> getInvoiceList2() {
-        return invoiceList2;
+    public List<Invoice> getHourInvoices() {
+        return hourInvoices;
     }
 
-    public void setInvoiceList2(List<Invoice> invoiceList2) {
-        this.invoiceList2 = invoiceList2;
+    public void setHourInvoices(List<Invoice> hourInvoices) {
+        this.hourInvoices = hourInvoices;
     }
 
-    public List<Requirement> getRequirementList() {
-        return requirementList;
+    public List<Requirement> getRequirements() {
+        return requirements;
     }
 
-    public void setRequirementList(List<Requirement> requirementList) {
-        this.requirementList = requirementList;
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
     }
 
     public List<Modification> getModificationList() {
@@ -258,18 +258,18 @@ public class Status implements Serializable {
         this.componentList1 = componentList1;
     }
 
-    public StatusType getCdStatusType() {
-        return cdStatusType;
+    public StatusType getStatusType() {
+        return statusType;
     }
 
-    public void setCdStatusType(StatusType cdStatusType) {
-        this.cdStatusType = cdStatusType;
+    public void setStatusType(StatusType statusType) {
+        this.statusType = statusType;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdEstado != null ? cdEstado.hashCode() : 0);
+        hash += (statusId != null ? statusId.hashCode() : 0);
         return hash;
     }
 
@@ -280,7 +280,7 @@ public class Status implements Serializable {
             return false;
         }
         Status other = (Status) object;
-        if ((this.cdEstado == null && other.cdEstado != null) || (this.cdEstado != null && !this.cdEstado.equals(other.cdEstado))) {
+        if ((this.statusId == null && other.statusId != null) || (this.statusId != null && !this.statusId.equals(other.statusId))) {
             return false;
         }
         return true;
@@ -288,7 +288,7 @@ public class Status implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bbva.Status[ cdEstado=" + cdEstado + " ]";
+        return "com.bbva.Status[ statusId=" + statusId + " ]";
     }
 
 }

@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge032_tipo_cont", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
+@Table(name = "thge032_tipo_cont", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_TIPO_CONTRATO"})})
 public class ContractType implements Serializable {
     private static final long serialVersionUID = 1L;

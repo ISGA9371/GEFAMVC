@@ -14,454 +14,447 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "thge024_ctrl_ext", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "ExternalUser.findAll", query = "SELECT t FROM ExternalUser t")})
 public class ExternalUser implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_EXTERNO", nullable = false)
-    private Integer cdExterno;
+    private Integer externalUserId;
     @Column(name = "CD_USUARIO_CORP", length = 10)
-    private String cdUsuarioCorp;
+    private String externalUserCorpId;
     @Basic(optional = false)
     @Column(name = "NB_REC_EXTERNO", nullable = false, length = 50)
-    private String nbRecExterno;
+    private String externalUserName;
     @Basic(optional = false)
     @Column(name = "NB_APELL_PAT", nullable = false, length = 30)
-    private String nbApellPat;
+    private String externalUserLastName;
     @Column(name = "NB_APELL_MAT", length = 30)
-    private String nbApellMat;
+    private String externalUserSecondLastName;
     @Column(name = "TX_RFC", length = 13)
-    private String txRfc;
+    private String externalUserRfc;
     @Column(name = "TX_CURP", length = 18)
-    private String txCurp;
+    private String externalUserCurp;
     @Column(name = "TX_NSS", length = 11)
-    private String txNss;
+    private String externalUserNss;
     @Column(name = "FH_NACIMIENTO")
     @Temporal(TemporalType.DATE)
-    private Date fhNacimiento;
+    private Date externalUserBirthDate;
     @Basic(optional = false)
     @Column(name = "CD_GENERO", nullable = false)
-    private Character cdGenero;
+    private Character externalUserGender;
     @Basic(optional = false)
     @Column(name = "TP_RECURSO", nullable = false, length = 7)
-    private String tpRecurso;
+    private String externalUserType;
     @Basic(optional = false)
     @Column(name = "CD_TIPO_CONTRATO", nullable = false)
-    private int cdTipoContrato;
+    private int externalUserContractType;
     @Column(name = "TX_DIR_SCRUM", length = 25)
-    private String txDirScrum;
+    private String externalUserScrum;
     @Column(name = "NB_PROY_EXT", length = 150)
-    private String nbProyExt;
+    private String externalUserProjectName;
     @Column(name = "FH_INIC_PROY", length = 45)
-    private String fhInicProy;
+    private String externalUserProjectStartDate;
     @Column(name = "FH_FIN_PROY")
     @Temporal(TemporalType.DATE)
-    private Date fhFinProy;
+    private Date externalUserProjectFinalDate;
     @Basic(optional = false)
     @Column(name = "TP_PROY", nullable = false, length = 8)
-    private String tpProy;
+    private String externalUserProjectType;
     @Column(name = "NB_JEFE_INMED", length = 50)
-    private String nbJefeInmed;
+    private String externalUserBossName;
     @Column(name = "TX_TEL_JEFE_INMED", length = 25)
-    private String txTelJefeInmed;
+    private String externalUserBossPhone;
     @Column(name = "TX_UBIC_JEF_INMED", length = 50)
-    private String txUbicJefInmed;
+    private String externalUserBossLocation;
     @Column(name = "TX_HOST", length = 2)
-    private String txHost;
+    private String externalUserHost;
     @Column(name = "TX_VPN", length = 9)
-    private String txVpn;
+    private String externalUserVpn;
     @Column(name = "FH_VIGENCIA_TOKEN")
     @Temporal(TemporalType.DATE)
-    private Date fhVigenciaToken;
+    private Date externalUserTokenExpirationDate;
     @Column(name = "NU_PISO")
-    private Integer nuPiso;
+    private Integer externalUserFloor;
     @Column(name = "TX_ESTACION", length = 6)
-    private String txEstacion;
+    private String externalUserStation;
     @Column(name = "TX_CORREO_ELECTR", length = 70)
-    private String txCorreoElectr;
+    private String externalUserEmail;
     @Column(name = "TX_HORARIO", length = 17)
-    private String txHorario;
+    private String externalUserSchedule;
     @Column(name = "FH_ALTA")
     @Temporal(TemporalType.DATE)
-    private Date fhAlta;
+    private Date externalUserUploadDate;
     @JoinColumn(name = "CD_EMPRESA", referencedColumnName = "CD_EMPRESA", nullable = false)
     @ManyToOne(optional = false)
-    private Company cdCompany;
+    private Company company;
     @JoinColumn(name = "ST_REC_EXT", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stRecExt;
+    private Status status;
     @JoinColumn(name = "CD_USUARIO_GESTOR", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
-    private User cdUserGestor;
+    private User manager;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private User cdUserResp;
+    private User responsible;
     @JoinColumn(name = "CD_PAIS", referencedColumnName = "CD_PAIS", nullable = false)
     @ManyToOne(optional = false)
-    private Country cdCountry;
+    private Country country;
     @JoinColumn(name = "CD_PERFIL_REC", referencedColumnName = "CD_TIPO_PERFIL", nullable = false)
     @ManyToOne(optional = false)
-    private ProfileType cdPerfilRec;
+    private ProfileType profileType;
     @JoinColumn(name = "CD_SBCLAS_REC", referencedColumnName = "CD_SBCLAS_REC", nullable = false)
     @ManyToOne(optional = false)
-    private RequirementSubClassification cdSbclasRec;
+    private RequirementSubClassification requirementSubClassification;
     @JoinColumn(name = "CD_SEDE", referencedColumnName = "CD_SEDE", nullable = false)
     @ManyToOne(optional = false)
-    private Workplace cdWorkplace;
+    private Workplace workplace;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
-    private Area cdArea;
+    private Area area;
     @JoinColumn(name = "CD_TIPO_ASIG", referencedColumnName = "CD_TIPO_ASIG", nullable = false)
     @ManyToOne(optional = false)
-    private AssignationType cdAssignationType;
+    private AssignationType assignationType;
 
     public ExternalUser() {
     }
 
-    public ExternalUser(Integer cdExterno) {
-        this.cdExterno = cdExterno;
+    public ExternalUser(Integer externalUserId) {
+        this.externalUserId = externalUserId;
     }
 
-    public ExternalUser(Integer cdExterno, String nbRecExterno, String nbApellPat, Character cdGenero, String tpRecurso, int cdTipoContrato, String tpProy) {
-        this.cdExterno = cdExterno;
-        this.nbRecExterno = nbRecExterno;
-        this.nbApellPat = nbApellPat;
-        this.cdGenero = cdGenero;
-        this.tpRecurso = tpRecurso;
-        this.cdTipoContrato = cdTipoContrato;
-        this.tpProy = tpProy;
+    public ExternalUser(Integer externalUserId, String externalUserName, String externalUserLastName, Character externalUserGender, String externalUserType, int externalUserContractType, String externalUserProjectType) {
+        this.externalUserId = externalUserId;
+        this.externalUserName = externalUserName;
+        this.externalUserLastName = externalUserLastName;
+        this.externalUserGender = externalUserGender;
+        this.externalUserType = externalUserType;
+        this.externalUserContractType = externalUserContractType;
+        this.externalUserProjectType = externalUserProjectType;
     }
 
-    public Integer getCdExterno() {
-        return cdExterno;
+    public Integer getExternalUserId() {
+        return externalUserId;
     }
 
-    public void setCdExterno(Integer cdExterno) {
-        this.cdExterno = cdExterno;
+    public void setExternalUserId(Integer externalUserId) {
+        this.externalUserId = externalUserId;
     }
 
-    public String getCdUsuarioCorp() {
-        return cdUsuarioCorp;
+    public String getExternalUserCorpId() {
+        return externalUserCorpId;
     }
 
-    public void setCdUsuarioCorp(String cdUsuarioCorp) {
-        this.cdUsuarioCorp = cdUsuarioCorp;
+    public void setExternalUserCorpId(String externalUserCorpId) {
+        this.externalUserCorpId = externalUserCorpId;
     }
 
-    public String getNbRecExterno() {
-        return nbRecExterno;
+    public String getExternalUserName() {
+        return externalUserName;
     }
 
-    public void setNbRecExterno(String nbRecExterno) {
-        this.nbRecExterno = nbRecExterno;
+    public void setExternalUserName(String externalUserName) {
+        this.externalUserName = externalUserName;
     }
 
-    public String getNbApellPat() {
-        return nbApellPat;
+    public String getExternalUserLastName() {
+        return externalUserLastName;
     }
 
-    public void setNbApellPat(String nbApellPat) {
-        this.nbApellPat = nbApellPat;
+    public void setExternalUserLastName(String externalUserLastName) {
+        this.externalUserLastName = externalUserLastName;
     }
 
-    public String getNbApellMat() {
-        return nbApellMat;
+    public String getExternalUserSecondLastName() {
+        return externalUserSecondLastName;
     }
 
-    public void setNbApellMat(String nbApellMat) {
-        this.nbApellMat = nbApellMat;
+    public void setExternalUserSecondLastName(String externalUserSecondLastName) {
+        this.externalUserSecondLastName = externalUserSecondLastName;
     }
 
-    public String getTxRfc() {
-        return txRfc;
+    public String getExternalUserRfc() {
+        return externalUserRfc;
     }
 
-    public void setTxRfc(String txRfc) {
-        this.txRfc = txRfc;
+    public void setExternalUserRfc(String externalUserRfc) {
+        this.externalUserRfc = externalUserRfc;
     }
 
-    public String getTxCurp() {
-        return txCurp;
+    public String getExternalUserCurp() {
+        return externalUserCurp;
     }
 
-    public void setTxCurp(String txCurp) {
-        this.txCurp = txCurp;
+    public void setExternalUserCurp(String externalUserCurp) {
+        this.externalUserCurp = externalUserCurp;
     }
 
-    public String getTxNss() {
-        return txNss;
+    public String getExternalUserNss() {
+        return externalUserNss;
     }
 
-    public void setTxNss(String txNss) {
-        this.txNss = txNss;
+    public void setExternalUserNss(String externalUserNss) {
+        this.externalUserNss = externalUserNss;
     }
 
-    public Date getFhNacimiento() {
-        return fhNacimiento;
+    public Date getExternalUserBirthDate() {
+        return externalUserBirthDate;
     }
 
-    public void setFhNacimiento(Date fhNacimiento) {
-        this.fhNacimiento = fhNacimiento;
+    public void setExternalUserBirthDate(Date externalUserBirthDate) {
+        this.externalUserBirthDate = externalUserBirthDate;
     }
 
-    public Character getCdGenero() {
-        return cdGenero;
+    public Character getExternalUserGender() {
+        return externalUserGender;
     }
 
-    public void setCdGenero(Character cdGenero) {
-        this.cdGenero = cdGenero;
+    public void setExternalUserGender(Character externalUserGender) {
+        this.externalUserGender = externalUserGender;
     }
 
-    public String getTpRecurso() {
-        return tpRecurso;
+    public String getExternalUserType() {
+        return externalUserType;
     }
 
-    public void setTpRecurso(String tpRecurso) {
-        this.tpRecurso = tpRecurso;
+    public void setExternalUserType(String externalUserType) {
+        this.externalUserType = externalUserType;
     }
 
-    public int getCdTipoContrato() {
-        return cdTipoContrato;
+    public int getExternalUserContractType() {
+        return externalUserContractType;
     }
 
-    public void setCdTipoContrato(int cdTipoContrato) {
-        this.cdTipoContrato = cdTipoContrato;
+    public void setExternalUserContractType(int externalUserContractType) {
+        this.externalUserContractType = externalUserContractType;
     }
 
-    public String getTxDirScrum() {
-        return txDirScrum;
+    public String getExternalUserScrum() {
+        return externalUserScrum;
     }
 
-    public void setTxDirScrum(String txDirScrum) {
-        this.txDirScrum = txDirScrum;
+    public void setExternalUserScrum(String externalUserScrum) {
+        this.externalUserScrum = externalUserScrum;
     }
 
-    public String getNbProyExt() {
-        return nbProyExt;
+    public String getExternalUserProjectName() {
+        return externalUserProjectName;
     }
 
-    public void setNbProyExt(String nbProyExt) {
-        this.nbProyExt = nbProyExt;
+    public void setExternalUserProjectName(String externalUserProjectName) {
+        this.externalUserProjectName = externalUserProjectName;
     }
 
-    public String getFhInicProy() {
-        return fhInicProy;
+    public String getExternalUserProjectStartDate() {
+        return externalUserProjectStartDate;
     }
 
-    public void setFhInicProy(String fhInicProy) {
-        this.fhInicProy = fhInicProy;
+    public void setExternalUserProjectStartDate(String externalUserProjectStartDate) {
+        this.externalUserProjectStartDate = externalUserProjectStartDate;
     }
 
-    public Date getFhFinProy() {
-        return fhFinProy;
+    public Date getExternalUserProjectFinalDate() {
+        return externalUserProjectFinalDate;
     }
 
-    public void setFhFinProy(Date fhFinProy) {
-        this.fhFinProy = fhFinProy;
+    public void setExternalUserProjectFinalDate(Date externalUserProjectFinalDate) {
+        this.externalUserProjectFinalDate = externalUserProjectFinalDate;
     }
 
-    public String getTpProy() {
-        return tpProy;
+    public String getExternalUserProjectType() {
+        return externalUserProjectType;
     }
 
-    public void setTpProy(String tpProy) {
-        this.tpProy = tpProy;
+    public void setExternalUserProjectType(String externalUserProjectType) {
+        this.externalUserProjectType = externalUserProjectType;
     }
 
-    public String getNbJefeInmed() {
-        return nbJefeInmed;
+    public String getExternalUserBossName() {
+        return externalUserBossName;
     }
 
-    public void setNbJefeInmed(String nbJefeInmed) {
-        this.nbJefeInmed = nbJefeInmed;
+    public void setExternalUserBossName(String externalUserBossName) {
+        this.externalUserBossName = externalUserBossName;
     }
 
-    public String getTxTelJefeInmed() {
-        return txTelJefeInmed;
+    public String getExternalUserBossPhone() {
+        return externalUserBossPhone;
     }
 
-    public void setTxTelJefeInmed(String txTelJefeInmed) {
-        this.txTelJefeInmed = txTelJefeInmed;
+    public void setExternalUserBossPhone(String externalUserBossPhone) {
+        this.externalUserBossPhone = externalUserBossPhone;
     }
 
-    public String getTxUbicJefInmed() {
-        return txUbicJefInmed;
+    public String getExternalUserBossLocation() {
+        return externalUserBossLocation;
     }
 
-    public void setTxUbicJefInmed(String txUbicJefInmed) {
-        this.txUbicJefInmed = txUbicJefInmed;
+    public void setExternalUserBossLocation(String externalUserBossLocation) {
+        this.externalUserBossLocation = externalUserBossLocation;
     }
 
-    public String getTxHost() {
-        return txHost;
+    public String getExternalUserHost() {
+        return externalUserHost;
     }
 
-    public void setTxHost(String txHost) {
-        this.txHost = txHost;
+    public void setExternalUserHost(String externalUserHost) {
+        this.externalUserHost = externalUserHost;
     }
 
-    public String getTxVpn() {
-        return txVpn;
+    public String getExternalUserVpn() {
+        return externalUserVpn;
     }
 
-    public void setTxVpn(String txVpn) {
-        this.txVpn = txVpn;
+    public void setExternalUserVpn(String externalUserVpn) {
+        this.externalUserVpn = externalUserVpn;
     }
 
-    public Date getFhVigenciaToken() {
-        return fhVigenciaToken;
+    public Date getExternalUserTokenExpirationDate() {
+        return externalUserTokenExpirationDate;
     }
 
-    public void setFhVigenciaToken(Date fhVigenciaToken) {
-        this.fhVigenciaToken = fhVigenciaToken;
+    public void setExternalUserTokenExpirationDate(Date externalUserTokenExpirationDate) {
+        this.externalUserTokenExpirationDate = externalUserTokenExpirationDate;
     }
 
-    public Integer getNuPiso() {
-        return nuPiso;
+    public Integer getExternalUserFloor() {
+        return externalUserFloor;
     }
 
-    public void setNuPiso(Integer nuPiso) {
-        this.nuPiso = nuPiso;
+    public void setExternalUserFloor(Integer externalUserFloor) {
+        this.externalUserFloor = externalUserFloor;
     }
 
-    public String getTxEstacion() {
-        return txEstacion;
+    public String getExternalUserStation() {
+        return externalUserStation;
     }
 
-    public void setTxEstacion(String txEstacion) {
-        this.txEstacion = txEstacion;
+    public void setExternalUserStation(String externalUserStation) {
+        this.externalUserStation = externalUserStation;
     }
 
-    public String getTxCorreoElectr() {
-        return txCorreoElectr;
+    public String getExternalUserEmail() {
+        return externalUserEmail;
     }
 
-    public void setTxCorreoElectr(String txCorreoElectr) {
-        this.txCorreoElectr = txCorreoElectr;
+    public void setExternalUserEmail(String externalUserEmail) {
+        this.externalUserEmail = externalUserEmail;
     }
 
-    public String getTxHorario() {
-        return txHorario;
+    public String getExternalUserSchedule() {
+        return externalUserSchedule;
     }
 
-    public void setTxHorario(String txHorario) {
-        this.txHorario = txHorario;
+    public void setExternalUserSchedule(String externalUserSchedule) {
+        this.externalUserSchedule = externalUserSchedule;
     }
 
-    public Date getFhAlta() {
-        return fhAlta;
+    public Date getExternalUserUploadDate() {
+        return externalUserUploadDate;
     }
 
-    public void setFhAlta(Date fhAlta) {
-        this.fhAlta = fhAlta;
+    public void setExternalUserUploadDate(Date externalUserUploadDate) {
+        this.externalUserUploadDate = externalUserUploadDate;
     }
 
-    public Company getCdCompany() {
-        return cdCompany;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCdCompany(Company cdCompany) {
-        this.cdCompany = cdCompany;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
-    public Status getStRecExt() {
-        return stRecExt;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStRecExt(Status stRecExt) {
-        this.stRecExt = stRecExt;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public User getCdUserGestor() {
-        return cdUserGestor;
+    public User getManager() {
+        return manager;
     }
 
-    public void setCdUserGestor(User cdUserGestor) {
-        this.cdUserGestor = cdUserGestor;
+    public void setManager(User manager) {
+        this.manager = manager;
     }
 
-    public User getCdUserResp() {
-        return cdUserResp;
+    public User getResponsible() {
+        return responsible;
     }
 
-    public void setCdUserResp(User cdUserResp) {
-        this.cdUserResp = cdUserResp;
+    public void setResponsible(User responsible) {
+        this.responsible = responsible;
     }
 
-    public Country getCdCountry() {
-        return cdCountry;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setCdCountry(Country cdCountry) {
-        this.cdCountry = cdCountry;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
-    public ProfileType getCdPerfilRec() {
-        return cdPerfilRec;
+    public ProfileType getProfileType() {
+        return profileType;
     }
 
-    public void setCdPerfilRec(ProfileType cdPerfilRec) {
-        this.cdPerfilRec = cdPerfilRec;
+    public void setProfileType(ProfileType profileType) {
+        this.profileType = profileType;
     }
 
-    public RequirementSubClassification getCdSbclasRec() {
-        return cdSbclasRec;
+    public RequirementSubClassification getRequirementSubClassification() {
+        return requirementSubClassification;
     }
 
-    public void setCdSbclasRec(RequirementSubClassification cdSbclasRec) {
-        this.cdSbclasRec = cdSbclasRec;
+    public void setRequirementSubClassification(RequirementSubClassification requirementSubClassification) {
+        this.requirementSubClassification = requirementSubClassification;
     }
 
-    public Workplace getCdWorkplace() {
-        return cdWorkplace;
+    public Workplace getWorkplace() {
+        return workplace;
     }
 
-    public void setCdWorkplace(Workplace cdWorkplace) {
-        this.cdWorkplace = cdWorkplace;
+    public void setWorkplace(Workplace workplace) {
+        this.workplace = workplace;
     }
 
-    public Area getCdArea() {
-        return cdArea;
+    public Area getArea() {
+        return area;
     }
 
-    public void setCdArea(Area cdArea) {
-        this.cdArea = cdArea;
+    public void setArea(Area area) {
+        this.area = area;
     }
 
-    public AssignationType getCdAssignationType() {
-        return cdAssignationType;
+    public AssignationType getAssignationType() {
+        return assignationType;
     }
 
-    public void setCdAssignationType(AssignationType cdAssignationType) {
-        this.cdAssignationType = cdAssignationType;
+    public void setAssignationType(AssignationType assignationType) {
+        this.assignationType = assignationType;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdExterno != null ? cdExterno.hashCode() : 0);
+        hash += (externalUserId != null ? externalUserId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof ExternalUser)) {
             return false;
         }
         ExternalUser other = (ExternalUser) object;
-        if ((this.cdExterno == null && other.cdExterno != null) || (this.cdExterno != null && !this.cdExterno.equals(other.cdExterno))) {
-            return false;
-        }
-        return true;
+        return (this.externalUserId != null || other.externalUserId == null) && (this.externalUserId == null || this.externalUserId.equals(other.externalUserId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.ExternalUser[ cdExterno=" + cdExterno + " ]";
+        return "com.bbva.ExternalUser[ externalUserId=" + externalUserId + " ]";
     }
 
 }

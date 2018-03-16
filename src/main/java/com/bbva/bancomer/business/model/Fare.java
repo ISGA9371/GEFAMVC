@@ -13,126 +13,119 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "thge031_tarifa", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "Fare.findAll", query = "SELECT t FROM Fare t")})
 public class Fare implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_TARIFA", nullable = false)
-    private Integer cdTarifa;
+    private Integer fareId;
     @Basic(optional = false)
     @Column(name = "IM_TARIFA", nullable = false)
-    private double imTarifa;
+    private double fareValue;
     @Basic(optional = false)
     @Column(name = "NU_ANO_TARIFA", nullable = false)
-    private int nuAnoTarifa;
+    private int fareYear;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private Technology cdTechnology;
+    private Technology technology;
     @JoinColumn(name = "CD_EMPRESA", referencedColumnName = "CD_EMPRESA", nullable = false)
     @ManyToOne(optional = false)
-    private Company cdCompany;
+    private Company company;
     @JoinColumn(name = "ST_TARIFA", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stTarifa;
+    private Status status;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
-    private Area cdArea;
+    private Area area;
 
     public Fare() {
     }
 
-    public Fare(Integer cdTarifa) {
-        this.cdTarifa = cdTarifa;
+    public Fare(Integer fareId) {
+        this.fareId = fareId;
     }
 
-    public Fare(Integer cdTarifa, double imTarifa, int nuAnoTarifa) {
-        this.cdTarifa = cdTarifa;
-        this.imTarifa = imTarifa;
-        this.nuAnoTarifa = nuAnoTarifa;
+    public Fare(Integer fareId, double fareValue, int fareYear) {
+        this.fareId = fareId;
+        this.fareValue = fareValue;
+        this.fareYear = fareYear;
     }
 
-    public Integer getCdTarifa() {
-        return cdTarifa;
+    public Integer getFareId() {
+        return fareId;
     }
 
-    public void setCdTarifa(Integer cdTarifa) {
-        this.cdTarifa = cdTarifa;
+    public void setFareId(Integer fareId) {
+        this.fareId = fareId;
     }
 
-    public double getImTarifa() {
-        return imTarifa;
+    public double getFareValue() {
+        return fareValue;
     }
 
-    public void setImTarifa(double imTarifa) {
-        this.imTarifa = imTarifa;
+    public void setFareValue(double fareValue) {
+        this.fareValue = fareValue;
     }
 
-    public int getNuAnoTarifa() {
-        return nuAnoTarifa;
+    public int getFareYear() {
+        return fareYear;
     }
 
-    public void setNuAnoTarifa(int nuAnoTarifa) {
-        this.nuAnoTarifa = nuAnoTarifa;
+    public void setFareYear(int fareYear) {
+        this.fareYear = fareYear;
     }
 
-    public Technology getCdTechnology() {
-        return cdTechnology;
+    public Technology getTechnology() {
+        return technology;
     }
 
-    public void setCdTechnology(Technology cdTechnology) {
-        this.cdTechnology = cdTechnology;
+    public void setTechnology(Technology technology) {
+        this.technology = technology;
     }
 
-    public Company getCdCompany() {
-        return cdCompany;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCdCompany(Company cdCompany) {
-        this.cdCompany = cdCompany;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
-    public Status getStTarifa() {
-        return stTarifa;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStTarifa(Status stTarifa) {
-        this.stTarifa = stTarifa;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public Area getCdArea() {
-        return cdArea;
+    public Area getArea() {
+        return area;
     }
 
-    public void setCdArea(Area cdArea) {
-        this.cdArea = cdArea;
+    public void setArea(Area area) {
+        this.area = area;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdTarifa != null ? cdTarifa.hashCode() : 0);
+        hash += (fareId != null ? fareId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Fare)) {
             return false;
         }
         Fare other = (Fare) object;
-        if ((this.cdTarifa == null && other.cdTarifa != null) || (this.cdTarifa != null && !this.cdTarifa.equals(other.cdTarifa))) {
-            return false;
-        }
-        return true;
+        return (this.fareId != null || other.fareId == null) && (this.fareId == null || this.fareId.equals(other.fareId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Fare[ cdTarifa=" + cdTarifa + " ]";
+        return "com.bbva.Fare[ fareId=" + fareId + " ]";
     }
 
 }

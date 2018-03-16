@@ -14,48 +14,44 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "thge039_factura", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "Invoice.findAll", query = "SELECT t FROM Invoice t")})
 public class Invoice implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_FACTURA", nullable = false)
-    private Integer cdFactura;
+    private Integer invoiceId;
     @Basic(optional = false)
     @Column(name = "FH_CORTE", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fhCorte;
+    private Date invoiceCutDate;
     @Basic(optional = false)
     @Column(name = "IM_TARIFA", nullable = false)
-    private double imTarifa;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    private double invoiceRate;
     @Column(name = "IM_MONTO", precision = 22)
-    private Double imMonto;
+    private Double invoiceAmount;
     @Column(name = "TX_ACTIVO_FIJO", length = 12)
-    private String txActivoFijo;
+    private String invoiceFixedAsset;
     @Column(name = "TX_AVISO_PROV", length = 50)
-    private String txAvisoProv;
+    private String invoiceNotice;
     @Column(name = "FH_ENVIO_IMPLANT")
     @Temporal(TemporalType.DATE)
-    private Date fhEnvioImplant;
+    private Date invoiceSendDate;
     @Column(name = "NB_GLG", length = 23)
-    private String nbGlg;
+    private String invoiceNameGlg;
     @Column(name = "FH_REG_PAGO_GEST")
     @Temporal(TemporalType.DATE)
-    private Date fhRegPagoGest;
+    private Date invoiceManagerPaymentDate;
     @Column(name = "TX_OBSERVACION", length = 500)
-    private String txObservacion;
+    private String invoiceNote;
     @Column(name = "NU_FACT_PROV", length = 50)
-    private String nuFactProv;
+    private String invoiceTempNumber;
     @Column(name = "IM_FACT", precision = 22)
-    private Double imFact;
+    private Double invoiceValue;
     @Column(name = "FH_INGRESO_FACT")
     @Temporal(TemporalType.DATE)
-    private Date fhIngresoFact;
+    private Date invoiceInDate;
     @Column(name = "TX_VIA_INGRESO", length = 25)
-    private String txViaIngreso;
+    private String invoiceEntryWay;
     @Column(name = "TX_SEM_PRES_SUF")
     private Integer txSemPresSuf;
     @Column(name = "TX_SEM_PER_SUBD")
@@ -66,149 +62,149 @@ public class Invoice implements Serializable {
     private Integer txSemSubdCorr;
     @JoinColumn(name = "ST_PEP_FACT", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stPepFact;
+    private Status statusBudget;
     @JoinColumn(name = "ST_PAGO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stPago;
+    private Status status;
     @JoinColumn(name = "ST_FACT_HRS_PROY", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stFactHrsProy;
+    private Status statusHours;
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false)
     @ManyToOne(optional = false)
-    private Requirement cdRequerimiento;
+    private Requirement requirement;
     @JoinColumn(name = "CD_PEP_REQ", referencedColumnName = "CD_PEP_REQ", nullable = false)
     @ManyToOne(optional = false)
-    private BudgetRequirement cdBudgetRequirement;
+    private BudgetRequirement budgetRequirement;
     @JoinColumn(name = "CD_SEG_PAGO", referencedColumnName = "CD_SEG_PAGO")
     @ManyToOne
-    private Payment cdSegPago;
+    private Payment payment;
     @JoinColumn(name = "CD_CTA_OPER", referencedColumnName = "CD_CONS_CTA_OPER")
     @ManyToOne
-    private OperatingAccount cdOperatingAccount;
+    private OperatingAccount operatingAccount;
 
     public Invoice() {
     }
 
-    public Invoice(Integer cdFactura) {
-        this.cdFactura = cdFactura;
+    public Invoice(Integer invoiceId) {
+        this.invoiceId = invoiceId;
     }
 
-    public Invoice(Integer cdFactura, Date fhCorte, double imTarifa) {
-        this.cdFactura = cdFactura;
-        this.fhCorte = fhCorte;
-        this.imTarifa = imTarifa;
+    public Invoice(Integer invoiceId, Date invoiceCutDate, double invoiceRate) {
+        this.invoiceId = invoiceId;
+        this.invoiceCutDate = invoiceCutDate;
+        this.invoiceRate = invoiceRate;
     }
 
-    public Integer getCdFactura() {
-        return cdFactura;
+    public Integer getInvoiceId() {
+        return invoiceId;
     }
 
-    public void setCdFactura(Integer cdFactura) {
-        this.cdFactura = cdFactura;
+    public void setInvoiceId(Integer invoiceId) {
+        this.invoiceId = invoiceId;
     }
 
-    public Date getFhCorte() {
-        return fhCorte;
+    public Date getInvoiceCutDate() {
+        return invoiceCutDate;
     }
 
-    public void setFhCorte(Date fhCorte) {
-        this.fhCorte = fhCorte;
+    public void setInvoiceCutDate(Date invoiceCutDate) {
+        this.invoiceCutDate = invoiceCutDate;
     }
 
-    public double getImTarifa() {
-        return imTarifa;
+    public double getInvoiceRate() {
+        return invoiceRate;
     }
 
-    public void setImTarifa(double imTarifa) {
-        this.imTarifa = imTarifa;
+    public void setInvoiceRate(double invoiceRate) {
+        this.invoiceRate = invoiceRate;
     }
 
-    public Double getImMonto() {
-        return imMonto;
+    public Double getInvoiceAmount() {
+        return invoiceAmount;
     }
 
-    public void setImMonto(Double imMonto) {
-        this.imMonto = imMonto;
+    public void setInvoiceAmount(Double invoiceAmount) {
+        this.invoiceAmount = invoiceAmount;
     }
 
-    public String getTxActivoFijo() {
-        return txActivoFijo;
+    public String getInvoiceFixedAsset() {
+        return invoiceFixedAsset;
     }
 
-    public void setTxActivoFijo(String txActivoFijo) {
-        this.txActivoFijo = txActivoFijo;
+    public void setInvoiceFixedAsset(String invoiceFixedAsset) {
+        this.invoiceFixedAsset = invoiceFixedAsset;
     }
 
-    public String getTxAvisoProv() {
-        return txAvisoProv;
+    public String getInvoiceNotice() {
+        return invoiceNotice;
     }
 
-    public void setTxAvisoProv(String txAvisoProv) {
-        this.txAvisoProv = txAvisoProv;
+    public void setInvoiceNotice(String invoiceNotice) {
+        this.invoiceNotice = invoiceNotice;
     }
 
-    public Date getFhEnvioImplant() {
-        return fhEnvioImplant;
+    public Date getInvoiceSendDate() {
+        return invoiceSendDate;
     }
 
-    public void setFhEnvioImplant(Date fhEnvioImplant) {
-        this.fhEnvioImplant = fhEnvioImplant;
+    public void setInvoiceSendDate(Date invoiceSendDate) {
+        this.invoiceSendDate = invoiceSendDate;
     }
 
-    public String getNbGlg() {
-        return nbGlg;
+    public String getInvoiceNameGlg() {
+        return invoiceNameGlg;
     }
 
-    public void setNbGlg(String nbGlg) {
-        this.nbGlg = nbGlg;
+    public void setInvoiceNameGlg(String invoiceNameGlg) {
+        this.invoiceNameGlg = invoiceNameGlg;
     }
 
-    public Date getFhRegPagoGest() {
-        return fhRegPagoGest;
+    public Date getInvoiceManagerPaymentDate() {
+        return invoiceManagerPaymentDate;
     }
 
-    public void setFhRegPagoGest(Date fhRegPagoGest) {
-        this.fhRegPagoGest = fhRegPagoGest;
+    public void setInvoiceManagerPaymentDate(Date invoiceManagerPaymentDate) {
+        this.invoiceManagerPaymentDate = invoiceManagerPaymentDate;
     }
 
-    public String getTxObservacion() {
-        return txObservacion;
+    public String getInvoiceNote() {
+        return invoiceNote;
     }
 
-    public void setTxObservacion(String txObservacion) {
-        this.txObservacion = txObservacion;
+    public void setInvoiceNote(String invoiceNote) {
+        this.invoiceNote = invoiceNote;
     }
 
-    public String getNuFactProv() {
-        return nuFactProv;
+    public String getInvoiceTempNumber() {
+        return invoiceTempNumber;
     }
 
-    public void setNuFactProv(String nuFactProv) {
-        this.nuFactProv = nuFactProv;
+    public void setInvoiceTempNumber(String invoiceTempNumber) {
+        this.invoiceTempNumber = invoiceTempNumber;
     }
 
-    public Double getImFact() {
-        return imFact;
+    public Double getInvoiceValue() {
+        return invoiceValue;
     }
 
-    public void setImFact(Double imFact) {
-        this.imFact = imFact;
+    public void setInvoiceValue(Double invoiceValue) {
+        this.invoiceValue = invoiceValue;
     }
 
-    public Date getFhIngresoFact() {
-        return fhIngresoFact;
+    public Date getInvoiceInDate() {
+        return invoiceInDate;
     }
 
-    public void setFhIngresoFact(Date fhIngresoFact) {
-        this.fhIngresoFact = fhIngresoFact;
+    public void setInvoiceInDate(Date invoiceInDate) {
+        this.invoiceInDate = invoiceInDate;
     }
 
-    public String getTxViaIngreso() {
-        return txViaIngreso;
+    public String getInvoiceEntryWay() {
+        return invoiceEntryWay;
     }
 
-    public void setTxViaIngreso(String txViaIngreso) {
-        this.txViaIngreso = txViaIngreso;
+    public void setInvoiceEntryWay(String invoiceEntryWay) {
+        this.invoiceEntryWay = invoiceEntryWay;
     }
 
     public Integer getTxSemPresSuf() {
@@ -243,85 +239,81 @@ public class Invoice implements Serializable {
         this.txSemSubdCorr = txSemSubdCorr;
     }
 
-    public Status getStPepFact() {
-        return stPepFact;
+    public Status getStatusBudget() {
+        return statusBudget;
     }
 
-    public void setStPepFact(Status stPepFact) {
-        this.stPepFact = stPepFact;
+    public void setStatusBudget(Status statusBudget) {
+        this.statusBudget = statusBudget;
     }
 
-    public Status getStPago() {
-        return stPago;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStPago(Status stPago) {
-        this.stPago = stPago;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public Status getStFactHrsProy() {
-        return stFactHrsProy;
+    public Status getStatusHours() {
+        return statusHours;
     }
 
-    public void setStFactHrsProy(Status stFactHrsProy) {
-        this.stFactHrsProy = stFactHrsProy;
+    public void setStatusHours(Status statusHours) {
+        this.statusHours = statusHours;
     }
 
-    public Requirement getCdRequerimiento() {
-        return cdRequerimiento;
+    public Requirement getRequirement() {
+        return requirement;
     }
 
-    public void setCdRequerimiento(Requirement cdRequerimiento) {
-        this.cdRequerimiento = cdRequerimiento;
+    public void setRequirement(Requirement requirement) {
+        this.requirement = requirement;
     }
 
-    public BudgetRequirement getCdBudgetRequirement() {
-        return cdBudgetRequirement;
+    public BudgetRequirement getBudgetRequirement() {
+        return budgetRequirement;
     }
 
-    public void setCdBudgetRequirement(BudgetRequirement cdBudgetRequirement) {
-        this.cdBudgetRequirement = cdBudgetRequirement;
+    public void setBudgetRequirement(BudgetRequirement budgetRequirement) {
+        this.budgetRequirement = budgetRequirement;
     }
 
-    public Payment getCdSegPago() {
-        return cdSegPago;
+    public Payment getPayment() {
+        return payment;
     }
 
-    public void setCdSegPago(Payment cdSegPago) {
-        this.cdSegPago = cdSegPago;
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
-    public OperatingAccount getCdOperatingAccount() {
-        return cdOperatingAccount;
+    public OperatingAccount getOperatingAccount() {
+        return operatingAccount;
     }
 
-    public void setCdOperatingAccount(OperatingAccount cdOperatingAccount) {
-        this.cdOperatingAccount = cdOperatingAccount;
+    public void setOperatingAccount(OperatingAccount operatingAccount) {
+        this.operatingAccount = operatingAccount;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdFactura != null ? cdFactura.hashCode() : 0);
+        hash += (invoiceId != null ? invoiceId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Invoice)) {
             return false;
         }
         Invoice other = (Invoice) object;
-        if ((this.cdFactura == null && other.cdFactura != null) || (this.cdFactura != null && !this.cdFactura.equals(other.cdFactura))) {
-            return false;
-        }
-        return true;
+        return (this.invoiceId != null || other.invoiceId == null) && (this.invoiceId == null || this.invoiceId.equals(other.invoiceId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Invoice[ cdFactura=" + cdFactura + " ]";
+        return "com.bbva.Invoice[ invoiceId=" + invoiceId + " ]";
     }
 
 }

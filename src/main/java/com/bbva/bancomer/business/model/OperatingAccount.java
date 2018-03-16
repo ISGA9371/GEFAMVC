@@ -13,11 +13,9 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge055_cta_oper", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
+@Table(name = "thge055_cta_oper", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NU_CTA_OPERATIVA"})
         , @UniqueConstraint(columnNames = {"CD_CTA_OPER"})})
-@NamedQueries({
-        @NamedQuery(name = "OperatingAccount.findAll", query = "SELECT t FROM OperatingAccount t")})
 public class OperatingAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;

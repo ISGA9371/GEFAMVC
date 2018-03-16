@@ -14,197 +14,191 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "thge026_modif", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "Modification.findAll", query = "SELECT t FROM Modification t")})
 public class Modification implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_MODIFICACION", nullable = false)
-    private Integer cdModificacion;
+    private Integer modificationId;
     @Basic(optional = false)
     @Column(name = "TX_MOD_EN_VUELO", nullable = false, length = 2)
-    private String txModEnVuelo;
+    private String modificationOnTrack;
     @Basic(optional = false)
     @Column(name = "TX_MOD_RZDA_DYD", nullable = false, length = 2)
-    private String txModRzdaDyd;
+    private String modificationDoneDyd;
     @Column(name = "NB_DESC_MODIF", length = 1000)
-    private String nbDescModif;
+    private String modificationDescription;
     @Basic(optional = false)
     @Column(name = "FH_ENVIO", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fhEnvio;
+    private Date modificationSendDate;
     @Column(name = "FH_PREV_FINAL")
     @Temporal(TemporalType.DATE)
-    private Date fhPrevFinal;
+    private Date modificationPrevFinalDate;
     @Column(name = "FH_RENEGOCIADA")
     @Temporal(TemporalType.DATE)
-    private Date fhRenegociada;
+    private Date modificationRescheduleDate;
     @Basic(optional = false)
     @Column(name = "FH_CIERRE", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fhCierre;
+    private Date modificationEndDate;
     @Column(name = "TX_COMENT_MOD", length = 250)
-    private String txComentMod;
+    private String modificationComment;
     @Column(name = "TX_DIFICULTAD_INI")
-    private Character txDificultadIni;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    private Character modificationSeverity;
     @Column(name = "IM_COSTE_INIC", precision = 22)
-    private Double imCosteInic;
+    private Double modificationInitialCost;
     @Column(name = "CT_HORAS_INIC", precision = 22)
-    private Double ctHorasInic;
+    private Double modificationInitialHours;
     @Column(name = "TX_DIF_EMP")
     private Character txDifEmp;
     @Column(name = "IM_COSTE_EMP", precision = 22)
     private Double imCosteEmp;
     @Column(name = "CT_HORAS_EMP", precision = 22)
     private Double ctHorasEmp;
-    @Column(name = "THGE026_MODIFcol", length = 45)
-    private String tHGE026MODIFcol;
     @Column(name = "TX_COM_TIPIF_EMP", length = 500)
     private String txComTipifEmp;
     @Column(name = "TX_COM_TIPIF_PROY", length = 500)
     private String txComTipifProy;
     @Basic(optional = false)
     @Column(name = "TX_FACT_S_N", nullable = false, length = 2)
-    private String txFactSN;
+    private String modificationInvoiceId;
     @Column(name = "TX_MES_FACT", length = 10)
-    private String txMesFact;
+    private String modificationInvoiceMonth;
     @Column(name = "NU_ANO_FACT")
-    private Integer nuAnoFact;
+    private Integer modificationInvoiceYear;
     @JoinColumn(name = "ST_MODIFICACION", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stModificacion;
+    private Status modificationStatus;
     @JoinColumn(name = "ST_TIPIF", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stTipif;
+    private Status status;
     @JoinColumn(name = "CD_COMPONENTE", referencedColumnName = "CD_COMPONENTE", nullable = false)
     @ManyToOne(optional = false)
-    private Component cdComponent;
+    private Component component;
     @JoinColumn(name = "CD_USU_PETICION", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private User cdUsuPeticion;
+    private User userSender;
     @JoinColumn(name = "CD_RESP_RESOL", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private User cdRespResol;
+    private User userReceiver;
     @JoinColumn(name = "CD_PRIORIDAD_USU", referencedColumnName = "CD_PRIORIDAD", nullable = false)
     @ManyToOne(optional = false)
-    private Priority cdPriorityUsu;
+    private Priority priority;
     @JoinColumn(name = "CD_ORIGEN", referencedColumnName = "CD_ORIGEN", nullable = false)
     @ManyToOne(optional = false)
-    private Origin cdOrigin;
+    private Origin origin;
 
     public Modification() {
     }
 
-    public Modification(Integer cdModificacion) {
-        this.cdModificacion = cdModificacion;
+    public Modification(Integer modificationId) {
+        this.modificationId = modificationId;
     }
 
-    public Modification(Integer cdModificacion, String txModEnVuelo, String txModRzdaDyd, Date fhEnvio, Date fhCierre, String txFactSN) {
-        this.cdModificacion = cdModificacion;
-        this.txModEnVuelo = txModEnVuelo;
-        this.txModRzdaDyd = txModRzdaDyd;
-        this.fhEnvio = fhEnvio;
-        this.fhCierre = fhCierre;
-        this.txFactSN = txFactSN;
+    public Modification(Integer modificationId, String modificationOnTrack, String modificationDoneDyd, Date modificationSendDate, Date modificationEndDate, String modificationInvoiceId) {
+        this.modificationId = modificationId;
+        this.modificationOnTrack = modificationOnTrack;
+        this.modificationDoneDyd = modificationDoneDyd;
+        this.modificationSendDate = modificationSendDate;
+        this.modificationEndDate = modificationEndDate;
+        this.modificationInvoiceId = modificationInvoiceId;
     }
 
-    public Integer getCdModificacion() {
-        return cdModificacion;
+    public Integer getModificationId() {
+        return modificationId;
     }
 
-    public void setCdModificacion(Integer cdModificacion) {
-        this.cdModificacion = cdModificacion;
+    public void setModificationId(Integer modificationId) {
+        this.modificationId = modificationId;
     }
 
-    public String getTxModEnVuelo() {
-        return txModEnVuelo;
+    public String getModificationOnTrack() {
+        return modificationOnTrack;
     }
 
-    public void setTxModEnVuelo(String txModEnVuelo) {
-        this.txModEnVuelo = txModEnVuelo;
+    public void setModificationOnTrack(String modificationOnTrack) {
+        this.modificationOnTrack = modificationOnTrack;
     }
 
-    public String getTxModRzdaDyd() {
-        return txModRzdaDyd;
+    public String getModificationDoneDyd() {
+        return modificationDoneDyd;
     }
 
-    public void setTxModRzdaDyd(String txModRzdaDyd) {
-        this.txModRzdaDyd = txModRzdaDyd;
+    public void setModificationDoneDyd(String modificationDoneDyd) {
+        this.modificationDoneDyd = modificationDoneDyd;
     }
 
-    public String getNbDescModif() {
-        return nbDescModif;
+    public String getModificationDescription() {
+        return modificationDescription;
     }
 
-    public void setNbDescModif(String nbDescModif) {
-        this.nbDescModif = nbDescModif;
+    public void setModificationDescription(String modificationDescription) {
+        this.modificationDescription = modificationDescription;
     }
 
-    public Date getFhEnvio() {
-        return fhEnvio;
+    public Date getModificationSendDate() {
+        return modificationSendDate;
     }
 
-    public void setFhEnvio(Date fhEnvio) {
-        this.fhEnvio = fhEnvio;
+    public void setModificationSendDate(Date modificationSendDate) {
+        this.modificationSendDate = modificationSendDate;
     }
 
-    public Date getFhPrevFinal() {
-        return fhPrevFinal;
+    public Date getModificationPrevFinalDate() {
+        return modificationPrevFinalDate;
     }
 
-    public void setFhPrevFinal(Date fhPrevFinal) {
-        this.fhPrevFinal = fhPrevFinal;
+    public void setModificationPrevFinalDate(Date modificationPrevFinalDate) {
+        this.modificationPrevFinalDate = modificationPrevFinalDate;
     }
 
-    public Date getFhRenegociada() {
-        return fhRenegociada;
+    public Date getModificationRescheduleDate() {
+        return modificationRescheduleDate;
     }
 
-    public void setFhRenegociada(Date fhRenegociada) {
-        this.fhRenegociada = fhRenegociada;
+    public void setModificationRescheduleDate(Date modificationRescheduleDate) {
+        this.modificationRescheduleDate = modificationRescheduleDate;
     }
 
-    public Date getFhCierre() {
-        return fhCierre;
+    public Date getModificationEndDate() {
+        return modificationEndDate;
     }
 
-    public void setFhCierre(Date fhCierre) {
-        this.fhCierre = fhCierre;
+    public void setModificationEndDate(Date modificationEndDate) {
+        this.modificationEndDate = modificationEndDate;
     }
 
-    public String getTxComentMod() {
-        return txComentMod;
+    public String getModificationComment() {
+        return modificationComment;
     }
 
-    public void setTxComentMod(String txComentMod) {
-        this.txComentMod = txComentMod;
+    public void setModificationComment(String modificationComment) {
+        this.modificationComment = modificationComment;
     }
 
-    public Character getTxDificultadIni() {
-        return txDificultadIni;
+    public Character getModificationSeverity() {
+        return modificationSeverity;
     }
 
-    public void setTxDificultadIni(Character txDificultadIni) {
-        this.txDificultadIni = txDificultadIni;
+    public void setModificationSeverity(Character modificationSeverity) {
+        this.modificationSeverity = modificationSeverity;
     }
 
-    public Double getImCosteInic() {
-        return imCosteInic;
+    public Double getModificationInitialCost() {
+        return modificationInitialCost;
     }
 
-    public void setImCosteInic(Double imCosteInic) {
-        this.imCosteInic = imCosteInic;
+    public void setModificationInitialCost(Double modificationInitialCost) {
+        this.modificationInitialCost = modificationInitialCost;
     }
 
-    public Double getCtHorasInic() {
-        return ctHorasInic;
+    public Double getModificationInitialHours() {
+        return modificationInitialHours;
     }
 
-    public void setCtHorasInic(Double ctHorasInic) {
-        this.ctHorasInic = ctHorasInic;
+    public void setModificationInitialHours(Double modificationInitialHours) {
+        this.modificationInitialHours = modificationInitialHours;
     }
 
     public Character getTxDifEmp() {
@@ -231,14 +225,6 @@ public class Modification implements Serializable {
         this.ctHorasEmp = ctHorasEmp;
     }
 
-    public String getTHGE026MODIFcol() {
-        return tHGE026MODIFcol;
-    }
-
-    public void setTHGE026MODIFcol(String tHGE026MODIFcol) {
-        this.tHGE026MODIFcol = tHGE026MODIFcol;
-    }
-
     public String getTxComTipifEmp() {
         return txComTipifEmp;
     }
@@ -255,109 +241,105 @@ public class Modification implements Serializable {
         this.txComTipifProy = txComTipifProy;
     }
 
-    public String getTxFactSN() {
-        return txFactSN;
+    public String getModificationInvoiceId() {
+        return modificationInvoiceId;
     }
 
-    public void setTxFactSN(String txFactSN) {
-        this.txFactSN = txFactSN;
+    public void setModificationInvoiceId(String modificationInvoiceId) {
+        this.modificationInvoiceId = modificationInvoiceId;
     }
 
-    public String getTxMesFact() {
-        return txMesFact;
+    public String getModificationInvoiceMonth() {
+        return modificationInvoiceMonth;
     }
 
-    public void setTxMesFact(String txMesFact) {
-        this.txMesFact = txMesFact;
+    public void setModificationInvoiceMonth(String modificationInvoiceMonth) {
+        this.modificationInvoiceMonth = modificationInvoiceMonth;
     }
 
-    public Integer getNuAnoFact() {
-        return nuAnoFact;
+    public Integer getModificationInvoiceYear() {
+        return modificationInvoiceYear;
     }
 
-    public void setNuAnoFact(Integer nuAnoFact) {
-        this.nuAnoFact = nuAnoFact;
+    public void setModificationInvoiceYear(Integer modificationInvoiceYear) {
+        this.modificationInvoiceYear = modificationInvoiceYear;
     }
 
-    public Status getStModificacion() {
-        return stModificacion;
+    public Status getModificationStatus() {
+        return modificationStatus;
     }
 
-    public void setStModificacion(Status stModificacion) {
-        this.stModificacion = stModificacion;
+    public void setModificationStatus(Status modificationStatus) {
+        this.modificationStatus = modificationStatus;
     }
 
-    public Status getStTipif() {
-        return stTipif;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStTipif(Status stTipif) {
-        this.stTipif = stTipif;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public Component getCdComponent() {
-        return cdComponent;
+    public Component getComponent() {
+        return component;
     }
 
-    public void setCdComponent(Component cdComponent) {
-        this.cdComponent = cdComponent;
+    public void setComponent(Component component) {
+        this.component = component;
     }
 
-    public User getCdUsuPeticion() {
-        return cdUsuPeticion;
+    public User getUserSender() {
+        return userSender;
     }
 
-    public void setCdUsuPeticion(User cdUsuPeticion) {
-        this.cdUsuPeticion = cdUsuPeticion;
+    public void setUserSender(User userSender) {
+        this.userSender = userSender;
     }
 
-    public User getCdRespResol() {
-        return cdRespResol;
+    public User getUserReceiver() {
+        return userReceiver;
     }
 
-    public void setCdRespResol(User cdRespResol) {
-        this.cdRespResol = cdRespResol;
+    public void setUserReceiver(User userReceiver) {
+        this.userReceiver = userReceiver;
     }
 
-    public Priority getCdPriorityUsu() {
-        return cdPriorityUsu;
+    public Priority getPriority() {
+        return priority;
     }
 
-    public void setCdPriorityUsu(Priority cdPriorityUsu) {
-        this.cdPriorityUsu = cdPriorityUsu;
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
-    public Origin getCdOrigin() {
-        return cdOrigin;
+    public Origin getOrigin() {
+        return origin;
     }
 
-    public void setCdOrigin(Origin cdOrigin) {
-        this.cdOrigin = cdOrigin;
+    public void setOrigin(Origin origin) {
+        this.origin = origin;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdModificacion != null ? cdModificacion.hashCode() : 0);
+        hash += (modificationId != null ? modificationId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Modification)) {
             return false;
         }
         Modification other = (Modification) object;
-        if ((this.cdModificacion == null && other.cdModificacion != null) || (this.cdModificacion != null && !this.cdModificacion.equals(other.cdModificacion))) {
-            return false;
-        }
-        return true;
+        return (this.modificationId != null || other.modificationId == null) && (this.modificationId == null || this.modificationId.equals(other.modificationId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Modification[ cdModificacion=" + cdModificacion + " ]";
+        return "com.bbva.Modification[ modificationId=" + modificationId + " ]";
     }
 
 }

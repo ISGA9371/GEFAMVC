@@ -13,7 +13,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge054_res_verif", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
+@Table(name = "thge054_res_verif", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_RESULT_VERIF"})
         , @UniqueConstraint(columnNames = {"CD_RESULT_VERIF"})})
 @NamedQueries({

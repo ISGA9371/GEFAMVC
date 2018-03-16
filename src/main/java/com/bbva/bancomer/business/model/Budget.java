@@ -13,7 +13,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge007_pep", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
+@Table(name = "thge007_pep", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_PEP"})})
 public class Budget implements Serializable {
     private static final long serialVersionUID = 1L;

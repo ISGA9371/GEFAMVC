@@ -13,92 +13,85 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge038_naturaleza", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
+@Table(name = "thge038_naturaleza", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_NATURALEZA"})})
-@NamedQueries({
-        @NamedQuery(name = "Nature.findAll", query = "SELECT t FROM Nature t")})
 public class Nature implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_NATURALEZA", nullable = false)
-    private Integer cdNaturaleza;
+    private Integer natureId;
     @Basic(optional = false)
     @Column(name = "NB_NATURALEZA", nullable = false, length = 25)
-    private String nbNaturaleza;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdNaturaleza")
-    private List<Budget> pepList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdNaturaleza")
-    private List<Contract> contractList;
+    private String natureName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nature")
+    private List<Budget> budgets;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nature")
+    private List<Contract> contracts;
 
     public Nature() {
     }
 
-    public Nature(Integer cdNaturaleza) {
-        this.cdNaturaleza = cdNaturaleza;
+    public Nature(Integer natureId) {
+        this.natureId = natureId;
     }
 
-    public Nature(Integer cdNaturaleza, String nbNaturaleza) {
-        this.cdNaturaleza = cdNaturaleza;
-        this.nbNaturaleza = nbNaturaleza;
+    public Nature(Integer natureId, String natureName) {
+        this.natureId = natureId;
+        this.natureName = natureName;
     }
 
-    public Integer getCdNaturaleza() {
-        return cdNaturaleza;
+    public Integer getNatureId() {
+        return natureId;
     }
 
-    public void setCdNaturaleza(Integer cdNaturaleza) {
-        this.cdNaturaleza = cdNaturaleza;
+    public void setNatureId(Integer natureId) {
+        this.natureId = natureId;
     }
 
-    public String getNbNaturaleza() {
-        return nbNaturaleza;
+    public String getNatureName() {
+        return natureName;
     }
 
-    public void setNbNaturaleza(String nbNaturaleza) {
-        this.nbNaturaleza = nbNaturaleza;
+    public void setNatureName(String natureName) {
+        this.natureName = natureName;
     }
 
-    public List<Budget> getPepList() {
-        return pepList;
+    public List<Budget> getBudgets() {
+        return budgets;
     }
 
-    public void setPepList(List<Budget> pepList) {
-        this.pepList = pepList;
+    public void setBudgets(List<Budget> budgets) {
+        this.budgets = budgets;
     }
 
-    public List<Contract> getContractList() {
-        return contractList;
+    public List<Contract> getContracts() {
+        return contracts;
     }
 
-    public void setContractList(List<Contract> contractList) {
-        this.contractList = contractList;
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdNaturaleza != null ? cdNaturaleza.hashCode() : 0);
+        hash += (natureId != null ? natureId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Nature)) {
             return false;
         }
         Nature other = (Nature) object;
-        if ((this.cdNaturaleza == null && other.cdNaturaleza != null) || (this.cdNaturaleza != null && !this.cdNaturaleza.equals(other.cdNaturaleza))) {
-            return false;
-        }
-        return true;
+        return (this.natureId != null || other.natureId == null) && (this.natureId == null || this.natureId.equals(other.natureId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Nature[ cdNaturaleza=" + cdNaturaleza + " ]";
+        return "com.bbva.Nature[ natureId=" + natureId + " ]";
     }
 
 }

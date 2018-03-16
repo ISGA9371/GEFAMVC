@@ -17,108 +17,107 @@ import java.util.Date;
 @NamedQueries({
         @NamedQuery(name = "Doubt.findAll", query = "SELECT t FROM Doubt t")})
 public class Doubt implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_DUDA", nullable = false)
-    private Integer cdDuda;
+    private Integer doubtId;
     @Basic(optional = false)
     @Column(name = "FH_ALTA", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fhAlta;
+    private Date doubtUploadDate;
     @Basic(optional = false)
     @Column(name = "TX_VENTREGA", nullable = false, length = 9)
-    private String txVentrega;
+    private String doubtVersion;
     @Basic(optional = false)
     @Column(name = "NB_DESC_DUDA_HIST", nullable = false, length = 600)
-    private String nbDescDudaHist;
+    private String doubtDescription;
     @Column(name = "NB_DESC_RES_HIST", length = 600)
-    private String nbDescResHist;
+    private String doubtDescriptionResponse;
     @Column(name = "FH_RESOLUCION")
     @Temporal(TemporalType.DATE)
-    private Date fhResolucion;
+    private Date doubtDateResolution;
     @Column(name = "NU_RES_INCORR")
     private Integer nuResIncorr;
     @JoinColumn(name = "ST_DUDA", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status stDuda;
+    private Status status;
     @JoinColumn(name = "CD_COMPONENTE", referencedColumnName = "CD_COMPONENTE", nullable = false)
     @ManyToOne(optional = false)
-    private Component cdComponent;
+    private Component component;
     @JoinColumn(name = "CD_USU_PETICION", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private User cdUsuPeticion;
+    private User userSender;
     @JoinColumn(name = "CD_USU_RESP", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
-    private User cdUsuResp;
+    private User userReceiver;
     @JoinColumn(name = "CD_PRIORIDAD", referencedColumnName = "CD_PRIORIDAD", nullable = false)
     @ManyToOne(optional = false)
-    private Priority cdPriority;
+    private Priority priority;
     @JoinColumn(name = "CD_TIPO_DUDA", referencedColumnName = "CD_TIPO_DUDA", nullable = false)
     @ManyToOne(optional = false)
-    private DoubtType cdDoubtType;
+    private DoubtType doubtType;
 
     public Doubt() {
     }
 
-    public Doubt(Integer cdDuda) {
-        this.cdDuda = cdDuda;
+    public Doubt(Integer doubtId) {
+        this.doubtId = doubtId;
     }
 
-    public Doubt(Integer cdDuda, Date fhAlta, String txVentrega, String nbDescDudaHist) {
-        this.cdDuda = cdDuda;
-        this.fhAlta = fhAlta;
-        this.txVentrega = txVentrega;
-        this.nbDescDudaHist = nbDescDudaHist;
+    public Doubt(Integer doubtId, Date doubtUploadDate, String doubtVersion, String doubtDescription) {
+        this.doubtId = doubtId;
+        this.doubtUploadDate = doubtUploadDate;
+        this.doubtVersion = doubtVersion;
+        this.doubtDescription = doubtDescription;
     }
 
-    public Integer getCdDuda() {
-        return cdDuda;
+    public Integer getDoubtId() {
+        return doubtId;
     }
 
-    public void setCdDuda(Integer cdDuda) {
-        this.cdDuda = cdDuda;
+    public void setDoubtId(Integer doubtId) {
+        this.doubtId = doubtId;
     }
 
-    public Date getFhAlta() {
-        return fhAlta;
+    public Date getDoubtUploadDate() {
+        return doubtUploadDate;
     }
 
-    public void setFhAlta(Date fhAlta) {
-        this.fhAlta = fhAlta;
+    public void setDoubtUploadDate(Date doubtUploadDate) {
+        this.doubtUploadDate = doubtUploadDate;
     }
 
-    public String getTxVentrega() {
-        return txVentrega;
+    public String getDoubtVersion() {
+        return doubtVersion;
     }
 
-    public void setTxVentrega(String txVentrega) {
-        this.txVentrega = txVentrega;
+    public void setDoubtVersion(String doubtVersion) {
+        this.doubtVersion = doubtVersion;
     }
 
-    public String getNbDescDudaHist() {
-        return nbDescDudaHist;
+    public String getDoubtDescription() {
+        return doubtDescription;
     }
 
-    public void setNbDescDudaHist(String nbDescDudaHist) {
-        this.nbDescDudaHist = nbDescDudaHist;
+    public void setDoubtDescription(String doubtDescription) {
+        this.doubtDescription = doubtDescription;
     }
 
-    public String getNbDescResHist() {
-        return nbDescResHist;
+    public String getDoubtDescriptionResponse() {
+        return doubtDescriptionResponse;
     }
 
-    public void setNbDescResHist(String nbDescResHist) {
-        this.nbDescResHist = nbDescResHist;
+    public void setDoubtDescriptionResponse(String doubtDescriptionResponse) {
+        this.doubtDescriptionResponse = doubtDescriptionResponse;
     }
 
-    public Date getFhResolucion() {
-        return fhResolucion;
+    public Date getDoubtDateResolution() {
+        return doubtDateResolution;
     }
 
-    public void setFhResolucion(Date fhResolucion) {
-        this.fhResolucion = fhResolucion;
+    public void setDoubtDateResolution(Date doubtDateResolution) {
+        this.doubtDateResolution = doubtDateResolution;
     }
 
     public Integer getNuResIncorr() {
@@ -129,77 +128,73 @@ public class Doubt implements Serializable {
         this.nuResIncorr = nuResIncorr;
     }
 
-    public Status getStDuda() {
-        return stDuda;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStDuda(Status stDuda) {
-        this.stDuda = stDuda;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public Component getCdComponent() {
-        return cdComponent;
+    public Component getComponent() {
+        return component;
     }
 
-    public void setCdComponent(Component cdComponent) {
-        this.cdComponent = cdComponent;
+    public void setComponent(Component component) {
+        this.component = component;
     }
 
-    public User getCdUsuPeticion() {
-        return cdUsuPeticion;
+    public User getUserSender() {
+        return userSender;
     }
 
-    public void setCdUsuPeticion(User cdUsuPeticion) {
-        this.cdUsuPeticion = cdUsuPeticion;
+    public void setUserSender(User userSender) {
+        this.userSender = userSender;
     }
 
-    public User getCdUsuResp() {
-        return cdUsuResp;
+    public User getUserReceiver() {
+        return userReceiver;
     }
 
-    public void setCdUsuResp(User cdUsuResp) {
-        this.cdUsuResp = cdUsuResp;
+    public void setUserReceiver(User userReceiver) {
+        this.userReceiver = userReceiver;
     }
 
-    public Priority getCdPriority() {
-        return cdPriority;
+    public Priority getPriority() {
+        return priority;
     }
 
-    public void setCdPriority(Priority cdPriority) {
-        this.cdPriority = cdPriority;
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
-    public DoubtType getCdDoubtType() {
-        return cdDoubtType;
+    public DoubtType getDoubtType() {
+        return doubtType;
     }
 
-    public void setCdDoubtType(DoubtType cdDoubtType) {
-        this.cdDoubtType = cdDoubtType;
+    public void setDoubtType(DoubtType doubtType) {
+        this.doubtType = doubtType;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdDuda != null ? cdDuda.hashCode() : 0);
+        hash += (doubtId != null ? doubtId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Doubt)) {
             return false;
         }
         Doubt other = (Doubt) object;
-        if ((this.cdDuda == null && other.cdDuda != null) || (this.cdDuda != null && !this.cdDuda.equals(other.cdDuda))) {
-            return false;
-        }
-        return true;
+        return (this.doubtId != null || other.doubtId == null) && (this.doubtId == null || this.doubtId.equals(other.doubtId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Doubt[ cdDuda=" + cdDuda + " ]";
+        return "com.bbva.Doubt[ doubtId=" + doubtId + " ]";
     }
 
 }

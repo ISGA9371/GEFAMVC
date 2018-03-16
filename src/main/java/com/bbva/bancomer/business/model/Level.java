@@ -13,108 +13,105 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge010_nivel", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
+@Table(name = "thge010_nivel", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_NIVEL"})})
-@NamedQueries({
-        @NamedQuery(name = "Level.findAll", query = "SELECT t FROM Level t")})
 public class Level implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_CONSEC_NIVEL", nullable = false)
-    private Integer cdConsecNivel;
+    private Integer levelSerial;
     @Basic(optional = false)
     @Column(name = "CD_NIVEL", nullable = false)
-    private int cdNivel;
+    private int levelId;
     @Basic(optional = false)
     @Column(name = "NB_NIVEL", nullable = false, length = 50)
-    private String nbNivel;
-    @OneToMany(mappedBy = "cdNivelSubdir")
-    private List<Transfer> transferList;
-    @OneToMany(mappedBy = "cdNivel")
-    private List<User> userList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdNivel")
-    private List<Requirement> requirementList;
+    private String levelName;
+    @OneToMany(mappedBy = "level")
+    private List<Transfer> transfers;
+    @OneToMany(mappedBy = "level")
+    private List<User> users;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "level")
+    private List<Requirement> requirements;
     @JoinColumn(name = "CD_TIPO_NIVEL", referencedColumnName = "CD_TIPO_NIVEL", nullable = false)
     @ManyToOne(optional = false)
-    private LevelType cdLevelType;
-    @OneToMany(mappedBy = "cdLevelSuperior")
+    private LevelType levelType;
+    @OneToMany(mappedBy = "levelSuperior")
     private List<Level> levelList;
     @JoinColumn(name = "CD_NIVEL_SUPERIOR", referencedColumnName = "CD_NIVEL")
     @ManyToOne
-    private Level cdLevelSuperior;
+    private Level levelSuperior;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private User cdUserResp;
+    private User userReceivers;
 
     public Level() {
     }
 
-    public Level(Integer cdConsecNivel) {
-        this.cdConsecNivel = cdConsecNivel;
+    public Level(Integer levelSerial) {
+        this.levelSerial = levelSerial;
     }
 
-    public Level(Integer cdConsecNivel, int cdNivel, String nbNivel) {
-        this.cdConsecNivel = cdConsecNivel;
-        this.cdNivel = cdNivel;
-        this.nbNivel = nbNivel;
+    public Level(Integer levelSerial, int levelId, String levelName) {
+        this.levelSerial = levelSerial;
+        this.levelId = levelId;
+        this.levelName = levelName;
     }
 
-    public Integer getCdConsecNivel() {
-        return cdConsecNivel;
+    public Integer getLevelSerial() {
+        return levelSerial;
     }
 
-    public void setCdConsecNivel(Integer cdConsecNivel) {
-        this.cdConsecNivel = cdConsecNivel;
+    public void setLevelSerial(Integer levelSerial) {
+        this.levelSerial = levelSerial;
     }
 
-    public int getCdNivel() {
-        return cdNivel;
+    public int getLevelId() {
+        return levelId;
     }
 
-    public void setCdNivel(int cdNivel) {
-        this.cdNivel = cdNivel;
+    public void setLevelId(int levelId) {
+        this.levelId = levelId;
     }
 
-    public String getNbNivel() {
-        return nbNivel;
+    public String getLevelName() {
+        return levelName;
     }
 
-    public void setNbNivel(String nbNivel) {
-        this.nbNivel = nbNivel;
+    public void setLevelName(String levelName) {
+        this.levelName = levelName;
     }
 
-    public List<Transfer> getTransferList() {
-        return transferList;
+    public List<Transfer> getTransfers() {
+        return transfers;
     }
 
-    public void setTransferList(List<Transfer> transferList) {
-        this.transferList = transferList;
+    public void setTransfers(List<Transfer> transfers) {
+        this.transfers = transfers;
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
-    public List<Requirement> getRequirementList() {
-        return requirementList;
+    public List<Requirement> getRequirements() {
+        return requirements;
     }
 
-    public void setRequirementList(List<Requirement> requirementList) {
-        this.requirementList = requirementList;
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
     }
 
-    public LevelType getCdLevelType() {
-        return cdLevelType;
+    public LevelType getLevelType() {
+        return levelType;
     }
 
-    public void setCdLevelType(LevelType cdLevelType) {
-        this.cdLevelType = cdLevelType;
+    public void setLevelType(LevelType levelType) {
+        this.levelType = levelType;
     }
 
     public List<Level> getLevelList() {
@@ -125,45 +122,41 @@ public class Level implements Serializable {
         this.levelList = levelList;
     }
 
-    public Level getCdLevelSuperior() {
-        return cdLevelSuperior;
+    public Level getLevelSuperior() {
+        return levelSuperior;
     }
 
-    public void setCdLevelSuperior(Level cdLevelSuperior) {
-        this.cdLevelSuperior = cdLevelSuperior;
+    public void setLevelSuperior(Level levelSuperior) {
+        this.levelSuperior = levelSuperior;
     }
 
-    public User getCdUserResp() {
-        return cdUserResp;
+    public User getUserReceivers() {
+        return userReceivers;
     }
 
-    public void setCdUserResp(User cdUserResp) {
-        this.cdUserResp = cdUserResp;
+    public void setUserReceivers(User userReceivers) {
+        this.userReceivers = userReceivers;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdConsecNivel != null ? cdConsecNivel.hashCode() : 0);
+        hash += (levelSerial != null ? levelSerial.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Level)) {
             return false;
         }
         Level other = (Level) object;
-        if ((this.cdConsecNivel == null && other.cdConsecNivel != null) || (this.cdConsecNivel != null && !this.cdConsecNivel.equals(other.cdConsecNivel))) {
-            return false;
-        }
-        return true;
+        return (this.levelSerial != null || other.levelSerial == null) && (this.levelSerial == null || this.levelSerial.equals(other.levelSerial));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Level[ cdConsecNivel=" + cdConsecNivel + " ]";
+        return "com.bbva.Level[ levelSerial=" + levelSerial + " ]";
     }
 
 }

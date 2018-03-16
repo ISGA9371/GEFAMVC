@@ -14,7 +14,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge041_seg_pago", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
+@Table(name = "thge041_seg_pago", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_SEG_PAGO"})})
 @NamedQueries({
         @NamedQuery(name = "Payment.findAll", query = "SELECT t FROM Payment t")})

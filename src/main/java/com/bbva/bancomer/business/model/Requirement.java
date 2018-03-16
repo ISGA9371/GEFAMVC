@@ -14,12 +14,9 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge017_requerim", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
+@Table(name = "thge017_requerim", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_REQUERIMIENTO"})})
-@NamedQueries({
-        @NamedQuery(name = "Requirement.findAll", query = "SELECT t FROM Requirement t")})
 public class Requirement implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -28,7 +25,6 @@ public class Requirement implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_REQUERIMIENTO", nullable = false, length = 100)
     private String nbRequerimiento;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "NU_HORA_REQ", precision = 22)
     private Double nuHoraReq;
     @Column(name = "NU_HRS_TOT")
@@ -49,9 +45,6 @@ public class Requirement implements Serializable {
     @JoinColumn(name = "CD_USUARIO_GESTOR", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
     private User cdUserGestor;
-    /*@JoinColumn(name = "CD_TIPO_SERVICIO", referencedColumnName = "CD_TIPO_SERVICIO", nullable = false)
-    @ManyToOne(optional = false)
-    private ServiceType_ cdTipoServicio;*/
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Technology cdTechnology;
@@ -190,14 +183,6 @@ public class Requirement implements Serializable {
     public void setCdUserGestor(User cdUserGestor) {
         this.cdUserGestor = cdUserGestor;
     }
-    /*
-    public ServiceType_ getCdTipoServicio() {
-        return cdTipoServicio;
-    }
-
-    public void setCdTipoServicio(ServiceType_ cdTipoServicio) {
-        this.cdTipoServicio = cdTipoServicio;
-    }*/
 
     public Technology getCdTechnology() {
         return cdTechnology;
@@ -320,15 +305,11 @@ public class Requirement implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Requirement)) {
             return false;
         }
         Requirement other = (Requirement) object;
-        if ((this.cdRequerimiento == null && other.cdRequerimiento != null) || (this.cdRequerimiento != null && !this.cdRequerimiento.equals(other.cdRequerimiento))) {
-            return false;
-        }
-        return true;
+        return (this.cdRequerimiento != null || other.cdRequerimiento == null) && (this.cdRequerimiento == null || this.cdRequerimiento.equals(other.cdRequerimiento));
     }
 
     @Override

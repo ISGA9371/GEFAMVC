@@ -13,7 +13,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge057_aplicacion", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
+@Table(name = "thge057_aplicacion", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_APLICACION"})
         , @UniqueConstraint(columnNames = {"NB_APLICACION"})})
 public class Application implements Serializable {

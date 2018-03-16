@@ -14,180 +14,172 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "thge029_incidencia", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "Issue.findAll", query = "SELECT t FROM Issue t")})
 public class Issue implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "CD_INCIDENCIA", nullable = false)
-    private Integer cdIncidencia;
+    private Integer issueId;
     @Basic(optional = false)
     @Column(name = "FH_ALTA", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fhAlta;
+    private Date issueUploadDate;
     @Basic(optional = false)
     @Column(name = "NB_DESC_INC_HIST", nullable = false, length = 600)
-    private String nbDescIncHist;
+    private String issueInitialDescription;
     @Column(name = "NB_DESC_RESOL_INC", length = 600)
-    private String nbDescResolInc;
-    @Lob
+    private String issueInitialFixDescription;
     @Column(name = "TX_DOC_INCIDENCIA")
-    private byte[] txDocIncidencia;
+    private byte[] issueDoc;
     @Column(name = "FH_RESOLUCION")
     @Temporal(TemporalType.DATE)
-    private Date fhResolucion;
+    private Date issueFixDate;
     @Column(name = "NU_RES_INCORR")
-    private Integer nuResIncorr;
+    private Integer issueWrongSolution;
     @JoinColumn(name = "ST_INCIDENCIA", referencedColumnName = "CD_ESTADO")
     @ManyToOne
-    private Status stIncidencia;
+    private Status status;
     @JoinColumn(name = "CD_COMPONENTE", referencedColumnName = "CD_COMPONENTE", nullable = false)
     @ManyToOne(optional = false)
-    private Component cdComponent;
+    private Component component;
     @JoinColumn(name = "CD_USU_PETICION", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
-    private User cdUsuPeticion;
+    private User userSender;
     @JoinColumn(name = "CD_USU_RESP", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
-    private User cdUsuResp;
+    private User userReceiver;
     @JoinColumn(name = "CD_PRIORIDAD", referencedColumnName = "CD_PRIORIDAD", nullable = false)
     @ManyToOne(optional = false)
-    private Priority cdPriority;
+    private Priority priority;
 
     public Issue() {
     }
 
-    public Issue(Integer cdIncidencia) {
-        this.cdIncidencia = cdIncidencia;
+    public Issue(Integer issueId) {
+        this.issueId = issueId;
     }
 
-    public Issue(Integer cdIncidencia, Date fhAlta, String nbDescIncHist) {
-        this.cdIncidencia = cdIncidencia;
-        this.fhAlta = fhAlta;
-        this.nbDescIncHist = nbDescIncHist;
+    public Issue(Integer issueId, Date issueUploadDate, String issueInitialDescription) {
+        this.issueId = issueId;
+        this.issueUploadDate = issueUploadDate;
+        this.issueInitialDescription = issueInitialDescription;
     }
 
-    public Integer getCdIncidencia() {
-        return cdIncidencia;
+    public Integer getIssueId() {
+        return issueId;
     }
 
-    public void setCdIncidencia(Integer cdIncidencia) {
-        this.cdIncidencia = cdIncidencia;
+    public void setIssueId(Integer issueId) {
+        this.issueId = issueId;
     }
 
-    public Date getFhAlta() {
-        return fhAlta;
+    public Date getIssueUploadDate() {
+        return issueUploadDate;
     }
 
-    public void setFhAlta(Date fhAlta) {
-        this.fhAlta = fhAlta;
+    public void setIssueUploadDate(Date issueUploadDate) {
+        this.issueUploadDate = issueUploadDate;
     }
 
-    public String getNbDescIncHist() {
-        return nbDescIncHist;
+    public String getIssueInitialDescription() {
+        return issueInitialDescription;
     }
 
-    public void setNbDescIncHist(String nbDescIncHist) {
-        this.nbDescIncHist = nbDescIncHist;
+    public void setIssueInitialDescription(String issueInitialDescription) {
+        this.issueInitialDescription = issueInitialDescription;
     }
 
-    public String getNbDescResolInc() {
-        return nbDescResolInc;
+    public String getIssueInitialFixDescription() {
+        return issueInitialFixDescription;
     }
 
-    public void setNbDescResolInc(String nbDescResolInc) {
-        this.nbDescResolInc = nbDescResolInc;
+    public void setIssueInitialFixDescription(String issueInitialFixDescription) {
+        this.issueInitialFixDescription = issueInitialFixDescription;
     }
 
-    public byte[] getTxDocIncidencia() {
-        return txDocIncidencia;
+    public byte[] getIssueDoc() {
+        return issueDoc;
     }
 
-    public void setTxDocIncidencia(byte[] txDocIncidencia) {
-        this.txDocIncidencia = txDocIncidencia;
+    public void setIssueDoc(byte[] issueDoc) {
+        this.issueDoc = issueDoc;
     }
 
-    public Date getFhResolucion() {
-        return fhResolucion;
+    public Date getIssueFixDate() {
+        return issueFixDate;
     }
 
-    public void setFhResolucion(Date fhResolucion) {
-        this.fhResolucion = fhResolucion;
+    public void setIssueFixDate(Date issueFixDate) {
+        this.issueFixDate = issueFixDate;
     }
 
-    public Integer getNuResIncorr() {
-        return nuResIncorr;
+    public Integer getIssueWrongSolution() {
+        return issueWrongSolution;
     }
 
-    public void setNuResIncorr(Integer nuResIncorr) {
-        this.nuResIncorr = nuResIncorr;
+    public void setIssueWrongSolution(Integer issueWrongSolution) {
+        this.issueWrongSolution = issueWrongSolution;
     }
 
-    public Status getStIncidencia() {
-        return stIncidencia;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStIncidencia(Status stIncidencia) {
-        this.stIncidencia = stIncidencia;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public Component getCdComponent() {
-        return cdComponent;
+    public Component getComponent() {
+        return component;
     }
 
-    public void setCdComponent(Component cdComponent) {
-        this.cdComponent = cdComponent;
+    public void setComponent(Component component) {
+        this.component = component;
     }
 
-    public User getCdUsuPeticion() {
-        return cdUsuPeticion;
+    public User getUserSender() {
+        return userSender;
     }
 
-    public void setCdUsuPeticion(User cdUsuPeticion) {
-        this.cdUsuPeticion = cdUsuPeticion;
+    public void setUserSender(User userSender) {
+        this.userSender = userSender;
     }
 
-    public User getCdUsuResp() {
-        return cdUsuResp;
+    public User getUserReceiver() {
+        return userReceiver;
     }
 
-    public void setCdUsuResp(User cdUsuResp) {
-        this.cdUsuResp = cdUsuResp;
+    public void setUserReceiver(User userReceiver) {
+        this.userReceiver = userReceiver;
     }
 
-    public Priority getCdPriority() {
-        return cdPriority;
+    public Priority getPriority() {
+        return priority;
     }
 
-    public void setCdPriority(Priority cdPriority) {
-        this.cdPriority = cdPriority;
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdIncidencia != null ? cdIncidencia.hashCode() : 0);
+        hash += (issueId != null ? issueId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Issue)) {
             return false;
         }
         Issue other = (Issue) object;
-        if ((this.cdIncidencia == null && other.cdIncidencia != null) || (this.cdIncidencia != null && !this.cdIncidencia.equals(other.cdIncidencia))) {
-            return false;
-        }
-        return true;
+        return (this.issueId != null || other.issueId == null) && (this.issueId == null || this.issueId.equals(other.issueId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Issue[ cdIncidencia=" + cdIncidencia + " ]";
+        return "com.bbva.Issue[ issueId=" + issueId + " ]";
     }
 
 }

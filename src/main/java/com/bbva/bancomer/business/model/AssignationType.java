@@ -13,7 +13,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge033_tipo_asig", catalog = "gestion_factoria", schema = "", uniqueConstraints = {
+@Table(name = "thge033_tipo_asig", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_TIPO_ASIG"})})
 public class AssignationType implements Serializable {
     private static final long serialVersionUID = 1L;
