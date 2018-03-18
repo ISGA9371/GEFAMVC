@@ -1,13 +1,20 @@
 package com.bbva.bancomer.controller;
 
 
+import com.bbva.bancomer.business.model.Requerimiento;
+import com.bbva.bancomer.business.service.RequerimientoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/requerimiento")
 public class RequerimientoController {
-/*
+
     private static final String REQUERIMIENTO_VISTA = "fabrica/AltaDeRequerimiento";
     private static final String MODIFICA_REQ_VISTA = "fabrica/ModificarRequerimiento";
 
@@ -48,6 +55,6 @@ public class RequerimientoController {
     @Autowired
     public void setRequerimientoService(RequerimientoService requerimientoService) {
         this.requerimientoService = requerimientoService;
-    }*/
+    }
 
 }
