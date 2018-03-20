@@ -26,6 +26,7 @@ public class ComponentController {
 
         LOG.info("Creating new component");
         model.addAttribute("component", new Component());
+        //TODO Add catalogs
 
         return "/fabrica/ModificarComponente";
     }
