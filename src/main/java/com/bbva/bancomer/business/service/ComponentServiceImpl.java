@@ -19,7 +19,7 @@ public class ComponentServiceImpl implements ComponentService {
 
     @Override
     public Component findComponent(Integer componentId) {
-        return componentRepository.findById(componentId).get();
+        return componentRepository.findById(componentId).orElse(null);
     }
 
     @Override

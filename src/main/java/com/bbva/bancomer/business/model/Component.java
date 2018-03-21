@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -54,24 +56,32 @@ public class Component implements Serializable {
     @Column(name = "TM_ALTA_COMP")
     @Temporal(TemporalType.TIMESTAMP)
     private Date componentUploadDate;
+    @Ignore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
     private List<Modification> modifications;
+    @Ignore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
     private List<Doubt> doubts;
+    @Ignore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
     private List<Issue> issues;
+    @Ignore
     @JoinColumn(name = "ST_TIPIFICACION", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status statusTypology;
+    @Ignore
     @JoinColumn(name = "ST_COMPONENTE", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
+    @Ignore
     @JoinColumn(name = "CD_TIPOLOGIA", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Typology typology;
+    @Ignore
     @JoinColumn(name = "CD_TIPOLOGIA_EMP", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Typology typologyEmp;
+    @Ignore
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false)
     @ManyToOne(optional = false)
     private Requirement requirement;
@@ -81,6 +91,13 @@ public class Component implements Serializable {
 
     public Component(Integer componentId) {
         this.componentId = componentId;
+    }
+
+    public Component(Integer componentId, String componentName, String componentVersion, String componentType) {
+        this.componentId = componentId;
+        this.componentName = componentName;
+        this.componentVersion = componentVersion;
+        this.componentType = componentType;
     }
 
     public Component(Integer componentId, String componentName, String componentVersion, String componentNewMod, Date componentPossibleDeliverDate, Date componentPreviewDeliverDate, Date componentDesignRealDeliverDate) {

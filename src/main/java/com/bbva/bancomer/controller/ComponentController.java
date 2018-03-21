@@ -46,9 +46,11 @@ public class ComponentController {
         // TODO Validate user
 
         List<Component> components = componentService.findAllComponents();
+        components.add(new Component(1, "Componente1", "001", "Type1"));
+        components.add(new Component(2, "Componente2", "002", "Type"));
         model.addAttribute("components", components);
 
-        return "homeComponents";
+        return "fabrica/homeComponente";
     }
 
     @RequestMapping(path = "/{componentId}", method = RequestMethod.GET)
@@ -57,9 +59,10 @@ public class ComponentController {
 
         LOG.info("Updating component, ID: " + componentId);
         Component component = componentService.findComponent(componentId);
-        model.addAttribute("component", component);
+        Component finalComponent = new Component(3, "Componente3", "003", "Type3");
+        model.addAttribute("component", finalComponent);
 
-        return "redirect:/fabrica/ModificarComponente";
+        return "fabrica/ModificarComponente";
     }
 
     public void setComponentService(ComponentService componentService) {
