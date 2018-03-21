@@ -6,6 +6,7 @@ import com.bbva.bancomer.business.model.Requerimiento;
 import com.bbva.bancomer.business.model.Tecnologia;
 import com.bbva.bancomer.business.repository.TecnologiaRepository;
 import com.bbva.bancomer.business.repository.NivelCmbRepository;
+import com.bbva.bancomer.business.service.AreaService;
 import com.bbva.bancomer.business.service.NivelCmbService;
 import com.bbva.bancomer.business.service.RequerimientoService;
 
@@ -40,12 +41,17 @@ public class RequerimientoController {
     @Qualifier("nivelServiceImp")
     private NivelCmbService nivelServiceImp;
 
+    @Autowired
+    @Qualifier("areaServiceImp")
+    private AreaService areaServiceImp;
+
 
     @GetMapping("/inicialRequerimiento")
     public ModelAndView entraRequerimiento() {
 
         ModelAndView modelReq = new ModelAndView(REQUERIMIENTO_VISTA);
-        modelReq.addObject("niveles", nivelServiceImp.listaNiveles());
+        modelReq.addObject("nivelesCmb", nivelServiceImp.listaNiveles());
+        modelReq.addObject("areasCmb", areaServiceImp.listaAreas());
         modelReq.addObject("requerimiento", new Requerimiento());
 
         return modelReq;

@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
                                     <ul  class="mdc-list mdc-menu__items">
-                                        <li th:each="niveles:${niveles}"  class="mdc-list-item" role="option" th:text="${niveles.nb_nivel}"></li>
+                                        <li th:each="nivelesCmb:${nivelesCmb}"  class="mdc-list-item" role="option" th:text="${nivelesCmb.nb_nivel}"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
                                     <ul class="mdc-list mdc-menu__items">
-                                        <li th:each="niveles:${niveles}"  class="mdc-list-item" role="option" th:text="${niveles.nb_nivel}"></li>
+                                        <li th:each="nivelesCmb:${nivelesCmb}"  class="mdc-list-item" role="option" th:text="${nivelesCmb.nb_nivel}"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -132,16 +132,7 @@
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
                                     <ul class="mdc-list mdc-menu__items">
-                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                            Area 1
-                                        </li>
-                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                            Area 2
-                                        </li>
-                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                            Area 3
-                                        </li>
-
+                                        <li th:each="areasCmb:${areasCmb}"  class="mdc-list-item" role="option" th:text="${areasCmb.nb_area}"></li>
                                     </ul>
                                 </div>
                             </div>
