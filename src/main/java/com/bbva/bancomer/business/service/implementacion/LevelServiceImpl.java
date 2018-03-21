@@ -2,8 +2,8 @@ package com.bbva.bancomer.business.service.implementacion;
 
 import com.bbva.bancomer.business.model.Level;
 import com.bbva.bancomer.business.repository.LevelRepository;
-import com.bbva.bancomer.business.service.LevelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.bbva.bancomer.business.service.LevelService;
 
 import java.util.List;
 
