@@ -25,7 +25,7 @@ public class ComponentServiceImpl implements ComponentService {
 
     @Override
     public List<Component> findAllComponents() {
-        return componentRepository.findAll();
+        return (List<Component>) componentRepository.findAll();
     }
 
     public void setComponentRepository(ComponentRepository componentRepository) {

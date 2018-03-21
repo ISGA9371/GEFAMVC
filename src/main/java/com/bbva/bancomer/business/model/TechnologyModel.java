@@ -1,17 +1,17 @@
 package com.bbva.bancomer.business.model;
 
-import javax.persistence.*;
+public class TechnologyModel {
 
-@Entity
-@Table(name ="THGE010_NIVEL")
-public class Nivel {
-    @Id
-    @GeneratedValue(/**/)
-    @Column(name = "CD_TIPO_NIVEL")
-    Integer id;
+    private Integer id;
+    private String nombre;
 
-    @Column(name = "NB_TIPO_NIVEL")
-    String nombre;
+    public TechnologyModel(Integer id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
+    public TechnologyModel() {
+    }
 
     public Integer getId() {
         return id;

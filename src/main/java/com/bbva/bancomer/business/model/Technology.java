@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "THGE002_TECNOLOGIA")
-public class Tecnologia {
+public class Technology {
 
     @Id
     @GeneratedValue(/*strategy= GenerationType.IDENTITY*/)
@@ -29,4 +29,5 @@ public class Tecnologia {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
 }

@@ -9,11 +9,11 @@ import java.util.List;
 
 public class LevelServiceImpl implements LevelService_ {
 
-    @Autowired private LevelRepository_ levelRepository;
+    @Autowired private LevelRepository levelRepository;
 
     @Override
-    public List<Level_> findAllLevels() {
-        return levelRepository.findAll();
+    public List<Level> findAllLevels() {
+        return (List<Level>) levelRepository.findAll();
     }
 
     public void setLevelRepository(LevelRepository_ levelRepository) {
