@@ -38,7 +38,7 @@ public class ComponentController {
         LOG.info("Saving new component... " + component.getComponentName());
         componentService.saveComponent(component);
 
-        return "redirect:/fabrica/ModificarComponente";
+        return "fabrica/ModificarComponente";
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
