@@ -2,14 +2,13 @@ package com.bbva.bancomer.controller;
 
 
 import com.bbva.bancomer.business.model.NivelCmb;
-import com.bbva.bancomer.business.model.QNivelCmb;
 import com.bbva.bancomer.business.model.Requerimiento;
 import com.bbva.bancomer.business.model.Tecnologia;
 import com.bbva.bancomer.business.repository.TecnologiaRepository;
 import com.bbva.bancomer.business.repository.NivelCmbRepository;
 import com.bbva.bancomer.business.service.NivelCmbService;
 import com.bbva.bancomer.business.service.RequerimientoService;
-import com.querydsl.jpa.impl.JPAQuery;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
