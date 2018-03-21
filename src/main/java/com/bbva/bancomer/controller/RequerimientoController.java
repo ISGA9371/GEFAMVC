@@ -4,6 +4,8 @@ package com.bbva.bancomer.controller;
 import com.bbva.bancomer.business.model.NivelCmb;
 import com.bbva.bancomer.business.model.QNivelCmb;
 import com.bbva.bancomer.business.model.Requerimiento;
+import com.bbva.bancomer.business.model.Tecnologia;
+import com.bbva.bancomer.business.repository.TecnologiaRepository;
 import com.bbva.bancomer.business.repository.NivelCmbRepository;
 import com.bbva.bancomer.business.service.NivelCmbService;
 import com.bbva.bancomer.business.service.RequerimientoService;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.*;
+import java.util.List;
 import java.util.logging.Logger;
 
 @Controller
@@ -26,8 +29,10 @@ public class RequerimientoController {
 
     private static final String REQUERIMIENTO_VISTA = "fabrica/AltaDeRequerimiento";
     private static final String MODIFICA_REQ_VISTA = "fabrica/ModificarRequerimiento";
+    private static final String BUSCAR_REQ_VISTA = "fabrica/BusquedaDeRequerimientos";
 
     private RequerimientoService requerimientoService;
+    private TecnologiaRepository tecnologiaRepository;
 
     private static final Logger log = Logger.getLogger(RequerimientoController.class.getName());
 
@@ -56,7 +61,7 @@ public class RequerimientoController {
     }
 
     @GetMapping("/{id}")
-    public String buscaRequerimiento(Model model, @PathVariable Integer id) {
+    public String verRequerimiento(Model model, @PathVariable Integer id) {
 
         log.info("ID " + id);
 
@@ -67,9 +72,27 @@ public class RequerimientoController {
         return MODIFICA_REQ_VISTA;
     }
 
+    @GetMapping("/buscar")
+    public String buscar(Model model) {
+
+        Iterable<Tecnologia> coso= tecnologiaRepository.findAll();
+        for(Tecnologia t : coso){
+            log.info("TEC "+t.getNombre());
+        }
+
+        List<Tecnologia> todas = (List<Tecnologia>) tecnologiaRepository.findAll();
+        model.addAttribute("tecnologias",coso);
+
+        return BUSCAR_REQ_VISTA;
+    }
+
     @Autowired
     public void setRequerimientoService(RequerimientoService requerimientoService) {
         this.requerimientoService = requerimientoService;
+    }
+    @Autowired
+    public void setTecnologiaRepository(TecnologiaRepository tecnologiaRepository){
+        this.tecnologiaRepository = tecnologiaRepository;
     }
 
 

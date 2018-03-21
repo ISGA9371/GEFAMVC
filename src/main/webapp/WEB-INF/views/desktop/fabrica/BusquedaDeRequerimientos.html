@@ -12,28 +12,27 @@
 
 
     <!-- Estilos -->
-    <script type="text/javascript" th:src="@{js/jquery-3.2.1.min.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}">
-    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 
     <!--Script generales-->
-    <link rel="stylesheet" type="text/css" th:href="@{css/estilosGF.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/estilosGF.css}">
 
 
     <!--Scripts para campos de texto-->
-    <link rel="stylesheet" type="text/css" th:href="@{css/material-components-web.css}">
-    <script type="text/javascript" th:src="@{js/material-components-web.js}"></script>
-
+    <link rel="stylesheet" type="text/css" th:href="@{/css/material-components-web.css}">
+    <script type="text/javascript" th:src="@{/js/material-components-web.js}"></script>
 
     <!--Estilos para los combos-->
-    <link rel="stylesheet" type="text/css" th:href="@{css/select.css}">
-    <script type="text/javascript" th:src="@{js/ready.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/select.css}">
+    <script type="text/javascript" th:src="@{/js/ready.js}"></script>
 
     <!--Estilos para los calendarios-->
-    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap-datetimepicker.css}">
-    <script type="text/javascript" th:src="@{js/analytics.js}"></script>
-    <script type="text/javascript" th:src="@{js/moment-with-locales.js}"></script>
-    <script type="text/javascript" th:src="@{js/bootstrap-datetimepicker.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datetimepicker.css}">
+    <script type="text/javascript" th:src="@{/js/analytics.js}"></script>
+    <script type="text/javascript" th:src="@{/js/moment-with-locales.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-datetimepicker.js}"></script>
 
 </head>
 <style>
@@ -73,11 +72,11 @@
 <div class="container">
     <br>
     <div class="row">
-        <div class="col-md-12" align="center" style="font-size:30; font-family:BBVA Web Book">Requerimientos</div>
+        <div class="col-md-12" align="center" style="font-size:30px; font-family:BBVA Web Book">Requerimientos</div>
     </div>
     <br>
     <div class="row">
-        <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Criterios De Busqueda</div>
+        <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Criterios De Busqueda</div>
         <table class="col-md-12" >
             <tr>
                 <td class="col-md-4" align="center">
@@ -202,23 +201,19 @@
             </tr>
             <tr style="height:72px">
                 <td class="col-md-4" align="center">
-                    <div id="Tecnologia-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                    <div id="tipoProyecto-js-select"  class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect"
+                         style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                            <div class="mdc-select__label">Tecnologia</div>
+                            <div class="mdc-select__label">Tecnología</div>
                             <div class="mdc-select__selected-text"></div>
                             <div class="mdc-select__bottom-line"></div>
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Tecnologia 1
+                                <li class="mdc-list-item" role="option" tabindex="0"
+                                th:each="tecnologia : ${tecnologias}" th:value="${tecnologia.nombre}" th:text="${tecnologia.nombre}">
                                 </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Tecnologia 2
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Tecnologia 3
-                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -319,11 +314,11 @@
         <br>
         <br>
     </div>
-    <div class="col-md-12" align="Left" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Resultados De Busqueda</div>
-    <div class="col-md-12" align="Left" style="font-size:20; font-family:BBVA Web Book; background-color:#12a96a; color:#FFFFFF">Requerimientos</div>
+    <div class="col-md-12" align="Left" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Resultados De Busqueda</div>
+    <div class="col-md-12" align="Left" style="font-size:20px; font-family:BBVA Web Book; background-color:#12a96a; color:#FFFFFF">Requerimientos</div>
 
     <div class="row">
-        <table class="col-md-12 table table-hover table-responsive"  style="font-size:12;">
+        <table class="col-md-12 table table-hover table-responsive"  style="font-size:12px;">
             <thead>
             <tr style="background-color:#999; color:#fcfbfb">
                 <th >
@@ -681,50 +676,9 @@
         <br>
         <br>
     </div>
+</div>
 </body>
 <script>mdc.autoInit()</script>
-<style rel="stylesheet">
-    .mdc-text-field__input {
-        border-bottom-color: rgba(15, 50, 242, 0.5);
-    }
-</style>
 
-<script>
-    demoReady(function() {
-        mdc.select.MDCSelect.attachTo(document.getElementById('Direccion-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('subdireccion-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('resp-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('atencion-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Proyecto-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Tecnologia-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Empresa-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Servicio-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Inicial-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Final-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('scrum-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('estado-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('facturado-js-select'));
-    });
-
-    function mostrar(valor){
-
-
-        if(document.getElementById(valor).style.display==""){
-
-            document.getElementById(valor).style.display="none";
-
-        }else{
-
-            document.getElementById(valor).style.display="";
-
-        }
-
-
-    }
-
-    inicio();
-
-
-</script>
 
 </html>
