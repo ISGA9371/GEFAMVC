@@ -38,7 +38,7 @@
             <div class="col-md-12" align="center" style="font-size:30px; font-family:BBVA Web Book">Alta de Requerimientos</div>
         </div>
         <br>
-        <form action="#" th:action="@{/requerimiento/guardaReq}" th:object="${requerimiento}" method="post">
+        <form style="display:none" action="#" th:action="@{/requerimiento/guardaReq}" th:object="${requerimiento}" method="post">
 
             <!--HIDDEN PARA PRUEBAS-->
             <input type="number" th:field="*{cd_requerimiento}" >
@@ -52,8 +52,11 @@
             <input type="text" th:field="*{cd_usuario_resp}" >
             <input type="text" th:field="*{cd_usuario_gestor}" >
             <input type="number" th:field="*{st_requerimiento}">
+            <input type="number" th:field="*{st_facturado}">
 
             <input type="submit" value="Guardar">
+        </form>
+
 
             <!--input type="number" th:field="*{cd_aplicacion}" value=9>
             <input type="number" th:field="*{cd_canal}" value=10>
@@ -86,17 +89,8 @@
                                     <div class="mdc-select__bottom-line"></div>
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
-                                    <ul class="mdc-list mdc-menu__items">
-                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                            Direccion 1
-                                        </li>
-                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                            Direccion 2
-                                        </li>
-                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                            Direccion 3
-                                        </li>
-
+                                    <ul  class="mdc-list mdc-menu__items">
+                                        <li th:each="niveles:${niveles}"  class="mdc-list-item" role="option" th:text="${niveles.nb_nivel}"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -110,16 +104,7 @@
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
                                     <ul class="mdc-list mdc-menu__items">
-                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                            Subdireccion 1
-                                        </li>
-                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                            Subdireccion 2
-                                        </li>
-                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                            Subdireccion 3
-                                        </li>
-
+                                        <li th:each="niveles:${niveles}"  class="mdc-list-item" role="option" th:text="${niveles.nb_nivel}"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -420,7 +405,7 @@
                     </tr>
                 </table>
             </div>
-        </form>
+
         </div>
 
     </body>
