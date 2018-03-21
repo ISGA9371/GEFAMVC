@@ -1,10 +1,7 @@
 package com.bbva.bancomer.business.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "THGE010_NIVEL")
@@ -22,8 +19,13 @@ public class Level {
     @Column(name="NB_NIVEL")
     private String nb_nivel;
 
+    /*
     @Column(name="CD_TIPO_NIVEL")
-    private int cd_tipo_nivel;
+    private int cd_tipo_nivel;*/
+
+    @ManyToOne
+    @JoinColumn(name="cd_evidencia_id")
+    private LevelType type;
 
     @Column(name="CD_USUARIO_RESP")
     private String cd_usuario_resp;
@@ -39,7 +41,7 @@ public class Level {
         this.cd_consec_nivel = cd_consec_nivel;
         this.cd_nivel = cd_nivel;
         this.nb_nivel = nb_nivel;
-        this.cd_tipo_nivel = cd_tipo_nivel;
+        //this.cd_tipo_nivel = cd_tipo_nivel;
         this.cd_usuario_resp = cd_usuario_resp;
         this.cd_nivel_superior = cd_nivel_superior;
     }
@@ -68,13 +70,21 @@ public class Level {
         this.nb_nivel = nb_nivel;
     }
 
-    public int getCd_tipo_nivel() {
+    public LevelType getType() {
+        return type;
+    }
+
+    public void setType(LevelType type) {
+        this.type = type;
+    }
+
+    /*public int getCd_tipo_nivel() {
         return cd_tipo_nivel;
     }
 
     public void setCd_tipo_nivel(int cd_tipo_nivel) {
         this.cd_tipo_nivel = cd_tipo_nivel;
-    }
+    }*/
 
     public String getCd_usuario_resp() {
         return cd_usuario_resp;
@@ -98,7 +108,7 @@ public class Level {
                 "cd_consec_nivel=" +  cd_consec_nivel +
                 ", cd_nivel=" + cd_nivel +
                 ", nb_nivel=" + nb_nivel +
-                ", cd_tipo_nivel=" + cd_tipo_nivel +
+                //", cd_tipo_nivel=" + cd_tipo_nivel +
                 ", cd_usuario_resp=" + cd_usuario_resp +
                 ", cd_nivel_superior=" + cd_nivel_superior +
                 '}';

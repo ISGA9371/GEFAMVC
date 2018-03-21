@@ -3,15 +3,15 @@ package com.bbva.bancomer.business.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name ="THGE010_NIVEL")
-public class Nivel {
+@Table(name ="THGE004_TIPO_NIVEL")
+public class LevelType {
     @Id
-    @GeneratedValue(/**/)
+    /*@GeneratedValue()*/
     @Column(name = "CD_TIPO_NIVEL")
-    Integer id;
+    private Integer id;
 
     @Column(name = "NB_TIPO_NIVEL")
-    String nombre;
+    private String nombre;
 
     public Integer getId() {
         return id;

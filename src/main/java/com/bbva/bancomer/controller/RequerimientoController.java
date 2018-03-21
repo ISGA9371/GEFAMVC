@@ -1,16 +1,16 @@
 package com.bbva.bancomer.controller;
 
 
-import com.bbva.bancomer.business.model.NivelCmb;
-import com.bbva.bancomer.business.model.Requerimiento;
-import com.bbva.bancomer.business.model.Tecnologia;
-import com.bbva.bancomer.business.repository.TecnologiaRepository;
+import com.bbva.bancomer.business.model.*;
+import com.bbva.bancomer.business.repository.LevelRepository;
+import com.bbva.bancomer.business.repository.LevelTypeRepository;
+import com.bbva.bancomer.business.repository.TechnologyRepository;
 import com.bbva.bancomer.business.repository.NivelCmbRepository;
 import com.bbva.bancomer.business.service.AreaService;
 import com.bbva.bancomer.business.service.NivelCmbService;
 import com.bbva.bancomer.business.service.RequerimientoService;
 
-import com.bbva.bancomer.business.service.TecnologiaService;
+import com.bbva.bancomer.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -18,9 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.*;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -33,7 +30,10 @@ public class RequerimientoController {
     private static final String BUSCAR_REQ_VISTA = "fabrica/BusquedaDeRequerimientos";
 
     private RequerimientoService requerimientoService;
-    private TecnologiaRepository tecnologiaRepository;
+
+    private TechnologyRepository tecnologiaRepository;
+    private LevelRepository levelRepository;
+    private LevelTypeRepository levelTypeRepository;
 
     private static final Logger log = Logger.getLogger(RequerimientoController.class.getName());
 
@@ -46,9 +46,6 @@ public class RequerimientoController {
     @Qualifier("areaServiceImp")
     private AreaService areaServiceImp;
 
-    @Autowired
-    @Qualifier("tecnologiaServiceImp")
-    private TecnologiaService tecnologiaServiceImp;
 
     @GetMapping("/inicialRequerimiento")
     public ModelAndView entraRequerimiento() {
@@ -56,7 +53,6 @@ public class RequerimientoController {
         ModelAndView modelReq = new ModelAndView(REQUERIMIENTO_VISTA);
         modelReq.addObject("nivelesCmb", nivelServiceImp.listaNiveles());
         modelReq.addObject("areasCmb", areaServiceImp.listaAreas());
-        modelReq.addObject("tecnologiasCmb", tecnologiaServiceImp.listaTecnologias());
         modelReq.addObject("requerimiento", new Requerimiento());
 
         return modelReq;
@@ -85,13 +81,20 @@ public class RequerimientoController {
     @GetMapping("/buscar")
     public String buscar(Model model) {
 
-        Iterable<Tecnologia> coso= tecnologiaRepository.findAll();
-        for(Tecnologia t : coso){
-            log.info("TEC "+t.getNombre());
+        Iterable<Technology> coso= tecnologiaRepository.findAll();
+
+        List<Technology> todas = (List<Technology>) tecnologiaRepository.findAll();
+
+        LevelType direccionType = levelTypeRepository.findByNombre(Constants.TIPO_NIVEL_DIRECCION);
+
+        List<Level> direcciones = levelRepository.findAllByType(direccionType);
+
+        for(Level l : direcciones){
+            log.info("TEC "+l.getNb_nivel());
         }
 
-        List<Tecnologia> todas = (List<Tecnologia>) tecnologiaRepository.findAll();
         model.addAttribute("tecnologias",coso);
+        model.addAttribute("direcciones",direcciones);
 
         return BUSCAR_REQ_VISTA;
     }
@@ -101,8 +104,16 @@ public class RequerimientoController {
         this.requerimientoService = requerimientoService;
     }
     @Autowired
-    public void setTecnologiaRepository(TecnologiaRepository tecnologiaRepository){
+    public void setTecnologiaRepository(TechnologyRepository tecnologiaRepository){
         this.tecnologiaRepository = tecnologiaRepository;
+    }
+    @Autowired
+    public void setLevelRepository(LevelRepository levelRepository){
+        this.levelRepository = levelRepository;
+    }
+    @Autowired
+    public void setLevelTypeRepository(LevelTypeRepository levelTypeRepository){
+        this.levelTypeRepository = levelTypeRepository;
     }
 
 

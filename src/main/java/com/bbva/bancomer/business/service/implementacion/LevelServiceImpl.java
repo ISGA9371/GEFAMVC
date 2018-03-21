@@ -13,7 +13,7 @@ public class LevelServiceImpl implements LevelService {
 
     @Override
     public List<Level> findAllLevels() {
-        return levelRepository.findAll();
+        return (List<Level>) levelRepository.findAll();
     }
 
     public void setLevelRepository(LevelRepository levelRepository) {
