@@ -11,10 +11,10 @@ public class Level {
     //@GeneratedValue(strategy= GenerationType.IDENTITY)
 
     @Column(name="CD_CONSEC_NIVEL")
-    private int cd_consec_nivel;
+    private Integer cd_consec_nivel;
 
     @Column(name="CD_NIVEL")
-    private int cd_nivel;
+    private Integer cd_nivel;
 
     @Column(name="NB_NIVEL")
     private String nb_nivel;
@@ -24,20 +24,20 @@ public class Level {
     private int cd_tipo_nivel;*/
 
     @ManyToOne
-    @JoinColumn(name="cd_evidencia_id")
+    @JoinColumn(name="cd_tipo_nivel")
     private LevelType type;
 
     @Column(name="CD_USUARIO_RESP")
     private String cd_usuario_resp;
 
     @Column(name="CD_NIVEL_SUPERIOR")
-    private int cd_nivel_superior;
+    private Integer cd_nivel_superior;
 
     //Cosntructor por defecto para Hibernate
     public Level() {
     }
 
-    public Level (int cd_consec_nivel, int cd_nivel, String nb_nivel, int cd_tipo_nivel, String cd_usuario_resp, int cd_nivel_superior) {
+    public Level (Integer cd_consec_nivel, Integer cd_nivel, String nb_nivel, Integer cd_tipo_nivel, String cd_usuario_resp, Integer cd_nivel_superior) {
         this.cd_consec_nivel = cd_consec_nivel;
         this.cd_nivel = cd_nivel;
         this.nb_nivel = nb_nivel;
@@ -46,19 +46,19 @@ public class Level {
         this.cd_nivel_superior = cd_nivel_superior;
     }
 
-    public int getCd_consec_nivel() {
+    public Integer getCd_consec_nivel() {
         return cd_consec_nivel;
     }
 
-    public void setCd_consec_nivel(int cd_consec_nivel) {
+    public void setCd_consec_nivel(Integer cd_consec_nivel) {
         this.cd_consec_nivel = cd_consec_nivel;
     }
 
-    public int getCd_nivel() {
+    public Integer getCd_nivel() {
         return cd_nivel;
     }
 
-    public void setCd_nivel(int cd_nivel) {
+    public void setCd_nivel(Integer cd_nivel) {
         this.cd_nivel = cd_nivel;
     }
 
@@ -78,11 +78,11 @@ public class Level {
         this.type = type;
     }
 
-    /*public int getCd_tipo_nivel() {
+    /*public Integer getCd_tipo_nivel() {
         return cd_tipo_nivel;
     }
 
-    public void setCd_tipo_nivel(int cd_tipo_nivel) {
+    public void setCd_tipo_nivel(Integer cd_tipo_nivel) {
         this.cd_tipo_nivel = cd_tipo_nivel;
     }*/
 
@@ -94,11 +94,11 @@ public class Level {
         this.cd_usuario_resp = cd_usuario_resp;
     }
 
-    public int getCd_nivel_superior() {
+    public Integer getCd_nivel_superior() {
         return cd_nivel_superior;
     }
 
-    public void setCd_nivel_superior(int cd_nivel_superior) {
+    public void setCd_nivel_superior(Integer cd_nivel_superior) {
         this.cd_nivel_superior = cd_nivel_superior;
     }
 
