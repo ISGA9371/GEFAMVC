@@ -13,4 +13,7 @@ public interface RequerimientoService {
     public abstract Requerimiento modificaRequerimiento(Requerimiento requerimiento);
 
     Requerimiento buscaRequerimiento(Integer id);
+
+    interface AreaService {
+    }
 }
