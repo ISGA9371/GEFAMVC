@@ -82,7 +82,7 @@ public class Requirement implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<T955> t955List;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
-    private List<Component> components;
+    private List<Component_> components;
 
     public Requirement() {
     }
@@ -288,11 +288,11 @@ public class Requirement implements Serializable {
         this.t955List = t955List;
     }
 
-    public List<Component> getComponents() {
+    public List<Component_> getComponents() {
         return components;
     }
 
-    public void setComponents(List<Component> components) {
+    public void setComponents(List<Component_> components) {
         this.components = components;
     }
 

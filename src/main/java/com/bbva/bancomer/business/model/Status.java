@@ -60,9 +60,9 @@ public class Status implements Serializable {
     @OneToMany(mappedBy = "status")
     private List<Issue> issues;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusTypology")
-    private List<Component> componentList;
+    private List<Component_> componentList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Component> componentList1;
+    private List<Component_> componentList1;
     @JoinColumn(name = "CD_TIPO_EDO", referencedColumnName = "CD_TIPO_EDO", nullable = false)
     @ManyToOne(optional = false)
     private StatusType statusType;
@@ -239,19 +239,19 @@ public class Status implements Serializable {
         this.issues = issues;
     }
 
-    public List<Component> getComponentList() {
+    public List<Component_> getComponentList() {
         return componentList;
     }
 
-    public void setComponentList(List<Component> componentList) {
+    public void setComponentList(List<Component_> componentList) {
         this.componentList = componentList;
     }
 
-    public List<Component> getComponentList1() {
+    public List<Component_> getComponentList1() {
         return componentList1;
     }
 
-    public void setComponentList1(List<Component> componentList1) {
+    public void setComponentList1(List<Component_> componentList1) {
         this.componentList1 = componentList1;
     }
 

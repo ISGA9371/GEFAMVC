@@ -75,7 +75,7 @@ public class Modification implements Serializable {
     private Status status;
     @JoinColumn(name = "CD_COMPONENTE", referencedColumnName = "CD_COMPONENTE", nullable = false)
     @ManyToOne(optional = false)
-    private Component component;
+    private Component_ component;
     @JoinColumn(name = "CD_USU_PETICION", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
     private User userSender;
@@ -281,11 +281,11 @@ public class Modification implements Serializable {
         this.status = status;
     }
 
-    public Component getComponent() {
+    public Component_ getComponent() {
         return component;
     }
 
-    public void setComponent(Component component) {
+    public void setComponent(Component_ component) {
         this.component = component;
     }
 
