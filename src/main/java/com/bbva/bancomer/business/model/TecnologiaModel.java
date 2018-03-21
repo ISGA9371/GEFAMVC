@@ -1,18 +1,17 @@
 package com.bbva.bancomer.business.model;
 
+public class TecnologiaModel {
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "THGE002_TECNOLOGIA")
-public class Tecnologia {
-
-    @Id
-    @GeneratedValue(/*strategy= GenerationType.IDENTITY*/)
-    @Column(name = "CD_TECNOLOGIA")
     private Integer id;
-    @Column(name = "NB_TECNOLOGIA")
     private String nombre;
+
+    public TecnologiaModel(Integer id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
+    public TecnologiaModel() {
+    }
 
     public Integer getId() {
         return id;
@@ -27,13 +26,6 @@ public class Tecnologia {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Tecnologia() {
-    }
-
-    public Tecnologia(String nombre) {
         this.nombre = nombre;
     }
 }

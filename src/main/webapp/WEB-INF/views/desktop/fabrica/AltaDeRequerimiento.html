@@ -154,16 +154,7 @@
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
                                     <ul class="mdc-list mdc-menu__items">
-                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                            Tecnologia 1
-                                        </li>
-                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                            Tecnologia 2
-                                        </li>
-                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                            Tecnologia 3
-                                        </li>
-
+                                        <li th:each="tecnologiasCmb:${tecnologiasCmb}"  class="mdc-list-item" role="option" th:text="${tecnologiasCmb.nombre}"></li>
                                     </ul>
                                 </div>
                             </div>

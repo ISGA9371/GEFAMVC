@@ -10,6 +10,7 @@ import com.bbva.bancomer.business.service.AreaService;
 import com.bbva.bancomer.business.service.NivelCmbService;
 import com.bbva.bancomer.business.service.RequerimientoService;
 
+import com.bbva.bancomer.business.service.TecnologiaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -45,6 +46,9 @@ public class RequerimientoController {
     @Qualifier("areaServiceImp")
     private AreaService areaServiceImp;
 
+    @Autowired
+    @Qualifier("tecnologiaServiceImp")
+    private TecnologiaService tecnologiaServiceImp;
 
     @GetMapping("/inicialRequerimiento")
     public ModelAndView entraRequerimiento() {
@@ -52,6 +56,7 @@ public class RequerimientoController {
         ModelAndView modelReq = new ModelAndView(REQUERIMIENTO_VISTA);
         modelReq.addObject("nivelesCmb", nivelServiceImp.listaNiveles());
         modelReq.addObject("areasCmb", areaServiceImp.listaAreas());
+        modelReq.addObject("tecnologiasCmb", tecnologiaServiceImp.listaTecnologias());
         modelReq.addObject("requerimiento", new Requerimiento());
 
         return modelReq;
