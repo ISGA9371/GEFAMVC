@@ -29,28 +29,59 @@
     <link rel="stylesheet" type="text/css" th:href="@{css/select.css}">
     <script type="text/javascript" th:src="@{js/ready.js}"></script>
 
+    <!--Estilos para los calendarios-->
+    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap-datetimepicker.css}">
+    <script type="text/javascript" th:src="@{js/analytics.js}"></script>
+    <script type="text/javascript" th:src="@{js/moment-with-locales.js}"></script>
+    <script type="text/javascript" th:src="@{js/bootstrap-datetimepicker.js}"></script>
+
 </head>
 
+<script type="text/javascript">
+    function mostrar(){
+        document.getElementById('EstadoLinea').style.display = 'inline';}
+
+    $(function () {
+        $('#datetimepicker4').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+    });
+    $(function () {
+        $('#datetimepicker5').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+    });
+    $(function () {
+        $('#datetimepicker6').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+    });
+    $(function () {
+        $('#datetimepicker7').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+    });
+</script>
 <body>
 <div class="container">
     <br>
     <div class="row">
-        <div class="col-md-12" align="center" style="font-size:30px; font-family:BBVA Web Book">Alta de Componente</div>
+        <div class="col-md-12" align="center" style="font-size:30; font-family:BBVA Web Book">Alta de Componente</div>
     </div>
     <br>
     <div class="row">
-        <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos del Componente</div>
+        <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos del Componente</div>
         <table class="col-md-12" >
             <tr>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="nombre-componente">
                         <label for="demo-input" class="mdc-text-field__label">Nombre del Componente</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="version">
                         <label for="demo-input" class="mdc-text-field__label">Version</label>
                     </div>
                 </td>
@@ -77,10 +108,10 @@
                     </div>
                 </td>
             </tr>
-            <tr style="height:72px">
+            <tr>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="requerimiento">
                         <label for="demo-input" class="mdc-text-field__label">Requerimiento</label>
                     </div>
                 </td>
@@ -108,58 +139,66 @@
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="dificultad inicial">
                         <label for="demo-input" class="mdc-text-field__label">Dificultad Inicial</label>
                     </div>
                 </td>
             </tr>
-            <tr style="height:72px">
+            <tr>
                 <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
-                        <label for="demo-input" class="mdc-text-field__label">F. Real CGF>Fact.Diseño</label>
+                    <div class="dog1">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker4' />
+                            <label for="demo-input" class="mdc-text-field__label">F. Real CGF>Fact.Diseño</label>
+                        </div>
+                    </div>
+                </td>
+                <td class="col-md-4" align="center">
+                    <div class="dog1">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker5' />
+                            <label for="demo-input" class="mdc-text-field__label">F. Prevista Fact>CGF Software</label>
+                        </div>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
-                        <label for="demo-input" class="mdc-text-field__label">F. Prevista Fact>CGF Software</label>
-                    </div>
-                </td>
-                <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" id="demo-input">
+                        <input type="text"  class="mdc-text-field__input" id="horas">
                         <label for="demo-input" class="mdc-text-field__label">Horas</label>
                     </div>
                 </td>
             </tr>
-            <tr style="height:72px">
+            <tr>
                 <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input"  id="demo-input">
-                        <label for="demo-input" class="mdc-text-field__label">F. Negociada Fact.>CGF Software</label>
+                    <div class="dog1">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker6' />
+                            <label for="demo-input" class="mdc-text-field__label">F. Negociada Fact.>CGF Software</label>
+                        </div>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
-                        <label for="demo-input" class="mdc-text-field__label">F. Real Fact.>CGF Software</label>
+                    <div class="dog1">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker7' />
+                            <label for="demo-input" class="mdc-text-field__label">F. Real Fact.>CGF Software</label>
+                        </div>
                     </div>
                 </td>
             </tr>
         </table>
-        <div class="row">
-            <table class="col-md-12" >
-                <tr>
-                    <td class="col-md-6" align="center">
-                        <br>
-                        <br>
-                        <button type="button" class="btn btn-primary">Guardar</button>
-                        <button type="button" class="btn btn-primary">Cancelar</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
+    </div>
+    <div class="row">
+        <table class="col-md-12" >
+            <tr>
+                <td class="col-md-6" align="center">
+                    <br>
+                    <br>
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-primary">Cancelar</button>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
 </body>
