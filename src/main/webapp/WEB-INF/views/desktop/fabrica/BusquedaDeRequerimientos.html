@@ -24,7 +24,6 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/material-components-web.css}">
     <script type="text/javascript" th:src="@{/js/material-components-web.js}"></script>
 
-
     <!--Estilos para los combos-->
     <link rel="stylesheet" type="text/css" th:href="@{/css/select.css}">
     <script type="text/javascript" th:src="@{/js/ready.js}"></script>
@@ -202,23 +201,19 @@
             </tr>
             <tr style="height:72px">
                 <td class="col-md-4" align="center">
-                    <div id="Tecnologia-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                    <div id="tipoProyecto-js-select"  class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect"
+                         style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                            <div class="mdc-select__label">Tecnologia</div>
+                            <div class="mdc-select__label">Tecnología</div>
                             <div class="mdc-select__selected-text"></div>
                             <div class="mdc-select__bottom-line"></div>
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Tecnologia 1
+                                <li class="mdc-list-item" role="option" tabindex="0"
+                                th:each="tecnologia : ${tecnologias}" th:value="${tecnologia.nombre}" th:text="${tecnologia.nombre}">
                                 </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Tecnologia 2
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Tecnologia 3
-                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -681,50 +676,9 @@
         <br>
         <br>
     </div>
+</div>
 </body>
 <script>mdc.autoInit()</script>
-<style rel="stylesheet">
-    .mdc-text-field__input {
-        border-bottom-color: rgba(15, 50, 242, 0.5);
-    }
-</style>
 
-<script>
-    demoReady(function() {
-        mdc.select.MDCSelect.attachTo(document.getElementById('Direccion-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('subdireccion-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('resp-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('atencion-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Proyecto-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Tecnologia-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Empresa-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Servicio-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Inicial-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Final-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('scrum-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('estado-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('facturado-js-select'));
-    });
-
-    function mostrar(valor){
-
-
-        if(document.getElementById(valor).style.display==""){
-
-            document.getElementById(valor).style.display="none";
-
-        }else{
-
-            document.getElementById(valor).style.display="";
-
-        }
-
-
-    }
-
-    inicio();
-
-
-</script>
 
 </html>
