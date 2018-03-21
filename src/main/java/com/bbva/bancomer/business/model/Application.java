@@ -30,7 +30,7 @@ public class Application implements Serializable {
     private String applicationName;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private Technology technology;
+    private Technology_ technology;
     @OneToMany(mappedBy = "application")
     private List<Requirement> requirements;
 
@@ -71,11 +71,11 @@ public class Application implements Serializable {
         this.applicationName = applicationName;
     }
 
-    public Technology getTechnology() {
+    public Technology_ getTechnology() {
         return technology;
     }
 
-    public void setTechnology(Technology technology) {
+    public void setTechnology(Technology_ technology) {
         this.technology = technology;
     }
 

@@ -15,8 +15,8 @@ import java.util.Date;
 @Entity
 @Table(name = "thge027_duda", catalog = "gestion_factoria", schema = "")
 @NamedQueries({
-        @NamedQuery(name = "Doubt.findAll", query = "SELECT t FROM Doubt t")})
-public class Doubt implements Serializable {
+        @NamedQuery(name = "Doubt_.findAll", query = "SELECT t FROM Doubt_ t")})
+public class Doubt_ implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -58,14 +58,14 @@ public class Doubt implements Serializable {
     @ManyToOne(optional = false)
     private DoubtType doubtType;
 
-    public Doubt() {
+    public Doubt_() {
     }
 
-    public Doubt(Integer doubtId) {
+    public Doubt_(Integer doubtId) {
         this.doubtId = doubtId;
     }
 
-    public Doubt(Integer doubtId, Date doubtUploadDate, String doubtVersion, String doubtDescription) {
+    public Doubt_(Integer doubtId, Date doubtUploadDate, String doubtVersion, String doubtDescription) {
         this.doubtId = doubtId;
         this.doubtUploadDate = doubtUploadDate;
         this.doubtVersion = doubtVersion;
@@ -185,16 +185,16 @@ public class Doubt implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof Doubt)) {
+        if (!(object instanceof Doubt_)) {
             return false;
         }
-        Doubt other = (Doubt) object;
+        Doubt_ other = (Doubt_) object;
         return (this.doubtId != null || other.doubtId == null) && (this.doubtId == null || this.doubtId.equals(other.doubtId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Doubt[ doubtId=" + doubtId + " ]";
+        return "com.bbva.Doubt_[ doubtId=" + doubtId + " ]";
     }
 
 }

@@ -28,7 +28,7 @@ public class Contract implements Serializable {
     private int contractYear;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private Technology technology;
+    private Technology_ technology;
     @JoinColumn(name = "CD_EMPRESA", referencedColumnName = "CD_EMPRESA", nullable = false)
     @ManyToOne(optional = false)
     private Company company;
@@ -37,7 +37,7 @@ public class Contract implements Serializable {
     private Status status;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
-    private Area area;
+    private Area_ area;
     @JoinColumn(name = "CD_ENTIDAD", referencedColumnName = "CD_ENTIDAD", nullable = false)
     @ManyToOne(optional = false)
     private Corporation corporation;
@@ -89,11 +89,11 @@ public class Contract implements Serializable {
         this.contractYear = contractYear;
     }
 
-    public Technology getTechnology() {
+    public Technology_ getTechnology() {
         return technology;
     }
 
-    public void setTechnology(Technology technology) {
+    public void setTechnology(Technology_ technology) {
         this.technology = technology;
     }
 
@@ -113,11 +113,11 @@ public class Contract implements Serializable {
         this.status = status;
     }
 
-    public Area getArea() {
+    public Area_ getArea() {
         return area;
     }
 
-    public void setArea(Area area) {
+    public void setArea(Area_ area) {
         this.area = area;
     }
 

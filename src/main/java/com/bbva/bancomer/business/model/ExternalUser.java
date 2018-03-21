@@ -110,7 +110,7 @@ public class ExternalUser implements Serializable {
     private Workplace workplace;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
-    private Area area;
+    private Area_ area;
     @JoinColumn(name = "CD_TIPO_ASIG", referencedColumnName = "CD_TIPO_ASIG", nullable = false)
     @ManyToOne(optional = false)
     private AssignationType assignationType;
@@ -420,11 +420,11 @@ public class ExternalUser implements Serializable {
         this.workplace = workplace;
     }
 
-    public Area getArea() {
+    public Area_ getArea() {
         return area;
     }
 
-    public void setArea(Area area) {
+    public void setArea(Area_ area) {
         this.area = area;
     }
 

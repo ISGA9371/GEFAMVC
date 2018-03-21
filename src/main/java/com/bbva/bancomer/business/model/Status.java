@@ -50,7 +50,7 @@ public class Status implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Access> accessList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Doubt> doubts;
+    private List<Doubt_> doubts;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Typology> typologies;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
@@ -199,11 +199,11 @@ public class Status implements Serializable {
         this.accessList = accessList;
     }
 
-    public List<Doubt> getDoubts() {
+    public List<Doubt_> getDoubts() {
         return doubts;
     }
 
-    public void setDoubts(List<Doubt> doubts) {
+    public void setDoubts(List<Doubt_> doubts) {
         this.doubts = doubts;
     }
 

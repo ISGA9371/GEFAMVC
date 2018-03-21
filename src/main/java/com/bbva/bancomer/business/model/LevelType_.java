@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "thge004_tipo_nivel", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_TIPO_NIVEL"})})
-public class LevelType implements Serializable {
+public class LevelType_ implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -26,16 +26,16 @@ public class LevelType implements Serializable {
     @Column(name = "NB_TIPO_NIVEL", nullable = false, length = 50)
     private String levelTypeName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "levelType")
-    private List<Level> levels;
+    private List<Level_> levels;
 
-    public LevelType() {
+    public LevelType_() {
     }
 
-    public LevelType(Integer levelTypeId) {
+    public LevelType_(Integer levelTypeId) {
         this.levelTypeId = levelTypeId;
     }
 
-    public LevelType(Integer levelTypeId, String levelTypeName) {
+    public LevelType_(Integer levelTypeId, String levelTypeName) {
         this.levelTypeId = levelTypeId;
         this.levelTypeName = levelTypeName;
     }
@@ -56,11 +56,11 @@ public class LevelType implements Serializable {
         this.levelTypeName = levelTypeName;
     }
 
-    public List<Level> getLevels() {
+    public List<Level_> getLevels() {
         return levels;
     }
 
-    public void setLevels(List<Level> levels) {
+    public void setLevels(List<Level_> levels) {
         this.levels = levels;
     }
 
@@ -73,16 +73,16 @@ public class LevelType implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof LevelType)) {
+        if (!(object instanceof LevelType_)) {
             return false;
         }
-        LevelType other = (LevelType) object;
+        LevelType_ other = (LevelType_) object;
         return (this.levelTypeId != null || other.levelTypeId == null) && (this.levelTypeId == null || this.levelTypeId.equals(other.levelTypeId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.LevelType[ levelTypeId=" + levelTypeId + " ]";
+        return "com.bbva.LevelType_[ levelTypeId=" + levelTypeId + " ]";
     }
 
 }

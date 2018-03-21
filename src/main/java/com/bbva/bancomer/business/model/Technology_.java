@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "thge002_tecnologia", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_TECNOLOGIA"})})
-public class Technology implements Serializable {
+public class Technology_ implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -35,14 +35,14 @@ public class Technology implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "technology")
     private List<Product> products;
 
-    public Technology() {
+    public Technology_() {
     }
 
-    public Technology(Integer technologyId) {
+    public Technology_(Integer technologyId) {
         this.technologyId = technologyId;
     }
 
-    public Technology(Integer technologyId, String technologyName) {
+    public Technology_(Integer technologyId, String technologyName) {
         this.technologyId = technologyId;
         this.technologyName = technologyName;
     }
@@ -112,16 +112,16 @@ public class Technology implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof Technology)) {
+        if (!(object instanceof Technology_)) {
             return false;
         }
-        Technology other = (Technology) object;
+        Technology_ other = (Technology_) object;
         return (this.technologyId != null || other.technologyId == null) && (this.technologyId == null || this.technologyId.equals(other.technologyId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Technology[ technologyId=" + technologyId + " ]";
+        return "com.bbva.Technology_[ technologyId=" + technologyId + " ]";
     }
 
 }

@@ -1,13 +1,12 @@
-package com.bbva.bancomer.business.service.implementacion;
+package com.bbva.bancomer.business.service;
 
 import com.bbva.bancomer.business.model.Level_;
 import com.bbva.bancomer.business.repository.LevelRepository_;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.bbva.bancomer.business.service.LevelService_;
 
 import java.util.List;
 
-public class LevelServiceImpl implements LevelService_ {
+public class LevelServiceImpl_ implements LevelService_ {
 
     @Autowired private LevelRepository_ levelRepository;
 

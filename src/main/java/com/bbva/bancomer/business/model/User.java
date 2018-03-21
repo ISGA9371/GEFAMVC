@@ -47,7 +47,7 @@ public class User implements Serializable {
     private Status status;
     @JoinColumn(name = "CD_NIVEL", referencedColumnName = "CD_NIVEL")
     @ManyToOne
-    private Level level;
+    private Level_ level;
     @JoinColumn(name = "CD_PERF_USU", referencedColumnName = "CD_TIPO_PERFIL", nullable = false)
     @ManyToOne(optional = false)
     private ProfileType profileType;
@@ -64,9 +64,9 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "userScrumMaster")
     private List<ProgramIncrement> programIncrementList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userSender")
-    private List<Doubt> doubts;
+    private List<Doubt_> doubts;
     @OneToMany(mappedBy = "userReceiver")
-    private List<Doubt> doubtList;
+    private List<Doubt_> doubtList;
     @OneToMany(mappedBy = "manager")
     private List<ExternalUser> externalUsers;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "responsible")
@@ -78,7 +78,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "userReceiver")
     private List<Issue> issueList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Level> levels;
+    private List<Level_> levels;
 
     public User() {
     }
@@ -182,11 +182,11 @@ public class User implements Serializable {
         this.status = status;
     }
 
-    public Level getLevel() {
+    public Level_ getLevel() {
         return level;
     }
 
-    public void setLevel(Level level) {
+    public void setLevel(Level_ level) {
         this.level = level;
     }
 
@@ -246,19 +246,19 @@ public class User implements Serializable {
         this.programIncrementList = programIncrementList;
     }
 
-    public List<Doubt> getDoubts() {
+    public List<Doubt_> getDoubts() {
         return doubts;
     }
 
-    public void setDoubts(List<Doubt> doubts) {
+    public void setDoubts(List<Doubt_> doubts) {
         this.doubts = doubts;
     }
 
-    public List<Doubt> getDoubtList() {
+    public List<Doubt_> getDoubtList() {
         return doubtList;
     }
 
-    public void setDoubtList(List<Doubt> doubtList) {
+    public void setDoubtList(List<Doubt_> doubtList) {
         this.doubtList = doubtList;
     }
 
@@ -302,11 +302,11 @@ public class User implements Serializable {
         this.issueList = issueList;
     }
 
-    public List<Level> getLevels() {
+    public List<Level_> getLevels() {
         return levels;
     }
 
-    public void setLevels(List<Level> levels) {
+    public void setLevels(List<Level_> levels) {
         this.levels = levels;
     }
 

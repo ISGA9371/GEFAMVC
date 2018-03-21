@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "thge010_nivel", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_NIVEL"})})
-public class Level implements Serializable {
+public class Level_ implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -35,24 +35,24 @@ public class Level implements Serializable {
     private List<Requirement> requirements;
     @JoinColumn(name = "CD_TIPO_NIVEL", referencedColumnName = "CD_TIPO_NIVEL", nullable = false)
     @ManyToOne(optional = false)
-    private LevelType levelType;
+    private LevelType_ levelType;
     @OneToMany(mappedBy = "levelSuperior")
-    private List<Level> levelList;
+    private List<Level_> levelList;
     @JoinColumn(name = "CD_NIVEL_SUPERIOR", referencedColumnName = "CD_NIVEL")
     @ManyToOne
-    private Level levelSuperior;
+    private Level_ levelSuperior;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
     private User user;
 
-    public Level() {
+    public Level_() {
     }
 
-    public Level(Integer levelSerial) {
+    public Level_(Integer levelSerial) {
         this.levelSerial = levelSerial;
     }
 
-    public Level(Integer levelSerial, int levelId, String levelName) {
+    public Level_(Integer levelSerial, int levelId, String levelName) {
         this.levelSerial = levelSerial;
         this.levelId = levelId;
         this.levelName = levelName;
@@ -106,27 +106,27 @@ public class Level implements Serializable {
         this.requirements = requirements;
     }
 
-    public LevelType getLevelType() {
+    public LevelType_ getLevelType() {
         return levelType;
     }
 
-    public void setLevelType(LevelType levelType) {
+    public void setLevelType(LevelType_ levelType) {
         this.levelType = levelType;
     }
 
-    public List<Level> getLevelList() {
+    public List<Level_> getLevelList() {
         return levelList;
     }
 
-    public void setLevelList(List<Level> levelList) {
+    public void setLevelList(List<Level_> levelList) {
         this.levelList = levelList;
     }
 
-    public Level getLevelSuperior() {
+    public Level_ getLevelSuperior() {
         return levelSuperior;
     }
 
-    public void setLevelSuperior(Level levelSuperior) {
+    public void setLevelSuperior(Level_ levelSuperior) {
         this.levelSuperior = levelSuperior;
     }
 
@@ -147,16 +147,16 @@ public class Level implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof Level)) {
+        if (!(object instanceof Level_)) {
             return false;
         }
-        Level other = (Level) object;
+        Level_ other = (Level_) object;
         return (this.levelSerial != null || other.levelSerial == null) && (this.levelSerial == null || this.levelSerial.equals(other.levelSerial));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Level[ levelSerial=" + levelSerial + " ]";
+        return "com.bbva.Level_[ levelSerial=" + levelSerial + " ]";
     }
 
 }

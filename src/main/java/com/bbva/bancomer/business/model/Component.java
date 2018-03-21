@@ -61,7 +61,7 @@ public class Component implements Serializable {
     private List<Modification> modifications;
     @Ignore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
-    private List<Doubt> doubts;
+    private List<Doubt_> doubts;
     @Ignore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
     private List<Issue> issues;
@@ -214,11 +214,11 @@ public class Component implements Serializable {
         this.modifications = modifications;
     }
 
-    public List<Doubt> getDoubts() {
+    public List<Doubt_> getDoubts() {
         return doubts;
     }
 
-    public void setDoubts(List<Doubt> doubts) {
+    public void setDoubts(List<Doubt_> doubts) {
         this.doubts = doubts;
     }
 

@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "thge030_area", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_AREA"})})
-public class Area implements Serializable {
+public class Area_ implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -35,14 +35,14 @@ public class Area implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
     private List<ExternalUser> externalUsers;
 
-    public Area() {
+    public Area_() {
     }
 
-    public Area(Integer areaId) {
+    public Area_(Integer areaId) {
         this.areaId = areaId;
     }
 
-    public Area(Integer areaId, String areaName) {
+    public Area_(Integer areaId, String areaName) {
         this.areaId = areaId;
         this.areaName = areaName;
     }
@@ -112,16 +112,16 @@ public class Area implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof Area)) {
+        if (!(object instanceof Area_)) {
             return false;
         }
-        Area other = (Area) object;
+        Area_ other = (Area_) object;
         return (this.areaId != null || other.areaId == null) && (this.areaId == null || this.areaId.equals(other.areaId));
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Area[ areaId=" + areaId + " ]";
+        return "com.bbva.Area_[ areaId=" + areaId + " ]";
     }
 
 }

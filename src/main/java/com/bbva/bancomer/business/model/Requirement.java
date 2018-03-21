@@ -47,7 +47,7 @@ public class Requirement implements Serializable {
     private User userManager;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private Technology technology;
+    private Technology_ technology;
     @JoinColumn(name = "CD_EMPRESA", referencedColumnName = "CD_EMPRESA", nullable = false)
     @ManyToOne(optional = false)
     private Company company;
@@ -56,7 +56,7 @@ public class Requirement implements Serializable {
     private Status status;
     @JoinColumn(name = "CD_NIVEL", referencedColumnName = "CD_NIVEL", nullable = false)
     @ManyToOne(optional = false)
-    private Level level;
+    private Level_ level;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
     private User user;
@@ -68,7 +68,7 @@ public class Requirement implements Serializable {
     private ProgramIncrement programIncrementScrum;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
-    private Area area;
+    private Area_ area;
     @JoinColumn(name = "CD_TIPO_PROY", referencedColumnName = "CD_TIPO_PROY", nullable = false)
     @ManyToOne(optional = false)
     private ProjectType projectType;
@@ -184,11 +184,11 @@ public class Requirement implements Serializable {
         this.userManager = userManager;
     }
 
-    public Technology getTechnology() {
+    public Technology_ getTechnology() {
         return technology;
     }
 
-    public void setTechnology(Technology technology) {
+    public void setTechnology(Technology_ technology) {
         this.technology = technology;
     }
 
@@ -208,11 +208,11 @@ public class Requirement implements Serializable {
         this.status = status;
     }
 
-    public Level getLevel() {
+    public Level_ getLevel() {
         return level;
     }
 
-    public void setLevel(Level level) {
+    public void setLevel(Level_ level) {
         this.level = level;
     }
 
@@ -240,11 +240,11 @@ public class Requirement implements Serializable {
         this.programIncrementScrum = programIncrementScrum;
     }
 
-    public Area getArea() {
+    public Area_ getArea() {
         return area;
     }
 
-    public void setArea(Area area) {
+    public void setArea(Area_ area) {
         this.area = area;
     }
 

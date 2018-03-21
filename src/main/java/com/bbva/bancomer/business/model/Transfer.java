@@ -39,7 +39,7 @@ public class Transfer implements Serializable {
     private Budget budget;
     @JoinColumn(name = "CD_NIVEL_SUBDIR", referencedColumnName = "CD_NIVEL")
     @ManyToOne
-    private Level level;
+    private Level_ level;
     @JoinColumn(name = "CD_USU_RESP_DYD", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
     private User user;
@@ -112,11 +112,11 @@ public class Transfer implements Serializable {
         this.budget = budget;
     }
 
-    public Level getLevel() {
+    public Level_ getLevel() {
         return level;
     }
 
-    public void setLevel(Level level) {
+    public void setLevel(Level_ level) {
         this.level = level;
     }
 

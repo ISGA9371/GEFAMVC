@@ -64,7 +64,7 @@ public class Budget implements Serializable {
     private User userReceiver;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
-    private Area area;
+    private Area_ area;
     @JoinColumn(name = "CD_BANCA", referencedColumnName = "CD_BANCA", nullable = false)
     @ManyToOne(optional = false)
     private Banking banking;
@@ -237,11 +237,11 @@ public class Budget implements Serializable {
         this.userReceiver = userReceiver;
     }
 
-    public Area getArea() {
+    public Area_ getArea() {
         return area;
     }
 
-    public void setArea(Area area) {
+    public void setArea(Area_ area) {
         this.area = area;
     }
 
