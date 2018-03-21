@@ -17,6 +17,7 @@ public class RequerimientoController {
 
     private static final String REQUERIMIENTO_VISTA = "fabrica/AltaDeRequerimiento";
     private static final String MODIFICA_REQ_VISTA = "fabrica/ModificarRequerimiento";
+    private static final String BUSCAR_REQ_VISTA = "fabrica/BusquedaDeRequerimientos";
 
     private RequerimientoService requerimientoService;
 
@@ -41,7 +42,7 @@ public class RequerimientoController {
     }
 
     @GetMapping("/{id}")
-    public String buscaRequerimiento(Model model, @PathVariable Integer id) {
+    public String verRequerimiento(Model model, @PathVariable Integer id) {
 
         log.info("ID " + id);
 
@@ -50,6 +51,12 @@ public class RequerimientoController {
         model.addAttribute("req", requerimiento);
 
         return MODIFICA_REQ_VISTA;
+    }
+
+    @GetMapping("/buscar")
+    public String buscar(Model model) {
+
+        return BUSCAR_REQ_VISTA;
     }
 
     @Autowired
