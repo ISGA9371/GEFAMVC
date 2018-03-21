@@ -2,6 +2,8 @@ package com.bbva.bancomer.controller;
 
 
 import com.bbva.bancomer.business.model.Requerimiento;
+import com.bbva.bancomer.business.model.Tecnologia;
+import com.bbva.bancomer.business.repository.TecnologiaRepository;
 import com.bbva.bancomer.business.service.RequerimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @Controller
@@ -20,6 +23,7 @@ public class RequerimientoController {
     private static final String BUSCAR_REQ_VISTA = "fabrica/BusquedaDeRequerimientos";
 
     private RequerimientoService requerimientoService;
+    private TecnologiaRepository tecnologiaRepository;
 
     private static final Logger log = Logger.getLogger(RequerimientoController.class.getName());
 
@@ -56,12 +60,24 @@ public class RequerimientoController {
     @GetMapping("/buscar")
     public String buscar(Model model) {
 
+        Iterable<Tecnologia> coso= tecnologiaRepository.findAll();
+        for(Tecnologia t : coso){
+            log.info("TEC "+t.getNombre());
+        }
+
+        List<Tecnologia> todas = (List<Tecnologia>) tecnologiaRepository.findAll();
+        model.addAttribute("tecnologias",coso);
+
         return BUSCAR_REQ_VISTA;
     }
 
     @Autowired
     public void setRequerimientoService(RequerimientoService requerimientoService) {
         this.requerimientoService = requerimientoService;
+    }
+    @Autowired
+    public void setTecnologiaRepository(TecnologiaRepository tecnologiaRepository){
+        this.tecnologiaRepository = tecnologiaRepository;
     }
 
 }
