@@ -1,22 +1,23 @@
 package com.bbva.bancomer.business.service.implementacion;
 
-import com.bbva.bancomer.business.model.Level_;
-import com.bbva.bancomer.business.repository.LevelRepository_;
+import com.bbva.bancomer.business.model.Level;
+import com.bbva.bancomer.business.repository.LevelRepository;
+import com.bbva.bancomer.business.service.LevelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.bbva.bancomer.business.service.LevelService_;
 
 import java.util.List;
 
-public class LevelServiceImpl implements LevelService_ {
+public class LevelServiceImpl implements LevelService {
 
-    @Autowired private LevelRepository levelRepository;
+    @Autowired
+    private LevelRepository levelRepository;
 
     @Override
     public List<Level> findAllLevels() {
         return (List<Level>) levelRepository.findAll();
     }
 
-    public void setLevelRepository(LevelRepository_ levelRepository) {
+    public void setLevelRepository(LevelRepository levelRepository) {
         this.levelRepository = levelRepository;
     }
 }
