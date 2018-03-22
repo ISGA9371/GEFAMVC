@@ -5,9 +5,11 @@ import com.bbva.bancomer.business.model.LevelType;
 import com.bbva.bancomer.business.repository.LevelTypeRepository;
 import com.bbva.bancomer.business.service.LevelTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class LevelTypeServiceImpl implements LevelTypeService {
     private LevelTypeRepository levelTypeRepository;
 
