@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -38,8 +40,10 @@ public class T926 implements Serializable {
     @JoinColumn(name = "CD_CRITICIDAD", referencedColumnName = "CD_CRITICIDAD")
     @ManyToOne
     private Critical critical;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "t926")
     private List<T955> t955List;
+    @JsonIgnore
     @OneToMany(mappedBy = "t926")
     private List<TestCaseC204> testCaseC204List;
 

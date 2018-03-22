@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -24,6 +26,7 @@ public class Severity implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_SEVERIDAD", nullable = false, length = 25)
     private String severityName;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "severity")
     private List<T955> t955List;
 

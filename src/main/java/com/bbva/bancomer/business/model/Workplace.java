@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -24,8 +26,10 @@ public class Workplace implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_SEDE", nullable = false, length = 25)
     private String workplaceName;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "workplace")
     private List<Access> accessList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "workplace")
     private List<ExternalUser> externalUsers;
 

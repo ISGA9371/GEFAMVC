@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -24,6 +26,7 @@ public class PriorityTestCase implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_PRIORIDAD_CP", nullable = false, length = 25)
     private String priorityTestCaseName;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "priorityTestCase")
     private List<TestCaseC204> testCaseC204List;
 

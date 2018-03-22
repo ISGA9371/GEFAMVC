@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -28,6 +30,7 @@ public class CauseRejection implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_CAUSA_RECHAZO", nullable = false, length = 50)
     private String causeRejectionName;
+    @JsonIgnore
     @OneToMany(mappedBy = "causeRejection")
     private List<T955> t955List;
 

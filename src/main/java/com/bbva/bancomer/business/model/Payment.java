@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -38,6 +40,7 @@ public class Payment implements Serializable {
     @Column(name = "FH_RECEPCION")
     @Temporal(TemporalType.DATE)
     private Date paymentReceptionDate;
+    @JsonIgnore
     @OneToMany(mappedBy = "payment")
     private List<Invoice> invoices;
 

@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -24,6 +26,7 @@ public class Banking implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_BANCA", nullable = false, length = 50)
     private String bankingName;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "banking")
     private List<Budget> budgets;
 

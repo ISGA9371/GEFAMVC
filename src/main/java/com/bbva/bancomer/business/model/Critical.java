@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE043_criticidad", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "THGE043_criticidad", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_CRITICIDAD"})})
 public class Critical implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -24,6 +26,7 @@ public class Critical implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_CRITICIDAD", nullable = false, length = 10)
     private String criticalName;
+    @JsonIgnore
     @OneToMany(mappedBy = "critical")
     private List<T926> t926List;
 
