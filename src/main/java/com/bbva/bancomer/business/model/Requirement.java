@@ -56,7 +56,7 @@ public class Requirement implements Serializable {
     private Status status;
     @JoinColumn(name = "CD_NIVEL", referencedColumnName = "CD_NIVEL", nullable = false)
     @ManyToOne(optional = false)
-    private Level_ level;
+    private Level level;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
     private User user;
@@ -208,11 +208,11 @@ public class Requirement implements Serializable {
         this.status = status;
     }
 
-    public Level_ getLevel() {
+    public Level getLevel() {
         return level;
     }
 
-    public void setLevel(Level_ level) {
+    public void setLevel(Level level) {
         this.level = level;
     }
 

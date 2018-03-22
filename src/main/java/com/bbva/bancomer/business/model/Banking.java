@@ -13,8 +13,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge034_banca", catalog = "gestion_factoria",  uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"NB_BANCA"})})
+@Table(name = "THGE034_BANCA", uniqueConstraints = {@UniqueConstraint(columnNames = {"NB_BANCA"})})
 public class Banking implements Serializable {
 
     private static final long serialVersionUID = 1L;

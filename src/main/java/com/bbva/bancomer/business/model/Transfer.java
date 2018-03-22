@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge012_traspaso", catalog = "gestion_factoria", schema = "")
+@Table(name = "THGE012_TRASPASO")
 public class Transfer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,7 +39,7 @@ public class Transfer implements Serializable {
     private Budget budget;
     @JoinColumn(name = "CD_NIVEL_SUBDIR", referencedColumnName = "CD_NIVEL")
     @ManyToOne
-    private Level_ level;
+    private Level level;
     @JoinColumn(name = "CD_USU_RESP_DYD", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
     private User user;
@@ -112,11 +112,11 @@ public class Transfer implements Serializable {
         this.budget = budget;
     }
 
-    public Level_ getLevel() {
+    public Level getLevel() {
         return level;
     }
 
-    public void setLevel(Level_ level) {
+    public void setLevel(Level level) {
         this.level = level;
     }
 

@@ -13,8 +13,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge008_tipo_edo", catalog = "gestion_factoria", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"NB_TIPO_EDO"})})
+@Table(name = "THGE008_TIPO_EDO", uniqueConstraints = {@UniqueConstraint(columnNames = {"NB_TIPO_EDO"})})
 public class StatusType implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -27,8 +26,7 @@ public class StatusType implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusType")
     private List<Status> statusList;
 
-    public StatusType() {
-    }
+    public StatusType() { }
 
     public StatusType(Integer statusTypeId) {
         this.statusTypeId = statusTypeId;

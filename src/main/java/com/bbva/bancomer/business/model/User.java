@@ -13,8 +13,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge011_usuario", catalog = "gestion_factoria", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"CD_USUARIO_CORP"})})
+@Table(name = "THGE011_USUARIO", uniqueConstraints = {@UniqueConstraint(columnNames = {"CD_USUARIO_CORP"})})
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,7 +46,7 @@ public class User implements Serializable {
     private Status status;
     @JoinColumn(name = "CD_NIVEL", referencedColumnName = "CD_NIVEL")
     @ManyToOne
-    private Level_ level;
+    private Level level;
     @JoinColumn(name = "CD_PERF_USU", referencedColumnName = "CD_TIPO_PERFIL", nullable = false)
     @ManyToOne(optional = false)
     private ProfileType profileType;
@@ -78,7 +77,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "userReceiver")
     private List<Issue> issueList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Level_> levels;
+    private List<Level> levels;
 
     public User() {
     }
@@ -182,11 +181,11 @@ public class User implements Serializable {
         this.status = status;
     }
 
-    public Level_ getLevel() {
+    public Level getLevel() {
         return level;
     }
 
-    public void setLevel(Level_ level) {
+    public void setLevel(Level level) {
         this.level = level;
     }
 
@@ -302,11 +301,11 @@ public class User implements Serializable {
         this.issueList = issueList;
     }
 
-    public List<Level_> getLevels() {
+    public List<Level> getLevels() {
         return levels;
     }
 
-    public void setLevels(List<Level_> levels) {
+    public void setLevels(List<Level> levels) {
         this.levels = levels;
     }
 

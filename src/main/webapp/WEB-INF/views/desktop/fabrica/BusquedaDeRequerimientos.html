@@ -19,7 +19,6 @@
     <!--Script generales-->
     <link rel="stylesheet" type="text/css" th:href="@{/css/estilosGF.css}">
 
-
     <!--Scripts para campos de texto-->
     <link rel="stylesheet" type="text/css" th:href="@{/css/material-components-web.css}">
     <script type="text/javascript" th:src="@{/js/material-components-web.js}"></script>
@@ -33,6 +32,8 @@
     <script type="text/javascript" th:src="@{/js/analytics.js}"></script>
     <script type="text/javascript" th:src="@{/js/moment-with-locales.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap-datetimepicker.js}"></script>
+
+    <script type="text/javascript" th:src="@{/js/fabrica/busqueda-requerimientos.js}"></script>
 
 </head>
 <style>
@@ -82,26 +83,20 @@
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                         <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="nombre-requerimiento">
-                        <label for="demo-input" class="mdc-text-field__label">Nombre De Requerimiento</label>
+                        <label class="mdc-text-field__label">Nombre De Requerimiento</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <div id="direccion-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                    <div id="dirs" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                            <div class="mdc-select__label">Direccion</div>
+                            <div class="mdc-select__label">Dirección</div>
                             <div class="mdc-select__selected-text"></div>
                             <div class="mdc-select__bottom-line"></div>
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Direccion 1
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Direccion 2
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Direccion 3
+                                <li class="mdc-list-item" role="option" tabindex="0"
+                                    th:each="dir : ${direcciones}" th:value="${dir.levelSerial}" th:text="${dir.levelName}">
                                 </li>
                             </ul>
                         </div>
@@ -110,22 +105,12 @@
                 <td class="col-md-4" align="center">
                     <div id="subdireccion-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                            <div class="mdc-select__label">Subdireccion</div>
+                            <div class="mdc-select__label">Subdirección</div>
                             <div class="mdc-select__selected-text"></div>
                             <div class="mdc-select__bottom-line"></div>
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
-                            <ul class="mdc-list mdc-menu__items">
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Subdireccion 1
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Subdireccion 2
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Subdireccion  3
-                                </li>
-
+                            <ul class="mdc-list mdc-menu__items" id="subdir-select">
                             </ul>
                         </div>
                     </div>
@@ -201,8 +186,7 @@
             </tr>
             <tr style="height:72px">
                 <td class="col-md-4" align="center">
-                    <div id="tipoProyecto-js-select"  class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect"
-                         style="background-color:#F4F4F4; width:90%">
+                    <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                             <div class="mdc-select__label">Tecnología</div>
                             <div class="mdc-select__selected-text"></div>
@@ -679,6 +663,11 @@
 </div>
 </body>
 <script>mdc.autoInit()</script>
+<script defer>
+
+
+
+</script>
 
 
 </html>

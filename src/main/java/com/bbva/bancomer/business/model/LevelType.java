@@ -1,31 +1,86 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.bbva.bancomer.business.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
+/**
+ * @author Guevara
+ */
 @Entity
-@Table(name ="THGE004_TIPO_NIVEL")
-public class LevelType {
+@Table(name = "THGE004_TIPO_NIVEL", uniqueConstraints = {@UniqueConstraint(columnNames = {"NB_TIPO_NIVEL"})})
+public class LevelType implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
-    /*@GeneratedValue()*/
-    @Column(name = "CD_TIPO_NIVEL")
-    private Integer id;
+    @Basic(optional = false)
+    @Column(name = "CD_TIPO_NIVEL", nullable = false)
+    private Integer levelTypeId;
+    @Basic(optional = false)
+    @Column(name = "NB_TIPO_NIVEL", nullable = false, length = 50)
+    private String levelTypeName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "levelType")
+    private List<Level> levels;
 
-    @Column(name = "NB_TIPO_NIVEL")
-    private String nombre;
+    public LevelType() { }
 
-    public Integer getId() {
-        return id;
+    public LevelType(Integer levelTypeId) {
+        this.levelTypeId = levelTypeId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public LevelType(Integer levelTypeId, String levelTypeName) {
+        this.levelTypeId = levelTypeId;
+        this.levelTypeName = levelTypeName;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Integer getLevelTypeId() {
+        return levelTypeId;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setLevelTypeId(Integer levelTypeId) {
+        this.levelTypeId = levelTypeId;
     }
+
+    public String getLevelTypeName() {
+        return levelTypeName;
+    }
+
+    public void setLevelTypeName(String levelTypeName) {
+        this.levelTypeName = levelTypeName;
+    }
+
+    public List<Level> getLevels() {
+        return levels;
+    }
+
+    public void setLevels(List<Level> levels) {
+        this.levels = levels;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (levelTypeId != null ? levelTypeId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof LevelType)) {
+            return false;
+        }
+        LevelType other = (LevelType) object;
+        return (this.levelTypeId != null || other.levelTypeId == null) && (this.levelTypeId == null || this.levelTypeId.equals(other.levelTypeId));
+    }
+
+    @Override
+    public String toString() {
+        return "com.bbva.LevelType[ levelTypeId=" + levelTypeId + " ]";
+    }
+
 }

@@ -1,117 +1,164 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
+/**
+ * @author Guevara
+ */
 @Entity
-@Table(name = "THGE010_NIVEL")
-public class Level {
-
+@Table(name = "THGE010_NIVEL", uniqueConstraints = {@UniqueConstraint(columnNames = {"CD_NIVEL"})})
+public class Level implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    //@GeneratedValue(strategy= GenerationType.IDENTITY)
-
-    @Column(name="CD_CONSEC_NIVEL")
-    private Integer cd_consec_nivel;
-
-    @Column(name="CD_NIVEL")
-    private Integer cd_nivel;
-
-    @Column(name="NB_NIVEL")
-    private String nb_nivel;
-
-    /*
-    @Column(name="CD_TIPO_NIVEL")
-    private int cd_tipo_nivel;*/
-
+    @Basic(optional = false)
+    @Column(name = "CD_CONSEC_NIVEL", nullable = false)
+    private Integer levelSerial;
+    @Basic(optional = false)
+    @Column(name = "CD_NIVEL", nullable = false)
+    private int levelId;
+    @Basic(optional = false)
+    @Column(name = "NB_NIVEL", nullable = false, length = 50)
+    private String levelName;
+    @OneToMany(mappedBy = "level")
+    private List<Transfer> transfers;
+    @OneToMany(mappedBy = "level")
+    private List<User> users;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "level")
+    private List<Requirement> requirements;
+    @JoinColumn(name = "CD_TIPO_NIVEL", referencedColumnName = "CD_TIPO_NIVEL", nullable = false)
+    @ManyToOne(optional = false)
+    private LevelType levelType;
+    @OneToMany(mappedBy = "levelSuperior")
+    private List<Level> levelList;
+    @JsonIgnore
+    @JoinColumn(name = "CD_NIVEL_SUPERIOR", referencedColumnName = "CD_NIVEL")
     @ManyToOne
-    @JoinColumn(name="cd_tipo_nivel")
-    private LevelType type;
+    private Level levelSuperior;
+    @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
+    @ManyToOne(optional = false)
+    private User user;
 
-    @Column(name="CD_USUARIO_RESP")
-    private String cd_usuario_resp;
-
-    @Column(name="CD_NIVEL_SUPERIOR")
-    private Integer cd_nivel_superior;
-
-    //Cosntructor por defecto para Hibernate
     public Level() {
     }
 
-    public Level (Integer cd_consec_nivel, Integer cd_nivel, String nb_nivel, Integer cd_tipo_nivel, String cd_usuario_resp, Integer cd_nivel_superior) {
-        this.cd_consec_nivel = cd_consec_nivel;
-        this.cd_nivel = cd_nivel;
-        this.nb_nivel = nb_nivel;
-        //this.cd_tipo_nivel = cd_tipo_nivel;
-        this.cd_usuario_resp = cd_usuario_resp;
-        this.cd_nivel_superior = cd_nivel_superior;
+    public Level(Integer levelSerial) {
+        this.levelSerial = levelSerial;
     }
 
-    public Integer getCd_consec_nivel() {
-        return cd_consec_nivel;
+    public Level(Integer levelSerial, int levelId, String levelName) {
+        this.levelSerial = levelSerial;
+        this.levelId = levelId;
+        this.levelName = levelName;
     }
 
-    public void setCd_consec_nivel(Integer cd_consec_nivel) {
-        this.cd_consec_nivel = cd_consec_nivel;
+    public Integer getLevelSerial() {
+        return levelSerial;
     }
 
-    public Integer getCd_nivel() {
-        return cd_nivel;
+    public void setLevelSerial(Integer levelSerial) {
+        this.levelSerial = levelSerial;
     }
 
-    public void setCd_nivel(Integer cd_nivel) {
-        this.cd_nivel = cd_nivel;
+    public int getLevelId() {
+        return levelId;
     }
 
-    public String getNb_nivel() {
-        return nb_nivel;
+    public void setLevelId(int levelId) {
+        this.levelId = levelId;
     }
 
-    public void setNb_nivel(String nb_nivel) {
-        this.nb_nivel = nb_nivel;
+    public String getLevelName() {
+        return levelName;
     }
 
-    public LevelType getType() {
-        return type;
+    public void setLevelName(String levelName) {
+        this.levelName = levelName;
     }
 
-    public void setType(LevelType type) {
-        this.type = type;
+    public List<Transfer> getTransfers() {
+        return transfers;
     }
 
-    /*public Integer getCd_tipo_nivel() {
-        return cd_tipo_nivel;
+    public void setTransfers(List<Transfer> transfers) {
+        this.transfers = transfers;
     }
 
-    public void setCd_tipo_nivel(Integer cd_tipo_nivel) {
-        this.cd_tipo_nivel = cd_tipo_nivel;
-    }*/
-
-    public String getCd_usuario_resp() {
-        return cd_usuario_resp;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setCd_usuario_resp(String cd_usuario_resp) {
-        this.cd_usuario_resp = cd_usuario_resp;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
-    public Integer getCd_nivel_superior() {
-        return cd_nivel_superior;
+    public List<Requirement> getRequirements() {
+        return requirements;
     }
 
-    public void setCd_nivel_superior(Integer cd_nivel_superior) {
-        this.cd_nivel_superior = cd_nivel_superior;
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
+    }
+
+    public LevelType getLevelType() {
+        return levelType;
+    }
+
+    public void setLevelType(LevelType levelType) {
+        this.levelType = levelType;
+    }
+
+    public List<Level> getLevelList() {
+        return levelList;
+    }
+
+    public void setLevelList(List<Level> levelList) {
+        this.levelList = levelList;
+    }
+
+    public Level getLevelSuperior() {
+        return levelSuperior;
+    }
+
+    public void setLevelSuperior(Level levelSuperior) {
+        this.levelSuperior = levelSuperior;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (levelSerial != null ? levelSerial.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Level)) {
+            return false;
+        }
+        Level other = (Level) object;
+        return (this.levelSerial != null || other.levelSerial == null) && (this.levelSerial == null || this.levelSerial.equals(other.levelSerial));
     }
 
     @Override
     public String toString() {
-        return "Level{" +
-                "cd_consec_nivel=" +  cd_consec_nivel +
-                ", cd_nivel=" + cd_nivel +
-                ", nb_nivel=" + nb_nivel +
-                //", cd_tipo_nivel=" + cd_tipo_nivel +
-                ", cd_usuario_resp=" + cd_usuario_resp +
-                ", cd_nivel_superior=" + cd_nivel_superior +
-                '}';
+        return "com.bbva.Level[ levelSerial=" + levelSerial + " ]";
     }
 
 }

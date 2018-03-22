@@ -13,8 +13,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge016_perf_usu", catalog = "gestion_factoria", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"NB_PERFIL"})})
+@Table(name = "THGE016_PERF_USU", uniqueConstraints = {@UniqueConstraint(columnNames = {"NB_PERFIL"})})
 public class ProfileType implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

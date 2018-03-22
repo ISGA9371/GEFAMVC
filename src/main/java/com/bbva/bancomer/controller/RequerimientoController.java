@@ -91,12 +91,12 @@ public class RequerimientoController {
 
         List<Technology> todas = (List<Technology>) tecnologiaRepository.findAll();
 
-        LevelType direccionType = levelTypeRepository.findByNombre(Constants.TIPO_NIVEL_DIRECCION);
+        LevelType direccionType = levelTypeRepository.findByLevelTypeName(Constants.TIPO_NIVEL_DIRECCION);
 
-        List<Level> direcciones = levelRepository.findAllByType(direccionType);
+        List<Level> direcciones = levelRepository.findAllByLevelType(direccionType);
 
         for(Level l : direcciones){
-            log.info("TEC "+l.getNb_nivel());
+            log.info("TEC "+l.getLevelName());
         }
 
         model.addAttribute("tecnologias",coso);
@@ -104,6 +104,7 @@ public class RequerimientoController {
 
         return BUSCAR_REQ_VISTA;
     }
+
 
     @Autowired
     public void setRequerimientoService(RequerimientoService requerimientoService) {
