@@ -13,7 +13,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge044_c204", catalog = "gestion_factoria", schema = "")
+@Table(name = "THGE044_c204", catalog = "gestion_factoria")
 public class TestCaseC204 implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

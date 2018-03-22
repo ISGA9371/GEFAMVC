@@ -13,7 +13,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge028_tipo_duda", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "THGE028_tipo_duda", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_TIPO_DUDA"})})
 public class DoubtType implements Serializable {
     private static final long serialVersionUID = 1L;

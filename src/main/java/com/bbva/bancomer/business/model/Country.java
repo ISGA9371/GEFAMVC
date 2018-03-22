@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge014_pais", catalog = "gestion_factoria", schema = "")
+@Table(name = "THGE014_pais", catalog = "gestion_factoria")
 public class Country implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -26,6 +28,7 @@ public class Country implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_NACIONALIDAD", nullable = false, length = 50)
     private String countryNacionality;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
     private List<ExternalUser> externalUsers;
 

@@ -13,7 +13,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge051_ac_res_cor", catalog = "gestion_factoria", uniqueConstraints = {
+@Table(name = "THGE051_ac_res_cor", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_ACEPTA_RES_COR"})
         , @UniqueConstraint(columnNames = {"NB_ACEPTA_RES_COR"})})
 public class ResponsibleArea implements Serializable {

@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge048_t955", catalog = "gestion_factoria", schema = "")
+@Table(name = "THGE048_t955", catalog = "gestion_factoria")
 public class T955 implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId

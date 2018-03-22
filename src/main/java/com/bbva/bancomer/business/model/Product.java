@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -12,7 +14,7 @@ import java.io.Serializable;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge018_producto", catalog = "gestion_factoria", schema = "")
+@Table(name = "THGE018_producto", catalog = "gestion_factoria")
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -22,6 +24,7 @@ public class Product implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_PRODUCTO", nullable = false, length = 50)
     private String productName;
+    @JsonIgnore
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Technology technology;

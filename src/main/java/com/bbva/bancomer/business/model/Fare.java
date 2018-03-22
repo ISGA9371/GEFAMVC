@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge031_tarifa", catalog = "gestion_factoria", schema = "")
+@Table(name = "THGE031_tarifa", catalog = "gestion_factoria")
 public class Fare implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

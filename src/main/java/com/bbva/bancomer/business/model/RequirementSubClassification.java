@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge021_sbclas_rec", catalog = "gestion_factoria", schema = "")
+@Table(name = "THGE021_sbclas_rec", catalog = "gestion_factoria")
 public class RequirementSubClassification implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -23,9 +25,11 @@ public class RequirementSubClassification implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_SBCLAS_REC", nullable = false, length = 45)
     private String requirementSubClassificationName;
+    @JsonIgnore
     @JoinColumn(name = "CD_CLASIF_REC", referencedColumnName = "CD_CLASIF_REC", nullable = false)
     @ManyToOne(optional = false)
     private RequirementClassification requirementClassification;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirementSubClassification")
     private List<ExternalUser> externalUsers;
 

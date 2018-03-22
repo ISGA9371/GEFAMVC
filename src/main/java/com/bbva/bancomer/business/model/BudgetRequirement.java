@@ -14,7 +14,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge040_pep_req", catalog = "gestion_factoria", schema = "")
+@Table(name = "THGE040_pep_req", catalog = "gestion_factoria")
 public class BudgetRequirement implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

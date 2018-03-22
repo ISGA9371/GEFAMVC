@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge023_programa", catalog = "gestion_factoria", uniqueConstraints = {
+@Table(name = "THGE023_programa", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_PROGRAMA"})})
 public class Program implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -24,6 +26,7 @@ public class Program implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_PROGRAMA", nullable = false, length = 50)
     private String programName;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "program")
     private List<ProgramIncrement> programIncrements;
 

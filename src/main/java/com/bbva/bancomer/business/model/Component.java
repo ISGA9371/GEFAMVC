@@ -16,7 +16,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge009_componente", catalog = "gestion_factoria", schema = "")
+@Table(name = "THGE009_componente", catalog = "gestion_factoria")
 public class Component implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -14,7 +16,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge017_requerim", catalog = "gestion_factoria", uniqueConstraints = {
+@Table(name = "THGE017_requerim", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_REQUERIMIENTO"})})
 public class Requirement implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -40,8 +42,6 @@ public class Requirement implements Serializable {
     private Date requirementDateUpload;
     @Column(name = "NU_FACTURABLE")
     private Short requirementCanBilled;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
-    private List<Invoice> invoices;
     @JoinColumn(name = "CD_USUARIO_GESTOR", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
     private User userManager;
@@ -75,12 +75,19 @@ public class Requirement implements Serializable {
     @JoinColumn(name = "CD_CANAL", referencedColumnName = "CD_CANAL")
     @ManyToOne
     private Channel channel;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
+    private List<Invoice> invoices;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<BudgetRequirement> budgetRequirements;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<T926> t926List;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<T955> t955List;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<Component> components;
 

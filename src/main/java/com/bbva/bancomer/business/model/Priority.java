@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge015_prioridad", catalog = "gestion_factoria", uniqueConstraints = {
+@Table(name = "THGE015_prioridad", catalog = "gestion_factoria", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_PRIORIDAD"})})
 public class Priority implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -24,10 +26,13 @@ public class Priority implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_PRIORIDAD", nullable = false, length = 25)
     private String priorityName;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "priority")
     private List<Modification> modifications;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "priority")
     private List<Doubt> doubts;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "priority")
     private List<Issue> issues;
 

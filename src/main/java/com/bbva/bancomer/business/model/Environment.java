@@ -13,7 +13,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge049_entorno", catalog = "gestion_factoria",  uniqueConstraints = {
+@Table(name = "THGE049_entorno", catalog = "gestion_factoria",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_ENTORNO"})})
 public class Environment implements Serializable {
     private static final long serialVersionUID = 1L;
