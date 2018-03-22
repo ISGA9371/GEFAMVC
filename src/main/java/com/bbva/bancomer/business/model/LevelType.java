@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -24,10 +26,12 @@ public class LevelType implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_TIPO_NIVEL", nullable = false, length = 50)
     private String levelTypeName;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "levelType")
     private List<Level> levels;
 
-    public LevelType() { }
+    public LevelType() {
+    }
 
     public LevelType(Integer levelTypeId) {
         this.levelTypeId = levelTypeId;

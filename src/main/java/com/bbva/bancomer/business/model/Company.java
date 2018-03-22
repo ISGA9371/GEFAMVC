@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -35,12 +37,16 @@ public class Company implements Serializable {
     @JoinColumn(name = "ST_EMPRESA", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
     private List<Fare> fares;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
     private List<Requirement> requirements;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
     private List<Contract> contracts;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
     private List<ExternalUser> externalUsers;
 

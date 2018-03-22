@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -35,12 +37,6 @@ public class User implements Serializable {
     private String userPassword;
     @Column(name = "TX_CORREO_ELECTR", length = 70)
     private String userEmail;
-    @OneToMany(mappedBy = "userSender")
-    private List<Budget> budgets;
-    @OneToMany(mappedBy = "userReceiver")
-    private List<Budget> budgetList;
-    @OneToMany(mappedBy = "user")
-    private List<Transfer> transfers;
     @JoinColumn(name = "ST_ESTADO_USUARIO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
@@ -50,32 +46,55 @@ public class User implements Serializable {
     @JoinColumn(name = "CD_PERF_USU", referencedColumnName = "CD_TIPO_PERFIL", nullable = false)
     @ManyToOne(optional = false)
     private ProfileType profileType;
+    @JsonIgnore
+    @OneToMany(mappedBy = "userSender")
+    private List<Budget> budgets;
+    @JsonIgnore
+    @OneToMany(mappedBy = "userReceiver")
+    private List<Budget> budgetList;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Transfer> transfers;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userManager")
     private List<Requirement> requirements;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Requirement> requirementList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userSender")
     private List<Modification> modifications;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userReceiver")
     private List<Modification> modificationList;
+    @JsonIgnore
     @OneToMany(mappedBy = "userOwner")
     private List<ProgramIncrement> programIncrements;
+    @JsonIgnore
     @OneToMany(mappedBy = "userScrumMaster")
     private List<ProgramIncrement> programIncrementList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userSender")
     private List<Doubt> doubts;
+    @JsonIgnore
     @OneToMany(mappedBy = "userReceiver")
     private List<Doubt> doubtList;
+    @JsonIgnore
     @OneToMany(mappedBy = "manager")
     private List<ExternalUser> externalUsers;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "responsible")
     private List<ExternalUser> externalUserList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<T955> t955List;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userSender")
     private List<Issue> issues;
+    @JsonIgnore
     @OneToMany(mappedBy = "userReceiver")
     private List<Issue> issueList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Level> levels;
 

@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -73,8 +75,10 @@ public class Budget implements Serializable {
     @JoinColumn(name = "CD_NATURALEZA", referencedColumnName = "CD_NATURALEZA", nullable = false)
     @ManyToOne(optional = false)
     private Nature nature;
+    @JsonIgnore
     @OneToMany(mappedBy = "budget")
     private List<Transfer> transfers;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "budget")
     private List<BudgetRequirement> budgetRequirements;
 

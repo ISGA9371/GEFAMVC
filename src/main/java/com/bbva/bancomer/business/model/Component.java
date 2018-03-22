@@ -5,7 +5,7 @@
  */
 package com.bbva.bancomer.business.model;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -56,32 +56,32 @@ public class Component implements Serializable {
     @Column(name = "TM_ALTA_COMP")
     @Temporal(TemporalType.TIMESTAMP)
     private Date componentUploadDate;
-    @Ignore
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
     private List<Modification> modifications;
-    @Ignore
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
     private List<Doubt> doubts;
-    @Ignore
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
     private List<Issue> issues;
-    @Ignore
+    @JsonIgnore
     @JoinColumn(name = "ST_TIPIFICACION", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status statusTypology;
-    @Ignore
+    @JsonIgnore
     @JoinColumn(name = "ST_COMPONENTE", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
-    @Ignore
+    @JsonIgnore
     @JoinColumn(name = "CD_TIPOLOGIA", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Typology typology;
-    @Ignore
+    @JsonIgnore
     @JoinColumn(name = "CD_TIPOLOGIA_EMP", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Typology typologyEmp;
-    @Ignore
+    @JsonIgnore
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false)
     @ManyToOne(optional = false)
     private Requirement requirement;

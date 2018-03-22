@@ -28,24 +28,27 @@ public class Level implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_NIVEL", nullable = false, length = 50)
     private String levelName;
-    @OneToMany(mappedBy = "level")
-    private List<Transfer> transfers;
-    @OneToMany(mappedBy = "level")
-    private List<User> users;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "level")
-    private List<Requirement> requirements;
     @JoinColumn(name = "CD_TIPO_NIVEL", referencedColumnName = "CD_TIPO_NIVEL", nullable = false)
     @ManyToOne(optional = false)
     private LevelType levelType;
-    @OneToMany(mappedBy = "levelSuperior")
-    private List<Level> levelList;
-    @JsonIgnore
     @JoinColumn(name = "CD_NIVEL_SUPERIOR", referencedColumnName = "CD_NIVEL")
     @ManyToOne
     private Level levelSuperior;
     @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
     private User user;
+    @JsonIgnore
+    @OneToMany(mappedBy = "level")
+    private List<Transfer> transfers;
+    @JsonIgnore
+    @OneToMany(mappedBy = "level")
+    private List<User> users;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "level")
+    private List<Requirement> requirements;
+    @JsonIgnore
+    @OneToMany(mappedBy = "levelSuperior")
+    private List<Level> levelList;
 
     public Level() {
     }

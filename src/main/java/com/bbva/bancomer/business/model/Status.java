@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -23,49 +25,69 @@ public class Status implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_ESTADO", nullable = false, length = 50)
     private String statusName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Company> companies;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "budgetStatus")
-    private List<Budget> budgets;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusDyd")
-    private List<Budget> budgetsDyd;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Fare> fares;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<User> users;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusBudget")
-    private List<Invoice> budgetInvoices;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Invoice> invoices;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusHours")
-    private List<Invoice> hourInvoices;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Requirement> requirements;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "modificationStatus")
-    private List<Modification> modificationList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Modification> modificationList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Contract> contracts;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Access> accessList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Doubt> doubts;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Typology> typologies;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<ExternalUser> externalUsers;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<T955> t955List;
-    @OneToMany(mappedBy = "status")
-    private List<Issue> issues;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusTypology")
-    private List<Component> componentList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Component> componentList1;
     @JoinColumn(name = "CD_TIPO_EDO", referencedColumnName = "CD_TIPO_EDO", nullable = false)
     @ManyToOne(optional = false)
     private StatusType statusType;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<Company> companies;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "budgetStatus")
+    private List<Budget> budgets;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusDyd")
+    private List<Budget> budgetsDyd;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<Fare> fares;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<User> users;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusBudget")
+    private List<Invoice> budgetInvoices;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<Invoice> invoices;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusHours")
+    private List<Invoice> hourInvoices;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<Requirement> requirements;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "modificationStatus")
+    private List<Modification> modificationList;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<Modification> modificationList1;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<Contract> contracts;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<Access> accessList;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<Doubt> doubts;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<Typology> typologies;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<ExternalUser> externalUsers;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<T955> t955List;
+    @JsonIgnore
+    @OneToMany(mappedBy = "status")
+    private List<Issue> issues;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusTypology")
+    private List<Component> componentList;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<Component> componentList1;
 
     public Status() {
     }

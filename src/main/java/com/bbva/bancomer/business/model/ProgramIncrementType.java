@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -23,6 +25,7 @@ public class ProgramIncrementType implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_PI", nullable = false, length = 25)
     private String ProgramIncrementTypeName;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "programIncrementType")
     private List<ProgramIncrement> programIncrements;
 

@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -23,10 +25,12 @@ public class StatusType implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_TIPO_EDO", nullable = false, length = 50)
     private String statusTypeName;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusType")
     private List<Status> statusList;
 
-    public StatusType() { }
+    public StatusType() {
+    }
 
     public StatusType(Integer statusTypeId) {
         this.statusTypeId = statusTypeId;

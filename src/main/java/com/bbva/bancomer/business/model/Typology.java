@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -28,7 +30,6 @@ public class Typology implements Serializable {
     private String typologyComponent;
     @Column(name = "NU_DIFICULTAD")
     private Character typologySeverity;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "NU_HRS_DIFICULTAD", precision = 12)
     private Float typologySeverityHours;
     @Basic(optional = false)
@@ -37,8 +38,10 @@ public class Typology implements Serializable {
     @JoinColumn(name = "ST_ESTADO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "typology")
     private List<Component> components;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "typologyEmp")
     private List<Component> componentList;
 
