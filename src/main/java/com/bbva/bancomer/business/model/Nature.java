@@ -5,7 +5,7 @@
  */
 package com.bbva.bancomer.business.model;
 
-import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,8 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE038_naturaleza", catalog = "gestion_factoria", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"NB_NATURALEZA"})})
+@Table(name = "THGE038_NATURALEZA", uniqueConstraints = {@UniqueConstraint(columnNames = {"NB_NATURALEZA"})})
 public class Nature implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
