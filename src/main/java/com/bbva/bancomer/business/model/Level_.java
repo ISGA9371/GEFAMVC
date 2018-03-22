@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -38,6 +40,7 @@ public class Level_ implements Serializable {
     private LevelType_ levelType;
     @OneToMany(mappedBy = "levelSuperior")
     private List<Level_> levelList;
+    @JsonIgnore
     @JoinColumn(name = "CD_NIVEL_SUPERIOR", referencedColumnName = "CD_NIVEL")
     @ManyToOne
     private Level_ levelSuperior;
