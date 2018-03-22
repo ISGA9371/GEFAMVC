@@ -18,6 +18,7 @@ import java.util.List;
 public class TechnologyServiceImp implements TechnologyService{
 
     @Autowired
+    @Qualifier("tecnologiaRepository")
     private TechnologyRepository tecnologiaRepository;
 
     @Autowired

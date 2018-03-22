@@ -1,7 +1,9 @@
-package com.bbva.bancomer.business.service;
+package com.bbva.bancomer.business.service.implementacion;
 
 import com.bbva.bancomer.business.model.Component;
+import com.bbva.bancomer.business.model.Component_;
 import com.bbva.bancomer.business.repository.ComponentRepository;
+import com.bbva.bancomer.business.service.ComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
