@@ -1,43 +1,126 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.bbva.bancomer.business.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
+/**
+ * @author Guevara
+ */
 @Entity
-@Table(name = "THGE030_AREA") //este es el NOMBRE DE LA TABLA EN LA BASE
-public class Area {
-
+@Table(name = "THGE030_AREA", uniqueConstraints = {@UniqueConstraint(columnNames = {"NB_AREA"})})
+public class Area implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    //@GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "CD_AREA")
-    private Integer cd_area;
-
-    @Column(name = "NB_AREA")
-    private String nb_area;
-
-    public Integer getCd_area() {
-        return cd_area;
-    }
-
-    public void setCd_area(Integer cd_area) {
-        this.cd_area = cd_area;
-    }
-
-    public String getNb_area() {
-        return nb_area;
-    }
-
-    public void setNb_area(String nb_area) {
-        this.nb_area = nb_area;
-    }
+    @Basic(optional = false)
+    @Column(name = "CD_AREA", nullable = false)
+    private Integer areaId;
+    @Basic(optional = false)
+    @Column(name = "NB_AREA", nullable = false, length = 50)
+    private String areaName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+    private List<Budget> budgets;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+    private List<Fare> fares;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+    private List<Requirement> requirements;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+    private List<Contract> contracts;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+    private List<ExternalUser> externalUsers;
 
     public Area() {
     }
 
-    public Area(Integer cd_area, String nb_area) {
-        this.cd_area = cd_area;
-        this.nb_area = nb_area;
+    public Area(Integer areaId) {
+        this.areaId = areaId;
     }
+
+    public Area(Integer areaId, String areaName) {
+        this.areaId = areaId;
+        this.areaName = areaName;
+    }
+
+    public Integer getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(Integer areaId) {
+        this.areaId = areaId;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
+    public List<Budget> getBudgets() {
+        return budgets;
+    }
+
+    public void setBudgets(List<Budget> budgets) {
+        this.budgets = budgets;
+    }
+
+    public List<Fare> getFares() {
+        return fares;
+    }
+
+    public void setFares(List<Fare> fares) {
+        this.fares = fares;
+    }
+
+    public List<Requirement> getRequirements() {
+        return requirements;
+    }
+
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
+    }
+
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
+    }
+
+    public List<ExternalUser> getExternalUsers() {
+        return externalUsers;
+    }
+
+    public void setExternalUsers(List<ExternalUser> externalUsers) {
+        this.externalUsers = externalUsers;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (areaId != null ? areaId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Area)) {
+            return false;
+        }
+        Area other = (Area) object;
+        return (this.areaId != null || other.areaId == null) && (this.areaId == null || this.areaId.equals(other.areaId));
+    }
+
+    @Override
+    public String toString() {
+        return "com.bbva.Area[ areaId=" + areaId + " ]";
+    }
+
 }

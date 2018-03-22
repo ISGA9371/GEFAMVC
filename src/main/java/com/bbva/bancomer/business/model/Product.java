@@ -24,7 +24,7 @@ public class Product implements Serializable {
     private String productName;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private Technology_ technology;
+    private Technology technology;
 
     public Product() {
     }
@@ -54,11 +54,11 @@ public class Product implements Serializable {
         this.productName = productName;
     }
 
-    public Technology_ getTechnology() {
+    public Technology getTechnology() {
         return technology;
     }
 
-    public void setTechnology(Technology_ technology) {
+    public void setTechnology(Technology technology) {
         this.technology = technology;
     }
 

@@ -2,7 +2,6 @@ package com.bbva.bancomer.controller;
 
 import com.bbva.bancomer.business.model.Level;
 import com.bbva.bancomer.business.repository.LevelRepository;
-import com.bbva.bancomer.business.repository.NivelCmbRepository;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,9 +17,9 @@ import java.util.logging.Logger;
 
 @Controller
 @RequestMapping(value = "/nivel")
-public class NivelController {
+public class LevelController {
 
-    private static final Logger log = Logger.getLogger(NivelController.class.getName());
+    private static final Logger log = Logger.getLogger(LevelController.class.getName());
 
     private LevelRepository levelRepository;
     private Gson gson = new Gson();

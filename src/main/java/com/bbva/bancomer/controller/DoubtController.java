@@ -1,8 +1,8 @@
 package com.bbva.bancomer.controller;
 
-import com.bbva.bancomer.business.model.Requerimiento;
 import com.bbva.bancomer.business.model.Level;
-import com.bbva.bancomer.business.service.RequerimientoService;
+import com.bbva.bancomer.business.model.Requirement;
+import com.bbva.bancomer.business.service.RequirementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,14 +13,14 @@ import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/duda")
-public class DudaController {
+public class DoubtController {
 
     private static final String ALTA_DUDA_VISTA = "fabrica/AltaDeDuda";
     private static final String BUSQUEDA_DUDA_VISTA = "fabrica/BusquedaDeDudas";
 
-    private RequerimientoService requerimientoService;
+    private RequirementService requirementService;
 
-    private static final Logger log = Logger.getLogger(DudaController.class.getName());
+    private static final Logger log = Logger.getLogger(DoubtController.class.getName());
 
 
     @GetMapping("/altaDuda")
@@ -33,8 +33,8 @@ public class DudaController {
     }
 
     @PostMapping("/guardaDuda")
-    public String guardaRequerimiento(@ModelAttribute("requerimiento") Requerimiento requerimiento) {
-        requerimientoService.agregaRequerimiento(requerimiento);
+    public String guardaRequerimiento(@ModelAttribute("requerimiento") Requirement requirement) {
+        requirementService.saveRequirement(requirement);
         System.out.print("LLega");
         return "redirect:/requerimiento/ModificaRequerimiento";
 
@@ -45,19 +45,17 @@ public class DudaController {
 
         log.info("ID " + id);
 
-        Requerimiento requerimiento = requerimientoService.buscaRequerimiento(id);
+        Requirement requirement = requirementService.findOneRequirement(id);
 
-        model.addAttribute("req", requerimiento);
+        model.addAttribute("req", requirement);
 
         return BUSQUEDA_DUDA_VISTA;
     }
 
     @Autowired
-    public void setRequerimientoService(RequerimientoService requerimientoService) {
-        this.requerimientoService = requerimientoService;
+    public void setRequirementService(RequirementService requirementService) {
+        this.requirementService = requirementService;
     }
-
-
 
 
 }

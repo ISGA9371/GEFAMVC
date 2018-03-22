@@ -50,7 +50,7 @@ public class Status implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Access> accessList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Doubt_> doubts;
+    private List<Doubt> doubts;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Typology> typologies;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
@@ -60,9 +60,9 @@ public class Status implements Serializable {
     @OneToMany(mappedBy = "status")
     private List<Issue> issues;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusTypology")
-    private List<Component_> componentList;
+    private List<Component> componentList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Component_> componentList1;
+    private List<Component> componentList1;
     @JoinColumn(name = "CD_TIPO_EDO", referencedColumnName = "CD_TIPO_EDO", nullable = false)
     @ManyToOne(optional = false)
     private StatusType statusType;
@@ -199,11 +199,11 @@ public class Status implements Serializable {
         this.accessList = accessList;
     }
 
-    public List<Doubt_> getDoubts() {
+    public List<Doubt> getDoubts() {
         return doubts;
     }
 
-    public void setDoubts(List<Doubt_> doubts) {
+    public void setDoubts(List<Doubt> doubts) {
         this.doubts = doubts;
     }
 
@@ -239,19 +239,19 @@ public class Status implements Serializable {
         this.issues = issues;
     }
 
-    public List<Component_> getComponentList() {
+    public List<Component> getComponentList() {
         return componentList;
     }
 
-    public void setComponentList(List<Component_> componentList) {
+    public void setComponentList(List<Component> componentList) {
         this.componentList = componentList;
     }
 
-    public List<Component_> getComponentList1() {
+    public List<Component> getComponentList1() {
         return componentList1;
     }
 
-    public void setComponentList1(List<Component_> componentList1) {
+    public void setComponentList1(List<Component> componentList1) {
         this.componentList1 = componentList1;
     }
 

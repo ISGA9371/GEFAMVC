@@ -25,7 +25,7 @@ public class DoubtType implements Serializable {
     @Column(name = "NB_TIPO_DUDA", nullable = false, length = 50)
     private String doubtTypeName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "doubtType")
-    private List<Doubt_> doubts;
+    private List<Doubt> doubts;
 
     public DoubtType() {
     }
@@ -55,11 +55,11 @@ public class DoubtType implements Serializable {
         this.doubtTypeName = doubtTypeName;
     }
 
-    public List<Doubt_> getDoubts() {
+    public List<Doubt> getDoubts() {
         return doubts;
     }
 
-    public void setDoubts(List<Doubt_> doubts) {
+    public void setDoubts(List<Doubt> doubts) {
         this.doubts = doubts;
     }
 

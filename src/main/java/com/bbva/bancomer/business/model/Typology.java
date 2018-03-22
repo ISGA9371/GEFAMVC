@@ -38,9 +38,9 @@ public class Typology implements Serializable {
     @ManyToOne(optional = false)
     private Status status;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "typology")
-    private List<Component_> components;
+    private List<Component> components;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "typologyEmp")
-    private List<Component_> componentList;
+    private List<Component> componentList;
 
     public Typology() {
     }
@@ -112,19 +112,19 @@ public class Typology implements Serializable {
         this.status = status;
     }
 
-    public List<Component_> getComponents() {
+    public List<Component> getComponents() {
         return components;
     }
 
-    public void setComponents(List<Component_> components) {
+    public void setComponents(List<Component> components) {
         this.components = components;
     }
 
-    public List<Component_> getComponentList() {
+    public List<Component> getComponentList() {
         return componentList;
     }
 
-    public void setComponentList(List<Component_> componentList) {
+    public void setComponentList(List<Component> componentList) {
         this.componentList = componentList;
     }
 

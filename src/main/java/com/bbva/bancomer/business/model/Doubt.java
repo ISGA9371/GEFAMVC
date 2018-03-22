@@ -1,200 +1,200 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.bbva.bancomer.business.model;
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+/**
+ * @author Guevara
+ */
 @Entity
-@Table(name = "THGE027_DUDA")
-public class Doubt {
-
+@Table(name = "thge027_duda", catalog = "gestion_factoria", schema = "")
+@NamedQueries({
+        @NamedQuery(name = "Doubt.findAll", query = "SELECT t FROM Doubt t")})
+public class Doubt implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    //@GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "CD_DUDA", nullable = false)
+    private Integer doubtId;
+    @Basic(optional = false)
+    @Column(name = "FH_ALTA", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date doubtUploadDate;
+    @Basic(optional = false)
+    @Column(name = "TX_VENTREGA", nullable = false, length = 9)
+    private String doubtVersion;
+    @Basic(optional = false)
+    @Column(name = "NB_DESC_DUDA_HIST", nullable = false, length = 600)
+    private String doubtDescription;
+    @Column(name = "NB_DESC_RES_HIST", length = 600)
+    private String doubtDescriptionResponse;
+    @Column(name = "FH_RESOLUCION")
+    @Temporal(TemporalType.DATE)
+    private Date doubtDateResolution;
+    @Column(name = "NU_RES_INCORR")
+    private Integer nuResIncorr;
+    @JoinColumn(name = "ST_DUDA", referencedColumnName = "CD_ESTADO", nullable = false)
+    @ManyToOne(optional = false)
+    private Status status;
+    @JoinColumn(name = "CD_COMPONENTE", referencedColumnName = "CD_COMPONENTE", nullable = false)
+    @ManyToOne(optional = false)
+    private Component component;
+    @JoinColumn(name = "CD_USU_PETICION", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
+    @ManyToOne(optional = false)
+    private User userSender;
+    @JoinColumn(name = "CD_USU_RESP", referencedColumnName = "CD_USUARIO_CORP")
+    @ManyToOne
+    private User userReceiver;
+    @JoinColumn(name = "CD_PRIORIDAD", referencedColumnName = "CD_PRIORIDAD", nullable = false)
+    @ManyToOne(optional = false)
+    private Priority priority;
+    @JoinColumn(name = "CD_TIPO_DUDA", referencedColumnName = "CD_TIPO_DUDA", nullable = false)
+    @ManyToOne(optional = false)
+    private DoubtType doubtType;
 
-    @Column(name="CD_DUDA")
-    private int cd_duda;
-
-    @Column(name="CD_COMPONENTE")
-    private int cd_componente;
-
-    @Column(name="FH_ALTA")
-    private String fh_alta;
-
-    @Column(name="ST_DUDA")
-    private int st_duda;
-
-    @Column(name="TX_VENTREGA")
-    private String tx_ventrega;
-
-    @Column(name="NB_DESC_DUDA_HIST")
-    private String nb_desc_duda_hist;
-
-    @Column(name="NB_DESC_RES_HIST")
-    private String nb_desc_res_hist;
-
-    @Column(name="CD_PRIORIDAD")
-    private int cd_prioridad;
-
-    @Column(name="CD_TIPO_DUDA")
-    private int cd_tipo_duda;
-
-    @Column(name="CD_USU_PETICION")
-    private String cd_usu_peticion;
-
-    @Column(name="CD_USU_RESP")
-    private String cd_usu_resp;
-
-    @Column(name="FH_RESOLUCION")
-    private String fh_resolucion;
-
-    @Column(name="NU_RES_INCORR")
-    private int nu_res_incorr;
-
-    //Cosntructor por defecto para Hibernate
     public Doubt() {
     }
 
-    public Doubt (int cd_duda, int cd_componente, String fh_alta, int st_duda, String tx_ventrega, String nb_desc_duda_hist,
-                  String nb_desc_res_hist, int cd_prioridad, int cd_tipo_duda, String cd_usu_peticion, String cd_usu_resp,
-                  String fh_resolucion, int nu_res_incorr) {
-        this.cd_duda=cd_duda;
-        this.cd_componente=cd_componente;
-        this.fh_alta=fh_alta;
-        this.st_duda=st_duda;
-        this.tx_ventrega=tx_ventrega;
-        this.nb_desc_duda_hist=nb_desc_duda_hist;
-        this.nb_desc_res_hist=nb_desc_res_hist;
-        this.cd_prioridad=cd_prioridad;
-        this.cd_tipo_duda=cd_tipo_duda;
-        this.cd_usu_peticion=cd_usu_peticion;
-        this.cd_usu_resp=cd_usu_resp;
-        this.fh_resolucion=fh_resolucion;
-        this.nu_res_incorr=nu_res_incorr;
+    public Doubt(Integer doubtId) {
+        this.doubtId = doubtId;
     }
 
-    public int getCd_duda() {
-        return cd_duda;
+    public Doubt(Integer doubtId, Date doubtUploadDate, String doubtVersion, String doubtDescription) {
+        this.doubtId = doubtId;
+        this.doubtUploadDate = doubtUploadDate;
+        this.doubtVersion = doubtVersion;
+        this.doubtDescription = doubtDescription;
     }
 
-    public void setCd_duda(int cd_duda) {
-        this.cd_duda = cd_duda;
+    public Integer getDoubtId() {
+        return doubtId;
     }
 
-    public int getCd_componente() {
-        return cd_componente;
+    public void setDoubtId(Integer doubtId) {
+        this.doubtId = doubtId;
     }
 
-    public void setCd_componente(int cd_componente) {
-        this.cd_componente = cd_componente;
+    public Date getDoubtUploadDate() {
+        return doubtUploadDate;
     }
 
-    public String getFh_alta() {
-        return fh_alta;
+    public void setDoubtUploadDate(Date doubtUploadDate) {
+        this.doubtUploadDate = doubtUploadDate;
     }
 
-    public void setFh_alta(String fh_alta) {
-        this.fh_alta = fh_alta;
+    public String getDoubtVersion() {
+        return doubtVersion;
     }
 
-    public int getSt_duda() {
-        return st_duda;
+    public void setDoubtVersion(String doubtVersion) {
+        this.doubtVersion = doubtVersion;
     }
 
-    public void setSt_duda(int st_duda) {
-        this.st_duda = st_duda;
+    public String getDoubtDescription() {
+        return doubtDescription;
     }
 
-    public String getTx_ventrega() {
-        return tx_ventrega;
+    public void setDoubtDescription(String doubtDescription) {
+        this.doubtDescription = doubtDescription;
     }
 
-    public void setTx_ventrega(String tx_ventrega) {
-        this.tx_ventrega = tx_ventrega;
+    public String getDoubtDescriptionResponse() {
+        return doubtDescriptionResponse;
     }
 
-    public String getNb_desc_duda_hist() {
-        return nb_desc_duda_hist;
+    public void setDoubtDescriptionResponse(String doubtDescriptionResponse) {
+        this.doubtDescriptionResponse = doubtDescriptionResponse;
     }
 
-    public void setNb_desc_duda_hist(String nb_desc_duda_hist) {
-        this.nb_desc_duda_hist = nb_desc_duda_hist;
+    public Date getDoubtDateResolution() {
+        return doubtDateResolution;
     }
 
-    public String getNb_desc_res_hist() {
-        return nb_desc_res_hist;
+    public void setDoubtDateResolution(Date doubtDateResolution) {
+        this.doubtDateResolution = doubtDateResolution;
     }
 
-    public void setNb_desc_res_hist(String nb_desc_res_hist) {
-        this.nb_desc_res_hist = nb_desc_res_hist;
+    public Integer getNuResIncorr() {
+        return nuResIncorr;
     }
 
-    public int getCd_prioridad() {
-        return cd_prioridad;
+    public void setNuResIncorr(Integer nuResIncorr) {
+        this.nuResIncorr = nuResIncorr;
     }
 
-    public void setCd_prioridad(int cd_prioridad) {
-        this.cd_prioridad = cd_prioridad;
+    public Status getStatus() {
+        return status;
     }
 
-    public int getCd_tipo_duda() {
-        return cd_tipo_duda;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public void setCd_tipo_duda(int cd_tipo_duda) {
-        this.cd_tipo_duda = cd_tipo_duda;
+    public Component getComponent() {
+        return component;
     }
 
-    public String getCd_usu_peticion() {
-        return cd_usu_peticion;
+    public void setComponent(Component component) {
+        this.component = component;
     }
 
-    public void setCd_usu_peticion(String cd_usu_peticion) {
-        this.cd_usu_peticion = cd_usu_peticion;
+    public User getUserSender() {
+        return userSender;
     }
 
-    public String getCd_usu_resp() {
-        return cd_usu_resp;
+    public void setUserSender(User userSender) {
+        this.userSender = userSender;
     }
 
-    public void setCd_usu_resp(String cd_usu_resp) {
-        this.cd_usu_resp = cd_usu_resp;
+    public User getUserReceiver() {
+        return userReceiver;
     }
 
-    public String getFh_resolucion() {
-        return fh_resolucion;
+    public void setUserReceiver(User userReceiver) {
+        this.userReceiver = userReceiver;
     }
 
-    public void setFh_resolucion(String fh_resolucion) {
-        this.fh_resolucion = fh_resolucion;
+    public Priority getPriority() {
+        return priority;
     }
 
-    public int getNu_res_incorr() {
-        return nu_res_incorr;
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
-    public void setNu_res_incorr(int nu_res_incorr) {
-        this.nu_res_incorr = nu_res_incorr;
+    public DoubtType getDoubtType() {
+        return doubtType;
+    }
+
+    public void setDoubtType(DoubtType doubtType) {
+        this.doubtType = doubtType;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (doubtId != null ? doubtId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Doubt)) {
+            return false;
+        }
+        Doubt other = (Doubt) object;
+        return (this.doubtId != null || other.doubtId == null) && (this.doubtId == null || this.doubtId.equals(other.doubtId));
     }
 
     @Override
     public String toString() {
-        return "Doubt{" +
-                " cd_duda=" +  cd_duda+
-                ", cd_componente=" +  cd_componente+
-                ", fh_alta=" +  fh_alta+
-                ", st_duda=" +  st_duda+
-                ", tx_ventrega=" +  tx_ventrega+
-                ", nb_desc_duda_hist=" +  nb_desc_duda_hist+
-                ", nb_desc_res_hist=" +  nb_desc_res_hist+
-                ", cd_prioridad=" +  cd_prioridad+
-                ", cd_tipo_duda=" +  cd_tipo_duda+
-                ", cd_usu_peticion=" +  cd_usu_peticion+
-                ", cd_usu_resp=" +  cd_usu_resp+
-                ", fh_resolucion=" +  fh_resolucion+
-                ", nu_res_incorr=" +  nu_res_incorr+
-                '}';
+        return "com.bbva.Doubt[ doubtId=" + doubtId + " ]";
     }
 
 }

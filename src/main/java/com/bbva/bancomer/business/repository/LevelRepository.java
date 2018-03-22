@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface LevelRepository extends JpaRepository<Level, Integer> {
     @Transactional
-    List<Level> findAllByLevelType(LevelType type);
+    List<Level> findAllByLevelType(LevelType levelType);
     @Transactional
-    List<Level> findAllByLevelSuperior(Level superior);
+    List<Level> findAllByLevelSuperior(Level LevelSuperior);
 
 }

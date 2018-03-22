@@ -5,259 +5,290 @@
  */
 package com.bbva.bancomer.business.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-//import java.util.Date;
-//import java.util.List;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author Guevara
  */
-
 @Entity
-@Table(name = "THGE009_COMPONENTE", catalog = "GESTION_FACTORIA", schema = "")
-public class Component {
-
+@Table(name = "thge009_componente", catalog = "gestion_factoria", schema = "")
+public class Component implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    //@GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "CD_COMPONENTE", nullable = false)
+    private Integer componentId;
+    @Basic(optional = false)
+    @Column(name = "NB_COMPONENTE", nullable = false, length = 45)
+    private String componentName;
+    @Basic(optional = false)
+    @Column(name = "TX_VENTREGA", nullable = false, length = 9)
+    private String componentVersion;
+    @Basic(optional = false)
+    @Column(name = "TP_NVO_MOD", nullable = false, length = 10)
+    private String componentNewMod;
+    @Column(name = "IM_COSTE_EMP", precision = 22)
+    private Double componentFinalCost;
+    @Column(name = "IM_COSTE_INIC", precision = 22)
+    private Double componentStartCost;
+    @Column(name = "TX_COM_TIPIF_EMP", length = 600)
+    private String componentType;
+    @Basic(optional = false)
+    @Column(name = "FH_NEG_EMP_CGF_SW", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date componentPossibleDeliverDate;
+    @Basic(optional = false)
+    @Column(name = "FH_PRV_EMP_CGF_SW", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date componentPreviewDeliverDate;
+    @Basic(optional = false)
+    @Column(name = "FH_R_CGF_EMP_DIS", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date componentDesignRealDeliverDate;
+    @Column(name = "FH_R_EMP_CGF_SW")
+    @Temporal(TemporalType.DATE)
+    private Date componentRealDeliverDate;
+    @Column(name = "TM_ALTA_COMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date componentUploadDate;
+    @Ignore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
+    private List<Modification> modifications;
+    @Ignore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
+    private List<Doubt> doubts;
+    @Ignore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
+    private List<Issue> issues;
+    @Ignore
+    @JoinColumn(name = "ST_TIPIFICACION", referencedColumnName = "CD_ESTADO", nullable = false)
+    @ManyToOne(optional = false)
+    private Status statusTypology;
+    @Ignore
+    @JoinColumn(name = "ST_COMPONENTE", referencedColumnName = "CD_ESTADO", nullable = false)
+    @ManyToOne(optional = false)
+    private Status status;
+    @Ignore
+    @JoinColumn(name = "CD_TIPOLOGIA", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
+    @ManyToOne(optional = false)
+    private Typology typology;
+    @Ignore
+    @JoinColumn(name = "CD_TIPOLOGIA_EMP", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
+    @ManyToOne(optional = false)
+    private Typology typologyEmp;
+    @Ignore
+    @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false)
+    @ManyToOne(optional = false)
+    private Requirement requirement;
 
-    @Column(name="CD_COMPONENTE")
-    private int cd_componente;
-
-    @Column(name="NB_COMPOMNENTE")
-    private String nb_componente;
-
-    @Column(name="CD_REQUERIMIENTO")
-    private int cd_requerimiento;
-
-    @Column(name="TX_VENTRAGA")
-    private String tx_ventraga;
-
-    @Column(name="TP_NVO_MOD")
-    private String tp_nvo_mod;
-
-    @Column(name="CD_TIPOLOGIA")
-    private int cd_tipologia;
-
-    @Column(name="CD_TIPOLOGIA_EMP")
-    private int cd_tipologia_emp;
-
-    @Column(name="IM_COSTE_EMP")
-    private double im_coste_emp;
-
-    @Column(name="IM_CONSTE_INIC")
-    private double im_conste_inic;
-
-    @Column(name="ST_TIPIFICACION")
-    private int st_tipificacion;
-
-    @Column(name="TX_COM_TIPIF_EMP")
-    private String tx_com_tipif_emp;
-
-    @Column(name="FH_NEG_EMP_CGF_SW")
-    private String fh_neg_emp_cgf_sw;
-
-    @Column(name="FH_PRV_EMP_CGF_SW")
-    private String fh_prv_emp_cgf_sw;
-
-    @Column(name="FH_R_CGF_EMP_DIS")
-    private String fh_r_cgf_emp_dis;
-
-    @Column(name="FH_R_EMP_CGF_SW")
-    private String fh_r_emp_cgf_sw;
-
-    @Column(name="ST_COMPONENTE")
-    private int st_componente;
-
-    @Column(name="TM_ALTA_COMP")
-    private String tm_alta_comp;
-
-    //Cosntructor por defecto para Hibernate
     public Component() {
     }
 
-    public Component (int cd_componente, String nb_componente, int cd_requerimiento, String tx_ventraga, String tp_nvo_mod, int cd_tipologia, int cd_tipologia_emp,
-                      double im_coste_emp, double im_conste_inic, int st_tipificacion,  String tx_com_tipif_emp, String fh_neg_emp_cgf_sw, String fh_prv_emp_cgf_sw,
-                      String fh_r_cgf_emp_dis, String fh_r_emp_cgf_sw, int st_componente, String tm_alta_comp) {
-
-        this.cd_componente=cd_componente;
-        this.nb_componente=nb_componente;
-        this.cd_requerimiento=cd_requerimiento;
-        this.tx_ventraga=tx_ventraga;
-        this.tp_nvo_mod=tp_nvo_mod;
-        this.cd_tipologia=cd_tipologia;
-        this.cd_tipologia_emp=cd_tipologia_emp;
-        this.im_coste_emp=im_coste_emp;
-        this.im_conste_inic=im_conste_inic;
-        this.st_tipificacion=st_tipificacion;
-        this.tx_com_tipif_emp=tx_com_tipif_emp;
-        this.fh_neg_emp_cgf_sw=fh_neg_emp_cgf_sw;
-        this.fh_prv_emp_cgf_sw=fh_prv_emp_cgf_sw;
-        this.fh_r_cgf_emp_dis=fh_r_cgf_emp_dis;
-        this.fh_r_emp_cgf_sw=fh_r_emp_cgf_sw;
-        this.st_componente=st_componente;
-        this.tm_alta_comp=tm_alta_comp;
-
+    public Component(Integer componentId) {
+        this.componentId = componentId;
     }
 
-    public int getCd_componente() {
-        return cd_componente;
+    public Component(Integer componentId, String componentName, String componentVersion, String componentType) {
+        this.componentId = componentId;
+        this.componentName = componentName;
+        this.componentVersion = componentVersion;
+        this.componentType = componentType;
     }
 
-    public void setCd_componente(int cd_componente) {
-        this.cd_componente = cd_componente;
+    public Component(Integer componentId, String componentName, String componentVersion, String componentNewMod, Date componentPossibleDeliverDate, Date componentPreviewDeliverDate, Date componentDesignRealDeliverDate) {
+        this.componentId = componentId;
+        this.componentName = componentName;
+        this.componentVersion = componentVersion;
+        this.componentNewMod = componentNewMod;
+        this.componentPossibleDeliverDate = componentPossibleDeliverDate;
+        this.componentPreviewDeliverDate = componentPreviewDeliverDate;
+        this.componentDesignRealDeliverDate = componentDesignRealDeliverDate;
     }
 
-    public String getNb_componente() {
-        return nb_componente;
+    public Integer getComponentId() {
+        return componentId;
     }
 
-    public void setNb_componente(String nb_componente) {
-        this.nb_componente = nb_componente;
+    public void setComponentId(Integer componentId) {
+        this.componentId = componentId;
     }
 
-    public int getCd_requerimiento() {
-        return cd_requerimiento;
+    public String getComponentName() {
+        return componentName;
     }
 
-    public void setCd_requerimiento(int cd_requerimiento) {
-        this.cd_requerimiento = cd_requerimiento;
+    public void setComponentName(String componentName) {
+        this.componentName = componentName;
     }
 
-    public String getTx_ventraga() {
-        return tx_ventraga;
+    public String getComponentVersion() {
+        return componentVersion;
     }
 
-    public void setTx_ventraga(String tx_ventraga) {
-        this.tx_ventraga = tx_ventraga;
+    public void setComponentVersion(String componentVersion) {
+        this.componentVersion = componentVersion;
     }
 
-    public String getTp_nvo_mod() {
-        return tp_nvo_mod;
+    public String getComponentNewMod() {
+        return componentNewMod;
     }
 
-    public void setTp_nvo_mod(String tp_nvo_mod) {
-        this.tp_nvo_mod = tp_nvo_mod;
+    public void setComponentNewMod(String componentNewMod) {
+        this.componentNewMod = componentNewMod;
     }
 
-    public int getCd_tipologia() {
-        return cd_tipologia;
+    public Double getComponentFinalCost() {
+        return componentFinalCost;
     }
 
-    public void setCd_tipologia(int cd_tipologia) {
-        this.cd_tipologia = cd_tipologia;
+    public void setComponentFinalCost(Double componentFinalCost) {
+        this.componentFinalCost = componentFinalCost;
     }
 
-    public int getCd_tipologia_emp() {
-        return cd_tipologia_emp;
+    public Double getComponentStartCost() {
+        return componentStartCost;
     }
 
-    public void setCd_tipologia_emp(int cd_tipologia_emp) {
-        this.cd_tipologia_emp = cd_tipologia_emp;
+    public void setComponentStartCost(Double componentStartCost) {
+        this.componentStartCost = componentStartCost;
     }
 
-    public double getIm_coste_emp() {
-        return im_coste_emp;
+    public String getComponentType() {
+        return componentType;
     }
 
-    public void setIm_coste_emp(double im_coste_emp) {
-        this.im_coste_emp = im_coste_emp;
+    public void setComponentType(String componentType) {
+        this.componentType = componentType;
     }
 
-    public double getIm_conste_inic() {
-        return im_conste_inic;
+    public Date getComponentPossibleDeliverDate() {
+        return componentPossibleDeliverDate;
     }
 
-    public void setIm_conste_inic(double im_conste_inic) {
-        this.im_conste_inic = im_conste_inic;
+    public void setComponentPossibleDeliverDate(Date componentPossibleDeliverDate) {
+        this.componentPossibleDeliverDate = componentPossibleDeliverDate;
     }
 
-    public int getSt_tipificacion() {
-        return st_tipificacion;
+    public Date getComponentPreviewDeliverDate() {
+        return componentPreviewDeliverDate;
     }
 
-    public void setSt_tipificacion(int st_tipificacion) {
-        this.st_tipificacion = st_tipificacion;
+    public void setComponentPreviewDeliverDate(Date componentPreviewDeliverDate) {
+        this.componentPreviewDeliverDate = componentPreviewDeliverDate;
     }
 
-    public String getTx_com_tipif_emp() {
-        return tx_com_tipif_emp;
+    public Date getComponentDesignRealDeliverDate() {
+        return componentDesignRealDeliverDate;
     }
 
-    public void setTx_com_tipif_emp(String tx_com_tipif_emp) {
-        this.tx_com_tipif_emp = tx_com_tipif_emp;
+    public void setComponentDesignRealDeliverDate(Date componentDesignRealDeliverDate) {
+        this.componentDesignRealDeliverDate = componentDesignRealDeliverDate;
     }
 
-    public String getFh_neg_emp_cgf_sw() {
-        return fh_neg_emp_cgf_sw;
+    public Date getComponentRealDeliverDate() {
+        return componentRealDeliverDate;
     }
 
-    public void setFh_neg_emp_cgf_sw(String fh_neg_emp_cgf_sw) {
-        this.fh_neg_emp_cgf_sw = fh_neg_emp_cgf_sw;
+    public void setComponentRealDeliverDate(Date componentRealDeliverDate) {
+        this.componentRealDeliverDate = componentRealDeliverDate;
     }
 
-    public String getFh_prv_emp_cgf_sw() {
-        return fh_prv_emp_cgf_sw;
+    public Date getComponentUploadDate() {
+        return componentUploadDate;
     }
 
-    public void setFh_prv_emp_cgf_sw(String fh_prv_emp_cgf_sw) {
-        this.fh_prv_emp_cgf_sw = fh_prv_emp_cgf_sw;
+    public void setComponentUploadDate(Date componentUploadDate) {
+        this.componentUploadDate = componentUploadDate;
     }
 
-    public String getFh_r_cgf_emp_dis() {
-        return fh_r_cgf_emp_dis;
+    public List<Modification> getModifications() {
+        return modifications;
     }
 
-    public void setFh_r_cgf_emp_dis(String fh_r_cgf_emp_dis) {
-        this.fh_r_cgf_emp_dis = fh_r_cgf_emp_dis;
+    public void setModifications(List<Modification> modifications) {
+        this.modifications = modifications;
     }
 
-    public String getFh_r_emp_cgf_sw() {
-        return fh_r_emp_cgf_sw;
+    public List<Doubt> getDoubts() {
+        return doubts;
     }
 
-    public void setFh_r_emp_cgf_sw(String fh_r_emp_cgf_sw) {
-        this.fh_r_emp_cgf_sw = fh_r_emp_cgf_sw;
+    public void setDoubts(List<Doubt> doubts) {
+        this.doubts = doubts;
     }
 
-    public int getSt_componente() {
-        return st_componente;
+    public List<Issue> getIssues() {
+        return issues;
     }
 
-    public void setSt_componente(int st_componente) {
-        this.st_componente = st_componente;
+    public void setIssues(List<Issue> issues) {
+        this.issues = issues;
     }
 
-    public String getTm_alta_comp() {
-        return tm_alta_comp;
+    public Status getStatusTypology() {
+        return statusTypology;
     }
 
-    public void setTm_alta_comp(String tm_alta_comp) {
-        this.tm_alta_comp = tm_alta_comp;
+    public void setStatusTypology(Status statusTypology) {
+        this.statusTypology = statusTypology;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Typology getTypology() {
+        return typology;
+    }
+
+    public void setTypology(Typology typology) {
+        this.typology = typology;
+    }
+
+    public Typology getTypologyEmp() {
+        return typologyEmp;
+    }
+
+    public void setTypologyEmp(Typology typologyEmp) {
+        this.typologyEmp = typologyEmp;
+    }
+
+    public Requirement getRequirement() {
+        return requirement;
+    }
+
+    public void setRequirement(Requirement requirement) {
+        this.requirement = requirement;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (componentId != null ? componentId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Component)) {
+            return false;
+        }
+        Component other = (Component) object;
+        return (this.componentId != null || other.componentId == null) && (this.componentId == null || this.componentId.equals(other.componentId));
     }
 
     @Override
     public String toString() {
-        return "Component{" +
-                "cd_componente=" + cd_componente +
-                ",nb_componente=" + nb_componente +
-                ",cd_requerimiento=" + cd_requerimiento +
-                ",tx_ventraga=" + tx_ventraga +
-                ",tp_nvo_mod=" + tp_nvo_mod +
-                ",cd_tipologia=" + cd_tipologia +
-                ",cd_tipologia_emp=" + cd_tipologia_emp +
-                ",im_coste_emp=" + im_coste_emp +
-                ",im_conste_inic=" + im_conste_inic +
-                ",st_tipificacion=" + st_tipificacion +
-                ",tx_com_tipif_emp=" + tx_com_tipif_emp +
-                ",fh_neg_emp_cgf_sw=" + fh_neg_emp_cgf_sw +
-                ",fh_prv_emp_cgf_sw=" + fh_prv_emp_cgf_sw +
-                ",fh_r_cgf_emp_dis=" + fh_r_cgf_emp_dis +
-                ",fh_r_emp_cgf_sw=" + fh_r_emp_cgf_sw +
-                ",st_componente=" + st_componente +
-                ",tm_alta_comp=" + tm_alta_comp +
-                '}';
+        return "com.bbva.Component[ componentId=" + componentId + " ]";
     }
+
 }

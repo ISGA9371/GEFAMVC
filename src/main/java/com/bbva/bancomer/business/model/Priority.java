@@ -27,7 +27,7 @@ public class Priority implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "priority")
     private List<Modification> modifications;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "priority")
-    private List<Doubt_> doubts;
+    private List<Doubt> doubts;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "priority")
     private List<Issue> issues;
 
@@ -67,11 +67,11 @@ public class Priority implements Serializable {
         this.modifications = modifications;
     }
 
-    public List<Doubt_> getDoubts() {
+    public List<Doubt> getDoubts() {
         return doubts;
     }
 
-    public void setDoubts(List<Doubt_> doubts) {
+    public void setDoubts(List<Doubt> doubts) {
         this.doubts = doubts;
     }
 

@@ -1,7 +1,6 @@
-package com.bbva.bancomer.business.service.implementacion;
+package com.bbva.bancomer.business.service.implementation;
 
 import com.bbva.bancomer.business.model.Component;
-import com.bbva.bancomer.business.model.Component_;
 import com.bbva.bancomer.business.repository.ComponentRepository;
 import com.bbva.bancomer.business.service.ComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import java.util.List;
 
 @Service
 public class ComponentServiceImpl implements ComponentService {
-    @Autowired
     private ComponentRepository componentRepository;
 
     @Override
@@ -29,6 +27,7 @@ public class ComponentServiceImpl implements ComponentService {
         return componentRepository.findAll();
     }
 
+    @Autowired
     public void setComponentRepository(ComponentRepository componentRepository) {
         this.componentRepository = componentRepository;
     }

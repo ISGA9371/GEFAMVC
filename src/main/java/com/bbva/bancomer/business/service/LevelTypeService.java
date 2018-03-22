@@ -5,8 +5,8 @@ import com.bbva.bancomer.business.model.LevelType;
 
 import java.util.List;
 
-public interface LevelService {
-    List<Level> findAllLevels();
+public interface LevelTypeService {
+    List<LevelType> findAllLevelTypes();
 
-    List<Level> findByLevelType(LevelType levelType);
+    LevelType findByLevelTypeName(String levelTypeName);
 }

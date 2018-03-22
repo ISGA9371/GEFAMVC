@@ -41,7 +41,7 @@ public class Issue implements Serializable {
     private Status status;
     @JoinColumn(name = "CD_COMPONENTE", referencedColumnName = "CD_COMPONENTE", nullable = false)
     @ManyToOne(optional = false)
-    private Component_ component;
+    private Component component;
     @JoinColumn(name = "CD_USU_PETICION", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
     private User userSender;
@@ -129,11 +129,11 @@ public class Issue implements Serializable {
         this.status = status;
     }
 
-    public Component_ getComponent() {
+    public Component getComponent() {
         return component;
     }
 
-    public void setComponent(Component_ component) {
+    public void setComponent(Component component) {
         this.component = component;
     }
 

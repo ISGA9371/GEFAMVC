@@ -63,9 +63,9 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "userScrumMaster")
     private List<ProgramIncrement> programIncrementList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userSender")
-    private List<Doubt_> doubts;
+    private List<Doubt> doubts;
     @OneToMany(mappedBy = "userReceiver")
-    private List<Doubt_> doubtList;
+    private List<Doubt> doubtList;
     @OneToMany(mappedBy = "manager")
     private List<ExternalUser> externalUsers;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "responsible")
@@ -245,19 +245,19 @@ public class User implements Serializable {
         this.programIncrementList = programIncrementList;
     }
 
-    public List<Doubt_> getDoubts() {
+    public List<Doubt> getDoubts() {
         return doubts;
     }
 
-    public void setDoubts(List<Doubt_> doubts) {
+    public void setDoubts(List<Doubt> doubts) {
         this.doubts = doubts;
     }
 
-    public List<Doubt_> getDoubtList() {
+    public List<Doubt> getDoubtList() {
         return doubtList;
     }
 
-    public void setDoubtList(List<Doubt_> doubtList) {
+    public void setDoubtList(List<Doubt> doubtList) {
         this.doubtList = doubtList;
     }
 

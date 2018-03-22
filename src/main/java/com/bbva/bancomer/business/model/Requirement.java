@@ -47,7 +47,7 @@ public class Requirement implements Serializable {
     private User userManager;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private Technology_ technology;
+    private Technology technology;
     @JoinColumn(name = "CD_EMPRESA", referencedColumnName = "CD_EMPRESA", nullable = false)
     @ManyToOne(optional = false)
     private Company company;
@@ -68,7 +68,7 @@ public class Requirement implements Serializable {
     private ProgramIncrement programIncrementScrum;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
-    private Area_ area;
+    private Area area;
     @JoinColumn(name = "CD_TIPO_PROY", referencedColumnName = "CD_TIPO_PROY", nullable = false)
     @ManyToOne(optional = false)
     private ProjectType projectType;
@@ -82,7 +82,7 @@ public class Requirement implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<T955> t955List;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
-    private List<Component_> components;
+    private List<Component> components;
 
     public Requirement() {
     }
@@ -184,11 +184,11 @@ public class Requirement implements Serializable {
         this.userManager = userManager;
     }
 
-    public Technology_ getTechnology() {
+    public Technology getTechnology() {
         return technology;
     }
 
-    public void setTechnology(Technology_ technology) {
+    public void setTechnology(Technology technology) {
         this.technology = technology;
     }
 
@@ -240,11 +240,11 @@ public class Requirement implements Serializable {
         this.programIncrementScrum = programIncrementScrum;
     }
 
-    public Area_ getArea() {
+    public Area getArea() {
         return area;
     }
 
-    public void setArea(Area_ area) {
+    public void setArea(Area area) {
         this.area = area;
     }
 
@@ -288,11 +288,11 @@ public class Requirement implements Serializable {
         this.t955List = t955List;
     }
 
-    public List<Component_> getComponents() {
+    public List<Component> getComponents() {
         return components;
     }
 
-    public void setComponents(List<Component_> components) {
+    public void setComponents(List<Component> components) {
         this.components = components;
     }
 
