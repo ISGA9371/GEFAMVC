@@ -40,7 +40,7 @@
         <br>
         <form style="display:none" action="#" th:action="@{/requerimiento/guardaReq}" th:object="${requerimiento}" method="post">
 
-            <!--HIDDEN PARA PRUEBAS-->
+            <!--HIDDEN PARA PRUEBAS>
             <input type="number" th:field="*{cd_requerimiento}" >
             <input type="text" th:field="*{nb_requerimiento}" >
             <input type="number" th:field="*{cd_nivel}" >
@@ -54,7 +54,7 @@
             <input type="number" th:field="*{st_requerimiento}">
             <input type="number" th:field="*{st_facturado}">
 
-            <input type="submit" value="Guardar">
+            <input type="submit" value="Guardar"-->
         </form>
 
 
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
                                     <ul  class="mdc-list mdc-menu__items">
-                                        <li th:each="nivelesCmb:${nivelesCmb}"  class="mdc-list-item" role="option" th:text="${nivelesCmb.nb_nivel}"></li>
+                                        <li th:each="nivelesCmb:${nivelesCmb}"  class="mdc-list-item" role="option" th:text="${nivelesCmb.levelName}"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
                                     <ul class="mdc-list mdc-menu__items">
-                                        <li th:each="nivelesCmb:${nivelesCmb}"  class="mdc-list-item" role="option" th:text="${nivelesCmb.nb_nivel}"></li>
+                                        <li th:each="nivelesCmb:${nivelesCmb}"  class="mdc-list-item" role="option" th:text="${nivelesCmb.levelName}"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
                                     <ul class="mdc-list mdc-menu__items">
-                                        <li th:each="areasCmb:${areasCmb}"  class="mdc-list-item" role="option" th:text="${areasCmb.nb_area}"></li>
+                                        <li th:each="areasCmb:${areasCmb}"  class="mdc-list-item" role="option" th:text="${areasCmb.areaName}"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -154,7 +154,7 @@
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
                                     <ul class="mdc-list mdc-menu__items">
-                                        <li th:each="tecnologiasCmb:${tecnologiasCmb}"  class="mdc-list-item" role="option" th:text="${tecnologiasCmb.nombre}"></li>
+                                        <li th:each="tecnologiasCmb:${tecnologiasCmb}"  class="mdc-list-item" role="option" th:text="${tecnologiasCmb.technologyName}"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -210,7 +210,7 @@
                         <td class="col-md-4" align="center">
                             <div id="canal-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                                    <div class="mdc-select__label">Canal</div>
+                                    <div class="mdc-select__label">Canal.</div>
                                     <div class="mdc-select__selected-text"></div>
                                     <div class="mdc-select__bottom-line"></div>
                                 </div>
