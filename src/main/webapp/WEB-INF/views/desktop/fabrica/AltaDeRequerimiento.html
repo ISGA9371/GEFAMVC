@@ -42,7 +42,7 @@
 
             <!--HIDDEN PARA PRUEBAS-->
             <input type="number" th:field="*{requirementId}" >
-            <input type="text" th:field="*{requirementName}" >
+            <input id="selected-name" type="text" th:field="*{requirementName}" >
             <input type="number" th:field="*{level}" >
             <input id="selected-technology" type="number" th:field="*{technology}">
             <input type="number" th:field="*{company}" >
@@ -76,7 +76,7 @@
                 <table class="col-md-12" >
                     <tr>
                         <td class="col-md-4" align="center">
-                            <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <div id="nombre-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                                 <input type="text"   class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
                                 <label for="demo-input" class="mdc-text-field__label">Nombre</label>
                             </div>
@@ -424,6 +424,23 @@
             rootTechnology.addEventListener('MDCSelect:change', function() {
                 hiddenTechnology.value = selectTechnology.value;
             });
+        });
+        demoReady(function() {
+            var rootName = document.getElementById('nombre-js-text');
+            var inputName = rootName.querySelector('input');
+            var hiddenName = document.getElementById('selected-name');
+            var textName = new mdc.textField.MDCTextField(rootName);
+
+            inputName.addEventListener('keyup', function() {
+                hiddenName.value = textName.value;
+            });
+            inputName.addEventListener('chage', function() {
+                hiddenName.value = textName.value;
+            });
+            inputName.addEventListener('blur', function() {
+                hiddenName.value = textName.value;
+            });
+
         });
     </script>
 
