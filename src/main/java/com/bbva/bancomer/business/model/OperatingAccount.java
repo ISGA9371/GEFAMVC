@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE055_cta_oper",  uniqueConstraints = {
+@Table(name = "thge055_cta_oper",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NU_CTA_OPERATIVA"})
         , @UniqueConstraint(columnNames = {"CD_CTA_OPER"})})
 public class OperatingAccount implements Serializable {

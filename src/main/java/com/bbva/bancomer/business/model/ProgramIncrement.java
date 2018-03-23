@@ -13,7 +13,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE022_pi",  uniqueConstraints = {
+@Table(name = "thge022_proyecto",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_SCRUM"})})
 public class ProgramIncrement implements Serializable {
     private static final long serialVersionUID = 1L;

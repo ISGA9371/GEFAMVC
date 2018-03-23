@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE021_sbclas_rec")
+@Table(name = "thge021_sbclas_rec")
 public class RequirementSubClassification implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

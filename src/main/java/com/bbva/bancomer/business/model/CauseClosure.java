@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE053_causa_cier",  uniqueConstraints = {
+@Table(name = "thge053_causa_cier",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_CAUSA_CIERRE"})
         , @UniqueConstraint(columnNames = {"NB_CAUSA_CIERRE"})})
 public class CauseClosure implements Serializable {

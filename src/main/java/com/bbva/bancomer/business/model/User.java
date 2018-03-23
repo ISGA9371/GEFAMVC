@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE011_USUARIO", uniqueConstraints = {@UniqueConstraint(columnNames = {"CD_USUARIO_CORP"})})
+@Table(name = "thge011_usuario", uniqueConstraints = {@UniqueConstraint(columnNames = {"CD_USUARIO_CORP"})})
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE047_result_obt",  uniqueConstraints = {
+@Table(name = "thge047_result_obt",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_RESUL_ONTENIDO"})})
 public class Result implements Serializable {
     private static final long serialVersionUID = 1L;

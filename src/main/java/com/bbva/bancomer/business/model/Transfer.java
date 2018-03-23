@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE012_TRASPASO")
+@Table(name = "thge012_traspaso")
 public class Transfer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

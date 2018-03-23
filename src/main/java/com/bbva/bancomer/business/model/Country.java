@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE014_pais")
+@Table(name = "thge014_pais")
 public class Country implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

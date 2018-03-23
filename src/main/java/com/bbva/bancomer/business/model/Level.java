@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE010_NIVEL", uniqueConstraints = {@UniqueConstraint(columnNames = {"CD_NIVEL"})})
+@Table(name = "thge010_nivel", uniqueConstraints = {@UniqueConstraint(columnNames = {"CD_NIVEL"})})
 public class Level implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

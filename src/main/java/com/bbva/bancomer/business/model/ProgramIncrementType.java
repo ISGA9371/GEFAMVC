@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE013_tipo_pi")
+@Table(name = "thge013_tipo_pi")
 public class ProgramIncrementType implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

@@ -39,7 +39,7 @@ public class JPAPersistenceConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://23.251.150.233:3306/GESTION_FACTORIA?serverTimezone=America/Mexico_City&" +
+        dataSource.setUrl("jdbc:mysql://23.251.150.233:3306/gestion_factoria?serverTimezone=America/Mexico_City&" +
                 "useSSL=false&zeroDateTimeBehavior=convertToNull");
         dataSource.setUsername("gefaapp");
         dataSource.setPassword("g3f4dbapp");

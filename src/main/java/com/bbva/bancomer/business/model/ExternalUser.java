@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE024_ctrl_ext")
+@Table(name = "thge024_ctrl_ext")
 public class ExternalUser implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

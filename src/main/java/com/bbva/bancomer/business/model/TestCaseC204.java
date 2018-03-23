@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE044_c204")
+@Table(name = "thge044_c204")
 public class TestCaseC204 implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

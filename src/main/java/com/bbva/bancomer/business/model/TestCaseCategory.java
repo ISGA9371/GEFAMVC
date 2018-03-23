@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE046_cat_caso",  uniqueConstraints = {
+@Table(name = "thge046_cat_caso",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_CATEGORIA_CASO"})})
 public class TestCaseCategory implements Serializable {
     private static final long serialVersionUID = 1L;

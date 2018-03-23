@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE008_TIPO_EDO", uniqueConstraints = {@UniqueConstraint(columnNames = {"NB_TIPO_EDO"})})
+@Table(name = "thge008_tipo_edo", uniqueConstraints = {@UniqueConstraint(columnNames = {"NB_TIPO_EDO"})})
 public class StatusType implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

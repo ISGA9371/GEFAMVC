@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE042_t926")
+@Table(name = "thge042_t926")
 public class T926 implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

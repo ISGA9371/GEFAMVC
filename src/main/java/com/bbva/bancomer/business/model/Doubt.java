@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE027_duda")
+@Table(name = "thge027_duda")
 @NamedQueries({
         @NamedQuery(name = "Doubt.findAll", query = "SELECT t FROM Doubt t")})
 public class Doubt implements Serializable {

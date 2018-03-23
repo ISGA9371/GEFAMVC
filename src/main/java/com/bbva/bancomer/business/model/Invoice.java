@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE039_factura")
+@Table(name = "thge039_factura")
 public class Invoice implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

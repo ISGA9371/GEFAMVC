@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE054_res_verif",  uniqueConstraints = {
+@Table(name = "thge054_res_verif",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_RESULT_VERIF"})
         , @UniqueConstraint(columnNames = {"CD_RESULT_VERIF"})})
 public class VerificationResult implements Serializable {
