@@ -38,23 +38,23 @@
             <div class="col-md-12" align="center" style="font-size:30px; font-family:BBVA Web Book">Alta de Requerimientos</div>
         </div>
         <br>
-        <form style="display:none" action="#" th:action="@{/requerimiento/guardaReq}" th:object="${requerimiento}" method="post">
+        <form style="display:block" action="#" th:action="@{/requerimiento/guardaReq}" th:object="${requerimiento}" method="post">
 
-            <!--HIDDEN PARA PRUEBAS>
-            <input type="number" th:field="*{cd_requerimiento}" >
-            <input type="text" th:field="*{nb_requerimiento}" >
-            <input type="number" th:field="*{cd_nivel}" >
-            <input type="number" th:field="*{cd_tecnologia}">
-            <input type="number" th:field="*{cd_empresa}" >
-            <input type="number" th:field="*{cd_area}">
-            <input type="number" th:field="*{cd_tipo_servicio}">
-            <input type="number" th:field="*{cd_tipo_proyecto}">
-            <input type="text" th:field="*{cd_usuario_resp}" >
-            <input type="text" th:field="*{cd_usuario_gestor}" >
-            <input type="number" th:field="*{st_requerimiento}">
-            <input type="number" th:field="*{st_facturado}">
+            <!--HIDDEN PARA PRUEBAS-->
+            <input type="number" th:field="*{requirementId}" >
+            <input type="text" th:field="*{requirementName}" >
+            <input type="number" th:field="*{level}" >
+            <input id="selected-technology" type="number" th:field="*{technology}">
+            <input type="number" th:field="*{company}" >
+            <input type="number" th:field="*{area}">
+            <input type="number" th:field="*{serviceType}">
+            <input type="number" th:field="*{projectType}">
+            <input type="text" th:field="*{user}" >
+            <input type="text" th:field="*{userManager}" >
+            <input type="number" th:field="*{status}">
+            <input type="number" th:field="*{requirementBilled}">
 
-            <input type="submit" value="Guardar"-->
+            <input type="submit" value="Guardar">
         </form>
 
 
@@ -154,7 +154,7 @@
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
                                     <ul class="mdc-list mdc-menu__items">
-                                        <li th:each="tecnologiasCmb:${tecnologiasCmb}"  class="mdc-list-item" role="option" th:text="${tecnologiasCmb.technologyName}"></li>
+                                        <li th:each="tecnologiasCmb:${tecnologiasCmb}" class="mdc-list-item" th:id="${tecnologiasCmb.technologyId}" role="option" th:text="${tecnologiasCmb.technologyName}"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -414,6 +414,16 @@
             mdc.select.MDCSelect.attachTo(document.getElementById('proy-js-select'));
             mdc.select.MDCSelect.attachTo(document.getElementById('estado-js-select'));
             mdc.select.MDCSelect.attachTo(document.getElementById('facturado-js-select'));
+        });
+
+        demoReady(function() {
+            var rootTechnology = document.getElementById('tecnologia-js-select');
+            var hiddenTechnology = document.getElementById('selected-technology');
+            var selectTechnology = new mdc.select.MDCSelect(rootTechnology);
+
+            rootTechnology.addEventListener('MDCSelect:change', function() {
+                hiddenTechnology.value = selectTechnology.value;
+            });
         });
     </script>
 
