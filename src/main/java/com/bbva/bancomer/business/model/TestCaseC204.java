@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -32,8 +34,6 @@ public class TestCaseC204 implements Serializable {
     @Lob
     @Column(name = "TX_EVIDENCIA_PBA")
     private byte[] testCaseC204EvidencePba;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "testCaseC204")
-    private List<T955> t955List;
     @JoinColumn(name = "CD_T926", referencedColumnName = "CD_T926")
     @ManyToOne
     private T926 t926;
@@ -46,6 +46,9 @@ public class TestCaseC204 implements Serializable {
     @JoinColumn(name = "CD_RESUL_OBTENIDO", referencedColumnName = "CD_RESUL_OBTENIDO")
     @ManyToOne
     private Result result;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "testCaseC204")
+    private List<T955> t955List;
 
     public TestCaseC204() {
     }

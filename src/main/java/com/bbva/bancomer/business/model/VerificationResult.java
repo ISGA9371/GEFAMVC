@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -28,6 +30,7 @@ public class VerificationResult implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_RESULT_VERIF", nullable = false, length = 25)
     private String verificationResultName;
+    @JsonIgnore
     @OneToMany(mappedBy = "verificationResult")
     private List<T955> t955List;
 

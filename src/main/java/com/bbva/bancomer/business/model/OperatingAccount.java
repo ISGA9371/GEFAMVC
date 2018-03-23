@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -28,6 +30,7 @@ public class OperatingAccount implements Serializable {
     @Basic(optional = false)
     @Column(name = "NU_CTA_OPERATIVA", nullable = false, length = 8)
     private String operatingAccountValue;
+    @JsonIgnore
     @OneToMany(mappedBy = "operatingAccount")
     private List<Invoice> invoices;
 

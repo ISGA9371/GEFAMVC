@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -28,14 +30,15 @@ public class BudgetRequirement implements Serializable {
     @Column(name = "TM_PEP_REQ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date budgetRequirementDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "budgetRequirement")
-    private List<Invoice> invoices;
     @JoinColumn(name = "CD_PEP", referencedColumnName = "CD_PEP", nullable = false)
     @ManyToOne(optional = false)
     private Budget budget;
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false)
     @ManyToOne(optional = false)
     private Requirement requirement;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "budgetRequirement")
+    private List<Invoice> invoices;
 
     public BudgetRequirement() {
     }

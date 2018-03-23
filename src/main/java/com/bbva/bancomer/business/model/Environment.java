@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -24,6 +26,7 @@ public class Environment implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_ENTORNO", nullable = false, length = 25)
     private String environmentName;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "environment")
     private List<T955> t955List;
 

@@ -5,6 +5,8 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -24,6 +26,7 @@ public class ProjectType implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_TIPO_PROY", nullable = false, length = 25)
     private String projectTypeName;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectType")
     private List<Requirement> requirements;
 
