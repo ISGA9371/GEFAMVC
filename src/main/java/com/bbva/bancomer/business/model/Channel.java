@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE056_canal", catalog = "gestion_factoria", uniqueConstraints = {
+@Table(name = "THGE056_canal",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_CANAL"})
         , @UniqueConstraint(columnNames = {"NB_CANAL"})})
 public class Channel implements Serializable {

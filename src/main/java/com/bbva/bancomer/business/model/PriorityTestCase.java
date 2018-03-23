@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE045_prioridad_cp", catalog = "gestion_factoria", uniqueConstraints = {
+@Table(name = "THGE045_prioridad_cp",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_PRIORIDAD_CP"})})
 public class PriorityTestCase implements Serializable {
     private static final long serialVersionUID = 1L;

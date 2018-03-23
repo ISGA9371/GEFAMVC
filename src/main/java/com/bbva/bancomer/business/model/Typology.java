@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE006_tipologia", catalog = "gestion_factoria")
+@Table(name = "THGE006_tipologia")
 public class Typology implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

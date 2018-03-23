@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE057_aplicacion", catalog = "gestion_factoria", uniqueConstraints = {
+@Table(name = "THGE057_aplicacion",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_APLICACION"})
         , @UniqueConstraint(columnNames = {"NB_APLICACION"})})
 public class Application implements Serializable {

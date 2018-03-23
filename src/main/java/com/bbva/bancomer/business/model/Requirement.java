@@ -16,7 +16,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE017_requerim", catalog = "gestion_factoria", uniqueConstraints = {
+@Table(name = "THGE017_requerim",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_REQUERIMIENTO"})})
 public class Requirement implements Serializable {
     private static final long serialVersionUID = 1L;

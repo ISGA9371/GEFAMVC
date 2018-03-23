@@ -5,7 +5,7 @@
  */
 package com.bbva.bancomer.business.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;

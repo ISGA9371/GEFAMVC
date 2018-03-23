@@ -15,7 +15,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "THGE020_clasif_rec", catalog = "gestion_factoria", uniqueConstraints = {
+@Table(name = "THGE020_clasif_rec",  uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_CLASIF_REC"})})
 public class RequirementClassification implements Serializable {
 

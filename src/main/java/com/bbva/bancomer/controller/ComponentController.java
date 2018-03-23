@@ -5,6 +5,7 @@ import com.bbva.bancomer.business.service.ComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,11 +32,11 @@ public class ComponentController {
         return "/fabrica/ModificarComponente";
     }
 
-    @RequestMapping(path = "", method = RequestMethod.POST)
-    public String saveComponent(Component component) {
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public String saveComponent(@ModelAttribute("componente") Component component) {
         // TODO Validate user
 
-       // LOG.info("Saving new component... " + component.getComponentName());
+        // LOG.info("Saving new component... " + component.getComponentName());
         componentService.saveComponent(component);
 
         return "redirect:/fabrica/ModificarComponente";
@@ -48,17 +49,19 @@ public class ComponentController {
         List<Component> components = componentService.findAllComponents();
         model.addAttribute("components", components);
 
-        return "homeComponents";
+        return "fabrica/BuscarComponentes";
     }
 
     @RequestMapping(path = "/{componentId}", method = RequestMethod.GET)
     public String editComponent(Model model, @PathVariable(value = "componentId") Integer componentId) {
         // TODO Validate user
-
         LOG.info("Updating component, ID: " + componentId);
-        Component component = componentService.findComponent(componentId);
-        model.addAttribute("component", component);
-
+        if (null != componentId) {
+            Component component = componentService.findComponent(componentId);
+            model.addAttribute("component", component);
+        } else {
+            model.addAttribute("component", new Component());
+        }
         return "redirect:/fabrica/ModificarComponente";
     }
 

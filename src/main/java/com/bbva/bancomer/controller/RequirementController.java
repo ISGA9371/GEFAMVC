@@ -1,25 +1,23 @@
 package com.bbva.bancomer.controller;
 
 
-import com.bbva.bancomer.business.model.Level;
-import com.bbva.bancomer.business.model.LevelType;
-import com.bbva.bancomer.business.model.Requirement;
-import com.bbva.bancomer.business.model.Technology;
+import com.bbva.bancomer.business.model.*;
 import com.bbva.bancomer.business.service.*;
-import com.bbva.bancomer.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 import java.util.logging.Logger;
 
 @Controller
-@RequestMapping("/requerimiento")
+@RequestMapping("/requirements")
 public class RequirementController {
-    private static final Logger log = Logger.getLogger(RequirementController.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(RequirementController.class.getName());
 
     private AreaService areaService;
     private RequirementService requirementService;
@@ -27,60 +25,64 @@ public class RequirementController {
     private LevelService levelService;
     private LevelTypeService levelTypeService;
 
-    private static final String REQUERIMIENTO_VISTA = "fabrica/AltaDeRequerimiento";
-    private static final String MODIFICA_REQ_VISTA = "fabrica/ModificarRequerimiento";
-    private static final String BUSCAR_REQ_VISTA = "fabrica/BusquedaDeRequerimientos";
+    private static final String NEW_REQUIREMENT = "fabrica/AltaDeRequerimiento";
+    private static final String EDIT_REQUIREMENT = "fabrica/ModificarRequerimiento";
+    private static final String SEARCH_REQUIREMENTS = "fabrica/BusquedaDeRequerimientos";
 
-    @GetMapping("/inicialRequerimiento")
-    public ModelAndView entraRequerimiento() {
-
-        ModelAndView modelReq = new ModelAndView(REQUERIMIENTO_VISTA);
-        modelReq.addObject("nivelesCmb", levelService.findAllLevels());
-        modelReq.addObject("areasCmb", areaService.findAllAreas());
-        modelReq.addObject("tecnologiasCmb", technologyService.findAllTechnologies());
-        modelReq.addObject("requerimiento", new Requirement());
-
-        return modelReq;
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String addRequirement(Model model) {
+        model.addAttribute("requirement", new Requirement());
+        return NEW_REQUIREMENT;
     }
 
-    @PostMapping("/guardaReq")
-    public String guardaRequerimiento(@ModelAttribute("requerimiento") Requirement requirement) {
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public String saveRequirement(@ModelAttribute("requirement") Requirement requirement) {
+        LOGGER.info("Saving requirement");
         requirementService.saveRequirement(requirement);
-        System.out.print("LLega");
         return "redirect:/requerimiento/ModificaRequerimiento";
-
     }
 
-    @GetMapping("/{id}")
-    public String verRequerimiento(Model model, @PathVariable Integer id) {
-
-        log.info("ID " + id);
-
-        Requirement requirement = requirementService.findOneRequirement(id);
-
-        model.addAttribute("req", requirement);
-
-        return MODIFICA_REQ_VISTA;
-    }
-
-    @GetMapping("/buscar")
-    public String buscar(Model model) {
-        List<Technology> todas = technologyService.findAllTechnologies();
-
-        LevelType direccionType = levelTypeService.findByLevelTypeName(Constants.TIPO_NIVEL_DIRECCION);
-
-        List<Level> direcciones = levelService.findByLevelType(direccionType);
-
-        for (Level l : direcciones) {
-            log.info("TEC " + l.getLevelName());
+    @RequestMapping(value = "/{requirementId}", method = RequestMethod.GET)
+    public String getOneRequirement(Model model, @PathVariable(required = false) Integer requirementId) {
+        LOGGER.info("Find one element" + requirementId);
+        if (null != requirementId) {
+            Requirement requirement = requirementService.findOneRequirement(requirementId);
+            model.addAttribute("requirement", requirement);
+        } else {
+            model.addAttribute("requirement", new Requirement());
         }
-
-        model.addAttribute("tecnologias", todas);
-        model.addAttribute("direcciones", direcciones);
-
-        return BUSCAR_REQ_VISTA;
+        return EDIT_REQUIREMENT;
     }
 
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String getAllRequirements(Model model) {
+        List<Requirement> requirements = requirementService.findAllRequirements();
+        model.addAttribute("requirements", requirements);
+        return SEARCH_REQUIREMENTS;
+    }
+
+    // Model Attributes will available to the view all the time
+    @ModelAttribute("levels")
+    public List<Level> populateLevels() {
+        return this.levelService.findAllLevels();
+    }
+
+    @ModelAttribute("levelTypes")
+    public List<LevelType> populateLevelTypes() {
+        return this.levelTypeService.findAllLevelTypes();
+    }
+
+    @ModelAttribute("areas")
+    public List<Area> populateAreas() {
+        return this.areaService.findAllAreas();
+    }
+
+    @ModelAttribute("technologies")
+    public List<Technology> populateTechnologies() {
+        return this.technologyService.findAllTechnologies();
+    }
+
+    // Setters
     @Autowired
     public void setAreaService(AreaService areaService) {
         this.areaService = areaService;
