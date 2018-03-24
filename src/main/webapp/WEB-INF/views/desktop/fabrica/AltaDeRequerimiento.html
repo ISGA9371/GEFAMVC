@@ -47,15 +47,29 @@
             <!--input type="hidden" th:field="*{requirementId}" -->
             <input id="nombreTxt" type="hidden" th:field="*{requirementName}" >
             <input id="direccionCmb" type="hidden" th:field="*{level}" >
+            <input id="subDireccionCmb" type="hidden" th:field="*{level}" >
+            <!--input id="subdirectorTxt" type="hidden" th:field="*{technology}"SOLO SE MUESTRA-->
+            <input id="responsableTxt" type="hidden" th:field="*{user}">
+            <input id="areaCmb" type="hidden" th:field="*{area}">
+            <input id="gestorTxt" type="hidden" th:field="*{userManager}">
             <input id="tecnologiaCmb" type="hidden" th:field="*{technology}">
-            <input id="nombre" type="hidden" th:field="*{company}" >
-            <input id="nombre" type="hidden" th:field="*{area}">
-            <!--input type="number" th:field="*{serviceType}"-->
+            <!--input id="tipoProyectoCmb" type="hidden" th:field="*{technology}"SE OBTIENE DEL SDA SELECCIONADO-->
+            <input id="aplicacionCmb" type="hidden" th:field="*{application}">
+            <input id="canalCmb" type="hidden" th:field="*{channel}">
+            <input id="empresaCmb" type="hidden" th:field="*{company}" >
+            <!--input id="tipoServCmb" type="hidden" th:field="*{company}" FALTA EN LA ENTIDAD-->
+            <!--input id="codigoPiCmb" type="hidden" th:field="*{company}" NO EXISTE EN LA TABLA-->
+            <!--input id="nombreProyCmb" type="hidden" th:field="*{company}" NO EXISTE EN LA TABLA-->
+            <input id="horasTxt" type="hidden" th:field="*{requirementTotalHours}" >
+            <!--input id="estadoCmb" type="hidden" th:field="*{company}" NO EXISTE EN LA TABLA-->
+            <input id="facturadoCmb" type="hidden" th:field="*{requirementBilled}" >
+
+            <!--input type="number" th:field="*{serviceType}">
             <input id="nombre" type="hidden" th:field="*{projectType}">
             <input id="nombre" type="hidden" th:field="*{user}" >
             <input id="nombre" type="hidden" th:field="*{userManager}" >
             <input id="nombre" type="hidden" th:field="*{status}">
-            <input id="nombre"type="hidden" th:field="*{requirementBilled}">
+            <input id="nombre"type="hidden" th:field="*{requirementBilled}"-->
 
 
             <input type="submit" value="Guardar">
