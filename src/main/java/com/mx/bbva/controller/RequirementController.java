@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 import java.util.logging.Logger;
 
+import static com.mx.bbva.util.ViewsURLs.*;
+
 @Controller
 @RequestMapping("/requirements")
 public class RequirementController {
@@ -26,10 +28,6 @@ public class RequirementController {
     private LevelTypeService levelTypeService;
     private UserService userService;
     private ApplicationService applicationService;
-
-    private static final String NEW_REQUIREMENT = "fabrica/AltaDeRequerimiento";
-    private static final String EDIT_REQUIREMENT = "fabrica/ModificarRequerimiento";
-    private static final String SEARCH_REQUIREMENTS = "fabrica/BusquedaDeRequerimientos";
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addRequirement(Model model) {
