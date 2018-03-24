@@ -53,16 +53,16 @@ public class Modification implements Serializable {
     @Column(name = "TX_DIF_EMP")
     private Character txDifEmp;
     @Column(name = "IM_COSTE_EMP", precision = 22)
-    private Double imCosteEmp;
+    private Double modificationPrice;
     @Column(name = "CT_HORAS_EMP", precision = 22)
-    private Double ctHorasEmp;
+    private Double modificationHours;
     @Column(name = "TX_COM_TIPIF_EMP", length = 500)
-    private String txComTipifEmp;
+    private String modificationCommentTypo;
     @Column(name = "TX_COM_TIPIF_PROY", length = 500)
-    private String txComTipifProy;
+    private String modificationCommentDyd;
     @Basic(optional = false)
     @Column(name = "TX_FACT_S_N", nullable = false, length = 2)
-    private String modificationInvoiceId;
+    private String modificationInvoiced;
     @Column(name = "TX_MES_FACT", length = 10)
     private String modificationInvoiceMonth;
     @Column(name = "NU_ANO_FACT")
@@ -96,13 +96,13 @@ public class Modification implements Serializable {
         this.modificationId = modificationId;
     }
 
-    public Modification(Integer modificationId, String modificationOnTrack, String modificationDoneDyd, Date modificationSendDate, Date modificationEndDate, String modificationInvoiceId) {
+    public Modification(Integer modificationId, String modificationOnTrack, String modificationDoneDyd, Date modificationSendDate, Date modificationEndDate, String modificationInvoiced) {
         this.modificationId = modificationId;
         this.modificationOnTrack = modificationOnTrack;
         this.modificationDoneDyd = modificationDoneDyd;
         this.modificationSendDate = modificationSendDate;
         this.modificationEndDate = modificationEndDate;
-        this.modificationInvoiceId = modificationInvoiceId;
+        this.modificationInvoiced = modificationInvoiced;
     }
 
     public Integer getModificationId() {
@@ -209,44 +209,44 @@ public class Modification implements Serializable {
         this.txDifEmp = txDifEmp;
     }
 
-    public Double getImCosteEmp() {
-        return imCosteEmp;
+    public Double getModificationPrice() {
+        return modificationPrice;
     }
 
-    public void setImCosteEmp(Double imCosteEmp) {
-        this.imCosteEmp = imCosteEmp;
+    public void setModificationPrice(Double modificationPrice) {
+        this.modificationPrice = modificationPrice;
     }
 
-    public Double getCtHorasEmp() {
-        return ctHorasEmp;
+    public Double getModificationHours() {
+        return modificationHours;
     }
 
-    public void setCtHorasEmp(Double ctHorasEmp) {
-        this.ctHorasEmp = ctHorasEmp;
+    public void setModificationHours(Double modificationHours) {
+        this.modificationHours = modificationHours;
     }
 
-    public String getTxComTipifEmp() {
-        return txComTipifEmp;
+    public String getModificationCommentTypo() {
+        return modificationCommentTypo;
     }
 
-    public void setTxComTipifEmp(String txComTipifEmp) {
-        this.txComTipifEmp = txComTipifEmp;
+    public void setModificationCommentTypo(String modificationCommentTypo) {
+        this.modificationCommentTypo = modificationCommentTypo;
     }
 
-    public String getTxComTipifProy() {
-        return txComTipifProy;
+    public String getModificationCommentDyd() {
+        return modificationCommentDyd;
     }
 
-    public void setTxComTipifProy(String txComTipifProy) {
-        this.txComTipifProy = txComTipifProy;
+    public void setModificationCommentDyd(String modificationCommentDyd) {
+        this.modificationCommentDyd = modificationCommentDyd;
     }
 
-    public String getModificationInvoiceId() {
-        return modificationInvoiceId;
+    public String getModificationInvoiced() {
+        return modificationInvoiced;
     }
 
-    public void setModificationInvoiceId(String modificationInvoiceId) {
-        this.modificationInvoiceId = modificationInvoiceId;
+    public void setModificationInvoiced(String modificationInvoiced) {
+        this.modificationInvoiced = modificationInvoiced;
     }
 
     public String getModificationInvoiceMonth() {

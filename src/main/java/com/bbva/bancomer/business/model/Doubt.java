@@ -38,7 +38,7 @@ public class Doubt implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date doubtDateResolution;
     @Column(name = "NU_RES_INCORR")
-    private Integer nuResIncorr;
+    private Integer doubtWrongResponse;
     @JoinColumn(name = "ST_DUDA", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
@@ -120,12 +120,12 @@ public class Doubt implements Serializable {
         this.doubtDateResolution = doubtDateResolution;
     }
 
-    public Integer getNuResIncorr() {
-        return nuResIncorr;
+    public Integer getDoubtWrongResponse() {
+        return doubtWrongResponse;
     }
 
-    public void setNuResIncorr(Integer nuResIncorr) {
-        this.nuResIncorr = nuResIncorr;
+    public void setDoubtWrongResponse(Integer doubtWrongResponse) {
+        this.doubtWrongResponse = doubtWrongResponse;
     }
 
     public Status getStatus() {

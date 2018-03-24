@@ -40,6 +40,9 @@ public class Area implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
     private List<ExternalUser> externalUsers;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+    private List<ServiceType> serviceTypes;
 
     public Area() {
     }
@@ -107,6 +110,14 @@ public class Area implements Serializable {
 
     public void setExternalUsers(List<ExternalUser> externalUsers) {
         this.externalUsers = externalUsers;
+    }
+
+    public List<ServiceType> getServiceTypes() {
+        return serviceTypes;
+    }
+
+    public void setServiceTypes(List<ServiceType> serviceTypes) {
+        this.serviceTypes = serviceTypes;
     }
 
     @Override

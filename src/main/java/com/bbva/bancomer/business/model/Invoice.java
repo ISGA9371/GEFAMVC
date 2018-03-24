@@ -55,11 +55,11 @@ public class Invoice implements Serializable {
     @Column(name = "TX_SEM_PRES_SUF")
     private Integer txSemPresSuf;
     @Column(name = "TX_SEM_PER_SUBD")
-    private Integer txSemPerSubd;
+    private Integer invoiceSubPrincipalBudget;
     @Column(name = "TX_SEM_TP_PRES")
-    private Integer txSemTpPres;
+    private Integer invoiceBudgetType;
     @Column(name = "TX_SEM_SUBD_CORR")
-    private Integer txSemSubdCorr;
+    private Integer invoiceAnsBudget;
     @JoinColumn(name = "ST_PEP_FACT", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status statusBudget;
@@ -215,28 +215,28 @@ public class Invoice implements Serializable {
         this.txSemPresSuf = txSemPresSuf;
     }
 
-    public Integer getTxSemPerSubd() {
-        return txSemPerSubd;
+    public Integer getInvoiceSubPrincipalBudget() {
+        return invoiceSubPrincipalBudget;
     }
 
-    public void setTxSemPerSubd(Integer txSemPerSubd) {
-        this.txSemPerSubd = txSemPerSubd;
+    public void setInvoiceSubPrincipalBudget(Integer invoiceSubPrincipalBudget) {
+        this.invoiceSubPrincipalBudget = invoiceSubPrincipalBudget;
     }
 
-    public Integer getTxSemTpPres() {
-        return txSemTpPres;
+    public Integer getInvoiceBudgetType() {
+        return invoiceBudgetType;
     }
 
-    public void setTxSemTpPres(Integer txSemTpPres) {
-        this.txSemTpPres = txSemTpPres;
+    public void setInvoiceBudgetType(Integer invoiceBudgetType) {
+        this.invoiceBudgetType = invoiceBudgetType;
     }
 
-    public Integer getTxSemSubdCorr() {
-        return txSemSubdCorr;
+    public Integer getInvoiceAnsBudget() {
+        return invoiceAnsBudget;
     }
 
-    public void setTxSemSubdCorr(Integer txSemSubdCorr) {
-        this.txSemSubdCorr = txSemSubdCorr;
+    public void setInvoiceAnsBudget(Integer invoiceAnsBudget) {
+        this.invoiceAnsBudget = invoiceAnsBudget;
     }
 
     public Status getStatusBudget() {

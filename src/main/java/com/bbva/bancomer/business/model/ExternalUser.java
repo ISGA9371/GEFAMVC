@@ -49,7 +49,7 @@ public class ExternalUser implements Serializable {
     @Column(name = "CD_TIPO_CONTRATO", nullable = false)
     private int externalUserContractType;
     @Column(name = "TX_DIR_SCRUM", length = 25)
-    private String externalUserScrum;
+    private String externalUserScrumDirector;
     @Column(name = "NB_PROY_EXT", length = 150)
     private String externalUserProjectName;
     @Column(name = "FH_INIC_PROY", length = 45)
@@ -104,7 +104,7 @@ public class ExternalUser implements Serializable {
     private ProfileType profileType;
     @JoinColumn(name = "CD_SBCLAS_REC", referencedColumnName = "CD_SBCLAS_REC", nullable = false)
     @ManyToOne(optional = false)
-    private RequirementSubClassification requirementSubClassification;
+    private ResourceSubClassification resourceSubClassification;
     @JoinColumn(name = "CD_SEDE", referencedColumnName = "CD_SEDE", nullable = false)
     @ManyToOne(optional = false)
     private Workplace workplace;
@@ -228,12 +228,12 @@ public class ExternalUser implements Serializable {
         this.externalUserContractType = externalUserContractType;
     }
 
-    public String getExternalUserScrum() {
-        return externalUserScrum;
+    public String getExternalUserScrumDirector() {
+        return externalUserScrumDirector;
     }
 
-    public void setExternalUserScrum(String externalUserScrum) {
-        this.externalUserScrum = externalUserScrum;
+    public void setExternalUserScrumDirector(String externalUserScrumDirector) {
+        this.externalUserScrumDirector = externalUserScrumDirector;
     }
 
     public String getExternalUserProjectName() {
@@ -404,12 +404,12 @@ public class ExternalUser implements Serializable {
         this.profileType = profileType;
     }
 
-    public RequirementSubClassification getRequirementSubClassification() {
-        return requirementSubClassification;
+    public ResourceSubClassification getResourceSubClassification() {
+        return resourceSubClassification;
     }
 
-    public void setRequirementSubClassification(RequirementSubClassification requirementSubClassification) {
-        this.requirementSubClassification = requirementSubClassification;
+    public void setResourceSubClassification(ResourceSubClassification resourceSubClassification) {
+        this.resourceSubClassification = resourceSubClassification;
     }
 
     public Workplace getWorkplace() {

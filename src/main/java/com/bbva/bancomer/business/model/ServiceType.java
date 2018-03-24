@@ -5,52 +5,50 @@
  */
 package com.bbva.bancomer.business.model;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Guevara
  */
 @Entity
-@Table(name = "thge001_tipo_serv",  uniqueConstraints = {
+@Table(name = "thge001_tipo_serv", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_TIPO_SERVICIO"})})
 public class ServiceType implements Serializable {
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected ServiceTypePK serviceTypePK;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "CD_TIPO_SERVICIO", nullable = false)
+    private Integer serviceTypeId;
     @Basic(optional = false)
     @Column(name = "NB_TIPO_SERVICIO", nullable = false, length = 50)
     private String serviceTypeName;
     @Basic(optional = false)
     @Column(name = "CD_AREA", nullable = false)
     private int areaId;
-    @JoinColumn(name = "CD_TIPO_SERVICIO", referencedColumnName = "CD_AREA", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "THGE030_AREA_CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
     private Area area;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "serviceType")
+    private List<Requirement> requirements;
 
     public ServiceType() {
     }
 
-    public ServiceType(ServiceTypePK serviceTypePK) {
-        this.serviceTypePK = serviceTypePK;
+    public ServiceType(Integer serviceTypeId) {
+        this.serviceTypeId = serviceTypeId;
     }
 
-    public ServiceType(ServiceTypePK serviceTypePK, String serviceTypeName, int areaId) {
-        this.serviceTypePK = serviceTypePK;
-        this.serviceTypeName = serviceTypeName;
-        this.areaId = areaId;
+    public Integer getServiceTypeId() {
+        return serviceTypeId;
     }
 
-    public ServiceType(int cdTipoServicio, int thge030AreaCdArea) {
-        this.serviceTypePK = new ServiceTypePK(cdTipoServicio, thge030AreaCdArea);
-    }
-
-    public ServiceTypePK getServiceTypePK() {
-        return serviceTypePK;
-    }
-
-    public void setServiceTypePK(ServiceTypePK serviceTypePK) {
-        this.serviceTypePK = serviceTypePK;
+    public void setServiceTypeId(Integer serviceTypeId) {
+        this.serviceTypeId = serviceTypeId;
     }
 
     public String getServiceTypeName() {
@@ -77,24 +75,31 @@ public class ServiceType implements Serializable {
         this.area = area;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (serviceTypePK != null ? serviceTypePK.hashCode() : 0);
-        return hash;
+    public List<Requirement> getRequirements() {
+        return requirements;
+    }
+
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof ServiceType)) {
-            return false;
-        }
-        ServiceType other = (ServiceType) object;
-        return (this.serviceTypePK != null || other.serviceTypePK == null) && (this.serviceTypePK == null || this.serviceTypePK.equals(other.serviceTypePK));
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ServiceType)) return false;
+
+        ServiceType that = (ServiceType) o;
+
+        return getServiceTypeId() != null ? getServiceTypeId().equals(that.getServiceTypeId()) : that.getServiceTypeId() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return getServiceTypeId() != null ? getServiceTypeId().hashCode() : 0;
     }
 
     @Override
     public String toString() {
-        return "ServiceType{" + "serviceTypePK=" + serviceTypePK +  '}';
+        return "ServiceType{" + "serviceTypeId=" + serviceTypeId + '}';
     }
 }

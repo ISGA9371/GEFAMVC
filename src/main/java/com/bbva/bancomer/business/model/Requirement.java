@@ -16,7 +16,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge017_requerim",  uniqueConstraints = {
+@Table(name = "thge017_requerim", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_REQUERIMIENTO"})})
 public class Requirement implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -72,6 +72,9 @@ public class Requirement implements Serializable {
     @JoinColumn(name = "CD_TIPO_PROY", referencedColumnName = "CD_TIPO_PROY", nullable = false)
     @ManyToOne(optional = false)
     private ProjectType projectType;
+    @JoinColumn(name = "CD_TIPO_SERVICIO", referencedColumnName = "CD_TIPO_SERVICIO", nullable = false)
+    @ManyToOne(optional = false)
+    private ServiceType serviceType;
     @JoinColumn(name = "CD_CANAL", referencedColumnName = "CD_CANAL")
     @ManyToOne
     private Channel channel;
@@ -261,6 +264,14 @@ public class Requirement implements Serializable {
 
     public void setProjectType(ProjectType projectType) {
         this.projectType = projectType;
+    }
+
+    public ServiceType getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(ServiceType serviceType) {
+        this.serviceType = serviceType;
     }
 
     public Channel getChannel() {

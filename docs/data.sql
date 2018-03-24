@@ -140,23 +140,6 @@ VALUES
 (14, 'SPRING'),
 (15, 'VISUAL BASIC');
 
--- BANCA
-INSERT INTO `gestion_factoria`.`THGE034_BANCA`  
-VALUES 
-(1 , 'BANCA DE EMPRESAS'),
-(2 , 'COMUNICACIÓN Y RELACIONES INSTITUCIONALE'),
-(3 , 'CONSOLIDADO RECURSOS HUMANOS'),
-(4 , 'CONSOLIDADO SERVICIOS JURÍDICOS'),
-(5 , 'CONSOLIDADO SISTEMAS Y OPERACIÓN'),
-(6 , 'CORPORATE & INVESTEMENT BANKING'),
-(7 , 'DESARROLLO DE NEGOCIO Y MEDIOS DE PAGO'),
-(8 , 'DIR. GENERAL DE MERCADOS'),
-(9 , 'FINANZAS Y CONTRALORIA'),
-(10 , 'RED + OTRAS ÁREAS BANCA COMERCIAL'),
-(11 , 'RIESGOS'),
-(12 , 'TRANSFORMACIÓN CALIDAD Y DES. CORP.'),
-(13 , 'TRANSFORMACION DIGITAL');
-
 -- METODOLOGIA
 INSERT INTO `gestion_factoria`.`thge035_metodologia`
 VALUES
@@ -167,18 +150,6 @@ INSERT INTO `thge037_entidad`
 VALUES
 (1,'BANCOMER'),
 (2,'SEDAE');
-
--- TIPO DE SERVICIO
-INSERT INTO `gestion_factoria`.`thge001_tipo_serv`  
-VALUES 
-(1 , 'PRUEBAS FUNCIONALES'),
-(2 , 'EJECUCIÓN DE CASOS DE PRUEBA'),
-(3 , 'PRUEBAS DE NO AFECTACIÓN'),
-(4 , 'PRUEBAS DE ACEPTACIÓN'),
-(5 , 'PRUEBAS DE USUARIO'),
-(6 , 'SERVICIO DE AMBIENTACIÓN'),
-(7 , 'PROCESOS BATCH'),
-(8 , 'PRUEBAS FUNCIONALES Y NO AFECTACIÓN');
 
 INSERT INTO `thge038_naturaleza`
 VALUES
@@ -197,7 +168,7 @@ VALUES
 
 INSERT INTO `thge005_estado`
 VALUES
-(1,'SIN TRAMITAR	EDO_USUARIO',1),
+(1,'SIN TRAMITAR',1),
 (2,'EN TRAMITE',1),
 (3,'ALTA',1),
 (4,'BAJA',1),
@@ -288,325 +259,326 @@ VALUES
 ('N07',	'PLANTILLAS XSL - FO ESTÁTICAS', 8),
 ('N08',	'FLUJOS AUTOMATICOS', 8);
 
-
---TIPOLOGIA
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J01',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J02',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J03',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J04',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J05',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J06',0,0,1.80,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J07',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J08',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J09',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J01',0,1,5.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J02',0,1,9.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J03',0,1,3.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J04',0,1,3.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J05',0,1,0.25,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J06',0,1,4.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J07',0,1,4.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J08',0,1,2.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J09',0,1,3.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J01',0,2,8.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J02',0,2,15.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J03',0,2,7.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J04',0,2,4.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J05',0,2,0.25,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J06',0,2,8.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J07',0,2,7.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J08',0,2,4.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J09',0,2,7.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J01',0,3,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J02',0,3,22.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J03',0,3,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J04',0,3,8.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J05',0,3,0.25,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J06',0,3,13.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J07',0,3,10.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J08',0,3,6.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J09',0,3,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J01',0,4,17.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J02',0,4,33.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J03',0,4,14.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J04',0,4,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J05',0,4,0.25,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J06',0,4,21.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J07',0,4,14.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J08',0,4,7.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J09',0,4,15.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J01',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J02',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J03',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J04',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J05',1,0,0.15,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J06',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J07',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J08',1,0,0.15,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J09',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J01',1,1,3.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J02',1,1,5.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J03',1,1,2.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J04',1,1,2.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J05',1,1,0.15,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J06',1,1,3.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J07',1,1,3.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J08',1,1,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J09',1,1,2.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J01',1,2,4.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J02',1,2,8.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J03',1,2,4.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J04',1,2,3.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J05',1,2,0.15,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J06',1,2,5.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J07',1,2,4.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J08',1,2,2.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J09',1,2,5.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J01',1,3,7.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J02',1,3,12.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J03',1,3,6.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J04',1,3,5.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J05',1,3,0.15,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J06',1,3,8.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J07',1,3,6.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J08',1,3,3.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J09',1,3,7.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J01',1,4,12.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J02',1,4,15.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J03',1,4,7.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J04',1,4,7.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J05',1,4,0.15,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J06',1,4,13.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J07',1,4,9.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J08',1,4,5.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('J09',1,4,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HA1',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB1',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB2',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB3',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB4',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HC1',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HJ1',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HM1',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO1',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO2',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO3',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO4',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR1',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR2',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR3',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HA1',0,1,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB1',0,1,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB2',0,1,10.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB3',0,1,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB4',0,1,12.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HC1',0,1,0.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HJ1',0,1,2.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HM1',0,1,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO1',0,1,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO2',0,1,10.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO3',0,1,12.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO4',0,1,12.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR1',0,1,10.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR2',0,1,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR3',0,1,13.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HA1',0,2,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB1',0,2,20.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB2',0,2,19.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB3',0,2,19.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB4',0,2,19.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HC1',0,2,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HJ1',0,2,5.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HM1',0,2,2.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO1',0,2,18.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO2',0,2,19.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO3',0,2,20.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO4',0,2,20.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR1',0,2,18.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR2',0,2,20.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR3',0,2,20.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HA1',0,3,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB1',0,3,28.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB2',0,3,25.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB3',0,3,28.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB4',0,3,27.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HC1',0,3,1.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HJ1',0,3,8.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HM1',0,3,3.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO1',0,3,23.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO2',0,3,26.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO3',0,3,28.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO4',0,3,27.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR1',0,3,25.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR2',0,3,27.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR3',0,3,29.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HA1',0,4,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB1',0,4,37.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB2',0,4,32.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB3',0,4,34.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB4',0,4,33.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HC1',0,4,2.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HJ1',0,4,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HM1',0,4,4.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO1',0,4,31.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO2',0,4,33.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO3',0,4,35.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO4',0,4,37.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR1',0,4,33.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR2',0,4,35.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR3',0,4,36.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HA1',1,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB1',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB2',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB3',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB4',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HC1',1,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HJ1',1,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HM1',1,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO1',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO2',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO3',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO4',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR1',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR2',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR3',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HA1',1,1,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB1',1,1,4.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB2',1,1,4.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB3',1,1,5.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB4',1,1,6.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HC1',1,1,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HJ1',1,1,2.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HM1',1,1,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO1',1,1,5.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO2',1,1,5.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO3',1,1,7.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO4',1,1,6.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR1',1,1,5.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR2',1,1,6.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR3',1,1,6.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HA1',1,2,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB1',1,2,9.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB2',1,2,9.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB3',1,2,9.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB4',1,2,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HC1',1,2,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HJ1',1,2,4.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HM1',1,2,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO1',1,2,10.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO2',1,2,10.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO3',1,2,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO4',1,2,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR1',1,2,10.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR2',1,2,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR3',1,2,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HA1',1,3,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB1',1,3,14.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB2',1,3,13.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB3',1,3,14.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB4',1,3,15.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HC1',1,3,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HJ1',1,3,6.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HM1',1,3,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO1',1,3,14.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO2',1,3,15.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO3',1,3,18.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO4',1,3,16.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR1',1,3,15.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR2',1,3,16.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR3',1,3,17.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HA1',1,4,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB1',1,4,20.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB2',1,4,18.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB3',1,4,19.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HB4',1,4,19.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HC1',1,4,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HJ1',1,4,7.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HM1',1,4,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO1',1,4,19.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO2',1,4,20.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO3',1,4,23.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HO4',1,4,21.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR1',1,4,20.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR2',1,4,22.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('HR3',1,4,23.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N01',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N02',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N03',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N04',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N05',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N06',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N07',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N08',0,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N01',0,1,6.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N02',0,1,11.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N03',0,1,5.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N04',0,1,4.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N05',0,1,5.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N06',0,1,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N07',0,1,9.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N08',0,1,2.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N01',0,2,13.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N02',0,2,18.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N03',0,2,8.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N04',0,2,7.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N05',0,2,7.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N06',0,2,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N07',0,2,15.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N08',0,2,4.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N01',0,3,18.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N02',0,3,27.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N03',0,3,13.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N04',0,3,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N05',0,3,10.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N06',0,3,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N07',0,3,21.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N08',0,3,6.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N01',0,4,29.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N02',0,4,36.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N03',0,4,20.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N04',0,4,15.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N05',0,4,14.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N06',0,4,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N07',0,4,29.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N08',0,4,9.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N01',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N02',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N03',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N04',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N05',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N06',1,0,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N07',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N08',1,0,1.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N01',1,1,4.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N02',1,1,7.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N03',1,1,3.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N04',1,1,2.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N05',1,1,3.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N06',1,1,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N07',1,1,6.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N08',1,1,2.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N01',1,2,8.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N02',1,2,11.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N03',1,2,4.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N04',1,2,4.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N05',1,2,4.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N06',1,2,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N07',1,2,9.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N08',1,2,4.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N01',1,3,13.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N02',1,3,16.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N03',1,3,8.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N04',1,3,7.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N05',1,3,6.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N06',1,3,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N07',1,3,13.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N08',1,3,6.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N01',1,4,19.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N02',1,4,24.50,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N03',1,4,13.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N04',1,4,11.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N05',1,4,10.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N06',1,4,0.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N07',1,4,19.00,2018,3);
-INSERT INTO 'gestion_factoria.thge006_tipologia (gestion_factoria.thge006_tipologia.CD_PRODUCTO,gestion_factoria.thge006_tipologia.TP_COMPONENTE,gestion_factoria.thge006_tipologia.NU_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_HM_DIFICULTAD,gestion_factoria.thge006_tipologia.NU_ANO,gestion_factoria.thge006_tipologia.ST_ESTADO)' VALUES ('N08',1,4,9.00,2018,3);
+-- TIPOLOGIA
+INSERT INTO `gestion_factoria`.`thge006_tipologia`
+VALUES 
+('J01',0,0,0.00,2018,3),
+('J02',0,0,0.00,2018,3),
+('J03',0,0,0.00,2018,3),
+('J04',0,0,0.00,2018,3),
+('J05',0,0,0.00,2018,3),
+('J06',0,0,1.80,2018,3),
+('J07',0,0,0.00,2018,3),
+('J08',0,0,0.00,2018,3),
+('J09',0,0,0.00,2018,3),
+('J01',0,1,5.50,2018,3),
+('J02',0,1,9.50,2018,3),
+('J03',0,1,3.50,2018,3),
+('J04',0,1,3.00,2018,3),
+('J05',0,1,0.25,2018,3),
+('J06',0,1,4.50,2018,3),
+('J07',0,1,4.50,2018,3),
+('J08',0,1,2.00,2018,3),
+('J09',0,1,3.50,2018,3),
+('J01',0,2,8.50,2018,3),
+('J02',0,2,15.00,2018,3),
+('J03',0,2,7.50,2018,3),
+('J04',0,2,4.50,2018,3),
+('J05',0,2,0.25,2018,3),
+('J06',0,2,8.50,2018,3),
+('J07',0,2,7.50,2018,3),
+('J08',0,2,4.00,2018,3),
+('J09',0,2,7.50,2018,3),
+('J01',0,3,11.00,2018,3),
+('J02',0,3,22.00,2018,3),
+('J03',0,3,11.00,2018,3),
+('J04',0,3,8.00,2018,3),
+('J05',0,3,0.25,2018,3),
+('J06',0,3,13.00,2018,3),
+('J07',0,3,10.00,2018,3),
+('J08',0,3,6.00,2018,3),
+('J09',0,3,11.00,2018,3),
+('J01',0,4,17.00,2018,3),
+('J02',0,4,33.50,2018,3),
+('J03',0,4,14.00,2018,3),
+('J04',0,4,11.00,2018,3),
+('J05',0,4,0.25,2018,3),
+('J06',0,4,21.00,2018,3),
+('J07',0,4,14.00,2018,3),
+('J08',0,4,7.00,2018,3),
+('J09',0,4,15.00,2018,3),
+('J01',1,0,1.00,2018,3),
+('J02',1,0,1.00,2018,3),
+('J03',1,0,1.00,2018,3),
+('J04',1,0,1.00,2018,3),
+('J05',1,0,0.15,2018,3),
+('J06',1,0,1.00,2018,3),
+('J07',1,0,1.00,2018,3),
+('J08',1,0,0.15,2018,3),
+('J09',1,0,1.00,2018,3),
+('J01',1,1,3.00,2018,3),
+('J02',1,1,5.00,2018,3),
+('J03',1,1,2.00,2018,3),
+('J04',1,1,2.00,2018,3),
+('J05',1,1,0.15,2018,3),
+('J06',1,1,3.00,2018,3),
+('J07',1,1,3.00,2018,3),
+('J08',1,1,1.00,2018,3),
+('J09',1,1,2.00,2018,3),
+('J01',1,2,4.50,2018,3),
+('J02',1,2,8.50,2018,3),
+('J03',1,2,4.00,2018,3),
+('J04',1,2,3.00,2018,3),
+('J05',1,2,0.15,2018,3),
+('J06',1,2,5.00,2018,3),
+('J07',1,2,4.00,2018,3),
+('J08',1,2,2.00,2018,3),
+('J09',1,2,5.00,2018,3),
+('J01',1,3,7.50,2018,3),
+('J02',1,3,12.00,2018,3),
+('J03',1,3,6.00,2018,3),
+('J04',1,3,5.00,2018,3),
+('J05',1,3,0.15,2018,3),
+('J06',1,3,8.50,2018,3),
+('J07',1,3,6.50,2018,3),
+('J08',1,3,3.00,2018,3),
+('J09',1,3,7.50,2018,3),
+('J01',1,4,12.00,2018,3),
+('J02',1,4,15.50,2018,3),
+('J03',1,4,7.50,2018,3),
+('J04',1,4,7.00,2018,3),
+('J05',1,4,0.15,2018,3),
+('J06',1,4,13.00,2018,3),
+('J07',1,4,9.50,2018,3),
+('J08',1,4,5.00,2018,3),
+('J09',1,4,11.00,2018,3),
+('HA1',0,0,0.00,2018,3),
+('HB1',0,0,0.00,2018,3),
+('HB2',0,0,0.00,2018,3),
+('HB3',0,0,0.00,2018,3),
+('HB4',0,0,0.00,2018,3),
+('HC1',0,0,0.00,2018,3),
+('HJ1',0,0,0.00,2018,3),
+('HM1',0,0,0.00,2018,3),
+('HO1',0,0,0.00,2018,3),
+('HO2',0,0,0.00,2018,3),
+('HO3',0,0,0.00,2018,3),
+('HO4',0,0,0.00,2018,3),
+('HR1',0,0,0.00,2018,3),
+('HR2',0,0,0.00,2018,3),
+('HR3',0,0,0.00,2018,3),
+('HA1',0,1,0.00,2018,3),
+('HB1',0,1,11.00,2018,3),
+('HB2',0,1,10.00,2018,3),
+('HB3',0,1,11.00,2018,3),
+('HB4',0,1,12.00,2018,3),
+('HC1',0,1,0.50,2018,3),
+('HJ1',0,1,2.00,2018,3),
+('HM1',0,1,1.00,2018,3),
+('HO1',0,1,11.00,2018,3),
+('HO2',0,1,10.00,2018,3),
+('HO3',0,1,12.00,2018,3),
+('HO4',0,1,12.00,2018,3),
+('HR1',0,1,10.00,2018,3),
+('HR2',0,1,11.00,2018,3),
+('HR3',0,1,13.00,2018,3),
+('HA1',0,2,0.00,2018,3),
+('HB1',0,2,20.00,2018,3),
+('HB2',0,2,19.00,2018,3),
+('HB3',0,2,19.00,2018,3),
+('HB4',0,2,19.00,2018,3),
+('HC1',0,2,1.00,2018,3),
+('HJ1',0,2,5.00,2018,3),
+('HM1',0,2,2.00,2018,3),
+('HO1',0,2,18.00,2018,3),
+('HO2',0,2,19.00,2018,3),
+('HO3',0,2,20.00,2018,3),
+('HO4',0,2,20.00,2018,3),
+('HR1',0,2,18.00,2018,3),
+('HR2',0,2,20.00,2018,3),
+('HR3',0,2,20.00,2018,3),
+('HA1',0,3,0.00,2018,3),
+('HB1',0,3,28.00,2018,3),
+('HB2',0,3,25.00,2018,3),
+('HB3',0,3,28.00,2018,3),
+('HB4',0,3,27.00,2018,3),
+('HC1',0,3,1.50,2018,3),
+('HJ1',0,3,8.00,2018,3),
+('HM1',0,3,3.00,2018,3),
+('HO1',0,3,23.00,2018,3),
+('HO2',0,3,26.00,2018,3),
+('HO3',0,3,28.00,2018,3),
+('HO4',0,3,27.00,2018,3),
+('HR1',0,3,25.00,2018,3),
+('HR2',0,3,27.00,2018,3),
+('HR3',0,3,29.00,2018,3),
+('HA1',0,4,0.00,2018,3),
+('HB1',0,4,37.00,2018,3),
+('HB2',0,4,32.00,2018,3),
+('HB3',0,4,34.00,2018,3),
+('HB4',0,4,33.00,2018,3),
+('HC1',0,4,2.00,2018,3),
+('HJ1',0,4,11.00,2018,3),
+('HM1',0,4,4.00,2018,3),
+('HO1',0,4,31.00,2018,3),
+('HO2',0,4,33.00,2018,3),
+('HO3',0,4,35.00,2018,3),
+('HO4',0,4,37.00,2018,3),
+('HR1',0,4,33.00,2018,3),
+('HR2',0,4,35.00,2018,3),
+('HR3',0,4,36.00,2018,3),
+('HA1',1,0,0.00,2018,3),
+('HB1',1,0,1.00,2018,3),
+('HB2',1,0,1.00,2018,3),
+('HB3',1,0,1.00,2018,3),
+('HB4',1,0,1.00,2018,3),
+('HC1',1,0,0.00,2018,3),
+('HJ1',1,0,0.00,2018,3),
+('HM1',1,0,0.00,2018,3),
+('HO1',1,0,1.00,2018,3),
+('HO2',1,0,1.00,2018,3),
+('HO3',1,0,1.00,2018,3),
+('HO4',1,0,1.00,2018,3),
+('HR1',1,0,1.00,2018,3),
+('HR2',1,0,1.00,2018,3),
+('HR3',1,0,1.00,2018,3),
+('HA1',1,1,0.00,2018,3),
+('HB1',1,1,4.50,2018,3),
+('HB2',1,1,4.50,2018,3),
+('HB3',1,1,5.50,2018,3),
+('HB4',1,1,6.50,2018,3),
+('HC1',1,1,0.00,2018,3),
+('HJ1',1,1,2.00,2018,3),
+('HM1',1,1,0.00,2018,3),
+('HO1',1,1,5.50,2018,3),
+('HO2',1,1,5.50,2018,3),
+('HO3',1,1,7.00,2018,3),
+('HO4',1,1,6.50,2018,3),
+('HR1',1,1,5.50,2018,3),
+('HR2',1,1,6.50,2018,3),
+('HR3',1,1,6.50,2018,3),
+('HA1',1,2,0.00,2018,3),
+('HB1',1,2,9.00,2018,3),
+('HB2',1,2,9.00,2018,3),
+('HB3',1,2,9.00,2018,3),
+('HB4',1,2,11.00,2018,3),
+('HC1',1,2,0.00,2018,3),
+('HJ1',1,2,4.00,2018,3),
+('HM1',1,2,0.00,2018,3),
+('HO1',1,2,10.00,2018,3),
+('HO2',1,2,10.00,2018,3),
+('HO3',1,2,11.00,2018,3),
+('HO4',1,2,11.00,2018,3),
+('HR1',1,2,10.00,2018,3),
+('HR2',1,2,11.00,2018,3),
+('HR3',1,2,11.00,2018,3),
+('HA1',1,3,0.00,2018,3),
+('HB1',1,3,14.00,2018,3),
+('HB2',1,3,13.00,2018,3),
+('HB3',1,3,14.00,2018,3),
+('HB4',1,3,15.00,2018,3),
+('HC1',1,3,0.00,2018,3),
+('HJ1',1,3,6.00,2018,3),
+('HM1',1,3,0.00,2018,3),
+('HO1',1,3,14.00,2018,3),
+('HO2',1,3,15.00,2018,3),
+('HO3',1,3,18.00,2018,3),
+('HO4',1,3,16.00,2018,3),
+('HR1',1,3,15.00,2018,3),
+('HR2',1,3,16.00,2018,3),
+('HR3',1,3,17.00,2018,3),
+('HA1',1,4,0.00,2018,3),
+('HB1',1,4,20.00,2018,3),
+('HB2',1,4,18.00,2018,3),
+('HB3',1,4,19.00,2018,3),
+('HB4',1,4,19.00,2018,3),
+('HC1',1,4,0.00,2018,3),
+('HJ1',1,4,7.00,2018,3),
+('HM1',1,4,0.00,2018,3),
+('HO1',1,4,19.00,2018,3),
+('HO2',1,4,20.00,2018,3),
+('HO3',1,4,23.00,2018,3),
+('HO4',1,4,21.00,2018,3),
+('HR1',1,4,20.00,2018,3),
+('HR2',1,4,22.00,2018,3),
+('HR3',1,4,23.00,2018,3),
+('N01',0,0,0.00,2018,3),
+('N02',0,0,0.00,2018,3),
+('N03',0,0,0.00,2018,3),
+('N04',0,0,0.00,2018,3),
+('N05',0,0,0.00,2018,3),
+('N06',0,0,0.00,2018,3),
+('N07',0,0,0.00,2018,3),
+('N08',0,0,0.00,2018,3),
+('N01',0,1,6.50,2018,3),
+('N02',0,1,11.50,2018,3),
+('N03',0,1,5.00,2018,3),
+('N04',0,1,4.00,2018,3),
+('N05',0,1,5.00,2018,3),
+('N06',0,1,0.00,2018,3),
+('N07',0,1,9.00,2018,3),
+('N08',0,1,2.00,2018,3),
+('N01',0,2,13.00,2018,3),
+('N02',0,2,18.50,2018,3),
+('N03',0,2,8.00,2018,3),
+('N04',0,2,7.50,2018,3),
+('N05',0,2,7.50,2018,3),
+('N06',0,2,0.00,2018,3),
+('N07',0,2,15.00,2018,3),
+('N08',0,2,4.00,2018,3),
+('N01',0,3,18.50,2018,3),
+('N02',0,3,27.00,2018,3),
+('N03',0,3,13.00,2018,3),
+('N04',0,3,11.00,2018,3),
+('N05',0,3,10.50,2018,3),
+('N06',0,3,0.00,2018,3),
+('N07',0,3,21.00,2018,3),
+('N08',0,3,6.00,2018,3),
+('N01',0,4,29.00,2018,3),
+('N02',0,4,36.00,2018,3),
+('N03',0,4,20.00,2018,3),
+('N04',0,4,15.00,2018,3),
+('N05',0,4,14.00,2018,3),
+('N06',0,4,0.00,2018,3),
+('N07',0,4,29.00,2018,3),
+('N08',0,4,9.00,2018,3),
+('N01',1,0,1.00,2018,3),
+('N02',1,0,1.00,2018,3),
+('N03',1,0,1.00,2018,3),
+('N04',1,0,1.00,2018,3),
+('N05',1,0,1.00,2018,3),
+('N06',1,0,0.00,2018,3),
+('N07',1,0,1.00,2018,3),
+('N08',1,0,1.00,2018,3),
+('N01',1,1,4.00,2018,3),
+('N02',1,1,7.00,2018,3),
+('N03',1,1,3.00,2018,3),
+('N04',1,1,2.00,2018,3),
+('N05',1,1,3.00,2018,3),
+('N06',1,1,0.00,2018,3),
+('N07',1,1,6.00,2018,3),
+('N08',1,1,2.00,2018,3),
+('N01',1,2,8.50,2018,3),
+('N02',1,2,11.50,2018,3),
+('N03',1,2,4.50,2018,3),
+('N04',1,2,4.50,2018,3),
+('N05',1,2,4.00,2018,3),
+('N06',1,2,0.00,2018,3),
+('N07',1,2,9.00,2018,3),
+('N08',1,2,4.00,2018,3),
+('N01',1,3,13.00,2018,3),
+('N02',1,3,16.00,2018,3),
+('N03',1,3,8.00,2018,3),
+('N04',1,3,7.50,2018,3),
+('N05',1,3,6.00,2018,3),
+('N06',1,3,0.00,2018,3),
+('N07',1,3,13.00,2018,3),
+('N08',1,3,6.00,2018,3),
+('N01',1,4,19.50,2018,3),
+('N02',1,4,24.50,2018,3),
+('N03',1,4,13.00,2018,3),
+('N04',1,4,11.00,2018,3),
+('N05',1,4,10.00,2018,3),
+('N06',1,4,0.00,2018,3),
+('N07',1,4,19.00,2018,3),
+('N08',1,4,9.00,2018,3);

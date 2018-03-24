@@ -37,7 +37,7 @@ public class Component implements Serializable {
     @Column(name = "IM_COSTE_INIC", precision = 22)
     private Double componentStartCost;
     @Column(name = "TX_COM_TIPIF_EMP", length = 600)
-    private String componentType;
+    private String componentTypoComment;
     @Basic(optional = false)
     @Column(name = "FH_NEG_EMP_CGF_SW", nullable = false)
     @Temporal(TemporalType.DATE)
@@ -93,11 +93,11 @@ public class Component implements Serializable {
         this.componentId = componentId;
     }
 
-    public Component(Integer componentId, String componentName, String componentVersion, String componentType) {
+    public Component(Integer componentId, String componentName, String componentVersion, String componentTypoComment) {
         this.componentId = componentId;
         this.componentName = componentName;
         this.componentVersion = componentVersion;
-        this.componentType = componentType;
+        this.componentTypoComment = componentTypoComment;
     }
 
     public Component(Integer componentId, String componentName, String componentVersion, String componentNewMod, Date componentPossibleDeliverDate, Date componentPreviewDeliverDate, Date componentDesignRealDeliverDate) {
@@ -158,12 +158,12 @@ public class Component implements Serializable {
         this.componentStartCost = componentStartCost;
     }
 
-    public String getComponentType() {
-        return componentType;
+    public String getComponentTypoComment() {
+        return componentTypoComment;
     }
 
-    public void setComponentType(String componentType) {
-        this.componentType = componentType;
+    public void setComponentTypoComment(String componentTypoComment) {
+        this.componentTypoComment = componentTypoComment;
     }
 
     public Date getComponentPossibleDeliverDate() {

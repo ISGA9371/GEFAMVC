@@ -26,31 +26,31 @@ public class Budget implements Serializable {
     @Column(name = "CD_PEP", nullable = false, length = 15)
     private String budgetId;
     @Column(name = "NB_DENOMINAC_PEP", length = 50)
-    private String budgetDenomination;
+    private String budgetName;
     @Basic(optional = false)
     @Column(name = "NU_EJERCICIO", nullable = false)
-    private int budgetExercise;
+    private int budgetYear;
     @Basic(optional = false)
     @Column(name = "TX_CENTRO_CTO", nullable = false, length = 10)
-    private String budgetCenterCto;
+    private String budgetCostCenter;
     @Column(name = "IM_PRESUPUESTO", precision = 22)
-    private Double budgetQuantity;
+    private Double budgetAmount;
     @Column(name = "IM_AUTORIZADO", precision = 22)
     private Double budgetAuthorized;
     @Column(name = "IM_COMPR_SOL", precision = 22)
-    private Double budgetRequest;
+    private Double budgetCommittedRequested;
     @Column(name = "IM_COMPR_PEND", precision = 22)
-    private Double budgetPending;
+    private Double budgetCommittedPending;
     @Column(name = "IM_REALIZADO", precision = 22)
     private Double budgetDone;
     @Column(name = "IM_DISPONIBLE", precision = 22)
     private Double budgetAvailable;
     @Column(name = "IM_INCURRIDO_PBAS", precision = 22)
-    private Double budgetIncurredPbas;
+    private Double budgetIncurredTestFactory;
     @Column(name = "IM_IMCURRIDO_FSW", precision = 22)
-    private Double budgetIncurredFsw;
+    private Double budgetIncurredSoftwareFactory;
     @Column(name = "TP_DESLIZADO")
-    private byte[] budgetSlipped;
+    private byte[] budgetForNextYear;
     @JoinColumn(name = "ST_PEP", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status budgetStatus;
@@ -89,11 +89,11 @@ public class Budget implements Serializable {
         this.budgetSerial = budgetSerial;
     }
 
-    public Budget(Integer budgetSerial, String budgetId, int budgetExercise, String budgetCenterCto) {
+    public Budget(Integer budgetSerial, String budgetId, int budgetYear, String budgetCostCenter) {
         this.budgetSerial = budgetSerial;
         this.budgetId = budgetId;
-        this.budgetExercise = budgetExercise;
-        this.budgetCenterCto = budgetCenterCto;
+        this.budgetYear = budgetYear;
+        this.budgetCostCenter = budgetCostCenter;
     }
 
     public Integer getBudgetSerial() {
@@ -112,36 +112,36 @@ public class Budget implements Serializable {
         this.budgetId = budgetId;
     }
 
-    public String getBudgetDenomination() {
-        return budgetDenomination;
+    public String getBudgetName() {
+        return budgetName;
     }
 
-    public void setBudgetDenomination(String budgetDenomination) {
-        this.budgetDenomination = budgetDenomination;
+    public void setBudgetName(String budgetName) {
+        this.budgetName = budgetName;
     }
 
-    public int getBudgetExercise() {
-        return budgetExercise;
+    public int getBudgetYear() {
+        return budgetYear;
     }
 
-    public void setBudgetExercise(int budgetExercise) {
-        this.budgetExercise = budgetExercise;
+    public void setBudgetYear(int budgetYear) {
+        this.budgetYear = budgetYear;
     }
 
-    public String getBudgetCenterCto() {
-        return budgetCenterCto;
+    public String getBudgetCostCenter() {
+        return budgetCostCenter;
     }
 
-    public void setBudgetCenterCto(String budgetCenterCto) {
-        this.budgetCenterCto = budgetCenterCto;
+    public void setBudgetCostCenter(String budgetCostCenter) {
+        this.budgetCostCenter = budgetCostCenter;
     }
 
-    public Double getBudgetQuantity() {
-        return budgetQuantity;
+    public Double getBudgetAmount() {
+        return budgetAmount;
     }
 
-    public void setBudgetQuantity(Double budgetQuantity) {
-        this.budgetQuantity = budgetQuantity;
+    public void setBudgetAmount(Double budgetAmount) {
+        this.budgetAmount = budgetAmount;
     }
 
     public Double getBudgetAuthorized() {
@@ -152,20 +152,20 @@ public class Budget implements Serializable {
         this.budgetAuthorized = budgetAuthorized;
     }
 
-    public Double getBudgetRequest() {
-        return budgetRequest;
+    public Double getBudgetCommittedRequested() {
+        return budgetCommittedRequested;
     }
 
-    public void setBudgetRequest(Double budgetRequest) {
-        this.budgetRequest = budgetRequest;
+    public void setBudgetCommittedRequested(Double budgetCommittedRequested) {
+        this.budgetCommittedRequested = budgetCommittedRequested;
     }
 
-    public Double getBudgetPending() {
-        return budgetPending;
+    public Double getBudgetCommittedPending() {
+        return budgetCommittedPending;
     }
 
-    public void setBudgetPending(Double budgetPending) {
-        this.budgetPending = budgetPending;
+    public void setBudgetCommittedPending(Double budgetCommittedPending) {
+        this.budgetCommittedPending = budgetCommittedPending;
     }
 
     public Double getBudgetDone() {
@@ -184,28 +184,28 @@ public class Budget implements Serializable {
         this.budgetAvailable = budgetAvailable;
     }
 
-    public Double getBudgetIncurredPbas() {
-        return budgetIncurredPbas;
+    public Double getBudgetIncurredTestFactory() {
+        return budgetIncurredTestFactory;
     }
 
-    public void setBudgetIncurredPbas(Double budgetIncurredPbas) {
-        this.budgetIncurredPbas = budgetIncurredPbas;
+    public void setBudgetIncurredTestFactory(Double budgetIncurredTestFactory) {
+        this.budgetIncurredTestFactory = budgetIncurredTestFactory;
     }
 
-    public Double getBudgetIncurredFsw() {
-        return budgetIncurredFsw;
+    public Double getBudgetIncurredSoftwareFactory() {
+        return budgetIncurredSoftwareFactory;
     }
 
-    public void setBudgetIncurredFsw(Double budgetIncurredFsw) {
-        this.budgetIncurredFsw = budgetIncurredFsw;
+    public void setBudgetIncurredSoftwareFactory(Double budgetIncurredSoftwareFactory) {
+        this.budgetIncurredSoftwareFactory = budgetIncurredSoftwareFactory;
     }
 
-    public byte[] getBudgetSlipped() {
-        return budgetSlipped;
+    public byte[] getBudgetForNextYear() {
+        return budgetForNextYear;
     }
 
-    public void setBudgetSlipped(byte[] budgetSlipped) {
-        this.budgetSlipped = budgetSlipped;
+    public void setBudgetForNextYear(byte[] budgetForNextYear) {
+        this.budgetForNextYear = budgetForNextYear;
     }
 
     public Status getBudgetStatus() {
