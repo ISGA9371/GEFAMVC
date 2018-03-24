@@ -19,7 +19,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.bbva.bancomer")
+@ComponentScan("com.mx.bbva")
 public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
     private static final String UTF8 = "UTF-8";

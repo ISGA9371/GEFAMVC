@@ -218,4 +218,34 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <activatedProperties>localserversql</activatedProperties>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <activatedProperties>devserversql</activatedProperties>
+            </properties>
+        </profile>
+        <profile>
+            <id>au</id>
+            <properties>
+                <activatedProperties>auserversql</activatedProperties>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <activatedProperties>prodserversql</activatedProperties>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>

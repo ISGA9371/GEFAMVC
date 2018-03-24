@@ -17,14 +17,14 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableJpaRepositories(basePackages = {"com.bbva.bancomer.business.repository"})
+@EnableJpaRepositories(basePackages = {"com.mx.bbva.business.repository"})
 @EnableTransactionManagement
 public class JPAPersistenceConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("com.bbva.bancomer.business");
+        em.setPackagesToScan("com.mx.bbva.business");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -37,16 +37,16 @@ public class JPAPersistenceConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        /** GAE
+        // GAE
          dataSource.setUrl("jdbc:mysql://23.251.150.233:3306/gestion_factoria?serverTimezone=America/Mexico_City&" +
          "useSSL=false&zeroDateTimeBehavior=convertToNull");
          dataSource.setUsername("gefaapp");
-         dataSource.setPassword("g3f4dbapp"); */
+         dataSource.setPassword("g3f4dbapp");
         // Local
-        dataSource.setUrl("jdbc:mysql://localhost:3306/gestion_factoria?serverTimezone=America/Mexico_City&" +
-                "useSSL=false&zeroDateTimeBehavior=convertToNull");
-        dataSource.setUsername("root");
-        dataSource.setPassword("");
+        //dataSource.setUrl("jdbc:mysql://localhost:3306/gestion_factoria?serverTimezone=America/Mexico_City&" +
+        //        "useSSL=false&zeroDateTimeBehavior=convertToNull");
+        //dataSource.setUsername("root");
+        //dataSource.setPassword("");
         return dataSource;
     }
 
