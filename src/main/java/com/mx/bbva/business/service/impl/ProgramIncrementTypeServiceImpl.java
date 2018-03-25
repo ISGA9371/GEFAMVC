@@ -1,6 +1,6 @@
 package com.mx.bbva.business.service.impl;
 
-import com.mx.bbva.business.model.ProgramIncrementType;
+import com.mx.bbva.business.entity.ProgramIncrementType;
 import com.mx.bbva.business.repository.ProgramIncrementTypeRepository;
 import com.mx.bbva.business.service.ProgramIncrementTypeService;
 import org.springframework.beans.factory.annotation.Autowired;

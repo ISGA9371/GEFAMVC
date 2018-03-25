@@ -1,7 +1,7 @@
 package com.mx.bbva.controller;
 
 
-import com.mx.bbva.business.model.*;
+import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

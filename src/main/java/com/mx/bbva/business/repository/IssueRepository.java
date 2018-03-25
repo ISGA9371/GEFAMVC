@@ -1,6 +1,6 @@
 package com.mx.bbva.business.repository;
 
-import com.mx.bbva.business.model.Issue;
+import com.mx.bbva.business.entity.Issue;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

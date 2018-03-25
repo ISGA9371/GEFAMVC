@@ -1,6 +1,6 @@
 package com.mx.bbva.controller;
 
-import com.mx.bbva.business.model.Issue;
+import com.mx.bbva.business.entity.Issue;
 import com.mx.bbva.business.service.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

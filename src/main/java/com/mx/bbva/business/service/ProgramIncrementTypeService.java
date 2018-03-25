@@ -1,6 +1,6 @@
 package com.mx.bbva.business.service;
 
-import com.mx.bbva.business.model.ProgramIncrementType;
+import com.mx.bbva.business.entity.ProgramIncrementType;
 
 import java.util.List;
 

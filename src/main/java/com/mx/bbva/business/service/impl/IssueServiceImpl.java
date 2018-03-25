@@ -1,6 +1,6 @@
 package com.mx.bbva.business.service.impl;
 
-import com.mx.bbva.business.model.Issue;
+import com.mx.bbva.business.entity.Issue;
 import com.mx.bbva.business.repository.IssueRepository;
 import com.mx.bbva.business.service.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;

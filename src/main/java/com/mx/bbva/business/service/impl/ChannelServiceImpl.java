@@ -1,6 +1,6 @@
 package com.mx.bbva.business.service.impl;
 
-import com.mx.bbva.business.model.Channel;
+import com.mx.bbva.business.entity.Channel;
 import com.mx.bbva.business.repository.ChannelRepository;
 import com.mx.bbva.business.service.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;

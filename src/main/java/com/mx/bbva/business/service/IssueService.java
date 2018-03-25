@@ -1,6 +1,6 @@
 package com.mx.bbva.business.service;
 
-import com.mx.bbva.business.model.Issue;
+import com.mx.bbva.business.entity.Issue;
 
 import java.util.List;
 

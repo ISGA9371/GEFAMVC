@@ -1,7 +1,7 @@
 package com.mx.bbva.business.service.impl;
 
 
-import com.mx.bbva.business.model.Technology;
+import com.mx.bbva.business.entity.Technology;
 import com.mx.bbva.business.repository.TechnologyRepository;
 import com.mx.bbva.business.service.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;

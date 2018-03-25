@@ -1,6 +1,6 @@
 package com.mx.bbva.controller;
 
-import com.mx.bbva.business.model.Doubt;
+import com.mx.bbva.business.entity.Doubt;
 import com.mx.bbva.business.service.DoubtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

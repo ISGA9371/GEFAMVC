@@ -1,7 +1,7 @@
 package com.mx.bbva.controller;
 
-import com.mx.bbva.business.model.Level;
-import com.mx.bbva.business.model.LevelType;
+import com.mx.bbva.business.entity.Level;
+import com.mx.bbva.business.entity.LevelType;
 import com.mx.bbva.business.repository.LevelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

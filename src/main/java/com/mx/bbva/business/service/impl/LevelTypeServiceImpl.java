@@ -1,6 +1,6 @@
 package com.mx.bbva.business.service.impl;
 
-import com.mx.bbva.business.model.LevelType;
+import com.mx.bbva.business.entity.LevelType;
 import com.mx.bbva.business.repository.LevelTypeRepository;
 import com.mx.bbva.business.service.LevelTypeService;
 import org.springframework.beans.factory.annotation.Autowired;

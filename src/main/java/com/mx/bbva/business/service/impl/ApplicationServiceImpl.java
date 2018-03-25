@@ -1,6 +1,6 @@
 package com.mx.bbva.business.service.impl;
 
-import com.mx.bbva.business.model.Application;
+import com.mx.bbva.business.entity.Application;
 import com.mx.bbva.business.repository.ApplicationRepository;
 import com.mx.bbva.business.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;

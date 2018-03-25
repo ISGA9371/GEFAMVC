@@ -1,7 +1,7 @@
 package com.mx.bbva.controller;
 
-import com.mx.bbva.business.model.ProgramIncrementType;
-import com.mx.bbva.business.model.Technology;
+import com.mx.bbva.business.entity.ProgramIncrementType;
+import com.mx.bbva.business.entity.Technology;
 import com.mx.bbva.business.service.ProgramIncrementTypeService;
 import com.mx.bbva.business.service.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
