@@ -28,6 +28,10 @@ public class RequirementController {
     private LevelTypeService levelTypeService;
     private UserService userService;
     private ApplicationService applicationService;
+    private ChannelService channelService;
+    private CompanyService companyService;
+    private ServiceTypeService serviceTypeService;
+    private ProgramIncrementTypeService programIncrementTypeService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addRequirement(Model model) {
@@ -62,6 +66,7 @@ public class RequirementController {
     }
 
     // Model Attributes will available to the view all the time
+    // TODO Only return id + name for the drop down list
     @ModelAttribute("levels")
     public List<Level> populateLevels() {
         return this.levelService.findAllLevels();
@@ -92,7 +97,27 @@ public class RequirementController {
         return this.applicationService.findAllApplications();
     }
 
-    // Setters
+    @ModelAttribute("channels")
+    public List<Channel> populateChannels() {
+        return this.channelService.findAllChannels();
+    }
+
+    @ModelAttribute("companies")
+    public List<Company> populateCompanies() {
+        return this.companyService.findAllCompanies();
+    }
+
+    @ModelAttribute("serviceTypes")
+    public List<ServiceType> populateServiceTypes() {
+        return this.serviceTypeService.findAllServiceTypes();
+    }
+
+    @ModelAttribute("programIncrementTypes")
+    public List<ProgramIncrementType> populateProgramIncrementTypes() {
+        return this.programIncrementTypeService.findAll();
+    }
+
+    // Import services
     @Autowired
     public void setAreaService(AreaService areaService) {
         this.areaService = areaService;
@@ -126,5 +151,25 @@ public class RequirementController {
     @Autowired
     public void setApplicationService(ApplicationService applicationService) {
         this.applicationService = applicationService;
+    }
+
+    @Autowired
+    public void setChannelService(ChannelService channelService) {
+        this.channelService = channelService;
+    }
+
+    @Autowired
+    public void setCompanyService(CompanyService companyService) {
+        this.companyService = companyService;
+    }
+
+    @Autowired
+    public void setServiceTypeService(ServiceTypeService serviceTypeService) {
+        this.serviceTypeService = serviceTypeService;
+    }
+
+    @Autowired
+    public void setProgramIncrementTypeService(ProgramIncrementTypeService programIncrementTypeService) {
+        this.programIncrementTypeService = programIncrementTypeService;
     }
 }
