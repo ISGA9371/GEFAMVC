@@ -26,10 +26,7 @@ public class ServiceType implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_TIPO_SERVICIO", nullable = false, length = 50)
     private String serviceTypeName;
-    @Basic(optional = false)
-    @Column(name = "CD_AREA", nullable = false)
-    private int areaId;
-    @JoinColumn(name = "THGE030_AREA_CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
+    @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
     private Area area;
     @JsonIgnore
@@ -57,14 +54,6 @@ public class ServiceType implements Serializable {
 
     public void setServiceTypeName(String serviceTypeName) {
         this.serviceTypeName = serviceTypeName;
-    }
-
-    public int getAreaId() {
-        return areaId;
-    }
-
-    public void setAreaId(int areaId) {
-        this.areaId = areaId;
     }
 
     public Area getArea() {

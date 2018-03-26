@@ -25,18 +25,6 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "CD_USUARIO_CORP", nullable = false, length = 10)
     private String userInternalId;
-    @Basic(optional = false)
-    @Column(name = "NB_USUARIO", nullable = false, length = 50)
-    private String userName;
-    @Basic(optional = false)
-    @Column(name = "NB_APELL_PAT", nullable = false, length = 30)
-    private String userFirstName;
-    @Column(name = "NB_APELL_MAT", length = 30)
-    private String userSecondName;
-    @Column(name = "CD_CONTRASENA", length = 9)
-    private String userPassword;
-    @Column(name = "TX_CORREO_ELECTR", length = 70)
-    private String userEmail;
     @JoinColumn(name = "ST_ESTADO_USUARIO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
@@ -105,11 +93,9 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
-    public User(Integer userId, String userInternalId, String userName, String userFirstName) {
+    public User(Integer userId, String userInternalId) {
         this.userId = userId;
         this.userInternalId = userInternalId;
-        this.userName = userName;
-        this.userFirstName = userFirstName;
     }
 
     public Integer getUserId() {
@@ -126,46 +112,6 @@ public class User implements Serializable {
 
     public void setUserInternalId(String userInternalId) {
         this.userInternalId = userInternalId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserFirstName() {
-        return userFirstName;
-    }
-
-    public void setUserFirstName(String userFirstName) {
-        this.userFirstName = userFirstName;
-    }
-
-    public String getUserSecondName() {
-        return userSecondName;
-    }
-
-    public void setUserSecondName(String userSecondName) {
-        this.userSecondName = userSecondName;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
     }
 
     public List<Budget> getBudgets() {
