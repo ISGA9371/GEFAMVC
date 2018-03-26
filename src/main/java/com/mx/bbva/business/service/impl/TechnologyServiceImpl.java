@@ -15,7 +15,7 @@ public class TechnologyServiceImpl implements TechnologyService {
 
     @Override
     public List<Technology> findAllTechnologies() {
-        return technologyRepository.findAll();
+        return (List<Technology>) technologyRepository.findAll();
     }
 
     @Autowired
