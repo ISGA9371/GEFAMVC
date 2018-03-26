@@ -25,7 +25,7 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "CD_USUARIO_CORP", nullable = false, length = 10)
     private String userInternalId;
-    @JoinColumn(name = "ST_ESTADO_USUARIO", referencedColumnName = "CD_ESTADO", nullable = false)
+    @JoinColumn(name = "ST_USUARIO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
     @JoinColumn(name = "CD_PERF_USU", referencedColumnName = "CD_TIPO_PERFIL", nullable = false)

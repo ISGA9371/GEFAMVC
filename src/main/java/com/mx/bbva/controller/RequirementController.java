@@ -89,7 +89,7 @@ public class RequirementController {
 
     @ModelAttribute("users")
     public List<User> populateUsers() {
-        return this.userService.findAllUsers();
+      return this.userService.findAllUsers();
     }
 
     @ModelAttribute("applications")
@@ -145,7 +145,7 @@ public class RequirementController {
 
     @Autowired
     public void setUserService(UserService userService) {
-        this.userService = userService;
+       this.userService = userService;
     }
 
     @Autowired

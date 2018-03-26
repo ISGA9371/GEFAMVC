@@ -45,8 +45,8 @@
 
             <!--HIDDEN PARA PRUEBAS-->
             <!--input type="hidden" th:field="*{requirementId}" -->
-            <input id="nombreTxt" type="hidden" th:field="*{requirementName}" >
-            <input id="direccionCmb" type="hidden" th:field="*{level}" >
+            <input id="nombreTxt" required pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+"  type="hidden" th:field="*{requirementName}" >
+            <input id="direccionCmb" required pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+"  type="hidden" th:field="*{level}" >
             <input id="subDireccionCmb" type="hidden" th:field="*{level}" >
             <!--input id="subdirectorTxt" type="hidden" th:field="*{technology}"SOLO SE MUESTRA-->
             <input id="responsableTxt" type="hidden" th:field="*{user}">
@@ -70,10 +70,9 @@
             <input id="nombre" type="hidden" th:field="*{userManager}" >
             <input id="nombre" type="hidden" th:field="*{status}">
             <input id="nombre"type="hidden" th:field="*{requirementBilled}"-->
-
-
             <input type="submit" value="Guardar">
         </form>
+        <form style="display:block" action="#" th:action="@{/requerimiento/guardaReq}" th:object="${requirement}" method="post">
 
 
             <!--input type="number" th:field="*{cd_aplicacion}" value=9>
@@ -100,11 +99,11 @@
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
-                            <div id="direccion-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                            <div id="direccion-js-select" required class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                                    <div class="mdc-select__label">Direccion*</div>
-                                    <div class="mdc-select__selected-text"></div>
-                                    <div class="mdc-select__bottom-line"></div>
+                                    <div required class="mdc-select__label">Direccion*</div>
+                                    <div class="mdc-select__selected-text" required></div>
+                                    <div required class="mdc-select__bottom-line"></div>
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
                                     <ul  class="mdc-list mdc-menu__items">
@@ -164,6 +163,7 @@
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
+                            <input id="hidden-technology" type="text" pattern="[0-9]+" required value="" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                             <div id="tecnologia-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                                     <div class="mdc-select__label">Tecnologia*</div>
@@ -328,13 +328,13 @@
                 <table class="col-md-12" >
                     <tr>
                         <td class="col-md-6" align="center">
-                            <button type="button" class="btn btn-primary">Guardar</button>
-                            <button type="button" class="btn btn-primary">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="" class="btn btn-primary">Cancelar</button>
                         </td>
                     </tr>
                 </table>
             </div>
-
+    </form>
         </div>
 
     </body>
@@ -366,7 +366,7 @@
         //Asignacion de combos a los hidden
         demoReady(function() {
             var rootTechnology = document.getElementById('tecnologia-js-select');
-            var hiddenTechnology = document.getElementById('selected-technology');
+            var hiddenTechnology = document.getElementById('hidden-technology');
             var selectTechnology = new mdc.select.MDCSelect(rootTechnology);
 
             rootTechnology.addEventListener('MDCSelect:change', function() {
