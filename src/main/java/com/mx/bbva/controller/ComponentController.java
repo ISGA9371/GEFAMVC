@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 import java.util.logging.Logger;
 
+import static com.mx.bbva.util.ViewsURLs.*;
+
 @Controller
 @RequestMapping(value = "/components")
 public class ComponentController {
@@ -27,8 +29,7 @@ public class ComponentController {
         LOG.info("Creating new component");
         model.addAttribute("component", new Component());
         //TODO Add catalogs
-
-        return "fabrica/ModificarComponente";
+        return URL_FACTORY + NEW_COMPONENT;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -38,7 +39,7 @@ public class ComponentController {
         // LOG.info("Saving new component... " + component.getComponentName());
         componentService.saveComponent(component);
 
-        return "fabrica/ModificarComponente";
+        return URL_FACTORY + EDIT_COMPONENT;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -48,7 +49,7 @@ public class ComponentController {
         List<Component> components = componentService.findAllComponents();
         model.addAttribute("components", components);
 
-        return "fabrica/BuscarComponentes";
+        return URL_FACTORY + SEARCH_COMPONENTS;
     }
 
     @RequestMapping(path = "/{componentId}", method = RequestMethod.GET)
@@ -61,7 +62,7 @@ public class ComponentController {
         } else {
             model.addAttribute("component", new Component());
         }
-        return "fabrica/ModificarComponente";
+        return URL_FACTORY + EDIT_COMPONENT;
     }
 
     @Autowired

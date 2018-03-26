@@ -36,14 +36,14 @@ public class RequirementController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addRequirement(Model model) {
         model.addAttribute("requirement", new Requirement());
-        return NEW_REQUIREMENT;
+        return URL_FACTORY + NEW_REQUIREMENT;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveRequirement(@ModelAttribute("requirement") Requirement requirement) {
         LOGGER.info("Saving requirement");
         requirementService.saveRequirement(requirement);
-        return EDIT_REQUIREMENT;
+        return URL_FACTORY + EDIT_REQUIREMENT;
     }
 
     @RequestMapping(value = "/{requirementId}", method = RequestMethod.GET)
@@ -55,14 +55,14 @@ public class RequirementController {
         } else {
             model.addAttribute("requirement", new Requirement());
         }
-        return EDIT_REQUIREMENT;
+        return URL_FACTORY + EDIT_REQUIREMENT;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getAllRequirements(Model model) {
         List<Requirement> requirements = requirementService.findAllRequirements();
         model.addAttribute("requirements", requirements);
-        return SEARCH_REQUIREMENTS;
+        return URL_FACTORY + SEARCH_REQUIREMENTS;
     }
 
     // Model Attributes will available to the view all the time

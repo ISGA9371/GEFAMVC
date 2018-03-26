@@ -5,7 +5,7 @@
     <version>1.0.0-ALPHA</version>
 
     <groupId>com.bbva.bancomer</groupId>
-    <artifactId>GEFA</artifactId>
+    <artifactId>GEFA-APP</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,7 +16,7 @@
         <archiveClasses>true</archiveClasses>
         <appengine.target.version>1.9.63</appengine.target.version>
         <spring.version>5.0.4.RELEASE</spring.version>
-        <appengine.app.name>GEFA</appengine.app.name>
+        <appengine.app.name>GEFA-APP</appengine.app.name>
     </properties>
 
     <dependencies>
@@ -122,7 +122,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>6.0.6</version>
+            <version>5.1.42</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->

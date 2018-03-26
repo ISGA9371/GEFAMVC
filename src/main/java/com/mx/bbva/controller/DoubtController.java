@@ -24,13 +24,13 @@ public class DoubtController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addDoubt(Model model) {
         model.addAttribute("doubt", new Doubt());
-        return NEW_DOUBT;
+        return URL_FACTORY + NEW_DOUBT;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveDoubt(@ModelAttribute("doubt") Doubt doubt) {
         doubtService.saveDoubt(doubt);
-        return EDIT_DOUBT;
+        return URL_FACTORY + EDIT_DOUBT;
 
     }
 
@@ -38,7 +38,7 @@ public class DoubtController {
     public String getOneDoubt(Model model, @PathVariable Integer doubtId) {
         Doubt doubt = doubtService.findDoubt(doubtId);
         model.addAttribute("doubt", doubt);
-        return SEARCH_DOUBTS;
+        return URL_FACTORY + SEARCH_DOUBTS;
     }
 
     @Autowired

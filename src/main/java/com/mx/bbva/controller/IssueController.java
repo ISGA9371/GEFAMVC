@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 import java.util.logging.Logger;
 
+import static com.mx.bbva.util.ViewsURLs.*;
+
 @Controller
 @RequestMapping(value = "/issues")
 public class IssueController {
@@ -26,14 +28,14 @@ public class IssueController {
         LOG.info("Creating new issue");
         model.addAttribute("issue", new Issue());
         //TODO Add catalogs
-        return "SOME-URL";
+        return URL_FACTORY + NEW_ISSUE;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveIssue(@ModelAttribute("issuee") Issue issue) {
         // TODO Validate user
         issueService.saveIssue(issue);
-        return "SOME-URL";
+        return URL_FACTORY + EDIT_ISSUE;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -41,7 +43,7 @@ public class IssueController {
         // TODO Validate user
         List<Issue> issues = issueService.findAll();
         model.addAttribute("issues", issues);
-        return "SOME-URL";
+        return URL_FACTORY + SEARCH_ISSUES;
     }
 
     @RequestMapping(path = "/{issueId}", method = RequestMethod.GET)
@@ -54,7 +56,7 @@ public class IssueController {
         } else {
             model.addAttribute("issue", new Issue());
         }
-        return "SOME-URL";
+        return URL_FACTORY + EDIT_ISSUE;
     }
 
     @Autowired
