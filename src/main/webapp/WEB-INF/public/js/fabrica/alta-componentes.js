@@ -6,6 +6,7 @@ function init() {
     var textVersion = new mdc.textField.MDCTextField(rootVersion);
     textVersion.value = getVersion();
     defaultTypologies();
+    addSelectEvents();
     addComponentValidation();
     addRequirementValidation();
     addDifficultyValidation();
@@ -95,20 +96,42 @@ function addButtonEvents() {
         validateWindowData();
     })
 }
+ function addSelectEvents(){
 
+     var rootType = document.getElementById('nuemod-js-select');
+     //var hiddenType = document.getElementById('selected-technology');
+     var selectType = new mdc.select.MDCSelect(rootType);
+
+     rootType.addEventListener('MDCSelect:change', function() {
+         alert(selectType.value);
+         if(selectType.value == 0){
+             $('#tipologia-empty-js-select').hide();
+             new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).selectedIndex = -1
+             $('#tipologia-news-js-select').show();
+             $('#tipologia-mods-js-select').hide();
+         }
+         if(selectType.value == 1){
+             $('#tipologia-empty-js-select').hide();
+             new mdc.select.MDCSelect(document.getElementById('tipologia-mods-js-select')).selectedIndex = -1
+             $('#tipologia-news-js-select').hide();
+             $('#tipologia-mods-js-select').show();
+         }
+         selectType.clearSelection
+     });
+ }
 function validateWindowData() {
     hideData();
 }
 
 function hideData() {
 
-    var rootNewMod = document.getElementById('tecnologia-js-select');
+    /*var rootNewMod = document.getElementById('tecnologia-js-select');
     var hiddenNewMod = document.getElementById('selected-technology');
     var selectNewMod = new mdc.select.MDCSelect(rootTechnology);
 
     rootTechnology.addEventListener('MDCSelect:change', function() {
         hiddenTechnology.value = selectTechnology.value;
-    });
+    });*/
 
 }
 
@@ -121,6 +144,7 @@ function loadSelects(){
 
 function defaultTypologies(){
     $('#tipologia-empty-js-select').show();
+    new mdc.select.MDCSelect(document.getElementById('tipologia-empty-js-select')).disabled = true;
     $('#tipologia-news-js-select').hide();
     $('#tipologia-mods-js-select').hide();
 }
