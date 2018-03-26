@@ -30,7 +30,7 @@ public class Typology implements Serializable {
     private String typologyComponent;
     @Column(name = "NU_DIFICULTAD")
     private Character typologySeverity;
-    @Column(name = "NU_HRS_DIFICULTAD", precision = 12)
+    @Column(name = "NU_HM_DIFICULTAD", precision = 12)
     private Float typologySeverityHours;
     @Basic(optional = false)
     @Column(name = "NU_ANO", nullable = false)
