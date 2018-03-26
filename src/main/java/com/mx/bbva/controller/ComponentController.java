@@ -45,9 +45,9 @@ public class ComponentController {
             testTypology.setTypologyProductId("ID_" + i);
             lstTypology.add(testTypology);
         }*/
-       // modelReq.addObject("tipologiaNewCmb", typologyService.findAllNew());
+        // modelReq.addObject("tipologiaNewCmb", typologyService.findAllNew());
         //modelReq.addObject("tipologiaModCmb", typologyService.findAllMod());
-       // modelReq.addObject("requerimientoData", requirementService.findOneRequirement(1));
+        // modelReq.addObject("requerimientoData", requirementService.findOneRequirement(1));
         modelReq.addObject("componente", new Component());
 
         return modelReq;
@@ -98,10 +98,13 @@ public class ComponentController {
 
     @ModelAttribute("tipologiaNewCmb")
     public List<Typology> populateNewTypologies() {
-        return this.typologyService.findAllNew();
+        return this.typologyService.findByComponent("0");
     }
+
     @ModelAttribute("tipologiaModCmb")
-    public List<Typology> populateModTypologies() { return this.typologyService.findAllMod(); }
+    public List<Typology> populateModTypologies() {
+        return this.typologyService.findByComponent("1");
+    }
 
     @Autowired
     public void setComponentService(ComponentService componentService) {

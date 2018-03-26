@@ -5,10 +5,5 @@ import com.mx.bbva.business.entity.Typology;
 import java.util.List;
 
 public interface TypologyService {
-
-    //Typology saveRequirement(Typology requirement);
-
-    List<Typology> findAllNew();
-
-    List<Typology> findAllMod();
+    List<Typology> findByComponent(String typologyComponent);
 }

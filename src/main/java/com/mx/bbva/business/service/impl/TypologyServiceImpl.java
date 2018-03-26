@@ -13,10 +13,9 @@ public class TypologyServiceImpl implements TypologyService {
     private TypologyRepository typologyRepository;
 
     @Override
-    public List<Typology> findAllNew() { return typologyRepository.findAllByTypologyComponent("0"); }
-
-    @Override
-    public List<Typology> findAllMod() { return typologyRepository.findAllByTypologyComponent("1"); }
+    public List<Typology> findByComponent(String typologyComponent) {
+        return typologyRepository.findAllByTypologyComponent(typologyComponent);
+    }
 
     @Autowired
     public void setRequirementRepository(TypologyRepository requirementRepository) {
