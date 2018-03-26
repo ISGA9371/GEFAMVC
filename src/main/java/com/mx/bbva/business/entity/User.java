@@ -28,9 +28,6 @@ public class User implements Serializable {
     @JoinColumn(name = "ST_ESTADO_USUARIO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
-    @JoinColumn(name = "CD_NIVEL", referencedColumnName = "CD_NIVEL")
-    @ManyToOne
-    private Level level;
     @JoinColumn(name = "CD_PERF_USU", referencedColumnName = "CD_TIPO_PERFIL", nullable = false)
     @ManyToOne(optional = false)
     private ProfileType profileType;
@@ -144,14 +141,6 @@ public class User implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    public Level getLevel() {
-        return level;
-    }
-
-    public void setLevel(Level level) {
-        this.level = level;
     }
 
     public ProfileType getProfileType() {

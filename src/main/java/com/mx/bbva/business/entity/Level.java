@@ -41,9 +41,6 @@ public class Level implements Serializable {
     @OneToMany(mappedBy = "level")
     private List<Transfer> transfers;
     @JsonIgnore
-    @OneToMany(mappedBy = "level")
-    private List<User> users;
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "level")
     private List<Requirement> requirements;
     @JsonIgnore
@@ -93,14 +90,6 @@ public class Level implements Serializable {
 
     public void setTransfers(List<Transfer> transfers) {
         this.transfers = transfers;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
     }
 
     public List<Requirement> getRequirements() {
