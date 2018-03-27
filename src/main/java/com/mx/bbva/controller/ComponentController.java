@@ -31,34 +31,27 @@ public class ComponentController {
     @RequestMapping(value = "/alta", method = RequestMethod.GET)
     public String initCreate(Model model, @RequestParam("requirementId")String requirementId) {
 
-
-       /* ModelAndView modelReq = new ModelAndView(Constants.ALTA_COMPONENTE);
-       /* modelReq.addObject("nivelesCmb", componentService.findAllLevels());
-        modelReq.addObject("areasCmb", areaService.findAllAreas());
-        modelReq.addObject("tecnologiasCmb", technologyService.findAllTechnologies());*/
-        /*List<Typology> lstTypology = new ArrayList<Typology>();
-        for (int i = 1; i <= 4; i++) {
-            Typology testTypology = new Typology();
-            testTypology.setTypologyId(i);
-            testTypology.setTypologyProductId("ID_" + i);
-            lstTypology.add(testTypology);
-        }*/
-        // modelReq.addObject("tipologiaNewCmb", typologyService.findAllNew());
-        //modelReq.addObject("tipologiaModCmb", typologyService.findAllMod());
         int requirementIdInt = -1;
         try{
             requirementIdInt = Integer.parseInt(requirementId);
         } catch (Exception e){
             requirementIdInt = -1;
         }
-        LOG.info("id: " + requirementIdInt);
-        if(-1!= requirementIdInt){
-            //model.addAttribute("requerimientoData", requirementService.findRequirementForComponent(requirementIdInt));
-        } else {
-            model.addAttribute("requerimientoData", new Requirement());
+        //LOG.info("id: " + requirementIdInt);
+        try {
+            if (-1 != requirementIdInt) {
+                model.addAttribute("requerimientoData", requirementService.findRequirementForComponent(requirementIdInt));
+            } else {
+                model.addAttribute("requerimientoData", new Requirement());
+            }
+            model.addAttribute("componente", new Component());
+        } catch (Exception e){
+            LOG.info("ERROR AL RECUPERAR REQUERIMIENTO");
+            Requirement contingency = new Requirement();
+            contingency.setRequirementName("ERROR AL RECUPERAR REQUERIMIENTO");
+            model.addAttribute("requerimientoData", contingency);
         }
         model.addAttribute("componente", new Component());
-
         return Constants.ALTA_COMPONENTE;
     }
 
