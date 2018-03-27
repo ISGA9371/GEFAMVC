@@ -3,20 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Header</title>
+
+
 </head>
 <body>
 
 <!--Header bar-->
-<nav class="navbar navbar-fixed-top" th:fragment="cabeceraPrincipal">
+<header th:fragment="cabeceraPrincipal">
+    <script type="text/javascript">
+        $(function () {
+            var bottom = $("#bottom-pills");
+            $("#top-nav .nav-pills li").css("color","white");
+           $("#busqueda-menu").click(function () {
+               $("#busqueda-menu").css("color","#f8cd51");
+               bottom.html('');
 
-    <div class="" style="background-color:#004582; color:#FFFFFF; height: 100px;">
+               var options = "<li><a href='/components'>COMPONENTES</a></li> " +
+               "<li> <a href='/doubts'>DUDA</a></li> "+
+               "<li> <a href='/'>ERROR</a></li> "+
+               "<li> <a href='/modifications'>MODIFICACION</a></li> "+
+               "<li> <a href='/requirements'>REQUERIMIENTOS</a></li>";
 
-        <div class="">
-            <p>Este sera el menu donde esten las opciones y el logo BBVA</p>
+               bottom.html(options);
+           });
+        });
+    </script>
+
+    <div class="row top-bar">
+        <div id="brand" class="col-xs-6 no-left-padding">
+            <p> <img th:src="@{/img/bbva-bancomer.svg}" width="246">
+                <span id="u144-3">I</span>
+                Nueva Herramienta Gestora
+            </p>
         </div>
-
+        <div class="col-xs-6 no-right-padding">
+            <ul class="nav nav-pills pull-right" style="margin-top: 7px;">
+                <li class="username"><img th:src="@{/img/executive-icon.png}" width="16"></li>
+                <li style="color: #f8cd51;">M56251 - Alberto Mejía Colli</li>
+                <li><span id="u144-3">I</span></li>
+                <li>Cerrar sesión</li>
+            </ul>
+        </div>
     </div>
-</nav>
+    <nav class="nav nav-bar" id="top-nav">
+        <ul class="nav nav-pills">
+            <li id="busqueda-menu">BÚSQUEDA</li>
+            <li>PRUEBAS</li>
+        </ul>
+    </nav>
+    <div class="row bottom-bar">
+        <nav class="nav nav-bar" id="bottom-nav">
+            <ul class="list-inline" id="bottom-pills">
+            </ul>
+        </nav>
+    </div>
+</header>
 
 </body>
 </html>
