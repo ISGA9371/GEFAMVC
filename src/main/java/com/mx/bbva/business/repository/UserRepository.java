@@ -13,6 +13,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     User findByUserInternalId(String userInternalId);
 
     List<User> findByProfileType_profileTypeId(Integer profileTypeId);
-
-    List<User> findByLevel_levelId(Integer levelId);
 }

@@ -1,7 +1,7 @@
 package com.mx.bbva.controller;
 
-import com.mx.bbva.business.entity.Doubt;
-import com.mx.bbva.business.service.DoubtService;
+import com.mx.bbva.business.entity.*;
+import com.mx.bbva.business.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import static com.mx.bbva.util.ViewsURLs.*;
@@ -20,6 +21,10 @@ public class DoubtController {
     private static final Logger LOG = Logger.getLogger(DoubtController.class.getName());
 
     private DoubtService doubtService;
+    private LevelService levelService;
+    private CompanyService companyService;
+    private PriorityService priorityService;
+    private StatusService statusService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addDoubt(Model model) {
@@ -31,7 +36,6 @@ public class DoubtController {
     public String saveDoubt(@ModelAttribute("doubt") Doubt doubt) {
         doubtService.saveDoubt(doubt);
         return URL_FACTORY + EDIT_DOUBT;
-
     }
 
     @RequestMapping(value = "/{doubtId}", method = RequestMethod.GET)
@@ -41,8 +45,57 @@ public class DoubtController {
         return URL_FACTORY + SEARCH_DOUBTS;
     }
 
+    // Model Attributes will available to the view all the time
+    // LevelTypeId 1 - Direccion
+    @ModelAttribute("principals")
+    public List<Level> populatePrincipals() {
+        return this.levelService.findByLevelType(new LevelType(1));
+    }
+
+    // LevelTypeId 2 - Sub-Direccion
+    @ModelAttribute("subPrincipals")
+    public List<Level> populateSubPrincipals() {
+        return this.levelService.findByLevelType(new LevelType(2));
+    }
+
+    @ModelAttribute("companies")
+    public List<Company> populateCompanies() {
+        return this.companyService.findAllCompaniesForDropDownList();
+    }
+
+    @ModelAttribute("priorities")
+    public List<Priority> populatePriorities() {
+        return this.priorityService.findAllPriorities();
+    }
+
+    @ModelAttribute("status")
+    public List<Status> populateStatus() {
+        return this.statusService.findAllStatus();
+    }
+
+    // Import services
     @Autowired
     public void setDoubtService(DoubtService doubtService) {
         this.doubtService = doubtService;
+    }
+
+    @Autowired
+    public void setLevelService(LevelService levelService) {
+        this.levelService = levelService;
+    }
+
+    @Autowired
+    public void setCompanyService(CompanyService companyService) {
+        this.companyService = companyService;
+    }
+
+    @Autowired
+    public void setPriorityService(PriorityService priorityService) {
+        this.priorityService = priorityService;
+    }
+
+    @Autowired
+    public void setStatusService(StatusService statusService) {
+        this.statusService = statusService;
     }
 }

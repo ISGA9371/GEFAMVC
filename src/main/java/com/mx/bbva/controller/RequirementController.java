@@ -60,6 +60,7 @@ public class RequirementController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getAllRequirements(Model model) {
+        LOGGER.info("Getting all requirements");
         List<Requirement> requirements = requirementService.findAllRequirements();
         model.addAttribute("requirements", requirements);
         return URL_FACTORY + SEARCH_REQUIREMENTS;
@@ -67,14 +68,16 @@ public class RequirementController {
 
     // Model Attributes will available to the view all the time
     // TODO Only return id + name for the drop down list
-    @ModelAttribute("levels")
-    public List<Level> populateLevels() {
-        return this.levelService.findAllLevels();
+    // LevelTypeId 1 - Direccion
+    @ModelAttribute("principals")
+    public List<Level> populatePrincipals() {
+        return this.levelService.findByLevelType(new LevelType(1));
     }
 
-    @ModelAttribute("levelTypes")
-    public List<LevelType> populateLevelTypes() {
-        return this.levelTypeService.findAllLevelTypes();
+    // LevelTypeId 2 - Sub-Direccion
+    @ModelAttribute("subPrincipals")
+    public List<Level> populateSubPrincipals() {
+        return this.levelService.findByLevelType(new LevelType(2));
     }
 
     @ModelAttribute("areas")
@@ -89,7 +92,7 @@ public class RequirementController {
 
     @ModelAttribute("users")
     public List<User> populateUsers() {
-      return this.userService.findAllUsers();
+        return this.userService.findAllUsers();
     }
 
     @ModelAttribute("applications")
@@ -104,7 +107,7 @@ public class RequirementController {
 
     @ModelAttribute("companies")
     public List<Company> populateCompanies() {
-        return this.companyService.findAllCompanies();
+        return this.companyService.findAllCompaniesForDropDownList();
     }
 
     @ModelAttribute("serviceTypes")
@@ -145,7 +148,7 @@ public class RequirementController {
 
     @Autowired
     public void setUserService(UserService userService) {
-       this.userService = userService;
+        this.userService = userService;
     }
 
     @Autowired

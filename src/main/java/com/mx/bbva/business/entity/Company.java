@@ -57,6 +57,11 @@ public class Company implements Serializable {
         this.companyId = companyId;
     }
 
+    public Company(Integer companyId, String companyName) {
+        this.companyId = companyId;
+        this.companyName = companyName;
+    }
+
     public Company(Integer companyId, String companyName, String companyBusinessName, String companySupplierNumber, int areaId) {
         this.companyId = companyId;
         this.companyName = companyName;
