@@ -3,8 +3,6 @@ package com.mx.bbva.controller;
 import com.mx.bbva.business.entity.Company;
 import com.mx.bbva.business.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -45,10 +43,11 @@ public class CompanyController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<?> findAllCompanies(Model model) {
+    public String findAllCompanies(Model model) {
         // TODO Validate user
         List<Company> companies = companyService.findAllCompaniesForDropDownList();
-        return new ResponseEntity<Object>(companies, HttpStatus.OK);
+        model.addAttribute("companies", companies);
+        return URL_FACTORY + SEARCH_COMPANIES;
     }
 
     @RequestMapping(path = "/{companyId}", method = RequestMethod.GET)

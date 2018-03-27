@@ -88,14 +88,14 @@ VALUES
 
 INSERT INTO `gestion_factoria`.`thge001_tipo_serv`
 VALUES
-(1,'PRUEBAS FUNCIONALES',1,1),
-(2,'EJECUCIÓN DE CASOS DE PRUEBA',1,1),
-(3,'PRUEBAS DE NO AFECTACIÓN',1,1),
-(4,'PRUEBAS DE ACEPTACIÓN',1,1),
-(5,'PRUEBAS DE USUARIO',1,1),
-(6,'SERVICIO DE AMBIENTACIÓN',1,1),
-(7,'PROCESOS BATCH',1,1),
-(8,'PRUEBAS FUNCIONALES Y NO AFECTACIÓN',1,1);
+(1,'PRUEBAS FUNCIONALES',1),
+(2,'EJECUCIÓN DE CASOS DE PRUEBA',1),
+(3,'PRUEBAS DE NO AFECTACIÓN',1),
+(4,'PRUEBAS DE ACEPTACIÓN',1),
+(5,'PRUEBAS DE USUARIO',1),
+(6,'SERVICIO DE AMBIENTACIÓN',1),
+(7,'PROCESOS BATCH',1),
+(8,'PRUEBAS FUNCIONALES Y NO AFECTACIÓN',1);
 
 INSERT INTO `thge056_canal`
 VALUES
@@ -584,88 +584,102 @@ VALUES
 (319,'N07',1,4,19.00,2018,3),
 (320,'N08',1,4,9.00,2018,3);
 
-//TABLA 010 NIVELES
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(1,"ADQUIRIENTE Y BANCA ELECTRÓNICA","1","XM58349");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(2,"ANS Y FACTORIAS","1","XM58350");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(3,"ARCHITECTURE ENGINEERING","1","XM58351");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(4,"AUTOSERVICIO","1","XM58352");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(5,"BANCA MÓVIL","1","XM58353");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(6,"BCA FÁCIL Y REL AUTORIDADES","1","XM58354");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(7,"BPM","1","XM58355");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(8,"C&IB","1","XM58356");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(9,"CANALES ATENDIDOS","1","XM58357");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(10,"CANALES DIGITALES","1","XM58358");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(11,"CONTACT CENTER","1","XM58359");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(12,"CORE BANKING ACTIVO Y PASIVO","1","XM58360");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(13,"DESARROLLO COMERCIAL","1","XM58361");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(14,"PBAS CUENTAS PERSONALES","1","XM58362");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(15,"PLATAFORMA COMERCIAL","1","XM58363");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(16,"SECURITY ARCHITECTURE","1","XM58364");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(17,"SEGUROS","1","XM58365");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(18,"SISTEMAS BEYG","1","XM58366");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(19,"SISTEMAS HOLDING","1","XM58367");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP) VALUES(20,"TRANSFORMATION SOLUTIONS","1","XM58368");
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(21,"INVENTARIOS E INST. TPVS Y BE","2","XM58369",1);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(22,"COA","2","XM58370",2);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(23,"ANS FRONTS","2","XM58371",2);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(24,"ANS INFORMACIONAL","2","XM58372",2);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(25,"ANS MEDIOS DE PAGO","2","XM58373",2);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(26,"ANS PRÉSTAMOS","2","XM58374",2);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(27,"MANTENIMIENTO Y FACTORIAS","2","XM58375",2);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(28,"BÓVEDA ELECT. ACLARACIONES","2","XM58376",3);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(29,"ARCHITECTURE ENGINEERING","2","XM58377",3);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(30,"BPM","2","XM58378",3);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(31,"SERVICIOS","2","XM58379",3);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(32,"TECNOLOGÍA AUTOSERVICIO","2","XM58380",4);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(33,"CAJEROS Y PRACTICAJAS","2","XM58381",4);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(34,"SEGURIDAD ATMS Y DISTRIBUCIÓN","2","XM58382",4);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(35,"AUTOSERVICIO SOLUCIONES DIGITALES","2","XM58383",4);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(36,"BANCA MÓVIL","2","XM58384",5);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(37,"BANCOMER SMS Y ALERTAS","2","XM58385",5);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(38,"APPS VERTICALES","2","XM58386",5);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(39,"APPS INFORMATIVOS","2","XM58387",5);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(40,"BCA FÁCIL Y REL AUTORIDADES","2","XM58388",6);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(41,"PBAS BPM","2","XM58389",7);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(42,"OPERACIONES Y RIESGOS","2","XM58390",8);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(43,"PLATAFORMA C&IB","2","XM58391",8);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(44,"EE CC","2","XM58392",9);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(45,"PROCESOS Y CONTRATACIÓN","2","XM58393",9);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(46,"AA CC / QA","2","XM58394",9);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(47,"TF FRONTS E INTRANET","2","XM58395",9);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(48,"NUEVAS SOLUCIONES QA","2","XM58396",9);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(49,"EXTRANET Y BANCA CORRESPONSAL","2","XM58397",10);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(50,"INTERNET PERSONAS FÍSICAS Y PORTALES","2","XM58398",10);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(51,"CANALES ELECTRÓNICOS DE EMPRESAS","2","XM58399",10);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(52,"CG, DOSIFICADORES","2","XM58400",10);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(53,"ACLARACIONES","2","XM58401",11);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(54,"PORTAL DE VOZ","2","XM58402",11);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(55,"PASIVO","2","XM58403",12);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(56,"ACTIVO PRÉSTAMOS","2","XM58404",12);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(57,"SERVICIOS BANCA EMPRESAS","2","XM58405",12);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(58,"COBRANZA Y DISOLUCIÓN","2","XM58406",12);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(59,"CONSUMER FINANCE","2","XM58407",12);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(60,"NÓMINA, PASIVO Y SERVICIOS","2","XM58408",12);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(61,"CENTRAL DE AUTORIZACIONES","2","XM58409",13);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(62,"TARJETA DE CRÉDITO","2","XM58410",13);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(63,"CAMPAÑAS Y LEALTAD DYD","2","XM58411",13);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(64,"COMERCIOS Y CORRESPONSALES","2","XM58412",13);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(65,"CONTABILIDAD E INFORMACIONAL","2","XM58413",13);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(66,"ADMISIÓN SERVICIOS OPERATIVOS","2","XM58414",13);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(67,"BANCA PATRIMONIAL Y PRIVADA","2","XM58415",13);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(68,"PRODUCTOS DE PASIVO Y PYME","2","XM58416",13);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(69,"DISPOSITIVOS","2","XM58417",13);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(70,"FONDOS Y TRANSFERENCIAS","2","XM58418",14);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(71,"PI - PERSONAS","2","XM58419",15);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(72,"CRM / QA","2","XM58420",15);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(73,"CAMPAÑAS","2","XM58421",15);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(74,"EVALUATION OF PROJECTS","2","XM58422",16);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(75,"SEGUROS","2","XM58423",17);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(76,"FIDUCIARIO","2","XM58424",18);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(77,"INFORMACIONAL Y FINANZAS","2","XM58425",19);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(78,"AUTORIDADES Y CUMPLIMIENTO","2","XM58426",19);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(79,"SISTEMAS PLD Y CUMPLIMIENTO NORMATIVO","2","XM58427",19);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(80,"RIESGOS","2","XM58428",19);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(81,"GESTIÓN DE EMPRESAS","2","XM58429",19);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(82,"DATA MANAGER Y GESTION","2","XM58430",19);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(83,"TRANSFORMATION SOLUTIONS","2","XM58431",20);
-INSERT INTO gestion_factoria.thge010_nivel (gestion_factoria.thge010_nivel.CD_NIVEL,gestion_factoria.thge010_nivel.NB_NIVEL,gestion_factoria.thge010_nivel.CD_TIPO_NIVEL,gestion_factoria.thge010_nivel.CD_USUARIO_RESP, gestion_factoria.thge010_nivel.CD_NIVEL_SUPERIOR) VALUES(84,"TRANSFORMACIÓN CANALES","2","XM58432",20);
+-- USUARIOS
+
+INSERT INTO `thge011_usuario`
+VALUES
+(1,'XMY3070',1,1),
+(2,'XMY3080',1,1);
+
+-- TABLA 010 NIVELES
+INSERT INTO gestion_factoria.thge010_nivel 
+(CD_NIVEL,NB_NIVEL,CD_TIPO_NIVEL,CD_USUARIO_RESP) 
+VALUES
+(1,"ADQUIRIENTE Y BANCA ELECTRÓNICA",1,"XMY3070"),
+(2,"ANS Y FACTORIAS",1,"XMY3070"),
+(3,"ARCHITECTURE ENGINEERING",1,"XMY3070"),
+(4,"AUTOSERVICIO",1,"XMY3070"),
+(5,"BANCA MÓVIL",1,"XMY3070"),
+(6,"BCA FÁCIL Y REL AUTORIDADES",1,"XMY3070"),
+(7,"BPM",1,"XMY3070"),
+(8,"C&IB",1,"XMY3070"),
+(9,"CANALES ATENDIDOS",1,"XMY3070"),
+(10,"CANALES DIGITALES",1,"XMY3070"),
+(11,"CONTACT CENTER",1,"XMY3070"),
+(12,"CORE BANKING ACTIVO Y PASIVO",1,"XMY3070"),
+(13,"DESARROLLO COMERCIAL",1,"XMY3070"),
+(14,"PBAS CUENTAS PERSONALES",1,"XMY3070"),
+(15,"PLATAFORMA COMERCIAL",1,"XMY3070"),
+(16,"SECURITY ARCHITECTURE",1,"XMY3070"),
+(17,"SEGUROS",1,"XMY3070"),
+(18,"SISTEMAS BEYG",1,"XMY3070"),
+(19,"SISTEMAS HOLDING",1,"XMY3070"),
+(20,"TRANSFORMATION SOLUTIONS",1,"XMY3070");
+
+INSERT INTO gestion_factoria.thge010_nivel
+(CD_NIVEL,NB_NIVEL,CD_TIPO_NIVEL,CD_USUARIO_RESP, CD_NIVEL_SUPERIOR)
+VALUES
+(21,"INVENTARIOS E INST. TPVS Y BE",2,"XMY3080",1),
+(22,"COA",2,"XMY3080",2),
+(23,"ANS FRONTS",2,"XMY3080",2),
+(24,"ANS INFORMACIONAL",2,"XMY3080",2),
+(25,"ANS MEDIOS DE PAGO",2,"XMY3080",2),
+(26,"ANS PRÉSTAMOS",2,"XMY3080",2),
+(27,"MANTENIMIENTO Y FACTORIAS",2,"XMY3080",2),
+(28,"BÓVEDA ELECT. ACLARACIONES",2,"XMY3080",3),
+(29,"ARCHITECTURE ENGINEERING",2,"XMY3080",3),
+(30,"BPM",2,"XMY3080",3),
+(31,"SERVICIOS",2,"XMY3080",3),
+(32,"TECNOLOGÍA AUTOSERVICIO",2,"XMY3080",4),
+(33,"CAJEROS Y PRACTICAJAS",2,"XMY3080",4),
+(34,"SEGURIDAD ATMS Y DISTRIBUCIÓN",2,"XMY3080",4),
+(35,"AUTOSERVICIO SOLUCIONES DIGITALES",2,"XMY3080",4),
+(36,"BANCA MÓVIL",2,"XMY3080",5),
+(37,"BANCOMER SMS Y ALERTAS",2,"XMY3080",5),
+(38,"APPS VERTICALES",2,"XMY3080",5),
+(39,"APPS INFORMATIVOS",2,"XMY3080",5),
+(40,"BCA FÁCIL Y REL AUTORIDADES",2,"XMY3080",6),
+(41,"PBAS BPM",2,"XMY3080",7),
+(42,"OPERACIONES Y RIESGOS",2,"XMY3080",8),
+(43,"PLATAFORMA C&IB",2,"XMY3080",8),
+(44,"EE CC",2,"XMY3080",9),
+(45,"PROCESOS Y CONTRATACIÓN",2,"XMY3080",9),
+(46,"AA CC / QA",2,"XMY3080",9),
+(47,"TF FRONTS E INTRANET",2,"XMY3080",9),
+(48,"NUEVAS SOLUCIONES QA",2,"XMY3080",9),
+(49,"EXTRANET Y BANCA CORRESPONSAL",2,"XMY3080",10),
+(50,"INTERNET PERSONAS FÍSICAS Y PORTALES",2,"XMY3080",10),
+(51,"CANALES ELECTRÓNICOS DE EMPRESAS",2,"XMY3080",10),
+(52,"CG, DOSIFICADORES",2,"XMY3080",10),
+(53,"ACLARACIONES",2,"XMY3080",11),
+(54,"PORTAL DE VOZ",2,"XMY3080",11),
+(55,"PASIVO",2,"XMY3080",12),
+(56,"ACTIVO PRÉSTAMOS",2,"XMY3080",12),
+(57,"SERVICIOS BANCA EMPRESAS",2,"XMY3080",12),
+(58,"COBRANZA Y DISOLUCIÓN",2,"XMY3080",12),
+(59,"CONSUMER FINANCE",2,"XMY3080",12),
+(60,"NÓMINA, PASIVO Y SERVICIOS",2,"XMY3080",12),
+(61,"CENTRAL DE AUTORIZACIONES",2,"XMY3080",13),
+(62,"TARJETA DE CRÉDITO",2,"XMY3080",13),
+(63,"CAMPAÑAS Y LEALTAD DYD",2,"XMY3080",13),
+(64,"COMERCIOS Y CORRESPONSALES",2,"XMY3080",13),
+(65,"CONTABILIDAD E INFORMACIONAL",2,"XMY3080",13),
+(66,"ADMISIÓN SERVICIOS OPERATIVOS",2,"XMY3080",13),
+(67,"BANCA PATRIMONIAL Y PRIVADA",2,"XMY3080",13),
+(68,"PRODUCTOS DE PASIVO Y PYME",2,"XMY3080",13),
+(69,"DISPOSITIVOS",2,"XMY3080",13),
+(70,"FONDOS Y TRANSFERENCIAS",2,"XMY3080",14),
+(71,"PI - PERSONAS",2,"XMY3080",15),
+(72,"CRM / QA",2,"XMY3080",15),
+(73,"CAMPAÑAS",2,"XMY3080",15),
+(74,"EVALUATION OF PROJECTS",2,"XMY3080",16),
+(75,"SEGUROS",2,"XMY3080",17),
+(76,"FIDUCIARIO",2,"XMY3080",18),
+(77,"INFORMACIONAL Y FINANZAS",2,"XMY3080",19),
+(78,"AUTORIDADES Y CUMPLIMIENTO",2,"XMY3080",19),
+(79,"SISTEMAS PLD Y CUMPLIMIENTO NORMATIVO",2,"XMY3080",19),
+(80,"RIESGOS",2,"XMY3080",19),
+(81,"GESTIÓN DE EMPRESAS",2,"XMY3080",19),
+(82,"DATA MANAGER Y GESTION",2,"XMY3080",19),
+(83,"TRANSFORMATION SOLUTIONS",2,"XMY3080",20),
+(84,"TRANSFORMACIÓN CANALES",2,"XMY3080",20);
