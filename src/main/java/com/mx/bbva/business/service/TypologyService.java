@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface TypologyService {
     List<Typology> findByComponent(String typologyComponent);
+    Typology findById(String typologyId);
 }

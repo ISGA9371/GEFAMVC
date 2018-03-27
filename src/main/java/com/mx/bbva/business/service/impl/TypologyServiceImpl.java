@@ -16,6 +16,10 @@ public class TypologyServiceImpl implements TypologyService {
     public List<Typology> findByComponent(String typologyComponent) {
         return typologyRepository.findAllByTypologyComponent(typologyComponent);
     }
+    @Override
+    public Typology findById(String typologyId) {
+        return typologyRepository.findByTypologyId(typologyId);
+    }
 
     @Autowired
     public void setRequirementRepository(TypologyRepository requirementRepository) {
