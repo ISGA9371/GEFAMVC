@@ -19,8 +19,13 @@ public class CompanyServiceImpl implements CompanyService {
         return companyRepository.findAll();
     }
 
+    @Override
+    public List<Company> findAllCompaniesForDropDownList() {
+        return companyRepository.findAllCompaniesOnlyIdAndName();
+    }
+
     @Autowired
-    public void setCompanyRepository(CompanyRepository companyRepository){
+    public void setCompanyRepository(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
     }
 }

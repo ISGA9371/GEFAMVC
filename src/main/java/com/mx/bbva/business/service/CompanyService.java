@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface CompanyService {
     List<Company> findAllCompanies();
+
+    List<Company> findAllCompaniesForDropDownList();
 }
