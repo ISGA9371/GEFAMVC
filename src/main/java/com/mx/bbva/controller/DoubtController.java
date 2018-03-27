@@ -68,7 +68,7 @@ public class DoubtController {
         return this.priorityService.findAllPriorities();
     }
 
-    @ModelAttribute("priorities")
+    @ModelAttribute("status")
     public List<Status> populateStatus() {
         return this.statusService.findAllStatus();
     }
