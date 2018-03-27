@@ -6,14 +6,13 @@ import com.mx.bbva.business.entity.Typology;
 import com.mx.bbva.business.service.ComponentService;
 import com.mx.bbva.business.service.RequirementService;
 import com.mx.bbva.business.service.TypologyService;
-import com.mx.bbva.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static com.mx.bbva.util.ViewsURLs.*;
@@ -28,13 +27,13 @@ public class ComponentController {
     //private typologyService levelTypeService;
     private RequirementService requirementService;
 
-    @RequestMapping(value = "/alta", method = RequestMethod.GET)
-    public String initCreate(Model model, @RequestParam("requirementId")String requirementId) {
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String createComponent(Model model, @RequestParam("requirementId") String requirementId) {
 
         int requirementIdInt = -1;
-        try{
+        try {
             requirementIdInt = Integer.parseInt(requirementId);
-        } catch (Exception e){
+        } catch (Exception e) {
             requirementIdInt = -1;
         }
         //LOG.info("id: " + requirementIdInt);
@@ -45,33 +44,28 @@ public class ComponentController {
                 model.addAttribute("requerimientoData", new Requirement());
             }
             model.addAttribute("componente", new Component());
-        } catch (Exception e){
+        } catch (Exception e) {
             LOG.info("ERROR AL RECUPERAR REQUERIMIENTO");
+            LOG.log(Level.SEVERE,e.getMessage(), e);
             Requirement contingency = new Requirement();
             contingency.setRequirementName("ERROR AL RECUPERAR REQUERIMIENTO");
             model.addAttribute("requerimientoData", contingency);
         }
         model.addAttribute("componente", new Component());
-        return Constants.ALTA_COMPONENTE;
-    }
-
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String createComponent(Model model) {
-        // TODO Validate user
-
-        LOG.info("Creating new component");
-        model.addAttribute("component", new Component());
-        //TODO Add catalogs
         return URL_FACTORY + NEW_COMPONENT;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveComponent(@ModelAttribute("componente") Component component) {
         // TODO Validate user
 
-        // LOG.info("Saving new component... " + component.getComponentName());
+        // LOG.info("Saving new component... " + component.getComponentName())
+        try {
         componentService.saveComponent(component);
-
+        } catch (Exception e) {
+            LOG.info("ERROR AL GUARDAR COMPONENTE");
+            LOG.log(Level.SEVERE, e.getMessage(), e);
+        }
         return URL_FACTORY + EDIT_COMPONENT;
     }
 
