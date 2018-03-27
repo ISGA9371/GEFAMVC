@@ -60,6 +60,7 @@ public class RequirementController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getAllRequirements(Model model) {
+        LOGGER.info("Getting all requirements");
         List<Requirement> requirements = requirementService.findAllRequirements();
         model.addAttribute("requirements", requirements);
         return URL_FACTORY + SEARCH_REQUIREMENTS;
@@ -89,7 +90,7 @@ public class RequirementController {
 
     @ModelAttribute("users")
     public List<User> populateUsers() {
-      return this.userService.findAllUsers();
+        return this.userService.findAllUsers();
     }
 
     @ModelAttribute("applications")
@@ -145,7 +146,7 @@ public class RequirementController {
 
     @Autowired
     public void setUserService(UserService userService) {
-       this.userService = userService;
+        this.userService = userService;
     }
 
     @Autowired
