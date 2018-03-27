@@ -1,6 +1,7 @@
 package com.mx.bbva.controller;
 
 import com.mx.bbva.business.entity.Component;
+import com.mx.bbva.business.entity.Requirement;
 import com.mx.bbva.business.entity.Typology;
 import com.mx.bbva.business.service.ComponentService;
 import com.mx.bbva.business.service.RequirementService;
@@ -9,10 +10,7 @@ import com.mx.bbva.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -31,10 +29,10 @@ public class ComponentController {
     private RequirementService requirementService;
 
     @RequestMapping(value = "/alta", method = RequestMethod.GET)
-    public ModelAndView initCreate() {
+    public String initCreate(Model model, @RequestParam("requirementId")String requirementId) {
 
 
-        ModelAndView modelReq = new ModelAndView(Constants.ALTA_COMPONENTE);
+       /* ModelAndView modelReq = new ModelAndView(Constants.ALTA_COMPONENTE);
        /* modelReq.addObject("nivelesCmb", componentService.findAllLevels());
         modelReq.addObject("areasCmb", areaService.findAllAreas());
         modelReq.addObject("tecnologiasCmb", technologyService.findAllTechnologies());*/
@@ -47,10 +45,21 @@ public class ComponentController {
         }*/
         // modelReq.addObject("tipologiaNewCmb", typologyService.findAllNew());
         //modelReq.addObject("tipologiaModCmb", typologyService.findAllMod());
-        // modelReq.addObject("requerimientoData", requirementService.findOneRequirement(1));
-        modelReq.addObject("componente", new Component());
+        int requirementIdInt = -1;
+        try{
+            requirementIdInt = Integer.parseInt(requirementId);
+        } catch (Exception e){
+            requirementIdInt = -1;
+        }
+        LOG.info("id: " + requirementIdInt);
+        if(-1!= requirementIdInt){
+            model.addAttribute("requerimientoData", requirementService.findRequirementForComponent(requirementIdInt));
+        } else {
+            model.addAttribute("requerimientoData", new Requirement());
+        }
+        model.addAttribute("componente", new Component());
 
-        return modelReq;
+        return Constants.ALTA_COMPONENTE;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -115,6 +124,12 @@ public class ComponentController {
     @Autowired
     public void setTypologyService(TypologyService typologyService) {
         this.typologyService = typologyService;
+    }
+
+
+    @Autowired
+    public void setRequirementService(RequirementService requirementService) {
+        this.requirementService = requirementService;
     }
 
 }
