@@ -45,7 +45,7 @@ function addComponentValidation() {
 }
 
 function addRequirementValidation() {
-    var goodDescription120 = /^^([A-Za-z0-9áéíóúñÁÉÍÓÚÑ]( )?)*$/
+    var goodDescription120 = /^([A-Za-z0-9áéíóúñÁÉÍÓÚÑ]( )?)*$/
     $('#requieriment-mdc-text :input')
         .data("oldValue", '')
         .bind('input propertychange', function () {
