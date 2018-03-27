@@ -53,12 +53,6 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userReceiver")
     private List<Modification> modificationList;
     @JsonIgnore
-    @OneToMany(mappedBy = "userOwner")
-    private List<ProgramIncrement> programIncrements;
-    @JsonIgnore
-    @OneToMany(mappedBy = "userScrumMaster")
-    private List<ProgramIncrement> programIncrementList;
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userSender")
     private List<Doubt> doubts;
     @JsonIgnore
@@ -181,22 +175,6 @@ public class User implements Serializable {
 
     public void setModificationList(List<Modification> modificationList) {
         this.modificationList = modificationList;
-    }
-
-    public List<ProgramIncrement> getProgramIncrements() {
-        return programIncrements;
-    }
-
-    public void setProgramIncrements(List<ProgramIncrement> programIncrements) {
-        this.programIncrements = programIncrements;
-    }
-
-    public List<ProgramIncrement> getProgramIncrementList() {
-        return programIncrementList;
-    }
-
-    public void setProgramIncrementList(List<ProgramIncrement> programIncrementList) {
-        this.programIncrementList = programIncrementList;
     }
 
     public List<Doubt> getDoubts() {

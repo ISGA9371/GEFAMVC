@@ -1,8 +1,8 @@
 package com.mx.bbva.controller;
 
-import com.mx.bbva.business.entity.ProgramIncrementType;
+import com.mx.bbva.business.entity.ProgramIncrement;
 import com.mx.bbva.business.entity.Technology;
-import com.mx.bbva.business.service.ProgramIncrementTypeService;
+import com.mx.bbva.business.service.ProgramIncrementService;
 import com.mx.bbva.business.service.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,38 +15,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/program-increment-types")
-public class ProgramIncrementTypeController {
-    private ProgramIncrementTypeService programIncrementTypeService;
+@RequestMapping(value = "/program-increment")
+public class ProgramIncrementController {
+    private ProgramIncrementService programIncrementTypeService;
     private TechnologyService technologyService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String getAllProgramIncrementTypes(Model model) {
-        List<ProgramIncrementType> piTypes = programIncrementTypeService.findAll();
+    public String getAllProgramIncrements(Model model) {
+        List<ProgramIncrement> piTypes = programIncrementTypeService.findAll();
         model.addAttribute("piTypes", piTypes);
         return "SOME_URL";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String createProgramIncrementType(Model model) {
-        model.addAttribute("ProgramIncrementType", new ProgramIncrementType());
+    public String createProgramIncrement(Model model) {
+        model.addAttribute("ProgramIncrement", new ProgramIncrement());
         return "SOME_URL";
     }
 
     @RequestMapping(path = "/{programIncrementTypeId}", method = RequestMethod.GET)
-    public String editProgramIncrementType(Model model, @PathVariable(value = "programIncrementTypeId") Integer programIncrementTypeId) {
+    public String editProgramIncrement(Model model, @PathVariable(value = "programIncrementTypeId") Integer programIncrementTypeId) {
         if (null != programIncrementTypeId) {
-            ProgramIncrementType programIncrementType = programIncrementTypeService.findOne(programIncrementTypeId);
-            model.addAttribute("ProgramIncrementType", programIncrementType);
+            ProgramIncrement programIncrement = programIncrementTypeService.findOne(programIncrementTypeId);
+            model.addAttribute("ProgramIncrement", programIncrement);
         } else {
-            model.addAttribute("ProgramIncrementType", new ProgramIncrementType());
+            model.addAttribute("ProgramIncrement", new ProgramIncrement());
         }
         return "SOME_URL";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String saveComponent(@ModelAttribute("ProgramIncrementType") ProgramIncrementType programIncrementType) {
-        programIncrementTypeService.saveOne(programIncrementType);
+    public String saveComponent(@ModelAttribute("ProgramIncrement") ProgramIncrement programIncrement) {
+        programIncrementTypeService.saveOne(programIncrement);
         return "SOME_URL";
     }
 
@@ -56,7 +56,7 @@ public class ProgramIncrementTypeController {
     }
 
     @Autowired
-    public void setProgramIncrementTypeService(ProgramIncrementTypeService programIncrementTypeService) {
+    public void setProgramIncrementService(ProgramIncrementService programIncrementTypeService) {
         this.programIncrementTypeService = programIncrementTypeService;
     }
 

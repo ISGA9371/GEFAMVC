@@ -31,7 +31,7 @@ public class RequirementController {
     private ChannelService channelService;
     private CompanyService companyService;
     private ServiceTypeService serviceTypeService;
-    private ProgramIncrementTypeService programIncrementTypeService;
+    private ProgramIncrementService programIncrementTypeService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addRequirement(Model model) {
@@ -115,8 +115,8 @@ public class RequirementController {
         return this.serviceTypeService.findAllServiceTypes();
     }
 
-    @ModelAttribute("programIncrementTypes")
-    public List<ProgramIncrementType> populateProgramIncrementTypes() {
+    @ModelAttribute("programIncrements")
+    public List<ProgramIncrement> populateProgramIncrements() {
         return this.programIncrementTypeService.findAll();
     }
 
@@ -172,7 +172,7 @@ public class RequirementController {
     }
 
     @Autowired
-    public void setProgramIncrementTypeService(ProgramIncrementTypeService programIncrementTypeService) {
+    public void setProgramIncrementService(ProgramIncrementService programIncrementTypeService) {
         this.programIncrementTypeService = programIncrementTypeService;
     }
 }

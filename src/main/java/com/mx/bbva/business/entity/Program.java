@@ -5,17 +5,14 @@
  */
 package com.mx.bbva.business.entity;
 
-import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author Guevara
  */
 @Entity
-@Table(name = "thge023_programa",  uniqueConstraints = {
+@Table(name = "thge023_programa", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_PROGRAMA"})})
 public class Program implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -26,9 +23,6 @@ public class Program implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_PROGRAMA", nullable = false, length = 50)
     private String programName;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "program")
-    private List<ProgramIncrement> programIncrements;
 
     public Program() {
     }
@@ -56,14 +50,6 @@ public class Program implements Serializable {
 
     public void setProgramName(String programName) {
         this.programName = programName;
-    }
-
-    public List<ProgramIncrement> getProgramIncrements() {
-        return programIncrements;
-    }
-
-    public void setProgramIncrements(List<ProgramIncrement> programIncrements) {
-        this.programIncrements = programIncrements;
     }
 
     @Override

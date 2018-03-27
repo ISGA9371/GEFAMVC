@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -13,34 +15,19 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge022_pi",  uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"CD_SCRUM"})})
+@Table(name = "thge013_pi")
 public class ProgramIncrement implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "CD_CONS_PI", nullable = false)
+    @Column(name = "CD_PI", nullable = false)
     private Integer programIncrementId;
     @Basic(optional = false)
-    @Column(name = "CD_SCRUM", nullable = false)
-    private int programIncrementScrumId;
-    @Basic(optional = false)
-    @Column(name = "NB_SCRUM", nullable = false, length = 100)
-    private String programIncrementScrumName;
-    @OneToMany(mappedBy = "programIncrementScrum")
-    private List<Requirement> requirements;
-    @JoinColumn(name = "CD_DUENO_PROD", referencedColumnName = "CD_USUARIO_CORP")
-    @ManyToOne
-    private User userOwner;
-    @JoinColumn(name = "CD_EXPERTO_SCRUM", referencedColumnName = "CD_USUARIO_CORP")
-    @ManyToOne
-    private User userScrumMaster;
-    @JoinColumn(name = "CD_TIPO_PI", referencedColumnName = "CD_TIPO_PI", nullable = false)
-    @ManyToOne(optional = false)
-    private ProgramIncrementType programIncrementType;
-    @JoinColumn(name = "CD_PROGRAMA", referencedColumnName = "CD_PROGRAMA", nullable = false)
-    @ManyToOne(optional = false)
-    private Program program;
+    @Column(name = "NB_PI", nullable = false, length = 25)
+    private String ProgramIncrementName;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "programIncrement")
+    private List<Project> projects;
 
     public ProgramIncrement() {
     }
@@ -49,10 +36,9 @@ public class ProgramIncrement implements Serializable {
         this.programIncrementId = programIncrementId;
     }
 
-    public ProgramIncrement(Integer programIncrementId, int programIncrementScrumId, String programIncrementScrumName) {
+    public ProgramIncrement(Integer programIncrementId, String ProgramIncrementName) {
         this.programIncrementId = programIncrementId;
-        this.programIncrementScrumId = programIncrementScrumId;
-        this.programIncrementScrumName = programIncrementScrumName;
+        this.ProgramIncrementName = ProgramIncrementName;
     }
 
     public Integer getProgramIncrementId() {
@@ -63,60 +49,20 @@ public class ProgramIncrement implements Serializable {
         this.programIncrementId = programIncrementId;
     }
 
-    public int getProgramIncrementScrumId() {
-        return programIncrementScrumId;
+    public String getProgramIncrementName() {
+        return ProgramIncrementName;
     }
 
-    public void setProgramIncrementScrumId(int programIncrementScrumId) {
-        this.programIncrementScrumId = programIncrementScrumId;
+    public void setProgramIncrementName(String programIncrementName) {
+        this.ProgramIncrementName = programIncrementName;
     }
 
-    public String getProgramIncrementScrumName() {
-        return programIncrementScrumName;
+    public List<Project> getProjects() {
+        return projects;
     }
 
-    public void setProgramIncrementScrumName(String programIncrementScrumName) {
-        this.programIncrementScrumName = programIncrementScrumName;
-    }
-
-    public List<Requirement> getRequirements() {
-        return requirements;
-    }
-
-    public void setRequirements(List<Requirement> requirements) {
-        this.requirements = requirements;
-    }
-
-    public User getUserOwner() {
-        return userOwner;
-    }
-
-    public void setUserOwner(User userOwner) {
-        this.userOwner = userOwner;
-    }
-
-    public User getCdExpertoScrum() {
-        return userScrumMaster;
-    }
-
-    public void setCdExpertoScrum(User cdExpertoScrum) {
-        this.userScrumMaster = cdExpertoScrum;
-    }
-
-    public ProgramIncrementType getProgramIncrementType() {
-        return programIncrementType;
-    }
-
-    public void setProgramIncrementType(ProgramIncrementType programIncrementType) {
-        this.programIncrementType = programIncrementType;
-    }
-
-    public Program getProgram() {
-        return program;
-    }
-
-    public void setProgram(Program program) {
-        this.program = program;
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 
     @Override
@@ -137,7 +83,7 @@ public class ProgramIncrement implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bbva.ProgramIncrement[ programIncrementId=" + programIncrementId + " ]";
+        return "com.bbva.ProgramIncrementType[ programIncrementId=" + programIncrementId + " ]";
     }
 
 }

@@ -16,15 +16,15 @@ import java.util.List;
  */
 @Entity
 @Table(name = "thge035_metodologia",  uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"NB_TIPO_PROY"})})
+        @UniqueConstraint(columnNames = {"NB_METODOLOGIA"})})
 public class ProjectType implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "CD_TIPO_PROY", nullable = false)
+    @Column(name = "CD_METODOLOGIA", nullable = false)
     private Integer projectTypeId;
     @Basic(optional = false)
-    @Column(name = "NB_TIPO_PROY", nullable = false, length = 25)
+    @Column(name = "NB_METODOLOGIA", nullable = false, length = 25)
     private String projectTypeName;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectType")
