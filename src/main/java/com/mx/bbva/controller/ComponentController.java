@@ -1,16 +1,17 @@
 package com.mx.bbva.controller;
 
 import com.mx.bbva.business.entity.Component;
+import com.mx.bbva.business.entity.Requirement;
 import com.mx.bbva.business.entity.Typology;
 import com.mx.bbva.business.service.ComponentService;
+import com.mx.bbva.business.service.RequirementService;
 import com.mx.bbva.business.service.TypologyService;
+import com.mx.bbva.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -24,10 +25,42 @@ public class ComponentController {
 
     private ComponentService componentService;
     private TypologyService typologyService;
+    //private typologyService levelTypeService;
+    private RequirementService requirementService;
 
-    /**
-     * TODO: EVERY CONTROLLER NEEDS TO HAVE A CUSTOM SEARCH METHOD
-     */
+    @RequestMapping(value = "/alta", method = RequestMethod.GET)
+    public String initCreate(Model model, @RequestParam("requirementId")String requirementId) {
+
+
+       /* ModelAndView modelReq = new ModelAndView(Constants.ALTA_COMPONENTE);
+       /* modelReq.addObject("nivelesCmb", componentService.findAllLevels());
+        modelReq.addObject("areasCmb", areaService.findAllAreas());
+        modelReq.addObject("tecnologiasCmb", technologyService.findAllTechnologies());*/
+        /*List<Typology> lstTypology = new ArrayList<Typology>();
+        for (int i = 1; i <= 4; i++) {
+            Typology testTypology = new Typology();
+            testTypology.setTypologyId(i);
+            testTypology.setTypologyProductId("ID_" + i);
+            lstTypology.add(testTypology);
+        }*/
+        // modelReq.addObject("tipologiaNewCmb", typologyService.findAllNew());
+        //modelReq.addObject("tipologiaModCmb", typologyService.findAllMod());
+        int requirementIdInt = -1;
+        try{
+            requirementIdInt = Integer.parseInt(requirementId);
+        } catch (Exception e){
+            requirementIdInt = -1;
+        }
+        LOG.info("id: " + requirementIdInt);
+        if(-1!= requirementIdInt){
+            model.addAttribute("requerimientoData", requirementService.findRequirementForComponent(requirementIdInt));
+        } else {
+            model.addAttribute("requerimientoData", new Requirement());
+        }
+        model.addAttribute("componente", new Component());
+
+        return Constants.ALTA_COMPONENTE;
+    }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String createComponent(Model model) {
@@ -91,6 +124,12 @@ public class ComponentController {
     @Autowired
     public void setTypologyService(TypologyService typologyService) {
         this.typologyService = typologyService;
+    }
+
+
+    @Autowired
+    public void setRequirementService(RequirementService requirementService) {
+        this.requirementService = requirementService;
     }
 
 }
