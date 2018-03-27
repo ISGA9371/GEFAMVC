@@ -18,12 +18,9 @@
                $("#busqueda-menu").css("color","#f8cd51");
                bottom.html('');
 
-               var options = "<li><a href='/components'>COMPONENTES</a></li> " +
-               "<li> <a href='/doubts'>DUDA</a></li> "+
-               "<li> <a href='/'>ERROR</a></li> "+
-               "<li> <a href='/modifications'>MODIFICACION</a></li> "+
-               "<li> <a href='/requirements'>REQUERIMIENTOS</a></li>";
-
+               var options = "<li> <a href='/requirements'>BÚSQUEDA DE REQUERIMIENTO</a></li> "+
+               "<li> <a href='/components'>BÚSQUEDA DE COMPONENTE</a></li> "+
+               "<li> <a href='/requirements/add'>ALTA DE REQUERIMIENTO</a></li> ";
                bottom.html(options);
            });
         });
@@ -47,8 +44,10 @@
     </div>
     <nav class="nav nav-bar" id="top-nav">
         <ul class="nav nav-pills">
-            <li id="busqueda-menu">BÚSQUEDA</li>
+            <li id="busqueda-menu">FÁBRICA</li>
+            <li>PRESUPUESTO</li>
             <li>PRUEBAS</li>
+            <li>ADMIN</li>
         </ul>
     </nav>
     <div class="row bottom-bar">
