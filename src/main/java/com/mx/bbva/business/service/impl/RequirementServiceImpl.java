@@ -27,6 +27,11 @@ public class RequirementServiceImpl implements RequirementService {
         return requirementRepository.findById(requirementId).orElse(null);
     }
 
+    @Override
+    public Requirement findRequirementForComponent(Integer requirementId) {
+        return requirementRepository.findByRequirementId(requirementId);
+    }
+
     @Autowired
     public void setRequirementRepository(RequirementRepository requirementRepository) {
         this.requirementRepository = requirementRepository;
