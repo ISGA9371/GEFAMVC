@@ -6,6 +6,9 @@ public class ViewsURLs {
     public static final String NEW_REQUIREMENT = "AltaDeRequerimiento";
     public static final String EDIT_REQUIREMENT = "ModificarRequerimiento";
     public static final String SEARCH_REQUIREMENTS = "BusquedaDeRequerimientos";
+    public static final String NEW_COMPANY = "";
+    public static final String EDIT_COMPANY = "";
+    public static final String SEARCH_COMPANIES = "";
     public static final String NEW_DOUBT = "AltaDeDuda";
     public static final String EDIT_DOUBT = "";
     public static final String SEARCH_DOUBTS = "BusquedaDeDudas";
