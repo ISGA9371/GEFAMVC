@@ -10,4 +10,7 @@ public interface RequirementService {
     Requirement saveRequirement(Requirement requirement);
 
     Requirement findOneRequirement(Integer id);
+
+    Requirement findRequirementForComponent(Integer id);
+
 }
