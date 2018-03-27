@@ -53,7 +53,7 @@ public class ComponentController {
         }
         LOG.info("id: " + requirementIdInt);
         if(-1!= requirementIdInt){
-            model.addAttribute("requerimientoData", requirementService.findRequirementForComponent(requirementIdInt));
+            //model.addAttribute("requerimientoData", requirementService.findRequirementForComponent(requirementIdInt));
         } else {
             model.addAttribute("requerimientoData", new Requirement());
         }

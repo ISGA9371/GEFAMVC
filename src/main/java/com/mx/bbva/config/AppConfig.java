@@ -66,8 +66,6 @@ public class AppConfig implements ApplicationContextAware, WebMvcConfigurer {
         registry.addResourceHandler("/css/**").addResourceLocations("WEB-INF/public/css/");
         registry.addResourceHandler("/img/**").addResourceLocations("WEB-INF/public/img/");
         registry.addResourceHandler("/js/**").addResourceLocations("WEB-INF/public/js/");
-        registry.addResourceHandler("/fonts/**").addResourceLocations("WEB-INF/public/fonts/");
-
 
     }
 

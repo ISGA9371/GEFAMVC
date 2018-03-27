@@ -28,4 +28,6 @@ public class ViewsURLs {
     public static final String NEW_TRANSFER = "AltaDeTraspaso";
     public static final String STATUS_PAYMENT = "SeguimientoDePago";
     public static final String BILLING_CUT = "CorteDeFacturacion";
+    public static final String NEW_INCIDENCE="";
+    public static final String SEARCH_INCIDENCE="";
 }
