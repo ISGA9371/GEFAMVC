@@ -13,7 +13,5 @@ public interface UserService {
 
     List<User> findUsersByType(Integer profileTypeId);
 
-    List<User> findUsersByLevel(Integer levelId);
-
     List<User> findAllUsers();
 }

@@ -17,6 +17,7 @@
         <appengine.target.version>1.9.63</appengine.target.version>
         <spring.version>5.0.4.RELEASE</spring.version>
         <appengine.app.name>GEFA-APP</appengine.app.name>
+        <appengine.app.version>1-0-0</appengine.app.version>
     </properties>
 
     <dependencies>

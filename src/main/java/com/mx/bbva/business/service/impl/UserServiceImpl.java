@@ -33,11 +33,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findUsersByLevel(Integer levelId) {
-        return userRepository.findByLevel_levelId(levelId);
-    }
-
-    @Override
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
