@@ -1,20 +1,22 @@
-
-
 function init() {
+    //showH();
+    addCalendars();
     loadSelects();
-    var rootVersion = document.getElementById('version-mdc-text');
-    var textVersion = new mdc.textField.MDCTextField(rootVersion);
-    textVersion.value = getVersion();
+    getVersion();
+    addHiddenEvents();
     defaultTypologies();
     addSelectEvents();
     addComponentValidation();
-    addRequirementValidation();
+    //addRequirementValidation();
     addDifficultyValidation();
     addHoursValidation();
     addButtonEvents();
 }
 
 function getVersion() {
+    var rootVersion = document.getElementById('version-mdc-text');
+    var textVersion = new mdc.textField.MDCTextField(rootVersion);
+
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth() + 1;
@@ -27,7 +29,9 @@ function getVersion() {
         mm = '0' + mm;
     }
     var today = 'v' + yyyy + mm + dd;
-    return today;
+
+    textVersion.value = today;
+    $('#componentVersion').val(textVersion.value);
 }
 
 function addComponentValidation() {
@@ -44,7 +48,7 @@ function addComponentValidation() {
         });
 }
 
-function addRequirementValidation() {
+/*function addRequirementValidation() {
     var goodDescription120 = /^([A-Za-z0-9áéíóúñÁÉÍÓÚÑ]( )?)*$/
     $('#requieriment-mdc-text :input')
         .data("oldValue", '')
@@ -56,7 +60,7 @@ function addRequirementValidation() {
                 return $this.val($this.data('oldValue'));
             return $this.data('oldValue', newValue)
         });
-}
+}*/
 
 function addDifficultyValidation() {
     var goodDifficulty = /^($|[0-4]{1}$)/
@@ -96,29 +100,64 @@ function addButtonEvents() {
         validateWindowData();
     })
 }
- function addSelectEvents(){
 
-     var rootType = document.getElementById('nuemod-js-select');
-     //var hiddenType = document.getElementById('selected-technology');
-     var selectType = new mdc.select.MDCSelect(rootType);
+function addSelectEvents() {
+    var hiddenTypology = document.getElementById('typology');
+    var rootType = document.getElementById('nuemod-js-select');
+    var selectType = new mdc.select.MDCSelect(rootType);
 
-     rootType.addEventListener('MDCSelect:change', function() {
-         alert(selectType.value);
-         if(selectType.value == 0){
-             $('#tipologia-empty-js-select').hide();
-             new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).selectedIndex = -1
-             $('#tipologia-news-js-select').show();
-             $('#tipologia-mods-js-select').hide();
-         }
-         if(selectType.value == 1){
-             $('#tipologia-empty-js-select').hide();
-             new mdc.select.MDCSelect(document.getElementById('tipologia-mods-js-select')).selectedIndex = -1
-             $('#tipologia-news-js-select').hide();
-             $('#tipologia-mods-js-select').show();
-         }
-         selectType.clearSelection
-     });
- }
+    rootType.addEventListener('MDCSelect:change', function () {
+        $("#componentNewMod").val(selectType.value);
+        if (selectType.value == 0) {
+            $('#tipologia-empty-js-select').hide();
+            new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).selectedIndex = -1;
+            $('#tipologia-news-js-select').show();
+            $('#tipologia-mods-js-select').hide();
+        }
+        if (selectType.value == 1) {
+            $('#tipologia-empty-js-select').hide();
+            new mdc.select.MDCSelect(document.getElementById('tipologia-mods-js-select')).selectedIndex = -1;
+            $('#tipologia-news-js-select').hide();
+            $('#tipologia-mods-js-select').show();
+        }
+        hiddenTypology.value = new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).value;
+        new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
+        new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
+    });
+
+    var rootNews = document.getElementById('tipologia-news-js-select');
+    var selectNews = new mdc.select.MDCSelect(rootNews);
+
+    rootNews.addEventListener('MDCSelect:change', function () {
+        if (selectNews.value.match(/\|/g).length == 2) {
+            var splittedNews = selectNews.value.split('|');
+            hiddenTypology.value = splittedNews[0];
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedNews[1];
+            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedNews[2];
+        } else {
+            hiddenTypology.value = "";
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
+        }
+    });
+
+    var rootMods = document.getElementById('tipologia-mods-js-select');
+    var selectMods = new mdc.select.MDCSelect(rootMods);
+
+    rootMods.addEventListener('MDCSelect:change', function () {
+        if (selectMods.value.match(/\|/g).length == 2) {
+            var splittedMods = selectMods.value.split('|');
+            hiddenTypology.value = splittedMods[0];
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedMods[1];
+            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedMods[2];
+        } else {
+            hiddenTypology.value = "";
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
+        }
+    });
+}
+
 function validateWindowData() {
     hideData();
 }
@@ -135,16 +174,80 @@ function hideData() {
 
 }
 
-function loadSelects(){
+function loadSelects() {
     mdc.select.MDCSelect.attachTo(document.getElementById('nuemod-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-empty-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-news-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-mods-js-select'));
 }
 
-function defaultTypologies(){
+function defaultTypologies() {
     $('#tipologia-empty-js-select').show();
     new mdc.select.MDCSelect(document.getElementById('tipologia-empty-js-select')).disabled = true;
     $('#tipologia-news-js-select').hide();
     $('#tipologia-mods-js-select').hide();
+}
+
+function addHiddenEvents() {
+    addTextSyncMdcToHtml("componentName", "component-mdc-text");
+    addTextSyncMdcToHtml("componentVersion", "version-mdc-text");
+    addTextSyncMdcToHtml("componentDesignRealDeliverDate", "FecRealCFG-mdc-text");
+    addTextSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text");
+    addTextSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-txt");
+    addTextSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text");
+}
+
+function addTextSyncMdcToHtml(htmlField, mdcField) {
+    var rootName = document.getElementById(mdcField);
+    var inputName = rootName.querySelector('input');
+    var hiddenName = document.getElementById(htmlField);
+    var textName = new mdc.textField.MDCTextField(rootName);
+
+    inputName.addEventListener('keyup', function () {
+        hiddenName.value = textName.value;
+    });
+    inputName.addEventListener('change', function () {
+        hiddenName.value = textName.value;
+    });
+    inputName.addEventListener('blur', function () {
+        hiddenName.value = textName.value;
+    });
+}
+
+function showH() {
+    document.getElementById('EstadoLinea').style.display = 'inline';
+}
+
+function addCalendars(){
+    $('#FecRealCFG').datetimepicker({
+        format: 'DD/MM/YYYY',
+        widgetPositioning: {
+            horizontal: 'auto',
+            vertical: 'top'
+        }
+    });
+
+    $('#FecPreFac').datetimepicker({
+        format: 'DD/MM/YYYY',
+        widgetPositioning: {
+            horizontal: 'auto',
+            vertical: 'top'
+        }
+    });
+
+    $('#FecNegFac').datetimepicker({
+        format: 'DD/MM/YYYY',
+        widgetPositioning: {
+            horizontal: 'auto',
+            vertical: 'top'
+        }
+    });
+
+    $('#FecRealFac').datetimepicker({
+        format: 'DD/MM/YYYY',
+        widgetPositioning: {
+            horizontal: 'auto',
+            vertical: 'top'
+        }
+    });
 }
