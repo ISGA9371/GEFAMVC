@@ -63,13 +63,13 @@ public class Requirement implements Serializable {
     @JoinColumn(name = "CD_APLICACION", referencedColumnName = "CD_APLICACION")
     @ManyToOne
     private Application application;
-    @JoinColumn(name = "CD_SCRUM", referencedColumnName = "CD_SCRUM")
+    @JoinColumn(name = "CD_SDA", referencedColumnName = "CD_SDA")
     @ManyToOne
-    private ProgramIncrement programIncrementScrum;
+    private Project project;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
     private Area area;
-    @JoinColumn(name = "CD_TIPO_PROY", referencedColumnName = "CD_TIPO_PROY", nullable = false)
+    @JoinColumn(name = "CD_METODOLOGIA", referencedColumnName = "CD_METODOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private ProjectType projectType;
     @JoinColumn(name = "CD_TIPO_SERVICIO", referencedColumnName = "CD_TIPO_SERVICIO", nullable = false)
@@ -242,12 +242,12 @@ public class Requirement implements Serializable {
         this.application = application;
     }
 
-    public ProgramIncrement getProgramIncrementScrum() {
-        return programIncrementScrum;
+    public Project getProject() {
+        return project;
     }
 
-    public void setProgramIncrementScrum(ProgramIncrement programIncrementScrum) {
-        this.programIncrementScrum = programIncrementScrum;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public Area getArea() {
