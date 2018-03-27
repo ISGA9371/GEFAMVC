@@ -13,8 +13,8 @@
     <script type="text/javascript">
         $(function () {
             var bottom = $("#bottom-pills");
-            $("#top-nav .nav-pills li").css("color","white");
            $("#busqueda-menu").click(function () {
+               $("#top-nav .nav-pills li").css("color","white");
                $("#busqueda-menu").css("color","#f8cd51");
                bottom.html('');
 
@@ -23,6 +23,18 @@
                "<li> <a href='/requirements/add'>ALTA DE REQUERIMIENTO</a></li> ";
                bottom.html(options);
            });
+
+            $("#presupuesto-menu").click(function () {
+                $("#top-nav .nav-pills li").css("color","white");
+                $("#presupuesto-menu").css("color","#f8cd51");
+                bottom.html('');
+
+                var options = "<li> <a href=''>Seguimiento de Pago</a></li> "+
+                    "<li> <a href=''>Seguimiento Corte de Facturación</a></li> "+
+                    "<li> <a href=''>Alta de PEP</a></li> "+
+                    "<li> <a href=''>Busqueda de PEP</a></li> ";
+                bottom.html(options);
+            });
         });
     </script>
 
@@ -45,7 +57,7 @@
     <nav class="nav nav-bar" id="top-nav">
         <ul class="nav nav-pills">
             <li id="busqueda-menu">FÁBRICA</li>
-            <li>PRESUPUESTO</li>
+            <li id="presupuesto-menu">PRESUPUESTO</li>
             <li>PRUEBAS</li>
             <li>ADMIN</li>
         </ul>
