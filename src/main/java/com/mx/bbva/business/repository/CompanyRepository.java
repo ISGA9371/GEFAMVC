@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Integer> {
-    @Query(value = "SELECT c.companyId, c.companyName FROM Company c")
+    @Query(value = "SELECT NEW com.mx.bbva.business.entity.Company(c.companyId, c.companyName) FROM Company c")
     List<Company> findAllCompaniesOnlyIdAndName();
 }

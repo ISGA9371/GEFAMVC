@@ -23,6 +23,11 @@ public class LevelServiceImpl implements LevelService {
         return levelRepository.findAllByLevelType(levelType);
     }
 
+    @Override
+    public List<Level> findByLevelSuperior(Integer levelSuperiorId) {
+        return levelRepository.findAllByLevelSuperior(levelSuperiorId);
+    }
+
     @Autowired
     public void setLevelRepository(LevelRepository levelRepository) {
         this.levelRepository = levelRepository;
