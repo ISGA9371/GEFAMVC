@@ -15,39 +15,39 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/program-increment")
+@RequestMapping(value = "/program-increments")
 public class ProgramIncrementController {
-    private ProgramIncrementService programIncrementTypeService;
+    private ProgramIncrementService programIncrementService;
     private TechnologyService technologyService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getAllProgramIncrements(Model model) {
-        List<ProgramIncrement> piTypes = programIncrementTypeService.findAll();
-        model.addAttribute("piTypes", piTypes);
-        return "SOME_URL";
+        List<ProgramIncrement> programIncrements = programIncrementService.findAll();
+        model.addAttribute("programIncrements", programIncrements);
+        return "fabrica/testlist";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String createProgramIncrement(Model model) {
-        model.addAttribute("ProgramIncrement", new ProgramIncrement());
-        return "SOME_URL";
+        model.addAttribute("programIncrement", new ProgramIncrement());
+        return "fabrica/testedit";
     }
 
     @RequestMapping(path = "/{programIncrementTypeId}", method = RequestMethod.GET)
     public String editProgramIncrement(Model model, @PathVariable(value = "programIncrementTypeId") Integer programIncrementTypeId) {
         if (null != programIncrementTypeId) {
-            ProgramIncrement programIncrement = programIncrementTypeService.findOne(programIncrementTypeId);
-            model.addAttribute("ProgramIncrement", programIncrement);
+            ProgramIncrement programIncrement = programIncrementService.findOne(programIncrementTypeId);
+            model.addAttribute("programIncrement", programIncrement);
         } else {
-            model.addAttribute("ProgramIncrement", new ProgramIncrement());
+            model.addAttribute("programIncrement", new ProgramIncrement());
         }
-        return "SOME_URL";
+        return "fabrica/testedit";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String saveComponent(@ModelAttribute("ProgramIncrement") ProgramIncrement programIncrement) {
-        programIncrementTypeService.saveOne(programIncrement);
-        return "SOME_URL";
+    public String saveComponent(@ModelAttribute("programIncrement") ProgramIncrement programIncrement) {
+        programIncrementService.saveOne(programIncrement);
+        return "redirect:/program-increments";
     }
 
     @ModelAttribute("technologies")
@@ -56,8 +56,8 @@ public class ProgramIncrementController {
     }
 
     @Autowired
-    public void setProgramIncrementService(ProgramIncrementService programIncrementTypeService) {
-        this.programIncrementTypeService = programIncrementTypeService;
+    public void setProgramIncrementService(ProgramIncrementService programIncrementService) {
+        this.programIncrementService = programIncrementService;
     }
 
     @Autowired
