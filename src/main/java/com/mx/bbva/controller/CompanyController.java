@@ -33,7 +33,7 @@ public class CompanyController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String saveCompany(@ModelAttribute("companye") Company company) {
+    public String saveCompany(@ModelAttribute("company") Company company) {
         // TODO Validate user
 
         // LOG.info("Saving new company... " + company.getCompanyName());
