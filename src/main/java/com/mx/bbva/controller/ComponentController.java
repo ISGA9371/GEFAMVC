@@ -1,22 +1,18 @@
 package com.mx.bbva.controller;
 
 import com.mx.bbva.business.entity.Component;
-import com.mx.bbva.business.entity.Requirement;
 import com.mx.bbva.business.entity.Typology;
 import com.mx.bbva.business.service.ComponentService;
-import com.mx.bbva.business.service.RequirementService;
 import com.mx.bbva.business.service.TypologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static com.mx.bbva.util.ViewsURLs.*;
@@ -28,95 +24,33 @@ public class ComponentController {
 
     private ComponentService componentService;
     private TypologyService typologyService;
-    //private typologyService levelTypeService;
-    private RequirementService requirementService;
+
+    /**
+     * TODO: EVERY CONTROLLER NEEDS TO HAVE A CUSTOM SEARCH METHOD
+     */
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String createComponent(Model model, @RequestParam("requirementId") String requirementId) {
+    public String createComponent(Model model) {
+        // TODO Validate user
 
-        int requirementIdInt = -1;
-        try {
-            requirementIdInt = Integer.parseInt(requirementId);
-        } catch (Exception e) {
-            requirementIdInt = -1;
-        }
-        //LOG.info("id: " + requirementIdInt);
-        try {
-            if (-1 != requirementIdInt) {
-                model.addAttribute("requerimientoData", requirementService.findRequirementForComponent(requirementIdInt));
-            } else {
-                model.addAttribute("requerimientoData", new Requirement());
-            }
-            model.addAttribute("componente", new Component());
-        } catch (Exception e) {
-            LOG.info("ERROR AL RECUPERAR REQUERIMIENTO");
-            LOG.log(Level.SEVERE, e.getMessage(), e);
-            Requirement contingency = new Requirement();
-            contingency.setRequirementName("ERROR AL RECUPERAR REQUERIMIENTO");
-            contingency.setRequirementId(1);
-            model.addAttribute("requerimientoData", contingency);
-        }
-        model.addAttribute("componente", new Component());
+        LOG.info("Creating new component");
+        model.addAttribute("component", new Component());
+        //TODO Add catalogs
         return URL_FACTORY + NEW_COMPONENT;
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveComponent(@RequestParam("componentName") String componentName, @RequestParam("componentVersion") String componentVersion,
-                                @RequestParam("componentNewMod") String componentNewMod, @RequestParam("requirement") String requirement,
-                                @RequestParam("typology") String typology, @RequestParam("componentDesignRealDeliverDate") String componentDesignRealDeliverDate,
-                                @RequestParam("componentPreviewDeliverDate") String componentPreviewDeliverDate, @RequestParam("componentPossibleDeliverDate") String componentPossibleDeliverDate,
-                                @RequestParam("componentRealDeliverDate") String componentRealDeliverDate) {
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public String saveComponent(@ModelAttribute("componente") Component component) {
+        // TODO Validate user
+        LOG.info("Saving new component... " + component.getComponentName());
+        componentService.saveComponent(component);
 
-        // LOG.info("Saving new component... " + component.getComponentName())
-        try {
-            LOG.info("Nombre Componente: " + componentName);
-            Component protoComponent = new Component();
-            protoComponent.setComponentName(componentName);
-            protoComponent.setComponentVersion(componentVersion);
-            protoComponent.setComponentNewMod(componentNewMod);
-            Requirement protoRequirement = null;
-            int requirementIdInt = -1;
-            try {
-                requirementIdInt = Integer.parseInt(requirement);
-            } catch (Exception e) {
-                requirementIdInt = -1;
-            }
-            try {
-                if (-1 != requirementIdInt) {
-                    protoRequirement = requirementService.findRequirementForComponent(requirementIdInt);
-                } else {
-                    //protoRequirement = new Requirement();
-                    protoRequirement.setRequirementId(1);
-                }
-            } catch (Exception e) {
-                LOG.info("ERROR AL RECUPERAR REQUERIMIENTO");
-                LOG.log(Level.SEVERE, e.getMessage(), e);
-                //protoRequirement = new Requirement();
-                protoRequirement.setRequirementId(1);
-            }
-            protoComponent.setRequirement(protoRequirement);
-            Typology protoTypology = this.typologyService.findById(typology);
-            protoComponent.setTypology(protoTypology);
-            Date protoComponentDesignRealDeliverDate = new SimpleDateFormat("dd/MM/yyyy").parse(componentDesignRealDeliverDate);
-            protoComponent.setComponentDesignRealDeliverDate(protoComponentDesignRealDeliverDate);
-            Date protoComponentPreviewDeliverDate = new SimpleDateFormat("dd/MM/yyyy").parse(componentPreviewDeliverDate);
-            protoComponent.setComponentPreviewDeliverDate(protoComponentPreviewDeliverDate);
-            Date protoComponentPossibleDeliverDate = new SimpleDateFormat("dd/MM/yyyy").parse(componentPossibleDeliverDate);
-            protoComponent.setComponentPossibleDeliverDate(protoComponentPossibleDeliverDate);
-            Date protoComponentRealDeliverDate = new SimpleDateFormat("dd/MM/yyyy").parse(componentRealDeliverDate);
-            protoComponent.setComponentRealDeliverDate(protoComponentRealDeliverDate);
-
-        } catch (Exception e) {
-            LOG.info("ERROR AL GUARDAR COMPONENTE");
-            LOG.log(Level.SEVERE, e.getMessage(), e);
-        }
         return URL_FACTORY + EDIT_COMPONENT;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String findAllComponents(Model model) {
         // TODO Validate user
-
         List<Component> components = componentService.findAllComponents();
         model.addAttribute("components", components);
 
@@ -155,12 +89,6 @@ public class ComponentController {
     @Autowired
     public void setTypologyService(TypologyService typologyService) {
         this.typologyService = typologyService;
-    }
-
-
-    @Autowired
-    public void setRequirementService(RequirementService requirementService) {
-        this.requirementService = requirementService;
     }
 
 }

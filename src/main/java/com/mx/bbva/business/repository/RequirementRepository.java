@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RequirementRepository extends JpaRepository<Requirement, Integer> {
-    Requirement findByRequirementId(Integer requirementId);
+
 }
