@@ -5,7 +5,7 @@
  */
 package com.mx.bbva.business.entity;
 
-import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,8 +26,8 @@ public class LevelType implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_TIPO_NIVEL", nullable = false, length = 50)
     private String levelTypeName;
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "levelType")
+    @JsonIgnore
     private List<Level> levels;
 
     public LevelType() {

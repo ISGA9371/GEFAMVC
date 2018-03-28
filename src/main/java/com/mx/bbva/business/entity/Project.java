@@ -23,8 +23,9 @@ public class Project implements Serializable {
     private Integer projectId;
     @Basic(optional = false)
     @Column(name = "CD_SDA", nullable = false)
-    private int projectScrumId;
-    @JoinColumn(name = "CD_PI", referencedColumnName = "CD_PI", nullable = false)
+    private String projectScrumId;
+    //@JoinColumn(name = "CD_TIPO_PI", referencedColumnName = "CD_TIPO_PI", nullable = false) //HACK
+    @JoinColumn(name = "CD_PI", referencedColumnName = "CD_TIPO_PI", nullable = false) //HACK
     @ManyToOne(optional = false)
     private ProgramIncrement programIncrement;
     @JoinColumn(name = "CD_METODOLOGIA", referencedColumnName = "CD_METODOLOGIA", nullable = false)
@@ -40,7 +41,7 @@ public class Project implements Serializable {
         this.projectId = projectId;
     }
 
-    public Project(Integer projectId, int projectScrumId) {
+    public Project(Integer projectId, String projectScrumId) {
         this.projectId = projectId;
         this.projectScrumId = projectScrumId;
     }
@@ -53,11 +54,11 @@ public class Project implements Serializable {
         this.projectId = projectId;
     }
 
-    public int getProjectScrumId() {
+    public String getProjectScrumId() {
         return projectScrumId;
     }
 
-    public void setProjectScrumId(int projectScrumId) {
+    public void setProjectScrumId(String projectScrumId) {
         this.projectScrumId = projectScrumId;
     }
 

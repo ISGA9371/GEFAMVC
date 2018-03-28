@@ -5,7 +5,7 @@
  */
 package com.mx.bbva.business.entity;
 
-import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -69,9 +69,9 @@ public class Requirement implements Serializable {
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
     private Area area;
-    @JoinColumn(name = "CD_METODOLOGIA", referencedColumnName = "CD_METODOLOGIA", nullable = false)
+    /*@JoinColumn(name = "CD_METODOLOGIA", referencedColumnName = "CD_METODOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private ProjectType projectType;
+    private ProjectType projectType;*/
     @JoinColumn(name = "CD_TIPO_SERVICIO", referencedColumnName = "CD_TIPO_SERVICIO", nullable = false)
     @ManyToOne(optional = false)
     private ServiceType serviceType;
@@ -258,13 +258,13 @@ public class Requirement implements Serializable {
         this.area = area;
     }
 
-    public ProjectType getProjectType() {
+    /*public ProjectType getProjectType() {
         return projectType;
     }
 
     public void setProjectType(ProjectType projectType) {
         this.projectType = projectType;
-    }
+    }*/
 
     public ServiceType getServiceType() {
         return serviceType;

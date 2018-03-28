@@ -5,7 +5,7 @@
  */
 package com.mx.bbva.business.entity;
 
-import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,9 +26,9 @@ public class ProjectType implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_METODOLOGIA", nullable = false, length = 25)
     private String projectTypeName;
-    @JsonIgnore
+    /*@JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectType")
-    private List<Requirement> requirements;
+    private List<Requirement> requirements;*/
 
     public ProjectType() {
     }
@@ -58,13 +58,13 @@ public class ProjectType implements Serializable {
         this.projectTypeName = projectTypeName;
     }
 
-    public List<Requirement> getRequirements() {
+    /*public List<Requirement> getRequirements() {
         return requirements;
     }
 
     public void setRequirements(List<Requirement> requirements) {
         this.requirements = requirements;
-    }
+    }*/
 
     @Override
     public int hashCode() {

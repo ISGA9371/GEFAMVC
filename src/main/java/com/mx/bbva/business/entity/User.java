@@ -5,7 +5,7 @@
  */
 package com.mx.bbva.business.entity;
 
-import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;

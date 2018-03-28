@@ -5,7 +5,7 @@
  */
 package com.mx.bbva.business.entity;
 
-import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -47,7 +47,7 @@ public class Budget implements Serializable {
     private Double budgetAvailable;
     @Column(name = "IM_INCURRIDO_PBAS", precision = 22)
     private Double budgetIncurredTestFactory;
-    @Column(name = "IM_IMCURRIDO_FSW", precision = 22)
+    @Column(name = "IM_INCURRIDO_FSW", precision = 22)
     private Double budgetIncurredSoftwareFactory;
     @Column(name = "TP_DESLIZADO")
     private byte[] budgetForNextYear;

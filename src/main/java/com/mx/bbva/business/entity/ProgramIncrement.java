@@ -5,7 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
-import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,12 +16,12 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge013_pi")
+@Table(name = "thge013_tipo_pi") /*HACK*/
 public class ProgramIncrement implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "CD_PI", nullable = false)
+    @Column(name = "CD_TIPO_PI", nullable = false) //HACK
     private Integer programIncrementId;
     @Basic(optional = false)
     @Column(name = "NB_PI", nullable = false, length = 25)
