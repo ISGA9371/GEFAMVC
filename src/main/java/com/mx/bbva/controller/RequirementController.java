@@ -134,10 +134,10 @@ public class RequirementController {
         return this.serviceTypeService.findAllServiceTypes();
     }
 
-    @ModelAttribute("programIncrements")
-    public List<ProgramIncrement> populateProgramIncrements() {
-        return this.programIncrementTypeService.findAll();
-    }
+ //   @ModelAttribute("programIncrements")
+ //   public List<ProgramIncrement> populateProgramIncrements() {
+ //       return this.programIncrementTypeService.findAll();
+ //   }
 
     // Import services
     @Autowired
@@ -190,8 +190,8 @@ public class RequirementController {
         this.serviceTypeService = serviceTypeService;
     }
 
-    @Autowired
-    public void setProgramIncrementService(ProgramIncrementService programIncrementTypeService) {
-        this.programIncrementTypeService = programIncrementTypeService;
-    }
+    //@Autowired
+    //public void setProgramIncrementService(ProgramIncrementService programIncrementTypeService) {
+    //    this.programIncrementTypeService = programIncrementTypeService;
+    //}
 }
