@@ -33,6 +33,7 @@ public class RequirementController {
     private CompanyService companyService;
     private ServiceTypeService serviceTypeService;
     private ProgramIncrementService programIncrementTypeService;
+    private MethodologyService methodologyService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addRequirement(Model model) {
@@ -76,10 +77,10 @@ public class RequirementController {
     public String findRequirements(Model model,@ModelAttribute(value="criteria") RequirementSearchTO criteria) {
         LOGGER.info("Find requirements by selected criteria");
 
-        LOGGER.info("Criteria:name "+criteria.getName());
+        LOGGER.info("Criteria "+criteria);
         //List<Requirement> requirements = requirementService.findAllRequirements();
         //model.addAttribute("requirements", requirements);
-        return URL_FACTORY + SEARCH_REQUIREMENTS;
+        return "redirect:/requirements";
     }
 
     // Model Attributes will available to the view all the time
@@ -125,7 +126,6 @@ public class RequirementController {
 
     @ModelAttribute("companies")
     public List<Company> populateCompanies() {
-        LOGGER.info("COMPAS "+this.companyService.findAllCompaniesForDropDownList());
         return this.companyService.findAllCompaniesForDropDownList();
     }
 
@@ -138,6 +138,10 @@ public class RequirementController {
  //   public List<ProgramIncrement> populateProgramIncrements() {
  //       return this.programIncrementTypeService.findAll();
  //   }
+    @ModelAttribute("methodologies")
+    public List<Methodology> populateMethodologies() {
+        return this.methodologyService.findAllMethodologies();
+    }
 
     // Import services
     @Autowired
@@ -194,4 +198,9 @@ public class RequirementController {
     //public void setProgramIncrementService(ProgramIncrementService programIncrementTypeService) {
     //    this.programIncrementTypeService = programIncrementTypeService;
     //}
+
+    @Autowired
+    public void setMethodologyService(MethodologyService methodologyService){
+        this.methodologyService = methodologyService;
+    }
 }

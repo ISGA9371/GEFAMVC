@@ -110,4 +110,22 @@ public class RequirementSearchTO {
     public void setPep(String pep) {
         this.pep = pep;
     }
+
+    @Override
+    public String toString() {
+        return "RequirementSearchTO{" +
+                "name='" + name + '\'' +
+                ", directionId=" + directionId +
+                ", subDirectionId=" + subDirectionId +
+                ", responsible='" + responsible + '\'' +
+                ", attAreaId=" + attAreaId +
+                ", proyTypeId=" + proyTypeId +
+                ", techId=" + techId +
+                ", companyId=" + companyId +
+                ", serviceTypeId=" + serviceTypeId +
+                ", initialPropDate='" + initialPropDate + '\'' +
+                ", finalPropDate='" + finalPropDate + '\'' +
+                ", pep='" + pep + '\'' +
+                '}';
+    }
 }
