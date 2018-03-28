@@ -1,7 +1,11 @@
 package com.mx.bbva.controller;
 
 import com.mx.bbva.business.entity.Issue;
+import com.mx.bbva.business.entity.Origin;
+import com.mx.bbva.business.entity.Priority;
 import com.mx.bbva.business.service.IssueService;
+import com.mx.bbva.business.service.OriginService;
+import com.mx.bbva.business.service.PriorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +25,8 @@ public class IssueController {
     private static final Logger LOG = Logger.getLogger(IssueController.class.getName());
 
     private IssueService issueService;
+    private OriginService originService;
+    private PriorityService priorityService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String createIssue(Model model) {
@@ -59,8 +65,28 @@ public class IssueController {
         return URL_FACTORY + EDIT_ISSUE;
     }
 
+    @ModelAttribute("origins")
+    public List<Origin> populateOrigins() {
+        return this.originService.findAllOrigins();
+    }
+
+    @ModelAttribute("priorities")
+    public List<Priority> populatePriorities() {
+        return this.priorityService.findAllPriorities();
+    }
+
     @Autowired
     public void setIssueService(IssueService issueService) {
         this.issueService = issueService;
+    }
+
+    @Autowired
+    public void setOriginService(OriginService originService) {
+        this.originService = originService;
+    }
+
+    @Autowired
+    public void setPriorityService(PriorityService priorityService) {
+        this.priorityService = priorityService;
     }
 }
