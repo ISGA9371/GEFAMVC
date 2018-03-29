@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -30,7 +31,6 @@ public class ProgramIncrementController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getAllProgramIncrements(Model model) {
         List<ProgramIncrement> programIncrements = programIncrementService.findAll();
-        model.addAttribute("workplace", new Workplace());
         model.addAttribute("programIncrements", programIncrements);
         return "fabrica/testlist";
     }
@@ -53,8 +53,14 @@ public class ProgramIncrementController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String saveComponent(@ModelAttribute("programIncrement") ProgramIncrement programIncrement, BindingResult result) {
+    public String saveProgramIncrement(@ModelAttribute("programIncrement") ProgramIncrement programIncrement,
+                                       BindingResult result) {
+        LOG.info("Saving one PI...");
+        if (result.hasErrors()) {
+            return "fabrica/testlist";
+        }
         programIncrementService.saveOne(programIncrement);
+        LOG.info("Success... PI Saved");
         return "redirect:/program-increments";
     }
 
