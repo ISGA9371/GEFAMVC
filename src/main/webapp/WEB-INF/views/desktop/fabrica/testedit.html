@@ -9,7 +9,7 @@
     <select class="form-control" id="testTech" name="testTech">
         <option value="">Select</option>
         <option th:each="technology : ${technologies}"
-                th:value="${technology.technologyId}"
+                th:value="${technology}"
                 th:text="${technology.technologyId}+' : '+${technology.technologyName}"></option>
     </select>
     <h2>Edit PI Details</h2>
@@ -27,6 +27,11 @@
                     <input type="text" class="form-control" th:field="*{programIncrementName}"/>
                 </div>
             </div>
+            <h2>Example dropdown list with objects</h2>
+                <select class="form-control" th:field="*{workplace.workplaceId}" id="testList" name="testList">
+                    <option value="">Select Test</option>
+                    <option th:each="workplace : ${workplaces}"  th:value="${workplace.workplaceId}" th:text="${workplace.workplaceId}+' : '+${workplace.workplaceName}"></option>
+                </select>
             <div class="form-group">
                 <div class="col-sm-2">
                     <button type="submit" class="btn btn-primary">Save</button>
