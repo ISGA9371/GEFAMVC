@@ -27,7 +27,6 @@ public class Transfer implements Serializable {
     @Column(name = "FH_RETIRO")
     @Temporal(TemporalType.DATE)
     private Date transferWithdrawalDate;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "IM_TRASPASO", precision = 22)
     private Double transferValue;
     @Column(name = "IM_RETIRO", precision = 22)

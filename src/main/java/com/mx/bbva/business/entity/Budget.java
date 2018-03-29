@@ -33,7 +33,7 @@ public class Budget implements Serializable {
     @Basic(optional = false)
     @Column(name = "TX_CENTRO_CTO", nullable = false, length = 10)
     private String budgetCostCenter;
-    @Column(name = "IM_PRESUPUESTO", precision = 22)
+    @Column(name = "s", precision = 22)
     private Double budgetAmount;
     @Column(name = "IM_AUTORIZADO", precision = 22)
     private Double budgetAuthorized;
@@ -45,6 +45,10 @@ public class Budget implements Serializable {
     private Double budgetDone;
     @Column(name = "IM_DISPONIBLE", precision = 22)
     private Double budgetAvailable;
+    @Column(name = "IM_COMP_PBAS", precision = 22)
+    private Double budgetCommittedTestFactory;
+    @Column(name = "IM_COMP_FSW", precision = 22)
+    private Double budgetCommittedSoftwareFactory;
     @Column(name = "IM_INCURRIDO_PBAS", precision = 22)
     private Double budgetIncurredTestFactory;
     @Column(name = "IM_INCURRIDO_FSW", precision = 22)
@@ -286,6 +290,22 @@ public class Budget implements Serializable {
 
     public void setBudgetRequirements(List<BudgetRequirement> budgetRequirements) {
         this.budgetRequirements = budgetRequirements;
+    }
+
+    public Double getBudgetCommittedTestFactory() {
+        return budgetCommittedTestFactory;
+    }
+
+    public void setBudgetCommittedTestFactory(Double budgetCommittedTestFactory) {
+        this.budgetCommittedTestFactory = budgetCommittedTestFactory;
+    }
+
+    public Double getBudgetCommittedSoftwareFactory() {
+        return budgetCommittedSoftwareFactory;
+    }
+
+    public void setBudgetCommittedSoftwareFactory(Double budgetCommittedSoftwareFactory) {
+        this.budgetCommittedSoftwareFactory = budgetCommittedSoftwareFactory;
     }
 
     @Override

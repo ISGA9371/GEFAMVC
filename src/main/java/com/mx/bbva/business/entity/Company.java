@@ -31,9 +31,6 @@ public class Company implements Serializable {
     @Basic(optional = false)
     @Column(name = "NU_PROVEEDOR", nullable = false, length = 6)
     private String companySupplierNumber;
-    @Basic(optional = false)
-    @Column(name = "CD_AREA", nullable = false)
-    private int areaId;
     @JoinColumn(name = "ST_EMPRESA", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
@@ -62,12 +59,11 @@ public class Company implements Serializable {
         this.companyName = companyName;
     }
 
-    public Company(Integer companyId, String companyName, String companyBusinessName, String companySupplierNumber, int areaId) {
+    public Company(Integer companyId, String companyName, String companyBusinessName, String companySupplierNumber) {
         this.companyId = companyId;
         this.companyName = companyName;
         this.companyBusinessName = companyBusinessName;
         this.companySupplierNumber = companySupplierNumber;
-        this.areaId = areaId;
     }
 
     public Integer getCompanyId() {
@@ -100,14 +96,6 @@ public class Company implements Serializable {
 
     public void setCompanySupplierNumber(String companySupplierNumber) {
         this.companySupplierNumber = companySupplierNumber;
-    }
-
-    public int getAreaId() {
-        return areaId;
-    }
-
-    public void setAreaId(int areaId) {
-        this.areaId = areaId;
     }
 
     public Status getStatus() {

@@ -56,6 +56,8 @@ public class Component implements Serializable {
     @Column(name = "TM_ALTA_COMP")
     @Temporal(TemporalType.TIMESTAMP)
     private Date componentUploadDate;
+    @Column(name = "NU_FACTURABLE")
+    private int componentForBill;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
     private List<Modification> modifications;
@@ -268,6 +270,14 @@ public class Component implements Serializable {
 
     public void setRequirement(Requirement requirement) {
         this.requirement = requirement;
+    }
+
+    public int getComponentForBill() {
+        return componentForBill;
+    }
+
+    public void setComponentForBill(int componentForBill) {
+        this.componentForBill = componentForBill;
     }
 
     @Override

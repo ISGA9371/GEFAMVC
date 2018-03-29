@@ -16,12 +16,12 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge013_pi") /*HACK*/
+@Table(name = "thge013_pi") 
 public class ProgramIncrement implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "CD_PI", nullable = false) //HACK
+    @Column(name = "CD_PI", nullable = false)
     private Integer programIncrementId;
     @Basic(optional = false)
     @Column(name = "NB_PI", nullable = false, length = 25)
