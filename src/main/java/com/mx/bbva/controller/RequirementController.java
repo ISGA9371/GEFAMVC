@@ -3,7 +3,6 @@ package com.mx.bbva.controller;
 
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
-import com.mx.bbva.to.RequirementSearchTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,23 +61,8 @@ public class RequirementController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getAllRequirements(Model model) {
         LOGGER.info("find requirements view");
-        //List<Requirement> requirements = requirementService.findAllRequirements();
-        //model.addAttribute("requirements", requirements);
-        RequirementSearchTO to = new RequirementSearchTO();
-
-        List<Level> c = this.levelService.findByLevelSuperior(2);
-        LOGGER.info("SUPEROIOr "+c.size());
-        model.addAttribute("criteria",to);
-        return URL_FACTORY + SEARCH_REQUIREMENTS;
-    }
-
-    @RequestMapping(value = "/find", method = RequestMethod.POST)
-    public String findRequirements(Model model,@ModelAttribute(value="criteria") RequirementSearchTO criteria) {
-        LOGGER.info("Find requirements by selected criteria");
-
-        LOGGER.info("Criteria:name "+criteria.getName());
-        //List<Requirement> requirements = requirementService.findAllRequirements();
-        //model.addAttribute("requirements", requirements);
+        List<Requirement> requirements = requirementService.findAllRequirements();
+        model.addAttribute("requirements", requirements);
         return URL_FACTORY + SEARCH_REQUIREMENTS;
     }
 
@@ -93,7 +77,7 @@ public class RequirementController {
     // LevelTypeId 2 - Sub-Direccion
     @ModelAttribute("subPrincipals")
     public List<Level> populateSubPrincipals() {
-        LOGGER.info(this.levelService.findByLevelType(new LevelType(2)).get(2).getLevelSuperior()+"");
+        LOGGER.info(this.levelService.findByLevelType(new LevelType(2)).get(2).getLevelSuperior() + "");
 
         return this.levelService.findByLevelType(new LevelType(2));
     }
@@ -125,7 +109,6 @@ public class RequirementController {
 
     @ModelAttribute("companies")
     public List<Company> populateCompanies() {
-        LOGGER.info("COMPAS "+this.companyService.findAllCompaniesForDropDownList());
         return this.companyService.findAllCompaniesForDropDownList();
     }
 
@@ -134,10 +117,10 @@ public class RequirementController {
         return this.serviceTypeService.findAllServiceTypes();
     }
 
-    @ModelAttribute("programIncrements")
-    public List<ProgramIncrement> populateProgramIncrements() {
-        return this.programIncrementTypeService.findAll();
-    }
+    //   @ModelAttribute("programIncrements")
+    //   public List<ProgramIncrement> populateProgramIncrements() {
+    //       return this.programIncrementTypeService.findAll();
+    //   }
 
     // Import services
     @Autowired
@@ -190,8 +173,9 @@ public class RequirementController {
         this.serviceTypeService = serviceTypeService;
     }
 
-    @Autowired
-    public void setProgramIncrementService(ProgramIncrementService programIncrementTypeService) {
-        this.programIncrementTypeService = programIncrementTypeService;
-    }
+    //@Autowired
+    //public void setProgramIncrementService(ProgramIncrementService programIncrementTypeService) {
+    //    this.programIncrementTypeService = programIncrementTypeService;
+    //}
+
 }

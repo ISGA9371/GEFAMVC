@@ -95,7 +95,7 @@ public class Workplace implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bbva.Workplace[ workplaceId=" + workplaceId + " ]";
+        return "com.mx.bbva.business.entity.Workplace( workplaceId=" + workplaceId + " )";
     }
 
 }

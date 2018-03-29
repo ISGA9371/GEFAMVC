@@ -25,7 +25,7 @@ public class Project implements Serializable {
     @Column(name = "CD_SDA", nullable = false)
     private String projectScrumId;
     //@JoinColumn(name = "CD_TIPO_PI", referencedColumnName = "CD_TIPO_PI", nullable = false) //HACK
-    @JoinColumn(name = "CD_PI", referencedColumnName = "CD_TIPO_PI", nullable = false) //HACK
+    @JoinColumn(name = "CD_PI", referencedColumnName = "CD_PI", nullable = false) //HACK
     @ManyToOne(optional = false)
     private ProgramIncrement programIncrement;
     @JoinColumn(name = "CD_METODOLOGIA", referencedColumnName = "CD_METODOLOGIA", nullable = false)
