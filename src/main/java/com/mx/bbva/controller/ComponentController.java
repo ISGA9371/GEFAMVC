@@ -1,18 +1,18 @@
 package com.mx.bbva.controller;
 
 import com.mx.bbva.business.entity.Component;
+import com.mx.bbva.business.entity.Requirement;
 import com.mx.bbva.business.entity.Typology;
 import com.mx.bbva.business.service.ComponentService;
+import com.mx.bbva.business.service.RequirementService;
 import com.mx.bbva.business.service.TypologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static com.mx.bbva.util.ViewsURLs.*;
@@ -24,18 +24,41 @@ public class ComponentController {
 
     private ComponentService componentService;
     private TypologyService typologyService;
-
+    private RequirementService requirementService;
     /**
      * TODO: EVERY CONTROLLER NEEDS TO HAVE A CUSTOM SEARCH METHOD
      */
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String createComponent(Model model) {
-        // TODO Validate user
+    public String createComponent(Model model, @RequestParam("requirementId") String requirementId) {
 
-        LOG.info("Creating new component");
-        model.addAttribute("component", new Component());
-        //TODO Add catalogs
+        int requirementIdInt = -1;
+        try {
+            requirementIdInt = Integer.parseInt(requirementId);
+        } catch (Exception e) {
+            requirementIdInt = -1;
+        }
+        //LOG.info("id: " + requirementIdInt);
+        try {
+            if (-1 != requirementIdInt) {
+                Requirement protoRequirement = requirementService.findOneRequirement(requirementIdInt);
+                if(protoRequirement == null){
+                    throw new NullPointerException("REQUERIMIENTO NULO");
+                }
+                model.addAttribute("requerimientoData", requirementService.findOneRequirement(requirementIdInt));
+            } else {
+                model.addAttribute("requerimientoData", new Requirement());
+            }
+            model.addAttribute("componente", new Component());
+        } catch (Exception e) {
+            LOG.info("ERROR AL RECUPERAR REQUERIMIENTO");
+            LOG.log(Level.SEVERE, e.getMessage(), e);
+            Requirement contingency = new Requirement();
+            contingency.setRequirementName("ERROR AL RECUPERAR REQUERIMIENTO");
+            contingency.setRequirementId(1);
+            model.addAttribute("requerimientoData", contingency);
+        }
+        model.addAttribute("componente", new Component());
         return URL_FACTORY + NEW_COMPONENT;
     }
 
@@ -85,6 +108,10 @@ public class ComponentController {
         this.componentService = componentService;
     }
 
+    @Autowired
+    public void setRequirementService(RequirementService requirementService) {
+        this.requirementService = requirementService;
+    }
 
     @Autowired
     public void setTypologyService(TypologyService typologyService) {
