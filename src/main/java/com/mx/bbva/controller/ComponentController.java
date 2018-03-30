@@ -30,7 +30,7 @@ public class ComponentController {
      */
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String createComponent(Model model, @RequestParam(required = false) Integer requirementId) {
+    public String createComponent(Model model, @RequestParam Integer requirementId) {
         // TODO Validate user
         LOG.info("Creating new component");
         Requirement requirement = requirementService.findOne(requirementId);
@@ -41,7 +41,7 @@ public class ComponentController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String saveComponent(@ModelAttribute("componente") Component component) {
+    public String saveComponent(@ModelAttribute("component") Component component) {
         // TODO Validate user
         LOG.info("Saving new component... " + component.getComponentName());
         componentService.saveComponent(component);
