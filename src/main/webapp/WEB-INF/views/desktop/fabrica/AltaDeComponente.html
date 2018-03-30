@@ -93,17 +93,18 @@
     }
 </style>
 <body>
-<form style="display:block" action="#" th:action="@{/components/save}" method="post">
+<div th:replace="layout/header :: cabeceraPrincipal"></div>
+<form style="display:block" action="#" th:action="@{/components/save}" th:object="${componente}" method="post">
 
     <!--HIDDEN PARA PRUEBAS>
-    <input id="statusTypology" type="text" required value="1" class="hiddenField" />
-    <input id="status" type="text" required value="1" class="hiddenField" />
-    <input id="typologyEmp" type="text" required value="1" class="hiddenField" /-->
+    <input id="statusTypology" type="text" required value="1" class="hiddenField" th:field="*{statusTypology}"/>
+    <input id="status" type="text" required value="1" class="hiddenField" th:field="*{status}"/>
+    <input id="typologyEmp" type="text" required value="1" class="hiddenField" th:field="*{typologyEmp}"/-->
     <!--input type="submit" value="Guardar"-->
     <div class="container">
         <br>
         <div class="row">
-            <div class="col-md-12" align="center" style="font-size:30; font-family:BBVA Web Book">Alta de Componente
+            <div class="col-md-12" align="center" style="font-size:30px; font-family:BBVA Web Book">Alta de Componente
             </div>
         </div>
         <br>
@@ -115,8 +116,8 @@
             <table class="col-md-12">
                 <tr>
                     <td class="col-md-4" align="center">
-                        <input id="componentName" name="componentName" type="text" required value="" class="hiddenField"
-                        >
+                        <input id="componentName" type="text" required value="" class="hiddenField"
+                               th:field="*{componentName}">
                         <div class="mdc-text-field" id="component-mdc-text" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
                             <input type="text" maxlength="120" class="mdc-text-field__input"
@@ -125,8 +126,8 @@
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <input id="componentVersion" name="componentVersion" type="text" required value="" class="hiddenField"
-                        >
+                        <input id="componentVersion" type="text" required value="" class="hiddenField"
+                               th:field="*{componentVersion}">
                         <div class="mdc-text-field" id="version-mdc-text" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
                             <input type="text" class="mdc-text-field__input" readonly="readonly"
@@ -135,8 +136,9 @@
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <input id="componentNewMod" name="componentNewMod" type="text" required value="" class="hiddenField"
-                        >
+                        <!--input id="componentNewMod" type="text" required value="" class="hiddenField"
+                               th field=" {componentNewMod}"-->
+                        <input id="componentNewMod" type="number" required value="" class="hiddenField">
                         <div id="nuemod-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
@@ -159,8 +161,10 @@
                 </tr>
                 <tr>
                     <td class="col-md-4" align="center">
-                        <input id="requirement" name="requirement" type="text" required class="hiddenField"
-                               th:value="${requerimientoData.requirementId}" >
+                        <input id="requirementHidden" name="requirement" type="hidden"
+                               th:value="${requerimientoData.requirementId}"/>
+                        <input id="requirement" type="number" required class="hiddenField"
+                               th:value="${requerimientoData.requirementId}" th:field="*{requirement}"/>
                         <div class="mdc-text-field" id="requieriment-mdc-text" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
                             <input type="text" maxlength="120" th:value="${requerimientoData.requirementName}"
@@ -170,7 +174,7 @@
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <input id="typology" name="typology" type="text" required value="" class="hiddenField" >
+                        <input id="typology" type="number" required value="" class="hiddenField" th:field="*{typology}">
                         <div id="tipologia-empty-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
@@ -229,8 +233,8 @@
                 </tr>
                 <tr>
                     <td class="col-md-4" align="center">
-                        <input id="componentDesignRealDeliverDate" name="componentDesignRealDeliverDate" type="text" required value="" class="hiddenField"
-                        >
+                        <input id="componentDesignRealDeliverDate" type="text" required value="" class="hiddenField"
+                               th:field="*{componentDesignRealDeliverDate}">
                         <div id='FecRealCFG-mdc-text' class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
                             <input type='text' class="mdc-text-field__input" row="2" onkeydown="return false"
@@ -239,8 +243,8 @@
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <input id="componentPreviewDeliverDate" name="componentPreviewDeliverDate" type="text" required value="" class="hiddenField"
-                        >
+                        <input id="componentPreviewDeliverDate" type="text" required value="" class="hiddenField"
+                               th:field="*{componentPreviewDeliverDate}">
                         <div id='FecPreFac-mdc-text' class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
                             <input type='text' class="mdc-text-field__input" row="2" onkeydown="return false"
@@ -258,8 +262,8 @@
                 </tr>
                 <tr>
                     <td class="col-md-4" align="center">
-                        <input id="componentPossibleDeliverDate" name="componentPossibleDeliverDate" type="text" required value="" class="hiddenField"
-                        >
+                        <input id="componentPossibleDeliverDate" type="text" required value="" class="hiddenField"
+                               th:field="*{componentPossibleDeliverDate}">
                         <div id='FecNegFac-mdc-txt' class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
                             <input type='text' class="mdc-text-field__input" row="2" onkeydown="return false"
@@ -269,8 +273,10 @@
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <input id="componentRealDeliverDate" name="componentRealDeliverDate" type="text" required value="" class="hiddenField"
-                        >
+                        <input id="componentRealDeliverDate" type="text" required value="" class="hiddenField"
+                               th:field="*{componentRealDeliverDate}">
+                        <!--input id="componentRealDeliverDate" type="text" required value="" class="hiddenField"
+                               th:field="*{componentRealDeliverDate}"-->
                         <div id='FecRealFac-mdc-text' class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
                             <input type='text' class="mdc-text-field__input" style="position: relative; z-index: 10000;"
@@ -295,6 +301,7 @@
         </div>
     </div>
 </form>
+<div th:replace="layout/footer :: FooterPrincipal"></div>
 </body>
 <script>mdc.autoInit()</script>
 <style rel="stylesheet">
