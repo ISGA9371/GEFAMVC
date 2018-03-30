@@ -1,6 +1,7 @@
 package com.mx.bbva.controller;
 
 
+import com.mx.bbva.business.dto.RequirementSearchDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,8 @@ public class RequirementController {
     private ChannelService channelService;
     private CompanyService companyService;
     private ServiceTypeService serviceTypeService;
-    private ProgramIncrementService programIncrementTypeService;
+    private MethodologyService methodologyService;
+    private ProgramIncrementService programIncrementService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addRequirement(Model model) {
@@ -61,9 +63,24 @@ public class RequirementController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getAllRequirements(Model model) {
         LOGGER.info("find requirements view");
-        List<Requirement> requirements = requirementService.findAllRequirements();
-        model.addAttribute("requirements", requirements);
+        //List<Requirement> requirements = requirementService.findAllRequirements();
+        //model.addAttribute("requirements", requirements);
+        RequirementSearchDTO to = new RequirementSearchDTO();
+
+        List<Level> c = this.levelService.findByLevelSuperior(2);
+        LOGGER.info("SUPEROIOr " + c.size());
+        model.addAttribute("criteria", to);
         return URL_FACTORY + SEARCH_REQUIREMENTS;
+    }
+
+    @RequestMapping(value = "/find", method = RequestMethod.POST)
+    public String findRequirements(Model model, @ModelAttribute(value = "criteria") RequirementSearchDTO criteria) {
+        LOGGER.info("Find requirements by selected criteria");
+
+        LOGGER.info("Criteria " + criteria);
+        //List<Requirement> requirements = requirementService.findAllRequirements();
+        //model.addAttribute("requirements", requirements);
+        return "redirect:/requirements";
     }
 
     // Model Attributes will available to the view all the time
@@ -119,7 +136,7 @@ public class RequirementController {
 
     @ModelAttribute("programIncrements")
     public List<ProgramIncrement> populateProgramIncrements() {
-        return this.programIncrementTypeService.findAll();
+        return this.programIncrementService.findAll();
     }
 
     // Import services
@@ -174,8 +191,12 @@ public class RequirementController {
     }
 
     @Autowired
-    public void setProgramIncrementService(ProgramIncrementService programIncrementTypeService) {
-        this.programIncrementTypeService = programIncrementTypeService;
+    public void setMethodologyService(MethodologyService methodologyService) {
+        this.methodologyService = methodologyService;
     }
 
+    @Autowired
+    public void setProgramIncrementService(ProgramIncrementService programIncrementService) {
+        this.programIncrementService = programIncrementService;
+    }
 }
