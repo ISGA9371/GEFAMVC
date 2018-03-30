@@ -20,6 +20,7 @@ import java.util.List;
 public class Methodology implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_METODOLOGIA", nullable = false)
     private Integer methodologyId;

@@ -4,6 +4,7 @@ package com.mx.bbva.controller;
 import com.mx.bbva.business.dto.RequirementSearchDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
+import com.mx.bbva.util.queries.QueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -34,6 +36,7 @@ public class RequirementController {
     private ServiceTypeService serviceTypeService;
     private MethodologyService methodologyService;
     private ProgramIncrementService programIncrementService;
+    private StatusService statusService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addRequirement(Model model) {
@@ -83,6 +86,20 @@ public class RequirementController {
         return "redirect:/requirements";
     }
 
+    @RequestMapping(value = "/filters", method = RequestMethod.GET)
+    public String filtersForRequirements(Model model) {
+        model.addAttribute("filters", new RequirementSearchDTO());
+        return URL_FACTORY + SEARCH_COMPONENTS;
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String searchForRequirements(@ModelAttribute("filters") RequirementSearchDTO filters, Model model) {
+        String query = new QueryGenerator().generate(filters);
+        List<Requirement> requirements = requirementService.findByCustomQuery(query);
+        model.addAttribute("requirements", requirements);
+        return URL_FACTORY + SEARCH_COMPONENTS;
+    }
+
     // Model Attributes will available to the view all the time
     // TODO Only return id + name for the drop down list
     // LevelTypeId 1 - Direccion
@@ -104,6 +121,11 @@ public class RequirementController {
         return this.areaService.findAllAreas();
     }
 
+    @ModelAttribute("statusList")
+    public List<Status> populateStatusList() {
+        return this.statusService.findAllStatus();
+    }
+
     @ModelAttribute("technologies")
     public List<Technology> populateTechnologies() {
         return this.technologyService.findAllTechnologies();
@@ -111,7 +133,13 @@ public class RequirementController {
 
     @ModelAttribute("users")
     public List<User> populateUsers() {
-        return this.userService.findAllUsers();
+        List<User> users = new ArrayList<>();
+        // TODO Use Enum's
+        // 1 - Gestoria FSW
+        users.addAll(this.userService.findUsersByType(1));
+        // 2 - Gestoria PBAS
+        users.addAll(this.userService.findUsersByType(2));
+        return users;
     }
 
     @ModelAttribute("applications")
@@ -137,6 +165,11 @@ public class RequirementController {
     @ModelAttribute("programIncrements")
     public List<ProgramIncrement> populateProgramIncrements() {
         return this.programIncrementService.findAll();
+    }
+
+    @ModelAttribute("methodologies")
+    public List<Methodology> populateMethodologies() {
+        return this.methodologyService.findAllMethodologies();
     }
 
     // Import services
@@ -198,5 +231,10 @@ public class RequirementController {
     @Autowired
     public void setProgramIncrementService(ProgramIncrementService programIncrementService) {
         this.programIncrementService = programIncrementService;
+    }
+
+    @Autowired
+    public void setStatusService(StatusService statusService) {
+        this.statusService = statusService;
     }
 }

@@ -1,5 +1,6 @@
 package com.mx.bbva.controller;
 
+import com.mx.bbva.business.dto.ComponentSearchDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.ComponentService;
 import com.mx.bbva.business.service.LevelService;
@@ -58,7 +59,7 @@ public class ComponentController {
         return URL_FACTORY + SEARCH_COMPONENTS;
     }
 
-    @RequestMapping(path = "/{componentId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{componentId}", method = RequestMethod.GET)
     public String editComponent(Model model, @PathVariable(value = "componentId") Integer componentId) {
         // TODO Validate user
         LOG.info("Updating component, ID: " + componentId);
@@ -69,6 +70,19 @@ public class ComponentController {
             model.addAttribute("component", new Component());
         }
         return URL_FACTORY + EDIT_COMPONENT;
+    }
+
+    @RequestMapping(value = "/filters", method = RequestMethod.GET)
+    public String filtersForComponents(Model model) {
+        model.addAttribute("filters", new ComponentSearchDTO());
+        return URL_FACTORY + SEARCH_COMPONENTS;
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String searchForComponents(@ModelAttribute("filters") ComponentSearchDTO filters, Model model) {
+        // TODO Generate a query with the filters values
+        // TODO Return a list of components using filters
+        return URL_FACTORY + SEARCH_COMPONENTS;
     }
 
     @ModelAttribute("tipologiaNewCmb")

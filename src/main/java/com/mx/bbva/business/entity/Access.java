@@ -17,7 +17,7 @@ import java.util.Date;
 public class Access implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CD_ACCESO", nullable = false)
     private Integer accessId;
     @Basic(optional = false)

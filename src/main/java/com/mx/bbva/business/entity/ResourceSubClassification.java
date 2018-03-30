@@ -19,6 +19,7 @@ import java.util.List;
 public class ResourceSubClassification implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_SBCLAS_REC", nullable = false)
     private Integer resourceSubClassificationId;

@@ -19,7 +19,8 @@ import java.util.List;
 public class Level implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_CONSEC_NIVEL", nullable = false)
     private Integer levelSerial;

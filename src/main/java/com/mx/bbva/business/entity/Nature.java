@@ -19,6 +19,7 @@ import java.util.List;
 public class Nature implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_NATURALEZA", nullable = false)
     private Integer natureId;

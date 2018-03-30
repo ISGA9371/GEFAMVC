@@ -19,6 +19,7 @@ import java.util.List;
 public class Budget implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_CONSEC_PEP", nullable = false)
     private Integer budgetSerial;

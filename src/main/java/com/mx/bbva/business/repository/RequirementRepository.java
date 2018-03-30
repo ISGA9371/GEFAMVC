@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface RequirementRepository extends JpaRepository<Requirement, Integer> {
+public interface RequirementRepository extends JpaRepository<Requirement, Integer>, RequirementRepositoryCustom {
     @Query(value = "SELECT NEW com.mx.bbva.business.entity.Requirement(r.requirementId, r.requirementName) FROM Requirement r")
     Requirement findRequirement(Integer requirementId);
 }

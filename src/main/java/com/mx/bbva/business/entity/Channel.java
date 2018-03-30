@@ -15,12 +15,13 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge056_canal",  uniqueConstraints = {
+@Table(name = "thge056_canal", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_CANAL"})
         , @UniqueConstraint(columnNames = {"NB_CANAL"})})
 public class Channel implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_CONS_CANAL", nullable = false)
     private Integer channelSerial;
