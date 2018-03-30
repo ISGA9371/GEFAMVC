@@ -11,6 +11,10 @@ function init() {
     addDifficultyValidation();
     addHoursValidation();
     addButtonEvents();
+
+    $("#statusTypology").val(1);
+    $("#status").val(1);
+    $("#typologyEmp").val(1);
 }
 
 function getVersion() {
