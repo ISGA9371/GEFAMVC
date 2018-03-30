@@ -1,16 +1,14 @@
 package com.mx.bbva.controller;
 
-import com.mx.bbva.business.entity.Component;
-import com.mx.bbva.business.entity.Typology;
+import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.ComponentService;
+import com.mx.bbva.business.service.LevelService;
+import com.mx.bbva.business.service.RequirementService;
 import com.mx.bbva.business.service.TypologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -24,16 +22,19 @@ public class ComponentController {
 
     private ComponentService componentService;
     private TypologyService typologyService;
+    private RequirementService requirementService;
+    private LevelService levelService;
 
     /**
      * TODO: EVERY CONTROLLER NEEDS TO HAVE A CUSTOM SEARCH METHOD
      */
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String createComponent(Model model) {
+    public String createComponent(Model model, @RequestParam(required = false) Integer requirementId) {
         // TODO Validate user
-
         LOG.info("Creating new component");
+        Requirement requirement = requirementService.findOneRequirement(requirementId);
+        model.addAttribute("requirementData", requirement);
         model.addAttribute("component", new Component());
         //TODO Add catalogs
         return URL_FACTORY + NEW_COMPONENT;
@@ -80,15 +81,35 @@ public class ComponentController {
         return this.typologyService.findByComponent("1");
     }
 
+    // LevelTypeId 1 - Direccion
+    @ModelAttribute("principals")
+    public List<Level> populatePrincipals() {
+        return this.levelService.findByLevelType(new LevelType(1));
+    }
+
+    // LevelTypeId 2 - Sub-Direccion
+    @ModelAttribute("subPrincipals")
+    public List<Level> populateSubPrincipals() {
+        return this.levelService.findByLevelType(new LevelType(2));
+    }
+
     @Autowired
     public void setComponentService(ComponentService componentService) {
         this.componentService = componentService;
     }
-
 
     @Autowired
     public void setTypologyService(TypologyService typologyService) {
         this.typologyService = typologyService;
     }
 
+    @Autowired
+    public void setRequirementService(RequirementService requirementService) {
+        this.requirementService = requirementService;
+    }
+
+    @Autowired
+    public void setLevelService(LevelService levelService) {
+        this.levelService = levelService;
+    }
 }
