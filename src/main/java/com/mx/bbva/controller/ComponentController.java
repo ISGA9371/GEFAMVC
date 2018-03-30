@@ -33,7 +33,7 @@ public class ComponentController {
     public String createComponent(Model model, @RequestParam(required = false) Integer requirementId) {
         // TODO Validate user
         LOG.info("Creating new component");
-        Requirement requirement = requirementService.findOneRequirement(requirementId);
+        Requirement requirement = requirementService.findOne(requirementId);
         model.addAttribute("requirementData", requirement);
         model.addAttribute("component", new Component());
         //TODO Add catalogs

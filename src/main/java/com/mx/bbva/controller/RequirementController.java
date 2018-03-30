@@ -52,7 +52,7 @@ public class RequirementController {
     public String getOneRequirement(Model model, @PathVariable(required = false) Integer requirementId) {
         LOGGER.info("Find one element" + requirementId);
         if (null != requirementId) {
-            Requirement requirement = requirementService.findOneRequirement(requirementId);
+            Requirement requirement = requirementService.findOne(requirementId);
             model.addAttribute("requirement", requirement);
         } else {
             model.addAttribute("requirement", new Requirement());

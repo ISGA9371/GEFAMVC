@@ -23,8 +23,8 @@ public class RequirementServiceImpl implements RequirementService {
     }
 
     @Override
-    public Requirement findOneRequirement(Integer requirementId) {
-        return requirementRepository.findById(requirementId).orElse(null);
+    public Requirement findOne(Integer requirementId) {
+        return requirementRepository.findRequirement(requirementId);
     }
 
     @Autowired
