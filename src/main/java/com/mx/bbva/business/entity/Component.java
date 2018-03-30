@@ -59,15 +59,6 @@ public class Component implements Serializable {
     @Column(name = "NU_FACTURABLE")
     private int componentForBill;
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
-    private List<Modification> modifications;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
-    private List<Doubt> doubts;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
-    private List<Issue> issues;
-    @JsonIgnore
     @JoinColumn(name = "ST_TIPIFICACION", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status statusTypology;
@@ -87,6 +78,15 @@ public class Component implements Serializable {
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false)
     @ManyToOne(optional = false)
     private Requirement requirement;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
+    private List<Modification> modifications;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
+    private List<Doubt> doubts;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
+    private List<Issue> issues;
 
     public Component() {
     }

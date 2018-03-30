@@ -24,13 +24,12 @@ public class Project implements Serializable {
     @Basic(optional = false)
     @Column(name = "CD_SDA", nullable = false)
     private String projectScrumId;
-    //@JoinColumn(name = "CD_TIPO_PI", referencedColumnName = "CD_TIPO_PI", nullable = false) //HACK
-    @JoinColumn(name = "CD_PI", referencedColumnName = "CD_PI", nullable = false) //HACK
+    @JoinColumn(name = "CD_PI", referencedColumnName = "CD_PI", nullable = false)
     @ManyToOne(optional = false)
     private ProgramIncrement programIncrement;
     @JoinColumn(name = "CD_METODOLOGIA", referencedColumnName = "CD_METODOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private ProjectType projectType;
+    private Methodology methodology;
     @OneToMany(mappedBy = "project")
     private List<Requirement> requirements;
 
@@ -70,12 +69,12 @@ public class Project implements Serializable {
         this.programIncrement = programIncrement;
     }
 
-    public ProjectType getProjectType() {
-        return projectType;
+    public Methodology getMethodology() {
+        return methodology;
     }
 
-    public void setProjectType(ProjectType projectType) {
-        this.projectType = projectType;
+    public void setMethodology(Methodology methodology) {
+        this.methodology = methodology;
     }
 
     public List<Requirement> getRequirements() {

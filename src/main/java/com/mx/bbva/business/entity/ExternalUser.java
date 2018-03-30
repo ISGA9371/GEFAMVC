@@ -84,6 +84,9 @@ public class ExternalUser implements Serializable {
     @Column(name = "FH_ALTA")
     @Temporal(TemporalType.DATE)
     private Date externalUserUploadDate;
+    @Column(name = "FH_BAJA")
+    @Temporal(TemporalType.DATE)
+    private Date externalUserEndDate;
     @JoinColumn(name = "CD_EMPRESA", referencedColumnName = "CD_EMPRESA", nullable = false)
     @ManyToOne(optional = false)
     private Company company;
