@@ -65,8 +65,11 @@ public class Status implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Contract> contracts;
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<com.mx.bbva.business.entity.Access> accessList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusLogical")
+    private List<Access> accessListLogical;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusPhysical")
+    private List<Access> accessListPhysical;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Doubt> doubts;
@@ -213,12 +216,20 @@ public class Status implements Serializable {
         this.contracts = contracts;
     }
 
-    public List<com.mx.bbva.business.entity.Access> getAccessList() {
-        return accessList;
+    public List<Access> getAccessListLogical() {
+        return accessListLogical;
     }
 
-    public void setAccessList(List<com.mx.bbva.business.entity.Access> accessList) {
-        this.accessList = accessList;
+    public void setAccessListLogical(List<Access> accessListLogical) {
+        this.accessListLogical = accessListLogical;
+    }
+
+    public List<Access> getAccessListPhysical() {
+        return accessListPhysical;
+    }
+
+    public void setAccessListPhysical(List<Access> accessListPhysical) {
+        this.accessListPhysical = accessListPhysical;
     }
 
     public List<Doubt> getDoubts() {

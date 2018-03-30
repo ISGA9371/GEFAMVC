@@ -24,12 +24,19 @@ public class Access implements Serializable {
     @Column(name = "CD_EXTERNO", nullable = false)
     private int externalUserId;
     @Basic(optional = false)
-    @Column(name = "FH_VIGENCIA", nullable = false)
+    @Column(name = "FH_VIG_ACC_LOG", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date effectiveDate;
-    @JoinColumn(name = "ST_ACCESO", referencedColumnName = "CD_ESTADO", nullable = false)
+    private Date accessLogicalExpDate;
+    @Basic(optional = false)
+    @Column(name = "FH_VIG_ACC_FIS", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date accessPhysicalExpDate;
+    @JoinColumn(name = "ST_ACCESO_LOG", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
-    private Status status;
+    private Status statusLogical;
+    @JoinColumn(name = "ST_ACCESO_FIS", referencedColumnName = "CD_ESTADO", nullable = false)
+    @ManyToOne(optional = false)
+    private Status statusPhysical;
     @JoinColumn(name = "CD_SEDE", referencedColumnName = "CD_SEDE", nullable = false)
     @ManyToOne(optional = false)
     private Workplace workplace;
@@ -41,10 +48,9 @@ public class Access implements Serializable {
         this.accessId = accessId;
     }
 
-    public Access(Integer accessId, int externalUserId, Date effectiveDate) {
+    public Access(Integer accessId, int externalUserId) {
         this.accessId = accessId;
         this.externalUserId = externalUserId;
-        this.effectiveDate = effectiveDate;
     }
 
     public Integer getAccessId() {
@@ -63,20 +69,36 @@ public class Access implements Serializable {
         this.externalUserId = externalUserId;
     }
 
-    public Date getEffectiveDate() {
-        return effectiveDate;
+    public Date getAccessLogicalExpDate() {
+        return accessLogicalExpDate;
     }
 
-    public void setEffectiveDate(Date effectiveDate) {
-        this.effectiveDate = effectiveDate;
+    public void setAccessLogicalExpDate(Date accessLogicalExpDate) {
+        this.accessLogicalExpDate = accessLogicalExpDate;
     }
 
-    public Status getStatus() {
-        return status;
+    public Date getAccessPhysicalExpDate() {
+        return accessPhysicalExpDate;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setAccessPhysicalExpDate(Date accessPhysicalExpDate) {
+        this.accessPhysicalExpDate = accessPhysicalExpDate;
+    }
+
+    public Status getStatusLogical() {
+        return statusLogical;
+    }
+
+    public void setStatusLogical(Status statusLogical) {
+        this.statusLogical = statusLogical;
+    }
+
+    public Status getStatusPhysical() {
+        return statusPhysical;
+    }
+
+    public void setStatusPhysical(Status statusPhysical) {
+        this.statusPhysical = statusPhysical;
     }
 
     public Workplace getWorkplace() {
