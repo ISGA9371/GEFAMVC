@@ -49,7 +49,7 @@ public class BudgetController {
         List<Budget> budgets = budgetService.findAllBudgets();
         model.addAttribute("budgets", budgets);
 
-        return URL_FACTORY + SEARCH_BUDGETS;
+        return "redirect:/" + URL_FACTORY + SEARCH_BUDGETS;
     }
 
     @RequestMapping(path = "/{budgetId}", method = RequestMethod.GET)

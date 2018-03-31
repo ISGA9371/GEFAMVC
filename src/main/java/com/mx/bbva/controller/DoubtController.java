@@ -45,6 +45,14 @@ public class DoubtController {
         return URL_FACTORY + SEARCH_DOUBTS;
     }
 
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String findAllDoubts(Model model) {
+        // TODO Validate user
+        List<Doubt> doubts = doubtService.findAllDoubts();
+        model.addAttribute("doubts", doubts);
+        return URL_FACTORY + SEARCH_DOUBTS;
+    }
+
     // Model Attributes will available to the view all the time
     // LevelTypeId 1 - Direccion
     @ModelAttribute("principals")
