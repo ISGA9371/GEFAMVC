@@ -1,16 +1,15 @@
 package com.mx.bbva.controller;
 
-import com.mx.bbva.business.entity.Component;
-import com.mx.bbva.business.entity.Typology;
+import com.mx.bbva.business.dto.ComponentSearchDTO;
+import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.ComponentService;
+import com.mx.bbva.business.service.LevelService;
+import com.mx.bbva.business.service.RequirementService;
 import com.mx.bbva.business.service.TypologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -24,23 +23,26 @@ public class ComponentController {
 
     private ComponentService componentService;
     private TypologyService typologyService;
+    private RequirementService requirementService;
+    private LevelService levelService;
 
     /**
      * TODO: EVERY CONTROLLER NEEDS TO HAVE A CUSTOM SEARCH METHOD
      */
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String createComponent(Model model) {
+    public String createComponent(Model model, @RequestParam Integer requirementId) {
         // TODO Validate user
-
         LOG.info("Creating new component");
+        Requirement requirement = requirementService.findOne(requirementId);
+        model.addAttribute("requirementData", requirement);
         model.addAttribute("component", new Component());
         //TODO Add catalogs
         return URL_FACTORY + NEW_COMPONENT;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String saveComponent(@ModelAttribute("componente") Component component) {
+    public String saveComponent(@ModelAttribute("component") Component component) {
         // TODO Validate user
         LOG.info("Saving new component... " + component.getComponentName());
         componentService.saveComponent(component);
@@ -57,7 +59,7 @@ public class ComponentController {
         return URL_FACTORY + SEARCH_COMPONENTS;
     }
 
-    @RequestMapping(path = "/{componentId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{componentId}", method = RequestMethod.GET)
     public String editComponent(Model model, @PathVariable(value = "componentId") Integer componentId) {
         // TODO Validate user
         LOG.info("Updating component, ID: " + componentId);
@@ -70,6 +72,19 @@ public class ComponentController {
         return URL_FACTORY + EDIT_COMPONENT;
     }
 
+    @RequestMapping(value = "/filters", method = RequestMethod.GET)
+    public String filtersForComponents(Model model) {
+        model.addAttribute("filters", new ComponentSearchDTO());
+        return URL_FACTORY + SEARCH_COMPONENTS;
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String searchForComponents(@ModelAttribute("filters") ComponentSearchDTO filters, Model model) {
+        // TODO Generate a query with the filters values
+        // TODO Return a list of components using filters
+        return URL_FACTORY + SEARCH_COMPONENTS;
+    }
+
     @ModelAttribute("tipologiaNewCmb")
     public List<Typology> populateNewTypologies() {
         return this.typologyService.findByComponent("0");
@@ -80,15 +95,35 @@ public class ComponentController {
         return this.typologyService.findByComponent("1");
     }
 
+    // LevelTypeId 1 - Direccion
+    @ModelAttribute("principals")
+    public List<Level> populatePrincipals() {
+        return this.levelService.findByLevelType(new LevelType(1));
+    }
+
+    // LevelTypeId 2 - Sub-Direccion
+    @ModelAttribute("subPrincipals")
+    public List<Level> populateSubPrincipals() {
+        return this.levelService.findByLevelType(new LevelType(2));
+    }
+
     @Autowired
     public void setComponentService(ComponentService componentService) {
         this.componentService = componentService;
     }
-
 
     @Autowired
     public void setTypologyService(TypologyService typologyService) {
         this.typologyService = typologyService;
     }
 
+    @Autowired
+    public void setRequirementService(RequirementService requirementService) {
+        this.requirementService = requirementService;
+    }
+
+    @Autowired
+    public void setLevelService(LevelService levelService) {
+        this.levelService = levelService;
+    }
 }

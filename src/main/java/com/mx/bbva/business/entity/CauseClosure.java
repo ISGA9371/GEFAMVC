@@ -15,12 +15,13 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge053_causa_cier",  uniqueConstraints = {
+@Table(name = "thge053_causa_cier", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_CAUSA_CIERRE"})
         , @UniqueConstraint(columnNames = {"NB_CAUSA_CIERRE"})})
 public class CauseClosure implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_CONS_CAUSA_C", nullable = false)
     private Integer causeClosureSerial;

@@ -11,6 +11,10 @@ function init() {
     addDifficultyValidation();
     addHoursValidation();
     addButtonEvents();
+
+    $("#statusTypology").val(1);
+    $("#status").val(1);
+    $("#typologyEmp").val(1);
 }
 
 function getVersion() {
@@ -195,6 +199,7 @@ function addHiddenEvents() {
     addTextSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text");
     addTextSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-txt");
     addTextSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text");
+    $("#requirement").val($("#requirementHidden").val());
 }
 
 function addTextSyncMdcToHtml(htmlField, mdcField) {

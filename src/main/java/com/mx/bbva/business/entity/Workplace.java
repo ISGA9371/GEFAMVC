@@ -15,11 +15,12 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge025_sede",  uniqueConstraints = {
+@Table(name = "thge025_sede", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_SEDE"})})
 public class Workplace implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_SEDE", nullable = false)
     private Integer workplaceId;
@@ -95,7 +96,7 @@ public class Workplace implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bbva.Workplace[ workplaceId=" + workplaceId + " ]";
+        return "com.mx.bbva.business.entity.Workplace( workplaceId=" + workplaceId + " )";
     }
 
 }

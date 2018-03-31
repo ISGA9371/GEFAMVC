@@ -20,6 +20,7 @@ import java.util.List;
 public class Component implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_COMPONENTE", nullable = false)
     private Integer componentId;
@@ -29,9 +30,6 @@ public class Component implements Serializable {
     @Basic(optional = false)
     @Column(name = "TX_VENTREGA", nullable = false, length = 9)
     private String componentVersion;
-    @Basic(optional = false)
-    @Column(name = "TP_NVO_MOD", nullable = false, length = 10)
-    private String componentNewMod;
     @Column(name = "IM_COSTE_EMP", precision = 22)
     private Double componentFinalCost;
     @Column(name = "IM_COSTE_INIC", precision = 22)
@@ -56,15 +54,8 @@ public class Component implements Serializable {
     @Column(name = "TM_ALTA_COMP")
     @Temporal(TemporalType.TIMESTAMP)
     private Date componentUploadDate;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
-    private List<Modification> modifications;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
-    private List<Doubt> doubts;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
-    private List<Issue> issues;
+    @Column(name = "NU_FACTURABLE")
+    private int componentForBill;
     @JsonIgnore
     @JoinColumn(name = "ST_TIPIFICACION", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
@@ -85,6 +76,15 @@ public class Component implements Serializable {
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false)
     @ManyToOne(optional = false)
     private Requirement requirement;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
+    private List<Modification> modifications;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
+    private List<Doubt> doubts;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "component")
+    private List<Issue> issues;
 
     public Component() {
     }
@@ -100,11 +100,10 @@ public class Component implements Serializable {
         this.componentTypoComment = componentTypoComment;
     }
 
-    public Component(Integer componentId, String componentName, String componentVersion, String componentNewMod, Date componentPossibleDeliverDate, Date componentPreviewDeliverDate, Date componentDesignRealDeliverDate) {
+    public Component(Integer componentId, String componentName, String componentVersion, Date componentPossibleDeliverDate, Date componentPreviewDeliverDate, Date componentDesignRealDeliverDate) {
         this.componentId = componentId;
         this.componentName = componentName;
         this.componentVersion = componentVersion;
-        this.componentNewMod = componentNewMod;
         this.componentPossibleDeliverDate = componentPossibleDeliverDate;
         this.componentPreviewDeliverDate = componentPreviewDeliverDate;
         this.componentDesignRealDeliverDate = componentDesignRealDeliverDate;
@@ -132,14 +131,6 @@ public class Component implements Serializable {
 
     public void setComponentVersion(String componentVersion) {
         this.componentVersion = componentVersion;
-    }
-
-    public String getComponentNewMod() {
-        return componentNewMod;
-    }
-
-    public void setComponentNewMod(String componentNewMod) {
-        this.componentNewMod = componentNewMod;
     }
 
     public Double getComponentFinalCost() {
@@ -268,6 +259,14 @@ public class Component implements Serializable {
 
     public void setRequirement(Requirement requirement) {
         this.requirement = requirement;
+    }
+
+    public int getComponentForBill() {
+        return componentForBill;
+    }
+
+    public void setComponentForBill(int componentForBill) {
+        this.componentForBill = componentForBill;
     }
 
     @Override

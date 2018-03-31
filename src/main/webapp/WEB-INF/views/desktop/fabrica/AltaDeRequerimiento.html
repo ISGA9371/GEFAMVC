@@ -47,32 +47,28 @@
         </div>
         <br>
 
-        <form style="" action="#" th:object="${requirement}" th:action="@{/requirements}" method="post">
+        <!--form style="" action="#" th:object="${requirement}" th:action="@{/requirements}" method="post"-->
+        <form th:object="${requirement}" th:action="@{/requirements}" method="post">
 
 
             <!--HIDDEN PARA PRUEBAS-->
-            <!--input type="hidden" th:field="*{requirementId}" -->
-            <!--input id="nombreTxt" required pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{requirementName}"  type="hidden"  -->
-            <!--input id="direccionCmb" required pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+"  type="hidden" th:field="*{level}" -->
-            <!--input id="subDireccionCmb" type="hidden" th:field="*{level}" -->
-            <!--input id="subdirectorTxt" type="hidden" th:field="*{technology}"SOLO SE MUESTRA-->
-            <!--input id="responsableTxt" type="hidden" th:field="*{user}"-->
-            <!--input id="areaCmb" type="hidden" th:field="*{area}"-->
-            <!--input id="gestorTxt" type="hidden" th:field="*{userManager}"-->
-            <!--input id="tecnologiaCmb" type="hidden" th:field="*{technology}"-->
-            <!--input id="tipoProyectoCmb" type="hidden" th:field="*{technology}"SE OBTIENE DEL SDA SELECCIONADO-->
-            <!--input id="aplicacionCmb" type="hidden" th:field="*{application}"-->
-            <!--input id="canalCmb" type="hidden" th:field="*{channel}"-->
-            <!--input id="empresaCmb" type="hidden" th:field="*{company}" -->
-            <!--input id="tipoServCmb" type="hidden" th:field="*{company}" FALTA EN LA ENTIDAD-->
-            <!--input id="codigoPiCmb" type="hidden" th:field="*{company}" NO EXISTE EN LA TABLA-->
-            <!--input id="nombreProyCmb" type="hidden" th:field="*{company}" NO EXISTE EN LA TABLA-->
-            <!--input id="horasTxt" type="hidden" th:field="*{requirementTotalHours}" -->
-            <!--input id="estadoCmb" type="hidden" th:field="*{company}" NO EXISTE EN LA TABLA-->
-            <!--input id="facturadoCmb" type="hidden" th:field="*{requirementBilled}" -->
+            requirementName<input type="text" th:field="*{requirementName}">
+            userManager<input id="nombreTxt" required pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{userManager.userId}"  type="text" >
+            technology<input id="direccionCmb" required pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+"  type="text" th:field="*{technology.technologyId}">
+            company<input id="subDireccionCmb" type="text" th:field="*{company.companyId}">
+            status<input id="subdirectorTxt" type="text" th:field="*{status.statusId}">
+            level<input id="responsableTxt" type="text" th:field="*{level.levelSerial}">
+            user<input id="areaCmb" type="text" th:field="*{user.userId}" value="0058349">
+            area<input id="gestorTxt" type="text" th:field="*{area.areaId}">
+            methodology<input id="tecnologiaCmb" type="text" th:field="*{methodology.methodologyId}">
+            serviceType<input id="tipoProyectoCmb" type="text" th:field="*{serviceType.serviceTypeId}">
 
+            requirementBilled<input id="stFurado" type="text" th:field="*{requirementBilled}">
 
-            <div class="row">
+            <input type="submit" value="guardar">
+
+        </form>
+            <!--div class="row">
                 <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos Generales</div>
                 <table class="col-md-12" >
                     <tr>
@@ -324,13 +320,14 @@
                 <table class="col-md-12" >
                     <tr>
                         <td class="col-md-6" align="center">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+
                             <button type="" class="btn btn-primary">Cancelar</button>
+                            <input type="submit" value="guardar">
                         </td>
                     </tr>
                 </table>
             </div>
-        </form>
+        </form-->
     </div>
 
     <!--Footer que debe ir en todas las ventanas-->
@@ -346,7 +343,7 @@
     </style>
 
     <script>
-        demoReady(function() {
+      /*  demoReady(function() {
             mdc.select.MDCSelect.attachTo(document.getElementById('direccion-js-select'));
             mdc.select.MDCSelect.attachTo(document.getElementById('subdireccion-js-select'));
             mdc.select.MDCSelect.attachTo(document.getElementById('area-js-select'));
@@ -461,7 +458,7 @@
                 hiddenName.value = textName.value;
             });
 
-        });
+        });*/
     </script>
 
 

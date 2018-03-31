@@ -12,13 +12,14 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author Guevara
+ * @author Guevara M
  */
 @Entity
 @Table(name = "thge016_perf_usu", uniqueConstraints = {@UniqueConstraint(columnNames = {"NB_PERFIL"})})
 public class ProfileType implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_TIPO_PERFIL", nullable = false)
     private Integer profileTypeId;

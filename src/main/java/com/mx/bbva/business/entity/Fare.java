@@ -16,6 +16,7 @@ import java.io.Serializable;
 public class Fare implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_TARIFA", nullable = false)
     private Integer fareId;

@@ -7,7 +7,9 @@ import java.util.List;
 public interface RequirementService {
     List<Requirement> findAllRequirements();
 
+    List<Requirement> findByCustomQuery(String query);
+
     Requirement saveRequirement(Requirement requirement);
 
-    Requirement findOneRequirement(Integer id);
+    Requirement findOne(Integer id);
 }

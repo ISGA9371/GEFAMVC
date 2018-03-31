@@ -15,12 +15,13 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge054_res_verif",  uniqueConstraints = {
+@Table(name = "thge054_res_verif", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_RESULT_VERIF"})
         , @UniqueConstraint(columnNames = {"CD_RESULT_VERIF"})})
 public class VerificationResult implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_CONS_RESUL_VER", nullable = false)
     private Integer verificationResultSerial;

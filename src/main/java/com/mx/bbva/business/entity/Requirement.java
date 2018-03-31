@@ -21,6 +21,7 @@ import java.util.List;
 public class Requirement implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_REQUERIMIENTO", nullable = false)
     private Integer requirementId;
@@ -42,6 +43,12 @@ public class Requirement implements Serializable {
     private Date requirementDateUpload;
     @Column(name = "NU_FACTURABLE")
     private Short requirementCanBilled;
+    @Column(name = "FH_INICIO_REQ")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date requirementStartDate;
+    @Column(name = "FH_FIN_REQ")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date requirementEndDate;
     @JoinColumn(name = "CD_USUARIO_GESTOR", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
     private User userManager;
@@ -69,15 +76,18 @@ public class Requirement implements Serializable {
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
     private Area area;
-    /*@JoinColumn(name = "CD_METODOLOGIA", referencedColumnName = "CD_METODOLOGIA", nullable = false)
+    @JoinColumn(name = "CD_METODOLOGIA", referencedColumnName = "CD_METODOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private ProjectType projectType;*/
+    private Methodology methodology;
     @JoinColumn(name = "CD_TIPO_SERVICIO", referencedColumnName = "CD_TIPO_SERVICIO", nullable = false)
     @ManyToOne(optional = false)
     private ServiceType serviceType;
     @JoinColumn(name = "CD_CANAL", referencedColumnName = "CD_CANAL")
     @ManyToOne
     private Channel channel;
+    @JoinColumn(name = "CD_PI", referencedColumnName = "CD_PI")
+    @ManyToOne
+    private ProgramIncrement programIncrement;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<Invoice> invoices;
@@ -258,13 +268,37 @@ public class Requirement implements Serializable {
         this.area = area;
     }
 
-    /*public ProjectType getProjectType() {
-        return projectType;
+    public Date getRequirementStartDate() {
+        return requirementStartDate;
     }
 
-    public void setProjectType(ProjectType projectType) {
-        this.projectType = projectType;
-    }*/
+    public void setRequirementStartDate(Date requirementStartDate) {
+        this.requirementStartDate = requirementStartDate;
+    }
+
+    public Date getRequirementEndDate() {
+        return requirementEndDate;
+    }
+
+    public void setRequirementEndDate(Date requirementEndDate) {
+        this.requirementEndDate = requirementEndDate;
+    }
+
+    public ProgramIncrement getProgramIncrement() {
+        return programIncrement;
+    }
+
+    public void setProgramIncrement(ProgramIncrement programIncrement) {
+        this.programIncrement = programIncrement;
+    }
+
+    public Methodology getMethodology() {
+        return methodology;
+    }
+
+    public void setMethodology(Methodology methodology) {
+        this.methodology = methodology;
+    }
 
     public ServiceType getServiceType() {
         return serviceType;

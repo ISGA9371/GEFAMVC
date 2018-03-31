@@ -1,6 +1,6 @@
-package com.mx.bbva.to;
+package com.mx.bbva.business.dto;
 
-public class RequirementSearchTO {
+public class RequirementSearchDTO {
     private String name;
     private Integer directionId;
     private Integer subDirectionId;
@@ -109,5 +109,23 @@ public class RequirementSearchTO {
 
     public void setPep(String pep) {
         this.pep = pep;
+    }
+
+    @Override
+    public String toString() {
+        return "RequirementSearchTO{" +
+                "name='" + name + '\'' +
+                ", directionId=" + directionId +
+                ", subDirectionId=" + subDirectionId +
+                ", responsible='" + responsible + '\'' +
+                ", attAreaId=" + attAreaId +
+                ", proyTypeId=" + proyTypeId +
+                ", techId=" + techId +
+                ", companyId=" + companyId +
+                ", serviceTypeId=" + serviceTypeId +
+                ", initialPropDate='" + initialPropDate + '\'' +
+                ", finalPropDate='" + finalPropDate + '\'' +
+                ", pep='" + pep + '\'' +
+                '}';
     }
 }

@@ -15,11 +15,12 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge047_result_obt",  uniqueConstraints = {
+@Table(name = "thge047_result_obt", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_RESUL_ONTENIDO"})})
 public class Result implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_RESUL_OBTENIDO", nullable = false)
     private Integer resultId;
