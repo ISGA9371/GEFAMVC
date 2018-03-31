@@ -1,4 +1,4 @@
-package com.mx.bbva.util.queries;
+package com.mx.bbva.util.query;
 
 import com.mx.bbva.business.dto.RequirementSearchDTO;
 

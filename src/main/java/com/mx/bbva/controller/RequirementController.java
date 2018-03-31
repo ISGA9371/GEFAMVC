@@ -4,7 +4,7 @@ package com.mx.bbva.controller;
 import com.mx.bbva.business.dto.RequirementSearchDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
-import com.mx.bbva.util.queries.QueryGenerator;
+import com.mx.bbva.util.query.QueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
