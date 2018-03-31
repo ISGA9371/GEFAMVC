@@ -130,6 +130,28 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/webapp/WEB-INF</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>public/css/**</exclude>
+                    <exclude>public/fonts/**</exclude>
+                    <exclude>public/img/**</exclude>
+                    <exclude>public/js/**</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/webapp/WEB-INF</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>public/css/**</include>
+                    <include>public/fonts/**</include>
+                    <include>public/img/**</include>
+                    <include>public/js/**</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
