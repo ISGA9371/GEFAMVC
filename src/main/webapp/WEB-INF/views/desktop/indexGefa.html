@@ -1,84 +1,27 @@
 <!DOCTYPE html>
-<html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" class="nojs html css_verticalspacer">
 
-    <head>
+<head>
+  <div th:replace="~{layout/mainHeader :: header ('')}"></div>
+</head>
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+<body>
+  <div class="clearfix borderbox" id="page">
+    <!-- group -->
+    <div class="clearfix grpelem" id="ppu123">
+      <div th:replace="~{layout/mainHeader :: menu}"></div>
+      <div class="clearfix colelem" id="pu27059">
+        Some Title
+      </div>
+    </div>
 
-        <title>Index Gefa</title>
-
-
-        <!-- Estilos -->
-        <script type="text/javascript" th:src="@{js/jquery-3.2.1.min.js}"></script>
-        <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}">
-        <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
-
-        <!--Script generales-->
-        <link rel="stylesheet" type="text/css" th:href="@{css/estilosGF.css}">
-
-
-        <!--Scripts para campos de texto-->
-        <link rel="stylesheet" type="text/css" th:href="@{css/material-components-web.css}">
-        <script type="text/javascript" th:src="@{js/material-components-web.js}"></script>
-
-
-        <!--Estilos para los combos-->
-        <link rel="stylesheet" type="text/css" th:href="@{css/select.css}">
-        <script type="text/javascript" th:src="@{js/ready.js}"></script>
-
-        <!--Propias de la ventana-->
-        <script type="text/javascript" th:src="@{js/fn_IndexGefa.js}"></script>
-
-
-    </head>
-
-    <body>
-
-        <!--Encabezado que vive en otra ventana-->
-        <div th:replace="layout/header :: cabeceraPrincipal"></div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
-        <!--Div principal y contenedor de toda la ventana-->
-        <div class="container">
-
-            <!--Clase row, contenedora de las secciones de la ventana-->
-            <div class="row">
-
-                <!--Dentro de esta seccion se dividen las 12 columnas que estan en la ventana-->
-                <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book;">
-
-                    <p>Este es el index de Gefa y aqui debe ir el contenido de la ventana</p>
-                    Coloca el nombre de la ventana de FABRICA que quieres ver
-                    <input type="text" id="ventanaIr" value=""/>
-                    <button type="button" id="" onclick="botonIr('F')" class="btn btn-primary">Ir</button>
-
-                </div>
-
-                <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book;">
-
-                    Coloca el nombre de la ventana de PRESUPUESTO que quieres ver
-                    <input type="text" id="ventanaIrP" value=""/>
-                    <button type="button" id="" onclick="botonIr('P')" class="btn btn-primary">Ir</button>
-
-                </div>
-
-
-            </div>
-
-        </div>
-        <br>
-        <!--Footer que debe ir en todas las ventanas-->
-        <div th:replace="layout/footer :: FooterPrincipal"></div>
-    </body>
+    <div class="verticalspacer" data-offset-top="1637" data-content-above-spacer="1636" data-content-below-spacer="61" data-sizePolicy="fixed"
+      data-pintopage="page_fixedLeft">
+      Main Content
+    </div>
+    <div th:replace="~{layout/footer :: footer}"></div>
+  </div>
+  <div th:replace="~{layout/footer :: footerScripts}"></div>
+</body>
 
 </html>

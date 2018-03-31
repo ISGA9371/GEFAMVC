@@ -1,0 +1,59 @@
+@font-face {
+    font-family: 'BBVA Web Book'; /*a name to be used later*/
+    src: url('../fonts/BentonSansBBVA-Book.woff') format("woff"), /*URL to font*/
+    url('../fonts/BentonSansBBVA-Book.eot') format('embedded-opentype'),
+    url('../fonts/BentonSansBBVA-Book.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'BBVA Web Bold'; /*a name to be used later*/
+    src: url('../fonts/BentonSansBBVA-Bold.woff') format("woff"), /*URL to font*/
+    url('../fonts/BentonSansBBVA-Bold.eot') format('embedded-opentype'),
+    url('../fonts/BentonSansBBVA-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'BBVA Web Light'; /*a name to be used later*/
+    src: url('../fonts/BentonSansBBVA-Light.woff') format("woff"),
+    url('../fonts/BentonSansBBVA-Light.eot') format("embedded-opentype"),
+    url('../fonts/BentonSansBBVA-Light.ttf') format("truetype");
+}
+html {
+    font-size: 100%; /*THIS IS FUNDAMENTAL FOR REMs TO WORK*/
+}
+
+.top-bar{
+    height: 60px;
+    background-color: #072146;
+    padding-top: 24px;
+    padding-left: 24px;
+}
+#top-nav{
+    background-color: #072146;
+    padding: 12px;
+    padding-left: 48px;
+}
+#top-nav li,.bottom-bar li{
+    color: white;
+    margin-right: 24px;
+}
+#top-nav li:hover{
+    color: #f8cd51;
+}
+.bottom-bar{
+    padding: 12px;
+    background-color: #004582;
+    color: white;
+    padding-left: 48px;
+    min-height: 44px;
+}
+#brand > p{
+    font-size: 25px;
+    color: rgba(255,255,255,0.95);
+}
+.top-bar img {
+    vertical-align: baseline;
+}
+
+#bottom-pills, #bottom-pills a{
+    margin-bottom: 0;
+    color: white;
+}

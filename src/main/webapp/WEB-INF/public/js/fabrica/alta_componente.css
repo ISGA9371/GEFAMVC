@@ -1,0 +1,11 @@
+.hiddenField {
+  width: 1px;
+  opacity: 0;
+  height: 1px;
+  margin: -3px;
+  padding: 0px;
+}
+
+.mdc-text-field__input {
+  border-bottom-color: rgba(15, 50, 242, 0.5);
+}
