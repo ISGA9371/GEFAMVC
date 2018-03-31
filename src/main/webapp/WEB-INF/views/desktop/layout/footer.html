@@ -4,13 +4,13 @@
 
 
   <div th:fragment="footer"> 
-    <div class="browser_width grpelem" id="u7410-bw">
+    <div class="browser_width grpelem" id="u7410-bw" style="position: absolute;bottom: 0;width: 100%;">
       <div id="u7410">
         <!-- group -->
         <div class="clearfix" id="u7410_align_to_page">
           <div class="clip_frame grpelem" id="u7485" data-sizePolicy="fixed" data-pintopage="page_fixedLeft">
             <!-- svg -->
-            <img class="svg" id="u7486" src="img/bbvva-bancomer.svg?crc=4007379993" width="192" height="16" alt="" data-mu-svgfallback="img/bbvva%20bancomer_poster_.png?crc=3904105291"
+            <img class="svg" id="u7486" th:src="@{/img/bbvva-bancomer.svg}" width="192" height="16" alt="" data-mu-svgfallback="img/bbvva%20bancomer_poster_.png?crc=3904105291"
             />
           </div>
           <div class="clearfix grpelem" id="u7496-4" data-sizePolicy="fixed" data-pintopage="page_fixedRight">
@@ -67,7 +67,7 @@
 
     </script>
     <!-- RequireJS script -->
-    <script src="js/require.js?crc=4157109226" type="text/javascript" async data-main="js/museconfig.js?crc=4153641093" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }"
+    <script th:src="@{/js/require.js?crc=4157109226}" type="text/javascript" async data-main="/js/museconfig.js?crc=4153641093" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }"
       onerror="window.Muse.assets.check();"></script>
   </div>
 

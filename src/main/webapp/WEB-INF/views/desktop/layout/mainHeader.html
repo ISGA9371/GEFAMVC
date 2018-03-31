@@ -19,9 +19,9 @@
     </script>
 
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="css/site_global.css?crc=444006867" />
-    <link rel="stylesheet" type="text/css" href="css/master_a-p_g_-maestra.css?crc=401663249" />
-    <link rel="stylesheet" type="text/css" href="css/presupuestos.css?crc=138387930" id="pagesheet" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/site_global.css?crc=444006867}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/master_a-p_g_-maestra.css?crc=401663249}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/presupuestos.css?crc=138387930}" id="pagesheet" />
 
     <!-- Estilos -->
     <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
@@ -66,7 +66,7 @@
                   <!-- content -->
                   <span class="actAsDiv clip_frame excludeFromNormalFlow" id="u151" data-sizePolicy="fixed" data-pintopage="page_fixedLeft">
                     <!-- svg -->
-                    <img class="actAsDiv svg" id="u152" src="img/bbvva-bancomer.svg?crc=4007379993" width="246" height="26" alt="" data-mu-svgfallback="img/bbvva%20bancomer_poster_.png?crc=3904105291"
+                    <img class="actAsDiv svg" id="u152" th:src="@{/img/bbvva-bancomer.svg?crc=4007379993}" width="246" height="26" alt="" data-mu-svgfallback="@{/img/bbvva_bancomer_poster_.png}"
                     />
                   </span>
                 </span>&nbsp;
@@ -82,7 +82,7 @@
                     <!-- content -->
                     <span class="actAsDiv clip_frame excludeFromNormalFlow" id="u229" data-sizePolicy="fixed" data-pintopage="page_fixedLeft">
                       <!-- image -->
-                      <img id="u229_img" src="img/user.png?crc=4290038956" alt="" width="17" height="19" />
+                      <img id="u229_img" th:src="@{/img/user.png}" alt="" width="17" height="19" />
                     </span>
                   </span>
                 </span>
@@ -94,7 +94,7 @@
                     <!-- content -->
                     <span class="actAsDiv clip_frame excludeFromNormalFlow" id="u206" data-sizePolicy="fixed" data-pintopage="page_fixedLeft">
                       <!-- image -->
-                      <img id="u206_img" src="img/exit.png?crc=294971243" alt="" width="15" height="19" />
+                      <img id="u206_img" th:src="@{/img/exit.png}" alt="" width="15" height="19" />
                     </span>
                   </span>
                 </span>
