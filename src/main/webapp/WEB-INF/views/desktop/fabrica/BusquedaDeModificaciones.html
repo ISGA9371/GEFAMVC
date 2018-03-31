@@ -1,4 +1,508 @@
 <!DOCTYPE html>
+<html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" class="nojs html css_verticalspacer">
+
+<head>
+  <div th:replace="~{layout/mainHeader :: header ('Modificaciones')}"></div>
+
+  <link rel="stylesheet" type="text/css" th:href="@{/css/fabrica/busqueda_modificaciones.css}">
+</head>
+
+<body>
+  <div class="clearfix borderbox" id="page">
+    <!-- group -->
+    <div class="clearfix grpelem" id="ppu123">
+      <div th:replace="~{layout/mainHeader :: menu}"></div>
+      <div class="clearfix colelem" id="pu27059">
+        <div class="col-md-12" align="center" style="font-size:30px; font-family:BBVA Web Book">Modificaciones</div>
+      </div>
+    </div>
+
+    <div class="verticalspacer" data-offset-top="1637" data-content-above-spacer="1636" data-content-below-spacer="61" data-sizePolicy="fixed"
+      data-pintopage="page_fixedLeft">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Criterios de Busqueda</div>
+        </div>
+        <table class="col-md-12">
+          <tr>
+            <td class="col-md-4" align="center">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="numero">
+                <label for="demo-input" class="mdc-text-field__label">Numero</label>
+                <!--tiene una A de mas en la imagen-->
+              </div>
+            </td>
+            <td class="col-md-4" align="center">
+              <div id="direccion-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Dirección</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Dirección 1
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Dirección 2
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Dirección 3
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+            <td class="col-md-4" align="center">
+              <div id="subdireccion-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Subdirección</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Subdirección 1
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Subdirección 2
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Subdirección 3
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr style="height:72px">
+            <td class="col-md-4" align="center">
+              <div id="empresa-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Empresa</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Empresa 1
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Empresa 2
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Empresa 3
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+            <td class="col-md-4" align="center">
+              <div class="dog1">
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                  <input type='text' class="mdc-text-field__input" row="2" id='datetimepicker4' />
+                  <label for="demo-input" class="mdc-text-field__label">Fecha de Inicio</label>
+                </div>
+              </div>
+            </td>
+            <td class="col-md-4" align="center">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="componente">
+                <label for="demo-input" class="mdc-text-field__label">Componente</label>
+              </div>
+            </td>
+          </tr>
+          <tr style="height:72px">
+            <td class="col-md-4" align="center">
+              <div id="vuelo-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Modif. en Vuelo</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Modif. en Vuelo 1
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Modif. en Vuelo 2
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Modif. en Vuelo 3
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+            <td class="col-md-4" align="center">
+              <div id="estado-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Estado</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Estado 1
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Estado 2
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Estado 3
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+            <td class="col-md-4" align="center">
+              <div id="prioridad-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Prioridad</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Prioridad 1
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Prioridad 2
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Prioridad 3
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4" align="center">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                <input type="text" class="mdc-text-field__input" id="requerimiento">
+                <label for="demo-input" class="mdc-text-field__label">Requerimiento</label>
+              </div>
+            </td>
+            <td class="col-md-4" align="center">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                <input type="text" class="mdc-text-field__input" id="numero-error">
+                <label for="demo-input" class="mdc-text-field__label">Numero de Error</label>
+              </div>
+            </td>
+            <td class="col-md-4" align="center">
+              <div id="mes-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Mes</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Mes 1
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Mes 2
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Mes 3
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr style="height:72px">
+            <td class="col-md-4" align="center">
+              <div id="anio-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Año</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Año 1
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Año 2
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Año 3
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+            <td class="col-md-4" align="center">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                <input type="text" class="mdc-text-field__input" id="facturado">
+                <label for="demo-input" class="mdc-text-field__label">Facturado SI
+                  <input type="checkbox" /> NO
+                  <input type="checkbox" /> </label>
+              </div>
+            </td>
+            <td class="col-md-4" align="center">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                <input type="text" class="mdc-text-field__input" id="version">
+                <label for="demo-input" class="mdc-text-field__label">Version</label>
+              </div>
+            </td>
+          </tr>
+          <tr style="height:72px">
+            <td class="col-md-4" align="center">
+              <div id="estatus-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Estatus Tipif:</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Estatus Tipif 1
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Estatus Tipif 2
+                    </li>
+                    <li class="mdc-list-item" role="option" tabindex="0">
+                      Estatus Tipif 3
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+            <td class="col-md-4" align="center">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                <input type="text" class="mdc-text-field__input" id="mod-por">
+                <label for="demo-input" class="mdc-text-field__label">Mod. R. por DyD SI
+                  <input type="checkbox" /> NO
+                  <input type="checkbox" /> </label>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div class="row">
+          <br>
+          <br>
+          <table class="col-md-12">
+            <tr>
+              <td class="col-md-6" align="center">
+                <button type="button" class="btn btn-primary">Buscar</button>
+                <button type="button" class="btn btn-primary">Limpiar</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <br>
+        <br>
+        <div>
+          <br>
+          <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Resultados de Busqueda -Coste Total: 34USD > Horas: 2</div>
+        </div>
+        <table class="table table-striped">
+          <tr>
+            <td>
+            </td>
+            <td>
+              No.
+            </td>
+            <td>
+              Componente
+            </td>
+            <td>
+              Direccion
+            </td>
+            <td>
+              Subdireccion
+            </td>
+            <td>
+              Requerimiento
+            </td>
+            <td>
+              Version
+            </td>
+            <td>
+              Empresa
+            </td>
+            <td>
+              En Vuelo
+            </td>
+            <td>
+              Fecha Envio
+            </td>
+            <td>
+              Fecha Reneg.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+          </tr>
+        </table>
+        
+        <table class="col-md-12">
+          <tr>
+            <td class="col-md-6" align="center">
+              <button type="button" class="btn btn-primary">Alta</button>
+              <button type="button" class="btn btn-primary">Modificar Hora</button>
+              <button type="button" class="btn btn-primary">Modificar Tabla</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div th:replace="~{layout/footer :: footer}"></div>
+  </div>
+  <script>mdc.autoInit()</script>
+  <script defer>
+  </script>
+
+  <script type="text/javascript" th:src="@{/js/fabrica/busqueda_modificaciones.js}"></script>
+  <div th:replace="~{layout/footer :: footerScripts}"></div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
 
@@ -37,32 +541,10 @@
 
 </head>
 <style>
-    #demo-wrapper {
-        padding: 4px;
-        padding-left: 0;
-    }
-
-    /* Hack to work around style-loader asynchronously loading styles. */
-    /* Equivalent to using mdc-typography's subheading2, which is used in the sass file. */
-    .mdc-select {
-        font-family: Roboto, sans-serif;
-        font-size: 1rem;
-        font-weight: 400;
-        letter-spacing: .04em;
-    }
-
-    .example {
-        max-width: 400px;
-        margin: 24px;
-        padding: 24px;
-    }
+    
 </style>
 <script type="text/javascript">
-    $(function () {
-        $('#datetimepicker4').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
-    });
+    
 </script>
 <body>
 <div class="container">
@@ -71,457 +553,17 @@
         <div class="col-md-12" align="center" style="font-size:30; font-family:BBVA Web Book">Modificaciones</div>
     </div>
     <br>
-    <div class="row">
-        <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Criterios de Busqueda</div>
-    </div>
-    <table class="col-md-12" >
-        <tr>
-            <td class="col-md-4" align="center">
-                <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                    <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="numero">
-                    <label for="demo-input" class="mdc-text-field__label">Numero</label><!--tiene una A de mas en la imagen-->
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div id="direccion-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Dirección</div>
-                        <div class="mdc-select__selected-text"></div>
-                        <div class="mdc-select__bottom-line"></div>
-                    </div>
-                    <div class="mdc-menu mdc-select__menu col-md-3" >
-                        <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Dirección 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Dirección 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Dirección 3
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div id="subdireccion-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Subdirección</div>
-                        <div class="mdc-select__selected-text"></div>
-                        <div class="mdc-select__bottom-line"></div>
-                    </div>
-                    <div class="mdc-menu mdc-select__menu col-md-3" >
-                        <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Subdirección 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Subdirección 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Subdirección 3
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr style="height:72px">
-            <td class="col-md-4" align="center">
-                <div id="empresa-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Empresa</div>
-                        <div class="mdc-select__selected-text"></div>
-                        <div class="mdc-select__bottom-line"></div>
-                    </div>
-                    <div class="mdc-menu mdc-select__menu col-md-3" >
-                        <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Empresa 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Empresa 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Empresa 3
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div class="dog1">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker4' />
-                        <label for="demo-input" class="mdc-text-field__label">Fecha de Inicio</label>
-                    </div>
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                    <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="componente">
-                    <label for="demo-input" class="mdc-text-field__label">Componente</label>
-                </div>
-            </td>
-        </tr>
-        <tr style="height:72px">
-            <td class="col-md-4" align="center">
-                <div id="vuelo-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Modif. en Vuelo</div>
-                        <div class="mdc-select__selected-text"></div>
-                        <div class="mdc-select__bottom-line"></div>
-                    </div>
-                    <div class="mdc-menu mdc-select__menu col-md-3" >
-                        <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Modif. en Vuelo 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Modif. en Vuelo 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Modif. en Vuelo 3
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div id="estado-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Estado</div>
-                        <div class="mdc-select__selected-text"></div>
-                        <div class="mdc-select__bottom-line"></div>
-                    </div>
-                    <div class="mdc-menu mdc-select__menu col-md-3" >
-                        <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Estado 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Estado 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Estado 3
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div id="prioridad-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Prioridad</div>
-                        <div class="mdc-select__selected-text"></div>
-                        <div class="mdc-select__bottom-line"></div>
-                    </div>
-                    <div class="mdc-menu mdc-select__menu col-md-3" >
-                        <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Prioridad 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Prioridad 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Prioridad 3
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="col-md-4" align="center">
-                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                    <input type="text"  class="mdc-text-field__input" id="requerimiento">
-                    <label for="demo-input" class="mdc-text-field__label">Requerimiento</label>
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                    <input type="text"  class="mdc-text-field__input" id="numero-error">
-                    <label for="demo-input" class="mdc-text-field__label">Numero de Error</label>
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div id="mes-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Mes</div>
-                        <div class="mdc-select__selected-text"></div>
-                        <div class="mdc-select__bottom-line"></div>
-                    </div>
-                    <div class="mdc-menu mdc-select__menu col-md-3" >
-                        <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Mes 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Mes 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Mes 3
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr style="height:72px">
-            <td class="col-md-4" align="center">
-                <div id="anio-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Año</div>
-                        <div class="mdc-select__selected-text"></div>
-                        <div class="mdc-select__bottom-line"></div>
-                    </div>
-                    <div class="mdc-menu mdc-select__menu col-md-3" >
-                        <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Año 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Año 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Año 3
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                    <input type="text"  class="mdc-text-field__input" id="facturado">
-                    <label for="demo-input" class="mdc-text-field__label">Facturado  SI <input type="checkbox" />   NO <input type="checkbox" /> </label>
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                    <input type="text"  class="mdc-text-field__input" id="version">
-                    <label for="demo-input" class="mdc-text-field__label">Version</label>
-                </div>
-            </td>
-        </tr>
-        <tr style="height:72px">
-            <td class="col-md-4" align="center">
-                <div id="estatus-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Estatus Tipif:</div>
-                        <div class="mdc-select__selected-text"></div>
-                        <div class="mdc-select__bottom-line"></div>
-                    </div>
-                    <div class="mdc-menu mdc-select__menu col-md-3" >
-                        <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Estatus Tipif 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Estatus Tipif 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Estatus Tipif 3
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                    <input type="text"  class="mdc-text-field__input" id="mod-por">
-                    <label for="demo-input" class="mdc-text-field__label">Mod. R. por DyD SI <input type="checkbox" />   NO <input type="checkbox" /> </label>
-                </div>
-            </td>
-        </tr>
-    </table>
-    <div class="row">
-        <br>
-        <br>
-        <table class="col-md-12" >
-            <tr>
-                <td class="col-md-6" align="center">
-                    <button type="button" class="btn btn-primary">Buscar</button>
-                    <button type="button" class="btn btn-primary">Limpiar</button>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <br>
-    <br>
-    <div>
-        <br>
-        <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Resultados de Busqueda -Coste Total: 34USD > Horas: 2</div>
-    </div>
-    <table class="table table-striped">
-        <tr>
-            <td>
-            </td>
-            <td>
-                No.
-            </td>
-            <td>
-                Componente
-            </td>
-            <td>
-                Direccion
-            </td>
-            <td>
-                Subdireccion
-            </td>
-            <td>
-                Requerimiento
-            </td>
-            <td>
-                Version
-            </td>
-            <td>
-                Empresa
-            </td>
-            <td>
-                En Vuelo
-            </td>
-            <td>
-                Fecha Envio
-            </td>
-            <td>
-                Fecha Reneg.
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="checkbox" />
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="checkbox" />
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="checkbox" />
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="checkbox" />
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-    </table>
-
-    <table class="col-md-12" >
-        <tr>
-            <td class="col-md-6" align="center">
-                <button type="button" class="btn btn-primary">Alta</button>
-                <button type="button" class="btn btn-primary">Modificar Hora</button>
-                <button type="button" class="btn btn-primary">Modificar Tabla</button>
-            </td>
-        </tr>
-    </table>
+    
 </div>
 </body>
 
 <script>mdc.autoInit()</script>
 <style rel="stylesheet">
-    .mdc-text-field__input {
-        border-bottom-color: rgba(15, 50, 242, 0.5);
-    }
+    
 </style>
 
 <script>
-    demoReady(function() {
-        mdc.select.MDCSelect.attachTo(document.getElementById('direccion-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('subdireccion-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('empresa-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('vuelo-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('estado-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('prioridad-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('mes-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('anio-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('estatus-js-select'));
-    });
+    
 </script>
 
 </html>

@@ -1,5 +1,13 @@
 $(function () {
 
+  $('#datetimepicker4').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+  
+  $('#datetimepicker5').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+
     const select = new mdc.select.MDCSelect(document.querySelector('#dirs'));
     let coso = parseInt("0");
     select.listen('MDCSelect:change', () => {
