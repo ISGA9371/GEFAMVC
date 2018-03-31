@@ -12,9 +12,8 @@ function init() {
     addHoursValidation();
     addButtonEvents();
 
-    $("#statusTypology").val(1);
-    $("#status").val(1);
-    $("#typologyEmp").val(1);
+    $("#statusTypology").val(3);
+    $("#status").val(3);
 }
 
 function getVersion() {
@@ -125,6 +124,7 @@ function addSelectEvents() {
             $('#tipologia-mods-js-select').show();
         }
         hiddenTypology.value = new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).value;
+        $("#typologyEmp").val(hiddenTypology.value);
         new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
         new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
     });
@@ -136,10 +136,12 @@ function addSelectEvents() {
         if (selectNews.value.match(/\|/g).length == 2) {
             var splittedNews = selectNews.value.split('|');
             hiddenTypology.value = splittedNews[0];
+            $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedNews[1];
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedNews[2];
         } else {
             hiddenTypology.value = "";
+            $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
         }
@@ -152,10 +154,12 @@ function addSelectEvents() {
         if (selectMods.value.match(/\|/g).length == 2) {
             var splittedMods = selectMods.value.split('|');
             hiddenTypology.value = splittedMods[0];
+            $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedMods[1];
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedMods[2];
         } else {
             hiddenTypology.value = "";
+            $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
         }
