@@ -81,6 +81,8 @@ public class BudgetController {
 
     //FALTA COMBO ENTIDAD TABLAS 37
 
+    //FALTA COMBO NATURALEZA TABLAS 38
+
     // LevelTypeId 1 - Direccion
     @ModelAttribute("principals")
     public List<Level> populatePrincipals() {
