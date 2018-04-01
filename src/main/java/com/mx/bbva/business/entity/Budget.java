@@ -34,7 +34,7 @@ public class Budget implements Serializable {
     @Basic(optional = false)
     @Column(name = "TX_CENTRO_CTO", nullable = false, length = 10)
     private String budgetCostCenter;
-    @Column(name = "s", precision = 22)
+    @Column(name = "IM_PRESUPUESTO", precision = 22)
     private Double budgetAmount;
     @Column(name = "IM_AUTORIZADO", precision = 22)
     private Double budgetAuthorized;

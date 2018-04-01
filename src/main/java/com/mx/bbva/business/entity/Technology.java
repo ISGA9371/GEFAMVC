@@ -42,6 +42,10 @@ public class Technology implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "technology")
     private List<Product> products;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "thge002Tecnologia")
+//    private List<Thge062EvalServ> thge062EvalServList;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "thge002Tecnologia")
+//    private List<Thge059HCMando> thge059HCMandoList;
 
     public Technology() {
     }
