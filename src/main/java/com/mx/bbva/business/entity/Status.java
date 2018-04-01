@@ -92,6 +92,10 @@ public class Status implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Component> componentList1;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stAccesoLog")
+//    private List<Thge058CtrlAcc> thge058CtrlAccList;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stSegReq")
+//    private List<Thge063SegReq> thge063SegReqList;
 
     public Status() {
     }
