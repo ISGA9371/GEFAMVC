@@ -2,6 +2,10 @@
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
 
+    <!--Encabezado que vive en otra ventana-->
+    <div th:replace="layout/header :: cabeceraPrincipal"></div>
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,171 +57,162 @@
 
     <form style="display:block" action="#" method="post">
 
-        <input id="nombre-js-hidden" type="text" th:field="*{doubt}" >
-        <input id="direccion-js-hidden" type="text" th:field="*{doubt}" >
-        <input id="subdireccion-js-hidden" type="text" th:field="*{doubt}" >
-        <input id="version-js-hidden" type="text" th:field="*{doubt}" >
-        <input id="requerimiento-js-hidden" type="text" th:field="*{doubt}" >
-        <input id="tecnologia-js-hidden" type="text" th:field="*{doubt}" >
-        <input id="tipologia-js-hidden" type="text" th:field="*{doubt}" >
-        <input id="fechaAlta-js-hidden" type="text" th:field="*{doubt}" >
-        <input id="prioridad-js-hidden" type="text" th:field="*{doubt}" >
-        <input id="usuarioPeticionario-js-hidden" type="text" th:field="*{doubt}" >
-        <input id="descripcion-js-hidden" type="text" th:field="*{doubt}" >
+        <input id="nombre-js-hidden" type="hidden" th:field="*{issue}" >
+        <input id="direccion-js-hidden" type="hidden" th:field="*{issue}" >
+        <input id="subdireccion-js-hidden" type="hidden" th:field="*{issue}" >
+        <input id="version-js-hidden" type="hidden" th:field="*{issue}" >
+        <input id="requerimiento-js-hidden" type="hidden" th:field="*{issue}" >
+        <input id="tecnologia-js-hidden" type="hidden" th:field="*{issue}" >
+        <input id="tipologia-js-hidden" type="hidden" th:field="*{issue}" >
+        <input id="fechaAlta-js-hidden" type="hidden" th:field="*{issue}" >
+        <input id="prioridad-js-hidden" type="hidden" th:field="*{issue}" >
+        <input id="usuarioPeticionario-js-hidden" type="hidden" th:field="*{issue}" >
+        <input id="descripcion-js-hidden" type="hidden" th:field="*{issue}" >
 
 
-        <input type="submit" value="Guardar">
-    </form>
 
-    <div >
-        <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos de Componente</div>
-        <table class="col-md-12" >
-            <tr>
-                <td class="col-md-4" align="center">
-                    <div id="nombre-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text" maxlength="120" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
-                        <label for="demo-input" class="mdc-text-field__label">Nombre de Componente</label>
-                    </div>
-                </td>
-                <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" id="direccion">
-                        <label for="demo-input" class="mdc-text-field__label">Dirección</label>
-                    </div>
-                </td>
-                <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" id="subdireccion">
-                        <label for="demo-input" class="mdc-text-field__label">Subdirección</label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" id="version">
-                        <label for="demo-input" class="mdc-text-field__label">Versión</label>
-                    </div>
-                </td>
-                <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" id="requerimiento">
-                        <label for="demo-input" class="mdc-text-field__label">Requerimiento</label>
-                    </div>
-                <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" id="tecnologia">
-                        <label for="demo-input" class="mdc-text-field__label">Tecnologia</label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4" align="center">
-                    <div class="dog1">
-                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker4' />
-                            <label for="demo-input" class="mdc-text-field__label">Fecha de Alta</label>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </table>
+
+
         <div >
-            <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos del Error</div>
-            <table class="col-md-12"
-            <tr style="height:72px">
-                <td class="col-md-4" align="center" style="height:72px">
-                    <div id="Prioridad-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                            <div class="mdc-select__label">Prioridad</div>
-                            <div class="mdc-select__selected-text"></div>
-                            <div class="mdc-select__bottom-line"></div>
-                        </div>
-                        <div class="mdc-menu mdc-select__menu col-md-3">
-                            <ul class="mdc-list mdc-menu__items">
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Prioridad 1
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Prioridad 2
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Prioridad 3
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </td>
-                <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" id="usuario-peticionario">
-                        <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
-                    </div>
-                </td>
-                <td class="col-md-4" align="center">
-                    <div id="Origen-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                            <div class="mdc-select__label">Origen</div>
-                            <div class="mdc-select__selected-text"></div>
-                            <div class="mdc-select__bottom-line"></div>
-                        </div>
-                        <div class="mdc-menu mdc-select__menu col-md-3" >
-                            <ul class="mdc-list mdc-menu__items">
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Origen 1
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Origen 2
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Origen 3
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr style="height:72px">
-                <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" id="demo-input">
-                        <label for="demo-input" class="mdc-text-field__label">Documentacion</label>
-                        <button type="button" class="btn btn-primary">Selecionar Archivo</button>
-                    </div>
-                </td>
-                <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:81%">
-                        <input type="text"  class="mdc-text-field__input" id="error-resuelto">
-                        <label for="demo-input" class="mdc-text-field__label">Incidencia ya resuelto por DyD:</label>
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1"></button>
-                    </div>
-                </td>
-            </tr>
-            </table>
-        </div>
-        <br>
-        <div class="row">
+            <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos de Componente</div>
             <table class="col-md-12" >
                 <tr>
-                    <td class="col-md-12" align="right" colspan="12">
-                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
-                            <input type="textarea"  class="mdc-text-field__input" id="descripcion">
-                            <label for="demo-input" class="mdc-text-field__label">Descripción</label>
+                    <td class="col-md-4" align="center">
+                        <div id="nombre-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input type="text" maxlength="120" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                            <label for="demo-input" class="mdc-text-field__label">Nombre de Componente</label>
+                        </div>
+                    </td>
+                    <td class="col-md-4" align="center">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input type="text"  class="mdc-text-field__input" id="direccion">
+                            <label for="demo-input" class="mdc-text-field__label">Dirección</label>
+                        </div>
+                    </td>
+                    <td class="col-md-4" align="center">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input type="text"  class="mdc-text-field__input" id="subdireccion">
+                            <label for="demo-input" class="mdc-text-field__label">Subdirección</label>
+                        </div>
                     </td>
                 </tr>
                 <tr>
+                    <td class="col-md-4" align="center">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input type="text"  class="mdc-text-field__input" id="version">
+                            <label for="demo-input" class="mdc-text-field__label">Versión</label>
+                        </div>
+                    </td>
+                    <td class="col-md-4" align="center">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input type="text"  class="mdc-text-field__input" id="requerimiento">
+                            <label for="demo-input" class="mdc-text-field__label">Requerimiento</label>
+                        </div>
+                    <td class="col-md-4" align="center">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input type="text"  class="mdc-text-field__input" id="tecnologia">
+                            <label for="demo-input" class="mdc-text-field__label">Tecnologia</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4" align="center">
+                        <div class="dog1">
+                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker4' />
+                                <label for="demo-input" class="mdc-text-field__label">Fecha de Alta</label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
             </table>
+            <div >
+                <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos del Error</div>
+                <table class="col-md-12"
+                <tr style="height:72px">
+                    <td class="col-md-4" align="center" style="height:72px">
 
-            <table class="col-md-12" >
-                <tr>
-                    <td class="col-md-6" align="center">
-                        <button type="button" class="btn btn-primary">Guardar</button>
-                        <button type="button" class="btn btn-primary">Cancelar</button>
+                        <!-- <input id="Prioridad-js-select2" type="text"  required value="" th:field="*{priorities}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;" />-->
+                        <div id="Prioridad-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                                <div class="mdc-select__label">Prioridad*</div>
+                                <div class="mdc-select__selected-text"></div>
+                                <div class="mdc-select__bottom-line"></div>
+                            </div>
+                            <div class="mdc-menu mdc-select__menu col-md-3" >
+                                <ul class="mdc-list mdc-menu__items">
+                                    <li th:each="priorities:${priorities}" class="mdc-list-item" th:id="${priorities.priorityId}" role="option" th:text="${priorities.priorityName}"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td class="col-md-4" align="center">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input type="text"  class="mdc-text-field__input" id="usuario-peticionario">
+                            <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
+                        </div>
+                    </td>
+                    <td class="col-md-4" align="center">
+
+                        <!--  <input id="Origen-js-select2" type="text"  required value="" th:field="*{origins}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;" />-->
+                        <div id="Origen-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                                <div class="mdc-select__label">Origen*</div>
+                                <div class="mdc-select__selected-text"></div>
+                                <div class="mdc-select__bottom-line"></div>
+                            </div>
+                            <div class="mdc-menu mdc-select__menu col-md-3" >
+                                <ul class="mdc-list mdc-menu__items">
+                                    <li th:each="origins:${origins}" class="mdc-list-item" th:id="${origins.originId}"  role="option" th:text="${origins.originName}"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+
                     </td>
                 </tr>
-            </table>
-        </div>
-    </div>
+                <tr style="height:72px">
+                    <td class="col-md-4" align="center">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <!--<label for="demo-input" class="mdc-text-field__label">Documentacion </label>-->
+                            <input type="file" name="fileData" class="btn btn-primary" id="fileData" onChange="Checkfiles(this.value)"/>
+                        </div>
+                    </td>
+                    <td class="col-md-4" align="center">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:81%">
+                            <input type="text"  class="mdc-text-field__input" id="error-resuelto">
+                            <label for="demo-input" class="mdc-text-field__label">Incidencia ya resuelto por DyD:</label>
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
+                        </div>
+                    </td>
+                </tr>
+                </table>
+            </div>
+            <br>
+            <div class="row">
+                <table class="col-md-12" >
+                    <tr>
+                        <td class="col-md-12" align="right" colspan="12">
+                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
+                                <input type="textarea"  class="mdc-text-field__input" id="descripcion">
+                                <label for="demo-input" class="mdc-text-field__label">Descripción</label>
+                        </td>
+                    </tr>
+                    <tr>
+                </table>
+
+                <table class="col-md-12" >
+                    <tr>
+                        <td class="col-md-6" align="center">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="" class="btn btn-primary">Cancelar</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+    </form>
+</div>
 </body>
 <script>mdc.autoInit()</script>
 <style rel="stylesheet">
@@ -227,11 +222,10 @@
 </style>
 <script>
     demoReady(function() {
-        mdc.select.MDCSelect.attachTo(document.getElementById('Estado-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Tipo-js-select'));
         mdc.select.MDCSelect.attachTo(document.getElementById('Prioridad-js-select'));
         mdc.select.MDCSelect.attachTo(document.getElementById('Origen-js-select'));
     });
 </script>
-
+<!--Footer que debe ir en todas las ventanas-->
+<div th:replace="layout/footer :: FooterPrincipal"></div>
 </html>
