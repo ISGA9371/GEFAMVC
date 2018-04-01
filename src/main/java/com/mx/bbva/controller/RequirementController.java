@@ -172,6 +172,8 @@ public class RequirementController {
         return this.methodologyService.findAllMethodologies();
     }
 
+    //FALTA COMBO DE PROYECTOS TABLA 22
+
     // Import services
     @Autowired
     public void setAreaService(AreaService areaService) {

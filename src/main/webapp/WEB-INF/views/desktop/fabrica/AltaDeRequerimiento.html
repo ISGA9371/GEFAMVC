@@ -67,7 +67,7 @@
             <input type="submit" value="guardar">
 
         </form-->
-            <input id="metodologia" type="hidden" th:field="*{methodology.methodologyId}">
+
             <div class="row">
                 <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos Generales</div>
                 <table class="col-md-12" >
@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
                                     <ul  class="mdc-list mdc-menu__items">
-                                        <li th:each="principals:${principals}" class="mdc-list-item" th:id="${principals.levelId}" role="option" th:text="${principals.levelName}"></li>
+                                        <li th:each="principals:${principals}" class="mdc-list-item" th:id="${principals.levelSerial}" role="option" th:text="${principals.levelName}"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -113,14 +113,27 @@
                         <td class="col-md-4" align="center">
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                                 <input type="text" maxlength="110" pattern="[A-Za-z0-9]+"  class="mdc-text-field__input" id="demo-input">
-                                <label for="demo-input" class="mdc-text-field__label">Subdirector</label>
+                                <label for="demo-input" class="mdc-text-field__label">Subdirector(vacio o num id)</label>
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
-                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input id="hidden-responsable" type="text" pattern="[0-9]+" required value="" th:field="*{user.userId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <div id="responsable-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                                    <div class="mdc-select__label">Responsable</div>
+                                    <div class="mdc-select__selected-text"></div>
+                                    <div class="mdc-select__bottom-line"></div>
+                                </div>
+                                <div class="mdc-menu mdc-select__menu col-md-3" >
+                                    <ul class="mdc-list mdc-menu__items">
+                                        <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userId}" role="option" th:text="${users.userInternalId}"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                                 <input type="text" maxlength="110" pattern="[A-Za-z0-9]+" required th:field="*{user.userId}" class="mdc-text-field__input" id="demo-input">
                                 <label for="demo-input" class="mdc-text-field__label">Responsable</label>
-                            </div>
+                            </div-->
                         </td>
                         <td class="col-md-4" align="center">
                             <input id="hidden-area" type="text" pattern="[0-9]+" required value="" th:field="*{area.areaId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
@@ -140,10 +153,23 @@
                     </tr>
                     <tr>
                         <td class="col-md-4" align="center">
-                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input id="hidden-gestor" type="text" pattern="[0-9]+" required value="" th:field="*{userManager.userId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <div id="gestor-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                                    <div class="mdc-select__label">Gestor*</div>
+                                    <div class="mdc-select__selected-text"></div>
+                                    <div class="mdc-select__bottom-line"></div>
+                                </div>
+                                <div class="mdc-menu mdc-select__menu col-md-3" >
+                                    <ul class="mdc-list mdc-menu__items">
+                                        <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userId}" role="option" th:text="${users.userInternalId}"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                                 <input type="text" maxlength="110" pattern="[A-Za-z0-9]+" required th:field="*{userManager.userId}"  class="mdc-text-field__input" id="demo-input">
                                 <label for="demo-input" class="mdc-text-field__label">Gestor</label>
-                            </div>
+                            </div-->
                         </td>
                         <td class="col-md-4" align="center">
                             <input id="hidden-tecnologia" type="text" pattern="[0-9]+" required th:field="*{technology.technologyId}" value="" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
@@ -161,7 +187,7 @@
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
-                            <input id="hidden-tipoProyecto" type="text" value=""  style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <input id="hidden-tipoProyecto" type="text" value="" th:field="*{methodology.methodologyId}"  style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                             <div id="tipoProyecto-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                                     <div class="mdc-select__label">Tipo de proyecto</div>
@@ -170,7 +196,7 @@
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
                                     <ul class="mdc-list mdc-menu__items">
-                                        <li th:each="areas:${areas}" class="mdc-list-item" th:id="${areas.areaId}" role="option" th:text="${areas.areaName}"></li>
+                                        <li th:each="methodologies:${methodologies}" class="mdc-list-item" th:id="${methodologies.methodologyId}" role="option" th:text="${methodologies.methodologyName}"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -249,7 +275,7 @@
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
                                     <ul class="mdc-list mdc-menu__items">
-                                        <li th:each="areas:${areas}" class="mdc-list-item" th:id="${areas.areaId}" role="option" th:text="${areas.areaName}"></li>
+                                        <li th:each="programIncrements:${programIncrements}" class="mdc-list-item" th:id="${programIncrements.programIncrementId}" role="option" th:text="${programIncrements.ProgramIncrementName}"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -358,7 +384,10 @@
             mdc.select.MDCSelect.attachTo(document.getElementById('estado-js-select'));
             mdc.select.MDCSelect.attachTo(document.getElementById('facturado-js-select'));
 
-            document.getElementById("metodologia").value="1";
+            mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
+            mdc.select.MDCSelect.attachTo(document.getElementById('gestor-js-select'));
+
+
         });
 
         //Asignacion de combos a los hidden
@@ -461,6 +490,37 @@
                 hiddenServ.value = selectServ.value;
             });
         });
+
+        demoReady(function() {
+            var rootTpro = document.getElementById('tipoProyecto-js-select');
+            var hiddenTpro = document.getElementById('hidden-tipoProyecto');
+            var selectTpro = new mdc.select.MDCSelect(rootTpro);
+
+            rootTpro.addEventListener('MDCSelect:change', function() {
+                hiddenTpro.value = selectTpro.value;
+            });
+        });
+
+        demoReady(function() {
+            var rootRespo = document.getElementById('responsable-js-select');
+            var hiddenRespo = document.getElementById('hidden-responsable');
+            var selectRespo = new mdc.select.MDCSelect(rootRespo);
+
+            rootRespo.addEventListener('MDCSelect:change', function() {
+                hiddenRespo.value = selectRespo.value;
+            });
+        });
+
+        demoReady(function() {
+            var rootGest = document.getElementById('gestor-js-select');
+            var hiddenGest = document.getElementById('hidden-gestor');
+            var selectGest = new mdc.select.MDCSelect(rootGest);
+
+            rootGest.addEventListener('MDCSelect:change', function() {
+                hiddenGest.value = selectGest.value;
+            });
+        });
+
 
 
 

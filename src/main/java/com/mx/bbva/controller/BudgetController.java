@@ -34,7 +34,7 @@ public class BudgetController {
         LOG.info("Creating new budget");
         model.addAttribute("budget", new Budget());
         //TODO Add catalogs
-        return URL_FACTORY + NEW_BUDGET;
+        return URL_BUDGET + NEW_BUDGET;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -44,7 +44,7 @@ public class BudgetController {
         // LOG.info("Saving new budget... " + budget.getBudgetName());
         budgetService.saveBudget(budget);
 
-        return URL_FACTORY + EDIT_BUDGET;
+        return URL_BUDGET + EDIT_BUDGET;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -54,7 +54,7 @@ public class BudgetController {
         List<Budget> budgets = budgetService.findAllBudgets();
         model.addAttribute("budgets", budgets);
 
-        return URL_FACTORY + SEARCH_BUDGETS;
+        return URL_BUDGET + SEARCH_BUDGETS;
     }
 
     @RequestMapping(path = "/{budgetId}", method = RequestMethod.GET)
@@ -67,13 +67,15 @@ public class BudgetController {
         } else {
             model.addAttribute("budget", new Budget());
         }
-        return URL_FACTORY + EDIT_BUDGET;
+        return URL_BUDGET + EDIT_BUDGET;
     }
 
     @ModelAttribute("areas")
     public List<Area> populateAreas() {
         return this.areaService.findAllAreas();
     }
+
+    //FALTA COMBO AÑO TABLAS 7
 
     //FALTA COMBO BANCAS TABLAS 34
 
