@@ -1,5 +1,5 @@
 $(function () {
-
+/*
     const select = new mdc.select.MDCSelect(document.querySelector('#dirs'));
     let coso = parseInt("0");
     select.listen('MDCSelect:change', () => {
@@ -126,5 +126,5 @@ $(function () {
         $("#serviceTypeId").val(id);
     });
 
-
+*/
 });

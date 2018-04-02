@@ -12,51 +12,33 @@
 
 
     <!-- Estilos -->
-    <script type="text/javascript" th:src="@{js/jquery-3.2.1.min.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}">
-    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 
     <!--Script generales-->
-    <link rel="stylesheet" type="text/css" th:href="@{css/estilosGF.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/estilosGF.css}">
 
 
     <!--Scripts para campos de texto-->
-    <link rel="stylesheet" type="text/css" th:href="@{css/material-components-web.css}">
-    <script type="text/javascript" th:src="@{js/material-components-web.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/material-components-web.css}">
+    <script type="text/javascript" th:src="@{/js/material-components-web.js}"></script>
 
 
     <!--Estilos para los combos-->
-    <link rel="stylesheet" type="text/css" th:href="@{css/select.css}">
-    <script type="text/javascript" th:src="@{js/ready.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/select.css}">
+    <script type="text/javascript" th:src="@{/js/ready.js}"></script>
 
     <!--Estilos para los calendarios-->
     <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap-datetimepicker.css}">
-    <script type="text/javascript" th:src="@{js/analytics.js}"></script>
-    <script type="text/javascript" th:src="@{js/moment-with-locales.js}"></script>
-    <script type="text/javascript" th:src="@{js/bootstrap-datetimepicker.js}"></script>
+    <script type="text/javascript" th:src="@{/js/analytics.js}"></script>
+    <script type="text/javascript" th:src="@{/js/moment-with-locales.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-datetimepicker.js}"></script>
+
+    <script type="text/javascript" th:src="@{/js/fabrica/modificar-requerimiento.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fabrica/modificar-requerimiento.css}">
 
 </head>
-<style>
-    #demo-wrapper {
-        padding: 4px;
-        padding-left: 0;
-    }
-
-    /* Hack to work around style-loader asynchronously loading styles. */
-    /* Equivalent to using mdc-typography's subheading2, which is used in the sass file. */
-    .mdc-select {
-        font-family: Roboto, sans-serif;
-        font-size: 1rem;
-        font-weight: 400;
-        letter-spacing: .04em;
-    }
-
-    .example {
-        max-width: 400px;
-        margin: 24px;
-        padding: 24px;
-    }
-</style>
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker4').datetimepicker({
@@ -72,132 +54,133 @@
     });
 </script>
 <body>
+
+<div th:replace="layout/header :: cabeceraPrincipal"></div>
+
 <div class="container">
     <br>
     <div class="row">
-        <div class="col-md-12" align="center" style="font-size:30; font-family:BBVA Web Book">Modificar Requerimiento</div>
+        <div class="col-md-12" align="center" style="font-size:30px; font-family:BBVA Web Book">Modificar Requerimiento</div>
     </div>
     <br>
-    <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos Generales</div>
-    <table class="col-md-12">
-        <tr style="height:72px">
+    <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos Generales</div>
+
+    <form th:object="${requirement}" th:action="@{/requirements}" method="post">
+        <!-- HIDDEN FIELDS -->
+        <input type="hidden">
+        <input type="hidden" th:field="*{level.levelSerial}">
+        <input type="hidden" >
+        <input type="hidden" th:field="*{user.userId}">
+        <input type="hidden" th:field="*{area.areaId}">
+        <input type="hidden" th:field="*{userManager.userId}">
+        <input type="hidden" th:field="*{technology.technologyId}">
+        <input type="hidden" th:field="*{methodology.methodologyId}">
+        <input type="hidden" th:field="*{application.applicationSerial}">
+        <input type="hidden" th:field="*{channel.channelSerial}">
+        <input type="hidden" th:field="*{company.companyId}">
+        <input type="hidden" th:field="*{serviceType.serviceTypeId}">
+        <input type="hidden" th:field="*{programIncrement.programIncrementId}">
+        <input type="hidden" th:field="*{status.statusId}">
+        <input type="hidden" th:field="*{requirementBilled}">
+
+        <div class="row">
+
+        <table class="col-md-12" >
+        <tr>
             <td class="col-md-4" align="center">
-                <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                    <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="nombre-requerimiento">
-                    <label for="demo-input" class="mdc-text-field__label">Nombre de requerimiento*</label>
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                    <input type="text" maxlength="120" required pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{requirementName}"
+                           class="mdc-text-field__input">
+                    <label class="mdc-text-field__label">Nombre de requerimiento</label>
                 </div>
             </td>
             <td class="col-md-4" align="center">
-                <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                    <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="tipo-proyecto">
-                    <label for="demo-input" class="mdc-text-field__label">Tipo de Proyecto</label>
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div id="direccion-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Dirección*</div>
+                        <div class="mdc-select__label">Direccion *</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
-                        <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Dirección* 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Dirección* 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Dirección* 3
-                            </li>
+                        <ul  class="mdc-list mdc-menu__items">
+                            <li th:each="principals:${principals}" class="mdc-list-item" th:id="${principals.levelSerial}" role="option" th:text="${principals.levelName}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </td>
+            <td class="col-md-4" align="center">
+
+                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                        <div class="mdc-select__label">Subdireccion *</div>
+                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__bottom-line"></div>
+                    </div>
+                    <div class="mdc-menu mdc-select__menu col-md-3">
+                        <ul class="mdc-list mdc-menu__items" id="subdir-select">
+                            <li class="mdc-list-item" role="option" tabindex="0"></li>
                         </ul>
                     </div>
                 </div>
             </td>
         </tr>
-        <tr style="height:72px">
+        <tr>
             <td class="col-md-4" align="center">
-                <div id="Subdirección-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Subdirección*</div>
-                        <div class="mdc-select__selected-text"></div>
-                        <div class="mdc-select__bottom-line"></div>
-                    </div>
-                    <div class="mdc-menu mdc-select__menu col-md-3" >
-                        <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Subdirección* 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Subdirección* 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Subdirección* 3
-                            </li>
-                        </ul>
-                    </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                    <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="subdirector">
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                    <input type="text" class="mdc-text-field__input" readonly>
                     <label for="demo-input" class="mdc-text-field__label">Subdirector</label>
                 </div>
             </td>
             <td class="col-md-4" align="center">
-                <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                    <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="responsable">
-                    <label for="demo-input" class="mdc-text-field__label">Responsable*</label>
+                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                        <div class="mdc-select__label">Responsable</div>
+                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__bottom-line"></div>
+                    </div>
+                    <div class="mdc-menu mdc-select__menu col-md-3" >
+                        <ul class="mdc-list mdc-menu__items">
+                            <li th:each="user : ${users}" class="mdc-list-item" role="option"
+                                th:value="${user.userId}" th:text="${user.userInternalId}"></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </td>
+            <td class="col-md-4" align="center">
+                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                        <div class="mdc-select__label">Area de Atencion*</div>
+                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__bottom-line"></div>
+                    </div>
+                    <div class="mdc-menu mdc-select__menu col-md-3" >
+                        <ul class="mdc-list mdc-menu__items">
+                            <li th:each="area : ${areas}" class="mdc-list-item" role="option"
+                                th:value="${area.areaId}" th:text="${area.areaName}"></li>
+                        </ul>
+                    </div>
                 </div>
             </td>
         </tr>
-        <tr style="height:72px">
+        <tr>
             <td class="col-md-4" align="center">
-                <div id="Area-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Área de Atención*</div>
+                        <div class="mdc-select__label">Gestor*</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Área de Atención* 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Área de Atención* 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Área de Atención 3
-                            </li>
+                            <li th:each="user : ${users}" class="mdc-list-item" role="option"
+                                th:value="${user.userId}" th:text="${user.userInternalId}"></li>
                         </ul>
                     </div>
                 </div>
             </td>
-            <td class="col-md-4" align="center">
-                <div id="Gestor-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Gestor</div>
-                        <div class="mdc-select__selected-text"></div>
-                        <div class="mdc-select__bottom-line"></div>
-                    </div>
-                    <div class="mdc-menu mdc-select__menu col-md-3" >
-                        <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Gestor 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Gestor 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Gestor 3
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div id="Tecnología-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+            <td class="col-md-4" align="center" data-mdc-auto-init="MDCSelect">
+                <div class="mdc-select" role="listbox">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                         <div class="mdc-select__label">Tecnología*</div>
                         <div class="mdc-select__selected-text"></div>
@@ -205,15 +188,23 @@
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Tecnología* 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Tecnología* 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Tecnología* 3
-                            </li>
+                            <li th:each="technology : ${technologies}" class="mdc-list-item" role="option"
+                                th:value="${technology.technologyId}" th:text="${technology.technologyName}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </td>
+            <td class="col-md-4" align="center">
+                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                        <div class="mdc-select__label">Tipo de proyecto</div>
+                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__bottom-line"></div>
+                    </div>
+                    <div class="mdc-menu mdc-select__menu col-md-3" >
+                        <ul class="mdc-list mdc-menu__items">
+                            <li th:each="methodology : ${methodologies}" class="mdc-list-item" role="option"
+                                th:id="${methodology.methodologyId}" th:text="${methodology.methodologyName}"></li>
                         </ul>
                     </div>
                 </div>
@@ -221,51 +212,37 @@
         </tr>
         <tr style="height:72px">
             <td class="col-md-4" align="center">
-                <div id="Aplicación-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Aplicación</div>
+                        <div class="mdc-select__label">Aplicacion</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Aplicación 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Aplicación 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Aplicación 3
-                            </li>
+                            <li th:each="app : ${applications}" class="mdc-list-item" role="option"
+                                th:value="${app.applicationSerial}" th:text="${app.applicationName}"></li>
                         </ul>
                     </div>
                 </div>
             </td>
             <td class="col-md-4" align="center">
-                <div id="Canal-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Canal:</div>
+                        <div class="mdc-select__label">Canal.</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Canal: 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Canal: 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Canal: 3
-                            </li>
+                            <li th:each="channel : ${channels}" class="mdc-list-item" role="option"
+                                th:value="${channel.channelSerial}" th:text="${channel.channelName}"></li>
                         </ul>
                     </div>
                 </div>
             </td>
             <td class="col-md-4" align="center">
-                <div id="Empresa-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                         <div class="mdc-select__label">Empresa*</div>
                         <div class="mdc-select__selected-text"></div>
@@ -273,15 +250,8 @@
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Empresa* 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Empresa* 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Empresa* 3
-                            </li>
+                            <li th:each="company : ${companies}" class="mdc-list-item"
+                                th:id="${company.companyId}" role="option" th:text="${company.companyName}"></li>
                         </ul>
                     </div>
                 </div>
@@ -289,103 +259,77 @@
         </tr>
         <tr style="height:72px">
             <td class="col-md-4" align="center">
-                <div id="Tipodeservicio-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+
+                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Tipo de Servicio*:</div>
+                        <div class="mdc-select__label">Tipo de Servicio</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Tipo de Servicio*: 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Tipo de Servicio*: 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Tipo de Servicio*: 3
-                            </li>
+                            <li th:each="serviceType : ${serviceTypes}" class="mdc-list-item" role="option"
+                                th:value="${serviceType.serviceTypeId}" th:text="${serviceType.serviceTypeName}"></li>
                         </ul>
                     </div>
                 </div>
             </td>
             <td class="col-md-4" align="center">
-                <div id="PI-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Cod.PI</div>
+                        <div class="mdc-select__label">Codigo PI*</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Cod.PI 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Cod PI 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Cod PI 3
-                            </li>
+                            <li th:each="pi : ${programIncrements}" class="mdc-list-item" role="option"
+                                th:value="${pi.programIncrementId}" th:text="${pi.ProgramIncrementName}"></li>
                         </ul>
                     </div>
                 </div>
             </td>
             <td class="col-md-4" align="center">
-                <div id="Nombredelproyecto-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+
+                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Nombre del Proyecto</div>
+                        <div class="mdc-select__label">Nombre del Proyecto*</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Nombre del Proyecto 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Nombre del Proyecto 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Nombre del Proyecto 3
-                            </li>
+                            <li th:each="area : ${areas}" class="mdc-list-item" role="option"
+                                th:id="${area.areaId}" th:text="${area.areaName}"></li>
                         </ul>
                     </div>
                 </div>
             </td>
         </tr>
-        <tr style="height:72px">
+        <tr>
             <td class="col-md-4" align="center">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                    <input type="text"  class="mdc-text-field__input" id="horas">
-                    <label for="demo-input" class="mdc-text-field__label">Horas*</label>
+                    <input type="number" maxlength="10"
+                           th:field="*{requirementTotalHours}" class="mdc-text-field__input" >
+                    <label class="mdc-text-field__label">Horas</label>
                 </div>
             </td>
             <td class="col-md-4" align="center">
-                <div id="Estadodelproyecto-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Estado del Proyecto</div>
+                        <div class="mdc-select__label">Estado</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Estado del Proyecto 1
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Estado del Proyecto 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Estado del Proyecto 3
-                            </li>
+                            <li th:each="statusList:${statusList}" class="mdc-list-item" th:id="${statusList.statusId}" role="option" th:text="${statusList.statusName}"></li>
                         </ul>
                     </div>
                 </div>
             </td>
             <td class="col-md-4" align="center">
-                <div id="Facturado-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <div id="facturado-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                         <div class="mdc-select__label">Facturado</div>
                         <div class="mdc-select__selected-text"></div>
@@ -393,90 +337,39 @@
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Facturado 1
+                            <li id="1" class="mdc-list-item" role="option" tabindex="0">
+                                Si
                             </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Facturado 2
-                            </li>
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Facturado 3
+                            <li id="0" class="mdc-list-item" role="option" tabindex="0">
+                                No
                             </li>
                         </ul>
                     </div>
                 </div>
             </td>
         </tr>
-        <tr style="height:72px">
-            <td class="col-md-4" align="center">
-                <div class="dog1">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker4' />
-                        <label for="demo-input" class="mdc-text-field__label">Fecha de Inicio</label>
-                    </div>
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div class="dog1">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker5' />
-                        <label for="demo-input" class="mdc-text-field__label">Fecha Final</label>
-                    </div>
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
-                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                    <input type="text"  class="mdc-text-field__input" id="pep">
-                    <label for="demo-input" class="mdc-text-field__label">PEP</label>
-                    <button type="button" class="btn btn-primary">Asociar PEP</button>
-                </div>
-            </td>
-        </tr>
-        <table class="col-md-12">
-            <tr style="height:72px">
-                <td class="col-md-6" align="center">
-                    <button type="button" class="btn btn-primary">Alta de Componente</button>
-                    <button type="button" class="btn btn-primary">Carga Masiva</button>
-                </td>
-            </tr>
         </table>
+        </div>
 
-        <table class="col-md-12">
-            <tr style="height:72px">
-                <td class="col-md-6" align="center">
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                    <button type="button" class="btn btn-primary">Cancelar</button>
-                </td>
-            </tr>
-        </table>
+        <div class="row" style="margin-top: 48px;">
+            <div class="col-md-4 col-md-offset-4" style="text-align: center;">
+                <a th:href="@{/components/add}" class="btn btn-primary">Alta de componente</a>
+                <a class="btn btn-primary" style="margin-left: 32px;">Carga masiva</a>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 60px; margin-bottom: 120px;">
+            <div class="col-md-4 col-md-offset-4" style="text-align: center;">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a class="btn btn-primary" style="margin-left: 48px;">Cancelar</a>
+            </div>
+        </div>
+
+    </form>
 </div>
-</div>
+
 </body>
 
 <script>mdc.autoInit()</script>
-<style rel="stylesheet">
-    .mdc-text-field__input {
-        border-bottom-color: rgba(15, 50, 242, 0.5);
-    }
-</style>
-
-<script>
-    demoReady(function() {
-        mdc.select.MDCSelect.attachTo(document.getElementById('direccion-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Subdirección-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Area-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Gestor-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Tecnología-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Aplicación-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Canal-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Empresa-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Tipodeservicio-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('PI-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Nombredelproyecto-js-select'));-
-            mdc.select.MDCSelect.attachTo(document.getElementById('Estadodelproyecto-js-select'));-
-            mdc.select.MDCSelect.attachTo(document.getElementById('Facturado-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Estatus Tipif.-js-select'));
-    });
-</script>
 
 </html>
