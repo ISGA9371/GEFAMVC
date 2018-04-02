@@ -19,7 +19,18 @@ function init() {
 function fillFields() {
     new mdc.textField.MDCTextField(document.getElementById('component-mdc-text')).value = $('#componentName').val();
     new mdc.textField.MDCTextField(document.getElementById('version-mdc-text')).value = $('#componentVersion').val();
-
+    var d = new Date($('#componentDesignRealDeliverDate').val());
+    $('#componentDesignRealDeliverDate').val(pad(d.getDate(),2) + "/" + pad(d.getMonth()+1,2) + "/" + d.getFullYear());
+    new mdc.textField.MDCTextField(document.getElementById('FecRealCFG-mdc-text')).value = $('#componentDesignRealDeliverDate').val();
+    var d = new Date($('#componentPreviewDeliverDate').val());
+    $('#componentPreviewDeliverDate').val(pad(d.getDate(),2) + "/" + pad(d.getMonth()+1,2) + "/" + d.getFullYear());
+    new mdc.textField.MDCTextField(document.getElementById('FecPreFac-mdc-text')).value = $('#componentPreviewDeliverDate').val();
+    var d = new Date($('#componentPossibleDeliverDate').val());
+    $('#componentPossibleDeliverDate').val(pad(d.getDate(),2) + "/" + pad(d.getMonth()+1,2) + "/" + d.getFullYear());
+    new mdc.textField.MDCTextField(document.getElementById('FecNegFac-mdc-txt')).value = $('#componentPossibleDeliverDate').val();
+    var d = new Date($('#componentRealDeliverDate').val());
+    $('#componentRealDeliverDate').val(pad(d.getDate(),2) + "/" + pad(d.getMonth()+1,2) + "/" + d.getFullYear());
+    new mdc.textField.MDCTextField(document.getElementById('FecRealFac-mdc-text')).value = $('#componentRealDeliverDate').val();
 }
 
 function addComponentValidation() {
@@ -80,13 +91,9 @@ function addHoursValidation() {
 
 function addButtonEvents() {
     var btnCancel = document.getElementById('cancelar-btn');
-    var btnSave = document.getElementById('guardar-btn');
     btnCancel.addEventListener("click", function () {
         window.history.back();
-    })
-    btnSave.addEventListener("click", function () {
-        validateWindowData();
-    })
+    });
 }
 
 function addSelectEvents() {

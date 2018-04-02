@@ -95,12 +95,8 @@ function addHoursValidation() {
 
 function addButtonEvents() {
     var btnCancel = document.getElementById('cancelar-btn');
-    var btnSave = document.getElementById('guardar-btn');
     btnCancel.addEventListener("click", function () {
         window.history.back();
-    })
-    btnSave.addEventListener("click", function () {
-        validateWindowData();
     })
 }
 
@@ -164,22 +160,6 @@ function addSelectEvents() {
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
         }
     });
-}
-
-function validateWindowData() {
-    hideData();
-}
-
-function hideData() {
-
-    /*var rootNewMod = document.getElementById('tecnologia-js-select');
-    var hiddenNewMod = document.getElementById('selected-technology');
-    var selectNewMod = new mdc.select.MDCSelect(rootTechnology);
-
-    rootTechnology.addEventListener('MDCSelect:change', function() {
-        hiddenTechnology.value = selectTechnology.value;
-    });*/
-
 }
 
 function loadSelects() {
