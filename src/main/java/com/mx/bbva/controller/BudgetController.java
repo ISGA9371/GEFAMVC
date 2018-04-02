@@ -1,5 +1,6 @@
 package com.mx.bbva.controller;
 
+import com.mx.bbva.business.dto.BudgetTransferDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class BudgetController {
 
         LOG.info("Creating new budget");
         model.addAttribute("budget", new Budget());
+        model.addAttribute("budgetTransfer", new BudgetTransferDTO());
         //TODO Add catalogs
         return URL_BUDGET + NEW_BUDGET;
     }
