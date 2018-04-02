@@ -12,48 +12,77 @@
 
 
     <!-- Estilos -->
-    <script type="text/javascript" th:src="@{js/jquery-3.2.1.min.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}">
-    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+
+    <script type="text/javascript" th:src="@{../js/jquery-3.2.1.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{../css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{../js/bootstrap.min.js}"></script>
 
     <!--Script generales-->
-    <link rel="stylesheet" type="text/css" th:href="@{css/estilosGF.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{../css/estilosGF.css}">
 
 
     <!--Scripts para campos de texto-->
-    <link rel="stylesheet" type="text/css" th:href="@{css/material-components-web.css}">
-    <script type="text/javascript" th:src="@{js/material-components-web.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{../css/material-components-web.css}">
+    <script type="text/javascript" th:src="@{../js/material-components-web.js}"></script>
 
 
     <!--Estilos para los combos-->
-    <link rel="stylesheet" type="text/css" th:href="@{css/select.css}">
-    <script type="text/javascript" th:src="@{js/ready.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{../css/select.css}">
+    <script type="text/javascript" th:src="@{../js/ready.js}"></script>
 
+    <!--Estilos para los calendarios-->
+    <link rel="stylesheet" type="text/css" th:href="@{../css/bootstrap-datetimepicker.css}">
+    <script type="text/javascript" th:src="@{../js/analytics.js}"></script>
+    <script type="text/javascript" th:src="@{../js/moment-with-locales.js}"></script>
+    <script type="text/javascript" th:src="@{../js/bootstrap-datetimepicker.js}"></script>
+    <script type="text/javascript" th:src="@{../js/fabrica/modificacion-componente.js}"></script>
+
+    <style>
+        .hiddenField {
+            width: 1px;
+            opacity: 0;
+            height: 1px;
+            margin: -3px;
+            padding: 0px;
+        }
+    </style>
 </head>
 
 <body>
-<div class="container">
-    <br>
-    <div class="row">
-        <div class="col-md-12" align="center" style="font-size:30px; font-family:BBVA Web Book">Modificar Componente</div>
-    </div>
-    <br>
-    <div class="row">
-        <form class="form-horizontal" th:object="${component}" th:action="@{/components}" method="post">
-            <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos del Componente</div>
+<div th:replace="layout/header :: cabeceraPrincipal"></div>
+<form style="display:block" action="#" th:action="@{/components}" th:object="${component}" method="post">
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-md-12" align="center" style="font-size:30px; font-family:BBVA Web Book">Modificar
+                Componente
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12" align="center"
+                 style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos del
+                Componente
+            </div>
             <table class="col-md-12">
                 <tr>
                     <td class="col-md-4" align="center">
-                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="componentName" th:field="*{componentName}">
-                            <label for="componentName" class="mdc-text-field__label">Nombre del Componente</label>
+                        <input id="componentName" type="text" required value="" class="hiddenField"
+                               th:field="*{componentName}">
+                        <div class="mdc-text-field" id="component-mdc-text" data-mdc-auto-init="MDCTextField"
+                             style="background-color:#F4F4F4; width:90%">
+                            <input type="text" maxlength="45" class="mdc-text-field__input"
+                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)">
+                            <label for="demo-input" class="mdc-text-field__label">Nombre del Componente</label>
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
+                        <input id="componentVersion" type="text" required value="" class="hiddenField"
+                               th:field="*{componentVersion}">
+                        <div class="mdc-text-field" id="version-mdc-text" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
-                            <input type="text" class="mdc-text-field__input"
-                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                            <input type="text" class="mdc-text-field__input" readonly="readonly"
+                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="version">
                             <label for="demo-input" class="mdc-text-field__label">Version</label>
                         </div>
                     </td>
@@ -61,16 +90,16 @@
                         <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
                             <input type="text" class="mdc-text-field__input"
-                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" readonly="readonly" id="demo-input">
                             <label for="demo-input" class="mdc-text-field__label">Dirección</label>
                         </div>
                     </td>
                 <tr style="height:72px">
                     <td class="col-md-4" align="center">
-                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
+                        <div class="mdc-text-field" id="subdireccion-js-mdc"data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
                             <input type="text" class="mdc-text-field__input"
-                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" >
                             <label for="demo-input" class="mdc-text-field__label">Subdirección</label>
                         </div>
                     </td>
@@ -78,7 +107,7 @@
                         <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
                             <input type="text" class="mdc-text-field__input"
-                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" readonly="readonly" >
                             <label for="demo-input" class="mdc-text-field__label">Empresa</label>
                         </div>
                     </td>
@@ -93,40 +122,42 @@
                 </tr>
                 <tr style="height:72px">
                     <td class="col-md-4" align="center">
+                        <input id="componentNewMod" type="text" required th:value="${component.typology.typologyProductId}" class="hiddenField">
                         <div id="nuemod-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                                <div class="mdc-select__label">Nuevo/Modficado</div>
+                                <div class="mdc-select__label">Nuevo/Modificado</div>
                                 <div class="mdc-select__selected-text"></div>
                                 <div class="mdc-select__bottom-line"></div>
                             </div>
                             <div class="mdc-menu mdc-select__menu col-md-3">
                                 <ul class="mdc-list mdc-menu__items">
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Nuevo/Modficado 1
+                                    <li class="mdc-list-item" id="0" role="option" tabindex="0">
+                                        Nuevo
                                     </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Nuevo/Modficado 2
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Nuevo/Modficado 3
+                                    <li class="mdc-list-item" id="1" role="option" tabindex="0">
+                                        Modificado
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
+                        <input id="nnononono" type="text" required th:value="${component.requirement.requirementName}" class="hiddenField">
+                        <div class="mdc-text-field" id="requieriment-mdc-text" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
-                            <input type="text" class="mdc-text-field__input"
-                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                            <input type="text" maxlength="120" th:value="${component.requirement.requirementName}"
+                                   readonly="readonly" class="mdc-text-field__input"
+                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)">
                             <label for="demo-input" class="mdc-text-field__label">Requerimiento</label>
                         </div>
                     </td>
                 </tr>
                 <tr style="height:72px">
                     <td class="col-md-4" align="center">
-                        <div id="tipini-js-select" class="mdc-select" role="listbox"
+                        <input id="typology" type="number" required value="" class="hiddenField"
+                               th:field="*{typology.typologyId}">
+                        <div id="tipologia-empty-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                                 <div class="mdc-select__label">Tipologia Inicial</div>
@@ -135,53 +166,65 @@
                             </div>
                             <div class="mdc-menu mdc-select__menu col-md-3">
                                 <ul class="mdc-list mdc-menu__items">
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Tipologia Inicial 1
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Tipologia Inicial 2
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Tipologia Inicial 3
-                                    </li>
                                 </ul>
                             </div>
                         </div>
-                    </td>
-                    <td class="col-md-4" align="center">
-                        <div id="difini-js-select" class="mdc-select" role="listbox"
+
+                        <div id="tipologia-news-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                                <div class="mdc-select__label">Dificultad Inicial</div>
+                                <div class="mdc-select__label">Tipologia Inicial</div>
                                 <div class="mdc-select__selected-text"></div>
                                 <div class="mdc-select__bottom-line"></div>
                             </div>
                             <div class="mdc-menu mdc-select__menu col-md-3">
                                 <ul class="mdc-list mdc-menu__items">
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Dificultad Inicial 1
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Dificultad Inicial 2
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Dificultad Inicial 3
-                                    </li>
+                                    <li th:each="tipologiaNewCmb:${tipologiaNewCmb}" class="mdc-list-item"
+                                        th:id="${tipologiaNewCmb.getTypologyId()}+'|'+${tipologiaNewCmb.typologySeverity}+'|'+${tipologiaNewCmb.typologySeverityHours}"
+                                        role="option"
+                                        th:text="${tipologiaNewCmb.typologyProductId}"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="tipologia-mods-js-select" class="mdc-select" role="listbox"
+                             style="background-color:#F4F4F4; width:90%">
+                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                <div class="mdc-select__label">Tipologia Inicial</div>
+                                <div class="mdc-select__selected-text"></div>
+                                <div class="mdc-select__bottom-line"></div>
+                            </div>
+                            <div class="mdc-menu mdc-select__menu col-md-3">
+                                <ul class="mdc-list mdc-menu__items">
+                                    <li th:each="tipologiaModCmb:${tipologiaModCmb}" class="mdc-list-item"
+                                        th:id="${tipologiaModCmb.typologyId}+'|'+${tipologiaModCmb.typologySeverity}+'|'+${tipologiaModCmb.typologySeverityHours}"
+                                        role="option"
+                                        th:text="${tipologiaModCmb.typologyProductId}"></li>
                                 </ul>
                             </div>
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
+                        <div class="mdc-text-field" id="difficulty-mdc-text" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
-                            <input type="text" class="mdc-text-field__input" id="demo-input">
+                            <input type="text" readonly="readonly" class="mdc-text-field__input"
+                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="dificultad-inicio">
+                            <label for="demo-input" class="mdc-text-field__label">Dificultad Inicial</label>
+                        </div>
+                    </td>
+                    <td class="col-md-4" align="center">
+                        <div class="mdc-text-field" id="hours-mdc-text" data-mdc-auto-init="MDCTextField"
+                             style="background-color:#F4F4F4; width:90%">
+                            <input type="text" readonly="readonly" class="mdc-text-field__input" id="horas-inicio">
                             <label for="demo-input" class="mdc-text-field__label">Horas Iniciales</label>
                         </div>
                     </td>
                 </tr>
                 <tr style="height:72px">
                     <td class="col-md-4" align="center">
-                        <div id="tipfin-js-select" class="mdc-select" role="listbox"
+                        <input id="typology-final" type="number" required value="" class="hiddenField"
+                               th:field="*{typology.typologyId}">
+                        <div id="tipologia-final-empty-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                                 <div class="mdc-select__label">Tipologia Final</div>
@@ -190,66 +233,84 @@
                             </div>
                             <div class="mdc-menu mdc-select__menu col-md-3">
                                 <ul class="mdc-list mdc-menu__items">
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Tipologia Final 1
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Tipologia Final 2
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Tipologia Final 3
-                                    </li>
                                 </ul>
                             </div>
                         </div>
-                    </td>
-                    <td class="col-md-4" align="center">
-                        <div id="difin-js-select" class="mdc-select" role="listbox"
+
+                        <div id="tipologia-final-news-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                                <div class="mdc-select__label">Dificultad Final</div>
+                                <div class="mdc-select__label">Tipologia Final</div>
                                 <div class="mdc-select__selected-text"></div>
                                 <div class="mdc-select__bottom-line"></div>
                             </div>
                             <div class="mdc-menu mdc-select__menu col-md-3">
                                 <ul class="mdc-list mdc-menu__items">
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Dificultad Final 1
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Dificultad Final 2
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Dificultad Final 3
-                                    </li>
+                                    <li th:each="tipologiaNewCmb:${tipologiaNewCmb}" class="mdc-list-item"
+                                        th:id="${tipologiaNewCmb.getTypologyId()}+'|'+${tipologiaNewCmb.typologySeverity}+'|'+${tipologiaNewCmb.typologySeverityHours}"
+                                        role="option"
+                                        th:text="${tipologiaNewCmb.typologyProductId}"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="tipologia-final-mods-js-select" class="mdc-select" role="listbox"
+                             style="background-color:#F4F4F4; width:90%">
+                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                <div class="mdc-select__label">Tipologia Final</div>
+                                <div class="mdc-select__selected-text"></div>
+                                <div class="mdc-select__bottom-line"></div>
+                            </div>
+                            <div class="mdc-menu mdc-select__menu col-md-3">
+                                <ul class="mdc-list mdc-menu__items">
+                                    <li th:each="tipologiaModCmb:${tipologiaModCmb}" class="mdc-list-item"
+                                        th:id="${tipologiaModCmb.typologyId}+'|'+${tipologiaModCmb.typologySeverity}+'|'+${tipologiaModCmb.typologySeverityHours}"
+                                        role="option"
+                                        th:text="${tipologiaModCmb.typologyProductId}"></li>
                                 </ul>
                             </div>
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
+                        <div class="mdc-text-field" id="difficulty-final-mdc-text" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
-                            <input type="text" class="mdc-text-field__input" id="demo-input">
+                            <input type="text" readonly="readonly" class="mdc-text-field__input"
+                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="dificultad-inicio">
+                            <label for="demo-input" class="mdc-text-field__label">Dificultad Final</label>
+                        </div>
+                    </td>
+                    <td class="col-md-4" align="center">
+                        <div class="mdc-text-field" id="hours-final-mdc-text" data-mdc-auto-init="MDCTextField"
+                             style="background-color:#F4F4F4; width:90%">
+                            <input type="text" readonly="readonly" class="mdc-text-field__input" id="horas-inicio">
                             <label for="demo-input" class="mdc-text-field__label">Horas Finales</label>
                         </div>
                     </td>
                 </tr>
                 <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
+                    <input id="componentDesignRealDeliverDate" type="text" required value="" class="hiddenField"
+                           th:field="*{componentDesignRealDeliverDate}">
+                    <div id='FecRealCFG-mdc-text' class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                          style="background-color:#F4F4F4; width:90%">
-                        <input type="text" class="mdc-text-field__input" id="demo-input">
-                        <label for="demo-input" class="mdc-text-field__label">F. Real CGF>Fact Diseño</label>
+                        <input type='text' class="mdc-text-field__input" row="2" onkeydown="return false"
+                               id='FecRealCFG'/>
+                        <label for="demo-input" class="mdc-text-field__label">F. Real CGF>Fact.Diseño</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
+                    <input id="componentPreviewDeliverDate" type="text" required value="" class="hiddenField"
+                           th:field="*{componentPreviewDeliverDate}">
+                    <div id='FecPreFac-mdc-text' class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                          style="background-color:#F4F4F4; width:90%">
-                        <input type="text" class="mdc-text-field__input" id="demo-input">
+                        <input type='text' class="mdc-text-field__input" row="2" onkeydown="return false"
+                               id='FecPreFac'/>
                         <label for="demo-input" class="mdc-text-field__label">F. Prevista Fact>CGF Software</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <div id="estatus-js-select" class="mdc-select" role="listbox"
+                    <input id="statusTypology" type="number" required value="" class="hiddenField"
+                           th:field="*{statusTypology.statusId}">
+                    <div id="estatus-tipificacion-js-select" class="mdc-select" role="listbox"
                          style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                             <div class="mdc-select__label">Estatus Tipif.</div>
@@ -275,20 +336,28 @@
                 </tr>
                 <tr>
                     <td class="col-md-4" align="center">
-                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
+                        <input id="componentPossibleDeliverDate" type="text" required value="" class="hiddenField"
+                               th:field="*{componentPossibleDeliverDate}">
+                        <div id='FecNegFac-mdc-txt' class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
-                            <input type="text" class="mdc-text-field__input" id="demo-input">
-                            <label for="demo-input" class="mdc-text-field__label">F. Negociada Fact>CGF Software</label>
+                            <input type='text' class="mdc-text-field__input" row="2" onkeydown="return false"
+                                   id='FecNegFac'/>
+                            <label for="demo-input" class="mdc-text-field__label">F. Negociada Fact.>CGF Software</label>
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
+                        <input id="componentRealDeliverDate" type="text" required value="" class="hiddenField"
+                               th:field="*{componentRealDeliverDate}">
+                        <div id='FecRealFac-mdc-text' class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
-                            <input type="text" class="mdc-text-field__input" id="demo-input">
-                            <label for="demo-input" class="mdc-text-field__label">F. Real Fact>CGF Software</label>
+                            <input type='text' class="mdc-text-field__input" style="position: relative; z-index: 10000;"
+                                   row="2" onkeydown="return false" id='FecRealFac'/>
+                            <label for="demo-input" class="mdc-text-field__label">F. Real Fact.>CGF Software</label>
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
+                        <input id="componentForBill" type="number" required value="" class="hiddenField"
+                               th:field="*{componentForBill}">
                         <div id="facturado-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
@@ -298,12 +367,13 @@
                             </div>
                             <div class="mdc-menu mdc-select__menu col-md-3">
                                 <ul class="mdc-list mdc-menu__items">
-                                    <li class="mdc-list-item" role="option" tabindex="0">
+                                    <li class="mdc-list-item" id="1" role="option" tabindex="0">
                                         Si
                                     </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
+                                    <li class="mdc-list-item" id="0" role="option" tabindex="0">
                                         No
                                     </li>
+                                </ul>
                                 </ul>
                             </div>
                         </div>
@@ -311,59 +381,74 @@
                 </tr>
                 <tr>
                     <td class="col-md-4" align="center">
-                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
+                        <input id="status" type="number" required value="" class="hiddenField"
+                               th:field="*{status.statusId}">
+                        <div id="estatus-componente-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
-                            <input type="text" class="mdc-text-field__input" id="demo-input">
-                            <label for="demo-input" class="mdc-text-field__label">Mes</label>
+                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                <div class="mdc-select__label">Estato del Componente</div>
+                                <div class="mdc-select__selected-text"></div>
+                                <div class="mdc-select__bottom-line"></div>
+                            </div>
+                            <div class="mdc-menu mdc-select__menu col-md-3">
+                                <ul class="mdc-list mdc-menu__items">
+                                    <li class="mdc-list-item" role="option" tabindex="0">
+                                        Estatus Tipif. 1
+                                    </li>
+                                    <li class="mdc-list-item" role="option" tabindex="0">
+                                        Estatus Tipif. 2
+                                    </li>
+                                    <li class="mdc-list-item" role="option" tabindex="0">
+                                        Estatus Tipif. 3
+                                    </li>
+
+                                </ul>
+                            </div>
                         </div>
                     </td>
-                    <td class="col-md-4" align="center">
-                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
-                             style="background-color:#F4F4F4; width:90%">
-                            <input type="text" class="mdc-text-field__input" id="demo-input">
-                            <label for="demo-input" class="mdc-text-field__label">Año</label>
+                    <td class="col-md-4" colspan="2" align="center">
+                        <input id="componentTypoComment" type="text" required value="" class="hiddenField"
+                               th:field="*{componentTypoComment}">
+                        <div class="mdc-text-field" id="descripcion-mdc-text" data-mdc-auto-init="MDCTextField"
+                             style="background-color:#F4F4F4; width:95%">
+                            <input type="text" maxlength="45" class="mdc-text-field__input"
+                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)">
+                            <label for="demo-input" class="mdc-text-field__label">Descripcion</label>
                         </div>
                     </td>
                 </tr>
             </table>
-        </form>
-    </div>
-    <div class="row">
-        <table class="col-md-12">
-            <tr>
-                <br>
-                <br>
-                <td class="col-md-6" align="Center">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                    <button type="button" class="btn btn-primary">Eliminar</button>
-                    <button type="button" class="btn btn-primary">Cancelar</button>
-                </td>
-            </tr>
-        </table>
-    </div>
+</div>
+<div class="row">
+    <table class="col-md-12">
+        <tr>
+            <br>
+            <br>
+            <td class="col-md-6" align="Center" style="padding-bottom: 10px;">
+                <button type="submit" id="Guardar-btn" class="btn btn-primary">Guardar</button>
+                <button type="button" id="eliminar-btn" class="btn btn-primary">Eliminar</button>
+                <button type="button" id="cancelar-btn" class="btn btn-primary">Cancelar</button>
+            </td>
+        </tr>
+    </table>
+</div>
 
 </div>
+</form>
+<div th:replace="layout/footer :: FooterPrincipal"></div>
 </body>
-
 <script>mdc.autoInit()</script>
 <style rel="stylesheet">
     .mdc-text-field__input {
         border-bottom-color: rgba(15, 50, 242, 0.5);
     }
-
 </style>
-
 <script>
-    demoReady(function() {
-        mdc.select.MDCSelect.attachTo(document.getElementById('nuemod-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('tipini-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('difini-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('tipfin-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('difin-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('estatus-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('facturado-js-select'));
+    demoReady(function () {
+        init();
     });
-
 </script>
+</html>
 
+</body>
 </html>

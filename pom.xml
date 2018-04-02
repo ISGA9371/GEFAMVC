@@ -5,7 +5,7 @@
     <version>1.0.0-ALPHA</version>
 
     <groupId>com.bbva.bancomer</groupId>
-    <artifactId>GEFA-APP</artifactId>
+    <artifactId>gefa-app</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,7 +16,7 @@
         <archiveClasses>true</archiveClasses>
         <appengine.target.version>1.9.63</appengine.target.version>
         <spring.version>5.0.4.RELEASE</spring.version>
-        <appengine.app.name>GEFA-APP</appengine.app.name>
+        <appengine.app.name>gefa-app-196823</appengine.app.name>
         <appengine.app.version>1-0-0</appengine.app.version>
     </properties>
 
@@ -146,7 +146,7 @@
                 <version>${appengine.target.version}</version>
                 <configuration>
                     <appId>${appengine.app.name}</appId>
-                    <version>1.0.0</version>
+                    <version>${appengine.app.version}</version>
                     <jvmFlags>
                         <!-- Debug -->
                         <jvmFlag>-Xdebug</jvmFlag>

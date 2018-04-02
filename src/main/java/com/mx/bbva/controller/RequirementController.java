@@ -37,6 +37,7 @@ public class RequirementController {
     private MethodologyService methodologyService;
     private ProgramIncrementService programIncrementService;
     private StatusService statusService;
+    private ProjectService projectService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addRequirement(Model model) {
@@ -172,6 +173,12 @@ public class RequirementController {
         return this.methodologyService.findAllMethodologies();
     }
 
+    //FALTA COMBO DE PROYECTOS TABLA 22
+    @ModelAttribute("projects")
+    public List<Project> populateProjects() {
+        return this.projectService.findAllProjects();
+    }
+
     // Import services
     @Autowired
     public void setAreaService(AreaService areaService) {
@@ -236,5 +243,10 @@ public class RequirementController {
     @Autowired
     public void setStatusService(StatusService statusService) {
         this.statusService = statusService;
+    }
+
+    @Autowired
+    public void setProjectService(ProjectService projectService) {
+        this.projectService = projectService;
     }
 }

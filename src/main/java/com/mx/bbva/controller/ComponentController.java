@@ -2,10 +2,7 @@ package com.mx.bbva.controller;
 
 import com.mx.bbva.business.dto.ComponentSearchDTO;
 import com.mx.bbva.business.entity.*;
-import com.mx.bbva.business.service.ComponentService;
-import com.mx.bbva.business.service.LevelService;
-import com.mx.bbva.business.service.RequirementService;
-import com.mx.bbva.business.service.TypologyService;
+import com.mx.bbva.business.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +22,7 @@ public class ComponentController {
     private TypologyService typologyService;
     private RequirementService requirementService;
     private LevelService levelService;
+    private StatusService statusService;
 
     /**
      * TODO: EVERY CONTROLLER NEEDS TO HAVE A CUSTOM SEARCH METHOD
@@ -85,6 +83,7 @@ public class ComponentController {
         return URL_FACTORY + SEARCH_COMPONENTS;
     }
 
+    //TODO Use Enums
     @ModelAttribute("tipologiaNewCmb")
     public List<Typology> populateNewTypologies() {
         return this.typologyService.findByComponent("0");
@@ -107,6 +106,21 @@ public class ComponentController {
         return this.levelService.findByLevelType(new LevelType(2));
     }
 
+    @ModelAttribute("typingStatus")
+    public List<Status> populateTypingStatus() {
+        return this.statusService.findStatusByType(new StatusType(3));
+    }
+
+    @ModelAttribute("componentStatus")
+    public List<Status> populateComponentStatus() {
+        return this.statusService.findStatusByType(new StatusType(8));
+    }
+
+    @ModelAttribute("statusList2")
+    public List<Status> populateStatusList2() {
+        return this.statusService.findStatusByType(new StatusType(8));
+    }
+
     @Autowired
     public void setComponentService(ComponentService componentService) {
         this.componentService = componentService;
@@ -120,6 +134,11 @@ public class ComponentController {
     @Autowired
     public void setRequirementService(RequirementService requirementService) {
         this.requirementService = requirementService;
+    }
+
+    @Autowired
+    public void setStatusService(StatusService statusService) {
+        this.statusService = statusService;
     }
 
     @Autowired

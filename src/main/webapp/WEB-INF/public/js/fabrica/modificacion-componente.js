@@ -2,7 +2,7 @@ function init() {
     //showH();
     addCalendars();
     loadSelects();
-    getVersion();
+    fillFields();
     addHiddenEvents();
     defaultTypologies();
     addSelectEvents();
@@ -16,25 +16,21 @@ function init() {
     $("#status").val(3);
 }
 
-function getVersion() {
-    var rootVersion = document.getElementById('version-mdc-text');
-    var textVersion = new mdc.textField.MDCTextField(rootVersion);
-
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1;
-
-    var yyyy = today.getFullYear();
-    if (dd < 10) {
-        dd = '0' + dd;
-    }
-    if (mm < 10) {
-        mm = '0' + mm;
-    }
-    var today = 'v' + yyyy + mm + dd;
-
-    textVersion.value = today;
-    $('#componentVersion').val(textVersion.value);
+function fillFields() {
+    new mdc.textField.MDCTextField(document.getElementById('component-mdc-text')).value = $('#componentName').val();
+    new mdc.textField.MDCTextField(document.getElementById('version-mdc-text')).value = $('#componentVersion').val();
+    var d = new Date($('#componentDesignRealDeliverDate').val());
+    $('#componentDesignRealDeliverDate').val(pad(d.getDate(),2) + "/" + pad(d.getMonth()+1,2) + "/" + d.getFullYear());
+    new mdc.textField.MDCTextField(document.getElementById('FecRealCFG-mdc-text')).value = $('#componentDesignRealDeliverDate').val();
+    var d = new Date($('#componentPreviewDeliverDate').val());
+    $('#componentPreviewDeliverDate').val(pad(d.getDate(),2) + "/" + pad(d.getMonth()+1,2) + "/" + d.getFullYear());
+    new mdc.textField.MDCTextField(document.getElementById('FecPreFac-mdc-text')).value = $('#componentPreviewDeliverDate').val();
+    var d = new Date($('#componentPossibleDeliverDate').val());
+    $('#componentPossibleDeliverDate').val(pad(d.getDate(),2) + "/" + pad(d.getMonth()+1,2) + "/" + d.getFullYear());
+    new mdc.textField.MDCTextField(document.getElementById('FecNegFac-mdc-txt')).value = $('#componentPossibleDeliverDate').val();
+    var d = new Date($('#componentRealDeliverDate').val());
+    $('#componentRealDeliverDate').val(pad(d.getDate(),2) + "/" + pad(d.getMonth()+1,2) + "/" + d.getFullYear());
+    new mdc.textField.MDCTextField(document.getElementById('FecRealFac-mdc-text')).value = $('#componentRealDeliverDate').val();
 }
 
 function addComponentValidation() {
@@ -97,32 +93,33 @@ function addButtonEvents() {
     var btnCancel = document.getElementById('cancelar-btn');
     btnCancel.addEventListener("click", function () {
         window.history.back();
-    })
+    });
 }
 
 function addSelectEvents() {
-    var hiddenTypology = document.getElementById('typology');
+
+    var hiddenTypology = document.getElementById('typology-final');
     var rootType = document.getElementById('nuemod-js-select');
     var selectType = new mdc.select.MDCSelect(rootType);
 
     rootType.addEventListener('MDCSelect:change', function () {
         $("#componentNewMod").val(selectType.value);
         if (selectType.value == 0) {
-            $('#tipologia-empty-js-select').hide();
-            new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).selectedIndex = -1;
-            $('#tipologia-news-js-select').show();
-            $('#tipologia-mods-js-select').hide();
+            $('#tipologia-final-empty-js-select').hide();
+            new mdc.select.MDCSelect(document.getElementById('tipologia-final-news-js-select')).selectedIndex = -1;
+            $('#tipologia-final-news-js-select').show();
+            $('#tipologia-final-mods-js-select').hide();
         }
         if (selectType.value == 1) {
-            $('#tipologia-empty-js-select').hide();
-            new mdc.select.MDCSelect(document.getElementById('tipologia-mods-js-select')).selectedIndex = -1;
-            $('#tipologia-news-js-select').hide();
-            $('#tipologia-mods-js-select').show();
+            $('#tipologia-final-empty-js-select').hide();
+            new mdc.select.MDCSelect(document.getElementById('tipologia-final-mods-js-select')).selectedIndex = -1;
+            $('#tipologia-final-news-js-select').hide();
+            $('#tipologia-final-mods-js-select').show();
         }
-        hiddenTypology.value = new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).value;
+        hiddenTypology.value = new mdc.select.MDCSelect(document.getElementById('tipologia-final-news-js-select')).value;
         $("#typologyEmp").val(hiddenTypology.value);
-        new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
-        new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
+        new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value="";
+        new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value="";
     });
 
     var rootNews = document.getElementById('tipologia-news-js-select');
@@ -162,18 +159,46 @@ function addSelectEvents() {
     });
 }
 
+function validateWindowData() {
+    hideData();
+}
+
+function hideData() {
+
+    /*var rootNewMod = document.getElementById('tecnologia-js-select');
+    var hiddenNewMod = document.getElementById('selected-technology');
+    var selectNewMod = new mdc.select.MDCSelect(rootTechnology);
+
+    rootTechnology.addEventListener('MDCSelect:change', function() {
+        hiddenTechnology.value = selectTechnology.value;
+    });*/
+
+}
+
 function loadSelects() {
     mdc.select.MDCSelect.attachTo(document.getElementById('nuemod-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-empty-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-news-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-mods-js-select'));
+    mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-final-empty-js-select'));
+    mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-final-news-js-select'));
+    mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-final-mods-js-select'));
+    mdc.select.MDCSelect.attachTo(document.getElementById('estatus-tipificacion-js-select'));
+    mdc.select.MDCSelect.attachTo(document.getElementById('estatus-componente-js-select'));
+    mdc.select.MDCSelect.attachTo(document.getElementById('facturado-js-select'));
 }
 
 function defaultTypologies() {
     $('#tipologia-empty-js-select').show();
     new mdc.select.MDCSelect(document.getElementById('tipologia-empty-js-select')).disabled = true;
+    new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).disabled = true;
+    new mdc.select.MDCSelect(document.getElementById('tipologia-mods-js-select')).disabled = true;
     $('#tipologia-news-js-select').hide();
     $('#tipologia-mods-js-select').hide();
+    $('#tipologia-final-empty-js-select').show();
+    new mdc.select.MDCSelect(document.getElementById('tipologia-final-empty-js-select')).disabled = true;
+    $('#tipologia-final-news-js-select').hide();
+    $('#tipologia-final-mods-js-select').hide();
 }
 
 function addHiddenEvents() {
@@ -239,4 +264,10 @@ function addCalendars(){
             vertical: 'top'
         }
     });
+}
+
+function pad(n, width, z) {
+    z = z || '0';
+    n = n + '';
+    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }

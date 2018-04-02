@@ -97,9 +97,12 @@
 <form style="display:block" action="#" th:action="@{/components}" th:object="${component}" method="post">
 
     <!--HIDDEN PARA PRUEBAS-->
-    <input id="statusTypology" type="number" required value="1" class="hiddenField" th:field="*{statusTypology.statusId}"/>
-    <input id="status" type="number" required value="1" class="hiddenField" th:field="*{status.statusId}"/>
-    <input id="typologyEmp" type="number" required value="1" class="hiddenField" th:field="*{typologyEmp.typologyId}"/>
+    <input id="statusTypology" style="display: none;" type="number" required value="1" class="hiddenField"
+           th:field="*{statusTypology.statusId}"/>
+    <input id="status" style="display: none;" type="number" required value="1" class="hiddenField"
+           th:field="*{status.statusId}"/>
+    <input id="typologyEmp" style="display: none;" type="number" required value="1" class="hiddenField"
+           th:field="*{typologyEmp.typologyId}"/>
     <!--input type="submit" value="Guardar"-->
     <div class="container">
         <br>
@@ -109,9 +112,7 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-md-12" align="center"
-                 style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos del
-                Componente
+            <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos del Componente
             </div>
             <table class="col-md-12">
                 <tr>
@@ -120,7 +121,7 @@
                                th:field="*{componentName}">
                         <div class="mdc-text-field" id="component-mdc-text" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
-                            <input type="text" maxlength="120" class="mdc-text-field__input"
+                            <input type="text" maxlength="45" class="mdc-text-field__input"
                                    style="border-bottom-color:rgba(28, 59, 224, 0.5)">
                             <label for="demo-input" class="mdc-text-field__label">Nombre del Componente</label>
                         </div>
@@ -136,8 +137,7 @@
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <input id="componentNewMod" type="text" required value="" class="hiddenField"
-                               th field=" {componentNewMod}">
+                        <input id="componentNewMod" type="text" required value="" class="hiddenField">
                         <div id="nuemod-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
@@ -173,7 +173,8 @@
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <input id="typology" type="number" required value="" class="hiddenField" th:field="*{typology.typologyId}">
+                        <input id="typology" type="number" required value="" class="hiddenField"
+                               th:field="*{typology.typologyId}">
                         <div id="tipologia-empty-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
@@ -289,7 +290,7 @@
         <div class="row">
             <table class="col-md-12">
                 <tr>
-                    <td class="col-md-6" align="center">
+                    <td class="col-md-6" align="center" style="padding-bottom: 10px;">
                         <br>
                         <br>
                         <input type="submit" id="guardar-btn" value="Guardar" class="btn btn-primary"></input>
