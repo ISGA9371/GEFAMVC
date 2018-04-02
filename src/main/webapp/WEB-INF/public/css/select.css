@@ -2268,7 +2268,7 @@ a.mdc-list-item {
     display: none; }
 
 .mdc-select-scroll-lock {
-  overflow: hidden; }
+  overflow: auto; }
 
 .demo-select-custom-colors:not(.mdc-select--disabled) .mdc-select__surface,
 .demo-select-custom-colors:not(.mdc-select--disabled) .mdc-select__selected-text {
@@ -2297,3 +2297,5 @@ a.mdc-list-item {
 
 .demo-select-custom-colors.mdc-select--box:not(.mdc-select--disabled) .mdc-select__surface {
   background-color: rgba(0, 0, 255, 0.1); }
+
+
