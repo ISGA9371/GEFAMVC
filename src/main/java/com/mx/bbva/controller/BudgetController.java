@@ -26,6 +26,9 @@ public class BudgetController {
     private LevelService levelService;
     private LevelTypeService levelTypeService;
     private UserService userService;
+    private BankingService bankingService;
+    private CorporationService corporationService;
+    private NatureService natureService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String createBudget(Model model) {
@@ -75,13 +78,26 @@ public class BudgetController {
         return this.areaService.findAllAreas();
     }
 
-    //FALTA COMBO AÑO TABLAS 7
+    //FALTA COMBO AÑO TABLAS BUDGETS
 
     //FALTA COMBO BANCAS TABLAS 34
+    // LevelTypeId 1 - Direccion
+    @ModelAttribute("bankingList")
+    public List<Banking> populateBankingList() {
+        return this.bankingService.findAllBanking();
+    }
 
     //FALTA COMBO ENTIDAD TABLAS 37
+    @ModelAttribute("corporations")
+    public List<Corporation> populateCorporations() {
+        return this.corporationService.findAllCorporations();
+    }
 
     //FALTA COMBO NATURALEZA TABLAS 38
+    @ModelAttribute("natures")
+    public List<Nature> populateNatures() {
+        return this.natureService.findAllNatures();
+    }
 
     // LevelTypeId 1 - Direccion
     @ModelAttribute("principals")
@@ -132,5 +148,20 @@ public class BudgetController {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setBankingService(BankingService bankingService) {
+        this.bankingService = bankingService;
+    }
+
+    @Autowired
+    public void setCorporationService(CorporationService corporationService) {
+        this.corporationService = corporationService;
+    }
+
+    @Autowired
+    public void setNatureService(NatureService natureService) {
+        this.natureService = natureService;
     }
 }
