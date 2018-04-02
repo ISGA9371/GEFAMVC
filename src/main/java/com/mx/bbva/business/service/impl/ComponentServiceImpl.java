@@ -13,8 +13,13 @@ public class ComponentServiceImpl implements ComponentService {
     private ComponentRepository componentRepository;
 
     @Override
-    public void saveComponent(Component component) {
-        componentRepository.save(component);
+    public Component saveComponent(Component component) {
+        return componentRepository.saveAndFlush(component);
+    }
+
+    @Override
+    public List<Component> findByCustomQuery(String query) {
+        return componentRepository.findByCustomQuery(query);
     }
 
     @Override

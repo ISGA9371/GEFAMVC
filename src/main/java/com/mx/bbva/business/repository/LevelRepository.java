@@ -19,4 +19,5 @@ public interface LevelRepository extends JpaRepository<Level, Integer> {
     @Transactional
     List<Level> findAllByLevelSuperior(Integer levelSuperiorId);
 
+    List<Level> findLevelSuperiorByLevelType(LevelType levelType);
 }

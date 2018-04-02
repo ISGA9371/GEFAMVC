@@ -116,6 +116,20 @@ public class Requirement implements Serializable {
         this.requirementName = requirementName;
     }
 
+    public Requirement(Integer requirementId, String requirementName, Level level, User user, Area area, ServiceType serviceType,
+                       Technology technology, Company company, Date requirementStartDate, Date requirementEndDate) {
+        this.requirementId = requirementId;
+        this.requirementName = requirementName;
+        this.level = level;
+        this.user = user;
+        this.area = area;
+        this.serviceType = serviceType;
+        this.technology = technology;
+        this.company = company;
+        this.requirementStartDate = requirementStartDate;
+        this.requirementEndDate = requirementEndDate;
+    }
+
     public Integer getRequirementId() {
         return requirementId;
     }

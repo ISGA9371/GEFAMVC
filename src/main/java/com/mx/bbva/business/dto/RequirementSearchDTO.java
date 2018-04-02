@@ -1,74 +1,76 @@
 package com.mx.bbva.business.dto;
 
 public class RequirementSearchDTO {
-    private String name;
-    private Integer directionId;
-    private Integer subDirectionId;
-    private String responsible;
-    private Integer attAreaId;
-    private Integer proyTypeId;
-    private Integer techId;
+    private String requirementName;
+    private Integer principalId;
+    private Integer subPrincipalId;
+    private String userInternalId;
+    private Integer areaId;
+    private Integer projectTypeId;
+    private Integer technologyId;
     private Integer companyId;
     private Integer serviceTypeId;
-    private String initialPropDate;
-    private String finalPropDate;
-    private String pep;
+    private String requirementStartDate;
+    private String requirementEndDate;
+    private String budgetId;
 
-
-    public String getName() {
-        return name;
+    public RequirementSearchDTO() {
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getRequirementName() {
+        return requirementName;
     }
 
-    public Integer getDirectionId() {
-        return directionId;
+    public void setRequirementName(String requirementName) {
+        this.requirementName = requirementName;
     }
 
-    public void setDirectionId(Integer directionId) {
-        this.directionId = directionId;
+    public Integer getPrincipalId() {
+        return principalId;
     }
 
-    public Integer getSubDirectionId() {
-        return subDirectionId;
+    public void setPrincipalId(Integer principalId) {
+        this.principalId = principalId;
     }
 
-    public void setSubDirectionId(Integer subDirectionId) {
-        this.subDirectionId = subDirectionId;
+    public Integer getSubPrincipalId() {
+        return subPrincipalId;
     }
 
-    public String getResponsible() {
-        return responsible;
+    public void setSubPrincipalId(Integer subPrincipalId) {
+        this.subPrincipalId = subPrincipalId;
     }
 
-    public void setResponsible(String responsible) {
-        this.responsible = responsible;
+    public String getUserInternalId() {
+        return userInternalId;
     }
 
-    public Integer getAttAreaId() {
-        return attAreaId;
+    public void setUserInternalId(String userInternalId) {
+        this.userInternalId = userInternalId;
     }
 
-    public void setAttAreaId(Integer attAreaId) {
-        this.attAreaId = attAreaId;
+    public Integer getAreaId() {
+        return areaId;
     }
 
-    public Integer getProyTypeId() {
-        return proyTypeId;
+    public void setAreaId(Integer areaId) {
+        this.areaId = areaId;
     }
 
-    public void setProyTypeId(Integer proyTypeId) {
-        this.proyTypeId = proyTypeId;
+    public Integer getProjectTypeId() {
+        return projectTypeId;
     }
 
-    public Integer getTechId() {
-        return techId;
+    public void setProjectTypeId(Integer projectTypeId) {
+        this.projectTypeId = projectTypeId;
     }
 
-    public void setTechId(Integer techId) {
-        this.techId = techId;
+    public Integer getTechnologyId() {
+        return technologyId;
+    }
+
+    public void setTechnologyId(Integer technologyId) {
+        this.technologyId = technologyId;
     }
 
     public Integer getCompanyId() {
@@ -87,45 +89,45 @@ public class RequirementSearchDTO {
         this.serviceTypeId = serviceTypeId;
     }
 
-    public String getInitialPropDate() {
-        return initialPropDate;
+    public String getRequirementStartDate() {
+        return requirementStartDate;
     }
 
-    public void setInitialPropDate(String initialPropDate) {
-        this.initialPropDate = initialPropDate;
+    public void setRequirementStartDate(String requirementStartDate) {
+        this.requirementStartDate = requirementStartDate;
     }
 
-    public String getFinalPropDate() {
-        return finalPropDate;
+    public String getRequirementEndDate() {
+        return requirementEndDate;
     }
 
-    public void setFinalPropDate(String finalPropDate) {
-        this.finalPropDate = finalPropDate;
+    public void setRequirementEndDate(String requirementEndDate) {
+        this.requirementEndDate = requirementEndDate;
     }
 
-    public String getPep() {
-        return pep;
+    public String getBudgetId() {
+        return budgetId;
     }
 
-    public void setPep(String pep) {
-        this.pep = pep;
+    public void setBudgetId(String budgetId) {
+        this.budgetId = budgetId;
     }
 
     @Override
     public String toString() {
-        return "RequirementSearchTO{" +
-                "name='" + name + '\'' +
-                ", directionId=" + directionId +
-                ", subDirectionId=" + subDirectionId +
-                ", responsible='" + responsible + '\'' +
-                ", attAreaId=" + attAreaId +
-                ", proyTypeId=" + proyTypeId +
-                ", techId=" + techId +
+        return "RequirementSearchDTO{" +
+                "requirementName='" + requirementName + '\'' +
+                ", principalId=" + principalId +
+                ", subPrincipalId=" + subPrincipalId +
+                ", userInternalId='" + userInternalId + '\'' +
+                ", areaId=" + areaId +
+                ", projectTypeId=" + projectTypeId +
+                ", technologyId=" + technologyId +
                 ", companyId=" + companyId +
                 ", serviceTypeId=" + serviceTypeId +
-                ", initialPropDate='" + initialPropDate + '\'' +
-                ", finalPropDate='" + finalPropDate + '\'' +
-                ", pep='" + pep + '\'' +
+                ", requirementStartDate='" + requirementStartDate + '\'' +
+                ", requirementEndDate='" + requirementEndDate + '\'' +
+                ", budgetId='" + budgetId + '\'' +
                 '}';
     }
 }
