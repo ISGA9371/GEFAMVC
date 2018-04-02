@@ -19,6 +19,65 @@ function init() {
 function fillFields() {
     new mdc.textField.MDCTextField(document.getElementById('component-mdc-text')).value = $('#componentName').val();
     new mdc.textField.MDCTextField(document.getElementById('version-mdc-text')).value = $('#componentVersion').val();
+    var $elementTypologiaInicio = $("#typology").parent().find("li[id^='"+$('#typology').val()+"|']");
+    var idTypologiaInicio = $elementTypologiaInicio.attr('id');
+    var splittedTypologiaInicio = idTypologiaInicio.split('|');
+    if(splittedTypologiaInicio[3] != null){
+        $("#nuemod-js-select").find("div").eq(0).click();
+        $("#nuemod-js-select").find("li").eq(splittedTypologiaInicio[3]).click();
+        if (splittedTypologiaInicio[3] == 0) {
+            $('#tipologia-empty-js-select').hide();
+            $('#tipologia-news-js-select').show();
+            $('#tipologia-mods-js-select').hide();
+            $("#tipologia-news-js-select").find("div").eq(0).click();
+        }
+        if (splittedTypologiaInicio[3] == 1) {
+            $('#tipologia-empty-js-select').hide();
+            $('#tipologia-news-js-select').hide();
+            $('#tipologia-mods-js-select').show();
+            $("#tipologia-mods-js-select").find("div").eq(0).click();
+        }
+        $elementTypologiaInicio.click();
+        new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedTypologiaInicio[1];
+        new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedTypologiaInicio[2];
+    } else {
+        $('#tipologia-empty-js-select').show();
+        new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).selectedIndex = -1;
+        $('#tipologia-news-js-select').hide();
+        $('#tipologia-mods-js-select').hide();
+        new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
+        new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
+    }
+    if($("#typology-final").val() =="") {
+        $("#typology-final").val($("#typology").val())
+    }
+    var $elementTypologiaFinal = $("#typology-final").parent().find("li[id^='"+$('#typology-final').val()+"|']");
+    var idTypologiaFinal = $elementTypologiaFinal.attr('id');
+    var splittedTypologiaFinal = idTypologiaFinal.split('|');
+    if(splittedTypologiaFinal[3] != null){
+        $("#nuemod-js-select").find("div").eq(0).click();
+        $("#nuemod-js-select").find("li").eq(splittedTypologiaFinal[3]).click();
+        if (splittedTypologiaFinal[3] == 0) {
+            $('#tipologia-final-empty-js-select').hide();
+            $('#tipologia-final-news-js-select').show();
+            $('#tipologia-final-mods-js-select').hide();
+            $("#tipologia-final-news-js-select").find("div").eq(0).click();
+        }
+        if (splittedTypologiaFinal[3] == 1) {
+            $('#tipologia-final-empty-js-select').hide();
+            $('#tipologia-final-news-js-select').hide();
+            $('#tipologia-final-mods-js-select').show();
+            $("#tipologia-final-mods-js-select").find("div").eq(0).click();
+        }
+        $elementTypologiaFinal.click();
+    } else {
+        $('#tipologia-final-empty-js-select').show();
+        new mdc.select.MDCSelect(document.getElementById('tipologia-final-news-js-select')).selectedIndex = -1;
+        $('#tipologia-final-news-js-select').hide();
+        $('#tipologia-final-mods-js-select').hide();
+        new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value="";
+        new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value="";
+    }
     var d = new Date($('#componentDesignRealDeliverDate').val());
     $('#componentDesignRealDeliverDate').val(pad(d.getDate(),2) + "/" + pad(d.getMonth()+1,2) + "/" + d.getFullYear());
     new mdc.textField.MDCTextField(document.getElementById('FecRealCFG-mdc-text')).value = $('#componentDesignRealDeliverDate').val();
@@ -122,39 +181,39 @@ function addSelectEvents() {
         new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value="";
     });
 
-    var rootNews = document.getElementById('tipologia-news-js-select');
+    var rootNews = document.getElementById('tipologia-final-news-js-select');
     var selectNews = new mdc.select.MDCSelect(rootNews);
 
     rootNews.addEventListener('MDCSelect:change', function () {
-        if (selectNews.value.match(/\|/g).length == 2) {
+        if (selectNews.value !="" && selectNews.value != "") {
             var splittedNews = selectNews.value.split('|');
             hiddenTypology.value = splittedNews[0];
             $("#typologyEmp").val(hiddenTypology.value);
-            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedNews[1];
-            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedNews[2];
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value=splittedNews[1];
+            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value=splittedNews[2];
         } else {
             hiddenTypology.value = "";
             $("#typologyEmp").val(hiddenTypology.value);
-            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
-            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value="";
         }
     });
 
-    var rootMods = document.getElementById('tipologia-mods-js-select');
+    var rootMods = document.getElementById('tipologia-final-mods-js-select');
     var selectMods = new mdc.select.MDCSelect(rootMods);
 
     rootMods.addEventListener('MDCSelect:change', function () {
-        if (selectMods.value.match(/\|/g).length == 2) {
+        if (selectNews.value !="" && selectNews.value != "") {
             var splittedMods = selectMods.value.split('|');
             hiddenTypology.value = splittedMods[0];
             $("#typologyEmp").val(hiddenTypology.value);
-            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedMods[1];
-            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedMods[2];
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value=splittedMods[1];
+            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value=splittedMods[2];
         } else {
             hiddenTypology.value = "";
             $("#typologyEmp").val(hiddenTypology.value);
-            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
-            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value="";
         }
     });
 }
@@ -176,6 +235,8 @@ function hideData() {
 }
 
 function loadSelects() {
+    mdc.select.MDCSelect.attachTo(document.getElementById('subdireccion-js-select'));
+    mdc.select.MDCSelect.attachTo(document.getElementById('direccion-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('nuemod-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-empty-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-news-js-select'));
@@ -189,16 +250,10 @@ function loadSelects() {
 }
 
 function defaultTypologies() {
-    $('#tipologia-empty-js-select').show();
     new mdc.select.MDCSelect(document.getElementById('tipologia-empty-js-select')).disabled = true;
     new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).disabled = true;
     new mdc.select.MDCSelect(document.getElementById('tipologia-mods-js-select')).disabled = true;
-    $('#tipologia-news-js-select').hide();
-    $('#tipologia-mods-js-select').hide();
-    $('#tipologia-final-empty-js-select').show();
     new mdc.select.MDCSelect(document.getElementById('tipologia-final-empty-js-select')).disabled = true;
-    $('#tipologia-final-news-js-select').hide();
-    $('#tipologia-final-mods-js-select').hide();
 }
 
 function addHiddenEvents() {

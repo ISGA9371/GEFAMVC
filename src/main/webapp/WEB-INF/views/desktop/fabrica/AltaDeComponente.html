@@ -97,11 +97,11 @@
 <form style="display:block" action="#" th:action="@{/components}" th:object="${component}" method="post">
 
     <!--HIDDEN PARA PRUEBAS-->
-    <input id="statusTypology" style="display: none;" type="number" required value="1" class="hiddenField"
+    <input id="statusTypology" style="display: none;" type="number" required value="8" class="hiddenField"
            th:field="*{statusTypology.statusId}"/>
-    <input id="status" style="display: none;" type="number" required value="1" class="hiddenField"
+    <input id="status" style="display: none;" type="number" required value="31" class="hiddenField"
            th:field="*{status.statusId}"/>
-    <input id="typologyEmp" style="display: none;" type="number" required value="1" class="hiddenField"
+    <input id="typologyEmp" style="display: none;" type="number" required value="" class="hiddenField"
            th:field="*{typologyEmp.typologyId}"/>
     <!--input type="submit" value="Guardar"-->
     <div class="container">

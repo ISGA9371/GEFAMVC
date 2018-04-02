@@ -127,6 +127,13 @@ public class RequirementController {
         return this.statusService.findAllStatus();
     }
 
+    @ModelAttribute("statusListRequeriment")
+    public List<Status> populateStatusListRequeriment() {
+        return this.statusService.findStatusByType(new StatusType(7));
+    }
+
+
+
     @ModelAttribute("technologies")
     public List<Technology> populateTechnologies() {
         return this.technologyService.findAllTechnologies();
