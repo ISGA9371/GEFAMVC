@@ -5,10 +5,7 @@ import com.mx.bbva.business.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -25,9 +22,12 @@ public class DoubtController {
     private CompanyService companyService;
     private PriorityService priorityService;
     private StatusService statusService;
+    private ComponentService componentService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String addDoubt(Model model) {
+    public String addDoubt(Model model, @RequestParam(value = "componentId") Integer componentId) {
+        Component component = componentService.findComponent(componentId);
+        model.addAttribute("componentData", component);
         model.addAttribute("doubt", new Doubt());
         return URL_FACTORY + NEW_DOUBT;
     }
@@ -97,5 +97,10 @@ public class DoubtController {
     @Autowired
     public void setStatusService(StatusService statusService) {
         this.statusService = statusService;
+    }
+
+    @Autowired
+    public void setComponentService(ComponentService componentService) {
+        this.componentService = componentService;
     }
 }
