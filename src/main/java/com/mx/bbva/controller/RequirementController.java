@@ -90,7 +90,7 @@ public class RequirementController {
     @RequestMapping(value = "/filters", method = RequestMethod.GET)
     public String filtersForRequirements(Model model) {
         model.addAttribute("filters", new RequirementSearchDTO());
-        return URL_FACTORY + SEARCH_COMPONENTS;
+        return URL_FACTORY + SEARCH_REQUIREMENTS;
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
@@ -98,7 +98,7 @@ public class RequirementController {
         String query = new QueryGenerator().generate(filters, "Requirement");
         List<Requirement> requirements = requirementService.findByCustomQuery(query);
         model.addAttribute("requirements", requirements);
-        return URL_FACTORY + SEARCH_COMPONENTS;
+        return URL_FACTORY + SEARCH_REQUIREMENTS;
     }
 
     // Model Attributes will available to the view all the time
@@ -126,6 +126,13 @@ public class RequirementController {
     public List<Status> populateStatusList() {
         return this.statusService.findAllStatus();
     }
+
+    @ModelAttribute("statusListRequeriment")
+    public List<Status> populateStatusListRequeriment() {
+        return this.statusService.findStatusByType(new StatusType(7));
+    }
+
+
 
     @ModelAttribute("technologies")
     public List<Technology> populateTechnologies() {

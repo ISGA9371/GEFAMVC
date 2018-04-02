@@ -33,6 +33,15 @@
         <!--Propias de la ventana-->
         <script type="text/javascript" th:src="@{js/fn_IndexGefa.js}"></script>
 
+        <style type="text/css">
+            .footer {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                background-color: #f5f5f5;
+            }
+        </style>
+
 
     </head>
 
@@ -40,13 +49,6 @@
 
         <!--Encabezado que vive en otra ventana-->
         <div th:replace="layout/header :: cabeceraPrincipal"></div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
 
         <!--Div principal y contenedor de toda la ventana-->
         <div class="container">
@@ -77,8 +79,10 @@
 
         </div>
         <br>
-        <!--Footer que debe ir en todas las ventanas-->
-        <div th:replace="layout/footer :: FooterPrincipal"></div>
+
     </body>
+
+    <!--Footer que debe ir en todas las ventanas-->
+    <footer th:replace="layout/footer :: FooterPrincipal"></footer>
 
 </html>
