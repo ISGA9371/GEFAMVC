@@ -1,6 +1,7 @@
 package com.mx.bbva.business.service.impl;
 
 import com.mx.bbva.business.entity.Status;
+import com.mx.bbva.business.entity.StatusType;
 import com.mx.bbva.business.repository.StatusRepository;
 import com.mx.bbva.business.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,11 @@ public class StatusServiceImpl implements StatusService {
     @Override
     public List<Status> findAllStatus() {
         return statusRepository.findAll();
+    }
+
+    @Override
+    public List<Status> findStatusByType(StatusType statusType) {
+        return statusRepository.findByStatusType(statusType);
     }
 
     @Autowired

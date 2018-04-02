@@ -25,7 +25,6 @@ public class BudgetController {
     private BudgetService budgetService;
     private AreaService areaService;
     private LevelService levelService;
-    private LevelTypeService levelTypeService;
     private UserService userService;
     private BankingService bankingService;
     private CorporationService corporationService;
@@ -135,11 +134,6 @@ public class BudgetController {
     @Autowired
     public void setLevelService(LevelService levelService) {
         this.levelService = levelService;
-    }
-
-    @Autowired
-    public void setLevelTypeService(LevelTypeService levelTypeService) {
-        this.levelTypeService = levelTypeService;
     }
 
     @Autowired
