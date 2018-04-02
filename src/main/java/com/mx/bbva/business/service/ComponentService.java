@@ -5,7 +5,9 @@ import com.mx.bbva.business.entity.Component;
 import java.util.List;
 
 public interface ComponentService {
-    void saveComponent(Component component);
+    Component saveComponent(Component component);
+
+    List<Component> findByCustomQuery(String query);
 
     Component findComponent(Integer componentId);
 

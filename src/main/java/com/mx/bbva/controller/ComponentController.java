@@ -3,6 +3,7 @@ package com.mx.bbva.controller;
 import com.mx.bbva.business.dto.ComponentSearchDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
+import com.mx.bbva.util.query.QueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,11 +41,11 @@ public class ComponentController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String saveComponent(@ModelAttribute("component") Component component) {
+    public String saveComponent(@ModelAttribute("component") Component component, Model model) {
         // TODO Validate user
         LOG.info("Saving new component... " + component.getComponentName());
-        componentService.saveComponent(component);
-
+        Component savedComponent = componentService.saveComponent(component);
+        model.addAttribute("component", savedComponent);
         return URL_FACTORY + EDIT_COMPONENT;
     }
 
@@ -63,6 +64,12 @@ public class ComponentController {
         LOG.info("Updating component, ID: " + componentId);
         if (null != componentId) {
             Component component = componentService.findComponent(componentId);
+            if (null != component.getRequirement()) {
+                Requirement requirement = component.getRequirement();
+                List<Level> superiorLevels = levelService
+                        .findSuperiorLevelsByLevelType(requirement.getLevel().getLevelType());
+                model.addAttribute("superiorLevels", superiorLevels);
+            }
             model.addAttribute("component", component);
         } else {
             model.addAttribute("component", new Component());
@@ -78,8 +85,9 @@ public class ComponentController {
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String searchForComponents(@ModelAttribute("filters") ComponentSearchDTO filters, Model model) {
-        // TODO Generate a query with the filters values
-        // TODO Return a list of components using filters
+        String query = new QueryGenerator().generate(filters, "Component");
+        List<Component> components = componentService.findByCustomQuery(query);
+        model.addAttribute("components", components);
         return URL_FACTORY + SEARCH_COMPONENTS;
     }
 

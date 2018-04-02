@@ -95,7 +95,7 @@ public class RequirementController {
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String searchForRequirements(@ModelAttribute("filters") RequirementSearchDTO filters, Model model) {
-        String query = new QueryGenerator().generate(filters);
+        String query = new QueryGenerator().generate(filters, "Requirement");
         List<Requirement> requirements = requirementService.findByCustomQuery(query);
         model.addAttribute("requirements", requirements);
         return URL_FACTORY + SEARCH_COMPONENTS;
