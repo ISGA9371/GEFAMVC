@@ -45,6 +45,7 @@
             margin: -3px;
             padding: 0px;
         }
+        .mdc-select-scroll-lock {overflow: auto}
     </style>
 </head>
 
@@ -86,21 +87,48 @@
                             <label for="demo-input" class="mdc-text-field__label">Version</label>
                         </div>
                     </td>
+
                     <td class="col-md-4" align="center">
-                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
+                        <input id="direccion" type="number" required value="" class="hiddenField"
+                               >
+                        <div id="direccion-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
-                            <input type="text" class="mdc-text-field__input"
-                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" readonly="readonly" id="demo-input">
-                            <label for="demo-input" class="mdc-text-field__label">Dirección</label>
+                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                <div class="mdc-select__label">Direccción</div>
+                                <div class="mdc-select__selected-text"></div>
+                                <div class="mdc-select__bottom-line"></div>
+                            </div>
+                            <div class="mdc-menu mdc-select__menu col-md-3">
+                                <ul class="mdc-list mdc-menu__items">
+                                    <li th:each="principals:${principals}" class="mdc-list-item"
+                                        th:id="${principals.levelId}"
+                                        role="option"
+                                        th:text="${principals.levelName}"></li>
+                                </ul>
+                            </div>
                         </div>
                     </td>
                 <tr style="height:72px">
                     <td class="col-md-4" align="center">
-                        <div class="mdc-text-field" id="subdireccion-js-mdc"data-mdc-auto-init="MDCTextField"
+                        <input id="subdireccion" type="number" required value="" class="hiddenField"
+                        >
+                        <div id="subdireccion-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
-                            <input type="text" class="mdc-text-field__input"
-                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" >
-                            <label for="demo-input" class="mdc-text-field__label">Subdirección</label>
+                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                <div class="mdc-select__label">Subdireccción</div>
+                                <div class="mdc-select__selected-text"></div>
+                                <div class="mdc-select__bottom-line"></div>
+                            </div>
+                            <div class="mdc-menu mdc-select__menu col-md-3">
+                                <ul class="mdc-list mdc-menu__items">
+                                    <li th:each="subPrincipals:${subPrincipals}" class="mdc-list-item"
+                                        th:object="${subPrincipals}"
+                                        th:if="${subPrincipals.levelSuperior.levelId} == 2"
+                                        th:id="${subPrincipals.levelId}"
+                                        role="option"
+                                        th:text="${subPrincipals.levelName}"></li>
+                                </ul>
+                            </div>
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
@@ -115,7 +143,7 @@
                         <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
                             <input type="text" class="mdc-text-field__input"
-                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" readonly="readonly" id="demo-input">
                             <label for="demo-input" class="mdc-text-field__label">Tecnologia</label>
                         </div>
                     </td>
@@ -156,7 +184,7 @@
                 <tr style="height:72px">
                     <td class="col-md-4" align="center">
                         <input id="typology" type="number" required value="" class="hiddenField"
-                               th:field="*{typology.typologyId}">
+                               th:value="${component.typology.typologyId}">
                         <div id="tipologia-empty-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
@@ -180,7 +208,7 @@
                             <div class="mdc-menu mdc-select__menu col-md-3">
                                 <ul class="mdc-list mdc-menu__items">
                                     <li th:each="tipologiaNewCmb:${tipologiaNewCmb}" class="mdc-list-item"
-                                        th:id="${tipologiaNewCmb.getTypologyId()}+'|'+${tipologiaNewCmb.typologySeverity}+'|'+${tipologiaNewCmb.typologySeverityHours}"
+                                        th:id="${tipologiaNewCmb.getTypologyId()}+'|'+${tipologiaNewCmb.typologySeverity}+'|'+${tipologiaNewCmb.typologySeverityHours}+'|'+${tipologiaNewCmb.typologyComponent}"
                                         role="option"
                                         th:text="${tipologiaNewCmb.typologyProductId}"></li>
                                 </ul>
@@ -197,7 +225,7 @@
                             <div class="mdc-menu mdc-select__menu col-md-3">
                                 <ul class="mdc-list mdc-menu__items">
                                     <li th:each="tipologiaModCmb:${tipologiaModCmb}" class="mdc-list-item"
-                                        th:id="${tipologiaModCmb.typologyId}+'|'+${tipologiaModCmb.typologySeverity}+'|'+${tipologiaModCmb.typologySeverityHours}"
+                                        th:id="${tipologiaModCmb.typologyId}+'|'+${tipologiaModCmb.typologySeverity}+'|'+${tipologiaModCmb.typologySeverityHours}+'|'+${tipologiaModCmb.typologyComponent}"
                                         role="option"
                                         th:text="${tipologiaModCmb.typologyProductId}"></li>
                                 </ul>
@@ -223,7 +251,7 @@
                 <tr style="height:72px">
                     <td class="col-md-4" align="center">
                         <input id="typology-final" type="number" required value="" class="hiddenField"
-                               th:field="*{typology.typologyId}">
+                               th:field="*{typologyEmp.typologyId}">
                         <div id="tipologia-final-empty-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
@@ -247,7 +275,7 @@
                             <div class="mdc-menu mdc-select__menu col-md-3">
                                 <ul class="mdc-list mdc-menu__items">
                                     <li th:each="tipologiaNewCmb:${tipologiaNewCmb}" class="mdc-list-item"
-                                        th:id="${tipologiaNewCmb.getTypologyId()}+'|'+${tipologiaNewCmb.typologySeverity}+'|'+${tipologiaNewCmb.typologySeverityHours}"
+                                        th:id="${tipologiaNewCmb.getTypologyId()}+'|'+${tipologiaNewCmb.typologySeverity}+'|'+${tipologiaNewCmb.typologySeverityHours}+'|'+${tipologiaNewCmb.typologyComponent}"
                                         role="option"
                                         th:text="${tipologiaNewCmb.typologyProductId}"></li>
                                 </ul>
@@ -264,7 +292,7 @@
                             <div class="mdc-menu mdc-select__menu col-md-3">
                                 <ul class="mdc-list mdc-menu__items">
                                     <li th:each="tipologiaModCmb:${tipologiaModCmb}" class="mdc-list-item"
-                                        th:id="${tipologiaModCmb.typologyId}+'|'+${tipologiaModCmb.typologySeverity}+'|'+${tipologiaModCmb.typologySeverityHours}"
+                                        th:id="${tipologiaModCmb.typologyId}+'|'+${tipologiaModCmb.typologySeverity}+'|'+${tipologiaModCmb.typologySeverityHours}+'|'+${tipologiaModCmb.typologyComponent}"
                                         role="option"
                                         th:text="${tipologiaModCmb.typologyProductId}"></li>
                                 </ul>
@@ -319,16 +347,10 @@
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3">
                             <ul class="mdc-list mdc-menu__items">
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Estatus Tipif. 1
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Estatus Tipif. 2
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Estatus Tipif. 3
-                                </li>
-
+                                <li th:each="typingStatus:${typingStatus}" class="mdc-list-item"
+                                    th:id="${typingStatus.statusId}"
+                                    role="option"
+                                    th:text="${typingStatus.statusName}"></li>
                             </ul>
                         </div>
                     </div>
@@ -392,16 +414,10 @@
                             </div>
                             <div class="mdc-menu mdc-select__menu col-md-3">
                                 <ul class="mdc-list mdc-menu__items">
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Estatus Tipif. 1
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Estatus Tipif. 2
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        Estatus Tipif. 3
-                                    </li>
-
+                                    <li th:each="componentStatus:${componentStatus}" class="mdc-list-item"
+                                        th:id="${componentStatus.statusId}"
+                                        role="option"
+                                        th:text="${componentStatus.statusName}"></li>
                                 </ul>
                             </div>
                         </div>
