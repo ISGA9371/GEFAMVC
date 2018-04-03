@@ -57,7 +57,7 @@ public class RequirementController {
     public String getOneRequirement(Model model, @PathVariable(required = false) Integer requirementId) {
         LOGGER.info("Find one element" + requirementId);
         if (null != requirementId) {
-            Requirement requirement = requirementService.findOne(requirementId);
+            Requirement requirement = requirementService.findOneRequirement(requirementId);
             model.addAttribute("requirement", requirement);
         } else {
             model.addAttribute("requirement", new Requirement());
@@ -68,8 +68,8 @@ public class RequirementController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getAllRequirements(Model model) {
         LOGGER.info("find requirements view");
-        //List<Requirement> requirements = requirementService.findAllRequirements();
-        //model.addAttribute("requirements", requirements);
+        List<Requirement> requirements = requirementService.findAllRequirements();
+        model.addAttribute("requirements", requirements);
         RequirementSearchDTO to = new RequirementSearchDTO();
 
         List<Level> c = this.levelService.findByLevelSuperior(2);

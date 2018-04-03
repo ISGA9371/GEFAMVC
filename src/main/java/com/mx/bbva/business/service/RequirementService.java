@@ -11,5 +11,5 @@ public interface RequirementService {
 
     Requirement saveRequirement(Requirement requirement);
 
-    Requirement findOne(Integer id);
+    Requirement findOneRequirement(Integer id);
 }
