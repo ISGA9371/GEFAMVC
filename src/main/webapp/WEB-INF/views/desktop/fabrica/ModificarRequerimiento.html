@@ -68,12 +68,12 @@
     <form th:object="${requirement}" th:action="@{/requirements}" method="post">
         <!-- HIDDEN FIELDS -->
         <input type="hidden" th:field="*{level.levelSuperior.levelSerial}">
-        <input type="text" th:field="*{level.levelName}">
+        <input type="hidden" th:field="*{level.levelSerial}">
         <input type="hidden" th:field="*{user.userId}">
         <input type="hidden" th:field="*{area.areaId}">
         <input type="hidden" th:field="*{userManager.userId}">
         <input type="hidden" th:field="*{technology.technologyId}">
-        <input type="hidden" th:field="*{methodology.methodologyId}">
+        <input type="hidden" th:field="*{project.methodology.methodologyId}">
         <input type="hidden" th:field="*{application.applicationSerial}">
         <input type="hidden" th:field="*{channel.channelSerial}">
         <input type="hidden" th:field="*{company.companyId}">
@@ -97,7 +97,7 @@
                 <div id="principal" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                         <div class="mdc-select__label mdc-select__label--float-above">Direccion *</div>
-                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__selected-text">COSO</div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu ">
@@ -109,9 +109,9 @@
             </td>
             <td class="col-md-4" align="center">
 
-                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="subprincipal" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Subdireccion *</div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Subdireccion *</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
@@ -131,9 +131,9 @@
                 </div>
             </td>
             <td class="col-md-4" align="center">
-                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="responsible" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Responsable</div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Responsable</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
@@ -147,9 +147,9 @@
 
             </td>
             <td class="col-md-4" align="center">
-                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="area" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Area de Atencion*</div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Area de Atencion*</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
@@ -164,9 +164,9 @@
         </tr>
         <tr>
             <td class="col-md-4" align="center">
-                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="manager" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Gestor*</div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Gestor*</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
@@ -179,9 +179,9 @@
                 </div>
             </td>
             <td class="col-md-4" align="center" data-mdc-auto-init="MDCSelect">
-                <div class="mdc-select" role="listbox">
+                <div id="tech" class="mdc-select" role="listbox">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Tecnología*</div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Tecnología*</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
@@ -194,16 +194,16 @@
                 </div>
             </td>
             <td class="col-md-4" align="center">
-                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="meth" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Tipo de proyecto</div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Tipo de proyecto</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
                             <li th:each="methodology : ${methodologies}" class="mdc-list-item" role="option"
-                                th:id="${methodology.methodologyId}" th:text="${methodology.methodologyName}"></li>
+                                th:value="${methodology.methodologyId}" th:text="${methodology.methodologyName}"></li>
                         </ul>
                     </div>
                 </div>
@@ -211,9 +211,9 @@
         </tr>
         <tr style="height:72px">
             <td class="col-md-4" align="center">
-                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="app" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Aplicacion</div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Aplicación</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
@@ -226,9 +226,9 @@
                 </div>
             </td>
             <td class="col-md-4" align="center">
-                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="channel" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Canal.</div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Canal</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
@@ -241,16 +241,16 @@
                 </div>
             </td>
             <td class="col-md-4" align="center">
-                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="company" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Empresa*</div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Empresa*</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
                             <li th:each="company : ${companies}" class="mdc-list-item"
-                                th:id="${company.companyId}" role="option" th:text="${company.companyName}"></li>
+                                th:value="${company.companyId}" role="option" th:text="${company.companyName}"></li>
                         </ul>
                     </div>
                 </div>
@@ -259,9 +259,9 @@
         <tr style="height:72px">
             <td class="col-md-4" align="center">
 
-                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="service-type" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Tipo de Servicio</div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Tipo de Servicio</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
@@ -274,9 +274,9 @@
                 </div>
             </td>
             <td class="col-md-4" align="center">
-                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="pi" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Codigo PI*</div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Codigo PI*</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
@@ -298,8 +298,8 @@
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
-                            <li th:each="area : ${areas}" class="mdc-list-item" role="option"
-                                th:id="${area.areaId}" th:text="${area.areaName}"></li>
+                            <li th:each="project : ${projects}" class="mdc-list-item" role="option"
+                                th:value="${project.projectId}" th:text="${project.projectId}"></li>
                         </ul>
                     </div>
                 </div>
@@ -314,15 +314,16 @@
                 </div>
             </td>
             <td class="col-md-4" align="center">
-                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="status" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Estado</div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Estado</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
-                            <li th:each="statusList:${statusList}" class="mdc-list-item" th:id="${statusList.statusId}" role="option" th:text="${statusList.statusName}"></li>
+                            <li th:each="status : ${statusListRequeriment}" class="mdc-list-item"
+                                th:value="${status.statusId}" role="option" th:text="${status.statusName}"></li>
                         </ul>
                     </div>
                 </div>
@@ -330,8 +331,8 @@
             <td class="col-md-4" align="center">
                 <div id="facturado-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Facturado</div>
-                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Facturado</div>
+                        <div class="mdc-select__selected-text" th:text="*{requirementBilled ? 'Si' : 'No'}"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
