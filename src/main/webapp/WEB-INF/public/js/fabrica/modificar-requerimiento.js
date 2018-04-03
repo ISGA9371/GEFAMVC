@@ -1,4 +1,7 @@
 $(function () {
+
+    const principal = new mdc.select.MDCSelect(document.querySelector('#principal'));
+    principal.selectedIndex = 4;
 /*
     const select = new mdc.select.MDCSelect(document.querySelector('#dirs'));
     let coso = parseInt("0");
