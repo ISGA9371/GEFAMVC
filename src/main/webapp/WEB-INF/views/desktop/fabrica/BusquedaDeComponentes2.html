@@ -10,6 +10,29 @@
 
   <div class="container">
 
+    <form id="form" name="form" th:action="@{/components/search}" method="GET">
+      <!-- <input type="hidden" id="hdn_txt_componente" th:field="*{txt_componente}" />
+      <input type="hidden" id="hdn_txt_requerimiento" th:field="*{txt_requerimiento}" />
+      <input type="hidden" id="hdn_txt_version" th:field="*{txt_version}" />
+      <input type="hidden" id="hdn_slct_direccion" th:field="*{slct_direccion}" />
+      <input type="hidden" id="hdn_slct_subidreccion" th:field="*{slct_subidreccion}" />
+      <input type="hidden" id="hdn_slct_empresa" th:field="*{slct_empresa}" />
+      <input type="hidden" id="hdn_slct_tecnologia" th:field="*{slct_tecnologia}" />
+      <input type="hidden" id="hdn_slct_nuevo_modificado" th:field="*{slct_nuevo_modificado}" />
+      <input type="hidden" id="hdn_slct_estado" th:field="*{slct_estado}" />
+      <input type="hidden" id="hdn_txt_datetimepickerReal" th:field="*{txt_datetimepickerReal}" />
+      <input type="hidden" id="hdn_txt_datetimepickerPrev" th:field="*{txt_datetimepickerPrev}" />
+      <input type="hidden" id="hdn_slct_tipologia_inicial" th:field="*{slct_tipologia_inicial}" />
+      <input type="hidden" id="hdn_txt_datetimepickerNego" th:field="*{txt_datetimepickerNego}" />
+      <input type="hidden" id="hdn_txt_datetimepickerRealFact" th:field="*{txt_datetimepickerRealFact}" />
+      <input type="hidden" id="hdn_slct_tipologia_final" th:field="*{slct_tipologia_final}" />
+      <input type="hidden" id="hdn_slct_dificultad_inicial" th:field="*{slct_dificultad_inicial}" />
+      <input type="hidden" id="hdn_txt_horas_iniciales" th:field="*{txt_horas_iniciales}" />
+      <input type="hidden" id="hdn_slct_estado_tipificado" th:field="*{slct_estado_tipificado}" />
+      <input type="hidden" id="hdn_slct_dificultad_final" th:field="*{slct_dificultad_final}" />
+      <input type="hidden" id="hdn_txt_horas_finales" th:field="*{txt_horas_finales}" /> -->
+    </form>
+
     <div class="row">
       <div class="col-md-12" align="center" style="font-size:30px; font-family:BBVA Web Book">Componentes</div>
     </div>
@@ -19,27 +42,27 @@
       <table class="col-md-12">
         <tr>
           <td class="col-md-4" align="center">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-              <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="componente">
+            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+              <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" name="txt_componente" id="txt_componente">
               <label class="mdc-text-field__label">Componente</label>
             </div>
           </td>
           <td class="col-md-4" align="center">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-              <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="requerimiento">
+            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+              <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" name="txt_requerimiento" id="txt_requerimiento">
               <label class="mdc-text-field__label">Requerimiento</label>
             </div>
           </td>
           <td class="col-md-4" align="center">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-              <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="version">
+            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+              <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" name="txt_version" id="txt_version">
               <label class="mdc-text-field__label">Versión</label>
             </div>
           </td>
         </tr>
         <tr>
           <td class="col-md-4" align="center">
-            <div id="dirs" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" style="background-color:#F4F4F4; width:90%">
+            <div id="slct_direccion" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
               <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                 <div class="mdc-select__label">Dirección</div>
                 <div class="mdc-select__selected-text"></div>
@@ -47,14 +70,14 @@
               </div>
               <div class="mdc-menu mdc-select__menu col-md-3">
                 <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0" th:each="dir : ${principals}" th:value="${dir.levelSerial}" th:text="${dir.levelSerial}">
+                  <li class="mdc-list-item" role="option" tabindex="0" th:each="dir : ${principals}" th:value="${dir.levelId}" th:text="${dir.levelName}">
                   </li>
                 </ul>
               </div>
             </div>
           </td>
           <td class="col-md-4" align="center">
-            <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" style="background-color:#F4F4F4; width:90%">
+            <div id="slct_subidreccion" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
               <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                 <div class="mdc-select__label">Subdirección</div>
                 <div class="mdc-select__selected-text"></div>
@@ -62,14 +85,14 @@
               </div>
               <div class="mdc-menu mdc-select__menu col-md-3">
                 <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0" th:each="subDir : ${subPrincipals}" th:value="${subDir.levelSerial}" th:text="${subDir.levelSerial}">
+                  <li class="mdc-list-item" role="option" tabindex="0" th:each="subDir : ${subPrincipals}" th:value="${subDir.levelId}" th:text="${subDir.levelName}">
                   </li>
                 </ul>
               </div>
             </div>
           </td>
           <td class="col-md-4" align="center">
-            <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" style="background-color:#F4F4F4; width:90%">
+            <div id="slct_empresa" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
               <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                 <div class="mdc-select__label">Empresa</div>
                 <div class="mdc-select__selected-text"></div>
@@ -79,8 +102,6 @@
                 <ul class="mdc-list mdc-menu__items">
                   <li class="mdc-list-item" role="option" tabindex="0">                    
                   </li>
-                  <li class="mdc-list-item" role="option" tabindex="0">
-                  </li>
                 </ul>
               </div>
             </div>
@@ -88,7 +109,7 @@
         </tr>
         <tr style="height:72px">
           <td class="col-md-4" align="center">
-            <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" style="background-color:#F4F4F4; width:90%">
+            <div id="slct_tecnologia" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
               <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                 <div class="mdc-select__label">Tecnología</div>
                 <div class="mdc-select__selected-text"></div>
@@ -96,27 +117,27 @@
               </div>
               <div class="mdc-menu mdc-select__menu col-md-3">
                 <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0">.NET</li>
-                  <li class="mdc-list-item" role="option" tabindex="0">ADAEVOS</li>
-                  <li class="mdc-list-item" role="option" tabindex="0">BI</li>
-                  <li class="mdc-list-item" role="option" tabindex="0">ESSBASE</li>
-                  <li class="mdc-list-item" role="option" tabindex="0">HOST</li>
-                  <li class="mdc-list-item" role="option" tabindex="0">JAVA</li>
-                  <li class="mdc-list-item" role="option" tabindex="0">MICROSTRATEGY</li>
-                  <li class="mdc-list-item" role="option" tabindex="0">NACAR</li>
-                  <li class="mdc-list-item" role="option" tabindex="0">ORACLE</li>
-                  <li class="mdc-list-item" role="option" tabindex="0">POWER BUILDER</li>
-                  <li class="mdc-list-item" role="option" tabindex="0">POWER CENTER</li>
-                  <li class="mdc-list-item" role="option" tabindex="0">PRUEBAS</li>
-                  <li class="mdc-list-item" role="option" tabindex="0">SCRUM</li>
-                  <li class="mdc-list-item" role="option" tabindex="0">SPRING</li>
-                  <li class="mdc-list-item" role="option" tabindex="0">VISUAL BASIC</li>
+                  <li class="mdc-list-item" role="option" tabindex="0" id="net">.NET</li>
+                  <li class="mdc-list-item" role="option" tabindex="0" id="VOS">ADAEVOS</li>
+                  <li class="mdc-list-item" role="option" tabindex="0" id="BI">BI</li>
+                  <li class="mdc-list-item" role="option" tabindex="0" id="BASE">ESSBASE</li>
+                  <li class="mdc-list-item" role="option" tabindex="0" id="HOST">HOST</li>
+                  <li class="mdc-list-item" role="option" tabindex="0" id="AVA">JAVA</li>
+                  <li class="mdc-list-item" role="option" tabindex="0" id="STRATEGY">MICROSTRATEGY</li>
+                  <li class="mdc-list-item" role="option" tabindex="0" id="AR">NACAR</li>
+                  <li class="mdc-list-item" role="option" tabindex="0" id="CLE">ORACLE</li>
+                  <li class="mdc-list-item" role="option" tabindex="0" id="WER">POWER BUILDER</li>
+                  <li class="mdc-list-item" role="option" tabindex="0" id="WER">POWER CENTER</li>
+                  <li class="mdc-list-item" role="option" tabindex="0" id="EBAS">PRUEBAS</li>
+                  <li class="mdc-list-item" role="option" tabindex="0" id="UM">SCRUM</li>
+                  <li class="mdc-list-item" role="option" tabindex="0" id="RING">SPRING</li>
+                  <li class="mdc-list-item" role="option" tabindex="0" id="SUAL">VISUAL BASIC</li>
                 </ul>
               </div>
             </div>
           </td>
           <td class="col-md-4" align="center">
-            <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" style="background-color:#F4F4F4; width:90%">
+            <div id="slct_nuevo_modificado" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
               <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                 <div class="mdc-select__label">Nuevo/Modificado</div>
                 <div class="mdc-select__selected-text"></div>
@@ -131,7 +152,7 @@
             </div>
           </td>
           <td class="col-md-4" align="center">
-            <div id="estado-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+            <div id="slct_estado" class="mdc-select" role="listbox">
               <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                 <div class="mdc-select__label">Estado</div>
                 <div class="mdc-select__selected-text"></div>
@@ -149,22 +170,22 @@
         <tr>
           <td class="col-md-4" align="center">
             <div class="dog1">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                <input type='text' class="mdc-text-field__input" row="2" id='datetimepickerReal' />
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerReal" id='txt_datetimepickerReal' />
                 <label class="mdc-text-field__label">F. Real CGF > Fact. Diseño</label>
               </div>
             </div>
           </td>
           <td class="col-md-4" align="center">
             <div class="dog1">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                <input type='text' class="mdc-text-field__input" row="2" id='datetimepickerPrev' />
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerPrev" id='txt_datetimepickerPrev' />
                 <label class="mdc-text-field__label">F. Prevista Fact. >  CGF Software</label>
               </div>
             </div>
           </td>
           <td class="col-md-4" align="center">
-            <div ids"tipologia-inicial-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+            <div id="slct_tipologia_inicial" class="mdc-select" role="listbox">
               <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                 <div class="mdc-select__label">Tipologia Inicial</div>
                 <div class="mdc-select__selected-text"></div>
@@ -182,22 +203,22 @@
         <tr>
           <td class="col-md-4" align="center">
             <div class="dog1">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                <input type='text' class="mdc-text-field__input" row="2" id='datetimepickerNego' />
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerNego" id='txt_datetimepickerNego' />
                 <label class="mdc-text-field__label">F. Negociada Fact. > CGF Software</label>
               </div>
             </div>
           </td>
           <td class="col-md-4" align="center">
             <div class="dog1">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                <input type='text' class="mdc-text-field__input" row="2" id='datetimepickerRealFact' />
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerRealFact" id='txt_datetimepickerRealFact' />
                 <label class="mdc-text-field__label">F. Real Fact. > CGF Software</label>
               </div>
             </div>
           </td>
           <td class="col-md-4" align="center">
-            <div ids"tipologia-final-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+            <div id="slct_tipologia_final" class="mdc-select" role="listbox">
               <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                 <div class="mdc-select__label">Tipologia Final</div>
                 <div class="mdc-select__selected-text"></div>
@@ -214,7 +235,7 @@
         </tr>
         <tr>
           <td class="col-md-4" align="center">
-            <div id="slct_dificultad_inicial" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" style="background-color:#F4F4F4; width:90%">
+            <div id="slct_dificultad_inicial" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
               <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                 <div class="mdc-select__label">Dificultad Inicial</div>
                 <div class="mdc-select__selected-text"></div>
@@ -229,24 +250,15 @@
             </div>
           </td>
           <td class="col-md-4" align="center">
-            <div id="slct_horas_iniciales" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" style="background-color:#F4F4F4; width:90%">
-              <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                <div class="mdc-select__label">Horas Iniciales</div>
-                <div class="mdc-select__selected-text"></div>
-                <div class="mdc-select__bottom-line"></div>
-              </div>
-              <div class="mdc-menu mdc-select__menu col-md-3">
-                <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0" th:each="area : ${areas}" th:value="${area.areaId}" th:text="${area.areaName}">
-                  </li>
-                </ul>
-              </div>
+            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+              <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" name="txt_horas_iniciales" id="txt_horas_iniciales">
+              <label class="mdc-text-field__label">Horas Inciales</label>
             </div>
           </td>
           <td class="col-md-4" align="center">
-            <div id="slct_estatus" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" style="background-color:#F4F4F4; width:90%">
+            <div id="slct_estado_tipificado" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
               <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                <div class="mdc-select__label">Estatus</div>
+                <div class="mdc-select__label">Estado Tipif.</div>
                 <div class="mdc-select__selected-text"></div>
                 <div class="mdc-select__bottom-line"></div>
               </div>
@@ -261,7 +273,7 @@
         </tr>
         <tr>
           <td class="col-md-4" align="center">
-            <div id="slct_dificultad_final" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" style="background-color:#F4F4F4; width:90%">
+            <div id="slct_dificultad_final" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
               <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                 <div class="mdc-select__label">Dificultad Final</div>
                 <div class="mdc-select__selected-text"></div>
@@ -276,18 +288,9 @@
             </div>
           </td>
           <td class="col-md-4" align="center">
-            <div id="slct_horas_finales" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" style="background-color:#F4F4F4; width:90%">
-              <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                <div class="mdc-select__label">Horas Finales</div>
-                <div class="mdc-select__selected-text"></div>
-                <div class="mdc-select__bottom-line"></div>
-              </div>
-              <div class="mdc-menu mdc-select__menu col-md-3">
-                <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0" th:each="area : ${areas}" th:value="${area.areaId}" th:text="${area.areaName}">
-                  </li>
-                </ul>
-              </div>
+            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+              <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" name="txt_horas_finales" id="txt_horas_finales">
+              <label class="mdc-text-field__label">Horas Finales</label>
             </div>
           </td>
           <td class="col-md-4" align="center" style="height:72px">
@@ -300,7 +303,7 @@
       <table class="col-md-12">
         <tr>
           <td class="col-md-6" align="center">
-            <button type="button" class="btn btn-primary">Buscar</button>
+            <button type="button" class="btn btn-primary" id="btn-submit">Buscar</button>
             <button type="button" class="btn btn-primary">Limpiar</button>
           </td>
         </tr>

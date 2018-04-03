@@ -1,5 +1,6 @@
 package com.mx.bbva.controller;
 
+import com.mx.bbva.business.dto.ModificationDTO;
 import com.mx.bbva.business.entity.Component;
 import com.mx.bbva.business.entity.Modification;
 import com.mx.bbva.business.entity.Status;
@@ -35,9 +36,29 @@ public class ModificationController {
     public String createModification(Model model) {
         // TODO Validate user
 
+        ModificationDTO mod= new ModificationDTO();
+
+        mod.setComponentName("ComponentName");
+        mod.setLevelName("levelName");
+        mod.setComponentVersion("componentVersion");
+        mod.setRequirementName("requirementName");
+        mod.setTechnology("technology");
+        mod.setTypology("typology");
+        mod.setStatus("status");
+        mod.setModificationSendDate("modificationSendDate");
+        mod.setModificationDescription("modificationDescription");
+        mod.setPriority("priority");
+        mod.setUserSender("userSender");
+        mod.setOrigin("origin");
+        mod.setComponentPossibleDeliverDate("componentPossibleDeliverDate");
+        mod.setComponentDesignRealDeliverDate("componentDesignRealDeliverDate");
+        mod.setModV("modV");
+        mod.setModRz("modRz");
+
+
         LOG.info("Creating new modification");
         model.addAttribute("modification", new Modification());
-        model.addAttribute("component", new Component());
+        model.addAttribute("modficationObject", mod );
 
 
         //TODO Add catalogs
