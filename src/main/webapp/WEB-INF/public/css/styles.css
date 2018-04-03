@@ -255,6 +255,18 @@ footer {
   color:#FFFFFF;
   height: 40px;
   padding: 12px 16px;
-} 
+}
+
+/** styles for mdc select and text **/
+.mdc-text-field {
+  background-color: #F4F4F4;
+  width: 90%;
+}
+
+.mdc-select {
+  background-color: #F4F4F4;
+  width: 90%;
+  margin-top: 12px;
+}
 
 /** Content Styles **/
