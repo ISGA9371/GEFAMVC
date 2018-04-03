@@ -24,6 +24,7 @@ public class ComponentController {
     private RequirementService requirementService;
     private LevelService levelService;
     private StatusService statusService;
+    private CompanyService companyService;
 
     /**
      * TODO: EVERY CONTROLLER NEEDS TO HAVE A CUSTOM SEARCH METHOD
@@ -44,7 +45,8 @@ public class ComponentController {
     public String saveComponent(@ModelAttribute("component") Component component, Model model) {
         // TODO Validate user
         LOG.info("Saving new component... " + component.getComponentName());
-        Component savedComponent = componentService.saveComponent(component);
+        componentService.saveComponent(component);
+        Component savedComponent = componentService.findComponent(component.getComponentId());
         model.addAttribute("component", savedComponent);
         return URL_FACTORY + EDIT_COMPONENT;
     }
@@ -124,9 +126,9 @@ public class ComponentController {
         return this.statusService.findStatusByType(new StatusType(8));
     }
 
-    @ModelAttribute("statusList2")
-    public List<Status> populateStatusList2() {
-        return this.statusService.findStatusByType(new StatusType(8));
+    @ModelAttribute("companies")
+    public List<Company> populateCompanies() {
+        return this.companyService.findAllCompaniesForDropDownList();
     }
 
     @Autowired
@@ -152,5 +154,10 @@ public class ComponentController {
     @Autowired
     public void setLevelService(LevelService levelService) {
         this.levelService = levelService;
+    }
+
+    @Autowired
+    public void setCompanyService(CompanyService companyService) {
+        this.companyService = companyService;
     }
 }

@@ -42,7 +42,7 @@ public class DoubtController {
     public String getOneDoubt(Model model, @PathVariable Integer doubtId) {
         Doubt doubt = doubtService.findDoubt(doubtId);
         model.addAttribute("doubt", doubt);
-        return URL_FACTORY + SEARCH_DOUBTS;
+        return URL_FACTORY + EDIT_DOUBT;
     }
 
     // Model Attributes will available to the view all the time

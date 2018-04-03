@@ -49,8 +49,8 @@ public class Requirement implements Serializable {
     @Column(name = "FH_FIN_REQ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date requirementEndDate;
-    @JoinColumn(name = "CD_USUARIO_GESTOR", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "CD_USUARIO_GESTOR", referencedColumnName = "CD_USUARIO_CORP")
+    @ManyToOne
     private User userManager;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
@@ -76,11 +76,11 @@ public class Requirement implements Serializable {
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
     private Area area;
-    @JoinColumn(name = "CD_METODOLOGIA", referencedColumnName = "CD_METODOLOGIA", nullable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "CD_METODOLOGIA", referencedColumnName = "CD_METODOLOGIA")
+    @ManyToOne
     private Methodology methodology;
-    @JoinColumn(name = "CD_TIPO_SERVICIO", referencedColumnName = "CD_TIPO_SERVICIO", nullable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "CD_TIPO_SERVICIO", referencedColumnName = "CD_TIPO_SERVICIO")
+    @ManyToOne
     private ServiceType serviceType;
     @JoinColumn(name = "CD_CANAL", referencedColumnName = "CD_CANAL")
     @ManyToOne

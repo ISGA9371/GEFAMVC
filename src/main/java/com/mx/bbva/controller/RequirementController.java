@@ -47,6 +47,7 @@ public class RequirementController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveRequirement(@ModelAttribute("requirement") Requirement requirement) {
+        // TODO Validate XMY from the request
         LOGGER.info("Saving requirement");
         requirementService.saveRequirement(requirement);
         return URL_FACTORY + EDIT_REQUIREMENT;
@@ -131,7 +132,6 @@ public class RequirementController {
     public List<Status> populateStatusListRequeriment() {
         return this.statusService.findStatusByType(new StatusType(7));
     }
-
 
 
     @ModelAttribute("technologies")
