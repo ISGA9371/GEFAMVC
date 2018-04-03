@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head (title)">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title th:text="( ${title} == '' ) ? 'GEFA' : 'GEFA :: ' + ${title}"></title>
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/material-components-web.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/select.css}">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datetimepicker.css}">
+</head> <!-- fragment:: header -->
+
+<body>
+
+
+  <header th:fragment="header">
+    <div class="row" id="top-bar">
+      <div class="col-md-8">
+        <p id="brand">
+          <img th:src="@{/img/bbva-bancomer.svg}" width="246">
+          <span>I</span>
+          Nueva Herramienta Gestora
+        </p>
+      </div>
+      <div class="col-md-4 text-right" id="top-bar-user-info">
+        <img th:src="@{/img/executive-icon.png}" width="16">
+        <span class="user-info">XMY6266 - Test User</span>
+        <span style="padding:5px">I</span>
+        <span class="user-info">
+          <a href="javascript:;">
+            Cerrar sesión
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="row" id="top-bar-menu">
+      <div class="col-md-12">
+        <nav>
+          <ul class="menu">
+            <li>
+              <a href="#">FÁBRICA</a>
+              <ul class="sub-menu">
+                <li>
+                  <a th:href="@{/requirements/filters}">Búsqueda Requerimiento</a>
+                </li>
+                <li>
+                  <a th:href="@{/components/filters}">Búsqueda Componente</a>
+                </li>
+                <li>
+                  <a th:href="@{/requirements/add}">Alta Requerimieto</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">PRESUPUESTO</a>
+              <ul class="sub-menu">
+                <li>
+                  <a href="#">Seguimiento de Pago</a>
+                </li>
+                <li>
+                  <a href="#">Seguimiento Corte de Facturación</a>
+                </li>
+                <li>
+                  <a href="#">Alta de PEP</a>
+                </li>
+                <li>
+                  <a href="#">Búsqueda de PEP</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">PRUEBAS</a>
+            </li>
+            <li>
+              <a href="#">ADMIN</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="row" id="top-bar-submenu">
+    </div>
+  </header> <!-- fragment:: menu -->
+
+</body>
+
+</html>

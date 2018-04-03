@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+  <footer th:fragment="footer" class="footer">
+    <img th:src="@{/img/bbva-bancomer.svg}" height="16" class="pull-left">
+    <span class="pull-right">© 2018 BBVA Bancomer, S.A., Institución de Banca Múltiple</span>
+  </footer>
+  <!-- fragment:: footer -->
+
+
+  <div th:fragment="scripts">
+    <!--Script generales-->
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/material-components-web.js}"></script>
+    <script type="text/javascript" th:src="@{/js/moment-with-locales.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-datetimepicker.js}"></script>
+  </div>
+  <!-- fragment:: scripts -->
+
+</body>
+
+</html>
