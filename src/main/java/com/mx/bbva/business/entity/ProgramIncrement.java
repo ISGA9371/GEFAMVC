@@ -32,6 +32,8 @@ public class ProgramIncrement implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "programIncrement")
     private List<Project> projects;
+    @OneToMany(mappedBy = "programIncrement")
+    private List<Requirement> requirements;
 
     public ProgramIncrement() {
     }
@@ -75,6 +77,14 @@ public class ProgramIncrement implements Serializable {
 
     public void setWorkplace(Workplace workplace) {
         this.workplace = workplace;
+    }
+
+    public List<Requirement> getRequirements() {
+        return requirements;
+    }
+
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
     }
 
     @Override
