@@ -18,13 +18,18 @@ public class RequirementServiceImpl implements RequirementService {
     }
 
     @Override
+    public List<Requirement> findByCustomQuery(String query) {
+        return requirementRepository.findByCustomQuery(query);
+    }
+
+    @Override
     public Requirement saveRequirement(Requirement requirement) {
         return requirementRepository.save(requirement);
     }
 
     @Override
     public Requirement findOneRequirement(Integer requirementId) {
-        return requirementRepository.findById(requirementId).orElse(null);
+        return requirementRepository.findRequirement(requirementId);
     }
 
     @Autowired

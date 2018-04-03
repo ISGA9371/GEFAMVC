@@ -18,9 +18,9 @@
                $("#busqueda-menu").css("color","#f8cd51");
                bottom.html('');
 
-               var options = "<li> <a href='/requirements'>BÚSQUEDA DE REQUERIMIENTO</a></li> "+
-               "<li> <a href='/components'>BÚSQUEDA DE COMPONENTE</a></li> "+
-               "<li> <a href='/requirements/add'>ALTA DE REQUERIMIENTO</a></li> ";
+               var options = "<li> <a href='/requirements'>Búsqueda de requerimiento</a></li> "+
+               "<li> <a href='/components/filters'>Búsqueda de componente</a></li> "+
+               "<li> <a href='/requirements/add'>Alta de requerimiento</a></li> ";
                bottom.html(options);
            });
 
@@ -32,13 +32,13 @@
                 var options = "<li> <a href=''>Seguimiento de Pago</a></li> "+
                     "<li> <a href=''>Seguimiento Corte de Facturación</a></li> "+
                     "<li> <a href=''>Alta de PEP</a></li> "+
-                    "<li> <a href=''>Busqueda de PEP</a></li> ";
+                    "<li> <a href=''>Búsqueda de PEP</a></li> ";
                 bottom.html(options);
             });
         });
     </script>
 
-    <div class="row top-bar">
+    <div class="row top-bar" style="margin-left: 0; margin-right: 0;">
         <div id="brand" class="col-xs-6 no-left-padding">
             <p> <img th:src="@{/img/bbva-bancomer.svg}" width="246">
                 <span id="u144-3">I</span>
@@ -48,9 +48,9 @@
         <div class="col-xs-6 no-right-padding">
             <ul class="nav nav-pills pull-right" style="margin-top: 7px;">
                 <li class="username"><img th:src="@{/img/executive-icon.png}" width="16"></li>
-                <li style="color: #f8cd51;">M56251 - Alberto Mejía Colli</li>
-                <li><span id="u144-3">I</span></li>
-                <li>Cerrar sesión</li>
+                <li style="color: #f8cd51;" class="bold">M56251 - Alberto Mejía Colli</li>
+                <li><span>I</span></li>
+                <li style="color: #f8cd51;" class="bold">Cerrar sesión</li>
             </ul>
         </div>
     </div>
@@ -62,7 +62,7 @@
             <li>ADMIN</li>
         </ul>
     </nav>
-    <div class="row bottom-bar">
+    <div class="row bottom-bar" style="margin-left: 0; margin-right: 0;">
         <nav class="nav nav-bar" id="bottom-nav">
             <ul class="list-inline" id="bottom-pills">
             </ul>

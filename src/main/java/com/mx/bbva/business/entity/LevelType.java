@@ -17,9 +17,9 @@ import java.util.List;
 @Entity
 @Table(name = "thge004_tipo_nivel", uniqueConstraints = {@UniqueConstraint(columnNames = {"NB_TIPO_NIVEL"})})
 public class LevelType implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_TIPO_NIVEL", nullable = false)
     private Integer levelTypeId;

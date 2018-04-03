@@ -2,7 +2,10 @@ package com.mx.bbva.controller;
 
 import com.mx.bbva.business.entity.Component;
 import com.mx.bbva.business.entity.Modification;
+import com.mx.bbva.business.entity.Status;
+import com.mx.bbva.business.entity.StatusType;
 import com.mx.bbva.business.service.ModificationService;
+import com.mx.bbva.business.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +25,7 @@ public class ModificationController {
     private static final Logger LOG = Logger.getLogger(ModificationController.class.getName());
 
     private ModificationService modificationService;
+    private StatusService statusService;
 
     /**
      * TODO: EVERY CONTROLLER NEEDS TO HAVE A CUSTOM SEARCH METHOD
@@ -76,5 +80,10 @@ public class ModificationController {
     @Autowired
     public void setModificationService(ModificationService modificationService) {
         this.modificationService = modificationService;
+    }
+
+    @Autowired
+    public void setStatusService(StatusService statusService) {
+        this.statusService = statusService;
     }
 }

@@ -19,6 +19,7 @@ import java.util.List;
 public class T926 implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_T926", nullable = false)
     private Integer t926Id;

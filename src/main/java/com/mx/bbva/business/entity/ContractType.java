@@ -12,11 +12,12 @@ import java.io.Serializable;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge032_tipo_cont",   uniqueConstraints = {
+@Table(name = "thge032_tipo_cont", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_TIPO_CONTRATO"})})
 public class ContractType implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_TIPO_CONTRATO", nullable = false)
     private Integer contractTypeId;

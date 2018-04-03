@@ -1,0 +1,7 @@
+.mdc-select, .mdc-text-field{
+    background-color: #F4F4F4;
+    width: 90%;
+}
+.mdc-select{
+    margin-top: 12px;
+}

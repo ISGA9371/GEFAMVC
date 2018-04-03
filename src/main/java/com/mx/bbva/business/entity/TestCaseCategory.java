@@ -15,11 +15,12 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge046_cat_caso",  uniqueConstraints = {
+@Table(name = "thge046_cat_caso", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_CATEGORIA_CASO"})})
 public class TestCaseCategory implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_CATEGORIA_CASO", nullable = false)
     private Integer testCaseCategoryId;

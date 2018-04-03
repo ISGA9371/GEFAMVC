@@ -15,13 +15,13 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge057_aplicacion",  uniqueConstraints = {
+@Table(name = "thge057_aplicacion", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_APLICACION"})
         , @UniqueConstraint(columnNames = {"NB_APLICACION"})})
 public class Application implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CD_CONS_APLIC", nullable = false)
     private Integer applicationSerial;
     @Basic(optional = false)

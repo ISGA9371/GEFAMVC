@@ -19,6 +19,7 @@ import java.util.List;
 public class Budget implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_CONSEC_PEP", nullable = false)
     private Integer budgetSerial;
@@ -45,6 +46,10 @@ public class Budget implements Serializable {
     private Double budgetDone;
     @Column(name = "IM_DISPONIBLE", precision = 22)
     private Double budgetAvailable;
+    @Column(name = "IM_COMP_PBAS", precision = 22)
+    private Double budgetCommittedTestFactory;
+    @Column(name = "IM_COMP_FSW", precision = 22)
+    private Double budgetCommittedSoftwareFactory;
     @Column(name = "IM_INCURRIDO_PBAS", precision = 22)
     private Double budgetIncurredTestFactory;
     @Column(name = "IM_INCURRIDO_FSW", precision = 22)
@@ -286,6 +291,22 @@ public class Budget implements Serializable {
 
     public void setBudgetRequirements(List<BudgetRequirement> budgetRequirements) {
         this.budgetRequirements = budgetRequirements;
+    }
+
+    public Double getBudgetCommittedTestFactory() {
+        return budgetCommittedTestFactory;
+    }
+
+    public void setBudgetCommittedTestFactory(Double budgetCommittedTestFactory) {
+        this.budgetCommittedTestFactory = budgetCommittedTestFactory;
+    }
+
+    public Double getBudgetCommittedSoftwareFactory() {
+        return budgetCommittedSoftwareFactory;
+    }
+
+    public void setBudgetCommittedSoftwareFactory(Double budgetCommittedSoftwareFactory) {
+        this.budgetCommittedSoftwareFactory = budgetCommittedSoftwareFactory;
     }
 
     @Override

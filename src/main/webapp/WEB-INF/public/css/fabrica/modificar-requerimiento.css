@@ -1,0 +1,10 @@
+.mdc-select, .mdc-text-field{
+    background-color: #F4F4F4;
+    width: 90%;
+}
+.mdc-select{
+    margin-top: 12px;
+}
+input.mdc-text-field__input{
+    border-bottom-color:rgba(28, 59, 224, 0.5)
+}

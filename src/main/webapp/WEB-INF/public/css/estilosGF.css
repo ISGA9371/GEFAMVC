@@ -57,3 +57,16 @@ html {
     margin-bottom: 0;
     color: white;
 }
+header div.top-bar ul li{
+    margin-left: 12px;
+    color:white;
+}
+header div.top-bar ul li:last-of-type{
+    margin-right: 12px;
+}
+
+header div.top-bar li.bold{
+    font-weight: bold;
+}
+
+

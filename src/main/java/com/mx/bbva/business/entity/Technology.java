@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author Guevara
+ * @author Guevara M
  */
 @Entity
 @Table(name = "thge002_tecnologia", uniqueConstraints = {
@@ -20,6 +20,7 @@ import java.util.List;
 public class Technology implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_TECNOLOGIA", nullable = false)
     private Integer technologyId;
@@ -41,6 +42,10 @@ public class Technology implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "technology")
     private List<Product> products;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "thge002Tecnologia")
+//    private List<Thge062EvalServ> thge062EvalServList;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "thge002Tecnologia")
+//    private List<Thge059HCMando> thge059HCMandoList;
 
     public Technology() {
     }

@@ -1,21 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
-
-
-    <div class="" style="background-color:#004582; color:#FFFFFF; height: 100px;" th:fragment="FooterPrincipal">
-
-        <div class="">
-            <p>Este sera el footer de todas las ventanas</p>
-        </div>
-
-    </div>
-
-
+    <footer style="background-color:#072146; color:#FFFFFF; height: 40px; padding: 12px 16px;" th:fragment="FooterPrincipal"
+    class="footer">
+        <img th:src="@{/img/bbva-bancomer.svg}" height="16" class="pull-left" >
+        <span class="pull-right">© 2018 BBVA Bancomer, S.A., Institución de Banca Múltiple</span>
+    </footer>
 </body>
 </html>

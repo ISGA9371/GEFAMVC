@@ -15,11 +15,12 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge028_tipo_duda",  uniqueConstraints = {
+@Table(name = "thge028_tipo_duda", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_TIPO_DUDA"})})
 public class DoubtType implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_TIPO_DUDA", nullable = false)
     private Integer doubtTypeId;

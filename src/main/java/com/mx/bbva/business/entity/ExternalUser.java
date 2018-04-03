@@ -17,6 +17,7 @@ import java.util.Date;
 public class ExternalUser implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_EXTERNO", nullable = false)
     private Integer externalUserId;
@@ -84,6 +85,9 @@ public class ExternalUser implements Serializable {
     @Column(name = "FH_ALTA")
     @Temporal(TemporalType.DATE)
     private Date externalUserUploadDate;
+    @Column(name = "FH_BAJA")
+    @Temporal(TemporalType.DATE)
+    private Date externalUserEndDate;
     @JoinColumn(name = "CD_EMPRESA", referencedColumnName = "CD_EMPRESA", nullable = false)
     @ManyToOne(optional = false)
     private Company company;

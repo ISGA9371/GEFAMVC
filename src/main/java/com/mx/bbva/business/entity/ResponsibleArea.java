@@ -15,12 +15,13 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge051_ac_res_cor",  uniqueConstraints = {
+@Table(name = "thge051_ac_res_cor", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_ACEPTA_RES_COR"})
         , @UniqueConstraint(columnNames = {"NB_ACEPTA_RES_COR"})})
 public class ResponsibleArea implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_CONS_ACEPTA", nullable = false)
     private Integer responsibleAreaSerial;

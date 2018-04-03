@@ -17,6 +17,7 @@ import java.util.Date;
 public class Modification implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_MODIFICACION", nullable = false)
     private Integer modificationId;
@@ -88,6 +89,12 @@ public class Modification implements Serializable {
     @JoinColumn(name = "CD_ORIGEN", referencedColumnName = "CD_ORIGEN", nullable = false)
     @ManyToOne(optional = false)
     private Origin origin;
+    @JoinColumn(name = "CD_TIPOLOGIA_INI", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
+    @ManyToOne(optional = false)
+    private Typology startTypology;
+    @JoinColumn(name = "CD_TIPOLOGIA_EMP", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
+    @ManyToOne(optional = false)
+    private Typology finalTypology;
 
     public Modification() {
     }
@@ -319,6 +326,22 @@ public class Modification implements Serializable {
 
     public void setOrigin(Origin origin) {
         this.origin = origin;
+    }
+
+    public Typology getStartTypology() {
+        return startTypology;
+    }
+
+    public void setStartTypology(Typology startTypology) {
+        this.startTypology = startTypology;
+    }
+
+    public Typology getFinalTypology() {
+        return finalTypology;
+    }
+
+    public void setFinalTypology(Typology finalTypology) {
+        this.finalTypology = finalTypology;
     }
 
     @Override

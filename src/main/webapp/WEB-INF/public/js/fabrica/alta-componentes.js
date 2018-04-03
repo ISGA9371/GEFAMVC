@@ -11,6 +11,9 @@ function init() {
     addDifficultyValidation();
     addHoursValidation();
     addButtonEvents();
+
+    $("#statusTypology").val(3);
+    $("#status").val(3);
 }
 
 function getVersion() {
@@ -92,12 +95,8 @@ function addHoursValidation() {
 
 function addButtonEvents() {
     var btnCancel = document.getElementById('cancelar-btn');
-    var btnSave = document.getElementById('guardar-btn');
     btnCancel.addEventListener("click", function () {
         window.history.back();
-    })
-    btnSave.addEventListener("click", function () {
-        validateWindowData();
     })
 }
 
@@ -121,6 +120,7 @@ function addSelectEvents() {
             $('#tipologia-mods-js-select').show();
         }
         hiddenTypology.value = new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).value;
+        $("#typologyEmp").val(hiddenTypology.value);
         new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
         new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
     });
@@ -132,10 +132,12 @@ function addSelectEvents() {
         if (selectNews.value.match(/\|/g).length == 2) {
             var splittedNews = selectNews.value.split('|');
             hiddenTypology.value = splittedNews[0];
+            $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedNews[1];
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedNews[2];
         } else {
             hiddenTypology.value = "";
+            $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
         }
@@ -148,30 +150,16 @@ function addSelectEvents() {
         if (selectMods.value.match(/\|/g).length == 2) {
             var splittedMods = selectMods.value.split('|');
             hiddenTypology.value = splittedMods[0];
+            $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedMods[1];
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedMods[2];
         } else {
             hiddenTypology.value = "";
+            $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
         }
     });
-}
-
-function validateWindowData() {
-    hideData();
-}
-
-function hideData() {
-
-    /*var rootNewMod = document.getElementById('tecnologia-js-select');
-    var hiddenNewMod = document.getElementById('selected-technology');
-    var selectNewMod = new mdc.select.MDCSelect(rootTechnology);
-
-    rootTechnology.addEventListener('MDCSelect:change', function() {
-        hiddenTechnology.value = selectTechnology.value;
-    });*/
-
 }
 
 function loadSelects() {
@@ -195,6 +183,7 @@ function addHiddenEvents() {
     addTextSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text");
     addTextSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-txt");
     addTextSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text");
+    $("#requirement").val($("#requirementHidden").val());
 }
 
 function addTextSyncMdcToHtml(htmlField, mdcField) {

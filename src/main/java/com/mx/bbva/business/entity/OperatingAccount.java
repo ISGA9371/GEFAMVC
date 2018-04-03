@@ -15,12 +15,13 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge055_cta_oper",  uniqueConstraints = {
+@Table(name = "thge055_cta_oper", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NU_CTA_OPERATIVA"})
         , @UniqueConstraint(columnNames = {"CD_CTA_OPER"})})
 public class OperatingAccount implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_CONS_CTA_OPER", nullable = false)
     private Integer operatingAccountSerial;

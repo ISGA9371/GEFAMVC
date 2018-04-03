@@ -1,9 +1,10 @@
 package com.mx.bbva.controller;
 
 
+import com.mx.bbva.business.dto.RequirementSearchDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
-import com.mx.bbva.to.RequirementSearchTO;
+import com.mx.bbva.util.query.QueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -32,7 +34,10 @@ public class RequirementController {
     private ChannelService channelService;
     private CompanyService companyService;
     private ServiceTypeService serviceTypeService;
-    private ProgramIncrementService programIncrementTypeService;
+    private MethodologyService methodologyService;
+    private ProgramIncrementService programIncrementService;
+    private StatusService statusService;
+    private ProjectService projectService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addRequirement(Model model) {
@@ -42,6 +47,7 @@ public class RequirementController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveRequirement(@ModelAttribute("requirement") Requirement requirement) {
+        // TODO Validate XMY from the request
         LOGGER.info("Saving requirement");
         requirementService.saveRequirement(requirement);
         return URL_FACTORY + EDIT_REQUIREMENT;
@@ -62,23 +68,37 @@ public class RequirementController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getAllRequirements(Model model) {
         LOGGER.info("find requirements view");
-        //List<Requirement> requirements = requirementService.findAllRequirements();
-        //model.addAttribute("requirements", requirements);
-        RequirementSearchTO to = new RequirementSearchTO();
+        List<Requirement> requirements = requirementService.findAllRequirements();
+        model.addAttribute("requirements", requirements);
+        RequirementSearchDTO to = new RequirementSearchDTO();
 
         List<Level> c = this.levelService.findByLevelSuperior(2);
-        LOGGER.info("SUPEROIOr "+c.size());
-        model.addAttribute("criteria",to);
+        LOGGER.info("SUPEROIOr " + c.size());
+        model.addAttribute("criteria", to);
         return URL_FACTORY + SEARCH_REQUIREMENTS;
     }
 
     @RequestMapping(value = "/find", method = RequestMethod.POST)
-    public String findRequirements(Model model,@ModelAttribute(value="criteria") RequirementSearchTO criteria) {
+    public String findRequirements(Model model, @ModelAttribute(value = "criteria") RequirementSearchDTO criteria) {
         LOGGER.info("Find requirements by selected criteria");
 
-        LOGGER.info("Criteria:name "+criteria.getName());
+        LOGGER.info("Criteria " + criteria);
         //List<Requirement> requirements = requirementService.findAllRequirements();
         //model.addAttribute("requirements", requirements);
+        return "redirect:/requirements";
+    }
+
+    @RequestMapping(value = "/filters", method = RequestMethod.GET)
+    public String filtersForRequirements(Model model) {
+        model.addAttribute("filters", new RequirementSearchDTO());
+        return URL_FACTORY + SEARCH_REQUIREMENTS;
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String searchForRequirements(@ModelAttribute("filters") RequirementSearchDTO filters, Model model) {
+        String query = new QueryGenerator().generate(filters, "Requirement");
+        List<Requirement> requirements = requirementService.findByCustomQuery(query);
+        model.addAttribute("requirements", requirements);
         return URL_FACTORY + SEARCH_REQUIREMENTS;
     }
 
@@ -93,7 +113,7 @@ public class RequirementController {
     // LevelTypeId 2 - Sub-Direccion
     @ModelAttribute("subPrincipals")
     public List<Level> populateSubPrincipals() {
-        LOGGER.info(this.levelService.findByLevelType(new LevelType(2)).get(2).getLevelSuperior()+"");
+        LOGGER.info(this.levelService.findByLevelType(new LevelType(2)).get(2).getLevelSuperior() + "");
 
         return this.levelService.findByLevelType(new LevelType(2));
     }
@@ -103,6 +123,17 @@ public class RequirementController {
         return this.areaService.findAllAreas();
     }
 
+    @ModelAttribute("statusList")
+    public List<Status> populateStatusList() {
+        return this.statusService.findAllStatus();
+    }
+
+    @ModelAttribute("statusListRequeriment")
+    public List<Status> populateStatusListRequeriment() {
+        return this.statusService.findStatusByType(new StatusType(7));
+    }
+
+
     @ModelAttribute("technologies")
     public List<Technology> populateTechnologies() {
         return this.technologyService.findAllTechnologies();
@@ -110,7 +141,13 @@ public class RequirementController {
 
     @ModelAttribute("users")
     public List<User> populateUsers() {
-        return this.userService.findAllUsers();
+        List<User> users = new ArrayList<>();
+        // TODO Use Enum's
+        // 1 - Gestoria FSW
+        users.addAll(this.userService.findUsersByType(1));
+        // 2 - Gestoria PBAS
+        users.addAll(this.userService.findUsersByType(2));
+        return users;
     }
 
     @ModelAttribute("applications")
@@ -125,7 +162,6 @@ public class RequirementController {
 
     @ModelAttribute("companies")
     public List<Company> populateCompanies() {
-        LOGGER.info("COMPAS "+this.companyService.findAllCompaniesForDropDownList());
         return this.companyService.findAllCompaniesForDropDownList();
     }
 
@@ -134,10 +170,21 @@ public class RequirementController {
         return this.serviceTypeService.findAllServiceTypes();
     }
 
- //   @ModelAttribute("programIncrements")
- //   public List<ProgramIncrement> populateProgramIncrements() {
- //       return this.programIncrementTypeService.findAll();
- //   }
+    @ModelAttribute("programIncrements")
+    public List<ProgramIncrement> populateProgramIncrements() {
+        return this.programIncrementService.findAll();
+    }
+
+    @ModelAttribute("methodologies")
+    public List<Methodology> populateMethodologies() {
+        return this.methodologyService.findAllMethodologies();
+    }
+
+    //FALTA COMBO DE PROYECTOS TABLA 22
+    @ModelAttribute("projects")
+    public List<Project> populateProjects() {
+        return this.projectService.findAllProjects();
+    }
 
     // Import services
     @Autowired
@@ -190,8 +237,23 @@ public class RequirementController {
         this.serviceTypeService = serviceTypeService;
     }
 
-    //@Autowired
-    //public void setProgramIncrementService(ProgramIncrementService programIncrementTypeService) {
-    //    this.programIncrementTypeService = programIncrementTypeService;
-    //}
+    @Autowired
+    public void setMethodologyService(MethodologyService methodologyService) {
+        this.methodologyService = methodologyService;
+    }
+
+    @Autowired
+    public void setProgramIncrementService(ProgramIncrementService programIncrementService) {
+        this.programIncrementService = programIncrementService;
+    }
+
+    @Autowired
+    public void setStatusService(StatusService statusService) {
+        this.statusService = statusService;
+    }
+
+    @Autowired
+    public void setProjectService(ProjectService projectService) {
+        this.projectService = projectService;
+    }
 }

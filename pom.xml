@@ -5,7 +5,7 @@
     <version>1.0.0-ALPHA</version>
 
     <groupId>com.bbva.bancomer</groupId>
-    <artifactId>GEFA-APP</artifactId>
+    <artifactId>gefa-app</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,7 +16,7 @@
         <archiveClasses>true</archiveClasses>
         <appengine.target.version>1.9.63</appengine.target.version>
         <spring.version>5.0.4.RELEASE</spring.version>
-        <appengine.app.name>GEFA-APP</appengine.app.name>
+        <appengine.app.name>gefa-app-196823</appengine.app.name>
         <appengine.app.version>1-0-0</appengine.app.version>
     </properties>
 
@@ -42,60 +42,11 @@
             <version>1.2</version>
         </dependency>
 
-        <!-- Test Dependencies -->
-
         <dependency>
             <groupId>com.google.cloud.sql</groupId>
             <!-- If using MySQL 6.x driver, use mysql-socket-factory-connector-j-6 instead -->
             <artifactId>mysql-socket-factory</artifactId>
             <version>1.0.5</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-testing</artifactId>
-            <version>${appengine.target.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-api-stubs</artifactId>
-            <version>${appengine.target.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-tools-sdk</artifactId>
-            <version>${appengine.target.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.truth</groupId>
-            <artifactId>truth</artifactId>
-            <version>0.33</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>2.0.2-beta</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!--Agregamos dependencias de spring-->
-        <!-- https://mvnrepository.com/artifact/javax.persistence/persistence-api -->
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>1.0.2</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
@@ -104,7 +55,6 @@
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
         <dependency>
@@ -138,6 +88,11 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.3.0.CR1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.3.11.Final</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect -->
@@ -191,7 +146,7 @@
                 <version>${appengine.target.version}</version>
                 <configuration>
                     <appId>${appengine.app.name}</appId>
-                    <version>1.0.0</version>
+                    <version>${appengine.app.version}</version>
                     <jvmFlags>
                         <!-- Debug -->
                         <jvmFlag>-Xdebug</jvmFlag>

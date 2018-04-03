@@ -25,7 +25,6 @@ public class CompanyController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String createCompany(Model model) {
         // TODO Validate user
-
         LOG.info("Creating new company");
         model.addAttribute("company", new Company());
         //TODO Add catalogs
