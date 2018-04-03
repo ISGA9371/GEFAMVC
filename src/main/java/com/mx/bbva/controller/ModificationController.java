@@ -1,5 +1,6 @@
 package com.mx.bbva.controller;
 
+import com.mx.bbva.business.entity.Component;
 import com.mx.bbva.business.entity.Modification;
 import com.mx.bbva.business.service.ModificationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class ModificationController {
 
         LOG.info("Creating new modification");
         model.addAttribute("modification", new Modification());
+        model.addAttribute("component", new Component());
+
+
         //TODO Add catalogs
         return URL_FACTORY + NEW_MODIFICATION;
     }
