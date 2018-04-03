@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RequirementRepository extends JpaRepository<Requirement, Integer>, RequirementRepositoryCustom {
-    @Query(value = "SELECT NEW com.mx.bbva.business.entity.Requirement(r.requirementId, r.requirementName) " +
-            "FROM Requirement r WHERE r.requirementId = :requirementId ")
+    @Query(value = "FROM Requirement r WHERE r.requirementId = :requirementId ")
     Requirement findRequirement(@Param(value = "requirementId") Integer requirementId);
 }

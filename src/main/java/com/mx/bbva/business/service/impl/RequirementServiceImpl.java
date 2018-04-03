@@ -28,7 +28,7 @@ public class RequirementServiceImpl implements RequirementService {
     }
 
     @Override
-    public Requirement findOne(Integer requirementId) {
+    public Requirement findOneRequirement(Integer requirementId) {
         return requirementRepository.findRequirement(requirementId);
     }
 

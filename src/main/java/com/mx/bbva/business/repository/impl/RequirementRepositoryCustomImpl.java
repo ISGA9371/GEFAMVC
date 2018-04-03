@@ -25,4 +25,8 @@ public class RequirementRepositoryCustomImpl implements RequirementRepositoryCus
             }
         }
     }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 }
