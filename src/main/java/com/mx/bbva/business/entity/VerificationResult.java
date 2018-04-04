@@ -23,11 +23,8 @@ public class VerificationResult implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "CD_CONS_RESUL_VER", nullable = false)
-    private Integer verificationResultSerial;
-    @Basic(optional = false)
     @Column(name = "CD_RESULT_VERIF", nullable = false)
-    private int verificationResultId;
+    private Integer verificationResultId;
     @Basic(optional = false)
     @Column(name = "NB_RESULT_VERIF", nullable = false, length = 25)
     private String verificationResultName;
@@ -38,29 +35,15 @@ public class VerificationResult implements Serializable {
     public VerificationResult() {
     }
 
-    public VerificationResult(Integer verificationResultSerial) {
-        this.verificationResultSerial = verificationResultSerial;
-    }
-
-    public VerificationResult(Integer verificationResultSerial, int verificationResultId, String verificationResultName) {
-        this.verificationResultSerial = verificationResultSerial;
+    public VerificationResult(Integer verificationResultId) {
         this.verificationResultId = verificationResultId;
-        this.verificationResultName = verificationResultName;
     }
 
-    public Integer getVerificationResultSerial() {
-        return verificationResultSerial;
-    }
-
-    public void setVerificationResultSerial(Integer verificationResultSerial) {
-        this.verificationResultSerial = verificationResultSerial;
-    }
-
-    public int getVerificationResultId() {
+    public Integer getVerificationResultId() {
         return verificationResultId;
     }
 
-    public void setVerificationResultId(int verificationResultId) {
+    public void setVerificationResultId(Integer verificationResultId) {
         this.verificationResultId = verificationResultId;
     }
 
@@ -81,24 +64,24 @@ public class VerificationResult implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (verificationResultSerial != null ? verificationResultSerial.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        VerificationResult that = (VerificationResult) o;
+
+        return verificationResultId.equals(that.verificationResultId);
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof VerificationResult)) {
-            return false;
-        }
-        VerificationResult other = (VerificationResult) object;
-        return (this.verificationResultSerial != null || other.verificationResultSerial == null) && (this.verificationResultSerial == null || this.verificationResultSerial.equals(other.verificationResultSerial));
+    public int hashCode() {
+        return verificationResultId.hashCode();
     }
 
     @Override
     public String toString() {
-        return "com.bbva.VerificationResult[ verificationResultSerial=" + verificationResultSerial + " ]";
+        return "VerificationResult{" +
+                "verificationResultId=" + verificationResultId +
+                '}';
     }
-
 }

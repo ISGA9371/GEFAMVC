@@ -21,9 +21,6 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "CD_USUARIO", nullable = false)
-    private Integer userId;
-    @Basic(optional = false)
     @Column(name = "CD_USUARIO_CORP", nullable = false, length = 10)
     private String userInternalId;
     @JoinColumn(name = "ST_USUARIO", referencedColumnName = "CD_ESTADO", nullable = false)
@@ -81,21 +78,8 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(Integer userId) {
-        this.userId = userId;
-    }
-
-    public User(Integer userId, String userInternalId) {
-        this.userId = userId;
+    public User(String userInternalId) {
         this.userInternalId = userInternalId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public String getUserInternalId() {
@@ -243,24 +227,24 @@ public class User implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (userId != null ? userId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return userInternalId.equals(user.userInternalId);
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof User)) {
-            return false;
-        }
-        User other = (User) object;
-        return (this.userId != null || other.userId == null) && (this.userId == null || this.userId.equals(other.userId));
+    public int hashCode() {
+        return userInternalId.hashCode();
     }
 
     @Override
     public String toString() {
-        return "com.bbva.User[ userId=" + userId + " ]";
+        return "User{" +
+                "userInternalId='" + userInternalId + '\'' +
+                '}';
     }
-
 }

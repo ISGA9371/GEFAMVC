@@ -23,11 +23,8 @@ public class Channel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "CD_CONS_CANAL", nullable = false)
-    private Integer channelSerial;
-    @Basic(optional = false)
     @Column(name = "CD_CANAL", nullable = false)
-    private int channelId;
+    private Integer channelId;
     @Basic(optional = false)
     @Column(name = "NB_CANAL", nullable = false, length = 50)
     private String channelName;
@@ -38,29 +35,15 @@ public class Channel implements Serializable {
     public Channel() {
     }
 
-    public Channel(Integer channelSerial) {
-        this.channelSerial = channelSerial;
-    }
-
-    public Channel(Integer channelSerial, int channelId, String channelName) {
-        this.channelSerial = channelSerial;
+    public Channel(Integer channelId) {
         this.channelId = channelId;
-        this.channelName = channelName;
     }
 
-    public Integer getChannelSerial() {
-        return channelSerial;
-    }
-
-    public void setChannelSerial(Integer channelSerial) {
-        this.channelSerial = channelSerial;
-    }
-
-    public int getChannelId() {
+    public Integer getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(int channelId) {
+    public void setChannelId(Integer channelId) {
         this.channelId = channelId;
     }
 
@@ -81,24 +64,24 @@ public class Channel implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (channelSerial != null ? channelSerial.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Channel channel = (Channel) o;
+
+        return channelId.equals(channel.channelId);
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof Channel)) {
-            return false;
-        }
-        Channel other = (Channel) object;
-        return (this.channelSerial != null || other.channelSerial == null) && (this.channelSerial == null || this.channelSerial.equals(other.channelSerial));
+    public int hashCode() {
+        return channelId.hashCode();
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Channel[ channelSerial=" + channelSerial + " ]";
+        return "Channel{" +
+                "channelId=" + channelId +
+                '}';
     }
-
 }
