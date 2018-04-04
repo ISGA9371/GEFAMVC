@@ -200,7 +200,7 @@
                                     <li th:each="tipologiaNewCmb:${tipologiaNewCmb}" class="mdc-list-item"
                                         th:id="${tipologiaNewCmb.getTypologyId()}+'|'+${tipologiaNewCmb.typologySeverity}+'|'+${tipologiaNewCmb.typologySeverityHours}"
                                         role="option"
-                                        th:text="${tipologiaNewCmb.typologyProductId}"></li>
+                                        th:text="${tipologiaNewCmb.product.productId}"></li>
                                 </ul>
                             </div>
                         </div>
@@ -217,7 +217,7 @@
                                     <li th:each="tipologiaModCmb:${tipologiaModCmb}" class="mdc-list-item"
                                         th:id="${tipologiaModCmb.typologyId}+'|'+${tipologiaModCmb.typologySeverity}+'|'+${tipologiaModCmb.typologySeverityHours}"
                                         role="option"
-                                        th:text="${tipologiaModCmb.typologyProductId}"></li>
+                                        th:text="${tipologiaModCmb.product.productId}"></li>
                                 </ul>
                             </div>
                         </div>
