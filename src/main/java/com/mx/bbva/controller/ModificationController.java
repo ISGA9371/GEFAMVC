@@ -43,12 +43,12 @@ public class ModificationController {
         mod.setComponentVersion("componentVersion");
         mod.setRequirementName("requirementName");
         mod.setTechnology("technology");
-        mod.setTypology("typology");
+        mod.setTypology(1);
         mod.setStatus("status");
-        mod.setModificationSendDate("modificationSendDate");
+        mod.setModificationSendDate(1);
         mod.setModificationDescription("modificationDescription");
         mod.setPriority("priority");
-        mod.setUserSender("userSender");
+        mod.setUserSender(1);
         mod.setOrigin("origin");
         mod.setComponentPossibleDeliverDate("componentPossibleDeliverDate");
         mod.setComponentDesignRealDeliverDate("componentDesignRealDeliverDate");
