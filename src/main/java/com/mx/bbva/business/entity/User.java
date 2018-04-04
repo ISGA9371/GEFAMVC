@@ -20,7 +20,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "CD_USUARIO_CORP", nullable = false, length = 10)
+    @Column(name = "CD_USUARIO_CORP", nullable = false, unique = true)
     private String userInternalId;
     @JoinColumn(name = "ST_USUARIO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
