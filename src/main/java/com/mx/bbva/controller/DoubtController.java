@@ -1,6 +1,5 @@
 package com.mx.bbva.controller;
 
-import com.mx.bbva.business.dto.highdoubtDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,22 +26,8 @@ public class DoubtController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addDoubt(Model model, @RequestParam(value = "componentId") Integer componentId) {
-        //Component component = componentService.findComponent(componentId);
-
-        highdoubtDTO hddto= new highdoubtDTO();
-
-
-            hddto.setComponentName("compnentes1");
-            hddto.setComponentVersion("1");
-            hddto.setLevelName("2");
-            hddto.setRequirementName("requerimiento1");
-            hddto.setTechnologyName("techonologi1");
-            hddto.setTypologyProductId("tipologia1");
-            hddto.setUserInternalId("xmz8142");
-
-
-        //model.addAttribute("componentData", component);
-        model.addAttribute("componentData", hddto);
+        Component component = componentService.findComponent(componentId);
+        model.addAttribute("componentData", component);
         model.addAttribute("doubt", new Doubt());
         return URL_FACTORY + NEW_DOUBT;
     }
@@ -62,7 +47,7 @@ public class DoubtController {
 
     // Model Attributes will available to the view all the time
     // LevelTypeId 1 - Direccion
-   /* @ModelAttribute("principals")
+    @ModelAttribute("principals")
     public List<Level> populatePrincipals() {
         return this.levelService.findByLevelType(new LevelType(1));
     }
@@ -76,7 +61,7 @@ public class DoubtController {
     @ModelAttribute("companies")
     public List<Company> populateCompanies() {
         return this.companyService.findAllCompaniesForDropDownList();
-    }*/
+    }
 
     @ModelAttribute("priorities")
     public List<Priority> populatePriorities() {
