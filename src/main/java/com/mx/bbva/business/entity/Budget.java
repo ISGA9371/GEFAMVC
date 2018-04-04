@@ -21,9 +21,6 @@ public class Budget implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "CD_CONSEC_PEP", nullable = false)
-    private Integer budgetSerial;
-    @Basic(optional = false)
     @Column(name = "CD_PEP", nullable = false, length = 15)
     private String budgetId;
     @Column(name = "NB_DENOMINAC_PEP", length = 50)
@@ -90,23 +87,8 @@ public class Budget implements Serializable {
     public Budget() {
     }
 
-    public Budget(Integer budgetSerial) {
-        this.budgetSerial = budgetSerial;
-    }
-
-    public Budget(Integer budgetSerial, String budgetId, int budgetYear, String budgetCostCenter) {
-        this.budgetSerial = budgetSerial;
+    public Budget(String budgetId) {
         this.budgetId = budgetId;
-        this.budgetYear = budgetYear;
-        this.budgetCostCenter = budgetCostCenter;
-    }
-
-    public Integer getBudgetSerial() {
-        return budgetSerial;
-    }
-
-    public void setBudgetSerial(Integer budgetSerial) {
-        this.budgetSerial = budgetSerial;
     }
 
     public String getBudgetId() {
@@ -310,24 +292,24 @@ public class Budget implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (budgetSerial != null ? budgetSerial.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Budget budget = (Budget) o;
+
+        return budgetId.equals(budget.budgetId);
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof Budget)) {
-            return false;
-        }
-        Budget other = (Budget) object;
-        return (this.budgetSerial != null || other.budgetSerial == null) && (this.budgetSerial == null || this.budgetSerial.equals(other.budgetSerial));
+    public int hashCode() {
+        return budgetId.hashCode();
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Budget[ budgetSerial=" + budgetSerial + " ]";
+        return "Budget{" +
+                "budgetId='" + budgetId + '\'' +
+                '}';
     }
-
 }

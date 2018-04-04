@@ -23,11 +23,8 @@ public class CauseClosure implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "CD_CONS_CAUSA_C", nullable = false)
-    private Integer causeClosureSerial;
-    @Basic(optional = false)
     @Column(name = "CD_CAUSA_CIERRE", nullable = false)
-    private int causeClosureId;
+    private Integer causeClosureId;
     @Basic(optional = false)
     @Column(name = "NB_CAUSA_CIERRE", nullable = false, length = 25)
     private String causeClosureName;
@@ -38,29 +35,15 @@ public class CauseClosure implements Serializable {
     public CauseClosure() {
     }
 
-    public CauseClosure(Integer causeClosureSerial) {
-        this.causeClosureSerial = causeClosureSerial;
-    }
-
-    public CauseClosure(Integer causeClosureSerial, int causeClosureId, String causeClosureName) {
-        this.causeClosureSerial = causeClosureSerial;
+    public CauseClosure(Integer causeClosureId) {
         this.causeClosureId = causeClosureId;
-        this.causeClosureName = causeClosureName;
     }
 
-    public Integer getCauseClosureSerial() {
-        return causeClosureSerial;
-    }
-
-    public void setCauseClosureSerial(Integer causeClosureSerial) {
-        this.causeClosureSerial = causeClosureSerial;
-    }
-
-    public int getCauseClosureId() {
+    public Integer getCauseClosureId() {
         return causeClosureId;
     }
 
-    public void setCauseClosureId(int causeClosureId) {
+    public void setCauseClosureId(Integer causeClosureId) {
         this.causeClosureId = causeClosureId;
     }
 
@@ -81,24 +64,24 @@ public class CauseClosure implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (causeClosureSerial != null ? causeClosureSerial.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CauseClosure that = (CauseClosure) o;
+
+        return causeClosureId.equals(that.causeClosureId);
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof CauseClosure)) {
-            return false;
-        }
-        CauseClosure other = (CauseClosure) object;
-        return (this.causeClosureSerial != null || other.causeClosureSerial == null) && (this.causeClosureSerial == null || this.causeClosureSerial.equals(other.causeClosureSerial));
+    public int hashCode() {
+        return causeClosureId.hashCode();
     }
 
     @Override
     public String toString() {
-        return "com.bbva.CauseClosure[ causeClosureSerial=" + causeClosureSerial + " ]";
+        return "CauseClosure{" +
+                "causeClosureId=" + causeClosureId +
+                '}';
     }
-
 }

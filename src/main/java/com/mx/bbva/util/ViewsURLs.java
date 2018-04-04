@@ -19,7 +19,7 @@ public class ViewsURLs {
     public static final String EDIT_COMPONENT = "ModificarComponente";
     public static final String SEARCH_COMPONENTS = "BusquedaDeComponentes";
     public static final String NEW_MODIFICATION = "AltaDeModificacion";
-    public static final String EDIT_MODIFICATION = "";
+    public static final String EDIT_MODIFICATION = "BusquedaDeModificaciones";
     public static final String SEARCH_MODIFICATIONS = "BusquedaDeModificaciones";
     public static final String NEW_BUDGET = "AltaDePEP";
     public static final String EDIT_BUDGET = "ModificarPEP";

@@ -23,11 +23,8 @@ public class CauseRejection implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "CD_CONS_CAUSA_R", nullable = false)
-    private Integer causeRejectionSerial;
-    @Basic(optional = false)
     @Column(name = "CD_CAUSA_RECHAZO", nullable = false)
-    private int causeRejectionId;
+    private Integer causeRejectionId;
     @Basic(optional = false)
     @Column(name = "NB_CAUSA_RECHAZO", nullable = false, length = 50)
     private String causeRejectionName;
@@ -38,26 +35,16 @@ public class CauseRejection implements Serializable {
     public CauseRejection() {
     }
 
-    public CauseRejection(Integer causeRejectionSerial) {
-        this.causeRejectionSerial = causeRejectionSerial;
-    }
-
-    public CauseRejection(Integer causeRejectionSerial, int causeRejectionId, String causeRejectionName) {
-        this.causeRejectionSerial = causeRejectionSerial;
+    public CauseRejection(Integer causeRejectionId) {
         this.causeRejectionId = causeRejectionId;
-        this.causeRejectionName = causeRejectionName;
     }
 
-    public Integer getCauseRejectionSerial() {
-        return causeRejectionSerial;
-    }
-
-    public void setCauseRejectionSerial(Integer causeRejectionSerial) {
-        this.causeRejectionSerial = causeRejectionSerial;
-    }
-
-    public int getCauseRejectionId() {
+    public Integer getCauseRejectionId() {
         return causeRejectionId;
+    }
+
+    public void setCauseRejectionId(Integer causeRejectionId) {
+        this.causeRejectionId = causeRejectionId;
     }
 
     public void setCauseRejectionId(int causeRejectionId) {
@@ -81,24 +68,24 @@ public class CauseRejection implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (causeRejectionSerial != null ? causeRejectionSerial.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CauseRejection that = (CauseRejection) o;
+
+        return causeRejectionId.equals(that.causeRejectionId);
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof CauseRejection)) {
-            return false;
-        }
-        CauseRejection other = (CauseRejection) object;
-        return (this.causeRejectionSerial != null || other.causeRejectionSerial == null) && (this.causeRejectionSerial == null || this.causeRejectionSerial.equals(other.causeRejectionSerial));
+    public int hashCode() {
+        return causeRejectionId.hashCode();
     }
 
     @Override
     public String toString() {
-        return "com.bbva.CauseRejection[ causeRejectionSerial=" + causeRejectionSerial + " ]";
+        return "CauseRejection{" +
+                "causeRejectionId=" + causeRejectionId +
+                '}';
     }
-
 }

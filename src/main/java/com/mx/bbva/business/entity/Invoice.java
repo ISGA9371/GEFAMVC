@@ -79,7 +79,7 @@ public class Invoice implements Serializable {
     @JoinColumn(name = "CD_SEG_PAGO", referencedColumnName = "CD_SEG_PAGO")
     @ManyToOne
     private Payment payment;
-    @JoinColumn(name = "CD_CTA_OPER", referencedColumnName = "CD_CONS_CTA_OPER")
+    @JoinColumn(name = "CD_CTA_OPER", referencedColumnName = "CD_CTA_OPER")
     @ManyToOne
     private OperatingAccount operatingAccount;
 

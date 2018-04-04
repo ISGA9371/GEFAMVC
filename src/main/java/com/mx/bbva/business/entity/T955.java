@@ -75,10 +75,10 @@ public class T955 implements Serializable {
     @JoinColumn(name = "CD_CAUSA_RECHAZO", referencedColumnName = "CD_CAUSA_RECHAZO")
     @ManyToOne
     private CauseRejection causeRejection;
-    @JoinColumn(name = "CD_CAUSA_CIERRE", referencedColumnName = "CD_CONS_CAUSA_C")
+    @JoinColumn(name = "CD_CAUSA_CIERRE", referencedColumnName = "CD_CAUSA_CIERRE")
     @ManyToOne
     private CauseClosure causeClosure;
-    @JoinColumn(name = "CD_RESULT_VERIF", referencedColumnName = "CD_CONS_RESUL_VER")
+    @JoinColumn(name = "CD_RESULT_VERIF", referencedColumnName = "CD_RESULT_VERIF")
     @ManyToOne
     private VerificationResult verificationResult;
 
