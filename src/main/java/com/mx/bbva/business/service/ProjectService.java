@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface ProjectService {
     List<Project> findAllProjects();
+
+    void saveProject(Project project);
+
+    Project findProject(Integer projectId);
 }

@@ -17,6 +17,16 @@ public class ProjectServiceImpl implements ProjectService {
         return projectRepository.findAll();
     }
 
+    @Override
+    public void saveProject(Project project) {
+        projectRepository.save(project);
+    }
+
+    @Override
+    public Project findProject(Integer projectId) {
+        return projectRepository.findById(projectId).orElse(null);
+    }
+
     @Autowired
     public void setProjectRepository(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;

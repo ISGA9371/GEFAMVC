@@ -24,9 +24,6 @@ public class Typology implements Serializable {
     @Column(name = "CD_TIPOLOGIA", nullable = false)
     private Integer typologyId;
     @Basic(optional = false)
-    @Column(name = "CD_PRODUCTO", nullable = false, length = 3)
-    private String typologyProductId;
-    @Basic(optional = false)
     @Column(name = "TP_COMPONENTE", nullable = false, length = 10)
     private String typologyComponent;
     @Column(name = "NU_DIFICULTAD")
@@ -36,6 +33,9 @@ public class Typology implements Serializable {
     @Basic(optional = false)
     @Column(name = "NU_ANO", nullable = false)
     private int typologyYear;
+    @Basic(optional = false)
+    @Column(name = "CD_PRODUCTO", nullable = false, length = 3)
+    private Product product;
     @JoinColumn(name = "ST_ESTADO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
@@ -53,9 +53,8 @@ public class Typology implements Serializable {
         this.typologyId = typologyId;
     }
 
-    public Typology(Integer typologyId, String typologyProductId, String typologyComponent, int typologyYear) {
+    public Typology(Integer typologyId, String typologyComponent, int typologyYear) {
         this.typologyId = typologyId;
-        this.typologyProductId = typologyProductId;
         this.typologyComponent = typologyComponent;
         this.typologyYear = typologyYear;
     }
@@ -66,14 +65,6 @@ public class Typology implements Serializable {
 
     public void setTypologyId(Integer typologyId) {
         this.typologyId = typologyId;
-    }
-
-    public String getTypologyProductId() {
-        return typologyProductId;
-    }
-
-    public void setTypologyProductId(String typologyProductId) {
-        this.typologyProductId = typologyProductId;
     }
 
     public String getTypologyComponent() {
@@ -130,6 +121,14 @@ public class Typology implements Serializable {
 
     public void setComponentList(List<Component> componentList) {
         this.componentList = componentList;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override

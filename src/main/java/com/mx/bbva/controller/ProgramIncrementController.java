@@ -1,6 +1,7 @@
 package com.mx.bbva.controller;
 
 import com.mx.bbva.business.entity.ProgramIncrement;
+import com.mx.bbva.business.entity.Project;
 import com.mx.bbva.business.entity.Technology;
 import com.mx.bbva.business.entity.Workplace;
 import com.mx.bbva.business.service.ProgramIncrementService;
@@ -61,6 +62,13 @@ public class ProgramIncrementController {
         programIncrementService.saveOne(programIncrement);
         LOG.info("Success... PI Saved");
         return "redirect:/program-increments";
+    }
+
+    @RequestMapping(value = "/{programIncrementId}/projects", method = RequestMethod.GET)
+    public String getAllProjectsByPI(Model model, @PathVariable(value = "programIncrementId") Integer programIncrementId) {
+        List<Project> projects = programIncrementService.findProjectsByPI(programIncrementId);
+        model.addAttribute("projects", projects);
+        return "SOME_URL";
     }
 
     @ModelAttribute("technologies")
