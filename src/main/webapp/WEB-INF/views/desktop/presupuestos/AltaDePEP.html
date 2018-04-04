@@ -66,7 +66,7 @@
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <!--input id="hidden-anio" type="text" pattern="[0-9]+" required value=""  style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <input id="hidden-anio" type="text" pattern="[0-9]+" required value=""  style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                     <div id="anio-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                             <div class="mdc-select__label">Año*</div>
@@ -75,26 +75,14 @@
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    2017
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    2018
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    2019
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    2020
-                                </li>
-
+                                <li th:each="areas:${areas}" class="mdc-list-item" th:id="${areas.areaId}" role="option" th:text="${areas.areaName}"></li>
                             </ul>
                         </div>
-                    </div-->
-                    <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                    </div>
+                    <!--div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                         <input type="text" required pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{budgetYear}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="">
                         <label for="demo-input" class="mdc-text-field__label">Año</label>
-                    </div>
+                    </div-->
                 </td>
             </tr>
             <tr height="72px">
@@ -108,7 +96,7 @@
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
-                                <li th:each="areas:${areas}" class="mdc-list-item" th:id="${areas.areaId}" role="option" th:text="${areas.areaName}"></li>
+
                             </ul>
                         </div>
                     </div>
@@ -123,7 +111,7 @@
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
-                                <li th:each="areas:${areas}" class="mdc-list-item" th:id="${areas.areaId}" role="option" th:text="${areas.areaName}"></li>
+                                <li th:each="bankingList:${bankingList}" class="mdc-list-item" th:id="${bankingList.bankingId}" role="option" th:text="${bankingList.bankingName}"></li>
                             </ul>
                         </div>
                     </div>
@@ -178,7 +166,7 @@
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
-                                <li th:each="areas:${areas}" class="mdc-list-item" th:id="${areas.areaId}" role="option" th:text="${areas.areaName}"></li>
+                                <li th:each="corporations:${corporations}" class="mdc-list-item" th:id="${corporations.corporationId}" role="option" th:text="${corporations.corporationName}"></li>
                             </ul>
                         </div>
                     </div>
@@ -193,7 +181,7 @@
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
-                                <li th:each="areas:${areas}" class="mdc-list-item" th:id="${areas.areaId}" role="option" th:text="${areas.areaName}"></li>
+                                <li th:each="natures:${natures}" class="mdc-list-item" th:id="${natures.natureId}" role="option" th:text="${natures.natureName}"></li>
                             </ul>
                         </div>
                     </div>
@@ -216,7 +204,7 @@
         <br>
         <div class="row" style="height:72px">
             <br>
-            <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Transpaso</div>
+            <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Traspaso</div>
         </div>
         <br>
         <table class="col-md-12" style="height:72px" >
@@ -256,35 +244,23 @@
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                    <!--div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                         <input type="text" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" class="mdc-text-field__input" id="">
                         <label for="demo-input" class="mdc-text-field__label">Director</label>
-                    </div>
-                    <!--input id="hidden-director" type="text" pattern="[0-9]+" required value=""  style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                    <div id="Director-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                    </div-->
+                    <input id="hidden-director" type="text" pattern="[0-9]+" required value="" th:field="*{userSender}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <div id="director-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                            <div class="mdc-select__label">Director*</div>
+                            <div class="mdc-select__label">Director</div>
                             <div class="mdc-select__selected-text"></div>
                             <div class="mdc-select__bottom-line"></div>
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Director 1
-                                </li>
-                                <li class="mdc-list-item" role="option" aria-disabled="true" tabindex="0">
-                                    Director 2
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Director 3
-                                </li>
-                                <li class="mdc-list-item" role="option" tabindex="0">
-                                    Director 4
-                                </li>
-
+                                <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userId}" role="option" th:text="${users.userInternalId}"></li>
                             </ul>
                         </div>
-                    </div-->
+                    </div>
                 </td>
                 <td class="col-md-4" align="center">
                     <input id="hidden-grupo" type="text" pattern="[0-9]+" value="" th:field="*{level}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
@@ -307,7 +283,7 @@
                     <input id="hidden-respArea" type="text" pattern="[0-9]+"  value=""  style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                     <div id="RespArea-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                            <div class="mdc-select__label">Resp. de Area</div>
+                            <div class="mdc-select__label">Resp. de Área</div>
                             <div class="mdc-select__selected-text"></div>
                             <div class="mdc-select__bottom-line"></div>
                         </div>
@@ -336,7 +312,7 @@
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                         <input type="text" pattern="[0-9]+" th:field="*{transferValue}" class="mdc-text-field__input" id="">
-                        <label for="demo-input" class="mdc-text-field__label">Presupuestado*</label>
+                        <label for="demo-input" class="mdc-text-field__label">Presupuestado MXN</label>
                     </div>
                     <!--input id="hidden-ig2" type="text" value="" pattern="[0-9]+" required th:field="*{area.areaId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                     <div id="I/G-js-select2" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
