@@ -1,44 +1,33 @@
 <!DOCTYPE html>
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 
-<head th:replace="~{layout/mainHeader :: head ('Index')}"></head>
+<head th:replace="~{layout/mainHeader :: head ('')}"></head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
 
-    <body>
-        <header th:replace="~{layout/mainHeader :: header }"></header>
+<body>
+  <header th:replace="~{layout/mainHeader :: header }"></header>
 
-        <!--Div principal y contenedor de toda la ventana-->
-        <div class="container">
+  <div class="container">
+    <!--Clase row, contenedora de las secciones de la ventana-->
+    <div class="row">
+      <!--Dentro de esta seccion se dividen las 12 columnas que estan en la ventana-->
+      <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book;">
+        <p>Este es el index de Gefa y aqui debe ir el contenido de la ventana</p>
+        Coloca el nombre de la ventana de FABRICA que quieres ver
+        <input type="text" id="ventanaIr" value="" />
+        <button type="button" id="" onclick="botonIr('F')" class="btn btn-primary">Ir</button>
+      </div>
+      <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book;">
+        Coloca el nombre de la ventana de PRESUPUESTO que quieres ver
+        <input type="text" id="ventanaIrP" value="" />
+        <button type="button" id="" onclick="botonIr('P')" class="btn btn-primary">Ir</button>
+      </div>
+    </div>
+  </div>
 
-            <!--Clase row, contenedora de las secciones de la ventana-->
-            <div class="row">
+  <footer th:replace="~{layout/footer2 :: footer }"></footer>
+</body>
 
-                <!--Dentro de esta seccion se dividen las 12 columnas que estan en la ventana-->
-                <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book;">
-
-                    <p>Este es el index de Gefa y aqui debe ir el contenido de la ventana</p>
-                    Coloca el nombre de la ventana de FABRICA que quieres ver
-                    <input type="text" id="ventanaIr" value=""/>
-                    <button type="button" id="" onclick="botonIr('F')" class="btn btn-primary">Ir</button>
-
-                </div>
-
-                <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book;">
-
-                    Coloca el nombre de la ventana de PRESUPUESTO que quieres ver
-                    <input type="text" id="ventanaIrP" value=""/>
-                    <button type="button" id="" onclick="botonIr('P')" class="btn btn-primary">Ir</button>
-
-                </div>
-
-
-            </div>
-
-        </div>
-        <br>
-
-        <footer th:replace="~{layout/footer2 :: footer }"></footer>
-    </body>
-
-    <div th:replace="~{layout/footer2 :: scripts }"></div>
+<div th:replace="~{layout/footer2 :: scripts }"></div>
 
 </html>

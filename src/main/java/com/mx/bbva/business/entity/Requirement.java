@@ -37,7 +37,7 @@ public class Requirement implements Serializable {
     @Column(name = "NU_HRS_SIN_FACT")
     private Integer requirementNoBilledHours;
     @Column(name = "ST_FACTURADO")
-    private Short requirementBilled;
+    private boolean requirementBilled;
     @Column(name = "TM_ALTA_REQ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date requirementDateUpload;
@@ -178,11 +178,11 @@ public class Requirement implements Serializable {
         this.requirementNoBilledHours = requirementNoBilledHours;
     }
 
-    public Short getRequirementBilled() {
+    public boolean isRequirementBilled() {
         return requirementBilled;
     }
 
-    public void setRequirementBilled(Short requirementBilled) {
+    public void setRequirementBilled(boolean requirementBilled) {
         this.requirementBilled = requirementBilled;
     }
 

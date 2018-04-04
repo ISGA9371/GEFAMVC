@@ -5,8 +5,6 @@
  */
 package com.mx.bbva.business.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -25,7 +23,6 @@ public class Product implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_PRODUCTO", nullable = false, length = 50)
     private String productName;
-    @JsonIgnore
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Technology technology;
