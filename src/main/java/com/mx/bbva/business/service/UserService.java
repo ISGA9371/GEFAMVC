@@ -7,7 +7,7 @@ import java.util.List;
 public interface UserService {
     void saveUser(User user);
 
-    User findUser(Integer userId);
+    User findUser(String userId);
 
     User findUserByInternalId(String userInternalId);
 

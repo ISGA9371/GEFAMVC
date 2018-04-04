@@ -62,7 +62,7 @@ public class BudgetController {
     }
 
     @RequestMapping(path = "/{budgetId}", method = RequestMethod.GET)
-    public String editBudget(Model model, @PathVariable(value = "budgetId") Integer budgetId) {
+    public String editBudget(Model model, @PathVariable(value = "budgetId") String budgetId) {
         // TODO Validate user
         LOG.info("Updating budget, ID: " + budgetId);
         if (null != budgetId) {

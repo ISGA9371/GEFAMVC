@@ -17,7 +17,6 @@ import java.util.Date;
 public class ExternalUser implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_USUARIO_CORP", length = 10)
     private String externalUserCorpId;

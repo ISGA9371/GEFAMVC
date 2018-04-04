@@ -7,7 +7,7 @@ import java.util.List;
 public interface BudgetService {
     void saveBudget(Budget budget);
 
-    Budget findBudget(Integer budgetId);
+    Budget findBudget(String budgetId);
 
     List<Budget> findAllBudgets();
 }
