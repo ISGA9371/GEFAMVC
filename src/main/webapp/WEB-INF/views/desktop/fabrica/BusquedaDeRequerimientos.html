@@ -62,7 +62,7 @@
     <br>
     <div class="row">
         <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Criterios De Busqueda</div>
-        <form th:action="@{/requirements/find}" th:object="${criteria}" method="post" id="find">
+        <form th:action="@{/requirements/search}" th:object="${filters}" method="get" id="find">
 
             <!-- HIDDEN FIELDS -->
             <input th:field="*{principalId}" type="hidden" />
@@ -72,8 +72,10 @@
             <input th:field="*{technologyId}" type="hidden" />
             <input th:field="*{companyId}" type="hidden" />
             <input th:field="*{serviceTypeId}" type="hidden" />
+            <!--
             <input th:field="*{requirementStartDate}" type="hidden" />
             <input th:field="*{requirementEndDate}" type="hidden" />
+            -->
         <table class="col-md-12" >
             <tr>
                 <td class="col-md-4" align="center">
@@ -94,7 +96,7 @@
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
                                 <li class="mdc-list-item" role="option" tabindex="0"
-                                    th:each="dir : ${principals}" th:value="${dir.levelSerial}" th:text="${dir.levelName}">
+                                    th:each="dir : ${principals}" th:value="${dir.levelId}" th:text="${dir.levelName}">
                                 </li>
                             </ul>
                         </div>
