@@ -1,29 +1,53 @@
 $(function () {
 
     const principal = new mdc.select.MDCSelect(document.querySelector('#principal'));
-    principal.selectedIndex = 4;
-/*
-    const select = new mdc.select.MDCSelect(document.querySelector('#dirs'));
+    var principalEL = $('#principal');
+    var principalId = $("#level\\.levelSuperior\\.levelSerial").val();
+    console.log("SUPLEVELSERIAL ID "+principalId);
+    principal.selectedIndex = principalId - 1;
+    principal.value = principalEL.find("li[id="+principalId+"]").html();
+
+    //LOAD SUB LEVELS FROM PRINCIPAL
+
+    $.ajax({
+        url: "/levels/"+principalId+"/sublevel"
+    }).done(function(data) {
+        let subdirs = data;
+        //$("#subdir-sel-text").html("");
+        if (typeof subdirs !== 'undefined' && subdirs.length > 0) {
+            $("#subdir-select").html("");
+            $.each(subdirs, function( index, value ) {
+                $("#subdir-select").append(
+                    "<li class='mdc-list-item' role='option' tabindex='0' " +
+                    "value='"+value.levelSerial+"'>"+value.levelName+"</li>");
+
+            });
+
+            const subPrincipal = new mdc.select.MDCSelect(document.querySelector('#subprincipal'));
+            var subPrincipalEL = $('#subprincipal');
+            var subPrincipalId = $("#level\\.levelSerial").val();
+            console.log("LEVELSERIAL ID "+subPrincipalId);
+            subPrincipal.selectedIndex = subPrincipalEL.find("ul li[value="+ subPrincipalId +"]").index();
+            subPrincipal.value = subPrincipalEL.find("ul li[id="+subPrincipalId+"]").html();
+
+        }else $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+
+    });
+
+    /* LOADING SUBDIRECCIONES CUANDO DIRECCION CMABIA
     let coso = parseInt("0");
-    select.listen('MDCSelect:change', () => {
+    principal.listen('MDCSelect:change', () => {
         if(++coso > 1){coso = 0; return;}
-
         let id = select.selectedOptions[0].value;
-
-        //SET HIDDEN FIELD VALUE
-        $("#directionId").val(id);
 
         $.ajax({
             url: "/levels/"+id+"/sublevel"
         }).done(function(data) {
-            //let subdirs = JSON.parse(data);
             let subdirs = data;
-            console.log(subdirs.length);
             $("#subdir-sel-text").html("");
             if (typeof subdirs !== 'undefined' && subdirs.length > 0) {
                 $("#subdir-select").html("");
                 $.each(subdirs, function( index, value ) {
-                    console.log( index + ": " + value.levelSerial );
                     $("#subdir-select").append(
                         "<li class='mdc-list-item' role='option' tabindex='0' " +
                         "value='"+value.levelSerial+"'>"+value.levelName+"</li>");
@@ -33,101 +57,87 @@ $(function () {
 
         });
     });
+    */
 
-    const subdirs = new mdc.select.MDCSelect(document.querySelector('#subdirs'));
-    let index2 = parseInt("0");
-    subdirs.listen('MDCSelect:change', () => {
-        if (++index2 > 1) {index2 = 0;return;}
-        let id = subdirs.selectedOptions[0].value;
-        //SET HIDDEN FIELD VALUE
-        $("#subDirectionId").val(id);
-    });
+    const responsible = new mdc.select.MDCSelect(document.querySelector('#responsible'));
+    var responsibleEL = $('#responsible');
+    var responsibleId = $("#user\\.userId").val();
+    console.log("RESPONSIBLE ID "+responsibleId);
+    responsible.selectedIndex = responsibleEL.find("ul li[value="+ responsibleId +"]").index();
+    responsible.value = responsibleEL.find("ul li[id="+responsibleId+"]").html();
 
-    const areas = new mdc.select.MDCSelect(document.querySelector('#areas'));
-    let index3 = parseInt("0");
-    areas.listen('MDCSelect:change', () => {
-        if(++index3 > 1){index3 = 0; return;}
+    const area = new mdc.select.MDCSelect(document.querySelector('#area'));
+    var areaEL = $('#area');
+    var areaId = $("#area\\.areaId").val();
+    console.log("Area ID "+areaId);
+    area.selectedIndex = areaEL.find("ul li[value="+ areaId +"]").index();
+    area.value = areaEL.find("ul li[id="+areaId+"]").html();
 
-        let id = areas.selectedOptions[0].value;
-        let val = areas.selectedOptions[0].value;
-        //SET HIDDEN FIELD VALUE
-        $("#attAreaId").val(id);
+    const manager = new mdc.select.MDCSelect(document.querySelector('#manager'));
+    var managerEL = $('#manager');
+    var managerId = $("#userManager\\.userId").val();
+    console.log("Gestor ID "+managerId);
+    manager.selectedIndex = managerEL.find("ul li[value="+ managerId +"]").index();
+    manager.value = managerEL.find("ul li[id="+managerId+"]").html();
 
-        $.ajax({
-            url: "/service-types/area/"+id
-        }).done(function(data) {
-            //let subdirs = JSON.parse(data);
-            let services = data;
-            console.log(services.length);
-            $("#service-type-sel-text").html("");
-            if (typeof services !== 'undefined' && services.length > 0) {
-                $("#service-type-select").html("");
-                $.each(services, function( index, value ) {
-                    console.log( index + ": " + value.serviceTypeName );
-                    $("#service-type-select").append(
-                        "<li class='mdc-list-item' role='option' tabindex='0' " +
-                        "value='"+value.serviceTypeId+"'>"+value.serviceTypeName+"</li>");
+    const tech = new mdc.select.MDCSelect(document.querySelector('#tech'));
+    var techEL = $('#tech');
+    var techId = $("#technology\\.technologyId").val();
+    console.log("TECH ID "+techId);
+    tech.selectedIndex = techEL.find("ul li[value="+ techId +"]").index();
+    tech.value = techEL.find("ul li[id="+techId+"]").html();
 
-                });
-            }else $("#service-type-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+    const meth = new mdc.select.MDCSelect(document.querySelector('#meth'));
+    var methEL = $('#meth');
+    var methId = $("#project\\.methodology\\.methodologyId").val();
+    console.log("METH ID "+methId);
+    meth.selectedIndex = methEL.find("ul li[value="+ methId +"]").index();
+    meth.value = methEL.find("ul li[id="+methId+"]").html();
 
-        });
-    });
+    const app = new mdc.select.MDCSelect(document.querySelector('#app'));
+    var appEL = $('#app');
+    var appId = $("#application\\.applicationSerial").val();
+    console.log("app ID "+appId);
+    app.selectedIndex = appEL.find("ul li[value="+ appId +"]").index();
+    app.value = appEL.find("ul li[id="+appId+"]").html();
 
-    const tiposProy = new mdc.select.MDCSelect(document.querySelector('#tipos-proy'));
-    let index4 = parseInt("0");
-    tiposProy.listen('MDCSelect:change', () => {
-        if (++index4 > 1) {index4 = 0;return;}
-        let id = tiposProy.selectedOptions[0].value;
-        //SET HIDDEN FIELD VALUE
-        $("#proyTypeId").val(id);
-    });
+    const channel = new mdc.select.MDCSelect(document.querySelector('#channel'));
+    var channelEL = $('#channel');
+    var channelId = $("#channel\\.channelSerial").val();
+    console.log("channel ID "+channelId);
+    channel.selectedIndex = channelEL.find("ul li[value="+ channelId +"]").index();
+    channel.value = channelEL.find("ul li[id="+channelId+"]").html();
 
-    const techs = new mdc.select.MDCSelect(document.querySelector('#techs'));
-    let index5 = parseInt("0");
-    techs.listen('MDCSelect:change', () => {
-        if (++index5 > 1) {index5 = 0;return;}
-        let id = techs.selectedOptions[0].value;
-        //SET HIDDEN FIELD VALUE
-        $("#techId").val(id);
+    const company = new mdc.select.MDCSelect(document.querySelector('#company'));
+    var companyEL = $('#company');
+    var companyId = $("#company\\.companyId").val();
+    console.log("company ID "+companyId);
+    company.selectedIndex = companyEL.find("ul li[value="+ companyId +"]").index();
+    company.value = companyEL.find("ul li[id="+companyId+"]").html();
 
-        $.ajax({
-            url: "/technologies/"+id+"/app"
-        }).done(function(data) {
-            let apps = data;
-            console.log(apps.length);
-            $("#aplicacion-sel-text").html("");
-            if (typeof apps !== 'undefined' && apps.length > 0) {
-                $("#aplicacion-select").html("");
-                $.each(apps, function( index, value ) {
-                    console.log( index + ": " + value.applicationName);
-                    $("#aplicacion-select").append(
-                        "<li class='mdc-list-item' role='option' tabindex='0' " +
-                        "value='"+value.applicationSerial+"'>"+value.applicationName+"</li>");
+    const serviceType = new mdc.select.MDCSelect(document.querySelector('#service-type'));
+    var serviceTypeEL = $('#service-type');
+    var serviceTypeId = $("#serviceType\\.serviceTypeId").val();
+    console.log("serviceType ID "+serviceTypeId);
+    serviceType.selectedIndex = serviceTypeEL.find("ul li[value="+ serviceTypeId +"]").index();
+    serviceType.value = serviceTypeEL.find("ul li[id="+serviceTypeId+"]").html();
 
-                });
-            }else $("#service-type-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+    const pi = new mdc.select.MDCSelect(document.querySelector('#pi'));
+    var piEL = $('#pi');
+    var piId = $("#programIncrement\\.programIncrementId").val();
+    console.log("pi ID "+piId);
+    pi.selectedIndex = piEL.find("ul li[value="+ piId +"]").index();
+    pi.value = piEL.find("ul li[id="+piId+"]").html();
 
-        });
-    });
+    //TODO PROJECTs
 
-    const empresas = new mdc.select.MDCSelect(document.querySelector('#empresas'));
-    let index6 = parseInt("0");
-    empresas.listen('MDCSelect:change', () => {
-        if (++index6 > 1) {index6 = 0;return;}
-        let id = empresas.selectedOptions[0].value;
-        //SET HIDDEN FIELD VALUE
-        $("#companyId").val(id);
-    });
+    const status = new mdc.select.MDCSelect(document.querySelector('#status'));
+    var statusEL = $('#status');
+    var statusId = $("#status\\.statusId").val();
+    console.log("status ID "+statusId);
+    status.selectedIndex = statusEL.find("ul li[value="+ statusId +"]").index();
+    status.value = statusEL.find("ul li[id="+statusId+"]").html();
 
-    const tiposServ = new mdc.select.MDCSelect(document.querySelector('#tipos-serv'));
-    let index7 = parseInt("0");
-    empresas.listen('MDCSelect:change', () => {
-        if (++index7 > 1) {index7 = 0;return;}
-        let id = tiposServ.selectedOptions[0].value;
-        //SET HIDDEN FIELD VALUE
-        $("#serviceTypeId").val(id);
-    });
+    //TODO Al enviar objeto, poner a null el level.levelSuperior,levelSerial
 
-*/
 });
