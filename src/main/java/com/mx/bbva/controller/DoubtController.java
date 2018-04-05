@@ -27,15 +27,20 @@ public class DoubtController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addDoubt(Model model, @RequestParam(value = "componentId") Integer componentId) {
         Component component = componentService.findComponent(componentId);
-        model.addAttribute("componentData", component);
-        model.addAttribute("doubt", new Doubt());
+        //model.addAttribute("componentData", component);
+        Doubt duda = new Doubt();
+        duda.setComponent(component);
+        LOG.info("contiene el dato:" + duda.getComponent() );
+        model.addAttribute("doubt", duda);
         return URL_FACTORY + NEW_DOUBT;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveDoubt(@ModelAttribute("doubt") Doubt doubt) {
         doubtService.saveDoubt(doubt);
-        return URL_FACTORY + EDIT_DOUBT;
+        //return URL_FACTORY + EDIT_DOUBT;
+        String inicio="indexGefa.html";
+        return inicio;
     }
 
     @RequestMapping(value = "/{doubtId}", method = RequestMethod.GET)
