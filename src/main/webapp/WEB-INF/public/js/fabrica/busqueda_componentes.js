@@ -128,14 +128,14 @@ $(function () {
           */
         });
       } else {
-        HoldOn.close();
-        console.log("else");
         new jBox('Notice', {
           content: 'Tu búsqueda no devolvió resultados',
           animation: 'pulse',
           color: 'red'
         });
       }
+
+      HoldOn.close();
     }).fail(function (fail) {
       HoldOn.close();
     });
