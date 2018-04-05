@@ -1,107 +1,20 @@
 <!DOCTYPE html>
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-<head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<head th:replace="~{layout/mainHeader :: head ('Alta de Componente')}"></head>
 
-    <title>Alta de Componente</title>
-
-
-    <!-- Estilos -->
-    <!--script type="text/javascript" th:src="@{js/jquery-3.2.1.min.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}">
-    <script-- type="text/javascript" th:src="@{js/bootstrap.min.js}"></script-->
-    <script type="text/javascript" th:src="@{../js/jquery-3.2.1.min.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{../css/bootstrap.min.css}">
-    <script type="text/javascript" th:src="@{../js/bootstrap.min.js}"></script>
-
-    <!--Script generales-->
-    <link rel="stylesheet" type="text/css" th:href="@{../css/estilosGF.css}">
-
-
-    <!--Scripts para campos de texto-->
-    <link rel="stylesheet" type="text/css" th:href="@{../css/material-components-web.css}">
-    <script type="text/javascript" th:src="@{../js/material-components-web.js}"></script>
-
-
-    <!--Estilos para los combos-->
-    <link rel="stylesheet" type="text/css" th:href="@{../css/select.css}">
-    <script type="text/javascript" th:src="@{../js/ready.js}"></script>
-
-    <!--Estilos para los calendarios-->
-    <link rel="stylesheet" type="text/css" th:href="@{../css/bootstrap-datetimepicker.css}">
-    <script type="text/javascript" th:src="@{../js/analytics.js}"></script>
-    <script type="text/javascript" th:src="@{../js/moment-with-locales.js}"></script>
-    <script type="text/javascript" th:src="@{../js/bootstrap-datetimepicker.js}"></script>
-    <script type="text/javascript" th:src="@{../js/fabrica/alta-componentes.js}"></script>
-
-</head>
-
-<script type="text/javascript">
-    /*function mostrar() {
-        document.getElementById('EstadoLinea').style.display = 'inline';
-    }
-
-    $(function () {
-        $('#FecRealCFG').datetimepicker({
-            format: 'DD/MM/YYYY',
-            widgetPositioning: {
-                horizontal: 'auto',
-                vertical: 'top'
-            }
-        });
-    });
-    $(function () {
-        $('#FecPreFac').datetimepicker({
-            format: 'DD/MM/YYYY',
-            widgetPositioning: {
-                horizontal: 'auto',
-                vertical: 'top'
-            }
-        });
-    });
-    $(function () {
-        $('#FecNegFac').datetimepicker({
-            format: 'DD/MM/YYYY',
-            widgetPositioning: {
-                horizontal: 'auto',
-                vertical: 'top'
-            }
-        });
-    });
-    $(function () {
-        $('#FecRealFac').datetimepicker({
-            format: 'DD/MM/YYYY',
-            widgetPositioning: {
-                horizontal: 'auto',
-                vertical: 'top'
-            }
-        });
-    });*/
-</script>
-<style>
-    .hiddenField {
-        width: 1px;
-        opacity: 0;
-        height: 1px;
-        margin: -3px;
-        padding: 0px;
-    }
-</style>
 <body>
-<div th:replace="layout/header :: cabeceraPrincipal"></div>
-<form style="display:block" action="#" th:action="@{/components}" th:object="${component}" method="post">
+<header th:replace="~{layout/mainHeader :: header }"></header>
+
+<div class="container">
+<form style="display:block" action="#" th:action="@{/components}" onsubmit="holder('Registrando Componente')" th:object="${component}" method="post">
 
     <!--HIDDEN PARA PRUEBAS-->
     <input id="statusTypology" style="display: none;" type="number" required value="8" class="hiddenField"
            th:field="*{statusTypology.statusId}"/>
     <input id="status" style="display: none;" type="number" required value="31" class="hiddenField"
            th:field="*{status.statusId}"/>
-    <input id="typologyEmp" style="display: none;" type="number" required value="" class="hiddenField"
+    <input id="typologyEmp" style="display: none;" type="number" required value="0" class="hiddenField"
            th:field="*{typologyEmp.typologyId}"/>
     <!--input type="submit" value="Guardar"-->
     <div class="container">
@@ -301,14 +214,12 @@
         </div>
     </div>
 </form>
-<div th:replace="layout/footer :: FooterPrincipal"></div>
+</div>
+<footer th:replace="~{layout/footer2 :: footer }"></footer>
 </body>
-<script>mdc.autoInit()</script>
-<style rel="stylesheet">
-    .mdc-text-field__input {
-        border-bottom-color: rgba(15, 50, 242, 0.5);
-    }
-</style>
+<div th:replace="~{layout/footer2 :: scripts }"></div>
+<script type="text/javascript" th:src="@{../js/fabrica/alta-componentes.js}"></script>
+
 <script>
     demoReady(function () {
         init();
