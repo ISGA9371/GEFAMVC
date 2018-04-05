@@ -35,6 +35,9 @@ public class Doubt implements Serializable {
     private String doubtDescription;
     @Column(name = "NB_DESC_RES_HIST", length = 600)
     private String doubtDescriptionResponse;
+    @Lob
+    @Column(name = "TX_DOC_DUDA")
+    private byte[] doubtFile;
     @Column(name = "FH_RESOLUCION")
     @Temporal(TemporalType.DATE)
     private Date doubtDateResolution;
@@ -111,6 +114,14 @@ public class Doubt implements Serializable {
 
     public void setDoubtDescriptionResponse(String doubtDescriptionResponse) {
         this.doubtDescriptionResponse = doubtDescriptionResponse;
+    }
+
+    public byte[] getDoubtFile() {
+        return doubtFile;
+    }
+
+    public void setDoubtFile(byte[] doubtFile) {
+        this.doubtFile = doubtFile;
     }
 
     public Date getDoubtDateResolution() {

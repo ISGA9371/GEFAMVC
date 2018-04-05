@@ -1,15 +1,14 @@
 package com.mx.bbva.controller;
 
+import com.mx.bbva.business.entity.Component;
 import com.mx.bbva.business.entity.Modification;
+import com.mx.bbva.business.service.ComponentService;
 import com.mx.bbva.business.service.ModificationService;
 import com.mx.bbva.business.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -23,15 +22,18 @@ public class ModificationController {
 
     private ModificationService modificationService;
     private StatusService statusService;
+    private ComponentService componentService;
 
     /**
      * TODO: EVERY CONTROLLER NEEDS TO HAVE A CUSTOM SEARCH METHOD
      */
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String createModification(Model model) {
+    public String createModification(Model model, @RequestParam(value = "componentId") Integer componentId) {
         // TODO Validate user
         LOG.info("Creating new modification");
+        Component component = componentService.findComponent(componentId);
+        model.addAttribute("componentData", component);
         model.addAttribute("modification", new Modification());
         //TODO Add catalogs
         return URL_FACTORY + NEW_MODIFICATION;
@@ -78,5 +80,10 @@ public class ModificationController {
     @Autowired
     public void setStatusService(StatusService statusService) {
         this.statusService = statusService;
+    }
+
+    @Autowired
+    public void setComponentService(ComponentService componentService) {
+        this.componentService = componentService;
     }
 }
