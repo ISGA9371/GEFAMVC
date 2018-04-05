@@ -4,7 +4,7 @@ function init() {
     loadSelects();
     getVersion();
     addHiddenEvents();
-    defaultTypologies();
+    setDefaults();
     addSelectEvents();
     addComponentValidation();
     //addRequirementValidation();
@@ -129,7 +129,7 @@ function addSelectEvents() {
     var selectNews = new mdc.select.MDCSelect(rootNews);
 
     rootNews.addEventListener('MDCSelect:change', function () {
-        if (selectNews.value.match(/\|/g).length == 2) {
+        if (selectNews.value !="") {
             var splittedNews = selectNews.value.split('|');
             hiddenTypology.value = splittedNews[0];
             $("#typologyEmp").val(hiddenTypology.value);
@@ -147,7 +147,7 @@ function addSelectEvents() {
     var selectMods = new mdc.select.MDCSelect(rootMods);
 
     rootMods.addEventListener('MDCSelect:change', function () {
-        if (selectMods.value.match(/\|/g).length == 2) {
+        if (selectMods.value !="") {
             var splittedMods = selectMods.value.split('|');
             hiddenTypology.value = splittedMods[0];
             $("#typologyEmp").val(hiddenTypology.value);
@@ -169,11 +169,14 @@ function loadSelects() {
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-mods-js-select'));
 }
 
-function defaultTypologies() {
+function setDefaults() {
     $('#tipologia-empty-js-select').show();
     new mdc.select.MDCSelect(document.getElementById('tipologia-empty-js-select')).disabled = true;
     $('#tipologia-news-js-select').hide();
     $('#tipologia-mods-js-select').hide();
+    new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
+    new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
+    new mdc.textField.MDCTextField(document.getElementById("requieriment-mdc-text")).value=new mdc.textField.MDCTextField(document.getElementById("requieriment-mdc-text")).value;
 }
 
 function addHiddenEvents() {
@@ -238,5 +241,16 @@ function addCalendars(){
             horizontal: 'auto',
             vertical: 'top'
         }
+    });
+}
+
+function holder(msg){
+    HoldOn.open({
+        theme: "sk-cube",
+        content: '',
+        message: msg,
+        // backgroundColor: "#004582",
+        backgroundColor: "#0c71ca",
+        textColor: "white",
     });
 }
