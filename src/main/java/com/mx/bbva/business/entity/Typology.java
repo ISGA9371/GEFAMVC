@@ -33,8 +33,8 @@ public class Typology implements Serializable {
     @Basic(optional = false)
     @Column(name = "NU_ANO", nullable = false)
     private int typologyYear;
-    @Basic(optional = false)
-    @Column(name = "CD_PRODUCTO", nullable = false, length = 3)
+    @JoinColumn(name = "CD_PRODUCTO", referencedColumnName = "CD_PRODUCTO", nullable = false)
+    @ManyToOne
     private Product product;
     @JoinColumn(name = "ST_ESTADO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)

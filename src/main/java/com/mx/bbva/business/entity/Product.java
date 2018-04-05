@@ -7,6 +7,7 @@ package com.mx.bbva.business.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Guevara
@@ -26,6 +27,8 @@ public class Product implements Serializable {
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Technology technology;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private List<Typology> typologies;
 
     public Product() {
     }
@@ -61,6 +64,14 @@ public class Product implements Serializable {
 
     public void setTechnology(Technology technology) {
         this.technology = technology;
+    }
+
+    public List<Typology> getTypologies() {
+        return typologies;
+    }
+
+    public void setTypologies(List<Typology> typologies) {
+        this.typologies = typologies;
     }
 
     @Override
