@@ -18,7 +18,7 @@ public class ExternalUser implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "CD_USUARIO_CORP", length = 10)
+    @Column(name = "CD_EXTERNO_CORP", length = 10)
     private String externalUserCorpId;
     @Basic(optional = false)
     @Column(name = "NB_REC_EXTERNO", nullable = false, length = 50)

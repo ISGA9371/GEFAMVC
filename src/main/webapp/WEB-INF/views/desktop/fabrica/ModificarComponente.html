@@ -25,10 +25,10 @@
                     <tr>
                         <td class="col-md-4" align="center">
                             <input id="componentName" type="text" required value="" class="hiddenField"
-                                   th:field="*{componentName}">
+                                   th:field="*{componentId}">
                             <div class="mdc-text-field" id="component-mdc-text" data-mdc-auto-init="MDCTextField"
                                  style="background-color:#F4F4F4; width:90%">
-                                <input type="text" maxlength="45" class="mdc-text-field__input"
+                                <input type="text" maxlength="45" th:value="${component.componentName}" class="mdc-text-field__input"
                                        style="border-bottom-color:rgba(28, 59, 224, 0.5)">
                                 <label for="demo-input" class="mdc-text-field__label">Nombre del Componente</label>
                             </div>
@@ -45,9 +45,9 @@
                         </td>
 
                         <td class="col-md-4" align="center">
-                            <!--input id="direccion" type="number" required value="" class="hiddenField"
-                                   th:value="${component.requirement.level.levelId}" >
-                            <div-- id="direccion-js-select" class="mdc-select" role="listbox"
+                            <input id="direccion" type="text" required value="" class="hiddenField"
+                                   th:field="*{requirement.level.levelId}" >
+                            <!--div id="direccion-js-select" class="mdc-select" role="listbox"
                                  style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                                     <div class="mdc-select__label">Direccción</div>
@@ -66,13 +66,13 @@
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                                  style="background-color:#F4F4F4; width:90%">
                                 <input type="text" class="mdc-text-field__input"
-                                       style="border-bottom-color:rgba(28, 59, 224, 0.5)" readonly="readonly" th:value="${component.requirement.level.levelName}" id="demo-input">
-                                <label for="demo-input" class="mdc-text-field__label">Tecnologia</label>
+                                       style="border-bottom-color:rgba(28, 59, 224, 0.5)" th:value="${component.requirement.level.levelName}" readonly="readonly" id="demo-input">
+                                <label for="demo-input" class="mdc-text-field__label">Direccción</label>
                             </div>
                         </td>
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
-                            <input id="subdireccion" type="number" required value="" class="hiddenField"
+                            <input id="subdireccion" type="text" required value="" class="hiddenField"
                             >
                             <div id="subdireccion-js-select" class="mdc-select" role="listbox"
                                  style="background-color:#F4F4F4; width:90%">
@@ -97,7 +97,7 @@
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                                  style="background-color:#F4F4F4; width:90%">
                                 <input type="text" class="mdc-text-field__input"
-                                       style="border-bottom-color:rgba(28, 59, 224, 0.5)" readonly="readonly" th:value="${component.requirement.company.companyName}">
+                                       style="border-bottom-color:rgba(28, 59, 224, 0.5)" th:value="${component.requirement.company.companyName}" readonly="readonly" >
                                 <label for="demo-input" class="mdc-text-field__label">Empresa</label>
                             </div>
                         </td>
@@ -105,7 +105,7 @@
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                                  style="background-color:#F4F4F4; width:90%">
                                 <input type="text" class="mdc-text-field__input"
-                                       style="border-bottom-color:rgba(28, 59, 224, 0.5)" readonly="readonly" th:value="${component.requirement.technology.technologyName}" id="demo-input">
+                                       style="border-bottom-color:rgba(28, 59, 224, 0.5)" th:value="${component.requirement.technology.technologyName}" readonly="readonly" id="demo-input">
                                 <label for="demo-input" class="mdc-text-field__label">Tecnologia</label>
                             </div>
                         </td>
@@ -170,7 +170,7 @@
                                 <div class="mdc-menu mdc-select__menu col-md-3">
                                     <ul class="mdc-list mdc-menu__items">
                                         <li th:each="tipologiaNewCmb:${tipologiaNewCmb}" class="mdc-list-item"
-                                            th:id="${tipologiaNewCmb.getTypologyId()}+'|'+${tipologiaNewCmb.typologySeverity}+'|'+${tipologiaNewCmb.typologySeverityHours}+'|'+${tipologiaNewCmb.typologyComponent}"
+                                            th:id="${tipologiaNewCmb.getTypologyId()}+'|'+${tipologiaNewCmb.typologySeverity}+'|'+${tipologiaNewCmb.typologySeverityHours}+'|'+${tipologiaNewCmb.typologyNewComponent}"
                                             role="option"
                                             th:text="${tipologiaNewCmb.product.productId}"></li>
                                     </ul>
@@ -187,7 +187,7 @@
                                 <div class="mdc-menu mdc-select__menu col-md-3">
                                     <ul class="mdc-list mdc-menu__items">
                                         <li th:each="tipologiaModCmb:${tipologiaModCmb}" class="mdc-list-item"
-                                            th:id="${tipologiaModCmb.typologyId}+'|'+${tipologiaModCmb.typologySeverity}+'|'+${tipologiaModCmb.typologySeverityHours}+'|'+${tipologiaModCmb.typologyComponent}"
+                                            th:id="${tipologiaModCmb.typologyId}+'|'+${tipologiaModCmb.typologySeverity}+'|'+${tipologiaModCmb.typologySeverityHours}+'|'+${tipologiaModCmb.typologyNewComponent}"
                                             role="option"
                                             th:text="${tipologiaModCmb.product.productId}"></li>
                                     </ul>
@@ -237,7 +237,7 @@
                                 <div class="mdc-menu mdc-select__menu col-md-3">
                                     <ul class="mdc-list mdc-menu__items">
                                         <li th:each="tipologiaNewCmb:${tipologiaNewCmb}" class="mdc-list-item"
-                                            th:id="${tipologiaNewCmb.getTypologyId()}+'|'+${tipologiaNewCmb.typologySeverity}+'|'+${tipologiaNewCmb.typologySeverityHours}+'|'+${tipologiaNewCmb.typologyComponent}"
+                                            th:id="${tipologiaNewCmb.getTypologyId()}+'|'+${tipologiaNewCmb.typologySeverity}+'|'+${tipologiaNewCmb.typologySeverityHours}+'|'+${tipologiaNewCmb.typologyNewComponent}"
                                             role="option"
                                             th:text="${tipologiaNewCmb.product.productId}"></li>
                                     </ul>
@@ -254,7 +254,7 @@
                                 <div class="mdc-menu mdc-select__menu col-md-3">
                                     <ul class="mdc-list mdc-menu__items">
                                         <li th:each="tipologiaModCmb:${tipologiaModCmb}" class="mdc-list-item"
-                                            th:id="${tipologiaModCmb.typologyId}+'|'+${tipologiaModCmb.typologySeverity}+'|'+${tipologiaModCmb.typologySeverityHours}+'|'+${tipologiaModCmb.typologyComponent}"
+                                            th:id="${tipologiaModCmb.typologyId}+'|'+${tipologiaModCmb.typologySeverity}+'|'+${tipologiaModCmb.typologySeverityHours}+'|'+${tipologiaModCmb.typologyNewComponent}"
                                             role="option"
                                             th:text="${tipologiaModCmb.product.productId}"></li>
                                     </ul>
@@ -340,7 +340,7 @@
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
-                            <input id="componentForBill" type="number" required value="" class="hiddenField"
+                            <input id="componentForBill" type="text" required value="" class="hiddenField"
                                    th:field="*{componentForBill}">
                             <div id="facturado-js-select" class="mdc-select" role="listbox"
                                  style="background-color:#F4F4F4; width:90%">
@@ -365,7 +365,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4" align="center">
-                            <input id="status" type="number" required value="" class="hiddenField"
+                            <input id="status" type="text" required value="" class="hiddenField"
                                    th:field="*{status.statusId}">
                             <div id="estatus-componente-js-select" class="mdc-select" role="listbox"
                                  style="background-color:#F4F4F4; width:90%">
@@ -402,7 +402,7 @@
                     <tr>
                         <br>
                         <br>
-                        <td class="col-md-6" align="Center">
+                        <td class="col-md-6" align="Center" style="padding-bottom: 10px;">
                             <button type="submit" id="Guardar-btn" class="btn btn-primary">Guardar</button>
                             <button type="button" id="eliminar-btn" class="btn btn-primary">Eliminar</button>
                             <button type="button" id="cancelar-btn" class="btn btn-primary">Cancelar</button>
