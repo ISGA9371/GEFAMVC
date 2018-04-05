@@ -12,19 +12,23 @@ function init() {
     addHoursValidation();
     addButtonEvents();
 
-    $("#statusTypology").val(3);
-    $("#status").val(3);
+    $(".container").click();
 }
 
 function fillFields() {
     new mdc.textField.MDCTextField(document.getElementById('component-mdc-text')).value = $('#componentName').val();
     new mdc.textField.MDCTextField(document.getElementById('version-mdc-text')).value = $('#componentVersion').val();
-    var $elementTypologiaInicio = $("#typology").parent().find("li[id^='"+$('#typology').val()+"|']");
+    new mdc.textField.MDCTextField(document.getElementById('descripcion-mdc-text')).value = $('#componentTypoComment').val();
+    var $elementTypologiaInicio = $("#typology").parent().find("li[id^='" + $('#typology').val() + "|']");
     var idTypologiaInicio = $elementTypologiaInicio.attr('id');
     var splittedTypologiaInicio = idTypologiaInicio.split('|');
-    if(splittedTypologiaInicio[3] = true){ splittedTypologiaInicio[3] = 0; }
-    if(splittedTypologiaInicio[3] = false){ splittedTypologiaInicio[3] = 1; }
-    if(splittedTypologiaInicio[3] != null){
+    if (splittedTypologiaInicio[3] == "false") {
+        splittedTypologiaInicio[3] = 0;
+    }
+    if (splittedTypologiaInicio[3] == "true") {
+        splittedTypologiaInicio[3] = 1;
+    }
+    if (splittedTypologiaInicio[3] === 0 ||splittedTypologiaInicio[3] === 1) {
         $("#nuemod-js-select").find("div").eq(0).click();
         $("#nuemod-js-select").find("li").eq(splittedTypologiaInicio[3]).click();
         if (splittedTypologiaInicio[3] == 0) {
@@ -40,25 +44,29 @@ function fillFields() {
             $("#tipologia-mods-js-select").find("div").eq(0).click();
         }
         $elementTypologiaInicio.click();
-        new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedTypologiaInicio[1];
-        new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedTypologiaInicio[2];
+        new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = splittedTypologiaInicio[1];
+        new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = splittedTypologiaInicio[2];
     } else {
         $('#tipologia-empty-js-select').show();
         new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).selectedIndex = -1;
         $('#tipologia-news-js-select').hide();
         $('#tipologia-mods-js-select').hide();
-        new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
-        new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
+        new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = "";
+        new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = "";
     }
-    if($("#typology-final").val() =="") {
+    if ($("#typology-final").val() == "") {
         $("#typology-final").val($("#typology").val())
     }
-    var $elementTypologiaFinal = $("#typology-final").parent().find("li[id^='"+$('#typology-final').val()+"|']");
+    var $elementTypologiaFinal = $("#typology-final").parent().find("li[id^='" + $('#typology-final').val() + "|']");
     var idTypologiaFinal = $elementTypologiaFinal.attr('id');
     var splittedTypologiaFinal = idTypologiaFinal.split('|');
-    if(splittedTypologiaFinal[3] = true){ splittedTypologiaFinal[3] = 0; }
-    if(splittedTypologiaFinal[3] = false){ splittedTypologiaFinal[3] = 1; }
-    if(splittedTypologiaFinal[3] != null){
+    if (splittedTypologiaFinal[3] == "false") {
+        splittedTypologiaFinal[3] = 0;
+    }
+    if (splittedTypologiaFinal[3] == "true") {
+        splittedTypologiaFinal[3] = 1;
+    }
+    if (splittedTypologiaFinal[3] === 0 ||splittedTypologiaFinal[3] === 1) {
         $("#nuemod-js-select").find("div").eq(0).click();
         $("#nuemod-js-select").find("li").eq(splittedTypologiaFinal[3]).click();
         if (splittedTypologiaFinal[3] == 0) {
@@ -79,15 +87,29 @@ function fillFields() {
         new mdc.select.MDCSelect(document.getElementById('tipologia-final-news-js-select')).selectedIndex = -1;
         $('#tipologia-final-news-js-select').hide();
         $('#tipologia-final-mods-js-select').hide();
-        new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value="";
-        new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value="";
+        new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value = "";
+        new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = "";
     }
-    var $statusTypology = $("#statusTypology").parent().find("li[id^='"+$('#statusTypology').val()+"|']");
+    var $statusTypology = $("#statusTypology").parent().find("li[id^='" + $('#statusTypology').val() + "']");
     $("#estatus-tipificacion-js-select").find("div").eq(0).click();
     $statusTypology.click();
-    var $status = $("#status").parent().find("li[id^='"+$('#status').val()+"|']");
+    var $status = $("#status").parent().find("li[id^='" + $('#status').val() + "']");
     $("#estatus-componente-js-select").find("div").eq(0).click();
-    setTimeout("clickSelectOption('estatus-componente-js-select','status')",100);
+    $status.click();
+    var $componentForBill = "";
+    $componentForBill = $('#componentForBill').val();
+    if ($componentForBill == "false") {
+        $componentForBill = 0;
+    }
+    if ($componentForBill == "true") {
+        $componentForBill = 1;
+    }
+    $('#componentForBill').val($componentForBill);
+    if ($componentForBill === 0 || $componentForBill === 1){
+        $("#facturado-js-select").find("div").eq(0).click();
+        clickSelectOption("componentForBill");
+    }
+    $('#componentForBill').val($componentForBill);
     var d = new Date($('#componentDesignRealDeliverDate').val());
     $('#componentDesignRealDeliverDate').val(pad(d.getDate(),2) + "/" + pad(d.getMonth()+1,2) + "/" + d.getFullYear());
     new mdc.textField.MDCTextField(document.getElementById('FecRealCFG-mdc-text')).value = $('#componentDesignRealDeliverDate').val();
@@ -102,8 +124,9 @@ function fillFields() {
     new mdc.textField.MDCTextField(document.getElementById('FecRealFac-mdc-text')).value = $('#componentRealDeliverDate').val();
 }
 
-function clickSelectOption(idSelect,idLike){
-    $("#"+idSelect).parent().find("li[id^='"+idLike+"|']").click();
+function clickSelectOption(idHolder){
+    $holder =$("#"+idHolder);
+    $holder.parent().find("li[id^='"+$holder.val()+"']").click();
 
 }
 
@@ -289,8 +312,10 @@ function addHiddenEvents() {
     addTextSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text");
     addTextSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-txt");
     addTextSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text");
+    addTextSyncMdcToHtml("componentTypoComment", "descripcion-mdc-text");
     //$("#requirement").val($("#requirementHidden").val());
     addSelectSyncMdcToHtml("subdireccion","subdireccion-js-select");
+    addSelectSyncMdcToHtml("componentForBill","facturado-js-select");
 }
 
 function addTextSyncMdcToHtml(htmlField, mdcField) {

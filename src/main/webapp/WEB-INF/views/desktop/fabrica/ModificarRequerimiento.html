@@ -2,38 +2,16 @@
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Modificar Requerimiento</title>
+    <head th:replace="~{layout/mainHeader :: head ('Modificar Componentes')}"></head>
 
 
-    <!-- Estilos -->
-    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
-    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-
-    <!--Script generales-->
-    <link rel="stylesheet" type="text/css" th:href="@{/css/estilosGF.css}">
-
-
-    <!--Scripts para campos de texto-->
-    <link rel="stylesheet" type="text/css" th:href="@{/css/material-components-web.css}">
     <script type="text/javascript" th:src="@{/js/material-components-web.js}"></script>
-
-
-    <!--Estilos para los combos-->
-    <link rel="stylesheet" type="text/css" th:href="@{/css/select.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/ready.js}"></script>
-
-    <!--Estilos para los calendarios-->
-    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap-datetimepicker.css}">
     <script type="text/javascript" th:src="@{/js/analytics.js}"></script>
     <script type="text/javascript" th:src="@{/js/moment-with-locales.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap-datetimepicker.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 
     <script type="text/javascript" th:src="@{/js/fabrica/modificar-requerimiento.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/fabrica/modificar-requerimiento.css}">
@@ -55,7 +33,7 @@
 </script>
 <body>
 
-<div th:replace="layout/header :: cabeceraPrincipal"></div>
+<header th:replace="~{layout/mainHeader :: header }"></header>
 
 <div class="container">
     <br>
@@ -73,11 +51,9 @@
         <input type="hidden" th:field="*{requirementBilledHours}">
         <input type="hidden" th:field="*{requirementNoBilledHours}">
 
-        <!--
-        <input type="hidden" th:field="*{requirementDateUpload}">
+        <input type="datetime-local" th:field="*{requirementDateUpload}" style="display: none">
         <input type="hidden" th:field="*{requirementStartDate}">
         <input type="hidden" th:field="*{requirementEndDate}">
-        -->
 
         <input type="hidden" th:field="*{requirementCanBilled}">
 
@@ -87,7 +63,7 @@
         <input type="hidden" th:field="*{area.areaId}">
         <input type="hidden" th:field="*{userManager.userInternalId}">
         <input type="hidden" th:field="*{technology.technologyId}">
-        <input type="hidden" th:field="*{project.methodology.methodologyId}">
+        <input type="hidden" th:field="*{methodology.methodologyId}">
         <input type="hidden" th:field="*{application.applicationId}">
         <input type="hidden" th:field="*{channel.channelId}">
         <input type="hidden" th:field="*{company.companyId}">
@@ -112,7 +88,7 @@
                 <div id="principal" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                         <div class="mdc-select__label mdc-select__label--float-above">Direccion *</div>
-                        <div class="mdc-select__selected-text">COSO</div>
+                        <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu ">
@@ -383,6 +359,8 @@
 
     </form>
 </div>
+
+<footer th:replace="~{layout/footer2 :: footer }"></footer>
 
 </body>
 

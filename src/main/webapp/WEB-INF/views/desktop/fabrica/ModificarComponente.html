@@ -7,7 +7,13 @@
 <header th:replace="~{layout/mainHeader :: header }"></header>
 
 <div class="container">
-    <form style="display:block" action="#" th:action="@{/components}" th:object="${component}" method="post">
+    <form style="display:block" action="#" onsubmit="holder('Actualizando Componente')" th:action="@{/components}" th:object="${component}" method="post">
+
+        <input id="componentId" style="display: none;" type="number" required value="8" class="hiddenField"
+               th:field="*{componentId}"/>
+        <input id="requirementId" style="display: none;" type="number" required value="31" class="hiddenField"
+               th:field="*{requirement.requirementId}"/>
+
         <div class="container">
             <br>
             <div class="row">
@@ -25,7 +31,7 @@
                     <tr>
                         <td class="col-md-4" align="center">
                             <input id="componentName" type="text" required value="" class="hiddenField"
-                                   th:field="*{componentId}">
+                                   th:field="*{componentName}">
                             <div class="mdc-text-field" id="component-mdc-text" data-mdc-auto-init="MDCTextField"
                                  style="background-color:#F4F4F4; width:90%">
                                 <input type="text" maxlength="45" th:value="${component.componentName}" class="mdc-text-field__input"
@@ -46,7 +52,7 @@
 
                         <td class="col-md-4" align="center">
                             <input id="direccion" type="text" required value="" class="hiddenField"
-                                   th:field="*{requirement.level.levelId}" >
+                                   th:value="${component.requirement.level.levelId}" >
                             <!--div id="direccion-js-select" class="mdc-select" role="listbox"
                                  style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
@@ -145,8 +151,8 @@
                     </tr>
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
-                            <input id="typology" type="number" required value="" class="hiddenField"
-                                   th:value="${component.typology.typologyId}">
+                            <input id="typology" type="text" required value="" class="hiddenField"
+                                   th:field="*{typology.typologyId}">
                             <div id="tipologia-empty-js-select" class="mdc-select" role="listbox"
                                  style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
@@ -212,7 +218,7 @@
                     </tr>
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
-                            <input id="typology-final" type="number" required value="" class="hiddenField"
+                            <input id="typology-final" type="text" required value="" class="hiddenField"
                                    th:field="*{typologyEmp.typologyId}">
                             <div id="tipologia-final-empty-js-select" class="mdc-select" role="listbox"
                                  style="background-color:#F4F4F4; width:90%">
