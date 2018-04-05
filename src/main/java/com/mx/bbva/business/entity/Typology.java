@@ -25,7 +25,7 @@ public class Typology implements Serializable {
     private Integer typologyId;
     @Basic(optional = false)
     @Column(name = "TP_COMPONENTE", nullable = false)
-    private boolean typologyNewComponent;
+    private Boolean typologyNewComponent;
     @Column(name = "NU_DIFICULTAD")
     private Character typologySeverity;
     @Column(name = "NU_HM_DIFICULTAD", precision = 12)
@@ -66,11 +66,11 @@ public class Typology implements Serializable {
         this.typologyId = typologyId;
     }
 
-    public boolean isTypologyNewComponent() {
+    public Boolean getTypologyNewComponent() {
         return typologyNewComponent;
     }
 
-    public void setTypologyNewComponent(boolean typologyNewComponent) {
+    public void setTypologyNewComponent(Boolean typologyNewComponent) {
         this.typologyNewComponent = typologyNewComponent;
     }
 
