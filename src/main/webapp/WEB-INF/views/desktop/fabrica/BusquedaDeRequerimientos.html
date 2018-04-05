@@ -362,37 +362,23 @@
             </tr>
             </thead>
             <tbody>
-            <!--
             <th:block th:each="requirement, stat: ${requirements}">
-            -->
                 <tr href="#row-detail-wrapper-1"data-toggle="collapse" class="clickable"
                     aria-controls="row-detail-wrapper-1">
-                    <!--
-                    <td></td>
+                    <td><input type="radio" name="requirements" th:value="${requirement.requirementId}"></td>
                     <td th:text="${requirement.requirementName}"></td>
-                    <!--<td th:text="${requirement.budgetRequirements[0].budget.budgetId}"></td><!
+                    <!--
+                    <td th:text="${requirement.budgetRequirements[0].budget.budgetId}"></td>
+                    -->
                     <td></td>
                     <td th:text="${requirement.level.levelSuperior.levelName}"></td>
                     <td th:text="${requirement.level.levelName}"></td>
                     <td th:text="${requirement.user.userInternalId}"></td>
-                    <td th:text="${requirement.area.arearequirementName}"></td>
-                    <td th:text="${requirement.serviceType.serviceTyperequirementName}"></td>
-                    <td th:text="${requirement.technology.technologyrequirementName}"></td>
-                    <td th:text="${requirement.company.companyrequirementName}"></td>
+                    <td th:text="${requirement.area.areaName}"></td>
+                    <td th:text="${requirement.serviceType.serviceTypeName}"></td>
+                    <td th:text="${requirement.technology.technologyName}"></td>
+                    <td th:text="${requirement.company.companyName}"></td>
                     <td th:text="${#dates.format(requirement.requirementStartDate, 'dd/MM/yyyy')}"></td>
-
-                    -->
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
 
                 </tr>
                 <tr style="padding-left: 24px; padding-right: 24px;">
@@ -401,23 +387,23 @@
                             <table style="width: 100%;" >
                                 <tr>
                                     <td class="detail-label">F. Prop. Fin</td>
-                                    <td>15/09/2018</td>
+                                    <td th:text="${#dates.format(requirement.requirementEndDate, 'dd/MM/yyyy')}"></td>
                                     <td class="detail-label">Horas Totales</td>
-                                    <td>120</td>
+                                    <td th:text="${requirement.requirementTotalHours}"></td>
                                     <td class="detail-label">Monto</td>
                                     <td>24000</td>
                                     <td class="detail-label">Horas facturadas</td>
-                                    <td>100</td>
+                                    <td th:text="${requirement.requirementBilledHours}">100</td>
                                     <td class="detail-label">Horas sin facturar</td>
-                                    <td>20</td>
+                                    <td th:text="${requirement.requirementNoBilledHours}">20</td>
                                     <td class="detail-label">Facturar (S/N)</td>
-                                    <td>No</td>
+                                    <td th:text="${requirement.requirementBilled ? 'Si' : 'No'}"></td>
                                 </tr>
                                 <tr>
                                     <td class="detail-label" style="height: 60px;">PI</td>
                                     <td>PI12</td>
                                     <td class="detail-label">PEP</td>
-                                    <td>GB00033335-020</td>
+                                    <td th:value="${requirement.budgetRequirements[0].budget.budgetId}"></td>
                                     <td class="detail-label"></td>
                                     <td></td>
                                     <td class="detail-label"></td>
@@ -437,9 +423,8 @@
                 </tr>
 
 
-            <!--
             </th:block>
-            -->
+
             </tbody>
         </table>
     </div>
