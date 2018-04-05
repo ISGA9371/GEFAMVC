@@ -23,9 +23,8 @@ public class Doubt implements Serializable {
     @Basic(optional = false)
     @Column(name = "CD_DUDA", nullable = false)
     private Integer doubtId;
-    @Basic(optional = false)
-    @Column(name = "FH_ALTA", nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Column(name = "FH_ALTA")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date doubtUploadDate;
     @Basic(optional = false)
     @Column(name = "TX_VENTREGA", nullable = false, length = 9)
