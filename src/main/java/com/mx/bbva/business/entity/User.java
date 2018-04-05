@@ -19,12 +19,8 @@ import java.util.List;
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "CD_USUARIO", nullable = false)
-    private Integer userId;
-    @Basic(optional = false)
-    @Column(name = "CD_USUARIO_CORP", nullable = false, length = 10)
+    @Column(name = "CD_USUARIO_CORP", nullable = false)
     private String userInternalId;
     @JoinColumn(name = "ST_USUARIO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
@@ -81,21 +77,8 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(Integer userId) {
-        this.userId = userId;
-    }
-
-    public User(Integer userId, String userInternalId) {
-        this.userId = userId;
+    public User(String userInternalId) {
         this.userInternalId = userInternalId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public String getUserInternalId() {
@@ -245,22 +228,25 @@ public class User implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (userId != null ? userId.hashCode() : 0);
+        hash += (userInternalId != null ? userInternalId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof User)) {
             return false;
         }
         User other = (User) object;
-        return (this.userId != null || other.userId == null) && (this.userId == null || this.userId.equals(other.userId));
+        if ((this.userInternalId == null && other.userInternalId != null) || (this.userInternalId != null && !this.userInternalId.equals(other.userInternalId))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "com.bbva.User[ userId=" + userId + " ]";
+        return "com.mx.bbva.business.entity.User[ userInternalId=" + userInternalId + " ]";
     }
-
 }

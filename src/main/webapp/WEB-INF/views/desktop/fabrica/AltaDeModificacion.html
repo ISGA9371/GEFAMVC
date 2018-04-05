@@ -56,8 +56,7 @@
 
 <body>
 
-<!--Encabezado que vive en otra ventana-->
-<div th:replace="layout/header :: cabeceraPrincipal"></div>
+<header th:replace="~{layout/mainHeader :: header }"></header>
 
 <div class="container">
     <br>
@@ -99,7 +98,7 @@
                 </td>
                 <td class="col-md-4" align="center">
                     <div id="direccion-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text" disabled="disabled" th:text="${modficationObject.levelName}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                        <input type="text" disabled="disabled" th:value="${modficationObject.levelName}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
                         <label for="demo-input" class="mdc-text-field__label">Direccion</label>
                     </div>
                 </td>
@@ -315,10 +314,12 @@
     </div>
 </form>
 
-<!--Footer que debe ir en todas las ventanas-->
-<div th:replace="layout/footer :: FooterPrincipal"></div>
+<footer th:replace="~{layout/footer2 :: footer }"></footer>
 
 </body>
+
+<div th:replace="~{layout/footer2 :: scripts }"></div>
+
 <script>mdc.autoInit()</script>
 <style rel="stylesheet">
     .mdc-text-field__input {

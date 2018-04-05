@@ -15,8 +15,9 @@
   <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
   <link rel="stylesheet" type="text/css" th:href="@{/css/material-components-web.css}">
   <link rel="stylesheet" type="text/css" th:href="@{/css/select.css}">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/jquery-ui-base-theme-1.12.1.css}">
   <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datetimepicker.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/HoldOn.min.css}">
 </head> <!-- fragment:: header -->
 
 <body>
@@ -47,7 +48,7 @@
         <nav>
           <ul class="menu">
             <li>
-              <a href="#">FÁBRICA</a>
+              <a href="javascript:;">FÁBRICA</a>
               <ul class="sub-menu">
                 <li>
                   <a th:href="@{/requirements/filters}">Búsqueda de requerimiento</a>
@@ -61,13 +62,13 @@
               </ul>
             </li>
             <li>
-              <a href="#">PRESUPUESTO</a>
+              <a href="javascript:;">PRESUPUESTO</a>
               <ul class="sub-menu">
                 <li>
-                  <a href="#">Seguimiento de Pago</a>
+                  <a href="javascript:;">Seguimiento de Pago</a>
                 </li>
                 <li>
-                  <a href="#">Seguimiento Corte de Facturación</a>
+                  <a href="javascript:;">Seguimiento Corte de Facturación</a>
                 </li>
                 <li>
                   <a th:href="@{/budgets/add}">Alta de PEP</a>
@@ -78,10 +79,10 @@
               </ul>
             </li>
             <li>
-              <a th:href="@{/doubts/1}">DUDAS</a>
+              <a th:href="@{/doubts/add?componentId=1}">DUDAS</a>
             </li>
             <li>
-              <a th:href="@{/modifications/1}">MODIFICACIONES</a>
+              <a th:href="@{/modifications/add}">MODIFICACIONES</a>
             </li>
             <li>
               <a th:href="@{/issues/1}">INCIDENCIAS</a>

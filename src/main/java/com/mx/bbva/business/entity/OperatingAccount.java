@@ -23,11 +23,8 @@ public class OperatingAccount implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "CD_CONS_CTA_OPER", nullable = false)
-    private Integer operatingAccountSerial;
-    @Basic(optional = false)
     @Column(name = "CD_CTA_OPER", nullable = false)
-    private int operatingAccountId;
+    private Integer operatingAccountId;
     @Basic(optional = false)
     @Column(name = "NU_CTA_OPERATIVA", nullable = false, length = 8)
     private String operatingAccountValue;
@@ -38,29 +35,15 @@ public class OperatingAccount implements Serializable {
     public OperatingAccount() {
     }
 
-    public OperatingAccount(Integer operatingAccountSerial) {
-        this.operatingAccountSerial = operatingAccountSerial;
-    }
-
-    public OperatingAccount(Integer operatingAccountSerial, int operatingAccountId, String operatingAccountValue) {
-        this.operatingAccountSerial = operatingAccountSerial;
+    public OperatingAccount(Integer operatingAccountId) {
         this.operatingAccountId = operatingAccountId;
-        this.operatingAccountValue = operatingAccountValue;
     }
 
-    public Integer getOperatingAccountSerial() {
-        return operatingAccountSerial;
-    }
-
-    public void setOperatingAccountSerial(Integer operatingAccountSerial) {
-        this.operatingAccountSerial = operatingAccountSerial;
-    }
-
-    public int getOperatingAccountId() {
+    public Integer getOperatingAccountId() {
         return operatingAccountId;
     }
 
-    public void setOperatingAccountId(int operatingAccountId) {
+    public void setOperatingAccountId(Integer operatingAccountId) {
         this.operatingAccountId = operatingAccountId;
     }
 
@@ -81,24 +64,24 @@ public class OperatingAccount implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (operatingAccountSerial != null ? operatingAccountSerial.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        OperatingAccount that = (OperatingAccount) o;
+
+        return operatingAccountId.equals(that.operatingAccountId);
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof OperatingAccount)) {
-            return false;
-        }
-        OperatingAccount other = (OperatingAccount) object;
-        return (this.operatingAccountSerial != null || other.operatingAccountSerial == null) && (this.operatingAccountSerial == null || this.operatingAccountSerial.equals(other.operatingAccountSerial));
+    public int hashCode() {
+        return operatingAccountId.hashCode();
     }
 
     @Override
     public String toString() {
-        return "com.bbva.OperatingAccount[ operatingAccountSerial=" + operatingAccountSerial + " ]";
+        return "OperatingAccount{" +
+                "operatingAccountId=" + operatingAccountId +
+                '}';
     }
-
 }

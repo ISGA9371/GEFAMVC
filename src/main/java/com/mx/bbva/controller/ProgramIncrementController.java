@@ -1,6 +1,7 @@
 package com.mx.bbva.controller;
 
 import com.mx.bbva.business.entity.ProgramIncrement;
+import com.mx.bbva.business.entity.Project;
 import com.mx.bbva.business.entity.Technology;
 import com.mx.bbva.business.entity.Workplace;
 import com.mx.bbva.business.service.ProgramIncrementService;
@@ -10,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -61,6 +59,12 @@ public class ProgramIncrementController {
         programIncrementService.saveOne(programIncrement);
         LOG.info("Success... PI Saved");
         return "redirect:/program-increments";
+    }
+
+    @RequestMapping(value = "/{programIncrementId}/projects", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Project> getAllProjectsByPI(@PathVariable(value = "programIncrementId") Integer programIncrementId) {
+        return programIncrementService.findProjectsByPI(programIncrementId);
     }
 
     @ModelAttribute("technologies")

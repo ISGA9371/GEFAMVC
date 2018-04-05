@@ -23,11 +23,8 @@ public class Payment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "CD_CONS_SEG_PAGO", nullable = false)
-    private Integer paymentSerial;
-    @Basic(optional = false)
     @Column(name = "CD_SEG_PAGO", nullable = false)
-    private int paymentId;
+    private Integer paymentId;
     @Column(name = "NU_POS_SOL_PEDIDO")
     private Integer paymentPosition;
     @Column(name = "NU_PEDIDO", length = 10)
@@ -48,28 +45,15 @@ public class Payment implements Serializable {
     public Payment() {
     }
 
-    public Payment(Integer paymentSerial) {
-        this.paymentSerial = paymentSerial;
-    }
-
-    public Payment(Integer paymentSerial, int paymentId) {
-        this.paymentSerial = paymentSerial;
+    public Payment(Integer paymentId) {
         this.paymentId = paymentId;
     }
 
-    public Integer getPaymentSerial() {
-        return paymentSerial;
-    }
-
-    public void setPaymentSerial(Integer paymentSerial) {
-        this.paymentSerial = paymentSerial;
-    }
-
-    public int getPaymentId() {
+    public Integer getPaymentId() {
         return paymentId;
     }
 
-    public void setPaymentId(int paymentId) {
+    public void setPaymentId(Integer paymentId) {
         this.paymentId = paymentId;
     }
 
@@ -130,24 +114,24 @@ public class Payment implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (paymentSerial != null ? paymentSerial.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Payment payment = (Payment) o;
+
+        return paymentId.equals(payment.paymentId);
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof Payment)) {
-            return false;
-        }
-        Payment other = (Payment) object;
-        return (this.paymentSerial != null || other.paymentSerial == null) && (this.paymentSerial == null || this.paymentSerial.equals(other.paymentSerial));
+    public int hashCode() {
+        return paymentId.hashCode();
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Payment[ paymentSerial=" + paymentSerial + " ]";
+        return "Payment{" +
+                "paymentId=" + paymentId +
+                '}';
     }
-
 }

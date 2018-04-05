@@ -4,11 +4,9 @@ $(function () {
     let coso = parseInt("0");
     select.listen('MDCSelect:change', () => {
         if(++coso > 1){coso = 0; return;}
-
         let id = select.selectedOptions[0].value;
-
         //SET HIDDEN FIELD VALUE
-        $("#directionId").val(id);
+        $("#principalId").val(id);
 
         $.ajax({
             url: "/levels/"+id+"/sublevel"
@@ -37,7 +35,7 @@ $(function () {
         if (++index2 > 1) {index2 = 0;return;}
         let id = subdirs.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
-        $("#subDirectionId").val(id);
+        $("#subPrincipalId").val(id);
     });
 
     const areas = new mdc.select.MDCSelect(document.querySelector('#areas'));
@@ -48,7 +46,7 @@ $(function () {
         let id = areas.selectedOptions[0].value;
         let val = areas.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
-        $("#attAreaId").val(id);
+        $("#areaId").val(id);
 
         $.ajax({
             url: "/service-types/area/"+id
@@ -77,7 +75,7 @@ $(function () {
         if (++index4 > 1) {index4 = 0;return;}
         let id = tiposProy.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
-        $("#proyTypeId").val(id);
+        $("#projectTypeId").val(id);
     });
 
     const techs = new mdc.select.MDCSelect(document.querySelector('#techs'));
@@ -86,7 +84,7 @@ $(function () {
         if (++index5 > 1) {index5 = 0;return;}
         let id = techs.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
-        $("#techId").val(id);
+        $("#technologyId").val(id);
 
         $.ajax({
             url: "/technologies/"+id+"/app"
@@ -126,5 +124,10 @@ $(function () {
         $("#serviceTypeId").val(id);
     });
 
+    $('tr.clickable').click(function() {
+        var radioButton = $(this).find('input[type=radio]');
+        radioButton.prop('checked', true);
+        $("#edit-requirement").attr("href","/requirements/"+radioButton.val());
+    });
 
 });

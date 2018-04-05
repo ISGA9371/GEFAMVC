@@ -1,5 +1,7 @@
 package com.mx.bbva.business.dto;
 
+import java.util.Date;
+
 public class ComponentSearchDTO {
     private String componentName;
     private String requirementName;
@@ -8,7 +10,19 @@ public class ComponentSearchDTO {
     private Integer subPrincipalId;
     private Integer companyId;
     private Integer technologyId;
+    private boolean typologyNewComponent;
     private Integer statusId;
+    private Date componentDesignRealDeliverDate;
+    private Date componentPreviewDeliverDate;
+    private Integer startProductId;
+    private Date componentPossibleDeliverDate;
+    private Date componentRealDeliverDate;
+    private Integer finalProductId;
+    private int typologyStartSeverity;
+    private Long typologyStartSeverityHours;
+    private Integer statusTypologyId;
+    private int typologyFinalSeverity;
+    private Long typologyFinalSeverityHours;
 
     public ComponentSearchDTO() {
     }
@@ -69,11 +83,107 @@ public class ComponentSearchDTO {
         this.technologyId = technologyId;
     }
 
+    public boolean isTypologyNewComponent() {
+        return typologyNewComponent;
+    }
+
+    public void setTypologyNewComponent(boolean typologyNewComponent) {
+        this.typologyNewComponent = typologyNewComponent;
+    }
+
     public Integer getStatusId() {
         return statusId;
     }
 
     public void setStatusId(Integer statusId) {
         this.statusId = statusId;
+    }
+
+    public Date getComponentDesignRealDeliverDate() {
+        return componentDesignRealDeliverDate;
+    }
+
+    public void setComponentDesignRealDeliverDate(Date componentDesignRealDeliverDate) {
+        this.componentDesignRealDeliverDate = componentDesignRealDeliverDate;
+    }
+
+    public Date getComponentPreviewDeliverDate() {
+        return componentPreviewDeliverDate;
+    }
+
+    public void setComponentPreviewDeliverDate(Date componentPreviewDeliverDate) {
+        this.componentPreviewDeliverDate = componentPreviewDeliverDate;
+    }
+
+    public Integer getStartProductId() {
+        return startProductId;
+    }
+
+    public void setStartProductId(Integer startProductId) {
+        this.startProductId = startProductId;
+    }
+
+    public Date getComponentPossibleDeliverDate() {
+        return componentPossibleDeliverDate;
+    }
+
+    public void setComponentPossibleDeliverDate(Date componentPossibleDeliverDate) {
+        this.componentPossibleDeliverDate = componentPossibleDeliverDate;
+    }
+
+    public Date getComponentRealDeliverDate() {
+        return componentRealDeliverDate;
+    }
+
+    public void setComponentRealDeliverDate(Date componentRealDeliverDate) {
+        this.componentRealDeliverDate = componentRealDeliverDate;
+    }
+
+    public Integer getFinalProductId() {
+        return finalProductId;
+    }
+
+    public void setFinalProductId(Integer finalProductId) {
+        this.finalProductId = finalProductId;
+    }
+
+    public int getTypologyStartSeverity() {
+        return typologyStartSeverity;
+    }
+
+    public void setTypologyStartSeverity(int typologyStartSeverity) {
+        this.typologyStartSeverity = typologyStartSeverity;
+    }
+
+    public Long getTypologyStartSeverityHours() {
+        return typologyStartSeverityHours;
+    }
+
+    public void setTypologyStartSeverityHours(Long typologyStartSeverityHours) {
+        this.typologyStartSeverityHours = typologyStartSeverityHours;
+    }
+
+    public Integer getStatusTypologyId() {
+        return statusTypologyId;
+    }
+
+    public void setStatusTypologyId(Integer statusTypologyId) {
+        this.statusTypologyId = statusTypologyId;
+    }
+
+    public int getTypologyFinalSeverity() {
+        return typologyFinalSeverity;
+    }
+
+    public void setTypologyFinalSeverity(int typologyFinalSeverity) {
+        this.typologyFinalSeverity = typologyFinalSeverity;
+    }
+
+    public Long getTypologyFinalSeverityHours() {
+        return typologyFinalSeverityHours;
+    }
+
+    public void setTypologyFinalSeverityHours(Long typologyFinalSeverityHours) {
+        this.typologyFinalSeverityHours = typologyFinalSeverityHours;
     }
 }

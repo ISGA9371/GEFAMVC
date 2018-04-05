@@ -37,12 +37,12 @@ public class Requirement implements Serializable {
     @Column(name = "NU_HRS_SIN_FACT")
     private Integer requirementNoBilledHours;
     @Column(name = "ST_FACTURADO")
-    private Short requirementBilled;
+    private boolean requirementBilled;
     @Column(name = "TM_ALTA_REQ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date requirementDateUpload;
     @Column(name = "NU_FACTURABLE")
-    private Short requirementCanBilled;
+    private boolean requirementCanBilled;
     @Column(name = "FH_INICIO_REQ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date requirementStartDate;
@@ -91,8 +91,7 @@ public class Requirement implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<Invoice> invoices;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "requirement")
     private List<BudgetRequirement> budgetRequirements;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
@@ -178,11 +177,11 @@ public class Requirement implements Serializable {
         this.requirementNoBilledHours = requirementNoBilledHours;
     }
 
-    public Short getRequirementBilled() {
+    public boolean isRequirementBilled() {
         return requirementBilled;
     }
 
-    public void setRequirementBilled(Short requirementBilled) {
+    public void setRequirementBilled(boolean requirementBilled) {
         this.requirementBilled = requirementBilled;
     }
 
@@ -194,11 +193,11 @@ public class Requirement implements Serializable {
         this.requirementDateUpload = requirementDateUpload;
     }
 
-    public Short getRequirementCanBilled() {
+    public boolean isRequirementCanBilled() {
         return requirementCanBilled;
     }
 
-    public void setRequirementCanBilled(Short requirementCanBilled) {
+    public void setRequirementCanBilled(boolean requirementCanBilled) {
         this.requirementCanBilled = requirementCanBilled;
     }
 

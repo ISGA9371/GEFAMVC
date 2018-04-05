@@ -2,7 +2,7 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
     <packaging>war</packaging>
-    <version>1.0.0-ALPHA</version>
+    <version>2.0.0-ALPHA</version>
 
     <groupId>com.bbva.bancomer</groupId>
     <artifactId>gefa-app</artifactId>
@@ -17,7 +17,7 @@
         <appengine.target.version>1.9.63</appengine.target.version>
         <spring.version>5.0.4.RELEASE</spring.version>
         <appengine.app.name>gefa-app-196823</appengine.app.name>
-        <appengine.app.version>1-0-0</appengine.app.version>
+        <appengine.app.version>2-0-0</appengine.app.version>
     </properties>
 
     <dependencies>

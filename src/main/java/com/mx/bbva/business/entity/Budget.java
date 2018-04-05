@@ -19,10 +19,6 @@ import java.util.List;
 public class Budget implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "CD_CONSEC_PEP", nullable = false)
-    private Integer budgetSerial;
     @Basic(optional = false)
     @Column(name = "CD_PEP", nullable = false, length = 15)
     private String budgetId;
@@ -90,23 +86,8 @@ public class Budget implements Serializable {
     public Budget() {
     }
 
-    public Budget(Integer budgetSerial) {
-        this.budgetSerial = budgetSerial;
-    }
-
-    public Budget(Integer budgetSerial, String budgetId, int budgetYear, String budgetCostCenter) {
-        this.budgetSerial = budgetSerial;
+    public Budget(String budgetId) {
         this.budgetId = budgetId;
-        this.budgetYear = budgetYear;
-        this.budgetCostCenter = budgetCostCenter;
-    }
-
-    public Integer getBudgetSerial() {
-        return budgetSerial;
-    }
-
-    public void setBudgetSerial(Integer budgetSerial) {
-        this.budgetSerial = budgetSerial;
     }
 
     public String getBudgetId() {
@@ -312,7 +293,7 @@ public class Budget implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (budgetSerial != null ? budgetSerial.hashCode() : 0);
+        hash += (budgetId != null ? budgetId.hashCode() : 0);
         return hash;
     }
 
@@ -322,12 +303,16 @@ public class Budget implements Serializable {
             return false;
         }
         Budget other = (Budget) object;
-        return (this.budgetSerial != null || other.budgetSerial == null) && (this.budgetSerial == null || this.budgetSerial.equals(other.budgetSerial));
+        if ((this.budgetId == null && other.budgetId != null) || (this.budgetId != null && !this.budgetId.equals(other.budgetId))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Budget[ budgetSerial=" + budgetSerial + " ]";
+        return "Budget{" +
+                "budgetId='" + budgetId + '\'' +
+                '}';
     }
-
 }

@@ -18,7 +18,7 @@ public class BudgetServiceImpl implements BudgetService {
     }
 
     @Override
-    public Budget findBudget(Integer budgetId) {
+    public Budget findBudget(String budgetId) {
         return budgetRepository.findById(budgetId).orElse(null);
     }
 

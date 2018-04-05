@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Guevara
@@ -22,11 +23,9 @@ public class Application implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CD_CONS_APLIC", nullable = false)
-    private Integer applicationSerial;
     @Basic(optional = false)
     @Column(name = "CD_APLICACION", nullable = false)
-    private int applicationId;
+    private Integer applicationId;
     @Basic(optional = false)
     @Column(name = "NB_APLICACION", nullable = false, length = 50)
     private String applicationName;
@@ -40,26 +39,16 @@ public class Application implements Serializable {
     public Application() {
     }
 
-    public Application(Integer applicationSerial) {
-        this.applicationSerial = applicationSerial;
-    }
-
-    public Application(Integer applicationSerial, int applicationId, String applicationName) {
-        this.applicationSerial = applicationSerial;
+    public Application(Integer applicationId) {
         this.applicationId = applicationId;
-        this.applicationName = applicationName;
     }
 
-    public Integer getApplicationSerial() {
-        return applicationSerial;
-    }
-
-    public void setApplicationSerial(Integer applicationSerial) {
-        this.applicationSerial = applicationSerial;
-    }
-
-    public int getApplicationId() {
+    public Integer getApplicationId() {
         return applicationId;
+    }
+
+    public void setApplicationId(Integer applicationId) {
+        this.applicationId = applicationId;
     }
 
     public void setApplicationId(int applicationId) {
@@ -91,24 +80,23 @@ public class Application implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (applicationSerial != null ? applicationSerial.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Application that = (Application) o;
+        return Objects.equals(applicationId, that.applicationId);
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof Application)) {
-            return false;
-        }
-        Application other = (Application) object;
-        return (this.applicationSerial != null || other.applicationSerial == null) && (this.applicationSerial == null || this.applicationSerial.equals(other.applicationSerial));
+    public int hashCode() {
+
+        return Objects.hash(applicationId);
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Application[ applicationSerial=" + applicationSerial + " ]";
+        return "Application{" +
+                "applicationId=" + applicationId +
+                '}';
     }
-
 }

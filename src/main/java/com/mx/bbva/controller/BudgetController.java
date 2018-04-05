@@ -62,7 +62,7 @@ public class BudgetController {
     }
 
     @RequestMapping(path = "/{budgetId}", method = RequestMethod.GET)
-    public String editBudget(Model model, @PathVariable(value = "budgetId") Integer budgetId) {
+    public String editBudget(Model model, @PathVariable(value = "budgetId") String budgetId) {
         // TODO Validate user
         LOG.info("Updating budget, ID: " + budgetId);
         if (null != budgetId) {
@@ -72,6 +72,12 @@ public class BudgetController {
             model.addAttribute("budget", new Budget());
         }
         return URL_BUDGET + EDIT_BUDGET;
+    }
+
+    @RequestMapping(value = "/filters", method = RequestMethod.GET)
+    public String filtersForRequirements(Model model) {
+        model.addAttribute("filters", new Budget());
+        return URL_BUDGET + SEARCH_BUDGETS;
     }
 
     @ModelAttribute("areas")

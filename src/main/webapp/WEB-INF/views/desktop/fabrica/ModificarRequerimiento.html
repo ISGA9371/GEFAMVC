@@ -65,20 +65,35 @@
     <br>
     <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos Generales</div>
 
-    <form th:object="${requirement}" th:action="@{/requirements}" method="post">
+    <form th:object="${requirement}" th:action="@{/requirements}" method="post" id="form">
         <!-- HIDDEN FIELDS -->
-        <input type="hidden" th:field="*{level.levelSuperior.levelSerial}">
-        <input type="hidden" th:field="*{level.levelSerial}">
-        <input type="hidden" th:field="*{user.userId}">
+        <input type="hidden" th:field="*{requirementId}">
+        <input type="hidden" th:field="*{requirementHour}">
+        <input type="hidden" th:field="*{requirementTotalHours}">
+        <input type="hidden" th:field="*{requirementBilledHours}">
+        <input type="hidden" th:field="*{requirementNoBilledHours}">
+
+        <!--
+        <input type="hidden" th:field="*{requirementDateUpload}">
+        <input type="hidden" th:field="*{requirementStartDate}">
+        <input type="hidden" th:field="*{requirementEndDate}">
+        -->
+
+        <input type="hidden" th:field="*{requirementCanBilled}">
+
+        <input type="hidden" th:field="*{level.levelSuperior.levelId}">
+        <input type="hidden" th:field="*{level.levelId}">
+        <input type="hidden" th:field="*{user.userInternalId}">
         <input type="hidden" th:field="*{area.areaId}">
-        <input type="hidden" th:field="*{userManager.userId}">
+        <input type="hidden" th:field="*{userManager.userInternalId}">
         <input type="hidden" th:field="*{technology.technologyId}">
         <input type="hidden" th:field="*{project.methodology.methodologyId}">
-        <input type="hidden" th:field="*{application.applicationSerial}">
-        <input type="hidden" th:field="*{channel.channelSerial}">
+        <input type="hidden" th:field="*{application.applicationId}">
+        <input type="hidden" th:field="*{channel.channelId}">
         <input type="hidden" th:field="*{company.companyId}">
         <input type="hidden" th:field="*{serviceType.serviceTypeId}">
         <input type="hidden" th:field="*{programIncrement.programIncrementId}">
+        <input type="hidden" th:field="*{project.projectId}">
         <input type="hidden" th:field="*{status.statusId}">
         <input type="hidden" th:field="*{requirementBilled}">
 
@@ -102,7 +117,8 @@
                     </div>
                     <div class="mdc-menu mdc-select__menu ">
                         <ul  class="mdc-list mdc-menu__items">
-                            <li th:each="principals:${principals}" class="mdc-list-item" th:id="${principals.levelSerial}" role="option" th:text="${principals.levelName}"></li>
+                            <li th:each="principals:${principals}" class="mdc-list-item"
+                                th:value="${principals.levelId}" role="option" th:text="${principals.levelName}"></li>
                         </ul>
                     </div>
                 </div>
@@ -112,7 +128,7 @@
                 <div id="subprincipal" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                         <div class="mdc-select__label mdc-select__label--float-above">Subdireccion *</div>
-                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__selected-text" id="subdir-sel-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3">
@@ -140,7 +156,7 @@
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
                             <li th:each="user : ${users}" class="mdc-list-item" role="option"
-                                th:value="${user.userId}" th:text="${user.userInternalId}"></li>
+                                th:value="${user.userInternalId}" th:text="${user.userInternalId}"></li>
                         </ul>
                     </div>
                 </div>
@@ -173,7 +189,7 @@
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
                             <li th:each="user : ${users}" class="mdc-list-item" role="option"
-                                th:value="${user.userId}" th:text="${user.userInternalId}"></li>
+                                th:value="${user.userInternalId}" th:text="${user.userInternalId}"></li>
                         </ul>
                     </div>
                 </div>
@@ -220,7 +236,7 @@
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
                             <li th:each="app : ${applications}" class="mdc-list-item" role="option"
-                                th:value="${app.applicationSerial}" th:text="${app.applicationName}"></li>
+                                th:value="${app.applicationId}" th:text="${app.applicationName}"></li>
                         </ul>
                     </div>
                 </div>
@@ -235,7 +251,7 @@
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
                             <li th:each="channel : ${channels}" class="mdc-list-item" role="option"
-                                th:value="${channel.channelSerial}" th:text="${channel.channelName}"></li>
+                                th:value="${channel.channelId}" th:text="${channel.channelName}"></li>
                         </ul>
                     </div>
                 </div>
@@ -289,17 +305,17 @@
                 </div>
             </td>
             <td class="col-md-4" align="center">
-
-                <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="project" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Nombre del Proyecto*</div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Nombre del Proyecto*</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
                             <li th:each="project : ${projects}" class="mdc-list-item" role="option"
-                                th:value="${project.projectId}" th:text="${project.projectId}"></li>
+                                th:value="${project.projectId}"
+                                th:text="${ #strings.abbreviate(project.projectName,35)}"></li>
                         </ul>
                     </div>
                 </div>

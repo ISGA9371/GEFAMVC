@@ -21,11 +21,8 @@ public class Level implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "CD_CONSEC_NIVEL", nullable = false)
-    private Integer levelSerial;
-    @Basic(optional = false)
     @Column(name = "CD_NIVEL", nullable = false)
-    private int levelId;
+    private Integer levelId;
     @Basic(optional = false)
     @Column(name = "NB_NIVEL", nullable = false, length = 50)
     private String levelName;
@@ -51,29 +48,15 @@ public class Level implements Serializable {
     public Level() {
     }
 
-    public Level(Integer levelSerial) {
-        this.levelSerial = levelSerial;
-    }
-
-    public Level(Integer levelSerial, int levelId, String levelName) {
-        this.levelSerial = levelSerial;
+    public Level(Integer levelId) {
         this.levelId = levelId;
-        this.levelName = levelName;
     }
 
-    public Integer getLevelSerial() {
-        return levelSerial;
-    }
-
-    public void setLevelSerial(Integer levelSerial) {
-        this.levelSerial = levelSerial;
-    }
-
-    public int getLevelId() {
+    public Integer getLevelId() {
         return levelId;
     }
 
-    public void setLevelId(int levelId) {
+    public void setLevelId(Integer levelId) {
         this.levelId = levelId;
     }
 
@@ -134,24 +117,24 @@ public class Level implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (levelSerial != null ? levelSerial.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Level level = (Level) o;
+
+        return levelId.equals(level.levelId);
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof Level)) {
-            return false;
-        }
-        Level other = (Level) object;
-        return (this.levelSerial != null || other.levelSerial == null) && (this.levelSerial == null || this.levelSerial.equals(other.levelSerial));
+    public int hashCode() {
+        return levelId.hashCode();
     }
 
     @Override
     public String toString() {
-        return "com.bbva.Level[ levelSerial=" + levelSerial + " ]";
+        return "Level{" +
+                "levelId=" + levelId +
+                '}';
     }
-
 }

@@ -17,10 +17,7 @@ import java.util.Date;
 public class ExternalUser implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "CD_EXTERNO", nullable = false)
-    private Integer externalUserId;
     @Column(name = "CD_USUARIO_CORP", length = 10)
     private String externalUserCorpId;
     @Basic(optional = false)
@@ -122,26 +119,8 @@ public class ExternalUser implements Serializable {
     public ExternalUser() {
     }
 
-    public ExternalUser(Integer externalUserId) {
-        this.externalUserId = externalUserId;
-    }
-
-    public ExternalUser(Integer externalUserId, String externalUserName, String externalUserLastName, Character externalUserGender, String externalUserType, int externalUserContractType, String externalUserProjectType) {
-        this.externalUserId = externalUserId;
-        this.externalUserName = externalUserName;
-        this.externalUserLastName = externalUserLastName;
-        this.externalUserGender = externalUserGender;
-        this.externalUserType = externalUserType;
-        this.externalUserContractType = externalUserContractType;
-        this.externalUserProjectType = externalUserProjectType;
-    }
-
-    public Integer getExternalUserId() {
-        return externalUserId;
-    }
-
-    public void setExternalUserId(Integer externalUserId) {
-        this.externalUserId = externalUserId;
+    public ExternalUser(String externalUserCorpId) {
+        this.externalUserCorpId = externalUserCorpId;
     }
 
     public String getExternalUserCorpId() {
@@ -441,24 +420,24 @@ public class ExternalUser implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (externalUserId != null ? externalUserId.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ExternalUser that = (ExternalUser) o;
+
+        return externalUserCorpId.equals(that.externalUserCorpId);
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof ExternalUser)) {
-            return false;
-        }
-        ExternalUser other = (ExternalUser) object;
-        return (this.externalUserId != null || other.externalUserId == null) && (this.externalUserId == null || this.externalUserId.equals(other.externalUserId));
+    public int hashCode() {
+        return externalUserCorpId.hashCode();
     }
 
     @Override
     public String toString() {
-        return "com.bbva.ExternalUser[ externalUserId=" + externalUserId + " ]";
+        return "ExternalUser{" +
+                "externalUserCorpId='" + externalUserCorpId + '\'' +
+                '}';
     }
-
 }

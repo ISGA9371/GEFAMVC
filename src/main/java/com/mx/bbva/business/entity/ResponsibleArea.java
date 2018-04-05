@@ -23,11 +23,8 @@ public class ResponsibleArea implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "CD_CONS_ACEPTA", nullable = false)
-    private Integer responsibleAreaSerial;
-    @Basic(optional = false)
     @Column(name = "CD_ACEPTA_RES_COR", nullable = false)
-    private int responsibleAreaId;
+    private Integer responsibleAreaId;
     @Basic(optional = false)
     @Column(name = "NB_ACEPTA_RES_COR", nullable = false, length = 25)
     private String responsibleAreaName;
@@ -38,29 +35,15 @@ public class ResponsibleArea implements Serializable {
     public ResponsibleArea() {
     }
 
-    public ResponsibleArea(Integer responsibleAreaSerial) {
-        this.responsibleAreaSerial = responsibleAreaSerial;
-    }
-
-    public ResponsibleArea(Integer responsibleAreaSerial, int responsibleAreaId, String responsibleAreaName) {
-        this.responsibleAreaSerial = responsibleAreaSerial;
+    public ResponsibleArea(Integer responsibleAreaId) {
         this.responsibleAreaId = responsibleAreaId;
-        this.responsibleAreaName = responsibleAreaName;
     }
 
-    public Integer getResponsibleAreaSerial() {
-        return responsibleAreaSerial;
-    }
-
-    public void setResponsibleAreaSerial(Integer responsibleAreaSerial) {
-        this.responsibleAreaSerial = responsibleAreaSerial;
-    }
-
-    public int getResponsibleAreaId() {
+    public Integer getResponsibleAreaId() {
         return responsibleAreaId;
     }
 
-    public void setResponsibleAreaId(int responsibleAreaId) {
+    public void setResponsibleAreaId(Integer responsibleAreaId) {
         this.responsibleAreaId = responsibleAreaId;
     }
 
@@ -81,24 +64,24 @@ public class ResponsibleArea implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (responsibleAreaSerial != null ? responsibleAreaSerial.hashCode() : 0);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ResponsibleArea that = (ResponsibleArea) o;
+
+        return responsibleAreaId.equals(that.responsibleAreaId);
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof ResponsibleArea)) {
-            return false;
-        }
-        ResponsibleArea other = (ResponsibleArea) object;
-        return (this.responsibleAreaSerial != null || other.responsibleAreaSerial == null) && (this.responsibleAreaSerial == null || this.responsibleAreaSerial.equals(other.responsibleAreaSerial));
+    public int hashCode() {
+        return responsibleAreaId.hashCode();
     }
 
     @Override
     public String toString() {
-        return "com.bbva.ResponsibleArea[ responsibleAreaSerial=" + responsibleAreaSerial + " ]";
+        return "ResponsibleArea{" +
+                "responsibleAreaId=" + responsibleAreaId +
+                '}';
     }
-
 }

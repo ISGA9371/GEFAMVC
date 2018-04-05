@@ -1,7 +1,9 @@
 package com.mx.bbva.business.service.impl;
 
 import com.mx.bbva.business.entity.ProgramIncrement;
+import com.mx.bbva.business.entity.Project;
 import com.mx.bbva.business.repository.ProgramIncrementRepository;
+import com.mx.bbva.business.repository.ProjectRepository;
 import com.mx.bbva.business.service.ProgramIncrementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import java.util.List;
 @Service
 public class ProgramIncrementServiceImpl implements ProgramIncrementService {
     private ProgramIncrementRepository repository;
+    private ProjectRepository projectRepository;
 
     @Override
     public List<ProgramIncrement> findAll() {
@@ -25,6 +28,11 @@ public class ProgramIncrementServiceImpl implements ProgramIncrementService {
     @Override
     public ProgramIncrement findOne(Integer programIncrementId) {
         return repository.findById(programIncrementId).orElse(null);
+    }
+
+    @Override
+    public List<Project> findProjectsByPI(Integer programIncrementId) {
+        return projectRepository.findByProgramIncrement_programIncrementId(programIncrementId);
     }
 
     @Autowired

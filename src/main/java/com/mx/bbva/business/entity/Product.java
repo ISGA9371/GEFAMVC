@@ -5,10 +5,9 @@
  */
 package com.mx.bbva.business.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Guevara
@@ -25,10 +24,11 @@ public class Product implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_PRODUCTO", nullable = false, length = 50)
     private String productName;
-    @JsonIgnore
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Technology technology;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private List<Typology> typologies;
 
     public Product() {
     }
@@ -64,6 +64,14 @@ public class Product implements Serializable {
 
     public void setTechnology(Technology technology) {
         this.technology = technology;
+    }
+
+    public List<Typology> getTypologies() {
+        return typologies;
+    }
+
+    public void setTypologies(List<Typology> typologies) {
+        this.typologies = typologies;
     }
 
     @Override
