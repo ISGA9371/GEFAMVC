@@ -30,7 +30,7 @@ public class DoubtController {
         //model.addAttribute("componentData", component);
         Doubt duda = new Doubt();
         duda.setComponent(component);
-        LOG.info("contiene el dato:" + duda.getComponent());
+        LOG.info("contiene el dato:" + duda.getComponent() );
         model.addAttribute("doubt", duda);
         return URL_FACTORY + NEW_DOUBT;
     }
