@@ -1,4 +1,4 @@
-1function init() {
+function init() {
     //showH();
     addCalendars();
     loadSelects();
@@ -22,6 +22,8 @@ function fillFields() {
     var $elementTypologiaInicio = $("#typology").parent().find("li[id^='"+$('#typology').val()+"|']");
     var idTypologiaInicio = $elementTypologiaInicio.attr('id');
     var splittedTypologiaInicio = idTypologiaInicio.split('|');
+    if(splittedTypologiaInicio[3] = true){ splittedTypologiaInicio[3] = 0; }
+    if(splittedTypologiaInicio[3] = false){ splittedTypologiaInicio[3] = 1; }
     if(splittedTypologiaInicio[3] != null){
         $("#nuemod-js-select").find("div").eq(0).click();
         $("#nuemod-js-select").find("li").eq(splittedTypologiaInicio[3]).click();
@@ -54,6 +56,8 @@ function fillFields() {
     var $elementTypologiaFinal = $("#typology-final").parent().find("li[id^='"+$('#typology-final').val()+"|']");
     var idTypologiaFinal = $elementTypologiaFinal.attr('id');
     var splittedTypologiaFinal = idTypologiaFinal.split('|');
+    if(splittedTypologiaFinal[3] = true){ splittedTypologiaFinal[3] = 0; }
+    if(splittedTypologiaFinal[3] = false){ splittedTypologiaFinal[3] = 1; }
     if(splittedTypologiaFinal[3] != null){
         $("#nuemod-js-select").find("div").eq(0).click();
         $("#nuemod-js-select").find("li").eq(splittedTypologiaFinal[3]).click();
@@ -78,6 +82,12 @@ function fillFields() {
         new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value="";
         new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value="";
     }
+    var $statusTypology = $("#statusTypology").parent().find("li[id^='"+$('#statusTypology').val()+"|']");
+    $("#estatus-tipificacion-js-select").find("div").eq(0).click();
+    $statusTypology.click();
+    var $status = $("#status").parent().find("li[id^='"+$('#status').val()+"|']");
+    $("#estatus-componente-js-select").find("div").eq(0).click();
+    setTimeout("clickSelectOption('estatus-componente-js-select','status')",100);
     var d = new Date($('#componentDesignRealDeliverDate').val());
     $('#componentDesignRealDeliverDate').val(pad(d.getDate(),2) + "/" + pad(d.getMonth()+1,2) + "/" + d.getFullYear());
     new mdc.textField.MDCTextField(document.getElementById('FecRealCFG-mdc-text')).value = $('#componentDesignRealDeliverDate').val();
@@ -90,6 +100,11 @@ function fillFields() {
     var d = new Date($('#componentRealDeliverDate').val());
     $('#componentRealDeliverDate').val(pad(d.getDate(),2) + "/" + pad(d.getMonth()+1,2) + "/" + d.getFullYear());
     new mdc.textField.MDCTextField(document.getElementById('FecRealFac-mdc-text')).value = $('#componentRealDeliverDate').val();
+}
+
+function clickSelectOption(idSelect,idLike){
+    $("#"+idSelect).parent().find("li[id^='"+idLike+"|']").click();
+
 }
 
 function addComponentValidation() {
@@ -149,6 +164,17 @@ function addHoursValidation() {
 }
 
 function addButtonEvents() {
+    var btnDelete = document.getElementById('eliminar-btn');
+    btnDelete.addEventListener("click", function () {
+        HoldOn.open({
+            theme: "sk-cube",
+            content: '',
+            message: 'Eliminando Componente',
+            // backgroundColor: "#004582",
+            backgroundColor: "#0c71ca",
+            textColor: "white",
+        });
+    });
     var btnCancel = document.getElementById('cancelar-btn');
     btnCancel.addEventListener("click", function () {
         window.history.back();
@@ -184,7 +210,7 @@ function addCustomSelectEvents() {
     var selectNews = new mdc.select.MDCSelect(rootNews);
 
     rootNews.addEventListener('MDCSelect:change', function () {
-        if (selectNews.value !="" && selectNews.value != "") {
+        if (selectNews.value !="") {
             var splittedNews = selectNews.value.split('|');
             hiddenTypology.value = splittedNews[0];
             $("#typologyEmp").val(hiddenTypology.value);
@@ -202,7 +228,7 @@ function addCustomSelectEvents() {
     var selectMods = new mdc.select.MDCSelect(rootMods);
 
     rootMods.addEventListener('MDCSelect:change', function () {
-        if (selectNews.value !="" && selectNews.value != "") {
+        if (selectMods.value !="") {
             var splittedMods = selectMods.value.split('|');
             hiddenTypology.value = splittedMods[0];
             $("#typologyEmp").val(hiddenTypology.value);
@@ -289,7 +315,7 @@ function addSelectSyncMdcToHtml(htmlField,mdcSelect){
     var rootSelect = document.getElementById(mdcSelect);
     var selectObj = new mdc.select.MDCSelect(rootSelect);
 
-    selectObj.addEventListener('MDCSelect:change', function () {
+    rootSelect.addEventListener('MDCSelect:change', function () {
         $hiddenInput.val(selectObj.value);
     });
 }
@@ -329,6 +355,17 @@ function addCalendars(){
             horizontal: 'auto',
             vertical: 'top'
         }
+    });
+}
+
+function holder(msg){
+    HoldOn.open({
+        theme: "sk-cube",
+        content: '',
+        message: msg,
+        // backgroundColor: "#004582",
+        backgroundColor: "#0c71ca",
+        textColor: "white",
     });
 }
 
