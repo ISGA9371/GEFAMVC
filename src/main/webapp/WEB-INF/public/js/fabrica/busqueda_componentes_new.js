@@ -52,24 +52,27 @@ $(function () {
     $("#statusTypologyId").val(estado_tipificado.value);
     $("#typologyFinalSeverity").val(dificultad_final.value);
 
-    console.log($("#searchForm").serialize());
+    serializeArray = $("#searchForm").serializeArray();
+    objectito = {};
+    $.each(serializeArray, function(index, value){
+      objectito[value.name] = value.value;
+    });
 
     $.ajax({
       url: "/components/search",
       method: "GET",
-      params: $("#searchForm").serialize(),
+      data: JSON.stringify(objectito),
+      dataType: "json",
       beforeSend: function (xhr) {
         HoldOn.open({
           theme: "sk-cube",
           content: '',
           message: 'Consultado Información',
-          // backgroundColor: "#004582",
           backgroundColor: "#0c71ca",
           textColor: "white",
         });
       }
     }).done(function (data) {
-      console.log(data);
 
       if ( 1 <= data.length ) {
 
@@ -77,20 +80,25 @@ $(function () {
         $("#row-content-results").show();
         $("#row-buttons-results").show();
 
+        $("#tab-componentes > table > tbody").html("");
+        $("#tab-generales > table > tbody").html("");
+        $("#tab-fecha > table > tbody").html("");
+        $("#tab-cierre > table > tbody").html("");
+
         $.each(data, function(index, value){
           $("#tab-componentes > table > tbody").append(
             "<tr><th></th>" + 
             "<th>" + value.componentName + "</th>" + 
-            "<th>" + "Requerimiento" + "</th>" + 
+            "<th>" + "" + "</th>" + 
             "<th>" + value.componentVersion + "</th>" + 
-            "<th>" + "Dirección" + "</th>" + 
-            "<th>" + "Subdirección" + "</th>" + 
-            "<th>" + "Empresa" + "</th>" + 
-            "<th>" + "Tecnología" + "</th>" + 
-            "<th>" + "Nuevo" + "/Modificado</th>" + 
-            "<th>" + "Modif" + ".</th>" + 
-            "<th>" + "Dudas" + "</th>" + 
-            "<th>" + "Errores" + "</th></tr>"
+            "<th>" + "" + "</th>" + 
+            "<th>" + "" + "</th>" + 
+            "<th>" + "" + "</th>" + 
+            "<th>" + "" + "</th>" + 
+            "<th>" + "" + "</th>" + 
+            "<th>" + "" + ".</th>" + 
+            "<th>" + "" + "</th>" + 
+            "<th>" + "" + "</th></tr>"
           );
 
           componentDesignRealDeliverDate = new Date(value.componentDesignRealDeliverDate);
@@ -99,12 +107,12 @@ $(function () {
           componentRealDeliverDate = new Date(value.componentRealDeliverDate);
           $("#tab-fecha > table > tbody").append(
             "<tr><th>" + value.componentName + "</th>" +
-            "<th>" + "Requerimiento" + "</th>" +
+            "<th>" + "" + "</th>" +
             "<th>" + componentDesignRealDeliverDate.toLocaleString() + "</th>" +
             "<th>" + componentPossibleDeliverDate.toLocaleString() + "</th>" +
             "<th>" + componentPreviewDeliverDate.toLocaleString() + "</th>" +
             "<th>" + componentRealDeliverDate.toLocaleString() + "</th>" +
-            "<th>" + "Estado" + "</th></tr>"
+            "<th>" + "" + "</th></tr>"
           );
 
           /*
@@ -119,8 +127,15 @@ $(function () {
           );
           */
         });
+      } else {
+        HoldOn.close();
+        console.log("else");
+        new jBox('Notice', {
+          content: 'Tu búsqueda no devolvió resultados',
+          animation: 'pulse',
+          color: 'red'
+        });
       }
-      HoldOn.close();
     }).fail(function(fail){
       HoldOn.close();
     });
