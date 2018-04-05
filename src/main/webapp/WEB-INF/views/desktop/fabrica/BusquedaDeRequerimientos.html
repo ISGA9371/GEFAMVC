@@ -72,10 +72,8 @@
             <input th:field="*{technologyId}" type="hidden" />
             <input th:field="*{companyId}" type="hidden" />
             <input th:field="*{serviceTypeId}" type="hidden" />
-            <!--
             <input th:field="*{requirementStartDate}" type="hidden" />
             <input th:field="*{requirementEndDate}" type="hidden" />
-            -->
         <table class="col-md-12" >
             <tr>
                 <td class="col-md-4" align="center">
@@ -323,108 +321,82 @@
     <div class="col-md-12" align="Left" style="font-size:20px; font-family:BBVA Web Book; background-color:#12a96a; color:#FFFFFF">Requerimientos</div>
 
     <div class="row">
-        <table class="col-md-12 table table-hover table-responsive"  style="font-size:12px;">
+        <table class="col-md-12 table table-hover table-responive table-condensed"  style="font-size:12px;">
             <thead>
             <tr style="background-color:#999; color:#fcfbfb">
-                <th >
-
-                </th>
-                <th >
-                    Requerimiento
-                </th>
-                <th>
-                    Nombre del PEP
-                </th>
-                <th>
-                    Dirección
-                </th>
-                <th>
-                    Subdirección
-                </th>
-                <th>
-                    Responsable
-                </th>
-                <th>
-                    Área de atención
-                </th>
-                <th>
-                    Tipo de servicio
-                </th>
-                <th>
-                    Tecnología
-                </th>
-                <th>
-                    Empresa
-                </th>
-                <th>
-                    F. Prop. Inic
-                </th>
+                <th></th> <!-- RADIO -->
+                <th>Requerimiento</th>
+                <th style="width: 104px;">Nombre del PEP</th>
+                <th>Dirección</th>
+                <th>Subdirección</th>
+                <th>Responsable</th>
+                <th>Área de atención</th>
+                <th>Tipo de servicio</th>
+                <th>Tecnología</th>
+                <th>Empresa</th>
+                <th style="width: 80px;">F. Prop. Inic.</th>
             </tr>
             </thead>
             <tbody>
-            <!--
-            <th:block th:each="requirement, stat: ${requirements}">
-            -->
-                <tr href="#row-detail-wrapper-1"data-toggle="collapse" class="clickable"
-                    aria-controls="row-detail-wrapper-1">
-                    <!--
-                    <td></td>
+            <th:block th:each="requirement, stat : ${requirements}">
+                <tr th:href="${'#row-detail-wrapper-' + stat.count}" data-toggle="collapse" class="clickable"
+                    th:aria-controls="${'row-detail-wrapper-' + stat.count}">
+                    <td><input type="radio" name="requirements" th:id="${requirement.requirementId}"
+                               th:value="${requirement.requirementId}"></td>
                     <td th:text="${requirement.requirementName}"></td>
-                    <!--<td th:text="${requirement.budgetRequirements[0].budget.budgetId}"></td><!
-                    <td></td>
+                    <td th:text="${requirement.budgetRequirements.size() > 0 ?
+                    requirement.budgetRequirements[0].budget.budgetId : ''}"></td>
                     <td th:text="${requirement.level.levelSuperior.levelName}"></td>
                     <td th:text="${requirement.level.levelName}"></td>
                     <td th:text="${requirement.user.userInternalId}"></td>
-                    <td th:text="${requirement.area.arearequirementName}"></td>
-                    <td th:text="${requirement.serviceType.serviceTyperequirementName}"></td>
-                    <td th:text="${requirement.technology.technologyrequirementName}"></td>
-                    <td th:text="${requirement.company.companyrequirementName}"></td>
+                    <td th:text="${requirement.area.areaName}"></td>
+                    <td th:text="${requirement.serviceType.serviceTypeName}"></td>
+                    <td th:text="${requirement.technology.technologyName}"></td>
+                    <td th:text="${requirement.company.companyName}"></td>
                     <td th:text="${#dates.format(requirement.requirementStartDate, 'dd/MM/yyyy')}"></td>
 
-                    -->
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
                 </tr>
-                <tr style="padding-left: 24px; padding-right: 24px;">
-                    <td colspan="11" style="background: #F4F4F4;" >
-                        <div id="row-detail-wrapper-1" class="collapse">
+                <tr>
+                    <td colspan="11" class="detail-td">
+                        <div th:id="${'row-detail-wrapper-' + stat.count}" class="collapse">
                             <table style="width: 100%;" >
                                 <tr>
                                     <td class="detail-label">F. Prop. Fin</td>
-                                    <td>15/09/2018</td>
+                                    <td th:text="${#dates.format(requirement.requirementEndDate, 'dd/MM/yyyy')}"></td>
                                     <td class="detail-label">Horas Totales</td>
-                                    <td>120</td>
+                                    <td th:text="${requirement.requirementTotalHours}"></td>
                                     <td class="detail-label">Monto</td>
                                     <td>24000</td>
                                     <td class="detail-label">Horas facturadas</td>
-                                    <td>100</td>
+                                    <td th:text="${requirement.requirementBilledHours}">100</td>
                                     <td class="detail-label">Horas sin facturar</td>
-                                    <td>20</td>
+                                    <td th:text="${requirement.requirementNoBilledHours}">20</td>
                                     <td class="detail-label">Facturar (S/N)</td>
-                                    <td>No</td>
+                                    <td th:text="${requirement.requirementBilled ? 'Si' : 'No'}"></td>
                                 </tr>
                                 <tr>
                                     <td class="detail-label" style="height: 60px;">PI</td>
-                                    <td>PI12</td>
-                                    <td class="detail-label">PEP</td>
-                                    <td>GB00033335-020</td>
-                                    <td class="detail-label"></td>
-                                    <td></td>
-                                    <td class="detail-label"></td>
-                                    <td></td>
-                                    <td class="detail-label"></td>
-                                    <td></td>
-                                    <td colspan="2">
+                                    <td th:text="${requirement.project.programIncrement.ProgramIncrementName}"></td>
+                                    <td class="detail-label">PEP
+                                        <div th:unless="${requirement.budgetRequirements.size() > 0}"
+                                                class="dropdown" style="display: inline-block;">
+                                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                                <img th:src="@{/img/menu-pagina-icon.png}" height="12">
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li th:each="budgetRequirement : ${requirement.budgetRequirements}"
+                                                    th:text="${budgetRequirement.budget.budgetId}"></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td th:text="${requirement.budgetRequirements.size() > 0 ?
+                    requirement.budgetRequirements[0].budget.budgetId : ''}"></td>
+                                    <td>
+                                    </td>
+
+                                    <td></td> <td></td>
+                                    <td></td> <td></td><td></td>
+                                    <td class="detail-label" colspan="2">
                                         <button class="btn btn-primary">Asociar PEP</button>
                                     </td>
                                 </tr>
@@ -437,9 +409,8 @@
                 </tr>
 
 
-            <!--
             </th:block>
-            -->
+
             </tbody>
         </table>
     </div>
@@ -448,7 +419,7 @@
         <table class="col-md-12" >
             <tr>
                 <td class="col-md-6" align="center">
-                    <a type="button" class="btn btn-primary">Modificar</a>
+                    <a id="edit-requirement" class="btn btn-primary">Modificar</a>
                     <a type="button" class="btn btn-primary" th:href="@{/requirements/add}">Alta</a>
                 </td>
             </tr>

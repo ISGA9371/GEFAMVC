@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-<head>
-    <!--Encabezado que vive en otra ventana-->
+<!--head>
+
     <div th:replace="layout/header :: cabeceraPrincipal"></div>
 
 
@@ -14,31 +14,32 @@
     <title>Alta de Duda</title>
 
 
-    <!-- Estilos -->
     <script type="text/javascript" th:src="@{../js/jquery-3.2.1.min.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{../css/bootstrap.min.css}">
     <script type="text/javascript" th:src="@{../js/bootstrap.min.js}"></script>
 
-    <!--Script generales-->
+
     <link rel="stylesheet" type="text/css" th:href="@{../css/estilosGF.css}">
 
 
-    <!--Scripts para campos de texto-->
     <link rel="stylesheet" type="text/css" th:href="@{../css/material-components-web.css}">
     <script type="text/javascript" th:src="@{../js/material-components-web.js}"></script>
 
 
-    <!--Estilos para los combos-->
+
     <link rel="stylesheet" type="text/css" th:href="@{../css/select.css}">
     <script type="text/javascript" th:src="@{../js/ready.js}"></script>
 
-    <!--Estilos para los calendarios-->
+
     <link rel="stylesheet" type="text/css" th:href="@{../css/bootstrap-datetimepicker.css}">
     <script type="text/javascript" th:src="@{../js/analytics.js}"></script>
     <script type="text/javascript" th:src="@{../js/moment-with-locales.js}"></script>
     <script type="text/javascript" th:src="@{../js/bootstrap-datetimepicker.js}"></script>
 
-</head>
+</head-->
+
+<head th:replace="~{layout/mainHeader :: head ('Alta de Duda')}"></head>
+
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker4').datetimepicker({
@@ -47,6 +48,9 @@
     });
 </script>
 <body>
+
+<header th:replace="~{layout/mainHeader :: header }"></header>
+
 <div class="container">
     <br>
     <div class="row">
@@ -66,13 +70,13 @@
                 </td>
                 <td class="col-md-4" align="center">
                     <div id="direccion-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input disabled="disabled" th:value="${componentData.levelName}"  type="text" required class="mdc-text-field__input"  id="demo-input">
+                        <input disabled="disabled" th:value="${componentData.requirement.level.levelName}"  type="text" required class="mdc-text-field__input"  id="demo-input">
                         <label for="demo-input" class="mdc-text-field__label">Direccion</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
                     <div id="subdireccion-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input disabled="disabled" th:value="${componentData.levelName}" type="text"  required class="mdc-text-field__input" id="demo-input">
+                        <input disabled="disabled" th:value="${componentData.requirement.level.levelName}" type="text"  required class="mdc-text-field__input" id="demo-input">
                         <label for="demo-input" class="mdc-text-field__label">Subdireccion</label>
                     </div>
                 </td>
@@ -86,13 +90,13 @@
                 </td>
                 <td class="col-md-4" align="center">
                     <div id="requerimiento-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input disabled="disabled" th:value="${componentData.requirementName}" type="text"  class="mdc-text-field__input" id="requerimiento">
+                        <input disabled="disabled" th:value="${componentData.requirement.requirementName}" type="text"  class="mdc-text-field__input" id="requerimiento">
                         <label for="demo-input" class="mdc-text-field__label">Requerimiento</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
                     <div id="tecnologia-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input disabled="disabled" th:value="${componentData.technologyName}" type="text"  class="mdc-text-field__input" id="tecnologia">
+                        <input disabled="disabled" th:value="${componentData.requirement.technology.technologyName}" type="text"  class="mdc-text-field__input" id="tecnologia">
                         <label for="demo-input" class="mdc-text-field__label">Tecnología</label>
                     </div>
                 </td>
@@ -100,14 +104,14 @@
             <tr>
                 <td class="col-md-4" align="center">
                     <div id="tipologia-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input disabled="disabled" th:value="${componentData.typologyProductId}"  type="text"  class="mdc-text-field__input" id="tipologia">
+                        <input disabled="disabled" th:value="${componentData.typology.TypologyId}"  type="text"  class="mdc-text-field__input" id="tipologia">
                         <label for="demo-input" class="mdc-text-field__label">Tipología</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="dog1">
                         <div id="fechaAlta-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input disabled="disabled" th:value="${componentData.componentName}" type='text' class="mdc-text-field__input"  row="2" id='datetimepicker4' />
+                            <input disabled="disabled" th:value="${componentData.componentUploadDate}" type='text' class="mdc-text-field__input"  row="2" id='date' />
                             <label for="demo-input" class="mdc-text-field__label">Fecha de Alta</label>
                         </div>
                     </div>
@@ -176,7 +180,11 @@
         </form>
     </div>
 
+    <footer th:replace="~{layout/footer2 :: footer }"></footer>
+
 </body>
+
+<div th:replace="~{layout/footer2 :: scripts }"></div>
 
 <script>mdc.autoInit()</script>
 <style rel="stylesheet">
@@ -373,6 +381,8 @@
     /*
            <input id="prioridad-js-hidden" type="text" th:field="*{doubt}" >*/
 </script>
+
+
 <!--Footer que debe ir en todas las ventanas-->
 <div th:replace="layout/footer :: FooterPrincipal"></div>
 </html>

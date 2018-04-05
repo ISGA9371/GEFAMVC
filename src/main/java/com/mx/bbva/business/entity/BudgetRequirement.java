@@ -16,7 +16,7 @@ import java.util.List;
  * @author Guevara
  */
 @Entity
-@Table(name = "thge040_prp_req")
+@Table(name = "thge040_pep_req")
 public class BudgetRequirement implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -26,11 +26,13 @@ public class BudgetRequirement implements Serializable {
     private Integer budgetRequirementId;
     @Column(name = "IM_PEP", precision = 22)
     private Double budgetRequirementValue;
-    @Column(name = "CT_HORAS_PEP", precision = 22)
+    @Column(name = "HM_PEP", precision = 22)
     private Double budgetRequirementHours;
     @Column(name = "TM_PEP_REQ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date budgetRequirementDate;
+    @Column(name = "ST_FACTURADO")
+    private boolean budgetRequirementBilled;
     @JoinColumn(name = "CD_PEP", referencedColumnName = "CD_PEP", nullable = false)
     @ManyToOne(optional = false)
     private Budget budget;
@@ -86,6 +88,14 @@ public class BudgetRequirement implements Serializable {
 
     public void setInvoices(List<Invoice> invoices) {
         this.invoices = invoices;
+    }
+
+    public boolean isBudgetRequirementBilled() {
+        return budgetRequirementBilled;
+    }
+
+    public void setBudgetRequirementBilled(boolean budgetRequirementBilled) {
+        this.budgetRequirementBilled = budgetRequirementBilled;
     }
 
     public Budget getBudget() {

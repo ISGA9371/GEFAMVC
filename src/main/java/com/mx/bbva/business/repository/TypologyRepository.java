@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TypologyRepository extends JpaRepository<Typology, Integer>{
-   List<Typology> findAllByTypologyComponent(String typologyComponent);
+public interface TypologyRepository extends JpaRepository<Typology, Integer> {
+    List<Typology> findAllByTypologyNewComponent(boolean typologyNewComponent);
 }

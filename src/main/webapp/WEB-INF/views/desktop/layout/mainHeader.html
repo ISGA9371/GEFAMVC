@@ -15,8 +15,9 @@
   <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
   <link rel="stylesheet" type="text/css" th:href="@{/css/material-components-web.css}">
   <link rel="stylesheet" type="text/css" th:href="@{/css/select.css}">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/jquery-ui-base-theme-1.12.1.css}">
   <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datetimepicker.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/HoldOn.min.css}">
 </head> <!-- fragment:: header -->
 
 <body>
@@ -78,10 +79,10 @@
               </ul>
             </li>
             <li>
-              <a th:href="@{/doubts/1}">DUDAS</a>
+              <a th:href="@{/doubts/add?componentId=1}">DUDAS</a>
             </li>
             <li>
-              <a th:href="@{/modifications/1}">MODIFICACIONES</a>
+              <a th:href="@{/modifications/add}">MODIFICACIONES</a>
             </li>
             <li>
               <a th:href="@{/issues/1}">INCIDENCIAS</a>

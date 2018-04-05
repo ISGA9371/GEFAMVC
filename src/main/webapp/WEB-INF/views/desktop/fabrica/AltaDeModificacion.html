@@ -1,63 +1,11 @@
 <!DOCTYPE html>
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-<head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Alta de Modificación</title>
-
-
-    <!-- Estilos -->
-    <script type="text/javascript" th:src="@{../js/jquery-3.2.1.min.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{../css/bootstrap.min.css}">
-    <script type="text/javascript" th:src="@{../js/bootstrap.min.js}"></script>
-
-    <!--Script generales-->
-    <link rel="stylesheet" type="text/css" th:href="@{../css/estilosGF.css}">
-
-
-    <!--Scripts para campos de texto-->
-    <link rel="stylesheet" type="text/css" th:href="@{../css/material-components-web.css}">
-    <script type="text/javascript" th:src="@{../js/material-components-web.js}"></script>
-
-
-    <!--Estilos para los combos-->
-    <link rel="stylesheet" type="text/css" th:href="@{../css/select.css}">
-    <script type="text/javascript" th:src="@{../js/ready.js}"></script>
-
-    <!--Estilos para los calendarios-->
-    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap-datetimepicker.css}">
-    <script type="text/javascript" th:src="@{../js/analytics.js}"></script>
-    <script type="text/javascript" th:src="@{../js/moment-with-locales.js}"></script>
-    <script type="text/javascript" th:src="@{../js/bootstrap-datetimepicker.js}"></script>
-
-</head>
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker4').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
-    });
-    $(function () {
-        $('#datetimepicker5').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
-    });
-    $(function () {
-        $('#datetimepicker6').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
-    });
-</script>
+<head th:replace="~{layout/mainHeader :: head ('Alta de Modificación')}"></head>
 
 <body>
 
-<!--Encabezado que vive en otra ventana-->
-<div th:replace="layout/header :: cabeceraPrincipal"></div>
+<header th:replace="~{layout/mainHeader :: header }"></header>
 
 <div class="container">
     <br>
@@ -93,13 +41,13 @@
             <tr>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text" disabled="disabled" th:text="${modficationObject.ComponentName}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="nombre_componente">
+                        <input type="text" disabled="disabled" th:value="${modficationObject.ComponentName}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="nombre_componente">
                         <label for="demo-input" class="mdc-text-field__label">Nombre de Componente</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
                     <div id="direccion-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text" disabled="disabled" th:text="${modficationObject.levelName}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
+                        <input type="text" disabled="disabled" th:value="${modficationObject.levelName}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="demo-input">
                         <label for="demo-input" class="mdc-text-field__label">Direccion</label>
                     </div>
                 </td>
@@ -315,10 +263,12 @@
     </div>
 </form>
 
-<!--Footer que debe ir en todas las ventanas-->
-<div th:replace="layout/footer :: FooterPrincipal"></div>
+<footer th:replace="~{layout/footer2 :: footer }"></footer>
 
 </body>
+
+<div th:replace="~{layout/footer2 :: scripts }"></div>
+
 <script>mdc.autoInit()</script>
 <style rel="stylesheet">
     .mdc-text-field__input {
@@ -330,6 +280,22 @@
         mdc.select.MDCSelect.attachTo(document.getElementById('DifMod-js-select'));
         mdc.select.MDCSelect.attachTo(document.getElementById('Prioridad-js-select'));
         mdc.select.MDCSelect.attachTo(document.getElementById('Origen-js-select'));
+    });
+
+    $(function () {
+        $('#datetimepicker4').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+    });
+    $(function () {
+        $('#datetimepicker5').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+    });
+    $(function () {
+        $('#datetimepicker6').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
     });
 </script>
 

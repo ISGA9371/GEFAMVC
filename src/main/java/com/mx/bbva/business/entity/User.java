@@ -20,7 +20,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "CD_USUARIO_CORP", nullable = false, unique = true)
+    @Column(name = "CD_USUARIO_CORP", nullable = false)
     private String userInternalId;
     @JoinColumn(name = "ST_USUARIO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
@@ -226,24 +226,27 @@ public class User implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        return userInternalId.equals(user.userInternalId);
+    public int hashCode() {
+        int hash = 0;
+        hash += (userInternalId != null ? userInternalId.hashCode() : 0);
+        return hash;
     }
 
     @Override
-    public int hashCode() {
-        return userInternalId.hashCode();
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof User)) {
+            return false;
+        }
+        User other = (User) object;
+        if ((this.userInternalId == null && other.userInternalId != null) || (this.userInternalId != null && !this.userInternalId.equals(other.userInternalId))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "userInternalId='" + userInternalId + '\'' +
-                '}';
+        return "com.mx.bbva.business.entity.User[ userInternalId=" + userInternalId + " ]";
     }
 }

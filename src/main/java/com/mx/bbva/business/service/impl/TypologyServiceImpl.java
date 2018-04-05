@@ -13,8 +13,8 @@ public class TypologyServiceImpl implements TypologyService {
     private TypologyRepository typologyRepository;
 
     @Override
-    public List<Typology> findByComponent(String typologyComponent) {
-        return typologyRepository.findAllByTypologyComponent(typologyComponent);
+    public List<Typology> findByComponent(boolean typologyComponent) {
+        return typologyRepository.findAllByTypologyNewComponent(typologyComponent);
     }
 
     @Override

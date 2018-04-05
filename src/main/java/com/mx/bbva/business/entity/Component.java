@@ -55,7 +55,7 @@ public class Component implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date componentUploadDate;
     @Column(name = "NU_FACTURABLE")
-    private int componentForBill;
+    private boolean componentForBill;
     @JsonIgnore
     @JoinColumn(name = "ST_TIPIFICACION", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
@@ -261,11 +261,11 @@ public class Component implements Serializable {
         this.requirement = requirement;
     }
 
-    public int getComponentForBill() {
+    public boolean isComponentForBill() {
         return componentForBill;
     }
 
-    public void setComponentForBill(int componentForBill) {
+    public void setComponentForBill(boolean componentForBill) {
         this.componentForBill = componentForBill;
     }
 

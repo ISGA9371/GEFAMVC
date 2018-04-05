@@ -1,5 +1,5 @@
 $(function () {
-
+/*
     const principal = new mdc.select.MDCSelect(document.querySelector('#principal'));
     var principalEL = $('#principal');
     var principalId = $("#level\\.levelSuperior\\.levelSerial").val();
@@ -33,13 +33,11 @@ $(function () {
         }else $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
 
     });
-
-    /* LOADING SUBDIRECCIONES CUANDO DIRECCION CMABIA
+    //LOADING SUBDIRECCIONES CUANDO DIRECCION CMABIA
     let coso = parseInt("0");
     principal.listen('MDCSelect:change', () => {
         if(++coso > 1){coso = 0; return;}
-        let id = select.selectedOptions[0].value;
-
+        let id = principal.selectedOptions[0].value;
         $.ajax({
             url: "/levels/"+id+"/sublevel"
         }).done(function(data) {
@@ -57,7 +55,6 @@ $(function () {
 
         });
     });
-    */
 
     const responsible = new mdc.select.MDCSelect(document.querySelector('#responsible'));
     var responsibleEL = $('#responsible');
@@ -129,7 +126,41 @@ $(function () {
     pi.selectedIndex = piEL.find("ul li[value="+ piId +"]").index();
     pi.value = piEL.find("ul li[id="+piId+"]").html();
 
-    //TODO PROJECTs
+    const project = new mdc.select.MDCSelect(document.querySelector('#project'));
+    var projectEL = $('#project');
+    var projectId = $("#project\\.projectId").val();
+    console.log("project ID "+projectId);
+    project.selectedIndex = projectEL.find("ul li[value="+ projectId +"]").index();
+    project.value = projectEL.find("ul li[id="+projectId+"]").html();
+
+
+    //TODO DOING PROJECTS
+    /*
+    $.ajax({
+        url: "/projects/"+principalId+"/sublevel"
+    }).done(function(data) {
+        let subdirs = data;
+        //$("#subdir-sel-text").html("");
+        if (typeof subdirs !== 'undefined' && subdirs.length > 0) {
+            $("#subdir-select").html("");
+            $.each(subdirs, function( index, value ) {
+                $("#subdir-select").append(
+                    "<li class='mdc-list-item' role='option' tabindex='0' " +
+                    "value='"+value.levelSerial+"'>"+value.levelName+"</li>");
+
+            });
+
+            const subPrincipal = new mdc.select.MDCSelect(document.querySelector('#subprincipal'));
+            var subPrincipalEL = $('#subprincipal');
+            var subPrincipalId = $("#level\\.levelSerial").val();
+            console.log("LEVELSERIAL ID "+subPrincipalId);
+            subPrincipal.selectedIndex = subPrincipalEL.find("ul li[value="+ subPrincipalId +"]").index();
+            subPrincipal.value = subPrincipalEL.find("ul li[id="+subPrincipalId+"]").html();
+
+        }else $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+    });
+
+
 
     const status = new mdc.select.MDCSelect(document.querySelector('#status'));
     var statusEL = $('#status');
@@ -138,6 +169,11 @@ $(function () {
     status.selectedIndex = statusEL.find("ul li[value="+ statusId +"]").index();
     status.value = statusEL.find("ul li[id="+statusId+"]").html();
 
-    //TODO Al enviar objeto, poner a null el level.levelSuperior,levelSerial
+    //TODO Al enviar objeto, poner a null el level.levelSuperior.levelSerial
+    $('#form').submit(function() {
+        $("#level\\.levelSuperior\\.levelSerial").val(null);
+        return true;
+    });
 
+*/
 });

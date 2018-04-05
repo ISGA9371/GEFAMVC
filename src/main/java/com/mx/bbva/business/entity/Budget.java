@@ -291,18 +291,22 @@ public class Budget implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Budget budget = (Budget) o;
-
-        return budgetId.equals(budget.budgetId);
+    public int hashCode() {
+        int hash = 0;
+        hash += (budgetId != null ? budgetId.hashCode() : 0);
+        return hash;
     }
 
     @Override
-    public int hashCode() {
-        return budgetId.hashCode();
+    public boolean equals(Object object) {
+        if (!(object instanceof Budget)) {
+            return false;
+        }
+        Budget other = (Budget) object;
+        if ((this.budgetId == null && other.budgetId != null) || (this.budgetId != null && !this.budgetId.equals(other.budgetId))) {
+            return false;
+        }
+        return true;
     }
 
     @Override

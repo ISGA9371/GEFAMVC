@@ -1,18 +1,17 @@
 package com.mx.bbva.controller;
 
+import com.mx.bbva.business.entity.Component;
 import com.mx.bbva.business.entity.Issue;
 import com.mx.bbva.business.entity.Origin;
 import com.mx.bbva.business.entity.Priority;
+import com.mx.bbva.business.service.ComponentService;
 import com.mx.bbva.business.service.IssueService;
 import com.mx.bbva.business.service.OriginService;
 import com.mx.bbva.business.service.PriorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -27,11 +26,14 @@ public class IssueController {
     private IssueService issueService;
     private OriginService originService;
     private PriorityService priorityService;
+    private ComponentService componentService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String createIssue(Model model) {
+    public String createIssue(Model model, @RequestParam(value = "componentId") Integer componentId) {
         // TODO Validate user
         LOG.info("Creating new issue");
+        Component component = componentService.findComponent(componentId);
+        model.addAttribute("componentData", component);
         model.addAttribute("issue", new Issue());
         //TODO Add catalogs
         return URL_FACTORY + NEW_ISSUE;
@@ -88,5 +90,10 @@ public class IssueController {
     @Autowired
     public void setPriorityService(PriorityService priorityService) {
         this.priorityService = priorityService;
+    }
+
+    @Autowired
+    public void setComponentService(ComponentService componentService) {
+        this.componentService = componentService;
     }
 }

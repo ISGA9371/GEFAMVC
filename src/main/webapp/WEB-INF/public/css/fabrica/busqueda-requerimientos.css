@@ -6,7 +6,34 @@
     margin-top: 12px;
 }
 
+.detail-td{
+    padding: 0 !important;
+    border-width: 0 !important;
+    background: #F4F4F4;
+}
+
 .detail-label{
     font-size: 14px;
     color: #005EB8;
+}
+.detail-label:not(:first-of-type){
+    padding-left: 32px;
+}
+
+.dropdown a.dropdown-toggle{
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+tr.clickable{
+    cursor: pointer;
+}
+
+tr.clickable[aria-expanded="true"] {  background-color: #d9efe0 !important;  }
+
+td.detail-td tr td:first-of-type{
+    padding-left: 5px;
+}
+td.detail-td tr td:last-of-type{
+    padding-right: 5px;
 }

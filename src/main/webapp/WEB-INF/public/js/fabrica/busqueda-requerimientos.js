@@ -124,5 +124,10 @@ $(function () {
         $("#serviceTypeId").val(id);
     });
 
+    $('tr.clickable').click(function() {
+        var radioButton = $(this).find('input[type=radio]');
+        radioButton.prop('checked', true);
+        $("#edit-requirement").attr("href","/requirements/"+radioButton.val());
+    });
 
 });
