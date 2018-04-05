@@ -37,12 +37,12 @@ public class Requirement implements Serializable {
     @Column(name = "NU_HRS_SIN_FACT")
     private Integer requirementNoBilledHours;
     @Column(name = "ST_FACTURADO")
-    private boolean requirementBilled;
+    private Boolean requirementBilled;
     @Column(name = "TM_ALTA_REQ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date requirementDateUpload;
     @Column(name = "NU_FACTURABLE")
-    private boolean requirementCanBilled;
+    private Boolean requirementCanBilled;
     @Column(name = "FH_INICIO_REQ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date requirementStartDate;
@@ -91,7 +91,7 @@ public class Requirement implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<Invoice> invoices;
-    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "requirement")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "requirement")
     private List<BudgetRequirement> budgetRequirements;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
@@ -177,11 +177,11 @@ public class Requirement implements Serializable {
         this.requirementNoBilledHours = requirementNoBilledHours;
     }
 
-    public boolean isRequirementBilled() {
+    public Boolean getRequirementBilled() {
         return requirementBilled;
     }
 
-    public void setRequirementBilled(boolean requirementBilled) {
+    public void setRequirementBilled(Boolean requirementBilled) {
         this.requirementBilled = requirementBilled;
     }
 
@@ -193,20 +193,28 @@ public class Requirement implements Serializable {
         this.requirementDateUpload = requirementDateUpload;
     }
 
-    public boolean isRequirementCanBilled() {
+    public Boolean getRequirementCanBilled() {
         return requirementCanBilled;
     }
 
-    public void setRequirementCanBilled(boolean requirementCanBilled) {
+    public void setRequirementCanBilled(Boolean requirementCanBilled) {
         this.requirementCanBilled = requirementCanBilled;
     }
 
-    public List<Invoice> getInvoices() {
-        return invoices;
+    public Date getRequirementStartDate() {
+        return requirementStartDate;
     }
 
-    public void setInvoices(List<Invoice> invoices) {
-        this.invoices = invoices;
+    public void setRequirementStartDate(Date requirementStartDate) {
+        this.requirementStartDate = requirementStartDate;
+    }
+
+    public Date getRequirementEndDate() {
+        return requirementEndDate;
+    }
+
+    public void setRequirementEndDate(Date requirementEndDate) {
+        this.requirementEndDate = requirementEndDate;
     }
 
     public User getUserManager() {
@@ -281,30 +289,6 @@ public class Requirement implements Serializable {
         this.area = area;
     }
 
-    public Date getRequirementStartDate() {
-        return requirementStartDate;
-    }
-
-    public void setRequirementStartDate(Date requirementStartDate) {
-        this.requirementStartDate = requirementStartDate;
-    }
-
-    public Date getRequirementEndDate() {
-        return requirementEndDate;
-    }
-
-    public void setRequirementEndDate(Date requirementEndDate) {
-        this.requirementEndDate = requirementEndDate;
-    }
-
-    public ProgramIncrement getProgramIncrement() {
-        return programIncrement;
-    }
-
-    public void setProgramIncrement(ProgramIncrement programIncrement) {
-        this.programIncrement = programIncrement;
-    }
-
     public Methodology getMethodology() {
         return methodology;
     }
@@ -327,6 +311,22 @@ public class Requirement implements Serializable {
 
     public void setChannel(Channel channel) {
         this.channel = channel;
+    }
+
+    public ProgramIncrement getProgramIncrement() {
+        return programIncrement;
+    }
+
+    public void setProgramIncrement(ProgramIncrement programIncrement) {
+        this.programIncrement = programIncrement;
+    }
+
+    public List<Invoice> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
     }
 
     public List<BudgetRequirement> getBudgetRequirements() {
