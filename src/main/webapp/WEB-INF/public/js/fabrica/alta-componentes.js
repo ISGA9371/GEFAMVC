@@ -12,8 +12,8 @@ function init() {
     addHoursValidation();
     addButtonEvents();
 
-    $("#statusTypology").val(3);
-    $("#status").val(3);
+    $("#statusTypology").val(8);
+    $("#status").val(31);
 }
 
 function getVersion() {
