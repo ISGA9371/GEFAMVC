@@ -74,6 +74,12 @@ public class BudgetController {
         return URL_BUDGET + EDIT_BUDGET;
     }
 
+    @RequestMapping(value = "/filters", method = RequestMethod.GET)
+    public String filtersForRequirements(Model model) {
+        model.addAttribute("filters", new Budget());
+        return URL_BUDGET + SEARCH_BUDGETS;
+    }
+
     @ModelAttribute("areas")
     public List<Area> populateAreas() {
         return this.areaService.findAllAreas();

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-<head>
-    <!--Encabezado que vive en otra ventana-->
+<!--head>
+
     <div th:replace="layout/header :: cabeceraPrincipal"></div>
 
 
@@ -14,31 +14,32 @@
     <title>Alta de Duda</title>
 
 
-    <!-- Estilos -->
     <script type="text/javascript" th:src="@{../js/jquery-3.2.1.min.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{../css/bootstrap.min.css}">
     <script type="text/javascript" th:src="@{../js/bootstrap.min.js}"></script>
 
-    <!--Script generales-->
+
     <link rel="stylesheet" type="text/css" th:href="@{../css/estilosGF.css}">
 
 
-    <!--Scripts para campos de texto-->
     <link rel="stylesheet" type="text/css" th:href="@{../css/material-components-web.css}">
     <script type="text/javascript" th:src="@{../js/material-components-web.js}"></script>
 
 
-    <!--Estilos para los combos-->
+
     <link rel="stylesheet" type="text/css" th:href="@{../css/select.css}">
     <script type="text/javascript" th:src="@{../js/ready.js}"></script>
 
-    <!--Estilos para los calendarios-->
+
     <link rel="stylesheet" type="text/css" th:href="@{../css/bootstrap-datetimepicker.css}">
     <script type="text/javascript" th:src="@{../js/analytics.js}"></script>
     <script type="text/javascript" th:src="@{../js/moment-with-locales.js}"></script>
     <script type="text/javascript" th:src="@{../js/bootstrap-datetimepicker.js}"></script>
 
-</head>
+</head-->
+
+<head th:replace="~{layout/mainHeader :: head ('Alta de Duda')}"></head>
+
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker4').datetimepicker({
@@ -47,6 +48,9 @@
     });
 </script>
 <body>
+
+<header th:replace="~{layout/mainHeader :: header }"></header>
+
 <div class="container">
     <br>
     <div class="row">
@@ -176,8 +180,11 @@
         </form>
     </div>
 
+    <footer th:replace="~{layout/footer2 :: footer }"></footer>
 
 </body>
+
+<div th:replace="~{layout/footer2 :: scripts }"></div>
 
 <script>mdc.autoInit()</script>
 <style rel="stylesheet">

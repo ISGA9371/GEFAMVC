@@ -1,41 +1,7 @@
 <!DOCTYPE html>
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-<head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Alta de PEP</title>
-
-
-    <script type="text/javascript" th:src="@{../js/jquery-3.2.1.min.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{../css/bootstrap.min.css}">
-    <script type="text/javascript" th:src="@{../js/bootstrap.min.js}"></script>
-
-    <link rel="stylesheet" type="text/css" th:href="@{../css/estilosGF.css}">
-
-
-
-    <link rel="stylesheet" type="text/css" th:href="@{../css/material-components-web.css}">
-    <script type="text/javascript" th:src="@{../js/material-components-web.js}"></script>
-
-
-    <link rel="stylesheet" type="text/css" th:href="@{../css/select.css}">
-    <script type="text/javascript" th:src="@{../js/ready.js}"></script>
-
-
-    <link rel="stylesheet" type="text/css" th:href="@{../css/bootstrap-datetimepicker.css}">
-    <script type="text/javascript" th:src="@{../js/analytics.js}"></script>
-    <script type="text/javascript" th:src="@{../js/moment-with-locales.js}"></script>
-    <script type="text/javascript" th:src="@{../js/bootstrap-datetimepicker.js}"></script>
-
-</head>
-
-<head th:replace="~{layout/mainHeader :: head ('Alta de Requerimientos')}"></head>
-
+<head th:replace="~{layout/mainHeader :: head ('Alta de PEP')}"></head>
 
 <body>
 
@@ -126,7 +92,7 @@
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
-                                <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userId}" role="option" th:text="${users.userInternalId}"></li>
+                                <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
                             </ul>
                         </div>
                     </div>
@@ -147,7 +113,7 @@
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
-                                <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userId}" role="option" th:text="${users.userInternalId}"></li>
+                                <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
                             </ul>
                         </div>
                     </div>
@@ -257,7 +223,7 @@
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
-                                <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userId}" role="option" th:text="${users.userInternalId}"></li>
+                                <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
                             </ul>
                         </div>
                     </div>
@@ -289,7 +255,7 @@
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
-                                <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userId}" role="option" th:text="${users.userInternalId}"></li>
+                                <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
                             </ul>
                         </div>
                     </div>
@@ -304,7 +270,7 @@
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
-                                <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userId}" role="option" th:text="${users.userInternalId}"></li>
+                                <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
                             </ul>
                         </div>
                     </div>

@@ -1,64 +1,16 @@
 <!DOCTYPE html>
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-<head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<head th:replace="~{layout/mainHeader :: head ('Busqueda de PEP')}"></head>
 
-    <title>Busqueda de PEP</title>
-
-
-    <!-- Estilos -->
-    <script type="text/javascript" th:src="@{../js/jquery-3.2.1.min.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{../css/bootstrap.min.css}">
-    <script type="text/javascript" th:src="@{../js/bootstrap.min.js}"></script>
-
-    <!--Script generales-->
-    <link rel="stylesheet" type="text/css" th:href="@{../css/estilosGF.css}">
-
-
-    <!--Scripts para campos de texto-->
-    <link rel="stylesheet" type="text/css" th:href="@{../css/material-components-web.css}">
-    <script type="text/javascript" th:src="@{../js/material-components-web.js}"></script>
-
-
-    <!--Estilos para los combos-->
-    <link rel="stylesheet" type="text/css" th:href="@{../css/select.css}">
-    <script type="text/javascript" th:src="@{../js/ready.js}"></script>
-
-</head>
-
-
-<style>
-    #demo-wrapper {
-        padding: 4px;
-        padding-left: 0;
-    }
-
-    /* Hack to work around style-loader asynchronously loading styles. */
-    /* Equivalent to using mdc-typography's subheading2, which is used in the sass file. */
-    .mdc-select {
-        font-family: Roboto, sans-serif;
-        font-size: 1rem;
-        font-weight: 400;
-        letter-spacing: .04em;
-    }
-
-    .example {
-        max-width: 400px;
-        margin: 24px;
-        padding: 24px;
-    }
-
-</style>
 <body>
+
+<header th:replace="~{layout/mainHeader :: header }"></header>
+
 <div class="container">
     <br>
     <div class="row">
-        <div class="col-md-12" align="center" style="font-size:30; font-family:BBVA Web Book">PEP´s</div>
+        <div class="col-md-12" align="center" style="font-size:30; font-family:BBVA Web Book">Búsqueda de PEP´s</div>
     </div>
     <br>
     <div>
@@ -356,7 +308,7 @@
     </table>
     <br>
     <br>
-    <div >
+    <!--div >
         <div class="col-md-12" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Resultado de la Busqueda</div>
         <div class="col-md-12" align="right" style="font-size:20; font-family:BBVA Web Book; background-color:#A569BD; color:#FFFFFF">PEP´S</div>
 
@@ -472,9 +424,14 @@
                 </td>
             </tr>
         </table>
-    </div>
+    </div-->
 </div>
+
+<footer th:replace="~{layout/footer2 :: footer }"></footer>
+
 </body>
+
+<div th:replace="~{layout/footer2 :: scripts }"></div>
 
 <script>mdc.autoInit()</script>
 <style rel="stylesheet">
