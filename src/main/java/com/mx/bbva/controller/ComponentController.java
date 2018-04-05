@@ -3,7 +3,6 @@ package com.mx.bbva.controller;
 import com.mx.bbva.business.dto.ComponentSearchDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
-import com.mx.bbva.util.query.QueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -87,21 +86,22 @@ public class ComponentController {
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String searchForComponents(@ModelAttribute("filters") ComponentSearchDTO filters, Model model) {
-        String query = new QueryGenerator().generate(filters, "Component");
-        List<Component> components = componentService.findByCustomQuery(query);
-        model.addAttribute("components", components);
+        // TODO Work in progress
+        /* String query = new QueryGenerator().generate(filters, "Component");
+        List<Component> components = componentService.findByCustomQuery(query); */
+        model.addAttribute("components", componentService.findAllComponents());
         return URL_FACTORY + SEARCH_COMPONENTS;
     }
 
     //TODO Use Enums
     @ModelAttribute("tipologiaNewCmb")
     public List<Typology> populateNewTypologies() {
-        return this.typologyService.findByComponent("0");
+        return this.typologyService.findByComponent(false);
     }
 
     @ModelAttribute("tipologiaModCmb")
     public List<Typology> populateModTypologies() {
-        return this.typologyService.findByComponent("1");
+        return this.typologyService.findByComponent(true);
     }
 
     // LevelTypeId 1 - Direccion

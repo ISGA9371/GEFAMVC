@@ -24,8 +24,8 @@ public class Typology implements Serializable {
     @Column(name = "CD_TIPOLOGIA", nullable = false)
     private Integer typologyId;
     @Basic(optional = false)
-    @Column(name = "TP_COMPONENTE", nullable = false, length = 10)
-    private String typologyComponent;
+    @Column(name = "TP_COMPONENTE", nullable = false)
+    private boolean typologyNewComponent;
     @Column(name = "NU_DIFICULTAD")
     private Character typologySeverity;
     @Column(name = "NU_HM_DIFICULTAD", precision = 12)
@@ -53,9 +53,8 @@ public class Typology implements Serializable {
         this.typologyId = typologyId;
     }
 
-    public Typology(Integer typologyId, String typologyComponent, int typologyYear) {
+    public Typology(Integer typologyId, int typologyYear) {
         this.typologyId = typologyId;
-        this.typologyComponent = typologyComponent;
         this.typologyYear = typologyYear;
     }
 
@@ -67,12 +66,12 @@ public class Typology implements Serializable {
         this.typologyId = typologyId;
     }
 
-    public String getTypologyComponent() {
-        return typologyComponent;
+    public boolean isTypologyNewComponent() {
+        return typologyNewComponent;
     }
 
-    public void setTypologyComponent(String typologyComponent) {
-        this.typologyComponent = typologyComponent;
+    public void setTypologyNewComponent(boolean typologyNewComponent) {
+        this.typologyNewComponent = typologyNewComponent;
     }
 
     public Character getTypologySeverity() {
