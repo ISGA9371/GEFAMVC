@@ -32,7 +32,7 @@ public class BudgetRequirement implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date budgetRequirementDate;
     @Column(name = "ST_FACTURADO")
-    private boolean budgetRequirementBilled;
+    private Boolean budgetRequirementBilled;
     @JoinColumn(name = "CD_PEP", referencedColumnName = "CD_PEP", nullable = false)
     @ManyToOne(optional = false)
     private Budget budget;
@@ -90,11 +90,11 @@ public class BudgetRequirement implements Serializable {
         this.invoices = invoices;
     }
 
-    public boolean isBudgetRequirementBilled() {
+    public Boolean getBudgetRequirementBilled() {
         return budgetRequirementBilled;
     }
 
-    public void setBudgetRequirementBilled(boolean budgetRequirementBilled) {
+    public void setBudgetRequirementBilled(Boolean budgetRequirementBilled) {
         this.budgetRequirementBilled = budgetRequirementBilled;
     }
 
