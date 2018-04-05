@@ -1,45 +1,61 @@
 $(function () {
 
-  $('#datetimepickerReal').datetimepicker({
+  $('#txt_datetimepickerReal').datetimepicker({
     format: 'DD/MM/YYYY'
   });
 
-  $('#datetimepickerPrev').datetimepicker({
+  $('#txt_datetimepickerPrev').datetimepicker({
     format: 'DD/MM/YYYY'
   });
 
-  $('#datetimepickerNego').datetimepicker({
+  $('#txt_datetimepickerNego').datetimepicker({
     format: 'DD/MM/YYYY'
   });
 
-  $('#datetimepickerRealFact').datetimepicker({
+  $('#txt_datetimepickerRealFact').datetimepicker({
     format: 'DD/MM/YYYY'
   });
 
   $("#tabs").tabs();
-
-  const tecnologia = new mdc.select.MDCSelect(document.querySelector('#slct_tecnologia'));
   
-  console.log(tecnologia);
 
-  tecnologia.listen('MDCSelect:change', () => {
-     alert(`Selected "${tecnologia.selectedOptions[0].textContent}" at index ${tecnologia.selectedIndex} ` +
-       `with value "${tecnologia.value}"`);
+  const direccion    = new mdc.select.MDCSelect(document.querySelector('#slct_direccion'));
+  const subidreccion = new mdc.select.MDCSelect(document.querySelector('#slct_subidreccion'));
+  const empresa      = new mdc.select.MDCSelect(document.querySelector('#slct_empresa'));
+  const tecnologia   = new mdc.select.MDCSelect(document.querySelector('#slct_tecnologia'));
+  const nuevo_modificado  = new mdc.select.MDCSelect(document.querySelector('#slct_nuevo_modificado'));
+  const estado            = new mdc.select.MDCSelect(document.querySelector('#slct_estado'));
+  const tipologia_inicial = new mdc.select.MDCSelect(document.querySelector('#slct_tipologia_inicial'));
+  const tipologia_final   = new mdc.select.MDCSelect(document.querySelector('#slct_tipologia_final'));
+  const dificultad_inicial = new mdc.select.MDCSelect(document.querySelector('#slct_dificultad_inicial'));
+  const estado_tipificado  = new mdc.select.MDCSelect(document.querySelector('#slct_estado_tipificado'));
+  const dificultad_final   = new mdc.select.MDCSelect(document.querySelector('#slct_dificultad_final '));
+
+
+  direccion.listen('MDCSelect:change', () => {
+    //  alert(`Selected "${tecnologia.selectedOptions[0].textContent}" at index ${tecnologia.selectedIndex} ` +
+    //    `with value "${tecnologia.value}"`);
+
+
   });
 
-
+  
   $("#btn-submit").click(function(){
-    $("#hdn_txt_componente").val( $("#txt_componente").val() );
-    $("#hdn_txt_requerimiento").val( $("#txt_requerimiento").val() );
-    $("#hdn_txt_version").val( $("#txt_version").val() );
-    $("#hdn_txt_datetimepickerReal").val( $("#txt_datetimepickerReal").val() );
-    $("#hdn_txt_datetimepickerPrev").val( $("#txt_datetimepickerPrev").val() );
-    $("#hdn_txt_datetimepickerNego").val( $("#txt_datetimepickerNego").val() );
-    $("#hdn_txt_datetimepickerRealFact").val( $("#txt_datetimepickerRealFact").val() );
-    $("#hdn_txt_horas_iniciales").val( $("#txt_horas_iniciales").val() );
-    $("#hdn_txt_horas_finales").val( $("#txt_horas_finales").val() );
 
-    $("#form").submit();
+    $("#hdn_slct_direccion").val(direccion.value);
+    $("#hdn_slct_subidreccion").val(subidreccion.value);
+    $("#hdn_slct_empresa").val(empresa.value);
+    $("#hdn_slct_tecnologia").val(tecnologia.value);
+    $("#hdn_slct_nuevo_modificado").val(nuevo_modificado.value);
+    $("#hdn_slct_estado").val(estado.value);
+    $("#hdn_slct_tipologia_inicial").val(tipologia_inicial.value);
+    $("#hdn_slct_tipologia_final").val(tipologia_final.value);
+    $("#hdn_slct_dificultad_inicial").val(dificultad_inicial.value);
+    $("#hdn_slct_estado_tipificado").val(estado_tipificado.value);
+    $("#hdn_slct_dificultad_final").val(dificultad_final.value);
+
+
+    // $("#form").submit();
   });
 
 

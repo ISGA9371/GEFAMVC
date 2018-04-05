@@ -10,321 +10,355 @@
 
   <div class="container">
 
-    <form id="form" name="form" th:action="@{/components/search}" method="GET">
-      <!-- <input type="hidden" id="hdn_txt_componente" th:field="*{txt_componente}" />
-      <input type="hidden" id="hdn_txt_requerimiento" th:field="*{txt_requerimiento}" />
-      <input type="hidden" id="hdn_txt_version" th:field="*{txt_version}" />
-      <input type="hidden" id="hdn_slct_direccion" th:field="*{slct_direccion}" />
-      <input type="hidden" id="hdn_slct_subidreccion" th:field="*{slct_subidreccion}" />
-      <input type="hidden" id="hdn_slct_empresa" th:field="*{slct_empresa}" />
-      <input type="hidden" id="hdn_slct_tecnologia" th:field="*{slct_tecnologia}" />
-      <input type="hidden" id="hdn_slct_nuevo_modificado" th:field="*{slct_nuevo_modificado}" />
-      <input type="hidden" id="hdn_slct_estado" th:field="*{slct_estado}" />
-      <input type="hidden" id="hdn_txt_datetimepickerReal" th:field="*{txt_datetimepickerReal}" />
-      <input type="hidden" id="hdn_txt_datetimepickerPrev" th:field="*{txt_datetimepickerPrev}" />
-      <input type="hidden" id="hdn_slct_tipologia_inicial" th:field="*{slct_tipologia_inicial}" />
-      <input type="hidden" id="hdn_txt_datetimepickerNego" th:field="*{txt_datetimepickerNego}" />
-      <input type="hidden" id="hdn_txt_datetimepickerRealFact" th:field="*{txt_datetimepickerRealFact}" />
-      <input type="hidden" id="hdn_slct_tipologia_final" th:field="*{slct_tipologia_final}" />
-      <input type="hidden" id="hdn_slct_dificultad_inicial" th:field="*{slct_dificultad_inicial}" />
-      <input type="hidden" id="hdn_txt_horas_iniciales" th:field="*{txt_horas_iniciales}" />
-      <input type="hidden" id="hdn_slct_estado_tipificado" th:field="*{slct_estado_tipificado}" />
-      <input type="hidden" id="hdn_slct_dificultad_final" th:field="*{slct_dificultad_final}" />
-      <input type="hidden" id="hdn_txt_horas_finales" th:field="*{txt_horas_finales}" /> -->
-    </form>
+    
 
     <div class="row">
-      <div class="col-md-12" align="center" style="font-size:30px; font-family:BBVA Web Book">Componentes</div>
+      <div class="col-md-12 text-center">
+        <h2 class="h2-title-content">Componentes</h2>
+      </div>
     </div>
-    <br>
-    <div class="row">
-      <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Criterios De Busqueda</div>
-      <table class="col-md-12">
-        <tr>
-          <td class="col-md-4" align="center">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-              <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" name="txt_componente"
-                id="txt_componente">
-              <label class="mdc-text-field__label">Componente</label>
-            </div>
-          </td>
-          <td class="col-md-4" align="center">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-              <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" name="txt_requerimiento"
-                id="txt_requerimiento">
-              <label class="mdc-text-field__label">Requerimiento</label>
-            </div>
-          </td>
-          <td class="col-md-4" align="center">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-              <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" name="txt_version" id="txt_version">
-              <label class="mdc-text-field__label">Versión</label>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="col-md-4" align="center">
-            <div id="slct_direccion" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
-              <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                <div class="mdc-select__label">Dirección</div>
-                <div class="mdc-select__selected-text"></div>
-                <div class="mdc-select__bottom-line"></div>
-              </div>
-              <div class="mdc-menu mdc-select__menu col-md-3">
-                <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0" th:each="dir : ${principals}" th:value="${dir.levelId}" th:text="${dir.levelName}">
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </td>
-          <td class="col-md-4" align="center">
-            <div id="slct_subidreccion" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
-              <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                <div class="mdc-select__label">Subdirección</div>
-                <div class="mdc-select__selected-text"></div>
-                <div class="mdc-select__bottom-line"></div>
-              </div>
-              <div class="mdc-menu mdc-select__menu col-md-3">
-                <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0" th:each="subDir : ${subPrincipals}" th:value="${subDir.levelId}" th:text="${subDir.levelName}">
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </td>
-          <td class="col-md-4" align="center">
-            <div id="slct_empresa" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
-              <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                <div class="mdc-select__label">Empresa</div>
-                <div class="mdc-select__selected-text"></div>
-                <div class="mdc-select__bottom-line"></div>
-              </div>
-              <div class="mdc-menu mdc-select__menu col-md-3">
-                <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0">
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr style="height:72px">
-          <td class="col-md-4" align="center">
-            <div id="slct_tecnologia" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
-              <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                <div class="mdc-select__label">Tecnología</div>
-                <div class="mdc-select__selected-text"></div>
-                <div class="mdc-select__bottom-line"></div>
-              </div>
-              <div class="mdc-menu mdc-select__menu col-md-3">
-                <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0" id="net">.NET</li>
-                  <li class="mdc-list-item" role="option" tabindex="0" id="VOS">ADAEVOS</li>
-                  <li class="mdc-list-item" role="option" tabindex="0" id="BI">BI</li>
-                  <li class="mdc-list-item" role="option" tabindex="0" id="BASE">ESSBASE</li>
-                  <li class="mdc-list-item" role="option" tabindex="0" id="HOST">HOST</li>
-                  <li class="mdc-list-item" role="option" tabindex="0" id="AVA">JAVA</li>
-                  <li class="mdc-list-item" role="option" tabindex="0" id="STRATEGY">MICROSTRATEGY</li>
-                  <li class="mdc-list-item" role="option" tabindex="0" id="AR">NACAR</li>
-                  <li class="mdc-list-item" role="option" tabindex="0" id="CLE">ORACLE</li>
-                  <li class="mdc-list-item" role="option" tabindex="0" id="WER">POWER BUILDER</li>
-                  <li class="mdc-list-item" role="option" tabindex="0" id="WER">POWER CENTER</li>
-                  <li class="mdc-list-item" role="option" tabindex="0" id="EBAS">PRUEBAS</li>
-                  <li class="mdc-list-item" role="option" tabindex="0" id="UM">SCRUM</li>
-                  <li class="mdc-list-item" role="option" tabindex="0" id="RING">SPRING</li>
-                  <li class="mdc-list-item" role="option" tabindex="0" id="SUAL">VISUAL BASIC</li>
-                </ul>
-              </div>
-            </div>
-          </td>
-          <td class="col-md-4" align="center">
-            <div id="slct_nuevo_modificado" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
-              <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                <div class="mdc-select__label">Nuevo/Modificado</div>
-                <div class="mdc-select__selected-text"></div>
-                <div class="mdc-select__bottom-line"></div>
-              </div>
-              <div class="mdc-menu mdc-select__menu col-md-3">
-                <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0">Nuevo</li>
-                  <li class="mdc-list-item" role="option" tabindex="0">Modificado</li>
-                </ul>
-              </div>
-            </div>
-          </td>
-          <td class="col-md-4" align="center">
-            <div id="slct_estado" class="mdc-select" role="listbox">
-              <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                <div class="mdc-select__label">Estado</div>
-                <div class="mdc-select__selected-text"></div>
-                <div class="mdc-select__bottom-line"></div>
-              </div>
-              <div class="mdc-menu mdc-select__menu col-md-3">
-                <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0" th:each="estatus : ${componentStatus}" th:value="${estatus.statusId}"
-                    th:text="${estatus.statusId}">
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="col-md-4" align="center">
-            <div class="dog1">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerReal" id='txt_datetimepickerReal' />
-                <label class="mdc-text-field__label">F. Real CGF > Fact. Diseño</label>
-              </div>
-            </div>
-          </td>
-          <td class="col-md-4" align="center">
-            <div class="dog1">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerPrev" id='txt_datetimepickerPrev' />
-                <label class="mdc-text-field__label">F. Prevista Fact. > CGF Software</label>
-              </div>
-            </div>
-          </td>
-          <td class="col-md-4" align="center">
-            <div id="slct_tipologia_inicial" class="mdc-select" role="listbox">
-              <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                <div class="mdc-select__label">Tipologia Inicial</div>
-                <div class="mdc-select__selected-text"></div>
-                <div class="mdc-select__bottom-line"></div>
-              </div>
-              <div class="mdc-menu mdc-select__menu col-md-3">
-                <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0" th:each="tipIni : ${tipologiaNewCmb}" th:value="${tipIni.typologyId}"
-                    th:text="${tipIni.typologyId}">
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="col-md-4" align="center">
-            <div class="dog1">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerNego" id='txt_datetimepickerNego' />
-                <label class="mdc-text-field__label">F. Negociada Fact. > CGF Software</label>
-              </div>
-            </div>
-          </td>
-          <td class="col-md-4" align="center">
-            <div class="dog1">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerRealFact" id='txt_datetimepickerRealFact'
-                />
-                <label class="mdc-text-field__label">F. Real Fact. > CGF Software</label>
-              </div>
-            </div>
-          </td>
-          <td class="col-md-4" align="center">
-            <div id="slct_tipologia_final" class="mdc-select" role="listbox">
-              <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                <div class="mdc-select__label">Tipologia Final</div>
-                <div class="mdc-select__selected-text"></div>
-                <div class="mdc-select__bottom-line"></div>
-              </div>
-              <div class="mdc-menu mdc-select__menu col-md-3">
-                <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0" th:each="tipFin : ${tipologiaModCmb}" th:value="${tipFin.typologyId}"
-                    th:text="${tipFin.typologyId}">
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="col-md-4" align="center">
-            <div id="slct_dificultad_inicial" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
-              <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                <div class="mdc-select__label">Dificultad Inicial</div>
-                <div class="mdc-select__selected-text"></div>
-                <div class="mdc-select__bottom-line"></div>
-              </div>
-              <div class="mdc-menu mdc-select__menu col-md-3">
-                <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0" th:each="dir : ${direcciones}" th:value="${dir.levelSerial}" th:text="${dir.levelName}">
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </td>
-          <td class="col-md-4" align="center">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-              <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" name="txt_horas_iniciales"
-                id="txt_horas_iniciales">
-              <label class="mdc-text-field__label">Horas Inciales</label>
-            </div>
-          </td>
-          <td class="col-md-4" align="center">
-            <div id="slct_estado_tipificado" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
-              <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                <div class="mdc-select__label">Estado Tipif.</div>
-                <div class="mdc-select__selected-text"></div>
-                <div class="mdc-select__bottom-line"></div>
-              </div>
-              <div class="mdc-menu mdc-select__menu col-md-3">
-                <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0" th:each="estatus : ${componentStatus}" th:value="${estatus.statusId}"
-                    th:text="${estatus.statusId}">
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="col-md-4" align="center">
-            <div id="slct_dificultad_final" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
-              <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                <div class="mdc-select__label">Dificultad Final</div>
-                <div class="mdc-select__selected-text"></div>
-                <div class="mdc-select__bottom-line"></div>
-              </div>
-              <div class="mdc-menu mdc-select__menu col-md-3">
-                <ul class="mdc-list mdc-menu__items">
-                  <li class="mdc-list-item" role="option" tabindex="0" th:each="dir : ${direcciones}" th:value="${dir.levelSerial}" th:text="${dir.levelName}">
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </td>
-          <td class="col-md-4" align="center">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-              <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" name="txt_horas_finales"
-                id="txt_horas_finales">
-              <label class="mdc-text-field__label">Horas Finales</label>
-            </div>
-          </td>
-          <td class="col-md-4" align="center" style="height:72px">
-          </td>
-        </tr>
-      </table>
-    </div>
-    <br>
-    <div class="row">
-      <table class="col-md-12">
-        <tr>
-          <td class="col-md-6" align="center">
-            <button type="button" class="btn btn-primary" id="btn-submit">Buscar</button>
-            <button type="button" class="btn btn-primary">Limpiar</button>
-          </td>
-        </tr>
-      </table>
-      <br>
-      <br>
-    </div>
-    <div class="col-md-12" align="Left" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Resultados De Busqueda</div>
-    <div class="col-md-12" align="Left" style="font-size:20px; font-family:BBVA Web Book; background-color:#12a96a; color:#FFFFFF">Requerimientos</div>
 
     <div class="row">
+    
+      <div class="col-md-12 subtitle-content">Criterios De Búsqueda</div>
 
+      <div class="col-xs-12">
+        <form id="form" name="form" th:action="@{/components/search}" method="GET"></form>
+          <!-- 
+                        componentName
+                      requirementName
+                      componentVersion
+                      principalId
+                      subPrincipalId
+                      companyId
+                      technologyId
+                      newModified
+                      statusId
+                      dateRealCgf
+                      datePrev
+                      tipologyInitial
+                      dateNegotiated
+                      dateRealFact
+                      tipologyEndId
+                      dificultyInitialId
+                      hoursInitial
+                      statusTipifiedId
+                      dificultyEnd
+                      hoursEnd
+                      -->
+          
+          <!-- <input type="hidden" id="hdn_txt_componente" th:field="*{componentName}" />
+                      <input type="hidden" id="hdn_txt_requerimiento" th:field="*{requirementName}" />
+                      <input type="hidden" id="hdn_txt_version" th:field="*{componentVersion}" />
+                      <input type="hidden" id="hdn_slct_direccion" th:field="*{principalId}" />
+                      <input type="hidden" id="hdn_slct_subidreccion" th:field="*{subPrincipalId}" />
+                      <input type="hidden" id="hdn_slct_empresa" th:field="*{companyId}" />
+                      <input type="hidden" id="hdn_slct_tecnologia" th:field="*{technologyId}" />
+                      <input type="hidden" id="hdn_slct_nuevo_modificado" th:field="*{newModified}" />
+                      <input type="hidden" id="hdn_slct_estado" th:field="*{statusId}" />
+                      <input type="hidden" id="hdn_txt_datetimepickerReal" th:field="*{dateRealCgf}" />
+                      <input type="hidden" id="hdn_txt_datetimepickerPrev" th:field="*{datePrev}" />
+                      <input type="hidden" id="hdn_slct_tipologia_inicial" th:field="*{tipologyInitial}" />
+                      <input type="hidden" id="hdn_txt_datetimepickerNego" th:field="*{dateNegotiated}" />
+                      <input type="hidden" id="hdn_txt_datetimepickerRealFact" th:field="*{dateRealFact}" />
+                      <input type="hidden" id="hdn_slct_tipologia_final" th:field="*{tipologyEndId}" />
+                      <input type="hidden" id="hdn_slct_dificultad_inicial" th:field="*{dificultyInitialId}" />
+                      <input type="hidden" id="hdn_txt_horas_iniciales" th:field="*{hoursInitial}" />
+                      <input type="hidden" id="hdn_slct_estado_tipificado" th:field="*{statusTipifiedId}" />
+                      <input type="hidden" id="hdn_slct_dificultad_final" th:field="*{dificultyEnd}" />
+                      <input type="hidden" id="hdn_txt_horas_finales" th:field="*{hoursEnd}" /> 
+                    -->
+          <div class="row">
+            <div class="col-md-4">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                <input type="text" class="mdc-text-field__input" name="txt_componente"
+                  id="txt_componente">
+                <label class="mdc-text-field__label">Componente</label>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                <input type="text" class="mdc-text-field__input" name="txt_requerimiento"
+                  id="txt_requerimiento">
+                <label class="mdc-text-field__label">Requerimiento</label>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                <input type="text" class="mdc-text-field__input" name="txt_version" id="txt_version">
+                <label class="mdc-text-field__label">Versión</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-4">
+              <div id="slct_direccion" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Dirección</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0" 
+                      th:each="dir : ${principals}" th:id="${dir.levelId}" th:text="${dir.levelName}">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div id="slct_subidreccion" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Subdirección</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0" 
+                      th:each="subDir : ${subPrincipals}" th:id="${subDir.levelId}" th:text="${subDir.levelName}">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div id="slct_empresa" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Empresa</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0" 
+                      th:each="company : ${companies}" th:id="${company.companyId}" th:text="${company.companyName}">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div id="slct_tecnologia" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Tecnología</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0" id="net">.NET</li>
+                    <li class="mdc-list-item" role="option" tabindex="0" id="VOS">ADAEVOS</li>
+                    <li class="mdc-list-item" role="option" tabindex="0" id="BI">BI</li>
+                    <li class="mdc-list-item" role="option" tabindex="0" id="BASE">ESSBASE</li>
+                    <li class="mdc-list-item" role="option" tabindex="0" id="HOST">HOST</li>
+                    <li class="mdc-list-item" role="option" tabindex="0" id="AVA">JAVA</li>
+                    <li class="mdc-list-item" role="option" tabindex="0" id="STRATEGY">MICROSTRATEGY</li>
+                    <li class="mdc-list-item" role="option" tabindex="0" id="AR">NACAR</li>
+                    <li class="mdc-list-item" role="option" tabindex="0" id="CLE">ORACLE</li>
+                    <li class="mdc-list-item" role="option" tabindex="0" id="WER">POWER BUILDER</li>
+                    <li class="mdc-list-item" role="option" tabindex="0" id="WER">POWER CENTER</li>
+                    <li class="mdc-list-item" role="option" tabindex="0" id="EBAS">PRUEBAS</li>
+                    <li class="mdc-list-item" role="option" tabindex="0" id="UM">SCRUM</li>
+                    <li class="mdc-list-item" role="option" tabindex="0" id="RING">SPRING</li>
+                    <li class="mdc-list-item" role="option" tabindex="0" id="SUAL">VISUAL BASIC</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div id="slct_nuevo_modificado" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Nuevo/Modificado</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0" id="0">Nuevo</li>
+                    <li class="mdc-list-item" role="option" tabindex="1" id="1">Modificado</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div id="slct_estado" class="mdc-select" role="listbox">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Estado</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0" 
+                      th:each="estatus : ${componentStatus}" th:value="${estatus.statusId}" th:text="${estatus.statusId}">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="dog1">
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                  <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerReal" id='txt_datetimepickerReal' />
+                  <label class="mdc-text-field__label">F. Real CGF > Fact. Diseño</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="dog1">
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                  <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerPrev" id='txt_datetimepickerPrev' />
+                  <label class="mdc-text-field__label">F. Prevista Fact. > CGF Software</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div id="slct_tipologia_inicial" class="mdc-select" role="listbox">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Tipologia Inicial</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0" 
+                      th:each="tipIni : ${tipologiaNewCmb}" th:id="${tipIni.typologyId}" th:text="${tipIni.typologyId}">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="dog1">
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                  <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerNego" id='txt_datetimepickerNego' />
+                  <label class="mdc-text-field__label">F. Negociada Fact. > CGF Software</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="dog1">
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                  <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerRealFact" id='txt_datetimepickerRealFact'
+                  />
+                  <label class="mdc-text-field__label">F. Real Fact. > CGF Software</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div id="slct_tipologia_final" class="mdc-select" role="listbox">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Tipologia Final</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0" 
+                      th:each="tipFin : ${tipologiaModCmb}" th:id="${tipFin.typologyId}" th:text="${tipFin.typologyId}">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div id="slct_dificultad_inicial" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Dificultad Inicial</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0" 
+                      th:each="dir : ${direcciones}" th:id="${dir.levelSerial}" th:text="${dir.levelName}">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                <input type="text" class="mdc-text-field__input" name="txt_horas_iniciales"
+                  id="txt_horas_iniciales">
+                <label class="mdc-text-field__label">Horas Inciales</label>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div id="slct_estado_tipificado" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Estado Tipif.</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0" 
+                      th:each="typStatus : ${typingStatus}" th:id="${typStatus.statusId}" th:text="${typStatus.statusName}">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div id="slct_dificultad_final" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Dificultad Final</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu col-md-3">
+                  <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0" 
+                      th:each="dir : ${direcciones}" th:value="${dir.levelSerial}" th:text="${dir.levelName}">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                <input type="text" class="mdc-text-field__input" name="txt_horas_finales"
+                  id="txt_horas_finales">
+                <label class="mdc-text-field__label">Horas Finales</label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- .// row -->
+
+    <div class="row buttons">
+      <div class="col-xs-12 text-center">
+        <button type="button" class="btn btn-primary" id="btn-submit">Buscar</button>
+        <button type="button" class="btn btn-primary">Limpiar</button>
+      </div>
+    </div> <!-- .// row -->
+
+    <div class="row" th:if="${not #lists.isEmpty(components) or components != null}">
+      <div class="col-md-12 subtitle-content">Resultados De Búsqueda</div>
+    </div> <!-- .// row -->
+
+    <div class="row" th:if="${not #lists.isEmpty(components) or components != null}">
       <div id="tabs">
         <ul>
           <li>
@@ -715,15 +749,15 @@
           </table>
         </div>
       </div>
-    </div>
-    <br>
-    <div class="row">
+    </div><!-- .// row -->
+
+    <div class="row buttons" th:if="${not #lists.isEmpty(components) or components != null}">
       <div class="col-xs-12 text-center">
         <button type="button" class="btn btn-primary">Modificar</button>
         <button type="button" class="btn btn-primary">Alta</button>
       </div>
-    </div>
-  </div>
+    </div><!-- .// row -->
+  </div><!-- .// div.container -->
 
   <footer th:replace="~{layout/footer2 :: footer }"></footer>
 </body>
