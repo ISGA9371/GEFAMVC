@@ -4,7 +4,6 @@ package com.mx.bbva.controller;
 import com.mx.bbva.business.dto.RequirementSearchDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
-import com.mx.bbva.util.query.QueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -96,9 +95,10 @@ public class RequirementController {
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String searchForRequirements(@ModelAttribute("filters") RequirementSearchDTO filters, Model model) {
-        String query = new QueryGenerator().generate(filters, "Requirement");
-        List<Requirement> requirements = requirementService.findByCustomQuery(query);
-        model.addAttribute("requirements", requirements);
+        // TODO Work in progress
+        /*String query = new QueryGenerator().generate(filters, "Requirement");
+        List<Requirement> requirements = requirementService.findByCustomQuery(query); */
+        model.addAttribute("requirements", requirementService.findAllRequirements());
         return URL_FACTORY + SEARCH_REQUIREMENTS;
     }
 
