@@ -23,69 +23,61 @@
       <div class="col-md-12 subtitle-content">Criterios De Búsqueda</div>
 
       <div class="col-xs-12">
-        <form id="form" name="form" th:action="@{/components/search}" method="GET"></form>
+        <form id="searchForm" name="searchForm" th:object="${ComponentSearchDTO}" th:action="@{/components/search}" method="GET"></form>
           <!-- 
-                        componentName
-                      requirementName
-                      componentVersion
-                      principalId
-                      subPrincipalId
-                      companyId
-                      technologyId
-                      newModified
-                      statusId
-                      dateRealCgf
-                      datePrev
-                      tipologyInitial
-                      dateNegotiated
-                      dateRealFact
-                      tipologyEndId
-                      dificultyInitialId
-                      hoursInitial
-                      statusTipifiedId
-                      dificultyEnd
-                      hoursEnd
-                      -->
+            componentName
+            requirementName
+            componentVersion
+            principalId
+            subPrincipalId
+            companyId
+            technologyId
+            typologyNewComponent
+            statusId
+            componentDesignRealDeliverDate
+            componentPreviewDeliverDate
+            startProductId
+            componentPossibleDeliverDate
+            componentRealDeliverDate
+            finalProductId
+            typologyStartSeverity
+            typologyStartSeverityHours
+            statusTypologyId
+            typologyFinalSeverity
+            typologyFinalSeverityHours
+          -->
           
-          <!-- <input type="hidden" id="hdn_txt_componente" th:field="*{componentName}" />
-                      <input type="hidden" id="hdn_txt_requerimiento" th:field="*{requirementName}" />
-                      <input type="hidden" id="hdn_txt_version" th:field="*{componentVersion}" />
-                      <input type="hidden" id="hdn_slct_direccion" th:field="*{principalId}" />
-                      <input type="hidden" id="hdn_slct_subidreccion" th:field="*{subPrincipalId}" />
-                      <input type="hidden" id="hdn_slct_empresa" th:field="*{companyId}" />
-                      <input type="hidden" id="hdn_slct_tecnologia" th:field="*{technologyId}" />
-                      <input type="hidden" id="hdn_slct_nuevo_modificado" th:field="*{newModified}" />
-                      <input type="hidden" id="hdn_slct_estado" th:field="*{statusId}" />
-                      <input type="hidden" id="hdn_txt_datetimepickerReal" th:field="*{dateRealCgf}" />
-                      <input type="hidden" id="hdn_txt_datetimepickerPrev" th:field="*{datePrev}" />
-                      <input type="hidden" id="hdn_slct_tipologia_inicial" th:field="*{tipologyInitial}" />
-                      <input type="hidden" id="hdn_txt_datetimepickerNego" th:field="*{dateNegotiated}" />
-                      <input type="hidden" id="hdn_txt_datetimepickerRealFact" th:field="*{dateRealFact}" />
-                      <input type="hidden" id="hdn_slct_tipologia_final" th:field="*{tipologyEndId}" />
-                      <input type="hidden" id="hdn_slct_dificultad_inicial" th:field="*{dificultyInitialId}" />
-                      <input type="hidden" id="hdn_txt_horas_iniciales" th:field="*{hoursInitial}" />
-                      <input type="hidden" id="hdn_slct_estado_tipificado" th:field="*{statusTipifiedId}" />
-                      <input type="hidden" id="hdn_slct_dificultad_final" th:field="*{dificultyEnd}" />
-                      <input type="hidden" id="hdn_txt_horas_finales" th:field="*{hoursEnd}" /> 
-                    -->
+          <input type="hidden" id="hdn_slct_direccion" th:value="*{principalId}" />
+          <input type="hidden" id="hdn_slct_subidreccion" th:value="*{subPrincipalId}" />
+          <input type="hidden" id="hdn_slct_empresa" th:value="*{companyId}" />
+          <input type="hidden" id="hdn_slct_tecnologia" th:value="*{technologyId}" />
+          <input type="hidden" id="hdn_slct_nuevo_modificado" th:value="*{typologyNewComponent}" />
+          <input type="hidden" id="hdn_slct_estado" th:value="*{statusId}" />
+          <input type="hidden" id="hdn_slct_tipologia_inicial" th:value="*{startProductId}" />
+          <input type="hidden" id="hdn_slct_tipologia_final" th:value="*{finalProductId}" />
+          <input type="hidden" id="hdn_slct_dificultad_inicial" th:value="*{typologyStartSeverity}" />
+          <input type="hidden" id="hdn_slct_estado_tipificado" th:value="*{statusTypologyId}" />
+          <input type="hidden" id="hdn_slct_dificultad_final" th:value="*{typologyFinalSeverity}" />
+          
           <div class="row">
             <div class="col-md-4">
               <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                <input type="text" class="mdc-text-field__input" name="txt_componente"
-                  id="txt_componente">
+                <input type="text" class="mdc-text-field__input" name="componentName" id="componentName"
+                  th:value="*{componentName}" />
                 <label class="mdc-text-field__label">Componente</label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                <input type="text" class="mdc-text-field__input" name="txt_requerimiento"
-                  id="txt_requerimiento">
+                <input type="text" class="mdc-text-field__input" name="requirementName" id="requirementName"
+                  th:value="*{requirementName}" />
                 <label class="mdc-text-field__label">Requerimiento</label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                <input type="text" class="mdc-text-field__input" name="txt_version" id="txt_version">
+                <input type="text" class="mdc-text-field__input" name="componentVersion" id="componentVersion"
+                  th:value="*{componentVersion}" />
                 <label class="mdc-text-field__label">Versión</label>
               </div>
             </div>
@@ -196,7 +188,7 @@
                 <div class="mdc-menu mdc-select__menu col-md-3">
                   <ul class="mdc-list mdc-menu__items">
                     <li class="mdc-list-item" role="option" tabindex="0" 
-                      th:each="estatus : ${componentStatus}" th:value="${estatus.statusId}" th:text="${estatus.statusId}">
+                      th:each="estatus : ${componentStatus}" th:value="${estatus.statusId}" th:text="${estatus.statusName}">
                     </li>
                   </ul>
                 </div>
@@ -208,7 +200,8 @@
             <div class="col-md-4">
               <div class="dog1">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                  <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerReal" id='txt_datetimepickerReal' />
+                  <input type="text" class="mdc-text-field__input" name="componentDesignRealDeliverDate" id="componentDesignRealDeliverDate" 
+                    th:value="*{componentDesignRealDeliverDate}" />
                   <label class="mdc-text-field__label">F. Real CGF > Fact. Diseño</label>
                 </div>
               </div>
@@ -216,7 +209,8 @@
             <div class="col-md-4">
               <div class="dog1">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                  <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerPrev" id='txt_datetimepickerPrev' />
+                  <input type="text" class="mdc-text-field__input" name="componentPreviewDeliverDate" id="componentPreviewDeliverDate"
+                     th:value="*{componentPreviewDeliverDate}" />
                   <label class="mdc-text-field__label">F. Prevista Fact. > CGF Software</label>
                 </div>
               </div>
@@ -231,7 +225,7 @@
                 <div class="mdc-menu mdc-select__menu col-md-3">
                   <ul class="mdc-list mdc-menu__items">
                     <li class="mdc-list-item" role="option" tabindex="0" 
-                      th:each="tipIni : ${tipologiaNewCmb}" th:id="${tipIni.typologyId}" th:text="${tipIni.typologyId}">
+                      th:each="tipIni : ${tipologiaNewCmb}" th:id="${tipIni.typologyId}" th:text="${tipIni.product}">
                     </li>
                   </ul>
                 </div>
@@ -243,7 +237,8 @@
             <div class="col-md-4">
               <div class="dog1">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                  <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerNego" id='txt_datetimepickerNego' />
+                  <input type="text" class="mdc-text-field__input" name="componentPossibleDeliverDate" id="componentPossibleDeliverDate"
+                     th:value="*{componentPossibleDeliverDate}" />
                   <label class="mdc-text-field__label">F. Negociada Fact. > CGF Software</label>
                 </div>
               </div>
@@ -251,8 +246,8 @@
             <div class="col-md-4">
               <div class="dog1">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                  <input type='text' class="mdc-text-field__input" row="2" name="txt_datetimepickerRealFact" id='txt_datetimepickerRealFact'
-                  />
+                  <input type="text" class="mdc-text-field__input" name="componentRealDeliverDate" id="componentRealDeliverDate"
+                     th:value="*{componentRealDeliverDate}" />
                   <label class="mdc-text-field__label">F. Real Fact. > CGF Software</label>
                 </div>
               </div>
@@ -267,7 +262,7 @@
                 <div class="mdc-menu mdc-select__menu col-md-3">
                   <ul class="mdc-list mdc-menu__items">
                     <li class="mdc-list-item" role="option" tabindex="0" 
-                      th:each="tipFin : ${tipologiaModCmb}" th:id="${tipFin.typologyId}" th:text="${tipFin.typologyId}">
+                      th:each="tipFin : ${tipologiaModCmb}" th:id="${tipFin.typologyId}" th:text="${tipFin.product}">
                     </li>
                   </ul>
                 </div>
@@ -286,7 +281,7 @@
                 <div class="mdc-menu mdc-select__menu col-md-3">
                   <ul class="mdc-list mdc-menu__items">
                     <li class="mdc-list-item" role="option" tabindex="0" 
-                      th:each="dir : ${direcciones}" th:id="${dir.levelSerial}" th:text="${dir.levelName}">
+                      th:each="difini : ${tipologiaModCmb}" th:id="${difini.typologySeverity}" th:text="${difini.typologySeverity}">
                     </li>
                   </ul>
                 </div>
@@ -294,8 +289,8 @@
             </div>
             <div class="col-md-4">
               <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                <input type="text" class="mdc-text-field__input" name="txt_horas_iniciales"
-                  id="txt_horas_iniciales">
+                <input type="number" class="mdc-text-field__input" name="typologyStartSeverityHours" id="typologyStartSeverityHours" 
+                  th:value="*{typologyStartSeverityHours}" />
                 <label class="mdc-text-field__label">Horas Inciales</label>
               </div>
             </div>
@@ -328,7 +323,7 @@
                 <div class="mdc-menu mdc-select__menu col-md-3">
                   <ul class="mdc-list mdc-menu__items">
                     <li class="mdc-list-item" role="option" tabindex="0" 
-                      th:each="dir : ${direcciones}" th:value="${dir.levelSerial}" th:text="${dir.levelName}">
+                      th:each="difini : ${tipologiaModCmb}" th:id="${difini.typologySeverity}" th:text="${difini.typologySeverity}">
                     </li>
                   </ul>
                 </div>
@@ -336,8 +331,8 @@
             </div>
             <div class="col-md-4">
               <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                <input type="text" class="mdc-text-field__input" name="txt_horas_finales"
-                  id="txt_horas_finales">
+                <input type="number" class="mdc-text-field__input" name="typologyFinalSeverityHours" id="typologyFinalSeverityHours" 
+                  th:value="*{typologyFinalSeverityHours}" />
                 <label class="mdc-text-field__label">Horas Finales</label>
               </div>
             </div>

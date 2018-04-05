@@ -35,8 +35,6 @@ $(function () {
   direccion.listen('MDCSelect:change', () => {
     //  alert(`Selected "${tecnologia.selectedOptions[0].textContent}" at index ${tecnologia.selectedIndex} ` +
     //    `with value "${tecnologia.value}"`);
-
-
   });
 
   
@@ -54,8 +52,7 @@ $(function () {
     $("#hdn_slct_estado_tipificado").val(estado_tipificado.value);
     $("#hdn_slct_dificultad_final").val(dificultad_final.value);
 
-
-    // $("#form").submit();
+    $("#searchForm").submit();
   });
 
 
