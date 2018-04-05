@@ -5,7 +5,6 @@
     <!--Encabezado que vive en otra ventana-->
     <div th:replace="layout/header :: cabeceraPrincipal"></div>
 
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -183,7 +182,6 @@
                         <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:81%">
                             <input type="text"  class="mdc-text-field__input" id="error-resuelto">
                             <label for="demo-input" class="mdc-text-field__label">Incidencia ya resuelto por DyD:</label>
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
                         </div>
                     </td>
                 </tr>
@@ -213,6 +211,7 @@
             </div>
     </form>
 </div>
+
 </body>
 <script>mdc.autoInit()</script>
 <style rel="stylesheet">
@@ -226,6 +225,9 @@
         mdc.select.MDCSelect.attachTo(document.getElementById('Origen-js-select'));
     });
 </script>
+
+
+
 <!--Footer que debe ir en todas las ventanas-->
 <div th:replace="layout/footer :: FooterPrincipal"></div>
 </html>
