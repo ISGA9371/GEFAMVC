@@ -1,11 +1,11 @@
-function init() {
+1function init() {
     //showH();
     addCalendars();
     loadSelects();
     fillFields();
     addHiddenEvents();
     defaultTypologies();
-    addSelectEvents();
+    addCustomSelectEvents();
     addComponentValidation();
     //addRequirementValidation();
     addDifficultyValidation();
@@ -155,8 +155,7 @@ function addButtonEvents() {
     });
 }
 
-function addSelectEvents() {
-
+function addCustomSelectEvents() {
     var hiddenTypology = document.getElementById('typology-final');
     var rootType = document.getElementById('nuemod-js-select');
     var selectType = new mdc.select.MDCSelect(rootType);
@@ -216,6 +215,7 @@ function addSelectEvents() {
             new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value="";
         }
     });
+
 }
 
 function validateWindowData() {
@@ -235,8 +235,8 @@ function hideData() {
 }
 
 function loadSelects() {
+    //mdc.select.MDCSelect.attachTo(document.getElementById('direccion-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('subdireccion-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('direccion-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('nuemod-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-empty-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-news-js-select'));
@@ -263,7 +263,8 @@ function addHiddenEvents() {
     addTextSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text");
     addTextSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-txt");
     addTextSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text");
-    $("#requirement").val($("#requirementHidden").val());
+    //$("#requirement").val($("#requirementHidden").val());
+    addSelectSyncMdcToHtml("subdireccion","subdireccion-js-select");
 }
 
 function addTextSyncMdcToHtml(htmlField, mdcField) {
@@ -280,6 +281,16 @@ function addTextSyncMdcToHtml(htmlField, mdcField) {
     });
     inputName.addEventListener('blur', function () {
         hiddenName.value = textName.value;
+    });
+}
+
+function addSelectSyncMdcToHtml(htmlField,mdcSelect){
+    var $hiddenInput = $("#"+htmlField);
+    var rootSelect = document.getElementById(mdcSelect);
+    var selectObj = new mdc.select.MDCSelect(rootSelect);
+
+    selectObj.addEventListener('MDCSelect:change', function () {
+        $hiddenInput.val(selectObj.value);
     });
 }
 
