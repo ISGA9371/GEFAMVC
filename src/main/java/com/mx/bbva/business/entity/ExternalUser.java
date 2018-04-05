@@ -41,11 +41,10 @@ public class ExternalUser implements Serializable {
     @Column(name = "CD_GENERO", nullable = false)
     private Character externalUserGender;
     @Basic(optional = false)
-    @Column(name = "TP_RECURSO", nullable = false, length = 7)
-    private String externalUserType;
-    @Basic(optional = false)
-    @Column(name = "CD_TIPO_CONTRATO", nullable = false)
-    private int externalUserContractType;
+    @Column(name = "TP_IDENTIF", nullable = false)
+    private int externalIdType;
+    @Column(name = "TX_IDENTIFICACION", length = 10)
+    private String externalId;
     @Column(name = "TX_DIR_SCRUM", length = 25)
     private String externalUserScrumDirector;
     @Column(name = "NB_PROY_EXT", length = 150)
@@ -55,15 +54,6 @@ public class ExternalUser implements Serializable {
     @Column(name = "FH_FIN_PROY")
     @Temporal(TemporalType.DATE)
     private Date externalUserProjectFinalDate;
-    @Basic(optional = false)
-    @Column(name = "TP_PROY", nullable = false, length = 8)
-    private String externalUserProjectType;
-    @Column(name = "NB_JEFE_INMED", length = 50)
-    private String externalUserBossName;
-    @Column(name = "TX_TEL_JEFE_INMED", length = 25)
-    private String externalUserBossPhone;
-    @Column(name = "TX_UBIC_JEF_INMED", length = 50)
-    private String externalUserBossLocation;
     @Column(name = "TX_HOST", length = 2)
     private String externalUserHost;
     @Column(name = "TX_VPN", length = 9)
@@ -85,42 +75,56 @@ public class ExternalUser implements Serializable {
     @Column(name = "FH_BAJA")
     @Temporal(TemporalType.DATE)
     private Date externalUserEndDate;
-    @JoinColumn(name = "CD_EMPRESA", referencedColumnName = "CD_EMPRESA", nullable = false)
-    @ManyToOne(optional = false)
-    private Company company;
-    @JoinColumn(name = "ST_REC_EXT", referencedColumnName = "CD_ESTADO", nullable = false)
-    @ManyToOne(optional = false)
-    private Status status;
+    @Basic(optional = false)
+    @Column(name = "CD_PROYECTO_AG", nullable = false)
+    private int externalGrouperProject;
+    @Basic(optional = false)
+    @Column(name = "CD_ESQUEMA_PAGO", nullable = false)
+    private int externalPaymentScheme;
+    @Basic(optional = false)
+    @Column(name = "CD_TP_PROYECTO", nullable = false)
+    private int externalUserProjectType;
     @JoinColumn(name = "CD_USUARIO_GESTOR", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
     private User manager;
-    @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
-    @ManyToOne(optional = false)
-    private User responsible;
     @JoinColumn(name = "CD_PAIS", referencedColumnName = "CD_PAIS", nullable = false)
     @ManyToOne(optional = false)
     private Country country;
+    @JoinColumn(name = "ST_REC_EXT", referencedColumnName = "CD_ESTADO", nullable = false)
+    @ManyToOne(optional = false)
+    private Status status;
     @JoinColumn(name = "CD_PERFIL_REC", referencedColumnName = "CD_TIPO_PERFIL", nullable = false)
     @ManyToOne(optional = false)
     private ProfileType profileType;
     @JoinColumn(name = "CD_SBCLAS_REC", referencedColumnName = "CD_SBCLAS_REC", nullable = false)
     @ManyToOne(optional = false)
     private ResourceSubClassification resourceSubClassification;
-    @JoinColumn(name = "CD_SEDE", referencedColumnName = "CD_SEDE", nullable = false)
+    @JoinColumn(name = "CD_EMPRESA", referencedColumnName = "CD_EMPRESA", nullable = false)
     @ManyToOne(optional = false)
-    private Workplace workplace;
+    private Company company;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
     private Area area;
+    @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
+    @ManyToOne(optional = false)
+    private User responsible;
+    @JoinColumn(name = "CD_SEDE", referencedColumnName = "CD_SEDE", nullable = false)
+    @ManyToOne(optional = false)
+    private Workplace workplace;
     @JoinColumn(name = "CD_TIPO_ASIG", referencedColumnName = "CD_TIPO_ASIG", nullable = false)
     @ManyToOne(optional = false)
     private AssignationType assignationType;
+
 
     public ExternalUser() {
     }
 
     public ExternalUser(String externalUserCorpId) {
         this.externalUserCorpId = externalUserCorpId;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public String getExternalUserCorpId() {
@@ -195,20 +199,20 @@ public class ExternalUser implements Serializable {
         this.externalUserGender = externalUserGender;
     }
 
-    public String getExternalUserType() {
-        return externalUserType;
+    public int getExternalIdType() {
+        return externalIdType;
     }
 
-    public void setExternalUserType(String externalUserType) {
-        this.externalUserType = externalUserType;
+    public void setExternalIdType(int externalIdType) {
+        this.externalIdType = externalIdType;
     }
 
-    public int getExternalUserContractType() {
-        return externalUserContractType;
+    public String getExternalId() {
+        return externalId;
     }
 
-    public void setExternalUserContractType(int externalUserContractType) {
-        this.externalUserContractType = externalUserContractType;
+    public void setExternalId(String externalId) {
+        this.externalId = externalId;
     }
 
     public String getExternalUserScrumDirector() {
@@ -241,38 +245,6 @@ public class ExternalUser implements Serializable {
 
     public void setExternalUserProjectFinalDate(Date externalUserProjectFinalDate) {
         this.externalUserProjectFinalDate = externalUserProjectFinalDate;
-    }
-
-    public String getExternalUserProjectType() {
-        return externalUserProjectType;
-    }
-
-    public void setExternalUserProjectType(String externalUserProjectType) {
-        this.externalUserProjectType = externalUserProjectType;
-    }
-
-    public String getExternalUserBossName() {
-        return externalUserBossName;
-    }
-
-    public void setExternalUserBossName(String externalUserBossName) {
-        this.externalUserBossName = externalUserBossName;
-    }
-
-    public String getExternalUserBossPhone() {
-        return externalUserBossPhone;
-    }
-
-    public void setExternalUserBossPhone(String externalUserBossPhone) {
-        this.externalUserBossPhone = externalUserBossPhone;
-    }
-
-    public String getExternalUserBossLocation() {
-        return externalUserBossLocation;
-    }
-
-    public void setExternalUserBossLocation(String externalUserBossLocation) {
-        this.externalUserBossLocation = externalUserBossLocation;
     }
 
     public String getExternalUserHost() {
@@ -339,20 +311,36 @@ public class ExternalUser implements Serializable {
         this.externalUserUploadDate = externalUserUploadDate;
     }
 
-    public Company getCompany() {
-        return company;
+    public Date getExternalUserEndDate() {
+        return externalUserEndDate;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setExternalUserEndDate(Date externalUserEndDate) {
+        this.externalUserEndDate = externalUserEndDate;
     }
 
-    public Status getStatus() {
-        return status;
+    public int getExternalGrouperProject() {
+        return externalGrouperProject;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setExternalGrouperProject(int externalGrouperProject) {
+        this.externalGrouperProject = externalGrouperProject;
+    }
+
+    public int getExternalPaymentScheme() {
+        return externalPaymentScheme;
+    }
+
+    public void setExternalPaymentScheme(int externalPaymentScheme) {
+        this.externalPaymentScheme = externalPaymentScheme;
+    }
+
+    public int getExternalUserProjectType() {
+        return externalUserProjectType;
+    }
+
+    public void setExternalUserProjectType(int externalUserProjectType) {
+        this.externalUserProjectType = externalUserProjectType;
     }
 
     public User getManager() {
@@ -363,20 +351,20 @@ public class ExternalUser implements Serializable {
         this.manager = manager;
     }
 
-    public User getResponsible() {
-        return responsible;
-    }
-
-    public void setResponsible(User responsible) {
-        this.responsible = responsible;
-    }
-
     public Country getCountry() {
         return country;
     }
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public ProfileType getProfileType() {
@@ -395,12 +383,12 @@ public class ExternalUser implements Serializable {
         this.resourceSubClassification = resourceSubClassification;
     }
 
-    public Workplace getWorkplace() {
-        return workplace;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setWorkplace(Workplace workplace) {
-        this.workplace = workplace;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public Area getArea() {
@@ -411,6 +399,22 @@ public class ExternalUser implements Serializable {
         this.area = area;
     }
 
+    public User getResponsible() {
+        return responsible;
+    }
+
+    public void setResponsible(User responsible) {
+        this.responsible = responsible;
+    }
+
+    public Workplace getWorkplace() {
+        return workplace;
+    }
+
+    public void setWorkplace(Workplace workplace) {
+        this.workplace = workplace;
+    }
+
     public AssignationType getAssignationType() {
         return assignationType;
     }
@@ -419,25 +423,26 @@ public class ExternalUser implements Serializable {
         this.assignationType = assignationType;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ExternalUser that = (ExternalUser) o;
-
-        return externalUserCorpId.equals(that.externalUserCorpId);
-    }
 
     @Override
     public int hashCode() {
-        return externalUserCorpId.hashCode();
+        int hash = 0;
+        hash += (externalUserCorpId != null ? externalUserCorpId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof ExternalUser)) {
+            return false;
+        }
+        ExternalUser other = (ExternalUser) object;
+        return (this.externalUserCorpId != null || other.externalUserCorpId == null) && (this.externalUserCorpId == null || this.externalUserCorpId.equals(other.externalUserCorpId));
     }
 
     @Override
     public String toString() {
-        return "ExternalUser{" +
-                "externalUserCorpId='" + externalUserCorpId + '\'' +
-                '}';
+        return "com.bbva.ExternalUser[ externalUserCorpId=" + externalUserCorpId + " ]";
     }
+
 }
