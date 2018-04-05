@@ -96,12 +96,12 @@ public class ComponentController {
     //TODO Use Enums
     @ModelAttribute("tipologiaNewCmb")
     public List<Typology> populateNewTypologies() {
-        return this.typologyService.findByComponent("0");
+        return this.typologyService.findByComponent(false);
     }
 
     @ModelAttribute("tipologiaModCmb")
     public List<Typology> populateModTypologies() {
-        return this.typologyService.findByComponent("1");
+        return this.typologyService.findByComponent(true);
     }
 
     // LevelTypeId 1 - Direccion
