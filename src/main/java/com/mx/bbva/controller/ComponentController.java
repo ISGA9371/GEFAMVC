@@ -84,13 +84,13 @@ public class ComponentController {
         return URL_FACTORY + SEARCH_COMPONENTS;
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String searchForComponents(@ModelAttribute("filters") ComponentSearchDTO filters, Model model) {
+    @RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public List<Component> searchForComponents(@ModelAttribute("filters") ComponentSearchDTO filters) {
         // TODO Work in progress
         /* String query = new QueryGenerator().generate(filters, "Component");
         List<Component> components = componentService.findByCustomQuery(query); */
-        model.addAttribute("components", componentService.findAllComponents());
-        return URL_FACTORY + SEARCH_COMPONENTS;
+        return componentService.findAllComponents();
     }
 
     //TODO Use Enums
