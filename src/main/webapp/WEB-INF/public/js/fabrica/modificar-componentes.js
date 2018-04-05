@@ -87,8 +87,7 @@ function fillFields() {
     $statusTypology.click();
     var $status = $("#status").parent().find("li[id^='"+$('#status').val()+"|']");
     $("#estatus-componente-js-select").find("div").eq(0).click();
-    setTimeout("clickSelectOption('""l',idLike)")
-    $status.click();
+    setTimeout("clickSelectOption('estatus-componente-js-select','status')",100);
     var d = new Date($('#componentDesignRealDeliverDate').val());
     $('#componentDesignRealDeliverDate').val(pad(d.getDate(),2) + "/" + pad(d.getMonth()+1,2) + "/" + d.getFullYear());
     new mdc.textField.MDCTextField(document.getElementById('FecRealCFG-mdc-text')).value = $('#componentDesignRealDeliverDate').val();
