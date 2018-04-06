@@ -1,8 +1,13 @@
 package com.mx.bbva.controller;
 
+import com.mx.bbva.business.dto.ModificationDTO;
+import com.mx.bbva.business.entity.Component;
 import com.mx.bbva.business.entity.Modification;
+import com.mx.bbva.business.entity.Status;
+import com.mx.bbva.business.entity.StatusType;
 import com.mx.bbva.business.service.ModificationService;
 import com.mx.bbva.business.service.StatusService;
+import com.mx.bbva.business.service.ComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +34,7 @@ public class ModificationController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String createModification(Model model, @RequestParam(value = "componentId") Integer componentId) {
         // TODO Validate user
+
         LOG.info("Creating new modification");
         Component component = componentService.findComponent(componentId);
         model.addAttribute("componentData", component);
