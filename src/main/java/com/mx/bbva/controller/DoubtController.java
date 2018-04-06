@@ -38,9 +38,9 @@ public class DoubtController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveDoubt(@ModelAttribute("doubt") Doubt doubt) {
         doubtService.saveDoubt(doubt);
+        // TODO
         //return URL_FACTORY + EDIT_DOUBT;
-        String inicio="indexGefa.html";
-        return inicio;
+        return INDEX;
     }
 
     @RequestMapping(value = "/{doubtId}", method = RequestMethod.GET)

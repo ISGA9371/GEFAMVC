@@ -1,8 +1,10 @@
-package com.mx.bbva.util;
+ package com.mx.bbva.util;
 
 public class ViewsURLs {
     public static final String URL_FACTORY = "fabrica/";
     public static final String URL_BUDGET = "presupuestos/";
+
+    public static final String INDEX = "indexGefa";
 
     public static final String NEW_REQUIREMENT = "AltaDeRequerimiento";
     public static final String EDIT_REQUIREMENT = "ModificarRequerimiento";
