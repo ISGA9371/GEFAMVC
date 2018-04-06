@@ -14,25 +14,6 @@
 
         <form th:object="${requirement}" th:action="@{/requirements}" method="post">
 
-
-            <!--HIDDEN PARA PRUEBAS>
-            requirementName<input type="text" th:field="*{requirementName}">
-            userManager<input id="nombreTxt" required pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{userManager.userId}"  type="text" >
-            technology<input id="direccionCmb" required pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+"  type="text" th:field="*{technology.technologyId}">
-            company<input id="subDireccionCmb" type="text" th:field="*{company.companyId}">
-            status<input id="subdirectorTxt" type="text" th:field="*{status.statusId}">
-            level<input id="responsableTxt" type="text" th:field="*{level.levelSerial}">
-            user<input id="areaCmb" type="text" th:field="*{user.userId}" value="0058349">
-            area<input id="gestorTxt" type="text" th:field="*{area.areaId}">
-            methodology<input id="tecnologiaCmb" type="text" th:field="*{methodology.methodologyId}">
-            serviceType<input id="tipoProyectoCmb" type="text" th:field="*{serviceType.serviceTypeId}">
-
-            requirementBilled<input id="stFurado" type="text" th:field="*{requirementBilled}">
-
-            <input type="submit" value="guardar">
-
-        </form-->
-
             <div class="row">
                 <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos Generales</div>
                 <table class="col-md-12" align="center">
@@ -95,10 +76,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <!--div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input type="text" maxlength="110" pattern="[A-Za-z0-9]+" required th:field="*{user.userId}" class="mdc-text-field__input" id="demo-input">
-                                <label for="demo-input" class="mdc-text-field__label">Responsable</label>
-                            </div-->
                         </td>
                         <td class="col-md-4" align="center">
                             <input id="hidden-area" type="text" pattern="[0-9]+" required value="" th:field="*{area.areaId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
@@ -118,10 +95,10 @@
                     </tr>
                     <tr height="72px">
                         <td class="col-md-4" align="center">
-                            <input id="hidden-gestor" type="text" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" value="" th:field="*{userManager.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <input id="hidden-gestor" type="text" required pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" value="" th:field="*{userManager.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                             <div id="gestor-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                                    <div class="mdc-select__label">Gestor</div>
+                                    <div class="mdc-select__label">Gestor*</div>
                                     <div class="mdc-select__selected-text"></div>
                                     <div class="mdc-select__bottom-line"></div>
                                 </div>
@@ -131,10 +108,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <!--div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input type="text" maxlength="110" pattern="[A-Za-z0-9]+" required th:field="*{userManager.userId}"  class="mdc-text-field__input" id="demo-input">
-                                <label for="demo-input" class="mdc-text-field__label">Gestor</label>
-                            </div-->
                         </td>
                         <td class="col-md-4" align="center">
                             <input id="hidden-tecnologia" type="text" pattern="[0-9]+" required th:field="*{technology.technologyId}" value="" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
@@ -152,10 +125,10 @@
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
-                            <input id="hidden-tipoProyecto" type="text" value="" th:field="*{methodology.methodologyId}"  style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <input id="hidden-tipoProyecto" type="text" value="" required th:field="*{methodology.methodologyId}"  style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                             <div id="tipoProyecto-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                                    <div class="mdc-select__label">Tipo de proyecto</div>
+                                    <div class="mdc-select__label">Tipo de proyecto*</div>
                                     <div class="mdc-select__selected-text"></div>
                                     <div class="mdc-select__bottom-line"></div>
                                 </div>
@@ -169,10 +142,10 @@
                     </tr>
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
-                            <input id="hidden-aplicacion" type="text" pattern="[0-9]+" value="" th:field="*{application.applicationId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <input id="hidden-aplicacion" type="text" required pattern="[0-9]+" value="" th:field="*{application.applicationId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                             <div id="aplicacion-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                                    <div class="mdc-select__label">Aplicacion</div>
+                                    <div class="mdc-select__label">Aplicacion*</div>
                                     <div class="mdc-select__selected-text"></div>
                                     <div class="mdc-select__bottom-line"></div>
                                 </div>
@@ -184,10 +157,10 @@
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
-                            <input id="hidden-canal" type="text" pattern="[0-9]+" value="" th:field="*{channel.channelId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <input id="hidden-canal" type="text" pattern="[0-9]+" required value="" th:field="*{channel.channelId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                             <div id="canal-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                                    <div class="mdc-select__label">Canal.</div>
+                                    <div class="mdc-select__label">Canal*</div>
                                     <div class="mdc-select__selected-text"></div>
                                     <div class="mdc-select__bottom-line"></div>
                                 </div>
@@ -231,10 +204,10 @@
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
-                            <input id="hidden-pi" type="text" value="" th:field="*{programIncrement.programIncrementId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <input id="hidden-pi" type="text" value="" required th:field="*{programIncrement.programIncrementId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                             <div id="pi-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                                    <div class="mdc-select__label">Codigo PI</div>
+                                    <div class="mdc-select__label">Codigo PI*</div>
                                     <div class="mdc-select__selected-text"></div>
                                     <div class="mdc-select__bottom-line"></div>
                                 </div>
@@ -269,7 +242,7 @@
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
-                            <input id="hidden-estado" type="text" value="" required th:field="*{status.statusId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <input id="hidden-estado" type="text" value="" required th:field="*{status.statusId}" class="hiddenField">
                             <div id="estado-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                                     <div class="mdc-select__label">Estado*</div>
@@ -327,184 +300,11 @@
     </body>
 
     <div th:replace="~{layout/footer2 :: scripts }"></div>
-
-    <script>mdc.autoInit()</script>
+    <script type="text/javascript" th:src="@{/js/fabrica/fn_AltaRequerimiento.js}"></script>
 
     <script>
-        demoReady(function() {
-            mdc.select.MDCSelect.attachTo(document.getElementById('direccion-js-select'));
-            mdc.select.MDCSelect.attachTo(document.getElementById('subdireccion-js-select'));
-            mdc.select.MDCSelect.attachTo(document.getElementById('area-js-select'));
-            mdc.select.MDCSelect.attachTo(document.getElementById('tecnologia-js-select'));
-            mdc.select.MDCSelect.attachTo(document.getElementById('tipoProyecto-js-select'));
-            mdc.select.MDCSelect.attachTo(document.getElementById('aplicacion-js-select'));
-            mdc.select.MDCSelect.attachTo(document.getElementById('canal-js-select'));
-            mdc.select.MDCSelect.attachTo(document.getElementById('empresa-js-select'));
-            mdc.select.MDCSelect.attachTo(document.getElementById('servicio-js-select'));
-            mdc.select.MDCSelect.attachTo(document.getElementById('pi-js-select'));
-            mdc.select.MDCSelect.attachTo(document.getElementById('proy-js-select'));
-            mdc.select.MDCSelect.attachTo(document.getElementById('estado-js-select'));
-            mdc.select.MDCSelect.attachTo(document.getElementById('facturado-js-select'));
-
-            mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
-            mdc.select.MDCSelect.attachTo(document.getElementById('gestor-js-select'));
-
-
-
-        });
-
-        //Asignacion de combos a los hidden
-        demoReady(function() {
-            var rootDir = document.getElementById('direccion-js-select');
-            var hiddenDir = document.getElementById('hidden-direccion');
-            var selectDir = new mdc.select.MDCSelect(rootDir);
-
-            rootDir.addEventListener('MDCSelect:change', function() {
-                hiddenDir.value = selectDir.value;
-            });
-        });
-
-        demoReady(function() {
-            var rootSD = document.getElementById('subdireccion-js-select');
-            var hiddenSD = document.getElementById('hidden-subdireccion');
-            var viewSD = document.getElementById('subDir');
-            var selectSD = new mdc.select.MDCSelect(rootSD);
-
-            rootSD.addEventListener('MDCSelect:change', function() {
-                hiddenSD.value = selectSD.value.split("|")[0];
-                viewSD.value = selectSD.value.split("|")[1];
-            });
-        });
-
-        demoReady(function() {
-            var rootArea = document.getElementById('area-js-select');
-            var hiddenArea = document.getElementById('hidden-area');
-            var selectArea = new mdc.select.MDCSelect(rootArea);
-
-            rootArea.addEventListener('MDCSelect:change', function() {
-                hiddenArea.value = selectArea.value;
-            });
-        });
-
-        demoReady(function() {
-            var rootTecnologia = document.getElementById('tecnologia-js-select');
-            var hiddenTecnologia = document.getElementById('hidden-tecnologia');
-            var selectTecnologia = new mdc.select.MDCSelect(rootTecnologia);
-
-            rootTecnologia.addEventListener('MDCSelect:change', function() {
-                hiddenTecnologia.value = selectTecnologia.value;
-            });
-        });
-
-        demoReady(function() {
-            var rootAp = document.getElementById('aplicacion-js-select');
-            var hiddenAp = document.getElementById('hidden-aplicacion');
-            var selectAp = new mdc.select.MDCSelect(rootAp);
-
-            rootAp.addEventListener('MDCSelect:change', function() {
-                hiddenAp.value = selectAp.value;
-            });
-        });
-
-        demoReady(function() {
-            var rootCn = document.getElementById('canal-js-select');
-            var hiddenCn = document.getElementById('hidden-canal');
-            var selectCn = new mdc.select.MDCSelect(rootCn);
-
-            rootCn.addEventListener('MDCSelect:change', function() {
-                hiddenCn.value = selectCn.value;
-            });
-        });
-
-        demoReady(function() {
-            var rootEmp = document.getElementById('empresa-js-select');
-            var hiddenEmp = document.getElementById('hidden-empresa');
-            var selectEmp = new mdc.select.MDCSelect(rootEmp);
-
-            rootEmp.addEventListener('MDCSelect:change', function() {
-                hiddenEmp.value = selectEmp.value;
-            });
-        });
-
-        demoReady(function() {
-            var rootFct = document.getElementById('facturado-js-select');
-            var hiddenFct = document.getElementById('hidden-facturado');
-            var selectFct = new mdc.select.MDCSelect(rootFct);
-
-            rootFct.addEventListener('MDCSelect:change', function() {
-                hiddenFct.value = selectFct.value;
-            });
-        });
-
-        demoReady(function() {
-            var rootEst = document.getElementById('estado-js-select');
-            var hiddenEst = document.getElementById('hidden-estado');
-            var selectEst = new mdc.select.MDCSelect(rootEst);
-
-            rootEst.addEventListener('MDCSelect:change', function() {
-                hiddenEst.value = selectEst.value;
-            });
-        });
-
-        demoReady(function() {
-            var rootServ = document.getElementById('servicio-js-select');
-            var hiddenServ = document.getElementById('hidden-servicio');
-            var selectServ = new mdc.select.MDCSelect(rootServ);
-
-            rootServ.addEventListener('MDCSelect:change', function() {
-                hiddenServ.value = selectServ.value;
-            });
-        });
-
-        demoReady(function() {
-            var rootTpro = document.getElementById('tipoProyecto-js-select');
-            var hiddenTpro = document.getElementById('hidden-tipoProyecto');
-            var selectTpro = new mdc.select.MDCSelect(rootTpro);
-
-            rootTpro.addEventListener('MDCSelect:change', function() {
-                hiddenTpro.value = selectTpro.value;
-            });
-        });
-
-        demoReady(function() {
-            var rootRespo = document.getElementById('responsable-js-select');
-            var hiddenRespo = document.getElementById('hidden-responsable');
-            var selectRespo = new mdc.select.MDCSelect(rootRespo);
-
-            rootRespo.addEventListener('MDCSelect:change', function() {
-                hiddenRespo.value = selectRespo.value;
-            });
-        });
-
-        demoReady(function() {
-            var rootGest = document.getElementById('gestor-js-select');
-            var hiddenGest = document.getElementById('hidden-gestor');
-            var selectGest = new mdc.select.MDCSelect(rootGest);
-
-            rootGest.addEventListener('MDCSelect:change', function() {
-                hiddenGest.value = selectGest.value;
-            });
-        });
-
-
-        demoReady(function() {
-            var rootPi = document.getElementById('pi-js-select');
-            var hiddenPi = document.getElementById('hidden-pi');
-            var selectPi = new mdc.select.MDCSelect(rootPi);
-
-            rootPi.addEventListener('MDCSelect:change', function() {
-                hiddenPi.value = selectPi.value;
-            });
-        });
-
-
-
-
-
-
-
-
+        mdc.autoInit();
+        init();
     </script>
-
 
 </html>
