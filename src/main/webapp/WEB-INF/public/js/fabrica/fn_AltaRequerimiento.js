@@ -3,7 +3,6 @@
 
 function init(){
 
-    //Lleva a la ventana principal
     crearCombos();
     asignarCombos();
 
@@ -31,6 +30,7 @@ function crearCombos(){
 
 function asignarCombos(){
 
+    //Asigna los valores seleccionados a todos los combos
     $(".mdc-select").each(function(index, element){
         var $parentTd = $(element).parent();
         var $hiddenInput = $parentTd.find("input");
@@ -42,6 +42,7 @@ function asignarCombos(){
         });
     });
 
+    //Seleccion especial para el select de subdireccion
      var rootSD = document.getElementById('subdireccion-js-select');
      var hiddenSD = document.getElementById('hidden-subdireccion');
      var viewSD = document.getElementById('subDir');
@@ -56,6 +57,7 @@ function asignarCombos(){
 
 function funcionCancelar(){
 
+    //Lleva a la ventana principal
     window.location="/";
 
 }
