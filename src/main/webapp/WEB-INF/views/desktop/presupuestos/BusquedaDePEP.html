@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 
-<head th:replace="~{layout/mainHeader :: head ('Busqueda de PEP')}"></head>
+<head th:replace="~{layout/mainHeader :: head ('Búsqueda de PEP')}"></head>
 
 <body>
 
 <header th:replace="~{layout/mainHeader :: header }"></header>
 
 <div class="container">
-    <br>
+    
     <div class="row">
-        <div class="col-md-12" align="center" style="font-size:30; font-family:BBVA Web Book">Búsqueda de PEP´s</div>
+      <div class="col-md-12 text-center">
+        <h2 class="h2-title-content">Búsqueda de PEP´s</h2>
+      </div>
     </div>
-    <br>
-    <div>
-        <div class="col-md-12" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Criterios de Busqueda</div>
+
+    <div class="row">
+      <div class="col-md-12 subtitle-content">Criterios De Búsqueda</div>
     </div>
-    <br>
+
     <table class="col-md-12" >
         <tr>
             <td class="col-md-4" align="center">
