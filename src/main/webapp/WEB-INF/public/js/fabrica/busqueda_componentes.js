@@ -120,28 +120,29 @@ $(function () {
           realDeliverDate = new Date(value.componentRealDeliverDate);
           date4 = realDeliverDate.getDate() + "/" + realDeliverDate.getMonth() + "/" + realDeliverDate.getFullYear();
 
-
           $("#tab-fecha > table > tbody").append(
             "<tr><th>" + value.componentName + "</th>" +
             "<th>" + "" + "</th>" +
-            "<th>" + date1 + "</th>" +
-            "<th>" + date2 + "</th>" +
-            "<th>" + date3 + "</th>" +
-            "<th>" + date4 + "</th>" +
+            // "<th>" + date2 + "</th>" +
+            "<th><input type='text' id='" + value.componentId + "-date1' value='" + date1 +"' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-date2' value='" + date2 + "' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-date3' value='" + date3 + "' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-date4' value='" + date4 + "' class='form-control'></th>" +
             "<th>" + "" + "</th></tr>"
           );
 
-          /*
           $("#tab-cierre > table > tbody").append(
-            "<tr><th>" + "Tip. Final" + "</th>" +
-            "<th>" + "Dif. Final" + "</th>" +
-            "<th>" + "Costo Final" + "</th>" +
-            "<th>" + "Horas Finales" + "</th>" +
-            "<th>" + "Comentarios" + "</th>" +
-            "<th>" + "Estat Tipif." + "</th>" +
-            "<th>" + "Facturar(S/N)" + "</th></tr>"
+            "<tr><th>" + value.componentName + "</th>" +
+            "<th>" + "" + "</th>" +
+            "<th><input type='text' id='" + value.componentId + "-tipFin' value='' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-difFin' value='' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-costFin' value='' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-horFin' value='' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-comments' value='' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-estatusTip' value='' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-facturar' value='' class='form-control'></th></tr>"
           );
-          */
+          
         });
       } else {
         new jBox('Notice', {
