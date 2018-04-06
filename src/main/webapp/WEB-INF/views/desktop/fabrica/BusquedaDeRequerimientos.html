@@ -49,7 +49,7 @@
     </div>
     <br>
     <div class="row">
-        <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Criterios De Busqueda</div>
+        <div class="col-md-12 results-header" align="center" >Criterios De Busqueda</div>
         <form th:action="@{/requirements/search}" th:object="${requirementSearchDTO}" method="get" id="find">
 
             <!-- HIDDEN FIELDS -->
@@ -306,17 +306,17 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12" align="Left" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Resultados De Busqueda</div>
+        <div class="col-md-12 results-header">Resultados De Busqueda</div>
     </div>
 
     <div class="row">
-        <div class="col-md-12" align="Left" style="font-size:20px; font-family:BBVA Web Book; background-color:#12a96a; color:#FFFFFF">Requerimientos</div>
+        <div class="col-md-12 results-title">Requerimientos</div>
     </div>
 
     <div class="row">
-        <table class="col-md-12 table table-hover table-responive table-condensed"  style="font-size:12px;">
+        <table id="results-table" class="col-md-12 table table-hover table-condensed">
             <thead>
-            <tr style="background-color:#999; color:#fcfbfb">
+            <tr>
                 <th></th> <!-- RADIO -->
                 <th>Requerimiento</th>
                 <th style="width: 104px;">Nombre del PEP</th>
