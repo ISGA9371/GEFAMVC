@@ -29,8 +29,6 @@ function fillFields() {
         splittedTypologiaInicio[3] = 1;
     }
     if (splittedTypologiaInicio[3] === 0 ||splittedTypologiaInicio[3] === 1) {
-        $("#nuemod-js-select").find("div").eq(0).click();
-        $("#nuemod-js-select").find("li").eq(splittedTypologiaInicio[3]).click();
         if (splittedTypologiaInicio[3] == 0) {
             $('#tipologia-empty-js-select').hide();
             $('#tipologia-news-js-select').show();
@@ -315,7 +313,9 @@ function addHiddenEvents() {
     addTextSyncMdcToHtml("componentTypoComment", "descripcion-mdc-text");
     //$("#requirement").val($("#requirementHidden").val());
     addSelectSyncMdcToHtml("subdireccion","subdireccion-js-select");
+    addSelectSyncMdcToHtml("statusTypology","estatus-tipificacion-js-select");
     addSelectSyncMdcToHtml("componentForBill","facturado-js-select");
+    addSelectSyncMdcToHtml("status","estatus-componente-js-select");
 }
 
 function addTextSyncMdcToHtml(htmlField, mdcField) {
