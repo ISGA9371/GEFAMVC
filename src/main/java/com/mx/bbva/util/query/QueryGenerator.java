@@ -9,6 +9,8 @@ public class QueryGenerator {
     private static final Logger LOGGER = Logger.getLogger(QueryGenerator.class.getName());
     private StringBuffer stringBuffer = new StringBuffer();
     private boolean firstOne = true;
+    private final String EQUALS = " = ";
+    private final String LIKE = " LIKE ";
 
     // TODO should be a better way to do this
     public String generate(Object searchDTO, String type) {
@@ -17,42 +19,46 @@ public class QueryGenerator {
             case "Requirement":
                 RequirementSearchDTO requirementSearchDTO = (RequirementSearchDTO) searchDTO;
                 stringBuffer.append("SELECT NEW com.mx.bbva.business.entity.Requirement(" +
-                        "x.requirementId, x.requirementName, x.level, x.user, x.area, x.serviceType, x.technology, " +
-                        "x.company, x.requirementStartDate, x.requirementEndDate) " +
+                        "x.requirementId, x.requirementName, x.requirementHour, x.requirementTotalHours, x.requirementBilledHours, " +
+                        "x.requirementNoBilledHours, x.requirementBilled, x.requirementDateUpload, x.requirementCanBilled, " +
+                        "x.requirementStartDate, x.requirementEndDate, x.userManager, x.technology, x.company, x.status, " +
+                        "x.level, x.user, x.application, x.project, x.area, x.methodology, x.serviceType, x.channel, " +
+                        "x.programIncrement) " +
                         " FROM Requirement x ");
-                if (null != requirementSearchDTO.getRequirementName()) {
-                    addFilter("x.requirementName", requirementSearchDTO.getRequirementName());
+                if (isNotNullString(requirementSearchDTO.getRequirementName())) {
+                    addFilter("x.requirementName", "'%" + requirementSearchDTO.getRequirementName() + "%'", LIKE);
                 }
-                if (null != requirementSearchDTO.getPrincipalId()) {
-                    addFilter("x.level.levelId", String.valueOf(requirementSearchDTO.getPrincipalId()));
+                if (isNotNullInteger(requirementSearchDTO.getPrincipalId())) {
+                    addFilter("x.level.levelId", "'" + requirementSearchDTO.getPrincipalId() + "'", EQUALS);
                 }
-                if (null != requirementSearchDTO.getUserInternalId()) {
-                    addFilter("x.user.userInternalId", requirementSearchDTO.getUserInternalId());
+                if (isNotNullString(requirementSearchDTO.getUserInternalId())) {
+                    addFilter("x.user.userInternalId", "'%" + requirementSearchDTO.getUserInternalId() + "%'", LIKE);
                 }
-                if (null != requirementSearchDTO.getAreaId()) {
-                    addFilter("x.area.areaId", String.valueOf(requirementSearchDTO.getAreaId()));
+                if (isNotNullInteger(requirementSearchDTO.getAreaId())) {
+                    addFilter("x.area.areaId", "'" + requirementSearchDTO.getAreaId() + "'", EQUALS);
                 }
-                if (null != requirementSearchDTO.getProjectTypeId()) {
-                    addFilter("x.projectType.projectTypeId", String.valueOf(requirementSearchDTO.getProjectTypeId()));
+                /*
+                if (requirementSearchDTO.getProjectTypeId() != null && !requirementSearchDTO.getPrincipalId().equals(0)) {
+                    addFilter("x.projectType.projectTypeId", requirementSearchDTO.getProjectTypeId()));
                 }
-                if (null != requirementSearchDTO.getTechnologyId()) {
-                    addFilter("x.technology.technologyId", String.valueOf(requirementSearchDTO.getTechnologyId()));
+                if (requirementSearchDTO.getTechnologyId() != null && !requirementSearchDTO.getPrincipalId().equals(0)) {
+                    addFilter("x.technology.technologyId", requirementSearchDTO.getTechnologyId()));
                 }
-                if (null != requirementSearchDTO.getCompanyId()) {
-                    addFilter("x.company.companyId", String.valueOf(requirementSearchDTO.getCompanyId()));
+                if (requirementSearchDTO.getCompanyId() != null && !requirementSearchDTO.getPrincipalId().equals(0)) {
+                    addFilter("x.company.companyId", requirementSearchDTO.getCompanyId()));
                 }
-                if (null != requirementSearchDTO.getServiceTypeId()) {
-                    addFilter("x.serviceType.serviceTypeId", String.valueOf(requirementSearchDTO.getServiceTypeId()));
+                if (requirementSearchDTO.getServiceTypeId() != null && !requirementSearchDTO.getPrincipalId().equals(0)) {
+                    addFilter("x.serviceType.serviceTypeId", requirementSearchDTO.getServiceTypeId()));
                 }
-                if (null != requirementSearchDTO.getBudgetId()) {
-                    addFilter("x.budget.budgetId", String.valueOf(requirementSearchDTO.getBudgetId()));
+                if (requirementSearchDTO.getBudgetId() != null) {
+                    addFilter("x.budget.budgetId", requirementSearchDTO.getBudgetId()));
                 }
-                if (null != requirementSearchDTO.getRequirementStartDate()) {
+                if (requirementSearchDTO.getRequirementStartDate() != null) {
                     addFilter("x.requirementStartDate", requirementSearchDTO.getRequirementStartDate());
                 }
-                if (null != requirementSearchDTO.getRequirementEndDate()) {
+                if (requirementSearchDTO.getRequirementEndDate() != null) {
                     addFilter("x.requirementEndDate", requirementSearchDTO.getRequirementEndDate());
-                }
+                }*/
                 break;
             case "Component":
                 ComponentSearchDTO componentSearchDTO = (ComponentSearchDTO) searchDTO;
@@ -60,30 +66,30 @@ public class QueryGenerator {
                         "x.componentId, x.componentName, x.level, x.user, x.area, x.serviceType, x.technology, " +
                         "x.company, x.componentStartDate, x.componentEndDate) " +
                         " FROM Component x ");
-                if (null != componentSearchDTO.getComponentName()) {
+                /*if (componentSearchDTO.getComponentName() != null) {
                     addFilter("x.componentName", componentSearchDTO.getComponentName());
                 }
-                if (null != componentSearchDTO.getComponentVersion()) {
+                if (componentSearchDTO.getComponentVersion() != null) {
                     addFilter("x.componentVersion", componentSearchDTO.getComponentVersion());
                 }
-                if (null != componentSearchDTO.getRequirementName()) {
+                if (componentSearchDTO.getRequirementName() != null) {
                     addFilter("x.requirement.requirementName", componentSearchDTO.getRequirementName());
                 }
-                if (null != componentSearchDTO.getPrincipalId()) {
-                    addFilter("x.requirement.level.levelId", String.valueOf(componentSearchDTO.getPrincipalId()));
+                if (componentSearchDTO.getPrincipalId() != null) {
+                    addFilter("x.requirement.level.levelId", componentSearchDTO.getPrincipalId()));
                 }
-                if (null != componentSearchDTO.getCompanyId()) {
-                    addFilter("x.company.companyId", String.valueOf(componentSearchDTO.getCompanyId()));
+                if (componentSearchDTO.getCompanyId() != null) {
+                    addFilter("x.company.companyId", componentSearchDTO.getCompanyId()));
                 }
-                if (null != componentSearchDTO.getStatusId()) {
+                if (componentSearchDTO.getStatusId() != null) {
                     addFilter("x.status.statusId", componentSearchDTO.getStatusId().toString());
                 }
-                /*if (null != componentSearchDTO.getSubPrincipalId()) {
+                if (componentSearchDTO.getSubPrincipalId()) {
                     addFilter("", componentSearchDTO.getSubPrincipalId().toString());
-                }*/
-                if (null != componentSearchDTO.getTechnologyId()) {
-                    addFilter("x.technology.technologyId", componentSearchDTO.getTechnologyId().toString());
                 }
+                if (componentSearchDTO.getTechnologyId() != null) {
+                    addFilter("x.technology.technologyId", componentSearchDTO.getTechnologyId().toString());
+                }*/
                 break;
         }
 
@@ -91,13 +97,21 @@ public class QueryGenerator {
         return stringBuffer.toString();
     }
 
-    private void addFilter(String filter, String value) {
+    private void addFilter(String filter, String value, String operator) {
         if (firstOne) {
             stringBuffer.append(" WHERE ");
             firstOne = false;
         } else {
-            stringBuffer.append(" AND ");
+            stringBuffer.append(" OR ");
         }
-        stringBuffer.append(filter).append(" = ").append(value);
+        stringBuffer.append(filter).append(operator).append(value);
+    }
+
+    private boolean isNotNullString(String value) {
+        return value != null && !value.isEmpty();
+    }
+
+    private boolean isNotNullInteger(Integer value) {
+        return value != null && !value.equals(0);
     }
 }

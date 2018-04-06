@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -115,18 +117,36 @@ public class Requirement implements Serializable {
         this.requirementName = requirementName;
     }
 
-    public Requirement(Integer requirementId, String requirementName, Level level, User user, Area area, ServiceType serviceType,
-                       Technology technology, Company company, Date requirementStartDate, Date requirementEndDate) {
+    public Requirement(Integer requirementId, String requirementName, Double requirementHour, Integer requirementTotalHours,
+                       Integer requirementBilledHours, Integer requirementNoBilledHours, Boolean requirementBilled,
+                       Date requirementDateUpload, Boolean requirementCanBilled, Date requirementStartDate, Date requirementEndDate,
+                       User userManager, Technology technology, Company company, Status status, Level level, User user,
+                       Application application, Project project, Area area, Methodology methodology, ServiceType serviceType,
+                       Channel channel, ProgramIncrement programIncrement) {
         this.requirementId = requirementId;
         this.requirementName = requirementName;
-        this.level = level;
-        this.user = user;
-        this.area = area;
-        this.serviceType = serviceType;
-        this.technology = technology;
-        this.company = company;
+        this.requirementHour = requirementHour;
+        this.requirementTotalHours = requirementTotalHours;
+        this.requirementBilledHours = requirementBilledHours;
+        this.requirementNoBilledHours = requirementNoBilledHours;
+        this.requirementBilled = requirementBilled;
+        this.requirementDateUpload = requirementDateUpload;
+        this.requirementCanBilled = requirementCanBilled;
         this.requirementStartDate = requirementStartDate;
         this.requirementEndDate = requirementEndDate;
+        this.userManager = userManager;
+        this.technology = technology;
+        this.company = company;
+        this.status = status;
+        this.level = level;
+        this.user = user;
+        this.application = application;
+        this.project = project;
+        this.area = area;
+        this.methodology = methodology;
+        this.serviceType = serviceType;
+        this.channel = channel;
+        this.programIncrement = programIncrement;
     }
 
     public Integer getRequirementId() {

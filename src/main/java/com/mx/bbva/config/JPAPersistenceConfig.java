@@ -25,11 +25,9 @@ public class JPAPersistenceConfig {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
         em.setPackagesToScan("com.mx.bbva.business");
-
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         em.setJpaProperties(additionalProperties());
-
         return em;
     }
 
@@ -47,6 +45,7 @@ public class JPAPersistenceConfig {
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setJpaProperties(additionalProperties());
         transactionManager.setEntityManagerFactory(emf);
         return transactionManager;
     }
@@ -59,8 +58,8 @@ public class JPAPersistenceConfig {
     private Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-        properties.setProperty("show_sql", "true");
-        properties.setProperty("format_sql", "true");
+        properties.setProperty("hibernate.show_sql", "true");
+        properties.setProperty("hibernate.format_sql", "true");
         properties.setProperty("use_sql_comments", "true");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         return properties;
