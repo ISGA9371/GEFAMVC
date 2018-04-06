@@ -52,7 +52,10 @@ td.detail-td tr td:last-of-type{
     padding: 4px 4px;
 }
 
-#results-table{font-size: 12px;}
+#results-table{
+    font-size: 12px;
+    text-align: center;
+}
 #results-table thead tr{
     background-color:#F4F4F4;
     color:#005EB8;
@@ -60,7 +63,6 @@ td.detail-td tr td:last-of-type{
 
 .table > thead > tr > th {
     border-bottom: 1.2px solid #005EB8 !important;
-    text-align: center;
 }
 #results-table thead th{
     padding: 12px 0;

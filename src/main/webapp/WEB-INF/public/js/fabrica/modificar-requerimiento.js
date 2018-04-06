@@ -4,10 +4,10 @@ $(function () {
     var principalEL = $('#principal');
     var principalId = $("#level\\.levelSuperior\\.levelId").val();
     console.log("SUPLEVEL ID "+principalId);
-    principalEL.find("div").first().click();
-    principalEL.find("li[value="+principalId+"]").click();
-    //principal.selectedIndex = principalId - 1;
-    //principal.value = principalEL.find("li[value="+principalId+"]").html();
+    //principalEL.find("div").first().click();
+    //principalEL.find("li[value="+principalId+"]").click();
+    principal.selectedIndex = principalId - 1;
+    principal.value = principalEL.find("li[value="+principalId+"]").html();
 
     //LOAD SUB LEVELS FROM PRINCIPAL
     $.ajax({
@@ -23,14 +23,13 @@ $(function () {
                     "value='"+value.levelId+"'>"+value.levelName+"</li>");
             });
 
-            const subPrincipal = new mdc.select.MDCSelect(document.querySelector('#subprincipal'));
+            //const subPrincipal = new mdc.select.MDCSelect(document.querySelector('#subprincipal'));
             var subPrincipalEL = $('#subprincipal');
             var subPrincipalId = $("#level\\.levelId").val();
             console.log("SUBLEVEL ID "+subPrincipalId + " "+"li[value="+subPrincipalId+"]");
 
             subPrincipalEL.find("div").first().click();
             subPrincipalEL.find("li[value='"+subPrincipalId+"']").click();
-
             //subPrincipal.selectedIndex = subPrincipalEL.find("ul li[value="+ subPrincipalId +"]").index();
             //subPrincipal.value = subPrincipalEL.find("ul li[id="+subPrincipalId+"]").html();
 
@@ -63,24 +62,26 @@ $(function () {
     var responsibleEL = $('#responsible');
     var responsibleId = $("#user\\.userInternalId").val();
     console.log("RESPONSIBLE ID "+responsibleId);
-    responsibleEL.find("div").first().click();
-    responsibleEL.find("li[value="+responsibleId+"]").click();
-    //responsible.selectedIndex = responsibleEL.find("ul li[value="+ responsibleId +"]").index();
-    //responsible.value = responsibleEL.find("ul li[id="+responsibleId+"]").html();
+    //responsibleEL.find("div").first().click();
+    //responsibleEL.find("li[value="+responsibleId+"]").click();
+    responsible.selectedIndex = responsibleEL.find("ul li[value="+ responsibleId +"]").index();
+    responsible.value = responsibleEL.find("ul li[id="+responsibleId+"]").html();
 
     const area = new mdc.select.MDCSelect(document.querySelector('#area'));
     var areaEL = $('#area');
     var areaId = $("#area\\.areaId").val();
     console.log("Area ID "+areaId);
-    areaEL.find("div").first().click();
-    areaEL.find("li[value="+areaId+"]").click();
-    //area.selectedIndex = areaEL.find("ul li[value="+ areaId +"]").index();
-    //area.value = areaEL.find("ul li[id="+areaId+"]").html();
+    //areaEL.find("div").first().click();
+    //areaEL.find("li[value="+areaId+"]").click();
+    area.selectedIndex = areaEL.find("ul li[value="+ areaId +"]").index();
+    area.value = areaEL.find("ul li[id="+areaId+"]").html();
 
     const manager = new mdc.select.MDCSelect(document.querySelector('#manager'));
     var managerEL = $('#manager');
     var managerId = $("#userManager\\.userInternalId").val();
     console.log("Gestor ID "+managerId);
+    //managerEL.find("div").first().click();
+    //managerEL.find("li[value="+managerId+"]").click();
     manager.selectedIndex = managerEL.find("ul li[value="+ managerId +"]").index();
     manager.value = managerEL.find("ul li[id="+managerId+"]").html();
 
@@ -88,6 +89,8 @@ $(function () {
     var techEL = $('#tech');
     var techId = $("#technology\\.technologyId").val();
     console.log("TECH ID "+techId);
+    //techEL.find("div").first().click();
+    //techEL.find("li[value="+techId+"]").click();
     tech.selectedIndex = techEL.find("ul li[value="+ techId +"]").index();
     tech.value = techEL.find("ul li[id="+techId+"]").html();
 
@@ -95,6 +98,8 @@ $(function () {
     var methEL = $('#meth');
     var methId = $("#methodology\\.methodologyId").val();
     console.log("METH ID "+methId);
+    //methEL.find("div").first().click();
+    //methEL.find("li[value="+methId+"]").click();
     meth.selectedIndex = methEL.find("ul li[value="+ methId +"]").index();
     meth.value = methEL.find("ul li[id="+methId+"]").html();
 
@@ -102,12 +107,17 @@ $(function () {
     var appEL = $('#app');
     var appId = $("#application\\.applicationId").val();
     console.log("app ID "+appId);
+    //appEL.find("div").first().click();
+    //appEL.find("li[value="+appId+"]").click();
     app.selectedIndex = appEL.find("ul li[value="+ appId +"]").index();
     app.value = appEL.find("ul li[id="+appId+"]").html();
 
     const channel = new mdc.select.MDCSelect(document.querySelector('#channel'));
     var channelEL = $('#channel');
     var channelId = $("#channel\\.channelId").val();
+    console.log("channel ID "+channelId);
+    //channelEL.find("div").first().click();
+    //channelEL.find("li[value="+channelId+"]").click();
     channel.selectedIndex = channelEL.find("ul li[value="+ channelId +"]").index();
     channel.value = channelEL.find("ul li[id="+channelId+"]").html();
 
@@ -115,10 +125,8 @@ $(function () {
     var companyEL = $('#company');
     var companyId = $("#company\\.companyId").val();
     console.log("company ID "+companyId);
-/*
-    companyEL.find("div").first().click();
-    companyEL.find("li[value="+companyId+"]").click();
-*/
+    //companyEL.find("div").first().click();
+    //companyEL.find("li[value="+companyId+"]").click();
     company.selectedIndex = companyEL.find("ul li[value="+ companyId +"]").index();
     company.value = companyEL.find("ul li[id="+companyId+"]").html();
 
@@ -126,10 +134,8 @@ $(function () {
     var serviceTypeEL = $('#service-type');
     var serviceTypeId = $("#serviceType\\.serviceTypeId").val();
     console.log("serviceType ID "+serviceTypeId);
-/*
-    serviceTypeEL.find("div").first().click();
-    serviceTypeEL.find("li[value="+serviceTypeId+"]").click();
-*/
+    //serviceTypeEL.find("div").first().click();
+    //serviceTypeEL.find("li[value="+serviceTypeId+"]").click();
     serviceType.selectedIndex = serviceTypeEL.find("ul li[value="+ serviceTypeId +"]").index();
     serviceType.value = serviceTypeEL.find("ul li[id="+serviceTypeId+"]").html();
 
@@ -137,10 +143,8 @@ $(function () {
     var piEL = $('#pi');
     var piId = $("#programIncrement\\.programIncrementId").val();
     console.log("pi ID "+piId);
-/*
-    piEL.find("div").first().click();
-    piEL.find("li[value="+piId+"]").click();
-*/
+    //piEL.find("div").first().click();
+    //piEL.find("li[value="+piId+"]").click();
     pi.selectedIndex = piEL.find("ul li[value="+ piId +"]").index();
     pi.value = piEL.find("ul li[id="+piId+"]").html();
 
@@ -148,14 +152,10 @@ $(function () {
     var projectEL = $('#project');
     var projectId = $("#project\\.projectId").val();
     console.log("project ID "+projectId);
-/*
-    projectEL.find("div").first().click();
-    projectEL.find("li[value="+projectId+"]").click();
-*/
+    //projectEL.find("div").first().click();
+    //projectEL.find("li[value="+projectId+"]").click();
     project.selectedIndex = projectEL.find("ul li[value="+ projectId +"]").index();
     project.value = projectEL.find("ul li[id="+projectId+"]").html();
-
-
 
     //TODO DOING PROJECTS
     /*
@@ -188,6 +188,8 @@ $(function () {
     var statusEL = $('#status');
     var statusId = $("#status\\.statusId").val();
     console.log("status ID "+statusId);
+    //statusEL.find("div").first().click();
+    //statusEL.find("li[value="+statusId+"]").click();
     status.selectedIndex = statusEL.find("ul li[value="+ statusId +"]").index();
     status.value = statusEL.find("ul li[id="+statusId+"]").html();
 
@@ -198,66 +200,3 @@ $(function () {
     });*/
 
 });
-
-function primma(){
-    var principalEL = $('#principal');
-    var principalId = $("#level\\.levelSuperior\\.levelId").val();
-
-    console.log("orima");
-    return $.when();
-}
-function second(){
-    var subPrincipalEL = $('#subprincipal');
-    var subPrincipalId = $("#level\\.levelId").val();
-
-    console.log("segun");
-    return $.when();
-}
-function third() {
-    var responsibleEL = $('#responsible');
-    var responsibleId = $("#user\\.userInternalId").val();
-
-    console.log("ter");
-    return $.when();
-}
-function fourth() {
-    var areaEL = $('#area');
-    var areaId = $("#area\\.areaId").val();
-
-    return $.when();
-}
-function fifth() {
-    var managerEL = $('#manager');
-    var managerId = $("#userManager\\.userInternalId").val();
-    managerEL.find("div").first().click();
-    managerEL.find("li[value="+managerId+"]").click();
-    return $.when();
-}
-function sixth() {
-    var techEL = $('#tech');
-    var techId = $("#technology\\.technologyId").val();
-    techEL.find("div").first().click();
-    techEL.find("li[value="+techId+"]").click();
-    return $.when();
-}
-function seventh() {
-    var methEL = $('#meth');
-    var methId = $("#methodology\\.methodologyId").val();
-    methEL.find("div").first().click();
-    methEL.find("li[value="+methId+"]").click();
-    return $.when();
-}
-function eigth() {
-    var appEL = $('#app');
-    var appId = $("#application\\.applicationId").val();
-    appEL.find("div").first().click();
-    appEL.find("li[value="+appId+"]").click();
-    return $.when();
-}
-function ninth(){
-    var channelEL = $('#channel');
-    var channelId = $("#channel\\.channelId").val();
-    channelEL.find("div").first().click();
-    channelEL.find("li[value="+channelId+"]").click();
-    return $.when();
-}
