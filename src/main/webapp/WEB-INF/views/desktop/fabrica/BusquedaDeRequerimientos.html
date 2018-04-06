@@ -38,18 +38,6 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/fabrica/busqueda-requerimientos.css}">
 
 </head>
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker4').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
-    });
-    $(function () {
-        $('#datetimepicker5').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
-    });
-</script>
 <body>
 
 <header th:replace="~{layout/mainHeader :: header }"></header>
@@ -62,7 +50,7 @@
     <br>
     <div class="row">
         <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Criterios De Busqueda</div>
-        <form th:action="@{/requirements/search}" th:object="${filters}" method="get" id="find">
+        <form th:action="@{/requirements/search}" th:object="${requirementSearchDTO}" method="get" id="find">
 
             <!-- HIDDEN FIELDS -->
             <input th:field="*{principalId}" type="hidden" />
@@ -135,7 +123,7 @@
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
                                 <li class="mdc-list-item" role="option" tabindex="0"
-                                    th:each="manager : ${managers}" th:value="${manager.userId}" th:text="${manager.userInternalId}">
+                                    th:each="user : ${users}" th:value="${user.userInternalId}" th:text="${user.userInternalId}">
                                 </li>
                             </ul>
                         </div>
@@ -237,7 +225,8 @@
                         </div>
                         <div class="mdc-menu mdc-select__menu " >
                             <ul class="mdc-list mdc-menu__items" id="aplicacion-select">
-                                <li class="mdc-list-item" role="option" tabindex="0"></li>
+                                <li th:each="app : ${applications}" class="mdc-list-item" role="option"
+                                    th:value="${app.applicationId}" th:text="${app.applicationName}"></li>
                             </ul>
                         </div>
                     </div>
@@ -251,7 +240,8 @@
                         </div>
                         <div class="mdc-menu mdc-select__menu " >
                             <ul class="mdc-list mdc-menu__items" id="canal-select">
-                                <li class="mdc-list-item" role="option" tabindex="0"></li>
+                                <li th:each="channel : ${channels}" class="mdc-list-item" role="option"
+                                    th:value="${channel.channelId}" th:text="${channel.channelName}"></li>
                             </ul>
                         </div>
                     </div>
@@ -268,8 +258,7 @@
                 <td class="col-md-4" align="center">
                     <div class="dog1">
                         <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input type='text' class="mdc-text-field__input" row="2" id='datetimepicker4'
-                                   th:field="*{requirementStartDate}"/>
+                            <input type="text" class="mdc-text-field__input" id="datetimepicker4"/>
                             <label class="mdc-text-field__label">Fecha Prop.Inicial</label>
                         </div>
                     </div>
@@ -277,8 +266,7 @@
                 <td class="col-md-4" align="center">
                     <div class="dog1">
                         <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker5'
-                                   th:field="*{requirementEndDate}"/>
+                            <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker5'/>
                             <label class="mdc-text-field__label">Fecha Prop.Final</label>
                         </div>
                     </div>
@@ -317,8 +305,13 @@
         <br>
     </div>
 
-    <div class="col-md-12" align="Left" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Resultados De Busqueda</div>
-    <div class="col-md-12" align="Left" style="font-size:20px; font-family:BBVA Web Book; background-color:#12a96a; color:#FFFFFF">Requerimientos</div>
+    <div class="row">
+        <div class="col-md-12" align="Left" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Resultados De Busqueda</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" align="Left" style="font-size:20px; font-family:BBVA Web Book; background-color:#12a96a; color:#FFFFFF">Requerimientos</div>
+    </div>
 
     <div class="row">
         <table class="col-md-12 table table-hover table-responive table-condensed"  style="font-size:12px;">

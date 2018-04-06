@@ -1,5 +1,29 @@
 $(function () {
 
+    $('#datetimepicker4').datetimepicker({
+        format: 'DD/MM/YYYY',
+        locale: 'es-mx',
+        useCurrent: false
+    });
+
+    $('#datetimepicker5').datetimepicker({
+        format: 'DD/MM/YYYY',
+        locale: 'es-mx',
+        useCurrent: false
+    });
+
+    $("#datetimepicker4").on("dp.change", function (e) {
+        var date = e.date;
+        var dateStr = date.date() + "/" + (date.month() + 1) + '/' + date.year();
+        $("input[id=requirementStartDate]").val(dateStr);
+    });
+
+    $("#datetimepicker5").on("dp.change", function (e) {
+        var date = e.date;
+        var dateStr = date.date() + "/" + (date.month() + 1) + '/' + date.year();
+        $("input[id=requirementEndDate]").val(dateStr);
+    });
+
     const select = new mdc.select.MDCSelect(document.querySelector('#dirs'));
     let coso = parseInt("0");
     select.listen('MDCSelect:change', () => {
@@ -129,5 +153,7 @@ $(function () {
         radioButton.prop('checked', true);
         $("#edit-requirement").attr("href","/requirements/"+radioButton.val());
     });
+
+    //TODO APLICAICONES
 
 });
