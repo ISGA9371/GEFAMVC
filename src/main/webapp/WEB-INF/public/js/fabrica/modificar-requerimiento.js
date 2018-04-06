@@ -14,7 +14,7 @@ $(function () {
         url: "/levels/"+principalId+"/sublevel"
     }).done(function(data) {
         let subdirs = data;
-        //$("#subdir-sel-text").html("");
+        $("#subdir-sel-text").html("");
         if (typeof subdirs !== 'undefined' && subdirs.length > 0) {
             $("#subdir-select").html("");
             $.each(subdirs, function( index, value ) {
@@ -23,15 +23,22 @@ $(function () {
                     "value='"+value.levelId+"'>"+value.levelName+"</li>");
             });
 
-            //const subPrincipal = new mdc.select.MDCSelect(document.querySelector('#subprincipal'));
+            const subPrincipal = new mdc.select.MDCSelect(document.querySelector('#subprincipal'));
             var subPrincipalEL = $('#subprincipal');
             var subPrincipalId = $("#level\\.levelId").val();
             console.log("SUBLEVEL ID "+subPrincipalId + " "+"li[value="+subPrincipalId+"]");
 
-            subPrincipalEL.find("div").first().click();
-            subPrincipalEL.find("li[value='"+subPrincipalId+"']").click();
-            //subPrincipal.selectedIndex = subPrincipalEL.find("ul li[value="+ subPrincipalId +"]").index();
-            //subPrincipal.value = subPrincipalEL.find("ul li[id="+subPrincipalId+"]").html();
+            //subPrincipalEL.find("div").first().click();
+            //subPrincipalEL.find("li[value='"+subPrincipalId+"']").click();
+            subPrincipal.selectedIndex = subPrincipalEL.find("ul li[value="+ subPrincipalId +"]").index();
+            subPrincipal.value = subPrincipalEL.find("ul li[id="+subPrincipalId+"]").html();
+
+            var idx = parseInt("0");
+            subPrincipal.listen('MDCSelect:change', () => {
+                if (++idx > 1) {idx = 0;return;}
+                let id = subdirs.selectedOptions[0].value;
+                $("#level\\.levelId").val(id);
+            });
 
         }else $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
 
@@ -41,6 +48,7 @@ $(function () {
     principal.listen('MDCSelect:change', () => {
         if(++coso > 1){coso = 0; return;}
         let id = principal.selectedOptions[0].value;
+
         $.ajax({
             url: "/levels/"+id+"/sublevel"
         }).done(function(data) {
@@ -66,6 +74,12 @@ $(function () {
     //responsibleEL.find("li[value="+responsibleId+"]").click();
     responsible.selectedIndex = responsibleEL.find("ul li[value="+ responsibleId +"]").index();
     responsible.value = responsibleEL.find("ul li[id="+responsibleId+"]").html();
+    let index = parseInt("0");
+    responsible.listen('MDCSelect:change', () => {
+        if (++index > 1) {index = 0;return;}
+        let id = responsible.selectedOptions[0].value;
+        $("#user\\.userInternalId").val(id);
+    });
 
     const area = new mdc.select.MDCSelect(document.querySelector('#area'));
     var areaEL = $('#area');
@@ -75,6 +89,12 @@ $(function () {
     //areaEL.find("li[value="+areaId+"]").click();
     area.selectedIndex = areaEL.find("ul li[value="+ areaId +"]").index();
     area.value = areaEL.find("ul li[id="+areaId+"]").html();
+    let index2 = parseInt("0");
+    area.listen('MDCSelect:change', () => {
+        if (++index2 > 1) {index2 = 0;return;}
+        let id = area.selectedOptions[0].value;
+        $("#area\\.areaId").val(id);
+    });
 
     const manager = new mdc.select.MDCSelect(document.querySelector('#manager'));
     var managerEL = $('#manager');
@@ -84,6 +104,12 @@ $(function () {
     //managerEL.find("li[value="+managerId+"]").click();
     manager.selectedIndex = managerEL.find("ul li[value="+ managerId +"]").index();
     manager.value = managerEL.find("ul li[id="+managerId+"]").html();
+    let index3 = parseInt("0");
+    manager.listen('MDCSelect:change', () => {
+        if (++index3 > 1) {index3 = 0;return;}
+        let id = manager.selectedOptions[0].value;
+        $("#userManager\\.userInternalId").val(id);
+    });
 
     const tech = new mdc.select.MDCSelect(document.querySelector('#tech'));
     var techEL = $('#tech');
@@ -93,6 +119,12 @@ $(function () {
     //techEL.find("li[value="+techId+"]").click();
     tech.selectedIndex = techEL.find("ul li[value="+ techId +"]").index();
     tech.value = techEL.find("ul li[id="+techId+"]").html();
+    let index4 = parseInt("0");
+    tech.listen('MDCSelect:change', () => {
+        if (++index4 > 1) {index4 = 0;return;}
+        let id = tech.selectedOptions[0].value;
+        $("#technology\\.technologyId").val(id);
+    });
 
     const meth = new mdc.select.MDCSelect(document.querySelector('#meth'));
     var methEL = $('#meth');
@@ -102,6 +134,12 @@ $(function () {
     //methEL.find("li[value="+methId+"]").click();
     meth.selectedIndex = methEL.find("ul li[value="+ methId +"]").index();
     meth.value = methEL.find("ul li[id="+methId+"]").html();
+    let index5 = parseInt("0");
+    meth.listen('MDCSelect:change', () => {
+        if (++index5 > 1) {index5 = 0;return;}
+        let id = meth.selectedOptions[0].value;
+        $("#methodology\\.methodologyId").val(id);
+    });
 
     const app = new mdc.select.MDCSelect(document.querySelector('#app'));
     var appEL = $('#app');
@@ -111,6 +149,12 @@ $(function () {
     //appEL.find("li[value="+appId+"]").click();
     app.selectedIndex = appEL.find("ul li[value="+ appId +"]").index();
     app.value = appEL.find("ul li[id="+appId+"]").html();
+    let index6 = parseInt("0");
+    app.listen('MDCSelect:change', () => {
+        if (++index6 > 1) {index6 = 0;return;}
+        let id = app.selectedOptions[0].value;
+        $("#application\\.applicationId").val(id);
+    });
 
     const channel = new mdc.select.MDCSelect(document.querySelector('#channel'));
     var channelEL = $('#channel');
@@ -120,6 +164,12 @@ $(function () {
     //channelEL.find("li[value="+channelId+"]").click();
     channel.selectedIndex = channelEL.find("ul li[value="+ channelId +"]").index();
     channel.value = channelEL.find("ul li[id="+channelId+"]").html();
+    let index7 = parseInt("0");
+    channel.listen('MDCSelect:change', () => {
+        if (++index7 > 1) {index7 = 0;return;}
+        let id = channel.selectedOptions[0].value;
+        $("#channel\\.channelId").val(id);
+    });
 
     const company = new mdc.select.MDCSelect(document.querySelector('#company'));
     var companyEL = $('#company');
@@ -129,6 +179,12 @@ $(function () {
     //companyEL.find("li[value="+companyId+"]").click();
     company.selectedIndex = companyEL.find("ul li[value="+ companyId +"]").index();
     company.value = companyEL.find("ul li[id="+companyId+"]").html();
+    let index8 = parseInt("0");
+    company.listen('MDCSelect:change', () => {
+        if (++index8 > 1) {index8 = 0;return;}
+        let id = company.selectedOptions[0].value;
+        $("#company\\.companyId").val(id);
+    });
 
     const serviceType = new mdc.select.MDCSelect(document.querySelector('#service-type'));
     var serviceTypeEL = $('#service-type');
@@ -138,6 +194,12 @@ $(function () {
     //serviceTypeEL.find("li[value="+serviceTypeId+"]").click();
     serviceType.selectedIndex = serviceTypeEL.find("ul li[value="+ serviceTypeId +"]").index();
     serviceType.value = serviceTypeEL.find("ul li[id="+serviceTypeId+"]").html();
+    let index9 = parseInt("0");
+    serviceType.listen('MDCSelect:change', () => {
+        if (++index9 > 1) {index9 = 0;return;}
+        let id = serviceType.selectedOptions[0].value;
+        $("#serviceType\\.serviceTypeId").val(id);
+    });
 
     const pi = new mdc.select.MDCSelect(document.querySelector('#pi'));
     var piEL = $('#pi');
@@ -147,6 +209,12 @@ $(function () {
     //piEL.find("li[value="+piId+"]").click();
     pi.selectedIndex = piEL.find("ul li[value="+ piId +"]").index();
     pi.value = piEL.find("ul li[id="+piId+"]").html();
+    let index10 = parseInt("0");
+    pi.listen('MDCSelect:change', () => {
+        if (++index10 > 1) {index10 = 0;return;}
+        let id = pi.selectedOptions[0].value;
+        $("#programIncrement\\.programIncrementId").val(id);
+    });
 
     const project = new mdc.select.MDCSelect(document.querySelector('#project'));
     var projectEL = $('#project');
@@ -156,6 +224,12 @@ $(function () {
     //projectEL.find("li[value="+projectId+"]").click();
     project.selectedIndex = projectEL.find("ul li[value="+ projectId +"]").index();
     project.value = projectEL.find("ul li[id="+projectId+"]").html();
+    let index11 = parseInt("0");
+    project.listen('MDCSelect:change', () => {
+        if (++index11 > 1) {index11 = 0;return;}
+        let id = project.selectedOptions[0].value;
+        $("#project\\.projectId").val(id);
+    });
 
     //TODO DOING PROJECTS
     /*
@@ -192,6 +266,20 @@ $(function () {
     //statusEL.find("li[value="+statusId+"]").click();
     status.selectedIndex = statusEL.find("ul li[value="+ statusId +"]").index();
     status.value = statusEL.find("ul li[id="+statusId+"]").html();
+    let index12 = parseInt("0");
+    status.listen('MDCSelect:change', () => {
+        if (++index12 > 1) {index12 = 0;return;}
+        let id = status.selectedOptions[0].value;
+        $("#status\\.statusId").val(id);
+    });
+
+    const billed = new mdc.select.MDCSelect(document.querySelector('#billed'));
+    let index13 = parseInt("0");
+    billed.listen('MDCSelect:change', () => {
+        if (++index13 > 1) {index13 = 0;return;}
+        let id = billed.selectedOptions[0].value;
+        $("#requirementBilled").val(id);
+    });
 
     //TODO Al enviar objeto, poner a null el level.levelSuperior.levelId ?
     /*$('#form').submit(function() {
