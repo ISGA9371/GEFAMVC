@@ -344,8 +344,11 @@
                     <td><input type="radio" name="requirements" th:id="${requirement.requirementId}"
                                th:value="${requirement.requirementId}"></td>
                     <td th:text="${requirement.requirementName}"></td>
+                    <!--
                     <td th:text="${requirement.budgetRequirements.size() > 0 ?
                     requirement.budgetRequirements[0].budget.budgetId : ''}"></td>
+                    -->
+                    <td></td>
                     <td th:text="${requirement.level.levelSuperior.levelName}"></td>
                     <td th:text="${requirement.level.levelName}"></td>
                     <td th:text="${requirement.user.userInternalId}"></td>
@@ -389,8 +392,11 @@
                                             </ul>
                                         </div>
                                     </td>
+                                    <!--
                                     <td th:text="${requirement.budgetRequirements.size() > 0 ?
                     requirement.budgetRequirements[0].budget.budgetId : ''}"></td>
+                    -->
+                                    <td></td>
                                     <td>
                                     </td>
 
