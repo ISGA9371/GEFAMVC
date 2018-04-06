@@ -36,7 +36,8 @@ $(function () {
             var idx = parseInt("0");
             subPrincipal.listen('MDCSelect:change', () => {
                 if (++idx > 1) {idx = 0;return;}
-                let id = subdirs.selectedOptions[0].value;
+                let id = subPrincipal.selectedOptions[0].value;
+                console.log("SELECTEDSUBDIR "+id);
                 $("#level\\.levelId").val(id);
             });
 
@@ -218,7 +219,7 @@ $(function () {
 
     const project = new mdc.select.MDCSelect(document.querySelector('#project'));
     var projectEL = $('#project');
-    var projectId = $("#project\\.projectId").val();
+    var projectId = $("#project\\.projectScrumId").val();
     console.log("project ID "+projectId);
     //projectEL.find("div").first().click();
     //projectEL.find("li[value="+projectId+"]").click();
@@ -228,7 +229,7 @@ $(function () {
     project.listen('MDCSelect:change', () => {
         if (++index11 > 1) {index11 = 0;return;}
         let id = project.selectedOptions[0].value;
-        $("#project\\.projectId").val(id);
+        $("#project\\.projectScrumId").val(id);
     });
 
     //TODO DOING PROJECTS
