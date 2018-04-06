@@ -89,12 +89,12 @@ public class RequirementController {
 
     @RequestMapping(value = "/filters", method = RequestMethod.GET)
     public String filtersForRequirements(Model model) {
-        model.addAttribute("filters", new RequirementSearchDTO());
+        model.addAttribute("requirementSearchDTO", new RequirementSearchDTO());
         return URL_FACTORY + SEARCH_REQUIREMENTS;
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String searchForRequirements(@ModelAttribute("filters") RequirementSearchDTO filters, Model model) {
+    public String searchForRequirements(@ModelAttribute("requirementSearchDTO") RequirementSearchDTO filters, Model model) {
         // TODO Work in progress
         /*String query = new QueryGenerator().generate(filters, "Requirement");
         List<Requirement> requirements = requirementService.findByCustomQuery(query); */
