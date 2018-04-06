@@ -9,13 +9,17 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-12" align="center" style="font-size:30px; font-family:BBVA Web Book">Alta de Requerimientos</div>
+          <div class="col-md-12 text-center">
+            <h2 class="h2-title-content">Alta de Requerimientos</h2>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 subtitle-content">Datos Generales</div>
         </div>
 
         <form th:object="${requirement}" th:action="@{/requirements}" method="post">
-
             <div class="row">
-                <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos Generales</div>
                 <table class="col-md-12" align="center">
                     <tr height="72px">
                         <td class="col-md-4" align="center">
@@ -280,18 +284,14 @@
                 </table>
             </div>
             <br>
-            <div class="row">
-                <table class="col-md-12" >
-                    <tr>
-                        <td class="col-md-6" align="center">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                            <button type="button" class="btn btn-primary" onclick="funcionCancelar()">Cancelar</button>
 
-                        </td>
-                    </tr>
-                </table>
+            <div class="row buttons">
+              <div class="col-xs-12 text-center">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn btn-primary" onclick="funcionCancelar()">Cancelar</button>
+              </div>
             </div>
-
+            <!-- .// row -->
         </form>
     </div>
 
