@@ -1,6 +1,5 @@
 package com.mx.bbva.controller;
 
-import com.mx.bbva.business.dto.ModificationDTO;
 import com.mx.bbva.business.entity.Component;
 import com.mx.bbva.business.entity.Modification;
 import com.mx.bbva.business.entity.Status;
