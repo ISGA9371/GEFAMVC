@@ -13,7 +13,6 @@
 }
 
 .detail-label{
-    font-size: 14px;
     color: #005EB8;
 }
 .detail-label:not(:first-of-type){
@@ -36,4 +35,34 @@ td.detail-td tr td:first-of-type{
 }
 td.detail-td tr td:last-of-type{
     padding-right: 5px;
+}
+
+.results-header{
+    font-size : 22px;
+    font-family: BBVA Web Book;
+    background-color:#004582;
+    color:#FFFFFF;
+    padding: 4px 4px;
+}
+.results-title{
+    font-size:20px;
+    font-family:BBVA Web Book;
+    background-color:#12a96a;
+    color:#FFFFFF;
+    padding: 4px 4px;
+}
+
+#results-table{font-size: 12px;}
+#results-table thead tr{
+    background-color:#F4F4F4;
+    color:#005EB8;
+}
+
+.table > thead > tr > th {
+    border-bottom: 1.2px solid #005EB8 !important;
+    text-align: center;
+}
+#results-table thead th{
+    padding: 12px 0;
+    font-weight: normal;
 }
