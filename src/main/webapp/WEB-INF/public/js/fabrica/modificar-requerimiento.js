@@ -31,7 +31,7 @@ $(function () {
             //subPrincipalEL.find("div").first().click();
             //subPrincipalEL.find("li[value='"+subPrincipalId+"']").click();
             subPrincipal.selectedIndex = subPrincipalEL.find("ul li[value="+ subPrincipalId +"]").index();
-            subPrincipal.value = subPrincipalEL.find("ul li[id="+subPrincipalId+"]").html();
+            subPrincipal.value = subPrincipalEL.find("ul li[value="+subPrincipalId+"]").html();
 
             var idx = parseInt("0");
             subPrincipal.listen('MDCSelect:change', () => {
@@ -74,7 +74,7 @@ $(function () {
     //responsibleEL.find("div").first().click();
     //responsibleEL.find("li[value="+responsibleId+"]").click();
     responsible.selectedIndex = responsibleEL.find("ul li[value="+ responsibleId +"]").index();
-    responsible.value = responsibleEL.find("ul li[id="+responsibleId+"]").html();
+    responsible.value = responsibleEL.find("ul li[value="+responsibleId+"]").html();
     let index = parseInt("0");
     responsible.listen('MDCSelect:change', () => {
         if (++index > 1) {index = 0;return;}
@@ -89,7 +89,7 @@ $(function () {
     //areaEL.find("div").first().click();
     //areaEL.find("li[value="+areaId+"]").click();
     area.selectedIndex = areaEL.find("ul li[value="+ areaId +"]").index();
-    area.value = areaEL.find("ul li[id="+areaId+"]").html();
+    area.value = areaEL.find("ul li[value="+areaId+"]").html();
     let index2 = parseInt("0");
     area.listen('MDCSelect:change', () => {
         if (++index2 > 1) {index2 = 0;return;}
@@ -104,7 +104,7 @@ $(function () {
     //managerEL.find("div").first().click();
     //managerEL.find("li[value="+managerId+"]").click();
     manager.selectedIndex = managerEL.find("ul li[value="+ managerId +"]").index();
-    manager.value = managerEL.find("ul li[id="+managerId+"]").html();
+    manager.value = managerEL.find("ul li[value="+managerId+"]").html();
     let index3 = parseInt("0");
     manager.listen('MDCSelect:change', () => {
         if (++index3 > 1) {index3 = 0;return;}
@@ -119,7 +119,7 @@ $(function () {
     //techEL.find("div").first().click();
     //techEL.find("li[value="+techId+"]").click();
     tech.selectedIndex = techEL.find("ul li[value="+ techId +"]").index();
-    tech.value = techEL.find("ul li[id="+techId+"]").html();
+    tech.value = techEL.find("ul li[value="+techId+"]").html();
     let index4 = parseInt("0");
     tech.listen('MDCSelect:change', () => {
         if (++index4 > 1) {index4 = 0;return;}
@@ -134,7 +134,7 @@ $(function () {
     //methEL.find("div").first().click();
     //methEL.find("li[value="+methId+"]").click();
     meth.selectedIndex = methEL.find("ul li[value="+ methId +"]").index();
-    meth.value = methEL.find("ul li[id="+methId+"]").html();
+    meth.value = methEL.find("ul li[value="+methId+"]").html();
     let index5 = parseInt("0");
     meth.listen('MDCSelect:change', () => {
         if (++index5 > 1) {index5 = 0;return;}
@@ -149,7 +149,7 @@ $(function () {
     //appEL.find("div").first().click();
     //appEL.find("li[value="+appId+"]").click();
     app.selectedIndex = appEL.find("ul li[value="+ appId +"]").index();
-    app.value = appEL.find("ul li[id="+appId+"]").html();
+    app.value = appEL.find("ul li[value="+appId+"]").html();
     let index6 = parseInt("0");
     app.listen('MDCSelect:change', () => {
         if (++index6 > 1) {index6 = 0;return;}
@@ -164,7 +164,7 @@ $(function () {
     //channelEL.find("div").first().click();
     //channelEL.find("li[value="+channelId+"]").click();
     channel.selectedIndex = channelEL.find("ul li[value="+ channelId +"]").index();
-    channel.value = channelEL.find("ul li[id="+channelId+"]").html();
+    channel.value = channelEL.find("ul li[value="+channelId+"]").html();
     let index7 = parseInt("0");
     channel.listen('MDCSelect:change', () => {
         if (++index7 > 1) {index7 = 0;return;}
@@ -179,7 +179,7 @@ $(function () {
     //companyEL.find("div").first().click();
     //companyEL.find("li[value="+companyId+"]").click();
     company.selectedIndex = companyEL.find("ul li[value="+ companyId +"]").index();
-    company.value = companyEL.find("ul li[id="+companyId+"]").html();
+    company.value = companyEL.find("ul li[value="+companyId+"]").html();
     let index8 = parseInt("0");
     company.listen('MDCSelect:change', () => {
         if (++index8 > 1) {index8 = 0;return;}
@@ -194,7 +194,7 @@ $(function () {
     //serviceTypeEL.find("div").first().click();
     //serviceTypeEL.find("li[value="+serviceTypeId+"]").click();
     serviceType.selectedIndex = serviceTypeEL.find("ul li[value="+ serviceTypeId +"]").index();
-    serviceType.value = serviceTypeEL.find("ul li[id="+serviceTypeId+"]").html();
+    serviceType.value = serviceTypeEL.find("ul li[value="+serviceTypeId+"]").html();
     let index9 = parseInt("0");
     serviceType.listen('MDCSelect:change', () => {
         if (++index9 > 1) {index9 = 0;return;}
@@ -209,7 +209,7 @@ $(function () {
     //piEL.find("div").first().click();
     //piEL.find("li[value="+piId+"]").click();
     pi.selectedIndex = piEL.find("ul li[value="+ piId +"]").index();
-    pi.value = piEL.find("ul li[id="+piId+"]").html();
+    pi.value = piEL.find("ul li[value="+piId+"]").html();
     let index10 = parseInt("0");
     pi.listen('MDCSelect:change', () => {
         if (++index10 > 1) {index10 = 0;return;}
@@ -224,7 +224,7 @@ $(function () {
     //projectEL.find("div").first().click();
     //projectEL.find("li[value="+projectId+"]").click();
     project.selectedIndex = projectEL.find("ul li[value="+ projectId +"]").index();
-    project.value = projectEL.find("ul li[id="+projectId+"]").html();
+    project.value = projectEL.find("ul li[value="+projectId+"]").html();
     let index11 = parseInt("0");
     project.listen('MDCSelect:change', () => {
         if (++index11 > 1) {index11 = 0;return;}
@@ -253,7 +253,7 @@ $(function () {
             var subPrincipalId = $("#level\\.levelId").val();
             console.log("SUBLEVEL ID "+subPrincipalId);
             subPrincipal.selectedIndex = subPrincipalEL.find("ul li[value="+ subPrincipalId +"]").index();
-            subPrincipal.value = subPrincipalEL.find("ul li[id="+subPrincipalId+"]").html();
+            subPrincipal.value = subPrincipalEL.find("ul li[value="+subPrincipalId+"]").html();
 
         }else $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
     });
@@ -266,7 +266,7 @@ $(function () {
     //statusEL.find("div").first().click();
     //statusEL.find("li[value="+statusId+"]").click();
     status.selectedIndex = statusEL.find("ul li[value="+ statusId +"]").index();
-    status.value = statusEL.find("ul li[id="+statusId+"]").html();
+    status.value = statusEL.find("ul li[value="+statusId+"]").html();
     let index12 = parseInt("0");
     status.listen('MDCSelect:change', () => {
         if (++index12 > 1) {index12 = 0;return;}
