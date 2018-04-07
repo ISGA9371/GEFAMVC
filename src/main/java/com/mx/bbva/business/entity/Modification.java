@@ -49,14 +49,10 @@ public class Modification implements Serializable {
     private Character modificationSeverity;
     @Column(name = "IM_COSTE_INIC", precision = 22)
     private Double modificationInitialCost;
-    @Column(name = "CT_HORAS_INIC", precision = 22)
-    private Double modificationInitialHours;
     @Column(name = "TX_DIF_EMP")
     private Character txDifEmp;
     @Column(name = "IM_COSTE_EMP", precision = 22)
     private Double modificationPrice;
-    @Column(name = "CT_HORAS_EMP", precision = 22)
-    private Double modificationHours;
     @Column(name = "TX_COM_TIPIF_EMP", length = 500)
     private String modificationCommentTypo;
     @Column(name = "TX_COM_TIPIF_PROY", length = 500)
@@ -64,10 +60,6 @@ public class Modification implements Serializable {
     @Basic(optional = false)
     @Column(name = "TX_FACT_S_N", nullable = false, length = 2)
     private String modificationInvoiced;
-    @Column(name = "TX_MES_FACT", length = 10)
-    private String modificationInvoiceMonth;
-    @Column(name = "NU_ANO_FACT")
-    private Integer modificationInvoiceYear;
     @JoinColumn(name = "ST_MODIFICACION", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status modificationStatus;
@@ -200,14 +192,6 @@ public class Modification implements Serializable {
         this.modificationInitialCost = modificationInitialCost;
     }
 
-    public Double getModificationInitialHours() {
-        return modificationInitialHours;
-    }
-
-    public void setModificationInitialHours(Double modificationInitialHours) {
-        this.modificationInitialHours = modificationInitialHours;
-    }
-
     public Character getTxDifEmp() {
         return txDifEmp;
     }
@@ -222,14 +206,6 @@ public class Modification implements Serializable {
 
     public void setModificationPrice(Double modificationPrice) {
         this.modificationPrice = modificationPrice;
-    }
-
-    public Double getModificationHours() {
-        return modificationHours;
-    }
-
-    public void setModificationHours(Double modificationHours) {
-        this.modificationHours = modificationHours;
     }
 
     public String getModificationCommentTypo() {
@@ -254,22 +230,6 @@ public class Modification implements Serializable {
 
     public void setModificationInvoiced(String modificationInvoiced) {
         this.modificationInvoiced = modificationInvoiced;
-    }
-
-    public String getModificationInvoiceMonth() {
-        return modificationInvoiceMonth;
-    }
-
-    public void setModificationInvoiceMonth(String modificationInvoiceMonth) {
-        this.modificationInvoiceMonth = modificationInvoiceMonth;
-    }
-
-    public Integer getModificationInvoiceYear() {
-        return modificationInvoiceYear;
-    }
-
-    public void setModificationInvoiceYear(Integer modificationInvoiceYear) {
-        this.modificationInvoiceYear = modificationInvoiceYear;
     }
 
     public Status getModificationStatus() {
