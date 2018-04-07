@@ -20,7 +20,7 @@ html {
     font-size: 100%; /*THIS IS FUNDAMENTAL FOR REMs TO WORK*/
 }
 
-.top-bar{
+/* .top-bar{
 
 }
 #top-nav{
@@ -64,35 +64,38 @@ header div.top-bar ul li:last-of-type{
 
 header div.top-bar li.bold{
     font-weight: bold;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+html {
+  min-height: 100%;
+  position: relative;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 body {
   background-color: #FFFCF6;
+}
+
+body > .container {
+  margin-bottom: 40px;
 }
 
 header #top-bar {
@@ -249,13 +252,17 @@ ul.menu li a:hover {
 
 footer {
   margin-top:50px;
-  position: relative;
-  bottom: 0px;
+  /* position: relative;
+  bottom: 0px; */
   background-color:#072146;
   color:#FFFFFF;
   height: 40px;
   padding: 12px 16px;
   width: 100%;
+
+  position:absolute;
+  bottom: 0;
+  left: 0;
 }
 
 /** styles for mdc select and text **/
