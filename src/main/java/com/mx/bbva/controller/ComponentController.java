@@ -90,8 +90,7 @@ public class ComponentController {
     public List<Component> searchForComponents(@ModelAttribute("filters") ComponentSearchDTO filters) {
         // TODO Work in progress
         String query = new QueryGenerator().generate(filters, "Component");
-        List<Component> components = componentService.findByCustomQuery(query);
-        return componentService.findAllComponents();
+        return componentService.findByCustomQuery(query);
     }
 
     //TODO Use Enums

@@ -1,7 +1,6 @@
 package com.mx.bbva.controller;
 
 import com.mx.bbva.business.dto.BudgetSearchDTO;
-import com.mx.bbva.business.dto.BudgetTransferDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import com.mx.bbva.util.query.QueryGenerator;
@@ -31,6 +30,7 @@ public class BudgetController {
     private BankingService bankingService;
     private CorporationService corporationService;
     private NatureService natureService;
+    private TransferService transferService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String createBudget(Model model) {
@@ -38,17 +38,19 @@ public class BudgetController {
 
         LOG.info("Creating new budget");
         model.addAttribute("budget", new Budget());
-        model.addAttribute("budgetTransfer", new BudgetTransferDTO());
+        model.addAttribute("transfer", new Transfer());
         //TODO Add catalogs
         return URL_BUDGET + NEW_BUDGET;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String saveBudget(@ModelAttribute("budget") Budget budget) {
+    public String saveBudget(@ModelAttribute("budget") Budget budget, @ModelAttribute("transfer") Transfer transfer) {
         // TODO Validate user
 
         // LOG.info("Saving new budget... " + budget.getBudgetName());
         budgetService.saveBudget(budget);
+        transfer.setBudget(budget);
+        transferService.saveTransfer(transfer);
 
         return URL_BUDGET + EDIT_BUDGET;
     }
@@ -89,6 +91,36 @@ public class BudgetController {
         List<Budget> budgets = budgetService.findByCustomQuery(query);
         model.addAttribute("budgets", budgets);
         return URL_FACTORY + SEARCH_REQUIREMENTS;
+    }
+
+    @RequestMapping(value = "/billing/filters", method = RequestMethod.GET)
+    public String filtersForBilling(Model model) {
+        model.addAttribute("filters", new Budget());
+        return URL_BUDGET + BILLING_CUT;
+    }
+
+    @RequestMapping(value = "/billing/search", method = RequestMethod.GET)
+    public String searchForBillings(@ModelAttribute("billingSearchDTO") BudgetSearchDTO budgetSearchDTO, Model model) {
+        // TODO Work in progress
+        String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
+        List<Budget> budgets = budgetService.findByCustomQuery(query);
+        model.addAttribute("budgets", budgets);
+        return URL_FACTORY + BILLING_CUT;
+    }
+
+    @RequestMapping(value = "/payment/filters", method = RequestMethod.GET)
+    public String filtersForPayment(Model model) {
+        model.addAttribute("filters", new Budget());
+        return URL_BUDGET + STATUS_PAYMENT;
+    }
+
+    @RequestMapping(value = "/payment/search", method = RequestMethod.GET)
+    public String searchForPayments(@ModelAttribute("paymentSearchDTO") BudgetSearchDTO budgetSearchDTO, Model model) {
+        // TODO Work in progress
+        String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
+        List<Budget> budgets = budgetService.findByCustomQuery(query);
+        model.addAttribute("budgets", budgets);
+        return URL_FACTORY + STATUS_PAYMENT;
     }
 
     @ModelAttribute("areas")
@@ -180,5 +212,10 @@ public class BudgetController {
     @Autowired
     public void setNatureService(NatureService natureService) {
         this.natureService = natureService;
+    }
+
+    @Autowired
+    public void setTransferService(TransferService transferService) {
+        this.transferService = transferService;
     }
 }
