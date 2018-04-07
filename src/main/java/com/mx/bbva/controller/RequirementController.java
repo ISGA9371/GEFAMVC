@@ -77,6 +77,16 @@ public class RequirementController {
         return URL_FACTORY + SEARCH_REQUIREMENTS;
     }
 
+    @RequestMapping(value = "/find", method = RequestMethod.POST)
+    public String findRequirements(Model model, @ModelAttribute(value = "criteria") RequirementSearchDTO criteria) {
+        LOGGER.info("Find requirements by selected criteria");
+
+        LOGGER.info("Criteria " + criteria);
+        //List<Requirement> requirements = requirementService.findAllRequirements();
+        //model.addAttribute("requirements", requirements);
+        return "redirect:/requirements";
+    }
+
     @RequestMapping(value = "/filters", method = RequestMethod.GET)
     public String filtersForRequirements(Model model) {
         model.addAttribute("requirementSearchDTO", new RequirementSearchDTO());
@@ -84,7 +94,7 @@ public class RequirementController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String searchForRequirements(@ModelAttribute("requirementSearchDTO") RequirementSearchDTO requirementSearchDTO, Model model) {
+    public String searchForRequirements(@ModelAttribute("requirementSearchDTO") RequirementSearchDTO filters, Model model) {
         // TODO Work in progress
         /*String query = new QueryGenerator().generate(filters, "Requirement");
         List<Requirement> requirements = requirementService.findByCustomQuery(query); */

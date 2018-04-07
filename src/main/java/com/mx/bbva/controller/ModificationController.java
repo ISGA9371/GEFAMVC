@@ -2,8 +2,6 @@ package com.mx.bbva.controller;
 
 import com.mx.bbva.business.entity.Component;
 import com.mx.bbva.business.entity.Modification;
-import com.mx.bbva.business.entity.Status;
-import com.mx.bbva.business.entity.StatusType;
 import com.mx.bbva.business.service.ModificationService;
 import com.mx.bbva.business.service.StatusService;
 import com.mx.bbva.business.service.ComponentService;

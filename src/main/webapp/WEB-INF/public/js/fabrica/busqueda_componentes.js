@@ -1,5 +1,9 @@
 $(function () {
 
+  /** 
+   * datepicker
+   * dateFormat: "dd-mm-yy"
+  */
   $('#componentDesignRealDeliverDate').datetimepicker({
     format: 'DD/MM/YYYY'
   });
@@ -52,16 +56,17 @@ $(function () {
     $("#statusTypologyId").val(estado_tipificado.value);
     $("#typologyFinalSeverity").val(dificultad_final.value);
 
-    serializeArray = $("#searchForm").serializeArray();
-    objectito = {};
-    $.each(serializeArray, function (index, value) {
-      objectito[value.name] = value.value;
-    });
+    // serializeArray = $("#searchForm").serializeArray();
+    // objectito = {};
+    // $.each(serializeArray, function (index, value) {
+    //   objectito[value.name] = value.value;
+    // });
 
     $.ajax({
       url: "/components/search",
       method: "GET",
-      data: JSON.stringify(objectito),
+      // data: JSON.stringify( $("#searchForm").serialize() ),
+      data: $.param( $("#searchForm").serialize() ),
       dataType: "json",
       beforeSend: function (xhr) {
         HoldOn.open({
@@ -81,7 +86,6 @@ $(function () {
         $("#row-buttons-results").show();
 
         $("#tab-componentes > table > tbody").html("");
-        $("#tab-generales > table > tbody").html("");
         $("#tab-fecha > table > tbody").html("");
         $("#tab-cierre > table > tbody").html("");
 
@@ -96,36 +100,49 @@ $(function () {
             "<th>" + "" + "</th>" +
             "<th>" + "" + "</th>" +
             "<th>" + "" + "</th>" +
-            "<th>" + "" + ".</th>" +
-            "<th>" + "" + "</th>" +
-            "<th>" + "" + "</th></tr>"
+            "<th><a class='btn btn-primary btn-xs' href='/modifications/add?componentId=" + value.componentId + 
+              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></th>" + 
+            "<th><a class='btn btn-primary btn-xs' href='/doubts/add?componentId=" + value.componentId + 
+              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></th>" + 
+            "<th><a class='btn btn-primary btn-xs' href='/issues/add?componentId=" + value.componentId + 
+              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></th>" + 
+            "<th><a class='btn btn-success btn-xs' href='/components/" + value.componentId + 
+              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> Editar</a></th></tr>"
           );
 
-          componentDesignRealDeliverDate = new Date(value.componentDesignRealDeliverDate);
-          componentPossibleDeliverDate = new Date(value.componentPossibleDeliverDate);
-          componentPreviewDeliverDate = new Date(value.componentPreviewDeliverDate);
-          componentRealDeliverDate = new Date(value.componentRealDeliverDate);
+          // componentDesignRealDeliverDate = new Date(value.componentDesignRealDeliverDate);
+          designRealDeliverDate = new Date(value.componentDesignRealDeliverDate);
+          date1 = designRealDeliverDate.getDate() + "/" + designRealDeliverDate.getMonth() + "/" + designRealDeliverDate.getFullYear();
+          possibleDeliverDate = new Date(value.componentPossibleDeliverDate);
+          date2 = possibleDeliverDate.getDate() + "/" + possibleDeliverDate.getMonth() + "/" + possibleDeliverDate.getFullYear();
+          previewDeliverDate = new Date(value.componentPreviewDeliverDate);
+          date3 = previewDeliverDate.getDate() + "/" + previewDeliverDate.getMonth() + "/" + previewDeliverDate.getFullYear();
+          realDeliverDate = new Date(value.componentRealDeliverDate);
+          date4 = realDeliverDate.getDate() + "/" + realDeliverDate.getMonth() + "/" + realDeliverDate.getFullYear();
+
           $("#tab-fecha > table > tbody").append(
             "<tr><th>" + value.componentName + "</th>" +
             "<th>" + "" + "</th>" +
-            "<th>" + componentDesignRealDeliverDate.toLocaleString() + "</th>" +
-            "<th>" + componentPossibleDeliverDate.toLocaleString() + "</th>" +
-            "<th>" + componentPreviewDeliverDate.toLocaleString() + "</th>" +
-            "<th>" + componentRealDeliverDate.toLocaleString() + "</th>" +
+            // "<th>" + date2 + "</th>" +
+            "<th><input type='text' id='" + value.componentId + "-date1' value='" + date1 +"' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-date2' value='" + date2 + "' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-date3' value='" + date3 + "' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-date4' value='" + date4 + "' class='form-control'></th>" +
             "<th>" + "" + "</th></tr>"
           );
 
-          /*
           $("#tab-cierre > table > tbody").append(
-            "<tr><th>" + "Tip. Final" + "</th>" +
-            "<th>" + "Dif. Final" + "</th>" +
-            "<th>" + "Costo Final" + "</th>" +
-            "<th>" + "Horas Finales" + "</th>" +
-            "<th>" + "Comentarios" + "</th>" +
-            "<th>" + "Estat Tipif." + "</th>" +
-            "<th>" + "Facturar(S/N)" + "</th></tr>"
+            "<tr><th>" + value.componentName + "</th>" +
+            "<th>" + "" + "</th>" +
+            "<th><input type='text' id='" + value.componentId + "-tipFin' value='' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-difFin' value='' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-costFin' value='' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-horFin' value='' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-comments' value='' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-estatusTip' value='' class='form-control'></th>" +
+            "<th><input type='text' id='" + value.componentId + "-facturar' value='' class='form-control'></th></tr>"
           );
-          */
+          
         });
       } else {
         new jBox('Notice', {
