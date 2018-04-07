@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * @author Guevara
+ * @author Guevara Manuel
  */
 @Entity
 @Table(name = "thge057_aplicacion", uniqueConstraints = {

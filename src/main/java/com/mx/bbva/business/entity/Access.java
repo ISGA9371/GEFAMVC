@@ -21,9 +21,6 @@ public class Access implements Serializable {
     @Column(name = "CD_ACCESO", nullable = false)
     private Integer accessId;
     @Basic(optional = false)
-    @Column(name = "CD_EXTERNO", nullable = false)
-    private int externalUserId;
-    @Basic(optional = false)
     @Column(name = "FH_VIG_ACC_LOG", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date accessLogicalExpDate;
@@ -31,6 +28,9 @@ public class Access implements Serializable {
     @Column(name = "FH_VIG_ACC_FIS", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date accessPhysicalExpDate;
+    @JoinColumn(name = "CD_EXTERNO", referencedColumnName = "CD_EXTERNAL_USER", nullable = false)
+    @ManyToOne(optional = false)
+    private ExternalUser externalUser;
     @JoinColumn(name = "ST_ACCESO_LOG", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status statusLogical;
@@ -48,25 +48,12 @@ public class Access implements Serializable {
         this.accessId = accessId;
     }
 
-    public Access(Integer accessId, int externalUserId) {
-        this.accessId = accessId;
-        this.externalUserId = externalUserId;
-    }
-
     public Integer getAccessId() {
         return accessId;
     }
 
     public void setAccessId(Integer accessId) {
         this.accessId = accessId;
-    }
-
-    public int getExternalUserId() {
-        return externalUserId;
-    }
-
-    public void setExternalUserId(int externalUserId) {
-        this.externalUserId = externalUserId;
     }
 
     public Date getAccessLogicalExpDate() {
@@ -83,6 +70,14 @@ public class Access implements Serializable {
 
     public void setAccessPhysicalExpDate(Date accessPhysicalExpDate) {
         this.accessPhysicalExpDate = accessPhysicalExpDate;
+    }
+
+    public ExternalUser getExternalUser() {
+        return externalUser;
+    }
+
+    public void setExternalUser(ExternalUser externalUser) {
+        this.externalUser = externalUser;
     }
 
     public Status getStatusLogical() {

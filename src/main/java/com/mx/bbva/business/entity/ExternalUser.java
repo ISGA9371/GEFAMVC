@@ -5,9 +5,12 @@
  */
 package com.mx.bbva.business.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Guevara
@@ -111,9 +114,9 @@ public class ExternalUser implements Serializable {
     @JoinColumn(name = "CD_SEDE", referencedColumnName = "CD_SEDE", nullable = false)
     @ManyToOne(optional = false)
     private Workplace workplace;
-    @JoinColumn(name = "CD_TIPO_ASIG", referencedColumnName = "CD_TIPO_ASIG", nullable = false)
-    @ManyToOne(optional = false)
-    private AssignationType assignationType;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "externalUser")
+    private List<Access> accessList;
 
 
     public ExternalUser() {
@@ -414,15 +417,6 @@ public class ExternalUser implements Serializable {
     public void setWorkplace(Workplace workplace) {
         this.workplace = workplace;
     }
-
-    public AssignationType getAssignationType() {
-        return assignationType;
-    }
-
-    public void setAssignationType(AssignationType assignationType) {
-        this.assignationType = assignationType;
-    }
-
 
     @Override
     public int hashCode() {

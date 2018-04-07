@@ -27,9 +27,6 @@ public class AssignationType implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_TIPO_ASIG", nullable = false, length = 25)
     private String assignationTypeName;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "assignationType")
-    private List<ExternalUser> externalUsers;
 
     public AssignationType() {
     }
@@ -57,14 +54,6 @@ public class AssignationType implements Serializable {
 
     public void setAssignationTypeName(String assignationTypeName) {
         this.assignationTypeName = assignationTypeName;
-    }
-
-    public List<ExternalUser> getExternalUsers() {
-        return externalUsers;
-    }
-
-    public void setExternalUsers(List<ExternalUser> externalUsers) {
-        this.externalUsers = externalUsers;
     }
 
     @Override
