@@ -291,7 +291,7 @@
               <td th:text="${requirement.requirementName}"></td>
               <!--
                           <td th:text="${requirement.budgetRequirements.size() > 0 ?
-                          requirement.budgetRequirements[0].budget.budgetId : ''}"></td>
+                          requirement.budgetRequirements[0].budget.budgetName : ''}"></td>
                           -->
               <td></td>
               <td th:text="${requirement.level.levelSuperior.levelName}"></td>
@@ -331,7 +331,7 @@
                             <img th:src="@{/img/menu-pagina-icon.png}" height="12">
                           </a>
                           <ul class="dropdown-menu dropdown-menu-right">
-                            <li th:each="budgetRequirement : ${requirement.budgetRequirements}" th:text="${budgetRequirement.budget.budgetId}"></li>
+                            <li th:each="budgetRequirement : ${requirement.budgetRequirements}" th:text="${budgetRequirement.budget.budgetName}"></li>
                           </ul>
                         </div>
                       </td>
@@ -370,8 +370,8 @@
 
     <div class="row buttons" id="row-buttons-results">
       <div class="col-xs-12 text-center">
-        <button type="button" class="btn btn-primary">Modificar</button>
-        <button type="button" class="btn btn-primary">Alta</button>
+        <a id="edit-requirement" class="btn btn-primary">Modificar</a>
+        <a class="btn btn-primary" th:href="@{/requirements/add}">Alta</a>
       </div>
     </div>
     <!-- .// row -->

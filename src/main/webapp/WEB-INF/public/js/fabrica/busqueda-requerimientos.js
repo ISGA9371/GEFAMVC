@@ -25,6 +25,7 @@ $(function () {
     });
 
     const select = new mdc.select.MDCSelect(document.querySelector('#dirs'));
+    const subdirs = new mdc.select.MDCSelect(document.querySelector('#subdirs'));
     let coso = parseInt("0");
     select.listen('MDCSelect:change', () => {
         if(++coso > 1){coso = 0; return;}
@@ -36,16 +37,18 @@ $(function () {
             url: "/levels/"+id+"/sublevel"
         }).done(function(data) {
             //let subdirs = JSON.parse(data);
-            let subdirs = data;
-            console.log(subdirs.length);
+            let subs = data;
+            console.log(subs.length);
             $("#subdir-sel-text").html("");
-            if (typeof subdirs !== 'undefined' && subdirs.length > 0) {
+            subdirs.selectedIndex = -1;
+            subdirs.value = "";
+            if (typeof subs !== 'undefined' && subs.length > 0) {
                 $("#subdir-select").html("");
-                $.each(subdirs, function( index, value ) {
-                    console.log( index + ": " + value.levelSerial );
+                $.each(subs, function( index, value ) {
+                    console.log( index + ": " + value.levelId );
                     $("#subdir-select").append(
                         "<li class='mdc-list-item' role='option' tabindex='0' " +
-                        "value='"+value.levelSerial+"'>"+value.levelName+"</li>");
+                        "value='"+value.levelId+"'>"+value.levelName+"</li>");
 
                 });
             }else $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
@@ -53,10 +56,10 @@ $(function () {
         });
     });
 
-    const subdirs = new mdc.select.MDCSelect(document.querySelector('#subdirs'));
+
     let index2 = parseInt("0");
     subdirs.listen('MDCSelect:change', () => {
-        if (++index2 > 1) {index2 = 0;return;}
+        if (++index2 === 2) return; else index2 = 0;
         let id = subdirs.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         $("#subPrincipalId").val(id);
@@ -79,6 +82,7 @@ $(function () {
             let services = data;
             console.log(services.length);
             $("#service-type-sel-text").html("");
+
             if (typeof services !== 'undefined' && services.length > 0) {
                 $("#service-type-select").html("");
                 $.each(services, function( index, value ) {
