@@ -10,12 +10,15 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-12" align="center" style="font-size:30px; font-family:BBVA Web Book">Alta de PEP</div>
+      <div class="col-md-12 text-center">
+        <h2 class="h2-title-content">Alta de PEP</h2>
+      </div>
     </div>
 
     <div class="row">
-        <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos Generales</div>
+      <div class="col-md-12 subtitle-content">Datos Generales</div>
     </div>
+
     <form th:object="${budgetTransfer}" th:action="@{/budget}" method="post">
         <table class="col-md-12" >
             <tr>
@@ -168,10 +171,11 @@
         </table>
         <br>
         <br>
-        <div class="row" style="height:72px">
-            <br>
-            <div class="col-md-12" align="center" style="font-size:20px; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Traspaso</div>
+
+        <div class="row">
+          <div class="col-md-12 subtitle-content">Traspaso</div>
         </div>
+
         <br>
         <table class="col-md-12" style="height:72px" >
             <tr>

@@ -17,9 +17,10 @@
     </div>
 
     <div class="row">
-    
       <div class="col-md-12 subtitle-content">Criterios De Búsqueda</div>
-
+    </div>
+    <div class="row">
+    
       <div class="col-xs-12">
         <form id="searchForm" name="searchForm" method="GET">
           <!-- 
@@ -195,7 +196,7 @@
             <div class="col-md-4">
               <div class="dog1">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                  <input type="text" class="mdc-text-field__input" name="componentDesignRealDeliverDate" id="componentDesignRealDeliverDate"  />
+                  <input type="text" class="mdc-text-field__input" name="componentDesignRealDeliverDate" id="componentDesignRealDeliverDate" style="z-index: 100000;" />
                   <label class="mdc-text-field__label">F. Real CGF > Fact. Diseño</label>
                 </div>
               </div>
@@ -349,9 +350,6 @@
             <a href="#tab-componentes">Componentes</a>
           </li>
           <li>
-            <a href="#tab-generales">Generales</a>
-          </li>
-          <li>
             <a href="#tab-fecha">Fecha</a>
           </li>
           <li>
@@ -362,60 +360,21 @@
           <table class="table table-hover" style="font-size:12px;">
             <thead>
               <tr style="background-color:#999; color:#fcfbfb">
-                <th>
-                </th>
-                <th>
-                  Componente
-                </th>
-                <th>
-                  Requerimiento
-                </th>
-                <th>
-                  Versión
-                </th>
-                <th>
-                  Dirección
-                </th>
-                <th>
-                  Subdirección
-                </th>
-                <th>
-                  Empresa
-                </th>
-                <th>
-                  Tecnología
-                </th>
-                <th>
-                  Nuevo/Modificado
-                </th>
-                <th>
-                  Modif.
-                </th>
-                <th>
-                  Dudas
-                </th>
-                <th>
-                  Errores
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
-        <div id="tab-generales">
-          <table class="table table-hover" style="font-size:12px;">
-            <!-- <thead>
-              <tr style="background-color:#999; color:#fcfbfb">
+                <th></th>
                 <th>Componente</th>
                 <th>Requerimiento</th>
-                <th>F. Real CGF -> Fact Diseño</th>
-                <th>F. Prev. Fact. > CGF Software</th>
-                <th>F. Neg. Fact. > CGF Software</th>
-                <th>F. Real Fact -> CGF Software</th>
-                <th>Estado</th>
+                <th>Versión</th>
+                <th>Dirección</th>
+                <th>Subdirección</th>
+                <th>Empresa</th>
+                <th>Tecnología</th>
+                <th>Nuevo/Modificado</th>
+                <th>Modif.</th>
+                <th>Dudas</th>
+                <th>Errores</th>
+                <th></th>
               </tr>
-            </thead> -->
+            </thead>
             <tbody>
             </tbody>
           </table>
@@ -441,6 +400,8 @@
           <table class="table table-hover" style="font-size:12px;">
             <thead>
               <tr style="background-color:#999; color:#fcfbfb">
+                <th>Componente</th>
+                <th>Requerimiento</th>
                 <th>Tip. Final</th>
                 <th>Dif. Final</th>
                 <th>Costo Final</th>
@@ -459,8 +420,8 @@
 
     <div class="row buttons" id="row-buttons-results" style="display:none;">
       <div class="col-xs-12 text-center">
-        <button type="button" class="btn btn-primary">Modificar</button>
-        <button type="button" class="btn btn-primary">Alta</button>
+        <!-- <button type="button" class="btn btn-primary">Modificar</button> -->
+        <!-- <button type="button" class="btn btn-primary">Alta</button> -->
       </div>
     </div><!-- .// row -->
   </div><!-- .// div.container -->
