@@ -3,6 +3,7 @@ package com.mx.bbva.controller;
 import com.mx.bbva.business.dto.ComponentSearchDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
+import com.mx.bbva.util.query.QueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -88,8 +89,8 @@ public class ComponentController {
     @ResponseBody
     public List<Component> searchForComponents(@ModelAttribute("filters") ComponentSearchDTO filters) {
         // TODO Work in progress
-        /* String query = new QueryGenerator().generate(filters, "Component");
-        List<Component> components = componentService.findByCustomQuery(query); */
+        String query = new QueryGenerator().generate(filters, "Component");
+        List<Component> components = componentService.findByCustomQuery(query);
         return componentService.findAllComponents();
     }
 

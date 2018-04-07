@@ -10,4 +10,8 @@ public interface BudgetService {
     Budget findBudget(String budgetId);
 
     List<Budget> findAllBudgets();
+
+    List<Budget> findByCustomQuery(String query);
+
+    List<Integer> findAllYears();
 }

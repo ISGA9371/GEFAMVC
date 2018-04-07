@@ -6,25 +6,20 @@ import com.mx.bbva.business.dto.RequirementSearchDTO;
 import java.util.logging.Logger;
 
 public class QueryGenerator {
-    private static final Logger LOGGER = Logger.getLogger(QueryGenerator.class.getName());
-    private StringBuffer stringBuffer = new StringBuffer();
-    private boolean firstOne = true;
-    private final String EQUALS = " = ";
-    private final String LIKE = " LIKE ";
+    static final Logger LOGGER = Logger.getLogger(QueryGenerator.class.getName());
+    StringBuffer stringBuffer = new StringBuffer();
+    boolean firstOne = true;
 
     // TODO should be a better way to do this
     public String generate(Object searchDTO, String type) {
         LOGGER.info("Creating query...");
+        final String EQUALS = " = ";
+        final String LIKE = " LIKE ";
+
         switch (type) {
             case "Requirement":
                 RequirementSearchDTO requirementSearchDTO = (RequirementSearchDTO) searchDTO;
-                stringBuffer.append("SELECT NEW com.mx.bbva.business.entity.Requirement(" +
-                        "x.requirementId, x.requirementName, x.requirementHour, x.requirementTotalHours, x.requirementBilledHours, " +
-                        "x.requirementNoBilledHours, x.requirementBilled, x.requirementDateUpload, x.requirementCanBilled, " +
-                        "x.requirementStartDate, x.requirementEndDate, x.userManager, x.technology, x.company, x.status, " +
-                        "x.level, x.user, x.application, x.project, x.area, x.methodology, x.serviceType, x.channel, " +
-                        "x.programIncrement) " +
-                        " FROM Requirement x ");
+                stringBuffer.append("FROM Requirement x ");
                 if (isNotNullString(requirementSearchDTO.getRequirementName())) {
                     addFilter("x.requirementName", "'%" + requirementSearchDTO.getRequirementName() + "%'", LIKE);
                 }
@@ -37,59 +32,95 @@ public class QueryGenerator {
                 if (isNotNullInteger(requirementSearchDTO.getAreaId())) {
                     addFilter("x.area.areaId", "'" + requirementSearchDTO.getAreaId() + "'", EQUALS);
                 }
-                /*
-                if (requirementSearchDTO.getProjectTypeId() != null && !requirementSearchDTO.getPrincipalId().equals(0)) {
-                    addFilter("x.projectType.projectTypeId", requirementSearchDTO.getProjectTypeId()));
+                if (isNotNullInteger(requirementSearchDTO.getProjectTypeId())) {
+                    addFilter("x.projectType.projectTypeId", "'" + requirementSearchDTO.getProjectTypeId() + "'", EQUALS);
                 }
-                if (requirementSearchDTO.getTechnologyId() != null && !requirementSearchDTO.getPrincipalId().equals(0)) {
-                    addFilter("x.technology.technologyId", requirementSearchDTO.getTechnologyId()));
+                if (isNotNullInteger(requirementSearchDTO.getTechnologyId())) {
+                    addFilter("x.technology.technologyId", "'" + requirementSearchDTO.getTechnologyId(), EQUALS);
                 }
-                if (requirementSearchDTO.getCompanyId() != null && !requirementSearchDTO.getPrincipalId().equals(0)) {
-                    addFilter("x.company.companyId", requirementSearchDTO.getCompanyId()));
+                if (isNotNullInteger(requirementSearchDTO.getCompanyId())) {
+                    addFilter("x.company.companyId", "'" + requirementSearchDTO.getCompanyId() + "'", EQUALS);
                 }
-                if (requirementSearchDTO.getServiceTypeId() != null && !requirementSearchDTO.getPrincipalId().equals(0)) {
-                    addFilter("x.serviceType.serviceTypeId", requirementSearchDTO.getServiceTypeId()));
+                if (isNotNullInteger(requirementSearchDTO.getServiceTypeId())) {
+                    addFilter("x.serviceType.serviceTypeId", "'" + requirementSearchDTO.getServiceTypeId() + "'", EQUALS);
                 }
-                if (requirementSearchDTO.getBudgetId() != null) {
-                    addFilter("x.budget.budgetId", requirementSearchDTO.getBudgetId()));
+                if (isNotNullString(requirementSearchDTO.getBudgetId())) {
+                    addFilter("x.budget.budgetId", "'%" + requirementSearchDTO.getBudgetId() + "%'", LIKE);
                 }
-                if (requirementSearchDTO.getRequirementStartDate() != null) {
-                    addFilter("x.requirementStartDate", requirementSearchDTO.getRequirementStartDate());
+                if (isNotNullString(requirementSearchDTO.getRequirementStartDate())) {
+                    addFilter("x.requirementStartDate", "'%" + requirementSearchDTO.getRequirementStartDate() + "%'", LIKE);
                 }
-                if (requirementSearchDTO.getRequirementEndDate() != null) {
-                    addFilter("x.requirementEndDate", requirementSearchDTO.getRequirementEndDate());
-                }*/
+                if (isNotNullString(requirementSearchDTO.getRequirementEndDate())) {
+                    addFilter("x.requirementEndDate", "'%" + requirementSearchDTO.getRequirementEndDate() + "%'", LIKE);
+                }
                 break;
             case "Component":
                 ComponentSearchDTO componentSearchDTO = (ComponentSearchDTO) searchDTO;
-                stringBuffer.append("SELECT NEW com.mx.bbva.business.entity.Component(" +
-                        "x.componentId, x.componentName, x.level, x.user, x.area, x.serviceType, x.technology, " +
-                        "x.company, x.componentStartDate, x.componentEndDate) " +
-                        " FROM Component x ");
-                /*if (componentSearchDTO.getComponentName() != null) {
-                    addFilter("x.componentName", componentSearchDTO.getComponentName());
+                stringBuffer.append("FROM Component x ");
+                if (isNotNullString(componentSearchDTO.getComponentName())) {
+                    addFilter("x.componentName", "%" + componentSearchDTO.getComponentName() + "%", LIKE);
                 }
-                if (componentSearchDTO.getComponentVersion() != null) {
-                    addFilter("x.componentVersion", componentSearchDTO.getComponentVersion());
+                if (isNotNullString(componentSearchDTO.getRequirementName())) {
+                    addFilter("x.requirement.requirementName", "%" + componentSearchDTO.getRequirementName() + "%", LIKE);
                 }
-                if (componentSearchDTO.getRequirementName() != null) {
-                    addFilter("x.requirement.requirementName", componentSearchDTO.getRequirementName());
+                if (isNotNullString(componentSearchDTO.getComponentVersion())) {
+                    addFilter("x.componentVersion", "%" + componentSearchDTO.getComponentVersion() + "%", LIKE);
                 }
-                if (componentSearchDTO.getPrincipalId() != null) {
-                    addFilter("x.requirement.level.levelId", componentSearchDTO.getPrincipalId()));
+                if (isNotNullInteger(componentSearchDTO.getPrincipalId())) {
+                    addFilter("x.requirement.level.levelId", "'" + componentSearchDTO.getPrincipalId() + "'", EQUALS);
                 }
-                if (componentSearchDTO.getCompanyId() != null) {
-                    addFilter("x.company.companyId", componentSearchDTO.getCompanyId()));
-                }
-                if (componentSearchDTO.getStatusId() != null) {
-                    addFilter("x.status.statusId", componentSearchDTO.getStatusId().toString());
-                }
-                if (componentSearchDTO.getSubPrincipalId()) {
-                    addFilter("", componentSearchDTO.getSubPrincipalId().toString());
-                }
-                if (componentSearchDTO.getTechnologyId() != null) {
-                    addFilter("x.technology.technologyId", componentSearchDTO.getTechnologyId().toString());
+                /*
+                if (isNotNullInteger(componentSearchDTO.getSubPrincipalId())) {
+                    addFilter("x.subPrincipal.levelId", "'" + componentSearchDTO.getSubPrincipalId() + "'", EQUALS);
                 }*/
+                if (isNotNullInteger(componentSearchDTO.getCompanyId())) {
+                    addFilter("x.requirement.company.companyId", "%" + componentSearchDTO.getCompanyId() + "%", EQUALS);
+                }
+                if (isNotNullInteger(componentSearchDTO.getTechnologyId())) {
+                    addFilter("x.requirement.technology.technologyId", "%" + componentSearchDTO.getTechnologyId() + "%", EQUALS);
+                }
+                /* TODO Boolean
+                if (isNotNullString(componentSearchDTO.isTypologyNewComponent())) {
+                    addFilter("", "%" + someValue + "%", LIKE);
+                }*/
+                if (isNotNullInteger(componentSearchDTO.getStatusId())) {
+                    addFilter("x.status.statusId", "'" + componentSearchDTO.getStatusId() + "'", LIKE);
+                }
+                /* TODO DATE
+                if (isNotNullString(componentSearchDTO.getComponentDesignRealDeliverDate())) {
+                    addFilter("", "%" + someValue + "%", LIKE);
+                }
+                if (isNotNullString(componentSearchDTO.getComponentPreviewDeliverDate())) {
+                    addFilter("", "%" + someValue + "%", LIKE);
+                }
+                if (isNotNullString(componentSearchDTO.getComponentPossibleDeliverDate())) {
+                    addFilter("", "%" + someValue + "%", LIKE);
+                }
+                if (isNotNullString(componentSearchDTO.getComponentRealDeliverDate())) {
+                    addFilter("", "%" + someValue + "%", LIKE);
+                }
+                if (isNotNullInteger(componentSearchDTO.getStartProductId())) {
+                    addFilter("", "'" + componentSearchDTO.getStartProductId() + "'", EQUALS);
+                }
+                if (isNotNullInteger(componentSearchDTO.getFinalProductId())) {
+                    addFilter("", "'" + componentSearchDTO.getFinalProductId() + "'", EQUALS);
+                }
+                if (isNotNullInteger(componentSearchDTO.getTypologyStartSeverity())) {
+                    addFilter("", "'" + componentSearchDTO.getTypologyStartSeverity() + "'", EQUALS);
+                } */
+                /* TODO Long
+                if (isNotNullString(componentSearchDTO.getTypologyStartSeverityHours())) {
+                    addFilter("", "'" + someValue + "'", EQUALS);
+                }
+                if (isNotNullString(componentSearchDTO.getTypologyFinalSeverityHours())) {
+                    addFilter("", "'" + someValue + "'", EQUALS);
+                }*/
+                if (isNotNullInteger(componentSearchDTO.getStatusTypologyId())) {
+                    addFilter("x.statusTypology.statusId", "'" + componentSearchDTO.getStatusTypologyId() + "'", EQUALS);
+                }
+                //if (isNotNullInteger(componentSearchDTO.getTypologyFinalSeverity())) {
+                //    addFilter("", "'" + componentSearchDTO.getTypologyFinalSeverity() + "'", EQUALS);
+                //}
                 break;
         }
 

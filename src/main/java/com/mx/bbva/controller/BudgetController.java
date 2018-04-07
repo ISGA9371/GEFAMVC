@@ -1,8 +1,10 @@
 package com.mx.bbva.controller;
 
+import com.mx.bbva.business.dto.BudgetSearchDTO;
 import com.mx.bbva.business.dto.BudgetTransferDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
+import com.mx.bbva.util.query.QueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +44,7 @@ public class BudgetController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String saveBudget(@ModelAttribute("budgete") Budget budget) {
+    public String saveBudget(@ModelAttribute("budget") Budget budget) {
         // TODO Validate user
 
         // LOG.info("Saving new budget... " + budget.getBudgetName());
@@ -80,12 +82,25 @@ public class BudgetController {
         return URL_BUDGET + SEARCH_BUDGETS;
     }
 
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String searchForBudgets(@ModelAttribute("budgetSearchDTO") BudgetSearchDTO budgetSearchDTO, Model model) {
+        // TODO Work in progress
+        String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
+        List<Budget> budgets = budgetService.findByCustomQuery(query);
+        model.addAttribute("budgets", budgets);
+        return URL_FACTORY + SEARCH_REQUIREMENTS;
+    }
+
     @ModelAttribute("areas")
     public List<Area> populateAreas() {
         return this.areaService.findAllAreas();
     }
 
     //FALTA COMBO AÑO TABLAS BUDGETS
+    @ModelAttribute("budgetYears")
+    public List<Integer> populateBubgetYears() {
+        return this.budgetService.findAllYears();
+    }
 
     //FALTA COMBO BANCAS TABLAS 34
     // LevelTypeId 1 - Direccion

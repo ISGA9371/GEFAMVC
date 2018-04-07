@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class BudgetServiceImpl implements BudgetService {
+
     private BudgetRepository budgetRepository;
 
     @Override
@@ -25,6 +26,16 @@ public class BudgetServiceImpl implements BudgetService {
     @Override
     public List<Budget> findAllBudgets() {
         return budgetRepository.findAll();
+    }
+
+    @Override
+    public List<Budget> findByCustomQuery(String query) {
+        return budgetRepository.findByCustomQuery(query);
+    }
+
+    @Override
+    public List<Integer> findAllYears() {
+        return budgetRepository.findBudgetYear();
     }
 
     @Autowired
