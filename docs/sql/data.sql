@@ -730,3 +730,12 @@ VALUES
 (18, 'SYSVIEWSOFT', 'SYSVIEWSOFT SA DE CV', '018', 9),
 (19, 'TESTING EVOLUTION', 'TESTING EVOLUTION, S.A. DE C.V.', '019', 9),
 (20, 'VISION SOFTWARE FACTORY', 'VISION SOFTWARE FACTORY, S.A. DE C.V.', '020', 9);
+
+INSERT INTO `gestion_factoria`.`thge014_pais` 
+VALUES 
+(1, 'MEXICO', 'MX');
+
+INSERT INTO `gestion_factoria`.`thge031_tarifa` 
+VALUES 
+(1, 10.0, '2018', 1, 12, 1, 26),
+(2, 20.0, '2018', 2, 5, 2, 26);
