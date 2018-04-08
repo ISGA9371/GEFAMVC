@@ -20,6 +20,7 @@ $(function () {
     format: 'DD/MM/YYYY'
   });
 
+
   $("#tabs").tabs();
 
 
@@ -31,27 +32,20 @@ $(function () {
   const estado = new mdc.select.MDCSelect(document.querySelector('#slct_estado'));
   const tipologia_inicial = new mdc.select.MDCSelect(document.querySelector('#slct_tipologia_inicial'));
   const tipologia_final = new mdc.select.MDCSelect(document.querySelector('#slct_tipologia_final'));
-  // const dificultad_inicial = new mdc.select.MDCSelect(document.querySelector('#slct_dificultad_inicial'));
   const estado_tipificado = new mdc.select.MDCSelect(document.querySelector('#slct_estado_tipificado'));
-  // const dificultad_final = new mdc.select.MDCSelect(document.querySelector('#slct_dificultad_final '));
 
   direccion.listen('MDCSelect:change', () => {
-    
-    idSuperior = $(direccion.selectedOptions[0]).data("superior");
-
-    subs = $('#slct_subidreccion > .mdc-menu > ul.mdc-list').children('li');
-
-    console.log(subs);
-    
-    
-
-
-    // $("#mdc-group-typologyStartSeverity").addClass("mdc-text-field--upgraded");
-    // $("#mdc-group-typologyStartSeverity > label").addClass("mdc-text-field__label--float-above");
-
-    // $("#typologyStartSeverityHours").val($(tipologia_inicial.selectedOptions[0]).data("hours"));
-    // $("#mdc-group-typologyStartSeverityHours").addClass("mdc-text-field--upgraded");
-    // $("#mdc-group-typologyStartSeverityHours > label").addClass("mdc-text-field__label--float-above");
+    idSuperior = direccion.value;
+    subs = $('#select_subdireccion').children('option');
+    $("#slct_subidreccion > .mdc-menu > ul").html("");
+    $.each(subs, function (index, value) {
+      if (idSuperior == $(value).data("superior")) {
+        $("#slct_subidreccion > .mdc-menu > ul").append(
+          "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.value + "'>" + value.text + "</li>"
+        );
+      }
+    });
+    $("#slct_subidreccion").removeClass("mdc-select--disabled");
   });
 
 
@@ -86,15 +80,7 @@ $(function () {
     $("#statusId").val(estado.value);
     $("#startProductId").val(tipologia_inicial.value);
     $("#finalProductId").val(tipologia_final.value);
-    // $("#typologyStartSeverity").val(dificultad_inicial.value);
     $("#statusTypologyId").val(estado_tipificado.value);
-    // $("#typologyFinalSeverity").val(dificultad_final.value);
-
-    // serializeArray = $("#searchForm").serializeArray();
-    // objectito = {};
-    // $.each(serializeArray, function (index, value) {
-    //   objectito[value.name] = value.value;
-    // });
 
     $.ajax({
       url: "/components/search",
@@ -144,7 +130,6 @@ $(function () {
               "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> Editar</a></th></tr>"
           );
 
-          // componentDesignRealDeliverDate = new Date(value.componentDesignRealDeliverDate);
           designRealDeliverDate = new Date(value.componentDesignRealDeliverDate);
           date1 = designRealDeliverDate.getDate() + "/" + designRealDeliverDate.getMonth() + "/" + designRealDeliverDate.getFullYear();
           possibleDeliverDate = new Date(value.componentPossibleDeliverDate);
@@ -157,7 +142,6 @@ $(function () {
           $("#tab-fecha > table > tbody").append(
             "<tr><th>" + value.componentName + "</th>" +
             "<th>" + "" + "</th>" +
-            // "<th>" + date2 + "</th>" +
             "<th><input type='text' id='" + value.componentId + "-date1' value='" + date1 +"' class='form-control'></th>" +
             "<th><input type='text' id='" + value.componentId + "-date2' value='" + date2 + "' class='form-control'></th>" +
             "<th><input type='text' id='" + value.componentId + "-date3' value='" + date3 + "' class='form-control'></th>" +
@@ -176,8 +160,26 @@ $(function () {
             "<th><input type='text' id='" + value.componentId + "-estatusTip' value='' class='form-control'></th>" +
             "<th><input type='text' id='" + value.componentId + "-facturar' value='' class='form-control'></th></tr>"
           );
-          
+
+
+          $(value.componentId + '-tipFin').datetimepicker({format: 'DD/MM/YYYY'});
+          $(value.componentId + '-difFin').datetimepicker({format: 'DD/MM/YYYY'});
+          $(value.componentId + '-costFin').datetimepicker({format: 'DD/MM/YYYY'});
+          $(value.componentId + '-horFin').datetimepicker({format: 'DD/MM/YYYY'});
+          $(value.componentId + '-comments').datetimepicker({format: 'DD/MM/YYYY'});
+          $(value.componentId + '-estatusTip').datetimepicker({format: 'DD/MM/YYYY'});
+          $(value.componentId + '-facturar').datetimepicker({format: 'DD/MM/YYYY'});
+                    
         });
+        $("#tab-fecha > table > tbody").append(
+          "<tr style='background-color:#004582;'><th></th>" +
+          "<th></th>" +
+          "<th><input type='text' id='date1' value='' class='form-control'></th>" +
+          "<th><input type='text' id='date2' value='' class='form-control'></th>" +
+          "<th><input type='text' id='date3' value='' class='form-control'></th>" +
+          "<th><input type='text' id='date4' value='' class='form-control'></th>" +
+          "<th></th></tr>"
+        );
       } else {
         new jBox('Notice', {
           content: 'Tu búsqueda no devolvió resultados',
@@ -192,7 +194,11 @@ $(function () {
     });
   });
 
+
   $("#btn-clear").click(function () {
+    
+    $("#slct_subidreccion").addClass("mdc-select--disabled");
+
     direccion.selectedIndex = -1;
     subidreccion.selectedIndex = -1;
     empresa.selectedIndex = -1;
@@ -201,9 +207,7 @@ $(function () {
     estado.selectedIndex = -1;
     tipologia_inicial.selectedIndex = -1;
     tipologia_final.selectedIndex = -1;
-    // dificultad_inicial.selectedIndex = -1;
     estado_tipificado.selectedIndex = -1;
-    // dificultad_final.selectedIndex = -1;
 
     $("#principalId").val("");
     $("#subPrincipalId").val("");
@@ -235,17 +239,29 @@ $(function () {
     $("#row-content-results").hide();
     $("#row-buttons-results").hide();
 
-
-    // $("#mdc-group-typologyStartSeverity").removeClass("mdc-text-field--upgraded");
     $("#mdc-group-typologyStartSeverity > label").removeClass("mdc-text-field__label--float-above");
-    // $("#mdc-group-typologyStartSeverityHours").removeClass("mdc-text-field--upgraded");
     $("#mdc-group-typologyStartSeverityHours > label").removeClass("mdc-text-field__label--float-above");
-    // $("#mdc-group-typologyFinalSeverity").removeClass("mdc-text-field--upgraded");
     $("#mdc-group-typologyFinalSeverity > label").removeClass("mdc-text-field__label--float-above");
-    // $("#mdc-group-typologyFinalSeverityHours").removeClass("mdc-text-field--upgraded");
     $("#mdc-group-typologyFinalSeverityHours > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc-group-componentName > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc-group-requirementName > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc-group-componentVersion > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc-group-componentDesignRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc-group-componentPreviewDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc-group-componentPossibleDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc-group-componentRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+
+    $("#slct_direccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#slct_subidreccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#slct_empresa > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#slct_tecnologia > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#slct_nuevo_modificado > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#slct_estado > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#slct_tipologia_inicial > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#slct_tipologia_final > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#slct_estado_tipificado > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
   });
 
-  mdc.autoInit()
 });
 
+mdc.autoInit()
