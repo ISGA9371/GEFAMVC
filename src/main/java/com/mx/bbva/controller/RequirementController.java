@@ -52,7 +52,7 @@ public class RequirementController {
         requirementService.saveRequirement(requirement);
         Requirement requirementSaved = requirementService.findOneRequirement(requirement.getRequirementId());
         model.addAttribute("requirement", requirementSaved);
-        return REDIRECT + URL_FACTORY + EDIT_REQUIREMENT + requirement.getRequirementId();
+        return REDIRECT + "requirements/" + requirement.getRequirementId();
     }
 
     @RequestMapping(value = "/{requirementId}", method = RequestMethod.GET)
