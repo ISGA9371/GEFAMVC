@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author Guevara
+ * @author Guevara Manuel
  */
 @Entity
 @Table(name = "thge039_factura")

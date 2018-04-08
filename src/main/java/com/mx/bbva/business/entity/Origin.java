@@ -30,6 +30,9 @@ public class Origin implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "origin")
     private List<Modification> modifications;
+    @JsonIgnore
+    @OneToMany(mappedBy = "origin")
+    private List<Issue> issues;
 
     public Origin() {
     }

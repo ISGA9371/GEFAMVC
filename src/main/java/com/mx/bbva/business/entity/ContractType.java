@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * @author Guevara
+ * @author Guevara Manuel
  */
 @Entity
 @Table(name = "thge032_tipo_cont", uniqueConstraints = {

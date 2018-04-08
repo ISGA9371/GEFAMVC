@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author Guevara
+ * @author Guevara Manuel
  */
 @Entity
 @Table(name = "thge058_ctrl_acc")
@@ -28,7 +28,7 @@ public class Access implements Serializable {
     @Column(name = "FH_VIG_ACC_FIS", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date accessPhysicalExpDate;
-    @JoinColumn(name = "CD_EXTERNO", referencedColumnName = "CD_EXTERNAL_USER", nullable = false)
+    @JoinColumn(name = "CD_EXTERNO", referencedColumnName = "CD_EXTERNO_CORP", nullable = false)
     @ManyToOne(optional = false)
     private ExternalUser externalUser;
     @JoinColumn(name = "ST_ACCESO_LOG", referencedColumnName = "CD_ESTADO", nullable = false)

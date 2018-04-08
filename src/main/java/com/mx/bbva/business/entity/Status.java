@@ -95,7 +95,7 @@ public class Status implements Serializable {
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stAccesoLog")
 //    private List<Thge058CtrlAcc> thge058CtrlAccList;
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stSegReq")
-//    private List<Thge063SegReq> thge063SegReqList;
+//    private List<RequirementTracking> thge063SegReqList;
 
     public Status() {
     }

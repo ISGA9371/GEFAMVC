@@ -5,8 +5,6 @@
  */
 package com.mx.bbva.business.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -27,9 +25,8 @@ public class Methodology implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_METODOLOGIA", nullable = false, length = 25)
     private String methodologyName;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "methodology")
-    private List<Requirement> requirements;
+    @OneToMany(mappedBy = "methodology")
+    private List<Project> projects;
 
     public Methodology() {
     }
@@ -59,12 +56,12 @@ public class Methodology implements Serializable {
         this.methodologyName = methodologyName;
     }
 
-    public List<Requirement> getRequirements() {
-        return requirements;
+    public List<Project> getProjects() {
+        return projects;
     }
 
-    public void setRequirements(List<Requirement> requirements) {
-        this.requirements = requirements;
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 
     @Override

@@ -30,8 +30,11 @@ public class Issue implements Serializable {
     private String issueInitialDescription;
     @Column(name = "NB_DESC_RESOL_INC", length = 600)
     private String issueInitialFixDescription;
+    @Lob
     @Column(name = "TX_DOC_INCIDENCIA")
     private byte[] issueDoc;
+    @Column(name = "TX_INC_RLTA_DYD")
+    private String issueFixByDyD; // TODO
     @Column(name = "FH_RESOLUCION")
     @Temporal(TemporalType.DATE)
     private Date issueFixDate;
@@ -46,12 +49,12 @@ public class Issue implements Serializable {
     @JoinColumn(name = "CD_USU_PETICION", referencedColumnName = "CD_USUARIO_CORP", nullable = false)
     @ManyToOne(optional = false)
     private User userSender;
-    @JoinColumn(name = "CD_USU_RESP", referencedColumnName = "CD_USUARIO_CORP")
-    @ManyToOne
-    private User userReceiver;
     @JoinColumn(name = "CD_PRIORIDAD", referencedColumnName = "CD_PRIORIDAD", nullable = false)
     @ManyToOne(optional = false)
     private Priority priority;
+    @JoinColumn(name = "CD_ORIGEN", referencedColumnName = "CD_ORIGEN")
+    @ManyToOne
+    private Origin origin;
 
     public Issue() {
     }
@@ -144,14 +147,6 @@ public class Issue implements Serializable {
 
     public void setUserSender(User userSender) {
         this.userSender = userSender;
-    }
-
-    public User getUserReceiver() {
-        return userReceiver;
-    }
-
-    public void setUserReceiver(User userReceiver) {
-        this.userReceiver = userReceiver;
     }
 
     public Priority getPriority() {

@@ -18,13 +18,9 @@ import java.util.List;
 public class Project implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "CD_PROYECTO", nullable = false)
-    private Integer projectId;
     @Basic(optional = false)
     @Column(name = "CD_SDA", nullable = false)
-    private String projectScrumId;
+    private String projectId;
     @Column(name = "NB_PROYECTO")
     private String projectName;
     @JoinColumn(name = "CD_PI", referencedColumnName = "CD_PI", nullable = false)
@@ -39,29 +35,21 @@ public class Project implements Serializable {
     public Project() {
     }
 
-    public Project(Integer projectId) {
+    public Project(String projectId) {
         this.projectId = projectId;
     }
 
-    public Project(Integer projectId, String projectScrumId) {
+    public Project(String projectId, String projectName) {
         this.projectId = projectId;
-        this.projectScrumId = projectScrumId;
+        this.projectName = projectName;
     }
 
-    public Integer getProjectId() {
+    public String getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(Integer projectId) {
+    public void setProjectId(String projectId) {
         this.projectId = projectId;
-    }
-
-    public String getProjectScrumId() {
-        return projectScrumId;
-    }
-
-    public void setProjectScrumId(String projectScrumId) {
-        this.projectScrumId = projectScrumId;
     }
 
     public String getProjectName() {

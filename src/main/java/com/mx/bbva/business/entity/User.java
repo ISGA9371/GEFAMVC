@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author Guevara M
+ * @author Guevara Manuel
  */
 @Entity
 @Table(name = "thge011_usuario", uniqueConstraints = {@UniqueConstraint(columnNames = {"CD_USUARIO_CORP"})})
@@ -67,9 +67,6 @@ public class User implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userSender")
     private List<Issue> issues;
-    @JsonIgnore
-    @OneToMany(mappedBy = "userReceiver")
-    private List<Issue> issueList;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Level> levels;
@@ -207,14 +204,6 @@ public class User implements Serializable {
 
     public void setIssues(List<Issue> issues) {
         this.issues = issues;
-    }
-
-    public List<Issue> getIssueList() {
-        return issueList;
-    }
-
-    public void setIssueList(List<Issue> issueList) {
-        this.issueList = issueList;
     }
 
     public List<Level> getLevels() {

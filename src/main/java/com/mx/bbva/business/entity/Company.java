@@ -47,10 +47,10 @@ public class Company implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
     private List<ExternalUser> externalUsers;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "thge003Empresa")
-//    private List<Thge062EvalServ> thge062EvalServList;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "thge003Empresa")
-//    private List<Thge059HCMando> thge059HCMandoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
+    private List<EvaluationService> evaluationServices;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
+    private List<Evaluation> evaluations;
 
     public Company() {
     }
@@ -141,6 +141,22 @@ public class Company implements Serializable {
 
     public void setExternalUsers(List<ExternalUser> externalUsers) {
         this.externalUsers = externalUsers;
+    }
+
+    public List<EvaluationService> getEvaluationServices() {
+        return evaluationServices;
+    }
+
+    public void setEvaluationServices(List<EvaluationService> evaluationServices) {
+        this.evaluationServices = evaluationServices;
+    }
+
+    public List<Evaluation> getEvaluations() {
+        return evaluations;
+    }
+
+    public void setEvaluations(List<Evaluation> evaluations) {
+        this.evaluations = evaluations;
     }
 
     @Override

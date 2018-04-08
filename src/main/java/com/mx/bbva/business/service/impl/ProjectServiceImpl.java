@@ -23,7 +23,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project findProject(Integer projectId) {
+    public Project findProject(String projectId) {
         return projectRepository.findById(projectId).orElse(null);
     }
 

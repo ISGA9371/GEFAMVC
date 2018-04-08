@@ -43,9 +43,6 @@ public class ExternalUser implements Serializable {
     @Basic(optional = false)
     @Column(name = "CD_GENERO", nullable = false)
     private Character externalUserGender;
-    @Basic(optional = false)
-    @Column(name = "TP_IDENTIF", nullable = false)
-    private int externalIdType;
     @Column(name = "TX_IDENTIFICACION", length = 10)
     private String externalId;
     @Column(name = "TX_DIR_SCRUM", length = 25)
@@ -78,15 +75,18 @@ public class ExternalUser implements Serializable {
     @Column(name = "FH_BAJA")
     @Temporal(TemporalType.DATE)
     private Date externalUserEndDate;
-    @Basic(optional = false)
-    @Column(name = "CD_PROYECTO_AG", nullable = false)
-    private int externalGrouperProject;
-    @Basic(optional = false)
-    @Column(name = "CD_ESQUEMA_PAGO", nullable = false)
-    private int externalPaymentScheme;
-    @Basic(optional = false)
-    @Column(name = "CD_TP_PROYECTO", nullable = false)
-    private int externalUserProjectType;
+    @JoinColumn(name = "CD_PROYECTO_AG", referencedColumnName = "CD_TP_PROYECTO")
+    @ManyToOne(optional = false)
+    private ProjectType projectTypeGroup;
+    @JoinColumn(name = "CD_ESQUEMA_PAGO", referencedColumnName = "CD_ESQUEMA_PAGO")
+    @ManyToOne(optional = false)
+    private PaymentSchema paymentSchema;
+    @JoinColumn(name = "CD_TP_PROYECTO", referencedColumnName = "CD_TP_PROYECTO")
+    @ManyToOne(optional = false)
+    private ProjectType projectType;
+    @JoinColumn(name = "TP_IDENTIF", referencedColumnName = "CD_IDENTIFICACION")
+    @ManyToOne(optional = false)
+    private IdentificationType identificationType;
     @JoinColumn(name = "CD_USUARIO_GESTOR", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne
     private User manager;
@@ -124,10 +124,6 @@ public class ExternalUser implements Serializable {
 
     public ExternalUser(String externalUserCorpId) {
         this.externalUserCorpId = externalUserCorpId;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 
     public String getExternalUserCorpId() {
@@ -200,14 +196,6 @@ public class ExternalUser implements Serializable {
 
     public void setExternalUserGender(Character externalUserGender) {
         this.externalUserGender = externalUserGender;
-    }
-
-    public int getExternalIdType() {
-        return externalIdType;
-    }
-
-    public void setExternalIdType(int externalIdType) {
-        this.externalIdType = externalIdType;
     }
 
     public String getExternalId() {
@@ -322,28 +310,44 @@ public class ExternalUser implements Serializable {
         this.externalUserEndDate = externalUserEndDate;
     }
 
-    public int getExternalGrouperProject() {
-        return externalGrouperProject;
+    public ProjectType getProjectTypeGroup() {
+        return projectTypeGroup;
     }
 
-    public void setExternalGrouperProject(int externalGrouperProject) {
-        this.externalGrouperProject = externalGrouperProject;
+    public void setProjectTypeGroup(ProjectType projectTypeGroup) {
+        this.projectTypeGroup = projectTypeGroup;
     }
 
-    public int getExternalPaymentScheme() {
-        return externalPaymentScheme;
+    public PaymentSchema getPaymentSchema() {
+        return paymentSchema;
     }
 
-    public void setExternalPaymentScheme(int externalPaymentScheme) {
-        this.externalPaymentScheme = externalPaymentScheme;
+    public void setPaymentSchema(PaymentSchema paymentSchema) {
+        this.paymentSchema = paymentSchema;
     }
 
-    public int getExternalUserProjectType() {
-        return externalUserProjectType;
+    public ProjectType getProjectType() {
+        return projectType;
     }
 
-    public void setExternalUserProjectType(int externalUserProjectType) {
-        this.externalUserProjectType = externalUserProjectType;
+    public void setProjectType(ProjectType projectType) {
+        this.projectType = projectType;
+    }
+
+    public IdentificationType getIdentificationType() {
+        return identificationType;
+    }
+
+    public void setIdentificationType(IdentificationType identificationType) {
+        this.identificationType = identificationType;
+    }
+
+    public List<Access> getAccessList() {
+        return accessList;
+    }
+
+    public void setAccessList(List<Access> accessList) {
+        this.accessList = accessList;
     }
 
     public User getManager() {

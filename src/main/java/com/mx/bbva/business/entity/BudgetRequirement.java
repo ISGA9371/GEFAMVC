@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Guevara Manuel
+ * @author Guevara Manuel_
  */
 @Entity
 @Table(name = "thge040_pep_req")

@@ -9,5 +9,5 @@ public interface ProjectService {
 
     void saveProject(Project project);
 
-    Project findProject(Integer projectId);
+    Project findProject(String projectId);
 }

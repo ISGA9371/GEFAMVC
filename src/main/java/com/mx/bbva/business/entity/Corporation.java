@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author Guevara
+ * @author Guevara Manuel
  */
 @Entity
 @Table(name = "thge037_entidad", uniqueConstraints = {@UniqueConstraint(columnNames = {"NB_ENTIDAD"})})
