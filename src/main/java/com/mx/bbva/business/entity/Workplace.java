@@ -29,7 +29,7 @@ public class Workplace implements Serializable {
     private String workplaceName;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "workplace")
-    private List<com.mx.bbva.business.entity.Access> accessList;
+    private List<Access> accessList;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "workplace")
     private List<ExternalUser> externalUsers;

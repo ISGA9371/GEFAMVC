@@ -27,8 +27,6 @@ public class ProgramIncrement implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_PI", nullable = false, length = 25)
     private String ProgramIncrementName;
-    @Transient
-    private Workplace workplace;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "programIncrement")
     private List<Project> projects;
@@ -69,14 +67,6 @@ public class ProgramIncrement implements Serializable {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
-    }
-
-    public Workplace getWorkplace() {
-        return workplace;
-    }
-
-    public void setWorkplace(Workplace workplace) {
-        this.workplace = workplace;
     }
 
     public List<Requirement> getRequirements() {

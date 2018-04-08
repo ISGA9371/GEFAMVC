@@ -45,6 +45,12 @@ public class Typology implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "typologyEmp")
     private List<Component> componentList;
+    @JsonIgnore
+    @OneToMany(mappedBy = "startTypology")
+    private List<Modification> startModifications;
+    @JsonIgnore
+    @OneToMany(mappedBy = "finalTypology")
+    private List<Modification> finalModifications;
 
     public Typology() {
     }
@@ -128,6 +134,22 @@ public class Typology implements Serializable {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public List<Modification> getStartModifications() {
+        return startModifications;
+    }
+
+    public void setStartModifications(List<Modification> startModifications) {
+        this.startModifications = startModifications;
+    }
+
+    public List<Modification> getFinalModifications() {
+        return finalModifications;
+    }
+
+    public void setFinalModifications(List<Modification> finalModifications) {
+        this.finalModifications = finalModifications;
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author Guevara
+ * @author Guevara Manuel
  */
 @Entity
 @Table(name = "thge004_tipo_nivel", uniqueConstraints = {@UniqueConstraint(columnNames = {"NB_TIPO_NIVEL"})})

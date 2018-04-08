@@ -11,7 +11,7 @@ import java.util.Date;
 
 /**
  *
- * @author Guevara
+ * @author Guevara Manuel
  */
 @Entity
 @Table(name = "thge027_duda")

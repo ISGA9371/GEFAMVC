@@ -57,11 +57,16 @@ public class JPAPersistenceConfig {
 
     private Properties additionalProperties() {
         Properties properties = new Properties();
+        properties.setProperty("hibernate.hbm2ddl.auto", "none");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         properties.setProperty("hibernate.show_sql", "false");
         properties.setProperty("hibernate.format_sql", "true");
-        properties.setProperty("use_sql_comments", "true");
+        properties.setProperty("hibernate.use_sql_comments", "true");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        properties.setProperty("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
+        properties.setProperty("hibernate.generate_statistics", "false");
+        properties.setProperty("hibernate.connection.pool_size", "0");
+        properties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
         return properties;
     }
 

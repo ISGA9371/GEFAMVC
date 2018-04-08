@@ -48,7 +48,7 @@ public class ProjectController {
     }
 
     @RequestMapping(path = "/{projectId}", method = RequestMethod.GET)
-    public String editProject(Model model, @PathVariable(value = "projectId") Integer projectId) {
+    public String editProject(Model model, @PathVariable(value = "projectId") String projectId) {
         // TODO Validate user
         LOG.info("Updating project, ID: " + projectId);
         if (null != projectId) {

@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author Guevara M
+ * @author Guevara Manuel
  */
 @Entity
 @Table(name = "thge002_tecnologia", uniqueConstraints = {
@@ -42,10 +42,12 @@ public class Technology implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "technology")
     private List<Product> products;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "thge002Tecnologia")
-//    private List<Thge062EvalServ> thge062EvalServList;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "thge002Tecnologia")
-//    private List<Thge059HCMando> thge059HCMandoList;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "technology")
+    private List<EvaluationService> evaluationServices;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "technology")
+    private List<Evaluation> evaluations;
 
     public Technology() {
     }
@@ -113,6 +115,22 @@ public class Technology implements Serializable {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public List<EvaluationService> getEvaluationServices() {
+        return evaluationServices;
+    }
+
+    public void setEvaluationServices(List<EvaluationService> evaluationServices) {
+        this.evaluationServices = evaluationServices;
+    }
+
+    public List<Evaluation> getEvaluations() {
+        return evaluations;
+    }
+
+    public void setEvaluations(List<Evaluation> evaluations) {
+        this.evaluations = evaluations;
     }
 
     @Override

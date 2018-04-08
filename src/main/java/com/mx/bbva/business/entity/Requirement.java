@@ -9,8 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -78,9 +76,6 @@ public class Requirement implements Serializable {
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
     private Area area;
-    @JoinColumn(name = "CD_METODOLOGIA", referencedColumnName = "CD_METODOLOGIA")
-    @ManyToOne
-    private Methodology methodology;
     @JoinColumn(name = "CD_TIPO_SERVICIO", referencedColumnName = "CD_TIPO_SERVICIO")
     @ManyToOne
     private ServiceType serviceType;
@@ -104,6 +99,12 @@ public class Requirement implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<Component> components;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
+    private List<RequirementTracking> requirementTrackings;
+    @JsonIgnore
+    @OneToMany(mappedBy = "requirement")
+    private List<ProjectControl> projectControls;
 
     public Requirement() {
     }
@@ -115,38 +116,6 @@ public class Requirement implements Serializable {
     public Requirement(Integer requirementId, String requirementName) {
         this.requirementId = requirementId;
         this.requirementName = requirementName;
-    }
-
-    public Requirement(Integer requirementId, String requirementName, Double requirementHour, Integer requirementTotalHours,
-                       Integer requirementBilledHours, Integer requirementNoBilledHours, Boolean requirementBilled,
-                       Date requirementDateUpload, Boolean requirementCanBilled, Date requirementStartDate, Date requirementEndDate,
-                       User userManager, Technology technology, Company company, Status status, Level level, User user,
-                       Application application, Project project, Area area, Methodology methodology, ServiceType serviceType,
-                       Channel channel, ProgramIncrement programIncrement) {
-        this.requirementId = requirementId;
-        this.requirementName = requirementName;
-        this.requirementHour = requirementHour;
-        this.requirementTotalHours = requirementTotalHours;
-        this.requirementBilledHours = requirementBilledHours;
-        this.requirementNoBilledHours = requirementNoBilledHours;
-        this.requirementBilled = requirementBilled;
-        this.requirementDateUpload = requirementDateUpload;
-        this.requirementCanBilled = requirementCanBilled;
-        this.requirementStartDate = requirementStartDate;
-        this.requirementEndDate = requirementEndDate;
-        this.userManager = userManager;
-        this.technology = technology;
-        this.company = company;
-        this.status = status;
-        this.level = level;
-        this.user = user;
-        this.application = application;
-        this.project = project;
-        this.area = area;
-        this.methodology = methodology;
-        this.serviceType = serviceType;
-        this.channel = channel;
-        this.programIncrement = programIncrement;
     }
 
     public Integer getRequirementId() {
@@ -309,14 +278,6 @@ public class Requirement implements Serializable {
         this.area = area;
     }
 
-    public Methodology getMethodology() {
-        return methodology;
-    }
-
-    public void setMethodology(Methodology methodology) {
-        this.methodology = methodology;
-    }
-
     public ServiceType getServiceType() {
         return serviceType;
     }
@@ -379,6 +340,22 @@ public class Requirement implements Serializable {
 
     public void setComponents(List<Component> components) {
         this.components = components;
+    }
+
+    public List<RequirementTracking> getRequirementTrackings() {
+        return requirementTrackings;
+    }
+
+    public void setRequirementTrackings(List<RequirementTracking> requirementTrackings) {
+        this.requirementTrackings = requirementTrackings;
+    }
+
+    public List<ProjectControl> getProjectControls() {
+        return projectControls;
+    }
+
+    public void setProjectControls(List<ProjectControl> projectControls) {
+        this.projectControls = projectControls;
     }
 
     @Override
