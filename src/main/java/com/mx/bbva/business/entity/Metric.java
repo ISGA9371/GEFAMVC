@@ -20,16 +20,16 @@ public class Metric implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CD_METRICA")
-    private Integer cdMetrica;
+    private Integer metricId;
     @Basic(optional = false)
     @Column(name = "NB_METRICA")
-    private String nbMetrica;
+    private String metricName;
     @Column(name = "FA_LMT_INF")
-    private Float faLmtInf;
+    private Float metricLowLimit;
     @Column(name = "FA_LMT_SUP")
-    private Float faLmtSup;
+    private Float metricHighLimit;
     @Column(name = "FA_MEDIA")
-    private Float faMedia;
+    private Float metricAverage;
     @JoinColumn(name = "CD_TP_METRICA", referencedColumnName = "CD_TP_METRICA")
     @ManyToOne(optional = false)
     private MetricType metricType;
@@ -39,53 +39,53 @@ public class Metric implements Serializable {
     public Metric() {
     }
 
-    public Metric(Integer cdMetrica) {
-        this.cdMetrica = cdMetrica;
+    public Metric(Integer metricId) {
+        this.metricId = metricId;
     }
 
-    public Metric(Integer cdMetrica, String nbMetrica) {
-        this.cdMetrica = cdMetrica;
-        this.nbMetrica = nbMetrica;
+    public Metric(Integer metricId, String metricName) {
+        this.metricId = metricId;
+        this.metricName = metricName;
     }
 
-    public Integer getCdMetrica() {
-        return cdMetrica;
+    public Integer getMetricId() {
+        return metricId;
     }
 
-    public void setCdMetrica(Integer cdMetrica) {
-        this.cdMetrica = cdMetrica;
+    public void setMetricId(Integer metricId) {
+        this.metricId = metricId;
     }
 
-    public String getNbMetrica() {
-        return nbMetrica;
+    public String getMetricName() {
+        return metricName;
     }
 
-    public void setNbMetrica(String nbMetrica) {
-        this.nbMetrica = nbMetrica;
+    public void setMetricName(String metricName) {
+        this.metricName = metricName;
     }
 
-    public Float getFaLmtInf() {
-        return faLmtInf;
+    public Float getMetricLowLimit() {
+        return metricLowLimit;
     }
 
-    public void setFaLmtInf(Float faLmtInf) {
-        this.faLmtInf = faLmtInf;
+    public void setMetricLowLimit(Float metricLowLimit) {
+        this.metricLowLimit = metricLowLimit;
     }
 
-    public Float getFaLmtSup() {
-        return faLmtSup;
+    public Float getMetricHighLimit() {
+        return metricHighLimit;
     }
 
-    public void setFaLmtSup(Float faLmtSup) {
-        this.faLmtSup = faLmtSup;
+    public void setMetricHighLimit(Float metricHighLimit) {
+        this.metricHighLimit = metricHighLimit;
     }
 
-    public Float getFaMedia() {
-        return faMedia;
+    public Float getMetricAverage() {
+        return metricAverage;
     }
 
-    public void setFaMedia(Float faMedia) {
-        this.faMedia = faMedia;
+    public void setMetricAverage(Float metricAverage) {
+        this.metricAverage = metricAverage;
     }
 
     public MetricType getMetricType() {
@@ -107,7 +107,7 @@ public class Metric implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdMetrica != null ? cdMetrica.hashCode() : 0);
+        hash += (metricId != null ? metricId.hashCode() : 0);
         return hash;
     }
 
@@ -118,7 +118,7 @@ public class Metric implements Serializable {
             return false;
         }
         Metric other = (Metric) object;
-        if ((this.cdMetrica == null && other.cdMetrica != null) || (this.cdMetrica != null && !this.cdMetrica.equals(other.cdMetrica))) {
+        if ((this.metricId == null && other.metricId != null) || (this.metricId != null && !this.metricId.equals(other.metricId))) {
             return false;
         }
         return true;
@@ -126,7 +126,7 @@ public class Metric implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mx.bbva.business.entity.Metric[ cdMetrica=" + cdMetrica + " ]";
+        return "com.mx.bbva.business.entity.Metric[ metricId=" + metricId + " ]";
     }
 
 }
