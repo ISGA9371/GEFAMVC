@@ -51,6 +51,7 @@ function asignarCombos(){
      rootSD.addEventListener('MDCSelect:change', function() {
          hiddenSD.value = selectSD.value.split("|")[0];
          viewSD.value = selectSD.value.split("|")[1];
+         viewSD.focus();
      });
 
 }
