@@ -48,7 +48,7 @@ public class ComponentController {
         componentService.saveComponent(component);
         Component savedComponent = componentService.findComponent(component.getComponentId());
         model.addAttribute("component", savedComponent);
-        return URL_FACTORY + EDIT_COMPONENT;
+        return REDIRECT + URL_FACTORY + EDIT_COMPONENT + savedComponent.getComponentId();
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)

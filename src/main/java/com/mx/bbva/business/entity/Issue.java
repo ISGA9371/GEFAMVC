@@ -157,6 +157,22 @@ public class Issue implements Serializable {
         this.priority = priority;
     }
 
+    public String getIssueFixByDyD() {
+        return issueFixByDyD;
+    }
+
+    public void setIssueFixByDyD(String issueFixByDyD) {
+        this.issueFixByDyD = issueFixByDyD;
+    }
+
+    public Origin getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(Origin origin) {
+        this.origin = origin;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;

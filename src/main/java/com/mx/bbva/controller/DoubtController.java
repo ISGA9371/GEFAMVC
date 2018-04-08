@@ -27,11 +27,8 @@ public class DoubtController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addDoubt(Model model, @RequestParam(value = "componentId") Integer componentId) {
         Component component = componentService.findComponent(componentId);
-        //model.addAttribute("componentData", component);
-        Doubt duda = new Doubt();
-        duda.setComponent(component);
-        LOG.info("contiene el dato:" + duda.getComponent() );
-        model.addAttribute("doubt", duda);
+        model.addAttribute("componentData", component);
+        model.addAttribute("doubt", new Doubt());
         return URL_FACTORY + NEW_DOUBT;
     }
 

@@ -1,13 +1,7 @@
 package com.mx.bbva.controller;
 
-import com.mx.bbva.business.entity.Component;
-import com.mx.bbva.business.entity.Issue;
-import com.mx.bbva.business.entity.Origin;
-import com.mx.bbva.business.entity.Priority;
-import com.mx.bbva.business.service.ComponentService;
-import com.mx.bbva.business.service.IssueService;
-import com.mx.bbva.business.service.OriginService;
-import com.mx.bbva.business.service.PriorityService;
+import com.mx.bbva.business.entity.*;
+import com.mx.bbva.business.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +21,7 @@ public class IssueController {
     private OriginService originService;
     private PriorityService priorityService;
     private ComponentService componentService;
+    private UserService userService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String createIssue(Model model, @RequestParam(value = "componentId") Integer componentId) {
@@ -43,7 +38,7 @@ public class IssueController {
     public String saveIssue(@ModelAttribute("issuee") Issue issue) {
         // TODO Validate user
         issueService.saveIssue(issue);
-        return URL_FACTORY + EDIT_ISSUE;
+        return REDIRECT + URL_FACTORY + EDIT_ISSUE + issue.getIssueId();
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -75,6 +70,11 @@ public class IssueController {
     @ModelAttribute("priorities")
     public List<Priority> populatePriorities() {
         return this.priorityService.findAllPriorities();
+    }
+
+    @ModelAttribute("users")
+    public List<User> populateUsers() {
+        return this.userService.findAllUsers();
     }
 
     @Autowired

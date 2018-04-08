@@ -46,11 +46,13 @@ public class RequirementController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String saveRequirement(@ModelAttribute("requirement") Requirement requirement) {
+    public String saveRequirement(Model model, @ModelAttribute("requirement") Requirement requirement) {
         // TODO Validate XMY from the request
         LOGGER.info("Saving requirement");
         requirementService.saveRequirement(requirement);
-        return URL_FACTORY + EDIT_REQUIREMENT;
+        Requirement requirementSaved = requirementService.findOneRequirement(requirement.getRequirementId());
+        model.addAttribute("requirement", requirementSaved);
+        return REDIRECT + URL_FACTORY + EDIT_REQUIREMENT + requirement.getRequirementId();
     }
 
     @RequestMapping(value = "/{requirementId}", method = RequestMethod.GET)
