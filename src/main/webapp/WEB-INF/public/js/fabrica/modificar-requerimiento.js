@@ -1,5 +1,33 @@
-
 $(function () {
+
+    var picker1 = $("#datetimepicker1");
+    var picker2 = $("#datetimepicker2");
+
+    picker1.datetimepicker({
+        format: 'DD/MM/YYYY',
+        locale: 'es-mx',
+        useCurrent: false
+    });
+
+    picker2.datetimepicker({
+        format: 'DD/MM/YYYY',
+        locale: 'es-mx',
+        useCurrent: false
+    });
+
+    picker1.on("dp.change", function (e) {
+        var date = e.date;
+        var dateStr = date.year() + "-" + (date.month() + 1) + '-' + date.date();
+        $("input[id=requirementStartDate]").val(dateStr);
+    });
+
+    picker2.on("dp.change", function (e) {
+        var date = e.date;
+        var dateStr = date.year() + "-" + (date.month() + 1) + '-' + date.date();
+        $("input[id=requirementEndDate]").val(dateStr);
+    });
+
+
     const principal = new mdc.select.MDCSelect(document.querySelector('#principal'));
     var principalEL = $('#principal');
     var principalId = $("#level\\.levelSuperior\\.levelId").val();
@@ -9,6 +37,7 @@ $(function () {
     principal.selectedIndex = principalId - 1;
     principal.value = principalEL.find("li[value="+principalId+"]").html();
 
+    const subPrincipal = new mdc.select.MDCSelect(document.querySelector('#subprincipal'));
     //LOAD SUB LEVELS FROM PRINCIPAL
     $.ajax({
         url: "/levels/"+principalId+"/sublevel"
@@ -23,7 +52,6 @@ $(function () {
                     "value='"+value.levelId+"'>"+value.levelName+"</li>");
             });
 
-            const subPrincipal = new mdc.select.MDCSelect(document.querySelector('#subprincipal'));
             var subPrincipalEL = $('#subprincipal');
             var subPrincipalId = $("#level\\.levelId").val();
             console.log("SUBLEVEL ID "+subPrincipalId + " "+"li[value="+subPrincipalId+"]");
@@ -33,21 +61,23 @@ $(function () {
             subPrincipal.selectedIndex = subPrincipalEL.find("ul li[value="+ subPrincipalId +"]").index();
             subPrincipal.value = subPrincipalEL.find("ul li[value="+subPrincipalId+"]").html();
 
-            var idx = parseInt("0");
-            subPrincipal.listen('MDCSelect:change', () => {
-                if (++idx > 1) {idx = 0;return;}
-                let id = subPrincipal.selectedOptions[0].value;
-                console.log("SELECTEDSUBDIR "+id);
-                $("#level\\.levelId").val(id);
-            });
-
         }else $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
 
     });
+
+    var idx = parseInt("0");
+    subPrincipal.listen('MDCSelect:change', () => {
+        if (++idx === 2) return; else idx = 0;
+        let id = subPrincipal.selectedOptions[0].value;
+        console.log("SELECTEDSUBDIR "+id);
+        $("#level\\.levelId").val(id);
+    });
+
     //LOADING SUBDIRECCIONES CUANDO DIRECCION CMABIA
     let coso = parseInt("0");
     principal.listen('MDCSelect:change', () => {
-        if(++coso > 1){coso = 0; return;}
+        if (coso++ === 0) return; else coso = 0;
+        subPrincipal.disabled = true;
         let id = principal.selectedOptions[0].value;
 
         $.ajax({
@@ -55,6 +85,8 @@ $(function () {
         }).done(function(data) {
             let subdirs = data;
             $("#subdir-sel-text").html("");
+            subPrincipal.selectedIndex = -1;
+            subPrincipal.value = "";
             if (typeof subdirs !== 'undefined' && subdirs.length > 0) {
                 $("#subdir-select").html("");
                 $.each(subdirs, function( index, value ) {
@@ -63,6 +95,7 @@ $(function () {
                         "value='"+value.levelId+"'>"+value.levelName+"</li>");
                 });
             }else $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+            subPrincipal.disabled = false;
 
         });
     });
@@ -73,13 +106,14 @@ $(function () {
     console.log("RESPONSIBLE ID "+responsibleId);
     //responsibleEL.find("div").first().click();
     //responsibleEL.find("li[value="+responsibleId+"]").click();
-    responsible.selectedIndex = responsibleEL.find("ul li[value="+ responsibleId +"]").index();
-    responsible.value = responsibleEL.find("ul li[value="+responsibleId+"]").html();
+    responsible.selectedIndex = responsibleEL.find("ul li[id="+ responsibleId +"]").index();
+    responsible.value = responsibleEL.find("ul li[id="+responsibleId+"]").html();
     let index = parseInt("0");
     responsible.listen('MDCSelect:change', () => {
-        if (++index > 1) {index = 0;return;}
-        let id = responsible.selectedOptions[0].value;
-        $("#user\\.userInternalId").val(id);
+        if (index++ === 0) return; else index = 0;
+        var id1 = responsible.selectedOptions[0].id;
+        console.log("RESPINSIBLEIDSEL "+responsible.selectedOptions.length+" " + id1);
+        $("#user\\.userInternalId").val(id1);
     });
 
     const area = new mdc.select.MDCSelect(document.querySelector('#area'));
@@ -92,7 +126,7 @@ $(function () {
     area.value = areaEL.find("ul li[value="+areaId+"]").html();
     let index2 = parseInt("0");
     area.listen('MDCSelect:change', () => {
-        if (++index2 > 1) {index2 = 0;return;}
+        if (index2++ === 0) return; else index2 = 0;
         let id = area.selectedOptions[0].value;
         $("#area\\.areaId").val(id);
     });
@@ -103,12 +137,13 @@ $(function () {
     console.log("Gestor ID "+managerId);
     //managerEL.find("div").first().click();
     //managerEL.find("li[value="+managerId+"]").click();
-    manager.selectedIndex = managerEL.find("ul li[value="+ managerId +"]").index();
-    manager.value = managerEL.find("ul li[value="+managerId+"]").html();
+    manager.selectedIndex = managerEL.find("ul li[id="+ managerId +"]").index();
+    manager.value = managerEL.find("ul li[id="+managerId+"]").html();
     let index3 = parseInt("0");
     manager.listen('MDCSelect:change', () => {
-        if (++index3 > 1) {index3 = 0;return;}
-        let id = manager.selectedOptions[0].value;
+        if (index3++ === 0) return; else index3 = 0;
+        let id = manager.selectedOptions[0].id;
+        console.log("MANAGERID "+manager.selectedOptions.length+" " + id);
         $("#userManager\\.userInternalId").val(id);
     });
 
@@ -122,8 +157,9 @@ $(function () {
     tech.value = techEL.find("ul li[value="+techId+"]").html();
     let index4 = parseInt("0");
     tech.listen('MDCSelect:change', () => {
-        if (++index4 > 1) {index4 = 0;return;}
+        if (index4++ === 0) return; else index4 = 0;
         let id = tech.selectedOptions[0].value;
+        console.log("TECHIDSEl "+tech.selectedOptions.length+" " + id);
         $("#technology\\.technologyId").val(id);
     });
 
@@ -137,7 +173,7 @@ $(function () {
     meth.value = methEL.find("ul li[value="+methId+"]").html();
     let index5 = parseInt("0");
     meth.listen('MDCSelect:change', () => {
-        if (++index5 > 1) {index5 = 0;return;}
+        if (index5++ === 0) return; else index5 = 0;
         let id = meth.selectedOptions[0].value;
         $("#methodology\\.methodologyId").val(id);
     });
@@ -152,7 +188,7 @@ $(function () {
     app.value = appEL.find("ul li[value="+appId+"]").html();
     let index6 = parseInt("0");
     app.listen('MDCSelect:change', () => {
-        if (++index6 > 1) {index6 = 0;return;}
+        if (index6++ === 0) return; else index6 = 0;
         let id = app.selectedOptions[0].value;
         $("#application\\.applicationId").val(id);
     });
@@ -167,7 +203,7 @@ $(function () {
     channel.value = channelEL.find("ul li[value="+channelId+"]").html();
     let index7 = parseInt("0");
     channel.listen('MDCSelect:change', () => {
-        if (++index7 > 1) {index7 = 0;return;}
+        if (index7++ === 0) return; else index7 = 0;
         let id = channel.selectedOptions[0].value;
         $("#channel\\.channelId").val(id);
     });
@@ -182,7 +218,7 @@ $(function () {
     company.value = companyEL.find("ul li[value="+companyId+"]").html();
     let index8 = parseInt("0");
     company.listen('MDCSelect:change', () => {
-        if (++index8 > 1) {index8 = 0;return;}
+        if (index8++ === 0) return; else index8 = 0;
         let id = company.selectedOptions[0].value;
         $("#company\\.companyId").val(id);
     });
@@ -197,7 +233,7 @@ $(function () {
     serviceType.value = serviceTypeEL.find("ul li[value="+serviceTypeId+"]").html();
     let index9 = parseInt("0");
     serviceType.listen('MDCSelect:change', () => {
-        if (++index9 > 1) {index9 = 0;return;}
+        if (index9++ === 0) return; else index9 = 0;
         let id = serviceType.selectedOptions[0].value;
         $("#serviceType\\.serviceTypeId").val(id);
     });
@@ -212,7 +248,7 @@ $(function () {
     pi.value = piEL.find("ul li[value="+piId+"]").html();
     let index10 = parseInt("0");
     pi.listen('MDCSelect:change', () => {
-        if (++index10 > 1) {index10 = 0;return;}
+        if (index10++ === 0) return; else index10 = 0;
         let id = pi.selectedOptions[0].value;
         $("#programIncrement\\.programIncrementId").val(id);
     });
@@ -223,12 +259,12 @@ $(function () {
     console.log("project ID "+projectId);
     //projectEL.find("div").first().click();
     //projectEL.find("li[value="+projectId+"]").click();
-    project.selectedIndex = projectEL.find("ul li[value="+ projectId +"]").index();
-    project.value = projectEL.find("ul li[value="+projectId+"]").html();
+    project.selectedIndex = projectEL.find("ul li[id="+ projectId +"]").index();
+    project.value = projectEL.find("ul li[id="+projectId+"]").html();
     let index11 = parseInt("0");
     project.listen('MDCSelect:change', () => {
-        if (++index11 > 1) {index11 = 0;return;}
-        let id = project.selectedOptions[0].value;
+        if (index11++ === 0) return; else index11 = 0;
+        let id = project.selectedOptions[0].id;
         $("#project\\.projectScrumId").val(id);
     });
 
@@ -269,7 +305,7 @@ $(function () {
     status.value = statusEL.find("ul li[value="+statusId+"]").html();
     let index12 = parseInt("0");
     status.listen('MDCSelect:change', () => {
-        if (++index12 > 1) {index12 = 0;return;}
+        if (index12++ === 0) return; else index12 = 0;
         let id = status.selectedOptions[0].value;
         $("#status\\.statusId").val(id);
     });
@@ -277,7 +313,7 @@ $(function () {
     const billed = new mdc.select.MDCSelect(document.querySelector('#billed'));
     let index13 = parseInt("0");
     billed.listen('MDCSelect:change', () => {
-        if (++index13 > 1) {index13 = 0;return;}
+        if (index13++ === 0) return; else index13 = 0;
         let id = billed.selectedOptions[0].value;
         $("#requirementBilled").val(id);
     });
@@ -287,5 +323,23 @@ $(function () {
         $("#level\\.levelSuperior\\.levelId").val(null);
         return true;
     });*/
+
+    //SET DATES
+
+    var compD1 = $("#requirementStartDate").val().split('-');
+    var startD = new Date(compD1[0],compD1[1]-1,compD1[2]);
+    var compD2 = $("#requirementEndDate").val().split('-');
+    var endD = new Date(compD2[0],compD2[1]-1,compD2[2]);
+    picker1.val(startD.getDate()+"/"+(startD.getMonth()+1)+"/"+startD.getFullYear());
+    picker2.val(endD.getDate()+"/"+(endD.getMonth()+1)+"/"+endD.getFullYear())
+
+    /*
+    * var compD1 =$("#requirementStartDate").val()(startDate.split('-');
+    var startD = new Date(compD1[0],compD1[1]-1,compD1[2]);
+    var compD2 =endDate.split('-');
+    var endD = new Date(compD2[0],compD2[1]-1,compD2[2]);
+    picker1.val(startD.getDate()+"/"+(startD.getMonth()+1)+"/"+startD.getFullYear());
+    picker2.val(endD.getDate()+"/"+(endD.getMonth()+1)+"/"+endD.getFullYear())
+    */
 
 });
