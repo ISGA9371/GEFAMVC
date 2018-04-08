@@ -142,34 +142,29 @@ $(function () {
           $("#tab-fecha > table > tbody").append(
             "<tr><th>" + value.componentName + "</th>" +
             "<th>" + "" + "</th>" +
-            "<th><input type='text' id='" + value.componentId + "-date1' value='" + date1 +"' class='form-control'></th>" +
-            "<th><input type='text' id='" + value.componentId + "-date2' value='" + date2 + "' class='form-control'></th>" +
-            "<th><input type='text' id='" + value.componentId + "-date3' value='" + date3 + "' class='form-control'></th>" +
-            "<th><input type='text' id='" + value.componentId + "-date4' value='" + date4 + "' class='form-control'></th>" +
+            "<th><input type='text' id='date1-" + value.componentId + "' value='" + date1 +"' class='form-control'></th>" +
+            "<th><input type='text' id='date2-" + value.componentId + "' value='" + date2 + "' class='form-control'></th>" +
+            "<th><input type='text' id='date3-" + value.componentId + "' value='" + date3 + "' class='form-control'></th>" +
+            "<th><input type='text' id='date4-" + value.componentId + "' value='" + date4 + "' class='form-control'></th>" +
             "<th>" + "" + "</th></tr>"
           );
+          $("#date1-" + value.componentId).datetimepicker({ format: 'DD/MM/YYYY' });
+          $("#date2-" + value.componentId).datetimepicker({ format: 'DD/MM/YYYY' });
+          $("#date3-" + value.componentId).datetimepicker({ format: 'DD/MM/YYYY' });
+          $("#date4-" + value.componentId).datetimepicker({ format: 'DD/MM/YYYY' });
 
           $("#tab-cierre > table > tbody").append(
             "<tr><th>" + value.componentName + "</th>" +
             "<th>" + "" + "</th>" +
-            "<th><input type='text' id='" + value.componentId + "-tipFin' value='' class='form-control'></th>" +
-            "<th><input type='text' id='" + value.componentId + "-difFin' value='' class='form-control'></th>" +
-            "<th><input type='text' id='" + value.componentId + "-costFin' value='' class='form-control'></th>" +
-            "<th><input type='text' id='" + value.componentId + "-horFin' value='' class='form-control'></th>" +
-            "<th><input type='text' id='" + value.componentId + "-comments' value='' class='form-control'></th>" +
-            "<th><input type='text' id='" + value.componentId + "-estatusTip' value='' class='form-control'></th>" +
-            "<th><input type='text' id='" + value.componentId + "-facturar' value='' class='form-control'></th></tr>"
+            "<th><input type='text' id='tipFin-" + value.componentId + "' value='' class='form-control'></th>" +
+            "<th><input type='text' id='difFin-" + value.componentId + "' value='' class='form-control'></th>" +
+            "<th><input type='text' id='costFin-" + value.componentId + "' value='' class='form-control'></th>" +
+            "<th><input type='text' id='horFin-" + value.componentId + "' value='' class='form-control'></th>" +
+            "<th><input type='text' id='comments-" + value.componentId + "' value='' class='form-control'></th>" +
+            "<th><input type='text' id='estatusTip-" + value.componentId + "' value='' class='form-control'></th>" +
+            "<th><input type='text' id='facturar-" + value.componentId + "' value='' class='form-control'></th></tr>"
           );
 
-
-          $(value.componentId + '-tipFin').datetimepicker({format: 'DD/MM/YYYY'});
-          $(value.componentId + '-difFin').datetimepicker({format: 'DD/MM/YYYY'});
-          $(value.componentId + '-costFin').datetimepicker({format: 'DD/MM/YYYY'});
-          $(value.componentId + '-horFin').datetimepicker({format: 'DD/MM/YYYY'});
-          $(value.componentId + '-comments').datetimepicker({format: 'DD/MM/YYYY'});
-          $(value.componentId + '-estatusTip').datetimepicker({format: 'DD/MM/YYYY'});
-          $(value.componentId + '-facturar').datetimepicker({format: 'DD/MM/YYYY'});
-                    
         });
         $("#tab-fecha > table > tbody").append(
           "<tr style='background-color:#004582;'><th></th>" +
@@ -180,6 +175,11 @@ $(function () {
           "<th><input type='text' id='date4' value='' class='form-control'></th>" +
           "<th></th></tr>"
         );
+
+        $('#date1').datetimepicker({format: 'DD/MM/YYYY'});
+        $('#date2').datetimepicker({format: 'DD/MM/YYYY'});
+        $('#date3').datetimepicker({format: 'DD/MM/YYYY'});
+        $('#date4').datetimepicker({format: 'DD/MM/YYYY'});
       } else {
         new jBox('Notice', {
           content: 'Tu búsqueda no devolvió resultados',
