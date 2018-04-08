@@ -31,14 +31,48 @@ $(function () {
   const estado = new mdc.select.MDCSelect(document.querySelector('#slct_estado'));
   const tipologia_inicial = new mdc.select.MDCSelect(document.querySelector('#slct_tipologia_inicial'));
   const tipologia_final = new mdc.select.MDCSelect(document.querySelector('#slct_tipologia_final'));
-  const dificultad_inicial = new mdc.select.MDCSelect(document.querySelector('#slct_dificultad_inicial'));
+  // const dificultad_inicial = new mdc.select.MDCSelect(document.querySelector('#slct_dificultad_inicial'));
   const estado_tipificado = new mdc.select.MDCSelect(document.querySelector('#slct_estado_tipificado'));
-  const dificultad_final = new mdc.select.MDCSelect(document.querySelector('#slct_dificultad_final '));
-
+  // const dificultad_final = new mdc.select.MDCSelect(document.querySelector('#slct_dificultad_final '));
 
   direccion.listen('MDCSelect:change', () => {
-    //  alert(`Selected "${tecnologia.selectedOptions[0].textContent}" at index ${tecnologia.selectedIndex} ` +
-    //    `with value "${tecnologia.value}"`);
+    
+    idSuperior = $(direccion.selectedOptions[0]).data("superior");
+
+    subs = $('#slct_subidreccion > .mdc-menu > ul.mdc-list').children('li');
+
+    console.log(subs);
+    
+    
+
+
+    // $("#mdc-group-typologyStartSeverity").addClass("mdc-text-field--upgraded");
+    // $("#mdc-group-typologyStartSeverity > label").addClass("mdc-text-field__label--float-above");
+
+    // $("#typologyStartSeverityHours").val($(tipologia_inicial.selectedOptions[0]).data("hours"));
+    // $("#mdc-group-typologyStartSeverityHours").addClass("mdc-text-field--upgraded");
+    // $("#mdc-group-typologyStartSeverityHours > label").addClass("mdc-text-field__label--float-above");
+  });
+
+
+  tipologia_inicial.listen('MDCSelect:change', () => {
+    $("#typologyStartSeverity").val( $(tipologia_inicial.selectedOptions[0]).data("severity") );
+    $("#mdc-group-typologyStartSeverity").addClass("mdc-text-field--upgraded");
+    $("#mdc-group-typologyStartSeverity > label").addClass("mdc-text-field__label--float-above");
+
+    $("#typologyStartSeverityHours").val( $(tipologia_inicial.selectedOptions[0]).data("hours") );
+    $("#mdc-group-typologyStartSeverityHours").addClass("mdc-text-field--upgraded");
+    $("#mdc-group-typologyStartSeverityHours > label").addClass("mdc-text-field__label--float-above");
+  });
+
+  tipologia_final.listen('MDCSelect:change', () => {
+    $("#typologyFinalSeverity").val($(tipologia_final.selectedOptions[0]).data("severity"));
+    $("#mdc-group-typologyFinalSeverity").addClass("mdc-text-field--upgraded");
+    $("#mdc-group-typologyFinalSeverity > label").addClass("mdc-text-field__label--float-above");
+
+    $("#typologyFinalSeverityHours").val($(tipologia_final.selectedOptions[0]).data("hours"));
+    $("#mdc-group-typologyFinalSeverityHours").addClass("mdc-text-field--upgraded");
+    $("#mdc-group-typologyFinalSeverityHours > label").addClass("mdc-text-field__label--float-above");
   });
 
 
@@ -52,9 +86,9 @@ $(function () {
     $("#statusId").val(estado.value);
     $("#startProductId").val(tipologia_inicial.value);
     $("#finalProductId").val(tipologia_final.value);
-    $("#typologyStartSeverity").val(dificultad_inicial.value);
+    // $("#typologyStartSeverity").val(dificultad_inicial.value);
     $("#statusTypologyId").val(estado_tipificado.value);
-    $("#typologyFinalSeverity").val(dificultad_final.value);
+    // $("#typologyFinalSeverity").val(dificultad_final.value);
 
     // serializeArray = $("#searchForm").serializeArray();
     // objectito = {};
@@ -167,9 +201,9 @@ $(function () {
     estado.selectedIndex = -1;
     tipologia_inicial.selectedIndex = -1;
     tipologia_final.selectedIndex = -1;
-    dificultad_inicial.selectedIndex = -1;
+    // dificultad_inicial.selectedIndex = -1;
     estado_tipificado.selectedIndex = -1;
-    dificultad_final.selectedIndex = -1;
+    // dificultad_final.selectedIndex = -1;
 
     $("#principalId").val("");
     $("#subPrincipalId").val("");
@@ -201,6 +235,15 @@ $(function () {
     $("#row-content-results").hide();
     $("#row-buttons-results").hide();
 
+
+    // $("#mdc-group-typologyStartSeverity").removeClass("mdc-text-field--upgraded");
+    $("#mdc-group-typologyStartSeverity > label").removeClass("mdc-text-field__label--float-above");
+    // $("#mdc-group-typologyStartSeverityHours").removeClass("mdc-text-field--upgraded");
+    $("#mdc-group-typologyStartSeverityHours > label").removeClass("mdc-text-field__label--float-above");
+    // $("#mdc-group-typologyFinalSeverity").removeClass("mdc-text-field--upgraded");
+    $("#mdc-group-typologyFinalSeverity > label").removeClass("mdc-text-field__label--float-above");
+    // $("#mdc-group-typologyFinalSeverityHours").removeClass("mdc-text-field--upgraded");
+    $("#mdc-group-typologyFinalSeverityHours > label").removeClass("mdc-text-field__label--float-above");
   });
 
   mdc.autoInit()
