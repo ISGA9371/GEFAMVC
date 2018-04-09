@@ -39,14 +39,14 @@ $(function () {
         }).done(function(data) {
             //let subdirs = JSON.parse(data);
             let subs = data;
-            console.log(subs.length);
+            //console.log(subs.length);
             $("#subdir-sel-text").html("");
             subdirs.selectedIndex = -1;
             subdirs.value = "";
             if (typeof subs !== 'undefined' && subs.length > 0) {
                 $("#subdir-select").html("");
                 $.each(subs, function( index, value ) {
-                    console.log( index + ": " + value.levelId );
+                    //console.log( index + ": " + value.levelId );
                     $("#subdir-select").append(
                         "<li class='mdc-list-item' role='option' tabindex='0' " +
                         "value='"+value.levelId+"'>"+value.levelName+"</li>");
@@ -64,11 +64,32 @@ $(function () {
         $("#subPrincipalId").val(id);
     });
 
+    let index3 = parseInt("0");
+    const responsables = new mdc.select.MDCSelect(document.querySelector('#responsables'));
+    responsables.listen('MDCSelect:change', () => {
+        if (index3++ === 0) return; else index3 = 0;
+        let id = responsables.selectedOptions[0].id;
+        //SET HIDDEN FIELD VALUE
+        console.log("RESPONSABLE " +id);
+        $("#userInternalId").val(id);
+    });
+
+
+    let index4 = parseInt("0");
+    const gestores= new mdc.select.MDCSelect(document.querySelector('#gestores'));
+    gestores.listen('MDCSelect:change', () => {
+        if (index4++ === 0) return; else index4 = 0;
+        let id = gestores.selectedOptions[0].id;
+        //SET HIDDEN FIELD VALUE
+        console.log("GESTORID " +id);
+        $("#userManagerId").val(id);
+    });
+
     const areas = new mdc.select.MDCSelect(document.querySelector('#areas'));
     const tiposServ = new mdc.select.MDCSelect(document.querySelector('#tipos-serv'));
-    let index3 = parseInt("0");
+    let index5 = parseInt("0");
     areas.listen('MDCSelect:change', () => {
-        if (index3++ === 0) return; else index3 = 0;
+        if (index5++ === 0) return; else index5 = 0;
         let id = areas.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         console.log("AREAID " +id);
@@ -105,9 +126,9 @@ $(function () {
     });
 
     const tiposProy = new mdc.select.MDCSelect(document.querySelector('#tipos-proy'));
-    let index4 = parseInt("0");
+    let index6 = parseInt("0");
     tiposProy.listen('MDCSelect:change', () => {
-        if (index4++ === 0) return; else index4 = 0;
+        if (index6++ === 0) return; else index6 = 0;
         let id = tiposProy.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         console.log("PROYECTTYPEID " +id);
@@ -115,9 +136,9 @@ $(function () {
     });
 
     const techs = new mdc.select.MDCSelect(document.querySelector('#techs'));
-    let index5 = parseInt("0");
+    let index7 = parseInt("0");
     techs.listen('MDCSelect:change', () => {
-        if (index5++ === 0) return; else index5 = 0;
+        if (index7++ === 0) return; else index7 = 0;
         let id = techs.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         $("#technologyId").val(id);
@@ -145,18 +166,18 @@ $(function () {
     });
 
     const empresas = new mdc.select.MDCSelect(document.querySelector('#empresas'));
-    let index6 = parseInt("0");
+    let index8 = parseInt("0");
     empresas.listen('MDCSelect:change', () => {
-        if (index6++ === 0) return; else index6 = 0;
+        if (index8++ === 0) return; else index8 = 0;
         let id = empresas.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         console.log("COMPANYID " +id);
         $("#companyId").val(id);
     });
 
-    let index7 = parseInt("0");
+    let index9 = parseInt("0");
     tiposServ.listen('MDCSelect:change', () => {
-        if (index7++ === 0) return; else index7 = 0;
+        if (index9++ === 0) return; else index9 = 0;
         let id = tiposServ.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         console.log("TIPOSERVID " +id);
@@ -164,9 +185,9 @@ $(function () {
     });
 
     const app = new mdc.select.MDCSelect(document.querySelector('#aplicacion'));
-    let index8 = parseInt("0");
+    let index10 = parseInt("0");
     app.listen('MDCSelect:change', () => {
-        if (index8++ === 0) return; else index8 = 0;
+        if (index10++ === 0) return; else index10 = 0;
         let id = empresas.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         console.log("APPID " +id);
@@ -174,13 +195,23 @@ $(function () {
     });
 
     const canal = new mdc.select.MDCSelect(document.querySelector('#canal'));
-    let index9 = parseInt("0");
+    let index11 = parseInt("0");
     canal.listen('MDCSelect:change', () => {
-        if (index9++ === 0) return; else index9 = 0;
+        if (index11++ === 0) return; else index11 = 0;
         let id = empresas.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         console.log("CANALID " +id);
         $("#channelId").val(id);
+    });
+
+    const pi = new mdc.select.MDCSelect(document.querySelector('#pi'));
+    let index12 = parseInt("0");
+    pi.listen('MDCSelect:change', () => {
+        if (index12++ === 0) return; else index12 = 0;
+        let id = pi.selectedOptions[0].value;
+        //SET HIDDEN FIELD VALUE
+        console.log("PIID " +id);
+        $("#programIncrementId").val(id);
     });
 
 
