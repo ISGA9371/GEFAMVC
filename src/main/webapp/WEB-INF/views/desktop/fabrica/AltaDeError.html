@@ -4,6 +4,9 @@
 <head th:replace="~{layout/mainHeader :: head ('Alta de Incidencia')}"></head>
 
 <body>
+
+<header th:replace="~{layout/mainHeader :: header }"></header>
+
 <div class="container">
     <br>
     <div class="row">
@@ -239,4 +242,5 @@
 
 
 <!--Footer que debe ir en todas las ventanas-->
+<div th:replace="layout/footer :: FooterPrincipal"></div>
 </html>
