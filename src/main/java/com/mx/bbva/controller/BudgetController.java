@@ -108,13 +108,13 @@ public class BudgetController {
         return URL_FACTORY + BILLING_CUT;
     }
 
-    @RequestMapping(value = "/payment/filters", method = RequestMethod.GET)
+    @RequestMapping(value = "/payments/filters", method = RequestMethod.GET)
     public String filtersForPayment(Model model) {
         model.addAttribute("filters", new Budget());
         return URL_BUDGET + STATUS_PAYMENT;
     }
 
-    @RequestMapping(value = "/payment/search", method = RequestMethod.GET)
+    @RequestMapping(value = "/payments/search", method = RequestMethod.GET)
     public String searchForPayments(@ModelAttribute("paymentSearchDTO") BudgetSearchDTO budgetSearchDTO, Model model) {
         // TODO Work in progress
         String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");

@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -29,6 +31,7 @@ public class Project implements Serializable {
     @JoinColumn(name = "CD_METODOLOGIA", referencedColumnName = "CD_METODOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Methodology methodology;
+    @JsonIgnore
     @OneToMany(mappedBy = "project")
     private List<Requirement> requirements;
 

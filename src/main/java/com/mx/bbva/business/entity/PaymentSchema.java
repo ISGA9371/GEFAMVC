@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -26,6 +28,7 @@ public class PaymentSchema implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_ESQ_PAGO")
     private String paymentSchemaName;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "paymentSchema")
     private List<ExternalUser> externalUsers;
 

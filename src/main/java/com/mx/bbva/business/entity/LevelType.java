@@ -26,8 +26,8 @@ public class LevelType implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_TIPO_NIVEL", nullable = false, length = 50)
     private String levelTypeName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "levelType")
     @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "levelType")
     private List<Level> levels;
 
     public LevelType() {

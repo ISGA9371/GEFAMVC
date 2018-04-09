@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -25,6 +27,7 @@ public class Methodology implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_METODOLOGIA", nullable = false, length = 25)
     private String methodologyName;
+    @JsonIgnore
     @OneToMany(mappedBy = "methodology")
     private List<Project> projects;
 
