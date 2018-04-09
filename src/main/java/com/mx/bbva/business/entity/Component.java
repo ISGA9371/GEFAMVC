@@ -56,11 +56,9 @@ public class Component implements Serializable {
     private Date componentUploadDate;
     @Column(name = "NU_FACTURABLE")
     private Boolean componentForBill;
-    @JsonIgnore
     @JoinColumn(name = "ST_TIPIFICACION", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status statusTypology;
-    @JsonIgnore
     @JoinColumn(name = "ST_COMPONENTE", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
@@ -72,7 +70,6 @@ public class Component implements Serializable {
     @JoinColumn(name = "CD_TIPOLOGIA_EMP", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Typology typologyEmp;
-    @JsonIgnore
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false)
     @ManyToOne(optional = false)
     private Requirement requirement;

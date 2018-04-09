@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -24,6 +26,7 @@ public class DateType implements Serializable {
     @Basic(optional = false)
     @Column(name = "TP_FH")
     private String dateTypeName;
+    @JsonIgnore
     @OneToMany(mappedBy = "dateType")
     private List<ComponentDatesLog> componentDatesLogList;
 

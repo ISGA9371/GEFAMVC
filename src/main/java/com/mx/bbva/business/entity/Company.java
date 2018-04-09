@@ -47,8 +47,10 @@ public class Company implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
     private List<ExternalUser> externalUsers;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
     private List<EvaluationService> evaluationServices;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
     private List<Evaluation> evaluations;
 

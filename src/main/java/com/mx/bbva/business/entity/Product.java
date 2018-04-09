@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -27,6 +29,7 @@ public class Product implements Serializable {
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Technology technology;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<Typology> typologies;
 

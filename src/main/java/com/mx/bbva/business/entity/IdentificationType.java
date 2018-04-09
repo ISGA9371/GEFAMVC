@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -24,6 +26,7 @@ public class IdentificationType implements Serializable {
     @Basic(optional = false)
     @Column(name = "NB_IDENTIFICACION")
     private String identificationTypeName;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "identificationType")
     private List<ExternalUser> externalUsers;
 

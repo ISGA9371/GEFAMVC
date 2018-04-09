@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -33,6 +35,7 @@ public class Metric implements Serializable {
     @JoinColumn(name = "CD_TP_METRICA", referencedColumnName = "CD_TP_METRICA")
     @ManyToOne(optional = false)
     private MetricType metricType;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "metric")
     private List<Evaluation> evaluationList;
 

@@ -30,6 +30,7 @@ public class ProgramIncrement implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "programIncrement")
     private List<Project> projects;
+    @JsonIgnore
     @OneToMany(mappedBy = "programIncrement")
     private List<Requirement> requirements;
 
