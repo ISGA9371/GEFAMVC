@@ -22,7 +22,6 @@ public class ComponentController {
     private ComponentService componentService;
     private TypologyService typologyService;
     private RequirementService requirementService;
-    private FareService fareService;
     private LevelService levelService;
     private StatusService statusService;
     private CompanyService companyService;
@@ -38,9 +37,6 @@ public class ComponentController {
         Requirement requirement = requirementService.findOneRequirement(requirementId);
         model.addAttribute("requirementData", requirement);
         model.addAttribute("component", new Component());
-        Fare fare = fareService.findRequirementFare(requirement.getCompany().getCompanyId(), requirement.getTechnology().getTechnologyId(), requirement.getArea().getAreaId());
-        LOG.info("Tarifa: " + fare.getFareValue());
-        model.addAttribute("fare", fare);
         //TODO Add catalogs
         return URL_FACTORY + NEW_COMPONENT;
     }
@@ -164,7 +160,4 @@ public class ComponentController {
     public void setCompanyService(CompanyService companyService) {
         this.companyService = companyService;
     }
-
-    @Autowired
-    public void setFareService(FareService fareService) { this.fareService = fareService; }
 }
