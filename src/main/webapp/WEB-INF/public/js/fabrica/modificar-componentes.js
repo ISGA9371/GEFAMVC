@@ -30,12 +30,14 @@ function fillFields() {
     }
     if (splittedTypologiaInicio[3] === 0 ||splittedTypologiaInicio[3] === 1) {
         if (splittedTypologiaInicio[3] == 0) {
+            new mdc.textField.MDCTextField(document.getElementById("nuemod-mdc-text")).value = "Nuevo";
             $('#tipologia-empty-js-select').hide();
             $('#tipologia-news-js-select').show();
             $('#tipologia-mods-js-select').hide();
             $("#tipologia-news-js-select").find("div").eq(0).click();
         }
         if (splittedTypologiaInicio[3] == 1) {
+            new mdc.textField.MDCTextField(document.getElementById("nuemod-mdc-text")).value = "Modificado";
             $('#tipologia-empty-js-select').hide();
             $('#tipologia-news-js-select').hide();
             $('#tipologia-mods-js-select').show();
@@ -65,15 +67,15 @@ function fillFields() {
         splittedTypologiaFinal[3] = 1;
     }
     if (splittedTypologiaFinal[3] === 0 ||splittedTypologiaFinal[3] === 1) {
-        $("#nuemod-js-select").find("div").eq(0).click();
-        $("#nuemod-js-select").find("li").eq(splittedTypologiaFinal[3]).click();
         if (splittedTypologiaFinal[3] == 0) {
+            new mdc.textField.MDCTextField(document.getElementById("nuemod-mdc-text")).value = "Nuevo";
             $('#tipologia-final-empty-js-select').hide();
             $('#tipologia-final-news-js-select').show();
             $('#tipologia-final-mods-js-select').hide();
             $("#tipologia-final-news-js-select").find("div").eq(0).click();
         }
         if (splittedTypologiaFinal[3] == 1) {
+            new mdc.textField.MDCTextField(document.getElementById("nuemod-mdc-text")).value = "Modifcado";
             $('#tipologia-final-empty-js-select').hide();
             $('#tipologia-final-news-js-select').hide();
             $('#tipologia-final-mods-js-select').show();
@@ -204,8 +206,8 @@ function addButtonEvents() {
 
 function addCustomSelectEvents() {
     var hiddenTypology = document.getElementById('typology-final');
-    var rootType = document.getElementById('nuemod-js-select');
-    var selectType = new mdc.select.MDCSelect(rootType);
+    //var rootType = document.getElementById('nuemod-js-select');
+    /*var selectType = new mdc.select.MDCSelect(rootType);
 
     rootType.addEventListener('MDCSelect:change', function () {
         $("#componentNewMod").val(selectType.value);
@@ -226,7 +228,7 @@ function addCustomSelectEvents() {
         new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value="";
         new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value="";
     });
-
+*/
     var rootNews = document.getElementById('tipologia-final-news-js-select');
     var selectNews = new mdc.select.MDCSelect(rootNews);
 
@@ -283,8 +285,8 @@ function hideData() {
 
 function loadSelects() {
     //mdc.select.MDCSelect.attachTo(document.getElementById('direccion-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('subdireccion-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('nuemod-js-select'));
+    //mdc.select.MDCSelect.attachTo(document.getElementById('subdireccion-js-select'));
+    //mdc.select.MDCSelect.attachTo(document.getElementById('nuemod-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-empty-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-news-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-mods-js-select'));
@@ -312,7 +314,7 @@ function addHiddenEvents() {
     addTextSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text");
     addTextSyncMdcToHtml("componentTypoComment", "descripcion-mdc-text");
     //$("#requirement").val($("#requirementHidden").val());
-    addSelectSyncMdcToHtml("subdireccion","subdireccion-js-select");
+    //addSelectSyncMdcToHtml("subdireccion","subdireccion-js-select");
     addSelectSyncMdcToHtml("statusTypology","estatus-tipificacion-js-select");
     addSelectSyncMdcToHtml("componentForBill","facturado-js-select");
     addSelectSyncMdcToHtml("status","estatus-componente-js-select");

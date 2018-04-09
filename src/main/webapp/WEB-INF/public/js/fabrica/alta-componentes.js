@@ -135,11 +135,13 @@ function addSelectEvents() {
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedNews[1];
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedNews[2];
+            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value=Number(splittedNews[2])*Number($("#auxFare").val());
         } else {
             hiddenTypology.value = "";
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value="";
         }
     });
 
@@ -153,11 +155,15 @@ function addSelectEvents() {
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedMods[1];
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedMods[2];
+            $("#componentStartCost").val(Number(splittedNews[2])*Number($("#auxFare").val()));
+            $("#componentFinalCost").val($("#componentStartCost").val());
+            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value=$("#componentStartCost").val();
         } else {
             hiddenTypology.value = "";
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value="";
         }
     });
 }
@@ -176,6 +182,7 @@ function setDefaults() {
     $('#tipologia-mods-js-select').hide();
     new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
     new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
+    new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value="";
     new mdc.textField.MDCTextField(document.getElementById("requieriment-mdc-text")).value=new mdc.textField.MDCTextField(document.getElementById("requieriment-mdc-text")).value;
 }
 
