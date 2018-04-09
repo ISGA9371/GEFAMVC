@@ -4,13 +4,7 @@
 
 <head th:replace="~{layout/mainHeader :: head ('Alta de Duda')}"></head>
 
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker4').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
-    });
-</script>
+
 <body>
 
 <header th:replace="~{layout/mainHeader :: header }"></header>
@@ -75,7 +69,7 @@
                 <td class="col-md-4" align="center">
                     <div class="dog1">
                         <div id="fechaAlta-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input disabled="disabled" th:value="${doubt.component.componentUploadDate}" type='text' class="mdc-text-field__input"  row="2" id='date' />
+                            <input disabled="disabled" th:text="${doubt.component.componentUploadDate}" type='text' class="mdc-text-field__input"  row="2" id='datetimepicker4' />
                             <label for="demo-input" class="mdc-text-field__label">Fecha de Alta</label>
                         </div>
                     </div>
@@ -226,6 +220,13 @@
             textColor: "white",
         });
     }
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker4').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+    });
 </script>
 
 <!--Footer que debe ir en todas las ventanas-->

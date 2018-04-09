@@ -28,7 +28,9 @@ public class DoubtController {
     public String addDoubt(Model model, @RequestParam(value = "componentId") Integer componentId) {
         Component component = componentService.findComponent(componentId);
         model.addAttribute("componentData", component);
-        model.addAttribute("doubt", new Doubt());
+        Doubt doubt = new Doubt();
+        doubt.setComponent(component);
+        model.addAttribute("doubt", doubt);
         return URL_FACTORY + NEW_DOUBT;
     }
 

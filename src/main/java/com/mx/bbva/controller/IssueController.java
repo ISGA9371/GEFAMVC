@@ -21,15 +21,19 @@ public class IssueController {
     private OriginService originService;
     private PriorityService priorityService;
     private ComponentService componentService;
-    private UserService userService;
+    //private UserService userService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String createIssue(Model model, @RequestParam(value = "componentId") Integer componentId) {
         // TODO Validate user
         LOG.info("Creating new issue");
+
         Component component = componentService.findComponent(componentId);
         model.addAttribute("componentData", component);
-        model.addAttribute("issue", new Issue());
+        Issue issue =  new Issue();
+        issue.setComponent(component);
+        //issue.setIssueInitialDescription("TESTEO");
+        model.addAttribute("issue", issue);
         //TODO Add catalogs
         return URL_FACTORY + NEW_ISSUE;
     }
@@ -37,6 +41,8 @@ public class IssueController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveIssue(@ModelAttribute("issuee") Issue issue) {
         // TODO Validate user
+        LOG.info("datos de guardar : " + issue);
+        LOG.info("Initial Desc. : " + issue.getIssueInitialDescription());
         issueService.saveIssue(issue);
         return REDIRECT + URL_FACTORY + EDIT_ISSUE + issue.getIssueId();
     }
@@ -72,10 +78,10 @@ public class IssueController {
         return this.priorityService.findAllPriorities();
     }
 
-    @ModelAttribute("users")
+    /*@ModelAttribute("users")
     public List<User> populateUsers() {
         return this.userService.findAllUsers();
-    }
+    }*/
 
     @Autowired
     public void setIssueService(IssueService issueService) {
