@@ -221,4 +221,13 @@ $(function () {
 
     //TODO APLICAICONES
 
+    $("#row-content-results div.collapse").on('show.bs.collapse', function(){
+        $(".collapse").collapse('hide');
+        /*$("#row-content-results div.collapse").each(function (index,value) {
+            console.log("ROWCOLLAPSE "+value.id);
+            if(value === $(this))  return true;
+            //$(value).collapse("hide");
+        });*/
+    });
+
 });

@@ -55,7 +55,7 @@ td.detail-td tr td:last-of-type{
     padding: 4px 4px;
 }
 
-#results-table{
+#results-table *{
     font-size: 12px;
     text-align: center;
 }
