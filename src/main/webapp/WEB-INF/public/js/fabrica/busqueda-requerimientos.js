@@ -158,7 +158,6 @@ $(function () {
                     $("#aplicacion-select").append(
                         "<li class='mdc-list-item' role='option' tabindex='0' " +
                         "value='"+value.applicationSerial+"'>"+value.applicationName+"</li>");
-
                 });
             }else $("#service-type-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
 
@@ -213,7 +212,6 @@ $(function () {
         console.log("PIID " +id);
         $("#programIncrementId").val(id);
     });
-
 
     $('tr.clickable').click(function() {
         var radioButton = $(this).find('input[type=radio]');

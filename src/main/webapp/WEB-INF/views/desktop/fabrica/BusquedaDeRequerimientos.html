@@ -315,11 +315,8 @@
                 <input type="radio" name="requirements" th:id="${requirement.requirementId}" th:value="${requirement.requirementId}">
               </td>
               <td th:text="${requirement.requirementName}"></td>
-              <!--
-                          <td th:text="${requirement.budgetRequirements.size() > 0 ?
-                          requirement.budgetRequirements[0].budget.budgetName : ''}"></td>
-                          -->
-              <td></td>
+              <td th:text="${requirement.budgetRequirements.size() > 0 ?
+              requirement.budgetRequirements[0].budget.budgetName : ''}"></td>
               <td th:text="${requirement.level.levelSuperior.levelName}"></td>
               <td th:text="${requirement.level.levelName}"></td>
               <td th:text="${requirement.user.userInternalId}"></td>
@@ -352,12 +349,13 @@
                       <td class="detail-label" style="height: 60px;">PI</td>
                       <td th:text="${requirement.programIncrement.ProgramIncrementName}"></td>
                       <td class="detail-label">PEP
-                        <div th:unless="${requirement.budgetRequirements.size() > 0}" class="dropdown" style="display: inline-block;">
+                        <div th:unless="${requirement.budgetRequirements.size() < 1}" class="dropdown" style="display: inline-block;">
                           <a class="dropdown-toggle" data-toggle="dropdown">
                             <img th:src="@{/img/menu-pagina-icon.png}" height="12">
                           </a>
                           <ul class="dropdown-menu dropdown-menu-right">
-                            <li th:each="budgetRequirement : ${requirement.budgetRequirements}" th:text="${budgetRequirement.budget.budgetName}"></li>
+                            <li th:each="budgetRequirement : ${requirement.budgetRequirements}"
+                                th:text="${budgetRequirement.budget.budgetName}"></li>
                           </ul>
                         </div>
                       </td>
