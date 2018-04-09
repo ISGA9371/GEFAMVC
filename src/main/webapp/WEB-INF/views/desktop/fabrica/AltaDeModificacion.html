@@ -66,7 +66,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h2 class="h2-title-content">Alta de Modificar</h2>
+                <h2 class="h2-title-content">Alta de Modificacion</h2>
             </div>
         </div>
 
@@ -238,7 +238,7 @@
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="usuario_peticionario">
+                        <input type="text" maxlength="120" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{userSender.userInternalId}"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="usuario_peticionario">
                         <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
                     </div>
                 </td>
@@ -337,7 +337,7 @@
 </style>
 <script>
     demoReady(function() {
-        mdc.select.MDCSelect.attachTo(document.getElementById('DifMod-js-select'));
+        mdc.select.MDCSelect.attachTo(document.getElementById('prioridad-js-select'));
         mdc.select.MDCSelect.attachTo(document.getElementById('origen-js-select'));
     });
 </script>

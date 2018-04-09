@@ -2,9 +2,13 @@ package com.mx.bbva.controller;
 
 import com.mx.bbva.business.entity.Component;
 import com.mx.bbva.business.entity.Modification;
+import com.mx.bbva.business.entity.Origin;
+import com.mx.bbva.business.entity.Priority;
 import com.mx.bbva.business.service.ModificationService;
 import com.mx.bbva.business.service.StatusService;
 import com.mx.bbva.business.service.ComponentService;
+import com.mx.bbva.business.service.PriorityService;
+import com.mx.bbva.business.service.OriginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +27,8 @@ public class ModificationController {
     private ModificationService modificationService;
     private StatusService statusService;
     private ComponentService componentService;
+    private OriginService originService;
+    private PriorityService priorityService;
 
     /**
      * TODO: EVERY CONTROLLER NEEDS TO HAVE A CUSTOM SEARCH METHOD
@@ -73,6 +79,15 @@ public class ModificationController {
         return URL_FACTORY + EDIT_MODIFICATION;
     }
 
+    @ModelAttribute("priorities")
+    public List<Priority> populatePriorities() {
+        return this.priorityService.findAllPriorities();
+    }
+    @ModelAttribute("origins")
+    public List<Origin> populateOrigins() {
+        return this.originService.findAllOrigins();
+    }
+
     @Autowired
     public void setModificationService(ModificationService modificationService) {
         this.modificationService = modificationService;
@@ -86,5 +101,15 @@ public class ModificationController {
     @Autowired
     public void setComponentService(ComponentService componentService) {
         this.componentService = componentService;
+    }
+
+    @Autowired
+    public void setOriginService(OriginService originService) {
+        this.originService = originService;
+    }
+
+    @Autowired
+    public void setPriorityService(PriorityService priorityService) {
+        this.priorityService = priorityService;
     }
 }
