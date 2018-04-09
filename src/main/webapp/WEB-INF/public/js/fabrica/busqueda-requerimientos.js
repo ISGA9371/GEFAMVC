@@ -170,7 +170,17 @@ $(function () {
         let id = empresas.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         console.log("APPID " +id);
-        $("#companyId").val(id);
+        $("#applicationId").val(id);
+    });
+
+    const canal = new mdc.select.MDCSelect(document.querySelector('#canal'));
+    let index9 = parseInt("0");
+    canal.listen('MDCSelect:change', () => {
+        if (index9++ === 0) return; else index9 = 0;
+        let id = empresas.selectedOptions[0].value;
+        //SET HIDDEN FIELD VALUE
+        console.log("CANALID " +id);
+        $("#channelId").val(id);
     });
 
 
