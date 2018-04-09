@@ -6,9 +6,9 @@ import com.mx.bbva.business.dto.RequirementSearchDTO;
 import java.util.logging.Logger;
 
 public class QueryGenerator {
-    static final Logger LOGGER = Logger.getLogger(QueryGenerator.class.getName());
-    StringBuffer stringBuffer = new StringBuffer();
-    boolean firstOne = true;
+    private static final Logger LOGGER = Logger.getLogger(QueryGenerator.class.getName());
+    private StringBuffer stringBuffer = new StringBuffer();
+    private boolean firstOne = true;
 
     // TODO should be a better way to do this
     public String generate(Object searchDTO, String type) {
@@ -29,8 +29,20 @@ public class QueryGenerator {
                 if (isNotNullString(requirementSearchDTO.getUserInternalId())) {
                     addFilter("x.user.userInternalId", "'%" + requirementSearchDTO.getUserInternalId() + "%'", LIKE);
                 }
+                if (isNotNullString(requirementSearchDTO.getUserManagerId())) {
+                    addFilter("x.userManager.userInternalId", "'%" + requirementSearchDTO.getUserInternalId() + "%'", LIKE);
+                }
                 if (isNotNullInteger(requirementSearchDTO.getAreaId())) {
                     addFilter("x.area.areaId", "'" + requirementSearchDTO.getAreaId() + "'", EQUALS);
+                }
+                if (isNotNullInteger(requirementSearchDTO.getProgramIncrementId())) {
+                    addFilter("x.programIncrement.programIncrementId", "'" + requirementSearchDTO.getProgramIncrementId() + "'", EQUALS);
+                }
+                if (isNotNullInteger(requirementSearchDTO.getChannelId())) {
+                    addFilter("x.channel.channelId", "'" + requirementSearchDTO.getChannelId() + "'", EQUALS);
+                }
+                if (isNotNullInteger(requirementSearchDTO.getApplicationId())) {
+                    addFilter("x.application.applicationId", "'" + requirementSearchDTO.getApplicationId() + "'", EQUALS);
                 }
                 if (isNotNullInteger(requirementSearchDTO.getProjectTypeId())) {
                     addFilter("x.projectType.projectTypeId", "'" + requirementSearchDTO.getProjectTypeId() + "'", EQUALS);
@@ -44,9 +56,10 @@ public class QueryGenerator {
                 if (isNotNullInteger(requirementSearchDTO.getServiceTypeId())) {
                     addFilter("x.serviceType.serviceTypeId", "'" + requirementSearchDTO.getServiceTypeId() + "'", EQUALS);
                 }
+                /* TODO Check how to search the budget
                 if (isNotNullString(requirementSearchDTO.getBudgetId())) {
                     addFilter("x.budget.budgetId", "'%" + requirementSearchDTO.getBudgetId() + "%'", LIKE);
-                }
+                }*/
                 if (isNotNullString(requirementSearchDTO.getRequirementStartDate())) {
                     addFilter("x.requirementStartDate", "'%" + requirementSearchDTO.getRequirementStartDate() + "%'", LIKE);
                 }

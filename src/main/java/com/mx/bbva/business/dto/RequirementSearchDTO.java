@@ -13,6 +13,10 @@ public class RequirementSearchDTO {
     private String requirementStartDate;
     private String requirementEndDate;
     private String budgetId;
+    private String userManagerId;
+    private Integer applicationId;
+    private Integer channelId;
+    private Integer programIncrementId;
 
     public RequirementSearchDTO() {
     }
@@ -113,21 +117,46 @@ public class RequirementSearchDTO {
         this.budgetId = budgetId;
     }
 
+    public String getUserManagerId() {
+        return userManagerId;
+    }
+
+    public void setUserManagerId(String userManagerId) {
+        this.userManagerId = userManagerId;
+    }
+
+    public Integer getApplicationId() {
+        return applicationId;
+    }
+
+    public void setApplicationId(Integer applicationId) {
+        this.applicationId = applicationId;
+    }
+
+    public Integer getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(Integer channelId) {
+        this.channelId = channelId;
+    }
+
+    public Integer getProgramIncrementId() {
+        return programIncrementId;
+    }
+
+    public void setProgramIncrementId(Integer programIncrementId) {
+        this.programIncrementId = programIncrementId;
+    }
+
     @Override
     public String toString() {
-        return "RequirementSearchDTO{" +
-                "requirementName='" + requirementName + '\'' +
-                ", principalId=" + principalId +
-                ", subPrincipalId=" + subPrincipalId +
-                ", userInternalId='" + userInternalId + '\'' +
-                ", areaId=" + areaId +
-                ", projectTypeId=" + projectTypeId +
-                ", technologyId=" + technologyId +
-                ", companyId=" + companyId +
-                ", serviceTypeId=" + serviceTypeId +
-                ", requirementStartDate='" + requirementStartDate + '\'' +
-                ", requirementEndDate='" + requirementEndDate + '\'' +
-                ", budgetId='" + budgetId + '\'' +
-                '}';
+        return "RequirementSearchDTO{" + "requirementName='" + requirementName + '\'' + ", principalId=" + principalId +
+                ", subPrincipalId=" + subPrincipalId + ", userInternalId='" + userInternalId + '\'' + ", areaId=" + areaId +
+                ", projectTypeId=" + projectTypeId + ", technologyId=" + technologyId + ", companyId=" + companyId +
+                ", serviceTypeId=" + serviceTypeId + ", requirementStartDate='" + requirementStartDate + '\'' +
+                ", requirementEndDate='" + requirementEndDate + '\'' + ", userManagerId='" + userManagerId + '\''
+                + ", applicationId=" + applicationId + ", channelId=" + channelId + ", programIncrementId='"
+                + programIncrementId + '\'' + '}';
     }
 }
