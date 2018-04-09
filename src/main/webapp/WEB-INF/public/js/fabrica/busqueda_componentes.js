@@ -146,7 +146,8 @@ $(function () {
             "<th><input type='text' id='date2-" + value.componentId + "' value='" + date2 + "' class='form-control'></th>" +
             "<th><input type='text' id='date3-" + value.componentId + "' value='" + date3 + "' class='form-control'></th>" +
             "<th><input type='text' id='date4-" + value.componentId + "' value='" + date4 + "' class='form-control'></th>" +
-            "<th>" + "" + "</th></tr>"
+            "<th><input type='text' id='estado-" + value.componentId + "' value='' class='form-control' readonly ></th></tr>"
+
           );
           $("#date1-" + value.componentId).datetimepicker({ format: 'DD/MM/YYYY' });
           $("#date2-" + value.componentId).datetimepicker({ format: 'DD/MM/YYYY' });
@@ -156,16 +157,17 @@ $(function () {
           $("#tab-cierre > table > tbody").append(
             "<tr><th>" + value.componentName + "</th>" +
             "<th>" + "" + "</th>" +
-            "<th><input type='text' id='tipFin-" + value.componentId + "' value='' class='form-control'></th>" +
-            "<th><input type='text' id='difFin-" + value.componentId + "' value='' class='form-control'></th>" +
-            "<th><input type='text' id='costFin-" + value.componentId + "' value='' class='form-control'></th>" +
-            "<th><input type='text' id='horFin-" + value.componentId + "' value='' class='form-control'></th>" +
+            "<th><select class='form-control' id='tipFin-" + value.componentId + "'><option></option><option></option></select></th>" +
+            "<th><input type='text' id='difFin-" + value.componentId + "' value='' class='form-control' readonly></th>" +
+            "<th><input type='text' id='costFin-" + value.componentId + "' value='' class='form-control' readonly></th>" +
+            "<th><input type='text' id='horFin-" + value.componentId + "' value='' class='form-control' readonly></th>" +
             "<th><input type='text' id='comments-" + value.componentId + "' value='' class='form-control'></th>" +
-            "<th><input type='text' id='estatusTip-" + value.componentId + "' value='' class='form-control'></th>" +
-            "<th><input type='text' id='facturar-" + value.componentId + "' value='' class='form-control'></th></tr>"
+            "<th><select class='form-control' id='estatusTip-" + value.componentId + "'><option value=''></option></select></th>" +
+            "<th><select class='form-control' id='facturar-" + value.componentId + "'><option value='1'>SI</option><option value='0'>NO</option></select></th></tr>"
           );
 
         });
+
         $("#tab-fecha > table > tbody").append(
           "<tr style='background-color:#004582;'><th></th>" +
           "<th></th>" +
@@ -262,6 +264,11 @@ $(function () {
     $("#slct_estado_tipificado > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
   });
 
+  $("#update-all-dates").click(function(){});
+  
+  $("#update-dates").click(function(){});
+  
+  $("#update-closure").click(function(){});
 });
 
 mdc.autoInit()
