@@ -46,6 +46,11 @@ public class Fare implements Serializable {
         this.fareId = fareId;
     }
 
+    public Fare(Integer fareId, double fareValue) {
+        this.fareId = fareId;
+        this.fareValue = fareValue;
+    }
+
     public Fare(Integer fareId, double fareValue, int fareYear) {
         this.fareId = fareId;
         this.fareValue = fareValue;
