@@ -55,14 +55,13 @@
         <input type="hidden" th:field="*{area.areaId}">
         <input type="hidden" th:field="*{userManager.userInternalId}">
         <input type="hidden" th:field="*{technology.technologyId}">
-        <input type="hidden" th:field="*{methodology.methodologyId}">
         <input type="hidden" th:field="*{application.applicationId}">
         <input type="hidden" th:field="*{channel.channelId}">
         <input type="hidden" th:field="*{company.companyId}">
         <input type="hidden" th:field="*{serviceType.serviceTypeId}">
         <input type="hidden" th:field="*{programIncrement.programIncrementId}">
 
-        <input type="hidden" th:field="*{project.projectScrumId}">
+        <input type="hidden" th:field="*{project.projectId}">
         <input type="hidden" th:field="*{project.methodology.methodologyId}">
         <input type="hidden" th:field="*{project.programIncrement.programIncrementId}">
 
@@ -287,7 +286,7 @@
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
                             <li th:each="project : ${projects}" class="mdc-list-item" role="option"
-                                th:id="${project.projectScrumId}"
+                                th:id="${project.projectId}"
                                 th:text="${ #strings.abbreviate(project.projectName,35)}"></li>
                         </ul>
                     </div>

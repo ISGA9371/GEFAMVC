@@ -14,13 +14,13 @@ $(function () {
 
     $("#datetimepicker4").on("dp.change", function (e) {
         var date = e.date;
-        var dateStr = date.date() + "/" + (date.month() + 1) + '/' + date.year();
+        var dateStr = date.year() + "-" + (date.month() + 1) + '-' + date.date();
         $("input[id=requirementStartDate]").val(dateStr);
     });
 
     $("#datetimepicker5").on("dp.change", function (e) {
         var date = e.date;
-        var dateStr = date.date() + "/" + (date.month() + 1) + '/' + date.year();
+        var dateStr = date.year() + "-" + (date.month() + 1) + '-' + date.date();
         $("input[id=requirementEndDate]").val(dateStr);
     });
 
@@ -28,10 +28,11 @@ $(function () {
     const subdirs = new mdc.select.MDCSelect(document.querySelector('#subdirs'));
     let coso = parseInt("0");
     select.listen('MDCSelect:change', () => {
-        if(++coso > 1){coso = 0; return;}
+        if (coso++ === 0) return; else coso = 0;
         let id = select.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         $("#principalId").val(id);
+        console.log("PRINCIPALID" +id);
 
         $.ajax({
             url: "/levels/"+id+"/sublevel"
@@ -49,32 +50,35 @@ $(function () {
                     $("#subdir-select").append(
                         "<li class='mdc-list-item' role='option' tabindex='0' " +
                         "value='"+value.levelId+"'>"+value.levelName+"</li>");
-
                 });
             }else $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
 
         });
     });
-
-
     let index2 = parseInt("0");
     subdirs.listen('MDCSelect:change', () => {
-        if (++index2 === 2) return; else index2 = 0;
+        if (index2++ === 0) return; else index2 = 0;
         let id = subdirs.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
+        console.log("SUBPRINCIPALID " +id);
         $("#subPrincipalId").val(id);
     });
 
     const areas = new mdc.select.MDCSelect(document.querySelector('#areas'));
+    const tiposServ = new mdc.select.MDCSelect(document.querySelector('#tipos-serv'));
     let index3 = parseInt("0");
     areas.listen('MDCSelect:change', () => {
-        if(++index3 > 1){index3 = 0; return;}
-
+        if (index3++ === 0) return; else index3 = 0;
         let id = areas.selectedOptions[0].value;
-        let val = areas.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
+        console.log("AREAID " +id);
         $("#areaId").val(id);
 
+        if(id === 1)
+            $("#service-type-select").html( $("#service-types-ul").html() );
+        else
+            $("#service-type-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+        /*
         $.ajax({
             url: "/service-types/area/"+id
         }).done(function(data) {
@@ -82,6 +86,8 @@ $(function () {
             let services = data;
             console.log(services.length);
             $("#service-type-sel-text").html("");
+            tiposServ.selectedIndex = -1;
+            tiposServ.value = "";
 
             if (typeof services !== 'undefined' && services.length > 0) {
                 $("#service-type-select").html("");
@@ -95,30 +101,34 @@ $(function () {
             }else $("#service-type-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
 
         });
+        */
     });
 
     const tiposProy = new mdc.select.MDCSelect(document.querySelector('#tipos-proy'));
     let index4 = parseInt("0");
     tiposProy.listen('MDCSelect:change', () => {
-        if (++index4 > 1) {index4 = 0;return;}
+        if (index4++ === 0) return; else index4 = 0;
         let id = tiposProy.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
+        console.log("PROYECTTYPEID " +id);
         $("#projectTypeId").val(id);
     });
 
     const techs = new mdc.select.MDCSelect(document.querySelector('#techs'));
     let index5 = parseInt("0");
     techs.listen('MDCSelect:change', () => {
-        if (++index5 > 1) {index5 = 0;return;}
+        if (index5++ === 0) return; else index5 = 0;
         let id = techs.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         $("#technologyId").val(id);
-
+        console.log("TECHID " +id);
         $.ajax({
             url: "/technologies/"+id+"/app"
         }).done(function(data) {
             let apps = data;
             console.log(apps.length);
+            //tiposServ.selectedIndex = -1; APPS SELECT
+            //tiposServ.value = ""; APPS SELECT
             $("#aplicacion-sel-text").html("");
             if (typeof apps !== 'undefined' && apps.length > 0) {
                 $("#aplicacion-select").html("");
@@ -137,20 +147,32 @@ $(function () {
     const empresas = new mdc.select.MDCSelect(document.querySelector('#empresas'));
     let index6 = parseInt("0");
     empresas.listen('MDCSelect:change', () => {
-        if (++index6 > 1) {index6 = 0;return;}
+        if (index6++ === 0) return; else index6 = 0;
         let id = empresas.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
+        console.log("COMPANYID " +id);
         $("#companyId").val(id);
     });
 
-    const tiposServ = new mdc.select.MDCSelect(document.querySelector('#tipos-serv'));
     let index7 = parseInt("0");
-    empresas.listen('MDCSelect:change', () => {
-        if (++index7 > 1) {index7 = 0;return;}
+    tiposServ.listen('MDCSelect:change', () => {
+        if (index7++ === 0) return; else index7 = 0;
         let id = tiposServ.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
-        $("#serviceTypeId").val(id);
+        console.log("TIPOSERVID " +id);
+        $("#tipos-serv").val(id);
     });
+
+    const app = new mdc.select.MDCSelect(document.querySelector('#aplicacion'));
+    let index8 = parseInt("0");
+    app.listen('MDCSelect:change', () => {
+        if (index8++ === 0) return; else index8 = 0;
+        let id = empresas.selectedOptions[0].value;
+        //SET HIDDEN FIELD VALUE
+        console.log("APPID " +id);
+        $("#companyId").val(id);
+    });
+
 
     $('tr.clickable').click(function() {
         var radioButton = $(this).find('input[type=radio]');

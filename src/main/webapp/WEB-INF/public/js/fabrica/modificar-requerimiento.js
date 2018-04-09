@@ -67,7 +67,7 @@ $(function () {
 
     var idx = parseInt("0");
     subPrincipal.listen('MDCSelect:change', () => {
-        if (++idx === 2) return; else idx = 0;
+        if (idx++ === 0) return; else idx = 0;
         let id = subPrincipal.selectedOptions[0].value;
         console.log("SELECTEDSUBDIR "+id);
         $("#level\\.levelId").val(id);
@@ -126,7 +126,7 @@ $(function () {
     area.value = areaEL.find("ul li[value="+areaId+"]").html();
     let index2 = parseInt("0");
     area.listen('MDCSelect:change', () => {
-        if (index2++ === 0) return; else index2 = 0;
+        if (index2++ === 2) return; else index2 = 0;
         let id = area.selectedOptions[0].value;
         $("#area\\.areaId").val(id);
     });
@@ -165,7 +165,7 @@ $(function () {
 
     const meth = new mdc.select.MDCSelect(document.querySelector('#meth'));
     var methEL = $('#meth');
-    var methId = $("#methodology\\.methodologyId").val();
+    var methId = $("#project\\.methodology\\.methodologyId").val();
     console.log("METH ID "+methId);
     //methEL.find("div").first().click();
     //methEL.find("li[value="+methId+"]").click();
@@ -175,7 +175,7 @@ $(function () {
     meth.listen('MDCSelect:change', () => {
         if (index5++ === 0) return; else index5 = 0;
         let id = meth.selectedOptions[0].value;
-        $("#methodology\\.methodologyId").val(id);
+        $("#project\\.methodology\\.methodologyId").val(id);
     });
 
     const app = new mdc.select.MDCSelect(document.querySelector('#app'));
@@ -255,7 +255,7 @@ $(function () {
 
     const project = new mdc.select.MDCSelect(document.querySelector('#project'));
     var projectEL = $('#project');
-    var projectId = $("#project\\.projectScrumId").val();
+    var projectId = $("#project\\.projectId").val();
     console.log("project ID "+projectId);
     //projectEL.find("div").first().click();
     //projectEL.find("li[value="+projectId+"]").click();
@@ -265,7 +265,7 @@ $(function () {
     project.listen('MDCSelect:change', () => {
         if (index11++ === 0) return; else index11 = 0;
         let id = project.selectedOptions[0].id;
-        $("#project\\.projectScrumId").val(id);
+        $("#project\\.projectId").val(id);
     });
 
     //TODO DOING PROJECTS

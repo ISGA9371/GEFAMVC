@@ -5,6 +5,9 @@
 .mdc-select{
     margin-top: 12px;
 }
+div.mdc-text-field input.mdc-text-field__input{
+    border-bottom-color:rgba(28, 59, 224, 0.5)
+}
 
 .detail-td{
     padding: 0 !important;
