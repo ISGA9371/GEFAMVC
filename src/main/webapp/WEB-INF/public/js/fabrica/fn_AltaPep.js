@@ -5,6 +5,9 @@ function init(){
 
     crearCombos();
     asignarCombos();
+    addCalendars();
+    //add default values
+    addMissing();
 
 }
 
@@ -41,9 +44,34 @@ function asignarCombos(){
 
 }
 
+function asignMount(value){
+
+    $('#hdAmount').val(value);
+
+}
+
 function funcionCancelar(){
 
     //Lleva a la ventana principal
     window.location="/";
+
+}
+
+function addCalendars(){
+
+    $('#fechaTranspaso').datetimepicker({
+        format: 'DD/MM/YYYY',
+        widgetPositioning: {
+            horizontal: 'auto',
+            vertical: 'top'
+        }
+    });
+
+}
+
+function addMissing(){
+
+    $('#hdStatus').val(40);
+    $('#hdStatusDyd').val(42);
 
 }
