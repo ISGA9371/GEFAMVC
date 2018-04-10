@@ -19,13 +19,12 @@ import java.util.List;
         @UniqueConstraint(columnNames = {"CD_ACEPTA_RES_COR"})
         , @UniqueConstraint(columnNames = {"NB_ACEPTA_RES_COR"})})
 public class ResponsibleArea implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "CD_ACEPTA_RES_COR", nullable = false)
     private Integer responsibleAreaId;
-
     @Column(name = "NB_ACEPTA_RES_COR", nullable = false, length = 25)
     private String responsibleAreaName;
     @JsonIgnore

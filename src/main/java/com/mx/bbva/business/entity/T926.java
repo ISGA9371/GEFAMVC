@@ -17,16 +17,14 @@ import java.util.List;
 @Entity
 @Table(name = "thge042_t926")
 public class T926 implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "CD_T926", nullable = false)
     private Integer t926Id;
-
     @Column(name = "CD_FUNCION", nullable = false, length = 5)
     private String t926FunctionId;
-
     @Column(name = "NB_FUNCION", nullable = false, length = 100)
     private String t926FunctionName;
     @Column(name = "NU_DEFECTO_ESTIM")

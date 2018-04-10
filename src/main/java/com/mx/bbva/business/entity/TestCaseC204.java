@@ -17,13 +17,12 @@ import java.util.List;
 @Entity
 @Table(name = "thge044_c204")
 public class TestCaseC204 implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "CD_C204", nullable = false)
     private Integer testCaseC204Id;
-
     @Column(name = "CD_CASO_PRUEBA", nullable = false, length = 12)
     private String testCaseId;
     @Column(name = "TX_COND_DTO_ENTR", length = 200)

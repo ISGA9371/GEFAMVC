@@ -18,13 +18,12 @@ import java.util.List;
 @Table(name = "thge001_tipo_serv", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_TIPO_SERVICIO"})})
 public class ServiceType implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "CD_TIPO_SERVICIO", nullable = false)
     private Integer serviceTypeId;
-
     @Column(name = "NB_TIPO_SERVICIO", nullable = false, length = 50)
     private String serviceTypeName;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)

@@ -17,13 +17,11 @@ import java.util.List;
 @Entity
 @Table(name = "thge066_tp_proy")
 public class ProjectType implements Serializable {
-    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "CD_TP_PROYECTO")
     private Integer projectTypeId;
-
     @Column(name = "NB_TP_PROYECTO")
     private String projectTypeName;
     @JsonIgnore

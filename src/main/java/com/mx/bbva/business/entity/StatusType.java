@@ -17,13 +17,12 @@ import java.util.List;
 @Entity
 @Table(name = "thge008_tipo_edo", uniqueConstraints = {@UniqueConstraint(columnNames = {"NB_TIPO_EDO"})})
 public class StatusType implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "CD_TIPO_EDO", nullable = false)
     private Integer statusTypeId;
-
     @Column(name = "NB_TIPO_EDO", nullable = false, length = 50)
     private String statusTypeName;
     @JsonIgnore

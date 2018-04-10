@@ -14,13 +14,12 @@ import java.io.Serializable;
 @Entity
 @Table(name = "thge065_nb_proy_ag")
 public class ProjectGroup implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "CD_PROY_AGRUP")
     private Integer projectGroupId;
-
     @Column(name = "NB_PROY_AGRUP")
     private String projectGroupName;
 

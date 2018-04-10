@@ -18,7 +18,6 @@ public class T955PK implements Serializable {
 
     @Column(name = "CD_DEFECTO", nullable = false)
     private int t955Id;
-
     @Column(name = "CD_REQUERIMIENTO", nullable = false)
     private int requirementId;
 

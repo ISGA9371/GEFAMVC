@@ -20,13 +20,12 @@ import java.util.List;
 @Table(name = "thge017_requerim", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_REQUERIMIENTO"})})
 public class Requirement implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "CD_REQUERIMIENTO", nullable = false)
     private Integer requirementId;
-
     @Column(name = "NB_REQUERIMIENTO", nullable = false, length = 100)
     private String requirementName;
     @Column(name = "NU_HORA_REQ", precision = 22)

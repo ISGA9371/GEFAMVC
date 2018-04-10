@@ -15,13 +15,12 @@ import java.util.Date;
 @Entity
 @Table(name = "thge063_seg_req")
 public class RequirementTracking implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "CD_SEG_REQ")
     private Integer requirementTrackingId;
-
     @Column(name = "TM_SEG_REQ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date requirementTrackingDate;

@@ -18,13 +18,12 @@ import java.util.List;
 @Table(name = "thge020_clasif_rec", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_CLASIF_REC"})})
 public class ResourceClassification implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "CD_CLASIF_REC", nullable = false)
     private Integer resourceClassificationId;
-
     @Column(name = "NB_CLASIF_REC", nullable = false, length = 50)
     private String resourceClassificationName;
     @JsonIgnore

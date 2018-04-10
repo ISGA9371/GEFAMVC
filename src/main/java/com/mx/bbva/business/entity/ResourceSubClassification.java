@@ -17,13 +17,12 @@ import java.util.List;
 @Entity
 @Table(name = "thge021_sbclas_rec")
 public class ResourceSubClassification implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "CD_SBCLAS_REC", nullable = false)
     private Integer resourceSubClassificationId;
-
     @Column(name = "NB_SBCLAS_REC", nullable = false, length = 45)
     private String resourceSubClassificationName;
     @JsonIgnore

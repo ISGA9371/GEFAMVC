@@ -18,13 +18,12 @@ import java.util.List;
 @Table(name = "thge047_result_obt", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_RESUL_ONTENIDO"})})
 public class Result implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "CD_RESUL_OBTENIDO", nullable = false)
     private Integer resultId;
-
     @Column(name = "NB_RESUL_ONTENIDO", nullable = false, length = 25)
     private String resultName;
     @JsonIgnore

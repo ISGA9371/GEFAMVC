@@ -19,13 +19,12 @@ import java.util.List;
         @UniqueConstraint(columnNames = {"NB_RESULT_VERIF"})
         , @UniqueConstraint(columnNames = {"CD_RESULT_VERIF"})})
 public class VerificationResult implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "CD_RESULT_VERIF", nullable = false)
     private Integer verificationResultId;
-
     @Column(name = "NB_RESULT_VERIF", nullable = false, length = 25)
     private String verificationResultName;
     @JsonIgnore

@@ -17,9 +17,9 @@ import java.util.List;
 @Entity
 @Table(name = "thge011_usuario", uniqueConstraints = {@UniqueConstraint(columnNames = {"CD_USUARIO_CORP"})})
 public class User implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-
     @Column(name = "CD_USUARIO_CORP", nullable = false)
     private String userInternalId;
     @JoinColumn(name = "ST_USUARIO", referencedColumnName = "CD_ESTADO", nullable = false)

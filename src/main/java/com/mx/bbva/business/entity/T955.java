@@ -15,13 +15,12 @@ import java.util.Date;
 @Entity
 @Table(name = "thge048_t955")
 public class T955 implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected T955PK t955PK;
-
     @Column(name = "TX_NIVEL_PBA", nullable = false, length = 50)
     private String t955LevelPba;
-
     @Column(name = "FH_IDENTIFICACION", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date t955IdentificationDate;

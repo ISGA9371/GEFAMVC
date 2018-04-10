@@ -17,20 +17,18 @@ import java.util.List;
 @Entity
 @Table(name = "thge006_tipologia")
 public class Typology implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "CD_TIPOLOGIA", nullable = false)
     private Integer typologyId;
-
     @Column(name = "TP_COMPONENTE", nullable = false)
     private Boolean typologyNewComponent;
     @Column(name = "NU_DIFICULTAD")
     private Character typologySeverity;
     @Column(name = "NU_HM_DIFICULTAD", precision = 12)
     private Float typologySeverityHours;
-
     @Column(name = "NU_ANO", nullable = false)
     private int typologyYear;
     @JoinColumn(name = "CD_PRODUCTO", referencedColumnName = "CD_PRODUCTO", nullable = false)
