@@ -18,7 +18,7 @@ import java.util.List;
 @Table(name = "thge025_sede", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_SEDE"})})
 public class Workplace implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

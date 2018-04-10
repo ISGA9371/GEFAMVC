@@ -31,6 +31,8 @@ public class BudgetController {
     private CorporationService corporationService;
     private NatureService natureService;
     private TransferService transferService;
+    private PaymentService paymentService;
+    private InvoiceService invoiceService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String createBudget(Model model) {
@@ -110,16 +112,16 @@ public class BudgetController {
 
     @RequestMapping(value = "/payments/filters", method = RequestMethod.GET)
     public String filtersForPayment(Model model) {
-        model.addAttribute("filters", new Budget());
+        model.addAttribute("payment", new Payment());
         return URL_BUDGET + STATUS_PAYMENT;
     }
 
     @RequestMapping(value = "/payments/search", method = RequestMethod.GET)
-    public String searchForPayments(@ModelAttribute("paymentSearchDTO") BudgetSearchDTO budgetSearchDTO, Model model) {
+    public String searchForPayments(@ModelAttribute("payment") Payment payment, Model model) {
         // TODO Work in progress
-        String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
-        List<Budget> budgets = budgetService.findByCustomQuery(query);
-        model.addAttribute("budgets", budgets);
+        /*String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
+        List<Budget> budgets = budgetService.findByCustomQuery(query);*/
+        model.addAttribute("invoices", invoiceService.findAllInvoices());
         return URL_FACTORY + STATUS_PAYMENT;
     }
 
@@ -217,5 +219,15 @@ public class BudgetController {
     @Autowired
     public void setTransferService(TransferService transferService) {
         this.transferService = transferService;
+    }
+
+    @Autowired
+    public void setPaymentService(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+
+    @Autowired
+    public void setInvoiceService(InvoiceService invoiceService) {
+        this.invoiceService = invoiceService;
     }
 }
