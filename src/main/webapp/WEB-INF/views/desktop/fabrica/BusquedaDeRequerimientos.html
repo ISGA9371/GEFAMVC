@@ -3,17 +3,8 @@
 
 <head th:replace="~{layout/mainHeader :: head ('Búsqueda de Requerimientos')}"></head>
 
+<script type="text/javascript" th:src="@{/js/fabrica/busqueda-requerimientos.js}" defer></script>
 <link rel="stylesheet" type="text/css" th:href="@{/css/fabrica/busqueda-requerimientos.css}">
-
-<script type="text/javascript" th:src="@{/js/material-components-web.js}"></script>
-<script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/ready.js}"></script>
-<script type="text/javascript" th:src="@{/js/analytics.js}"></script>
-<script type="text/javascript" th:src="@{/js/moment-with-locales.js}"></script>
-<script type="text/javascript" th:src="@{/js/bootstrap-datetimepicker.js}"></script>
-<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-
-<script type="text/javascript" th:src="@{/js/fabrica/busqueda-requerimientos.js}"></script>
 
 <body>
 
@@ -290,7 +281,7 @@
 
     <div class="row buttons">
       <div class="col-xs-12 text-center">
-        <button type="submit" class="btn btn-primary" form="find">Buscar</button>
+        <button type="submit" class="btn btn-primary" form="find" onclick="showHoldOn();">Buscar</button>
         <button id="clear-form" type="button" class="btn btn-primary">Limpiar</button>
       </div>
     </div>
@@ -320,6 +311,13 @@
           </tr>
         </thead>
         <tbody>
+        <tr th:if="${requirements!= null && requirements.size() < 1}">
+          <td colspan="12">
+            <h2>No se encontraron resultados para tu búsqueda.</h2>
+          </td>
+        </tr>
+
+
           <th:block th:each="requirement, stat : ${requirements}">
             <tr th:href="${'#row-detail-wrapper-' + stat.count}" data-toggle="collapse" class="clickable"
                 th:aria-controls="${'row-detail-wrapper-' + stat.count}">
