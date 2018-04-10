@@ -3,7 +3,7 @@
 <head>
 
     <head th:replace="~{layout/mainHeader :: head ('Modificar Requerimientos')}"></head>
-
+    
     <script type="text/javascript" th:src="@{/js/fabrica/modificar-requerimiento.js}" defer></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/fabrica/modificar-requerimiento.css}">
 
@@ -307,7 +307,8 @@
                            class="mdc-text-field__input mdc-text-field--disabled">
                     <label class="mdc-text-field__label">PEP</label>
                 </div>
-                <a class="btn btn-primary" style="vertical-align: text-bottom;">Asociar PEP</a>
+                <a th:href="@{/requirement/requirement.requirementId/assign-budget}"class="btn btn-primary" style="vertical-align: text-bottom;"
+                >Asociar PEP</a>
             </td>
         </tr>
             <tr>
@@ -367,6 +368,8 @@
 <footer th:replace="~{layout/footer2 :: footer }"></footer>
 
 </body>
+
+<div th:replace="~{layout/footer2 :: scripts }"></div>
 
 <script>mdc.autoInit()</script>
 
