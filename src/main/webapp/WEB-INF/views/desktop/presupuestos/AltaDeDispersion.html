@@ -1,81 +1,23 @@
 <!DOCTYPE html>
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-<head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Alta de Dispersion</title>
+<head th:replace="~{layout/mainHeader :: head ('Alta de Duda')}"></head>
 
 
-    <!-- Estilos -->
-    <script type="text/javascript" th:src="@{../js/jquery-3.2.1.min.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{../css/bootstrap.min.css}">
-    <script type="text/javascript" th:src="@{../js/bootstrap.min.js}"></script>
-
-    <!--Script generales-->
-    <link rel="stylesheet" type="text/css" th:href="@{../css/estilosGF.css}">
-
-
-    <!--Scripts para campos de texto-->
-    <link rel="stylesheet" type="text/css" th:href="@{../css/material-components-web.css}">
-    <script type="text/javascript" th:src="@{../js/material-components-web.js}"></script>
-
-
-    <!--Estilos Calendario-->
-    <link href="@{../css/bootstrap-datetimepicker.css" rel="stylesheet">
-    <script async="" src="@{../js/analytics.js"></script>
-    <script type="text/javascript" src="@{../js/bootstrap.min.js"></script>
-    <script src="@{../js/moment-with-locales.js"></script>
-    <script src="@{../js/bootstrap-datetimepicker.js"></script>
-
-</head>
-<style>
-    #demo-wrapper {
-        padding: 4px;
-        padding-left: 0;
-    }
-
-    /* Hack to work around style-loader asynchronously loading styles. */
-    /* Equivalent to using mdc-typography's subheading2, which is used in the sass file. */
-    .mdc-select {
-        font-family: Roboto, sans-serif;
-        font-size: 1rem;
-        font-weight: 400;
-        letter-spacing: .04em;
-    }
-
-    .example {
-        max-width: 400px;
-        margin: 24px;
-        padding: 24px;
-    }
-</style>
-<script type="text/javascript">
-    function mostrar(){
-        document.getElementById('EstadoLinea').style.display = 'inline';}
-
-
-    $(function () {
-        $('#datetimepicker4').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
-    });
-</script>
 <body>
+
+<header th:replace="~{layout/mainHeader :: header }"></header>
+
 <div class="container">
-    <br>
     <div class="row">
-        <div class="col-md-12" align="center" style="font-size:30; font-family:BBVA Web Book">Dispersion</div>
+        <div class="col-md-12 text-center">
+            <h2 class="h2-title-content">Dispersion</h2>
+        </div>
     </div>
-    <br>
-    <div>
-        <div class="col-md-12" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos Generales</div>
+
+    <div class="row">
+        <div class="col-md-12 subtitle-content">Datos Generales</div>
     </div>
-    <br>
     <table class="col-md-12" >
         <tr style="height:72px">
             <td class="col-md-4" align="center">
@@ -253,9 +195,8 @@
 
 
 
-    <div>
-        <br>
-        <div class="col-md-12" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Traspaso</div>
+    <div class="row">
+        <div class="col-md-12 subtitle-content">Traspaso</div>
     </div>
 
     <table class="col-md-12" >
@@ -589,6 +530,8 @@
 </div>
 </body>
 
+
+<div th:replace="~{layout/footer2 :: scripts }"></div>
 <script>mdc.autoInit()</script>
 <style rel="stylesheet">
     .mdc-text-field__input {
@@ -611,4 +554,21 @@
     });
 </script>
 
+<script type="text/javascript">
+    function mostrar(){
+        document.getElementById('EstadoLinea').style.display = 'inline';}
+
+
+    $(function () {
+        $('#datetimepicker4').datetimepicker({
+            format: 'DD/MM/YYYY',
+            widgetPositioning: {
+                horizontal: 'auto',
+                vertical: 'top'
+            }
+        });
+    });
+</script>
+<!--Footer que debe ir en todas las ventanas-->
+<div th:replace="layout/footer :: FooterPrincipal"></div>
 </html>

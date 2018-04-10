@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -21,19 +22,14 @@ public class IssueController {
     private OriginService originService;
     private PriorityService priorityService;
     private ComponentService componentService;
-    //private UserService userService;
+    private UserService userService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String createIssue(Model model, @RequestParam(value = "componentId") Integer componentId) {
         // TODO Validate user
-        LOG.info("Creating new issue");
-
         Component component = componentService.findComponent(componentId);
         model.addAttribute("componentData", component);
-        Issue issue =  new Issue();
-        issue.setComponent(component);
-        //issue.setIssueInitialDescription("TESTEO");
-        model.addAttribute("issue", issue);
+        model.addAttribute("issue", new Issue());
         //TODO Add catalogs
         return URL_FACTORY + NEW_ISSUE;
     }
@@ -41,8 +37,6 @@ public class IssueController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveIssue(@ModelAttribute("issuee") Issue issue) {
         // TODO Validate user
-        LOG.info("datos de guardar : " + issue);
-        LOG.info("Initial Desc. : " + issue.getIssueInitialDescription());
         issueService.saveIssue(issue);
         return REDIRECT + URL_FACTORY + EDIT_ISSUE + issue.getIssueId();
     }
@@ -78,10 +72,16 @@ public class IssueController {
         return this.priorityService.findAllPriorities();
     }
 
-    /*@ModelAttribute("users")
+    @ModelAttribute("users")
     public List<User> populateUsers() {
-        return this.userService.findAllUsers();
-    }*/
+        List<User> users = new ArrayList<>();
+        // TODO Use Enum's
+        // 1 - Gestoria FSW
+        users.addAll(this.userService.findUsersByType(1));
+        // 2 - Gestoria PBAS
+        users.addAll(this.userService.findUsersByType(2));
+        return users;
+    }
 
     @Autowired
     public void setIssueService(IssueService issueService) {
@@ -101,5 +101,10 @@ public class IssueController {
     @Autowired
     public void setComponentService(ComponentService componentService) {
         this.componentService = componentService;
+    }
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }
