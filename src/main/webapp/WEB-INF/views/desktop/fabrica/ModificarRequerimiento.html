@@ -4,24 +4,8 @@
 
     <head th:replace="~{layout/mainHeader :: head ('Modificar Requerimientos')}"></head>
 
-
-    <script type="text/javascript" th:src="@{/js/material-components-web.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/ready.js}"></script>
-    <script type="text/javascript" th:src="@{/js/analytics.js}"></script>
-    <script type="text/javascript" th:src="@{/js/moment-with-locales.js}"></script>
-    <script type="text/javascript" th:src="@{/js/bootstrap-datetimepicker.js}"></script>
-    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-
-    <script type="text/javascript" th:src="@{/js/fabrica/modificar-requerimiento.js}"></script>
+    <script type="text/javascript" th:src="@{/js/fabrica/modificar-requerimiento.js}" defer></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/fabrica/modificar-requerimiento.css}">
-
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        var startDate = /*[[${requirement.requirementStartDate}]]*/  'dynamic';
-        var endDate = /*[[${requirement.requirementEndDate}]]*/  'dynamic';
-        /*]]>*/
-    </script>
 
 </head>
 <body>
