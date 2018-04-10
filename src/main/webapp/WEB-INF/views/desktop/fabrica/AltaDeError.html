@@ -10,13 +10,15 @@
 <div class="container">
     <br>
     <div class="row">
-        <div class="col-md-12" align="center" style="font-size:30; font-family:BBVA Web Book">Alta de Incidencia</div>
+        <div class="col-md-12 text-center">
+            <h2 class="h2-title-content">Alta de Incidencia</h2>
+        </div>
     </div>
-    <br>
 
+    <div class="row">
+        <div class="col-md-12 subtitle-content">Datos Componente</div>
+    </div>
 
-
-            <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos de Componente</div>
             <table class="col-md-12" >
                 <tr>
                     <td class="col-md-4" align="center">
@@ -69,9 +71,9 @@
                     </td>
                 </tr>
             </table>
-
-    <div class="col-md-12" align="center" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos del Error</div>
-
+    <div class="row">
+        <div class="col-md-12 subtitle-content">Datos de Incidencia</div>
+    </div>
                 <form style="display:block" action="#" th:action="@{/issues}" onsubmit="holder('Registrando Incidencia')" th:object="${issue}" method="post">
 
 
@@ -97,10 +99,25 @@
 
                         </td>
                         <td class="col-md-4" align="center">
-                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <!--<div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                                 <input type="text" maxlength="120" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{userSender.userInternalId}"  class="mdc-text-field__input" id="usuario-peticionario">
                                 <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
+                            </div>-->
+
+                            <input id="hidden-responsable" type="text"   value="" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{userSender.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <div id="responsable-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                                    <div class="mdc-select__label">Usuario Peticionario*</div>
+                                    <div class="mdc-select__selected-text"></div>
+                                    <div class="mdc-select__bottom-line"></div>
+                                </div>
+                                <div class="mdc-menu mdc-select__menu col-md-3" >
+                                    <ul class="mdc-list mdc-menu__items">
+                                        <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
+                                    </ul>
+                                </div>
                             </div>
+
                         </td>
                         <td class="col-md-4" align="center">
 

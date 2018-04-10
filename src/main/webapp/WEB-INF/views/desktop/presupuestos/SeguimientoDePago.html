@@ -24,57 +24,22 @@
 
       <div class="col-xs-12">
         <form id="searchForm" name="searchForm" method="GET">
-          <!-- 
-            text : componentName
-            text : requirementName
-            text : componentVersion
-            select : principalId
-            select : subPrincipalId
-            select : companyId
-            select : technologyId
-            select : typologyNewComponent
-            select : statusId
-            text : componentDesignRealDeliverDate
-            text : componentPreviewDeliverDate
-            select : startProductId
-            text : componentPossibleDeliverDate
-            text : componentRealDeliverDate
-            select : finalProductId
-            select : typologyStartSeverity
-            text : typologyStartSeverityHours
-            select : statusTypologyId
-            select : typologyFinalSeverity
-            text : typologyFinalSeverityHours
-          -->
-
-          <input type="hidden" name="principalId" id="principalId" value="" />
-          <input type="hidden" name="subPrincipalId" id="subPrincipalId" value="" />
-          <input type="hidden" name="companyId" id="companyId" value="" />
-          <input type="hidden" name="technologyId" id="technologyId" value="" />
-          <input type="hidden" name="typologyNewComponent" id="typologyNewComponent" value="" />
-          <input type="hidden" name="statusId" id="statusId" value="" />
-          <input type="hidden" name="startProductId" id="startProductId" value="" />
-          <input type="hidden" name="finalProductId" id="finalProductId" value="" />
-          <!-- <input type="hidden" name="typologyStartSeverity" id="typologyStartSeverity" value="" /> -->
-          <input type="hidden" name="statusTypologyId" id="statusTypologyId" value="" />
-          <!-- <input type="hidden" name="typologyFinalSeverity" id="typologyFinalSeverity" value="" /> -->
-
           <div class="row">
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_solicitud">
                 <input type="text"  class="mdc-text-field__input" id="solicitud">
                 <label for="solicitud" class="mdc-text-field__label">Solicitud</label>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_aceptacion">
                 <input type="text"  class="mdc-text-field__input" id="aceptacion">
                 <label for="aceptacion" class="mdc-text-field__label">Aceptación</label>
               </div>
             </div>
             <div class="col-md-4">
               <input type="hidden" id="hdn_orden_compra" value="">
-              <div id="slct_orden_compra" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+              <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" id="mdc_group_orden_compra">
                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                   <div class="mdc-select__label">Órden de Compra</div>
                   <div class="mdc-select__selected-text"></div>
@@ -100,13 +65,13 @@
               </div>
             </div>
           <div class="col-md-4">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_hoja_entrada">
                 <input type="text" class="mdc-text-field__input" id="hoja_entrada">
                 <label for="hoja_entrada" class="mdc-text-field__label">Hoja de Entrada</label>
               </div>
             </div>
           <div class="col-md-4">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_estado">
                 <input type="text" class="mdc-text-field__input" id="estado">
                 <label for="estado" class="mdc-text-field__label">Estado</label>
               </div>
@@ -121,13 +86,13 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_fecha_hasta"></div>
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_fecha_hasta">
                 <input type="text"  class="mdc-text-field__input" id="fecha_hasta">
                 <label for="fecha_hasta" class="mdc-text-field__label">Fecha Hasta</label>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_empresa">
                 <input type="text"  class="mdc-text-field__input" id="empresa" required>
                 <label for="empresa" class="mdc-text-field__label">Empresa</label>
               </div>
@@ -136,13 +101,13 @@
 
           <div class="row">
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_tecnologia">
                 <input type="text"  class="mdc-text-field__input" id="tecnologia">
                 <label for="tecnologia" class="mdc-text-field__label">Tecnología</label>
                 </div>
             </div>
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_area_atencion">
                 <input type="text"  class="mdc-text-field__input" id="area_atencion">
                 <label for="area_atencion" class="mdc-text-field__label">Área de Atención</label>
               </div>
@@ -187,28 +152,28 @@
         </thead>
         <tbody>
           <tr>
-            <th>dato 1</th>
-            <th>dato 1</th>
-            <th>dato 1</th>
-            <th>dato 1</th>
-            <th>dato 1</th>
-            <th>dato 1</th>
-            <th>dato 1</th>
-            <th>dato 1</th>
-            <th>dato 1</th>
-            <th></th>
+            <td>dato 1</td>
+            <td>dato 1</td>
+            <td>dato 1</td>
+            <td>dato 1</td>
+            <td>dato 1</td>
+            <td>dato 1</td>
+            <td>dato 1</td>
+            <td>dato 1</td>
+            <td>dato 1</td>
+            <td></td>
           </tr>
           <tr>
-            <th>dato 2</th>
-            <th>dato 2</th>
-            <th>dato 2</th>
-            <th>dato 2</th>
-            <th>dato 2</th>
-            <th>dato 2</th>
-            <th>dato 2</th>
-            <th>dato 2</th>
-            <th>dato 2</th>
-            <th></th>
+            <td>dato 2</td>
+            <td>dato 2</td>
+            <td>dato 2</td>
+            <td>dato 2</td>
+            <td>dato 2</td>
+            <td>dato 2</td>
+            <td>dato 2</td>
+            <td>dato 2</td>
+            <td>dato 2</td>
+            <td></td>
           </tr>
         </tbody>
       </table>
