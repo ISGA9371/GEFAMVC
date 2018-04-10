@@ -13,12 +13,16 @@ function init() {
     addButtonEvents();
 
     $(".container").click();
+    setTimeout("window.scrollTo(0, 0)",50);
 }
 
 function fillFields() {
     new mdc.textField.MDCTextField(document.getElementById('component-mdc-text')).value = $('#componentName').val();
     new mdc.textField.MDCTextField(document.getElementById('version-mdc-text')).value = $('#componentVersion').val();
-    new mdc.textField.MDCTextField(document.getElementById('descripcion-mdc-text')).value = $('#componentTypoComment').val();
+    new mdc.textField.MDCTextField(document.getElementById('descripcion-mdc-text')).value = $('#componentTypoComment').val()
+
+
+
     var $elementTypologiaInicio = $("#typology").parent().find("li[id^='" + $('#typology').val() + "|']");
     var idTypologiaInicio = $elementTypologiaInicio.attr('id');
     var splittedTypologiaInicio = idTypologiaInicio.split('|');
@@ -57,6 +61,10 @@ function fillFields() {
     if ($("#typology-final").val() == "") {
         $("#typology-final").val($("#typology").val())
     }
+    if($('#componentStartCost').val() == ""){
+        $('#componentStartCost').val(Number(new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value)*Number($("#auxFare").val()));
+    }
+    new mdc.textField.MDCTextField(document.getElementById('initial-cost-mdc-text')).value = Number($('#componentStartCost').val()).formatMoney(2);
     var $elementTypologiaFinal = $("#typology-final").parent().find("li[id^='" + $('#typology-final').val() + "|']");
     var idTypologiaFinal = $elementTypologiaFinal.attr('id');
     var splittedTypologiaFinal = idTypologiaFinal.split('|');
@@ -90,6 +98,10 @@ function fillFields() {
         new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value = "";
         new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = "";
     }
+    if($('#componentFinalCost').val() == ""){
+        $('#componentFinalCost').val(Number(new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value)*Number($("#auxFare").val()));
+    }
+    new mdc.textField.MDCTextField(document.getElementById('final-cost-mdc-text')).value = Number($('#componentFinalCost').val()).formatMoney(2);
     var $statusTypology = $("#statusTypology").parent().find("li[id^='" + $('#statusTypology').val() + "']");
     $("#estatus-tipificacion-js-select").find("div").eq(0).click();
     $statusTypology.click();
@@ -239,11 +251,14 @@ function addCustomSelectEvents() {
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value=splittedNews[1];
             new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value=splittedNews[2];
+            $("#componentFinalCost").val(Number(splittedNews[2])*Number($("#auxFare").val()));
+            new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value=Number($("#componentFinalCost").val()).formatMoney(2);
         } else {
             hiddenTypology.value = "";
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value="";
             new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value="";
         }
     });
 
@@ -257,11 +272,14 @@ function addCustomSelectEvents() {
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value=splittedMods[1];
             new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value=splittedMods[2];
+            $("#componentFinalCost").val(Number(splittedMods[2])*Number($("#auxFare").val()));
+            new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value=Number($("#componentFinalCost").val()).formatMoney(2);
         } else {
             hiddenTypology.value = "";
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value="";
             new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value="";
         }
     });
 
@@ -401,3 +419,15 @@ function pad(n, width, z) {
     n = n + '';
     return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
+
+
+Number.prototype.formatMoney = function(c, d, t){
+    var n = this,
+        c = isNaN(c = Math.abs(c)) ? 2 : c,
+        d = d == undefined ? "." : d,
+        t = t == undefined ? "," : t,
+        s = n < 0 ? "-" : "",
+        i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+        j = (j = i.length) > 3 ? j % 3 : 0;
+    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+};

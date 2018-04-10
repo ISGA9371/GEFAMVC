@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -23,14 +24,13 @@ public class DoubtController {
     private PriorityService priorityService;
     private StatusService statusService;
     private ComponentService componentService;
+    private UserService userService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addDoubt(Model model, @RequestParam(value = "componentId") Integer componentId) {
         Component component = componentService.findComponent(componentId);
         model.addAttribute("componentData", component);
-        Doubt doubt = new Doubt();
-        doubt.setComponent(component);
-        model.addAttribute("doubt", doubt);
+        model.addAttribute("doubt", new Doubt());
         return URL_FACTORY + NEW_DOUBT;
     }
 
@@ -77,6 +77,17 @@ public class DoubtController {
         return this.statusService.findAllStatus();
     }
 
+    @ModelAttribute("users")
+    public List<User> populateUsers() {
+        List<User> users = new ArrayList<>();
+        // TODO Use Enum's
+        // 1 - Gestoria FSW
+        users.addAll(this.userService.findUsersByType(1));
+        // 2 - Gestoria PBAS
+        users.addAll(this.userService.findUsersByType(2));
+        return users;
+    }
+
     // Import services
     @Autowired
     public void setDoubtService(DoubtService doubtService) {
@@ -106,5 +117,10 @@ public class DoubtController {
     @Autowired
     public void setComponentService(ComponentService componentService) {
         this.componentService = componentService;
+    }
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }
