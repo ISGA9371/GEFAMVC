@@ -13,6 +13,8 @@
                th:field="*{componentId}"/>
         <input id="requirementId" style="display: none;" type="number" required value="31" class="hiddenField"
                th:field="*{requirement.requirementId}"/>
+        <input id="auxFare" style="display: none;" type="hidden" value="0" th:value="${fare.fareValue}"/>
+
 
         <div class="container">
             <br>
@@ -32,8 +34,6 @@
                         <td class="col-md-4" align="center">
                             <input id="componentName" type="text" required value="" class="hiddenField"
                                    th:field="*{componentName}">
-                            <input id="componentName" type="text" required value="" class="hiddenField"
-                                    name="component.componentName">
                             <div class="mdc-text-field" id="component-mdc-text" data-mdc-auto-init="MDCTextField"
                                  style="background-color:#F4F4F4; width:90%">
                                 <input type="text" maxlength="45" th:value="${component.componentName}" class="mdc-text-field__input"
@@ -186,7 +186,7 @@
                         </td>
                         <td class="col-md-4" align="center">
                             <input id="componentStartCost" type="text" required value="" class="hiddenField" th:field="*{componentStartCost}">
-                            <div class="mdc-text-field" id="hours-mdc-text" data-mdc-auto-init="MDCTextField"
+                            <div class="mdc-text-field" id="initial-cost-mdc-text" data-mdc-auto-init="MDCTextField"
                                  style="background-color:#F4F4F4; width:90%">
                                 <input type="text" readonly="readonly" class="mdc-text-field__input" id="horas">
                                 <label for="demo-input" class="mdc-text-field__label">Costo Inicial</label>
@@ -267,7 +267,7 @@
                         </td>
                         <td class="col-md-4" align="center">
                             <input id="componentFinalCost" type="text" required value="" class="hiddenField" th:field="*{componentFinalCost}">
-                            <div class="mdc-text-field" id="hours-mdc-text" data-mdc-auto-init="MDCTextField"
+                            <div class="mdc-text-field" id="final-cost-mdc-text" data-mdc-auto-init="MDCTextField"
                                  style="background-color:#F4F4F4; width:90%">
                                 <input type="text" readonly="readonly" class="mdc-text-field__input" id="horas">
                                 <label for="demo-input" class="mdc-text-field__label">Costo Final</label>
@@ -420,6 +420,7 @@
 <div th:replace="~{layout/footer2 :: scripts }"></div>
 <script type="text/javascript" th:src="@{../js/ready.js}"></script>
 <script type="text/javascript" th:src="@{../js/fabrica/modificar-componentes.js}"></script>
+<script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
 
 <script>
     mdc.autoInit();

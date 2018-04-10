@@ -135,7 +135,9 @@ function addSelectEvents() {
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedNews[1];
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedNews[2];
-            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value=Number(splittedNews[2])*Number($("#auxFare").val());
+            $("#componentStartCost").val(Number(splittedNews[2])*Number($("#auxFare").val()));
+            $("#componentFinalCost").val($("#componentStartCost").val());
+            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value=Number($("#componentStartCost").val()).formatMoney(2);
         } else {
             hiddenTypology.value = "";
             $("#typologyEmp").val(hiddenTypology.value);
@@ -155,9 +157,9 @@ function addSelectEvents() {
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedMods[1];
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedMods[2];
-            $("#componentStartCost").val(Number(splittedNews[2])*Number($("#auxFare").val()));
+            $("#componentStartCost").val(Number(splittedMods[2])*Number($("#auxFare").val()));
             $("#componentFinalCost").val($("#componentStartCost").val());
-            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value=$("#componentStartCost").val();
+            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value=Number($("#componentStartCost").val()).formatMoney(2);
         } else {
             hiddenTypology.value = "";
             $("#typologyEmp").val(hiddenTypology.value);
@@ -261,3 +263,14 @@ function holder(msg){
         textColor: "white",
     });
 }
+
+Number.prototype.formatMoney = function(c, d, t){
+    var n = this,
+        c = isNaN(c = Math.abs(c)) ? 2 : c,
+        d = d == undefined ? "." : d,
+        t = t == undefined ? "," : t,
+        s = n < 0 ? "-" : "",
+        i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+        j = (j = i.length) > 3 ? j % 3 : 0;
+    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+};
