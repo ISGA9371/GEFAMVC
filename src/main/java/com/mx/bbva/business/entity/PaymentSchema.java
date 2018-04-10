@@ -15,9 +15,7 @@ import java.util.List;
  * @author manug
  */
 @Entity
-@Table(name = "thge067_esq_pago", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-        @NamedQuery(name = "PaymentSchema.findAll", query = "SELECT t FROM PaymentSchema t")})
+@Table(name = "thge067_esq_pago")
 public class PaymentSchema implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

@@ -88,14 +88,12 @@ public class Status implements Serializable {
     private List<Issue> issues;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusTypology")
-    private List<Component> componentList;
+    private List<Component> components;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<Component> componentList1;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stAccesoLog")
-//    private List<Thge058CtrlAcc> thge058CtrlAccList;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stSegReq")
-//    private List<RequirementTracking> thge063SegReqList;
+    private List<Component> componentList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<RequirementTracking> requirementTrackingList;
 
     public Status() {
     }
@@ -277,6 +275,18 @@ public class Status implements Serializable {
         this.issues = issues;
     }
 
+    public StatusType getStatusType() {
+        return statusType;
+    }
+
+    public List<Component> getComponents() {
+        return components;
+    }
+
+    public void setComponents(List<Component> components) {
+        this.components = components;
+    }
+
     public List<Component> getComponentList() {
         return componentList;
     }
@@ -285,16 +295,12 @@ public class Status implements Serializable {
         this.componentList = componentList;
     }
 
-    public List<Component> getComponentList1() {
-        return componentList1;
+    public List<RequirementTracking> getRequirementTrackingList() {
+        return requirementTrackingList;
     }
 
-    public void setComponentList1(List<Component> componentList1) {
-        this.componentList1 = componentList1;
-    }
-
-    public StatusType getStatusType() {
-        return statusType;
+    public void setRequirementTrackingList(List<RequirementTracking> requirementTrackingList) {
+        this.requirementTrackingList = requirementTrackingList;
     }
 
     public void setStatusType(StatusType statusType) {

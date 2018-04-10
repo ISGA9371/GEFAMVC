@@ -10,13 +10,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
  * @author manug
  */
 @Entity
-@Table(name = "thge063_seg_req", catalog = "gestion_factoria", schema = "")
-@NamedQueries({
-    @NamedQuery(name = "RequirementTracking.findAll", query = "SELECT t FROM RequirementTracking t")})
+@Table(name = "thge063_seg_req")
 public class RequirementTracking implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -123,5 +120,5 @@ public class RequirementTracking implements Serializable {
     public String toString() {
         return "com.mx.bbva.business.entity.RequirementTracking[ requirementTrackingId=" + requirementTrackingId + " ]";
     }
-    
+
 }

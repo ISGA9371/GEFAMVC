@@ -70,6 +70,14 @@ public class Origin implements Serializable {
         this.modifications = modifications;
     }
 
+    public List<Issue> getIssues() {
+        return issues;
+    }
+
+    public void setIssues(List<Issue> issues) {
+        this.issues = issues;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;

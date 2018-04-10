@@ -10,13 +10,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
  * @author Guevara Manuel
  */
 @Entity
 @Table(name = "thge027_duda")
-@NamedQueries({
-        @NamedQuery(name = "Doubt.findAll", query = "SELECT t FROM Doubt t")})
 public class Doubt implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
