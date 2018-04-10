@@ -1,6 +1,7 @@
 package com.mx.bbva.business.service.impl;
 
 import com.mx.bbva.business.entity.Fare;
+import com.mx.bbva.business.entity.Requirement;
 import com.mx.bbva.business.repository.FareRepository;
 import com.mx.bbva.business.service.FareService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,9 @@ public class FareServiceImpl implements FareService {
     }
 
     @Override
-    public Fare findRequirementFare(Integer companyId, Integer technologyId, Integer areaId) {
-        return fareRepository.findCurrentCompanyFareByTechnologyAndArea(companyId, technologyId, areaId);
+    public Fare findByRequirement(Requirement requirement) {
+        return fareRepository.findByCompanyAndTechnologyAndArea(
+                requirement.getCompany(), requirement.getTechnology(), requirement.getArea());
     }
 
     @Autowired

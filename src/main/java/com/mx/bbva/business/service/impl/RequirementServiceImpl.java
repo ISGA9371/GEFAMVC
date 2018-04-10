@@ -3,6 +3,7 @@ package com.mx.bbva.business.service.impl;
 import com.mx.bbva.business.entity.Requirement;
 import com.mx.bbva.business.repository.RequirementRepository;
 import com.mx.bbva.business.service.RequirementService;
+import com.mx.bbva.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class RequirementServiceImpl implements RequirementService {
 
     @Override
     public Requirement saveRequirement(Requirement requirement) {
+        requirement.setRequirementDateUpload(new DateUtils().getCurrentDate());
         return requirementRepository.save(requirement);
     }
 

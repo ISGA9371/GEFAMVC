@@ -107,7 +107,7 @@ public class BudgetController {
         String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
         List<Budget> budgets = budgetService.findByCustomQuery(query);
         model.addAttribute("budgets", budgets);
-        return URL_FACTORY + BILLING_CUT;
+        return URL_BUDGET + BILLING_CUT;
     }
 
     @RequestMapping(value = "/payments/filters", method = RequestMethod.GET)
@@ -122,7 +122,7 @@ public class BudgetController {
         /*String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
         List<Budget> budgets = budgetService.findByCustomQuery(query);*/
         model.addAttribute("invoices", invoiceService.findAllInvoices());
-        return URL_FACTORY + STATUS_PAYMENT;
+        return URL_BUDGET + STATUS_PAYMENT;
     }
 
     @ModelAttribute("areas")

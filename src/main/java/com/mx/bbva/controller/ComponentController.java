@@ -38,9 +38,14 @@ public class ComponentController {
         Requirement requirement = requirementService.findOneRequirement(requirementId);
         model.addAttribute("requirementData", requirement);
         model.addAttribute("component", new Component());
-        Fare fare = fareService.findRequirementFare(requirement.getCompany().getCompanyId(), requirement.getTechnology().getTechnologyId(), requirement.getArea().getAreaId());
-        LOG.info("Tarifa: " + fare.getFareValue());
-        model.addAttribute("fare", fare);
+        Fare fare = fareService.findByRequirement(requirement);
+        if (fare != null) {
+            LOG.info("Tarifa: " + fare.getFareValue());
+            model.addAttribute("fare", fare);
+        } else {
+            // TODO 404
+            model.addAttribute("fare", new Fare());
+        }
         //TODO Add catalogs
         return URL_FACTORY + NEW_COMPONENT;
     }
@@ -166,5 +171,7 @@ public class ComponentController {
     }
 
     @Autowired
-    public void setFareService(FareService fareService) { this.fareService = fareService; }
+    public void setFareService(FareService fareService) {
+        this.fareService = fareService;
+    }
 }
