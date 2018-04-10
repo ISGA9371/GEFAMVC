@@ -19,7 +19,7 @@ import java.util.List;
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
+
     @Column(name = "CD_USUARIO_CORP", nullable = false)
     private String userInternalId;
     @JoinColumn(name = "ST_USUARIO", referencedColumnName = "CD_ESTADO", nullable = false)

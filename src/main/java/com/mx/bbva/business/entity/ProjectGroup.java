@@ -17,10 +17,10 @@ public class ProjectGroup implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+
     @Column(name = "CD_PROY_AGRUP")
     private Integer projectGroupId;
-    @Basic(optional = false)
+
     @Column(name = "NB_PROY_AGRUP")
     private String projectGroupName;
 

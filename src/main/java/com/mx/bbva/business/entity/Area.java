@@ -17,13 +17,12 @@ import java.util.List;
 @Entity
 @Table(name = "thge030_area", uniqueConstraints = {@UniqueConstraint(columnNames = {"NB_AREA"})})
 public class Area implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_AREA", nullable = false)
     private Integer areaId;
-    @Basic(optional = false)
     @Column(name = "NB_AREA", nullable = false, length = 50)
     private String areaName;
     @JsonIgnore

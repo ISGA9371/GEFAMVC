@@ -14,17 +14,16 @@ import java.io.Serializable;
 @Entity
 @Table(name = "thge036_contrato")
 public class Contract implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_CONTRATO", nullable = false)
     private Integer contractId;
     @Column(name = "CD_PEDIDO", length = 10)
     private String orderId;
     @Column(name = "NU_POSICION")
     private Integer contractPosition;
-    @Basic(optional = false)
     @Column(name = "NU_ANO_CONTRATO", nullable = false)
     private int contractYear;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)

@@ -18,10 +18,10 @@ public class T955 implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected T955PK t955PK;
-    @Basic(optional = false)
+
     @Column(name = "TX_NIVEL_PBA", nullable = false, length = 50)
     private String t955LevelPba;
-    @Basic(optional = false)
+
     @Column(name = "FH_IDENTIFICACION", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date t955IdentificationDate;

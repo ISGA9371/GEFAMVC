@@ -17,17 +17,15 @@ import java.util.List;
 @Entity
 @Table(name = "thge007_pep", uniqueConstraints = {@UniqueConstraint(columnNames = {"CD_PEP"})})
 public class Budget implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "CD_PEP", nullable = false, length = 15)
     private String budgetId;
     @Column(name = "NB_DENOMINAC_PEP", length = 50)
     private String budgetName;
-    @Basic(optional = false)
     @Column(name = "NU_EJERCICIO", nullable = false)
     private int budgetYear;
-    @Basic(optional = false)
     @Column(name = "TX_CENTRO_CTO", nullable = false, length = 10)
     private String budgetCostCenter;
     @Column(name = "IM_PRESUPUESTO", precision = 22)

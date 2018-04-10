@@ -15,19 +15,17 @@ import java.util.Date;
 @Entity
 @Table(name = "thge027_duda")
 public class Doubt implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_DUDA", nullable = false)
     private Integer doubtId;
     @Column(name = "FH_ALTA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date doubtUploadDate;
-    @Basic(optional = false)
     @Column(name = "TX_VENTREGA", nullable = false, length = 9)
     private String doubtVersion;
-    @Basic(optional = false)
     @Column(name = "NB_DESC_DUDA_HIST", nullable = false, length = 600)
     private String doubtDescription;
     @Column(name = "NB_DESC_RES_HIST", length = 600)

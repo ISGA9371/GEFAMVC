@@ -18,9 +18,9 @@ import java.util.List;
 @Table(name = "thge022_proyecto", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_SDA"})})
 public class Project implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "CD_SDA", nullable = false)
     private String projectId;
     @Column(name = "NB_PROYECTO")

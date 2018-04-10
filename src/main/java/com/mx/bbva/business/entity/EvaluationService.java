@@ -15,10 +15,10 @@ import java.util.Date;
 @Entity
 @Table(name = "thge062_eval_serv")
 public class EvaluationService implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected EvaluationServicePK evaluationServicePK;
-    @Basic(optional = false)
     @Column(name = "TO_CALIF")
     private String evaluationServiceScore;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA")

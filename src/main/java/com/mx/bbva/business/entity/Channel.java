@@ -19,13 +19,12 @@ import java.util.List;
         @UniqueConstraint(columnNames = {"CD_CANAL"})
         , @UniqueConstraint(columnNames = {"NB_CANAL"})})
 public class Channel implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_CANAL", nullable = false)
     private Integer channelId;
-    @Basic(optional = false)
     @Column(name = "NB_CANAL", nullable = false, length = 50)
     private String channelName;
     @JsonIgnore

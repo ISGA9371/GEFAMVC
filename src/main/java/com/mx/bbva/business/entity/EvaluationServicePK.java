@@ -15,11 +15,10 @@ import java.util.Date;
  */
 @Embeddable
 public class EvaluationServicePK implements Serializable {
-    @Basic(optional = false)
+
     @Column(name = "FH_INICIO")
     @Temporal(TemporalType.DATE)
     private Date EvaluationServiceStartDate;
-    @Basic(optional = false)
     @Column(name = "FH_FIN")
     @Temporal(TemporalType.DATE)
     private Date EvaluationServiceFinalDate;

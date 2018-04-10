@@ -15,13 +15,12 @@ import java.io.Serializable;
 @Table(name = "thge033_tipo_asig", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_TIPO_ASIG"})})
 public class AssignationType implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_TIPO_ASIG", nullable = false)
     private Integer assignationTypeId;
-    @Basic(optional = false)
     @Column(name = "NB_TIPO_ASIG", nullable = false, length = 25)
     private String assignationTypeName;
 

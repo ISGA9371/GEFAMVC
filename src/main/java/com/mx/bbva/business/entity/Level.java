@@ -17,13 +17,12 @@ import java.util.List;
 @Entity
 @Table(name = "thge010_nivel", uniqueConstraints = {@UniqueConstraint(columnNames = {"CD_NIVEL"})})
 public class Level implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_NIVEL", nullable = false)
     private Integer levelId;
-    @Basic(optional = false)
     @Column(name = "NB_NIVEL", nullable = false, length = 50)
     private String levelName;
     @JoinColumn(name = "CD_TIPO_NIVEL", referencedColumnName = "CD_TIPO_NIVEL", nullable = false)

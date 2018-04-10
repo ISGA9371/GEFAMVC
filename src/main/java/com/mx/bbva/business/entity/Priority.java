@@ -18,13 +18,12 @@ import java.util.List;
 @Table(name = "thge015_prioridad", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_PRIORIDAD"})})
 public class Priority implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_PRIORIDAD", nullable = false)
     private Integer priorityId;
-    @Basic(optional = false)
     @Column(name = "NB_PRIORIDAD", nullable = false, length = 25)
     private String priorityName;
     @JsonIgnore

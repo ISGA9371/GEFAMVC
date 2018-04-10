@@ -19,13 +19,12 @@ import java.util.List;
         @UniqueConstraint(columnNames = {"CD_CAUSA_CIERRE"})
         , @UniqueConstraint(columnNames = {"NB_CAUSA_CIERRE"})})
 public class CauseClosure implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_CAUSA_CIERRE", nullable = false)
     private Integer causeClosureId;
-    @Basic(optional = false)
     @Column(name = "NB_CAUSA_CIERRE", nullable = false, length = 25)
     private String causeClosureName;
     @JsonIgnore

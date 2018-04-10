@@ -21,10 +21,10 @@ public class ResourceClassification implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+
     @Column(name = "CD_CLASIF_REC", nullable = false)
     private Integer resourceClassificationId;
-    @Basic(optional = false)
+
     @Column(name = "NB_CLASIF_REC", nullable = false, length = 50)
     private String resourceClassificationName;
     @JsonIgnore

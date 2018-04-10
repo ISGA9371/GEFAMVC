@@ -15,20 +15,18 @@ import java.util.Date;
 @Entity
 @Table(name = "thge068_log_fh_com")
 public class ComponentDatesLog implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_CAMBIO")
     private Integer componentDatesLogId;
     @Column(name = "TM_FH_MODIFICADA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date componentDateModified;
-    @Basic(optional = false)
     @Column(name = "FH_ANTERIOR")
     @Temporal(TemporalType.DATE)
     private Date componentDateBefore;
-    @Basic(optional = false)
     @Column(name = "FH_ACTUAL")
     @Temporal(TemporalType.DATE)
     private Date componentDateCurrent;

@@ -17,16 +17,14 @@ import java.util.List;
 @Entity
 @Table(name = "thge014_pais")
 public class Country implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_PAIS", nullable = false)
     private Integer countryId;
-    @Basic(optional = false)
     @Column(name = "NB_PAIS", nullable = false, length = 50)
     private String countryName;
-    @Basic(optional = false)
     @Column(name = "NB_NACIONALIDAD", nullable = false, length = 50)
     private String countryNacionality;
     @JsonIgnore

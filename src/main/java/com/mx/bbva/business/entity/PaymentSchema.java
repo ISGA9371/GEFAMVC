@@ -17,13 +17,12 @@ import java.util.List;
 @Entity
 @Table(name = "thge067_esq_pago")
 public class PaymentSchema implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_ESQUEMA_PAGO")
     private Integer paymentSchemaId;
-    @Basic(optional = false)
     @Column(name = "NB_ESQ_PAGO")
     private String paymentSchemaName;
     @JsonIgnore

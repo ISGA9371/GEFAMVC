@@ -17,13 +17,12 @@ import java.util.List;
 @Entity
 @Table(name = "thge061_metrica")
 public class Metric implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_METRICA")
     private Integer metricId;
-    @Basic(optional = false)
     @Column(name = "NB_METRICA")
     private String metricName;
     @Column(name = "FA_LMT_INF")

@@ -14,10 +14,10 @@ import java.io.Serializable;
 @Entity
 @Table(name = "thge071_ctrl_proy")
 public class ProjectControl implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_CTRL_PROY")
     private Integer projectControlId;
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO")

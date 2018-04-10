@@ -6,6 +6,7 @@
 package com.mx.bbva.business.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,10 +23,10 @@ public class Requirement implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+
     @Column(name = "CD_REQUERIMIENTO", nullable = false)
     private Integer requirementId;
-    @Basic(optional = false)
+
     @Column(name = "NB_REQUERIMIENTO", nullable = false, length = 100)
     private String requirementName;
     @Column(name = "NU_HORA_REQ", precision = 22)
@@ -38,14 +39,17 @@ public class Requirement implements Serializable {
     private Integer requirementNoBilledHours;
     @Column(name = "ST_FACTURADO")
     private Boolean requirementBilled;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss.S")
     @Column(name = "TM_ALTA_REQ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date requirementDateUpload;
     @Column(name = "NU_FACTURABLE")
     private Boolean requirementCanBilled;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "FH_INICIO_REQ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date requirementStartDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "FH_FIN_REQ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date requirementEndDate;

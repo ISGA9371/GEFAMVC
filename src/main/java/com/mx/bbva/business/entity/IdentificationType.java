@@ -17,13 +17,12 @@ import java.util.List;
 @Entity
 @Table(name = "thge064_tp_identif")
 public class IdentificationType implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_IDENTIFICACION")
     private Integer identificationTypeId;
-    @Basic(optional = false)
     @Column(name = "NB_IDENTIFICACION")
     private String identificationTypeName;
     @JsonIgnore

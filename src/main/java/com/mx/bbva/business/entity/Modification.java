@@ -18,18 +18,14 @@ public class Modification implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_MODIFICACION", nullable = false)
     private Integer modificationId;
-    @Basic(optional = false)
     @Column(name = "TX_MOD_EN_VUELO", nullable = false, length = 2)
     private String modificationOnTrack;
-    @Basic(optional = false)
     @Column(name = "TX_MOD_RZDA_DYD", nullable = false, length = 2)
     private String modificationDoneDyd;
     @Column(name = "NB_DESC_MODIF", length = 1000)
     private String modificationDescription;
-    @Basic(optional = false)
     @Column(name = "FH_ENVIO", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date modificationSendDate;
@@ -39,7 +35,6 @@ public class Modification implements Serializable {
     @Column(name = "FH_RENEGOCIADA")
     @Temporal(TemporalType.DATE)
     private Date modificationRescheduleDate;
-    @Basic(optional = false)
     @Column(name = "FH_CIERRE", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date modificationEndDate;
@@ -57,7 +52,6 @@ public class Modification implements Serializable {
     private String modificationCommentTypo;
     @Column(name = "TX_COM_TIPIF_PROY", length = 500)
     private String modificationCommentDyd;
-    @Basic(optional = false)
     @Column(name = "TX_FACT_S_N", nullable = false, length = 2)
     private String modificationInvoiced;
     @JoinColumn(name = "ST_MODIFICACION", referencedColumnName = "CD_ESTADO", nullable = false)

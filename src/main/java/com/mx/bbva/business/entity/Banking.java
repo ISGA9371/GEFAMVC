@@ -21,10 +21,8 @@ public class Banking implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_BANCA", nullable = false)
     private Integer bankingId;
-    @Basic(optional = false)
     @Column(name = "NB_BANCA", nullable = false, length = 50)
     private String bankingName;
     @JsonIgnore

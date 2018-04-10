@@ -6,6 +6,7 @@
 package com.mx.bbva.business.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,16 +19,17 @@ import java.util.List;
 @Entity
 @Table(name = "thge040_pep_req")
 public class BudgetRequirement implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_PEP_REQ", nullable = false)
     private Integer budgetRequirementId;
     @Column(name = "IM_PEP", precision = 22)
     private Double budgetRequirementValue;
     @Column(name = "HM_PEP", precision = 22)
     private Double budgetRequirementHours;
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss.S")
     @Column(name = "TM_PEP_REQ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date budgetRequirementDate;

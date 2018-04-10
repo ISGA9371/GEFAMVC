@@ -19,13 +19,12 @@ import java.util.List;
         @UniqueConstraint(columnNames = {"CD_CAUSA_RECHAZO"})
         , @UniqueConstraint(columnNames = {"NB_CAUSA_RECHAZO"})})
 public class CauseRejection implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_CAUSA_RECHAZO", nullable = false)
     private Integer causeRejectionId;
-    @Basic(optional = false)
     @Column(name = "NB_CAUSA_RECHAZO", nullable = false, length = 50)
     private String causeRejectionName;
     @JsonIgnore

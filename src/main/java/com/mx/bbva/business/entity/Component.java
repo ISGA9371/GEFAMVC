@@ -6,6 +6,7 @@
 package com.mx.bbva.business.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,16 +19,14 @@ import java.util.List;
 @Entity
 @Table(name = "thge009_componente")
 public class Component implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_COMPONENTE", nullable = false)
     private Integer componentId;
-    @Basic(optional = false)
     @Column(name = "NB_COMPONENTE", nullable = false, length = 45)
     private String componentName;
-    @Basic(optional = false)
     @Column(name = "TX_VENTREGA", nullable = false, length = 9)
     private String componentVersion;
     @Column(name = "IM_COSTE_EMP", precision = 22)
@@ -36,21 +35,23 @@ public class Component implements Serializable {
     private Double componentStartCost;
     @Column(name = "TX_COM_TIPIF_EMP", length = 600)
     private String componentTypoComment;
-    @Basic(optional = false)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "FH_NEG_EMP_CGF_SW", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date componentPossibleDeliverDate;
-    @Basic(optional = false)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "FH_PRV_EMP_CGF_SW", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date componentPreviewDeliverDate;
-    @Basic(optional = false)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "FH_R_CGF_EMP_DIS", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date componentDesignRealDeliverDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "FH_R_EMP_CGF_SW")
     @Temporal(TemporalType.DATE)
     private Date componentRealDeliverDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss.S")
     @Column(name = "TM_ALTA_COMP")
     @Temporal(TemporalType.TIMESTAMP)
     private Date componentUploadDate;

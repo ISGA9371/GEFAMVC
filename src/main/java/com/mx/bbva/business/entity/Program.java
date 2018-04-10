@@ -15,13 +15,12 @@ import java.io.Serializable;
 @Table(name = "thge023_programa", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_PROGRAMA"})})
 public class Program implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_PROGRAMA", nullable = false)
     private Integer programId;
-    @Basic(optional = false)
     @Column(name = "NB_PROGRAMA", nullable = false, length = 50)
     private String programName;
 

@@ -18,15 +18,13 @@ import java.util.List;
 @Entity
 @Table(name = "thge024_ctrl_ext")
 public class ExternalUser implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "CD_EXTERNO_CORP", length = 10)
     private String externalUserCorpId;
-    @Basic(optional = false)
     @Column(name = "NB_REC_EXTERNO", nullable = false, length = 50)
     private String externalUserName;
-    @Basic(optional = false)
     @Column(name = "NB_APELL_PAT", nullable = false, length = 30)
     private String externalUserLastName;
     @Column(name = "NB_APELL_MAT", length = 30)
@@ -40,7 +38,6 @@ public class ExternalUser implements Serializable {
     @Column(name = "FH_NACIMIENTO")
     @Temporal(TemporalType.DATE)
     private Date externalUserBirthDate;
-    @Basic(optional = false)
     @Column(name = "CD_GENERO", nullable = false)
     private Character externalUserGender;
     @Column(name = "TX_IDENTIFICACION", length = 10)

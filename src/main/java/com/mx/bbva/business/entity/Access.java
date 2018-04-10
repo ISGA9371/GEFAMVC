@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -15,16 +17,17 @@ import java.util.Date;
 @Entity
 @Table(name = "thge058_ctrl_acc")
 public class Access implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CD_ACCESO", nullable = false)
     private Integer accessId;
-    @Basic(optional = false)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "FH_VIG_ACC_LOG", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date accessLogicalExpDate;
-    @Basic(optional = false)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "FH_VIG_ACC_FIS", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date accessPhysicalExpDate;

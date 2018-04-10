@@ -19,10 +19,10 @@ import java.util.List;
 @Table(name = "thge041_seg_pago", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"CD_SEG_PAGO"})})
 public class Payment implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_SEG_PAGO", nullable = false)
     private Integer paymentId;
     @Column(name = "NU_POS_SOL_PEDIDO")

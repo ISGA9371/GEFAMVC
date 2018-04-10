@@ -21,10 +21,10 @@ public class ServiceType implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+
     @Column(name = "CD_TIPO_SERVICIO", nullable = false)
     private Integer serviceTypeId;
-    @Basic(optional = false)
+
     @Column(name = "NB_TIPO_SERVICIO", nullable = false, length = 50)
     private String serviceTypeName;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)

@@ -17,19 +17,16 @@ import java.util.List;
 @Entity
 @Table(name = "thge003_empresa")
 public class Company implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_EMPRESA", nullable = false)
     private Integer companyId;
-    @Basic(optional = false)
     @Column(name = "NB_COMERC_EMPRESA", nullable = false, length = 45)
     private String companyName;
-    @Basic(optional = false)
     @Column(name = "NB_RAZON_SOC_EMP", nullable = false, length = 45)
     private String companyBusinessName;
-    @Basic(optional = false)
     @Column(name = "NU_PROVEEDOR", nullable = false, length = 6)
     private String companySupplierNumber;
     @JoinColumn(name = "ST_EMPRESA", referencedColumnName = "CD_ESTADO", nullable = false)

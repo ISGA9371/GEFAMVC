@@ -17,13 +17,12 @@ import java.util.List;
 @Entity
 @Table(name = "thge070_tp_fh")
 public class DateType implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_TP_FH")
     private Integer dateTypeId;
-    @Basic(optional = false)
     @Column(name = "TP_FH")
     private String dateTypeName;
     @JsonIgnore

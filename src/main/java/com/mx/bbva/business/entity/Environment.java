@@ -18,13 +18,12 @@ import java.util.List;
 @Table(name = "thge049_entorno", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"NB_ENTORNO"})})
 public class Environment implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_ENTORNO", nullable = false)
     private Integer environmentId;
-    @Basic(optional = false)
     @Column(name = "NB_ENTORNO", nullable = false, length = 25)
     private String environmentName;
     @JsonIgnore

@@ -17,13 +17,12 @@ import java.util.List;
 @Entity
 @Table(name = "thge005_estado")
 public class Status implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_ESTADO", nullable = false)
     private Integer statusId;
-    @Basic(optional = false)
     @Column(name = "NB_ESTADO", nullable = false, length = 50)
     private String statusName;
     @JoinColumn(name = "CD_TIPO_EDO", referencedColumnName = "CD_TIPO_EDO", nullable = false)
@@ -92,6 +91,7 @@ public class Status implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<Component> componentList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<RequirementTracking> requirementTrackingList;
 

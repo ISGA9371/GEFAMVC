@@ -15,10 +15,10 @@ import java.io.Serializable;
  */
 @Embeddable
 public class T955PK implements Serializable {
-    @Basic(optional = false)
+
     @Column(name = "CD_DEFECTO", nullable = false)
     private int t955Id;
-    @Basic(optional = false)
+
     @Column(name = "CD_REQUERIMIENTO", nullable = false)
     private int requirementId;
 

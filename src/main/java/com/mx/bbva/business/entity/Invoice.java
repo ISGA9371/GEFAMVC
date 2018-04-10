@@ -15,17 +15,15 @@ import java.util.Date;
 @Entity
 @Table(name = "thge039_factura")
 public class Invoice implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_FACTURA", nullable = false)
     private Integer invoiceId;
-    @Basic(optional = false)
     @Column(name = "FH_CORTE", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date invoiceCutDate;
-    @Basic(optional = false)
     @Column(name = "IM_TARIFA", nullable = false)
     private double invoiceRate;
     @Column(name = "IM_MONTO", precision = 22)

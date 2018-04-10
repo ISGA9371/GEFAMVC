@@ -22,10 +22,10 @@ public class VerificationResult implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+
     @Column(name = "CD_RESULT_VERIF", nullable = false)
     private Integer verificationResultId;
-    @Basic(optional = false)
+
     @Column(name = "NB_RESULT_VERIF", nullable = false, length = 25)
     private String verificationResultName;
     @JsonIgnore

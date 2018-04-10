@@ -14,16 +14,14 @@ import java.io.Serializable;
 @Entity
 @Table(name = "thge031_tarifa")
 public class Fare implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_TARIFA", nullable = false)
     private Integer fareId;
-    @Basic(optional = false)
     @Column(name = "IM_TARIFA", nullable = false)
     private double fareValue;
-    @Basic(optional = false)
     @Column(name = "NU_ANO_TARIFA", nullable = false)
     private int fareYear;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)

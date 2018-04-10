@@ -19,13 +19,12 @@ import java.util.List;
         @UniqueConstraint(columnNames = {"NU_CTA_OPERATIVA"})
         , @UniqueConstraint(columnNames = {"CD_CTA_OPER"})})
 public class OperatingAccount implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_CTA_OPER", nullable = false)
     private Integer operatingAccountId;
-    @Basic(optional = false)
     @Column(name = "NU_CTA_OPERATIVA", nullable = false, length = 8)
     private String operatingAccountValue;
     @JsonIgnore

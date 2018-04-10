@@ -15,17 +15,15 @@ import java.util.Date;
 @Entity
 @Table(name = "thge029_incidencia")
 public class Issue implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_INCIDENCIA", nullable = false)
     private Integer issueId;
-    @Basic(optional = false)
     @Column(name = "FH_ALTA", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date issueUploadDate;
-    @Basic(optional = false)
     @Column(name = "NB_DESC_INC_HIST", nullable = false, length = 600)
     private String issueInitialDescription;
     @Column(name = "NB_DESC_RESOL_INC", length = 600)

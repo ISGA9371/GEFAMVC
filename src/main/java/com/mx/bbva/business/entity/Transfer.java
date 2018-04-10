@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -18,13 +20,14 @@ public class Transfer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+
     @Column(name = "CD_TRASPASO", nullable = false)
     private Integer transferId;
-    @Basic(optional = false)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "FH_TRASPASO", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date transferDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "FH_RETIRO")
     @Temporal(TemporalType.DATE)
     private Date transferWithdrawalDate;

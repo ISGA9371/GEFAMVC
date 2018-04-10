@@ -20,13 +20,13 @@ public class T926 implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+
     @Column(name = "CD_T926", nullable = false)
     private Integer t926Id;
-    @Basic(optional = false)
+
     @Column(name = "CD_FUNCION", nullable = false, length = 5)
     private String t926FunctionId;
-    @Basic(optional = false)
+
     @Column(name = "NB_FUNCION", nullable = false, length = 100)
     private String t926FunctionName;
     @Column(name = "NU_DEFECTO_ESTIM")

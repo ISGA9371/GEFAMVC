@@ -15,13 +15,12 @@ import java.util.Date;
 @Entity
 @Table(name = "thge059_h_c_mando")
 public class Evaluation implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected EvaluationPK evaluationPK;
-    @Basic(optional = false)
     @Column(name = "HM_MIL")
     private double evaluationBilledHours;
-    @Basic(optional = false)
     @Column(name = "TO_PUNT_ACT")
     private float evaluationPoints;
     @Column(name = "TO_PUNT_METRICA")

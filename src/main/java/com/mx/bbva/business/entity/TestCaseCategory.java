@@ -21,10 +21,10 @@ public class TestCaseCategory implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+
     @Column(name = "CD_CATEGORIA_CASO", nullable = false)
     private Integer testCaseCategoryId;
-    @Basic(optional = false)
+
     @Column(name = "NB_CATEGORIA_CASO", nullable = false, length = 50)
     private String testCaseCategoryName;
     @JsonIgnore

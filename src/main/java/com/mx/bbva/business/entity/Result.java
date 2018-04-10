@@ -21,10 +21,10 @@ public class Result implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+
     @Column(name = "CD_RESUL_OBTENIDO", nullable = false)
     private Integer resultId;
-    @Basic(optional = false)
+
     @Column(name = "NB_RESUL_ONTENIDO", nullable = false, length = 25)
     private String resultName;
     @JsonIgnore

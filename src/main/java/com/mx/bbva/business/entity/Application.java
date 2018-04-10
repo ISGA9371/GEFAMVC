@@ -20,13 +20,12 @@ import java.util.Objects;
         @UniqueConstraint(columnNames = {"CD_APLICACION"})
         , @UniqueConstraint(columnNames = {"NB_APLICACION"})})
 public class Application implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_APLICACION", nullable = false)
     private Integer applicationId;
-    @Basic(optional = false)
     @Column(name = "NB_APLICACION", nullable = false, length = 50)
     private String applicationName;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)

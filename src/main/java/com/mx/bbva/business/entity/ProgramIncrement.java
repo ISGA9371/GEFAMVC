@@ -18,13 +18,12 @@ import java.util.List;
 @Entity
 @Table(name = "thge013_pi")
 public class ProgramIncrement implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "CD_PI", nullable = false)
     private Integer programIncrementId;
-    @Basic(optional = false)
     @Column(name = "NB_PI", nullable = false, length = 25)
     private String ProgramIncrementName;
     @JsonIgnore
