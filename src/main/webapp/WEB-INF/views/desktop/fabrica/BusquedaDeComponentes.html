@@ -87,7 +87,7 @@
                   <div class="mdc-select__selected-text"></div>
                   <div class="mdc-select__bottom-line"></div>
                 </div>
-                <div class="mdc-menu mdc-select__menu col-md-3">
+                <div class="mdc-menu mdc-select__menu">
                   <ul class="mdc-list mdc-menu__items">
                     <li class="mdc-list-item" role="option" tabindex="0" 
                       th:each="dir : ${principals}" th:id="${dir.levelId}" th:text="${dir.levelName}" >
@@ -98,21 +98,16 @@
             </div>
             <div class="col-md-4">
               <div id="slct_subidreccion" class="mdc-select mdc-select--disabled" role="listbox" data-mdc-auto-init="MDCSelect">
-                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                <div class="mdc-select__surface" tabindex="0">
                   <div class="mdc-select__label">Subdirección</div>
                   <div class="mdc-select__selected-text"></div>
                   <div class="mdc-select__bottom-line"></div>
                 </div>
-                <div class="mdc-menu mdc-select__menu col-md-3">
+                <div class="mdc-menu mdc-select__menu">
                   <ul class="mdc-list mdc-menu__items">
                   </ul>
                 </div>
               </div>
-              <select id="select_subdireccion" style="visibility:hidden;">
-                <option th:each="subDir : ${subPrincipals}" th:value="${subDir.levelId}" th:text="${subDir.levelName}"
-                  th:data-superior="${subDir.levelSuperior.levelId}">
-              </option>
-              </select>
             </div>
             <div class="col-md-4">
               <div id="slct_empresa" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
@@ -121,7 +116,7 @@
                   <div class="mdc-select__selected-text"></div>
                   <div class="mdc-select__bottom-line"></div>
                 </div>
-                <div class="mdc-menu mdc-select__menu col-md-3">
+                <div class="mdc-menu mdc-select__menu">
                   <ul class="mdc-list mdc-menu__items">
                     <li class="mdc-list-item" role="option" tabindex="0" 
                       th:each="company : ${companies}" th:id="${company.companyId}" th:text="${company.companyName}">
@@ -140,7 +135,7 @@
                   <div class="mdc-select__selected-text"></div>
                   <div class="mdc-select__bottom-line"></div>
                 </div>
-                <div class="mdc-menu mdc-select__menu col-md-3">
+                <div class="mdc-menu mdc-select__menu">
                   <ul class="mdc-list mdc-menu__items">
                     <li class="mdc-list-item" role="option" tabindex="0" id="net">.NET</li>
                     <li class="mdc-list-item" role="option" tabindex="0" id="VOS">ADAEVOS</li>
@@ -168,7 +163,7 @@
                   <div class="mdc-select__selected-text"></div>
                   <div class="mdc-select__bottom-line"></div>
                 </div>
-                <div class="mdc-menu mdc-select__menu col-md-3">
+                <div class="mdc-menu mdc-select__menu">
                   <ul class="mdc-list mdc-menu__items">
                     <li class="mdc-list-item" role="option" tabindex="0" id="0">Nuevo</li>
                     <li class="mdc-list-item" role="option" tabindex="1" id="1">Modificado</li>
@@ -183,7 +178,7 @@
                   <div class="mdc-select__selected-text"></div>
                   <div class="mdc-select__bottom-line"></div>
                 </div>
-                <div class="mdc-menu mdc-select__menu col-md-3">
+                <div class="mdc-menu mdc-select__menu">
                   <ul class="mdc-list mdc-menu__items">
                     <li class="mdc-list-item" role="option" tabindex="0" 
                       th:each="estatus : ${componentStatus}" th:value="${estatus.statusId}" th:text="${estatus.statusName}">
@@ -218,7 +213,7 @@
                   <div class="mdc-select__selected-text"></div>
                   <div class="mdc-select__bottom-line"></div>
                 </div>
-                <div class="mdc-menu mdc-select__menu col-md-3">
+                <div class="mdc-menu mdc-select__menu">
                   <ul class="mdc-list mdc-menu__items">
                     <li class="mdc-list-item" role="option" tabindex="0" 
                       th:each="tipIni : ${tipologiaNewCmb}" th:id="${tipIni.typologyId}" th:text="${tipIni.product.productId}"
@@ -254,7 +249,7 @@
                   <div class="mdc-select__selected-text"></div>
                   <div class="mdc-select__bottom-line"></div>
                 </div>
-                <div class="mdc-menu mdc-select__menu col-md-3">
+                <div class="mdc-menu mdc-select__menu">
                   <ul class="mdc-list mdc-menu__items">
                     <li class="mdc-list-item" role="option" tabindex="0" 
                       th:each="tipFin : ${tipologiaModCmb}" th:id="${tipFin.typologyId}" th:text="${tipFin.product.productId}"
@@ -286,7 +281,7 @@
                   <div class="mdc-select__selected-text"></div>
                   <div class="mdc-select__bottom-line"></div>
                 </div>
-                <div class="mdc-menu mdc-select__menu col-md-3">
+                <div class="mdc-menu mdc-select__menu">
                   <ul class="mdc-list mdc-menu__items">
                     <li class="mdc-list-item" role="option" tabindex="0" 
                       th:each="typStatus : ${typingStatus}" th:id="${typStatus.statusId}" th:text="${typStatus.statusName}">

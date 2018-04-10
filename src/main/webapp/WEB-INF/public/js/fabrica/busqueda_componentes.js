@@ -1,3 +1,5 @@
+mdc.autoInit()
+
 $(function () {
 
   /** 
@@ -35,17 +37,46 @@ $(function () {
   const estado_tipificado = new mdc.select.MDCSelect(document.querySelector('#slct_estado_tipificado'));
 
   direccion.listen('MDCSelect:change', () => {
+    $("#slct_subidreccion").addClass("mdc-select--disabled");
+
     idSuperior = direccion.value;
-    subs = $('#select_subdireccion').children('option');
-    $("#slct_subidreccion > .mdc-menu > ul").html("");
-    $.each(subs, function (index, value) {
-      if (idSuperior == $(value).data("superior")) {
-        $("#slct_subidreccion > .mdc-menu > ul").append(
-          "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.value + "'>" + value.text + "</li>"
-        );
+
+    $.ajax({
+      url: "/levels/" + idSuperior + "/sublevel",
+      method: "GET"
+    }).done(function (data) {
+
+      $("#slct_subidreccion > .mdc-select__surface > .mdc-select__selected-text").html("");
+      $("#slct_subidreccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+      subidreccion.selectedIndex = -1;
+      subidreccion.value = "";
+
+      lis = "";
+      if ( 'undefined' !== typeof data && 0 < data.length) {
+        
+        $("#slct_subidreccion > .mdc-menu > ul").html("");
+
+        $.each(data, function (index, value) {
+          lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.levelId + "'>" + value.levelName + "</li>";  
+        });
+        
+        $("#slct_subidreccion > .mdc-menu > ul").append(lis);
+        $("#slct_subidreccion").removeClass("mdc-select--disabled");
+      } else {
+        lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+        $("#slct_subidreccion > .mdc-menu > ul").append(lis);
+        $("#slct_subidreccion").addClass("mdc-select--disabled");
       }
+    }).fail(function(){
+      $("#slct_subidreccion > .mdc-select__surface > .mdc-select__selected-text").html("");
+      $("#slct_subidreccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+      subidreccion.selectedIndex = -1;
+      subidreccion.value = "";
+
+      lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+      $("#slct_subidreccion > .mdc-menu > ul").append(lis);
+      $("#slct_subidreccion").addClass("mdc-select--disabled");
     });
-    $("#slct_subidreccion").removeClass("mdc-select--disabled");
   });
 
 
@@ -111,23 +142,23 @@ $(function () {
 
         $.each(data, function (index, value) {
           $("#tab-componentes > table > tbody").append(
-            "<tr><th></th>" +
-            "<th>" + value.componentName + "</th>" +
-            "<th>" + "" + "</th>" +
-            "<th>" + value.componentVersion + "</th>" +
-            "<th>" + "" + "</th>" +
-            "<th>" + "" + "</th>" +
-            "<th>" + "" + "</th>" +
-            "<th>" + "" + "</th>" +
-            "<th>" + "" + "</th>" +
-            "<th><a class='btn btn-primary btn-xs' href='/modifications/add?componentId=" + value.componentId + 
-              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></th>" + 
-            "<th><a class='btn btn-primary btn-xs' href='/doubts/add?componentId=" + value.componentId + 
-              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></th>" + 
-            "<th><a class='btn btn-primary btn-xs' href='/issues/add?componentId=" + value.componentId + 
-              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></th>" + 
-            "<th><a class='btn btn-success btn-xs' href='/components/" + value.componentId + 
-              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> Editar</a></th></tr>"
+            "<tr><td></td>" +
+            "<td>" + value.componentName + "</td>" +
+            "<td>" + value.requirement.requirementName + "</td>" +
+            "<td>" + value.componentVersion + "</td>" +
+            "<td>" + value.requirement.level.levelSuperior.levelName + "</td>" +
+            "<td>" + value.requirement.level.levelName  + "</td>" +
+            "<td>" + value.requirement.company.companyName + "</td>" +
+            "<td>" + value.requirement.application.technology.technologyName + "</td>" +
+            "<td>" + "" + "</td>" +
+            "<td><a class='btn btn-primary btn-xs' href='/modifications/add?componentId=" + value.componentId + 
+              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></td>" + 
+            "<td><a class='btn btn-primary btn-xs' href='/doubts/add?componentId=" + value.componentId + 
+              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></td>" + 
+            "<td><a class='btn btn-primary btn-xs' href='/issues/add?componentId=" + value.componentId + 
+              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></td>" + 
+            "<td><a class='btn btn-success btn-xs' href='/components/" + value.componentId + 
+              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> Editar</a></td></tr>"
           );
 
           designRealDeliverDate = new Date(value.componentDesignRealDeliverDate);
@@ -140,14 +171,14 @@ $(function () {
           date4 = realDeliverDate.getDate() + "/" + realDeliverDate.getMonth() + "/" + realDeliverDate.getFullYear();
 
           $("#tab-fecha > table > tbody").append(
-            "<tr><th>" + value.componentName + "</th>" +
-            "<th>" + "" + "</th>" +
-            "<th><input type='text' id='date1-" + value.componentId + "' value='" + date1 +"' class='form-control'></th>" +
-            "<th><input type='text' id='date2-" + value.componentId + "' value='" + date2 + "' class='form-control'></th>" +
-            "<th><input type='text' id='date3-" + value.componentId + "' value='" + date3 + "' class='form-control'></th>" +
-            "<th><input type='text' id='date4-" + value.componentId + "' value='" + date4 + "' class='form-control'></th>" +
-            "<th><input type='text' id='estado-" + value.componentId + "' value='' class='form-control' readonly ></th></tr>"
-
+            "<tr><td>" + value.componentName + "</td>" +
+            "<td>" + value.requirement.requirementName + "</td>" +
+            "<td><input type='text' id='date1-" + value.componentId + "' value='" + date1 +"' class='form-control'></td>" +
+            "<td><input type='text' id='date2-" + value.componentId + "' value='" + date2 + "' class='form-control'></td>" +
+            "<td><input type='text' id='date3-" + value.componentId + "' value='" + date3 + "' class='form-control'></td>" +
+            "<td><input type='text' id='date4-" + value.componentId + "' value='" + date4 + "' class='form-control'></td>" +
+            /* "<td><input type='text' id='estado-" + value.componentId + "' value='"+ value.status.statusName +"' class='form-control' readonly ></td></tr>" */
+            "<td>"+ value.status.statusName +"</td></tr>"
           );
           $("#date1-" + value.componentId).datetimepicker({ format: 'DD/MM/YYYY' });
           $("#date2-" + value.componentId).datetimepicker({ format: 'DD/MM/YYYY' });
@@ -155,27 +186,27 @@ $(function () {
           $("#date4-" + value.componentId).datetimepicker({ format: 'DD/MM/YYYY' });
 
           $("#tab-cierre > table > tbody").append(
-            "<tr><th>" + value.componentName + "</th>" +
-            "<th>" + "" + "</th>" +
-            "<th><select class='form-control' id='tipFin-" + value.componentId + "'><option></option><option></option></select></th>" +
-            "<th><input type='text' id='difFin-" + value.componentId + "' value='' class='form-control' readonly></th>" +
-            "<th><input type='text' id='costFin-" + value.componentId + "' value='' class='form-control' readonly></th>" +
-            "<th><input type='text' id='horFin-" + value.componentId + "' value='' class='form-control' readonly></th>" +
-            "<th><input type='text' id='comments-" + value.componentId + "' value='' class='form-control'></th>" +
-            "<th><select class='form-control' id='estatusTip-" + value.componentId + "'><option value=''></option></select></th>" +
-            "<th><select class='form-control' id='facturar-" + value.componentId + "'><option value='1'>SI</option><option value='0'>NO</option></select></th></tr>"
+            "<tr><td>" + value.componentName + "</td>" +
+            "<td>" + value.requirement.requirementName + "</td>" +
+            "<td><select class='form-control' id='tipFin-" + value.componentId + "'><option></option><option></option></select></td>" +
+            "<td><input type='text' id='difFin-" + value.componentId + "' value='' class='form-control' readonly></td>" +
+            "<td><input type='text' id='costFin-" + value.componentId + "' value='' class='form-control' readonly></td>" +
+            "<td><input type='text' id='horFin-" + value.componentId + "' value='' class='form-control' readonly></td>" +
+            "<td><input type='text' id='comments-" + value.componentId + "' value='" + value.componentTypoComment + "' class='form-control'></td>" +
+            "<td><select class='form-control' id='estatusTip-" + value.componentId + "'><option value=''></option></select></td>" +
+            "<td><select class='form-control' id='facturar-" + value.componentId + "'><option value='1'>SI</option><option value='0'>NO</option></select></td></tr>"
           );
 
         });
 
         $("#tab-fecha > table > tbody").append(
-          "<tr style='background-color:#004582;'><th></th>" +
-          "<th></th>" +
-          "<th><input type='text' id='date1' value='' class='form-control'></th>" +
-          "<th><input type='text' id='date2' value='' class='form-control'></th>" +
-          "<th><input type='text' id='date3' value='' class='form-control'></th>" +
-          "<th><input type='text' id='date4' value='' class='form-control'></th>" +
-          "<th></th></tr>"
+          "<tr style='background-color:#004582;'><td></td>" +
+          "<td></td>" +
+          "<td><input type='text' id='date1' value='' class='form-control'></td>" +
+          "<td><input type='text' id='date2' value='' class='form-control'></td>" +
+          "<td><input type='text' id='date3' value='' class='form-control'></td>" +
+          "<td><input type='text' id='date4' value='' class='form-control'></td>" +
+          "<td></td></tr>"
         );
 
         $('#date1').datetimepicker({format: 'DD/MM/YYYY'});
@@ -202,7 +233,7 @@ $(function () {
     $("#slct_subidreccion").addClass("mdc-select--disabled");
 
     direccion.selectedIndex = -1;
-    subidreccion.selectedIndex = -1;
+    // subidreccion.selectedIndex = -1;
     empresa.selectedIndex = -1;
     tecnologia.selectedIndex = -1;
     nuevo_modificado.selectedIndex = -1;
@@ -211,6 +242,7 @@ $(function () {
     tipologia_final.selectedIndex = -1;
     estado_tipificado.selectedIndex = -1;
 
+    /** for hidden values related to MDC Select */
     $("#principalId").val("");
     $("#subPrincipalId").val("");
     $("#companyId").val("");
@@ -223,6 +255,7 @@ $(function () {
     $("#statusTypologyId").val("");
     $("#typologyFinalSeverity").val("");
 
+    /** mdc TEXT field */
     $("#componentName").val("");
     $("#requirementName").val("");
     $("#componentVersion").val("");
@@ -230,21 +263,11 @@ $(function () {
     $("#componentPreviewDeliverDate").val("");
     $("#componentPossibleDeliverDate").val("");
     $("#componentRealDeliverDate").val("");
+    $("#typologyStartSeverity").val("");
     $("#typologyStartSeverityHours").val("");
+    $("#typologyFinalSeverity").val("");
     $("#typologyFinalSeverityHours").val("");
 
-    $("#tab-componentes > table > tbody").html("");
-    $("#tab-fecha > table > tbody").html("");
-    $("#tab-cierre > table > tbody").html("");
-
-    $("#row-title-results").hide();
-    $("#row-content-results").hide();
-    $("#row-buttons-results").hide();
-
-    $("#mdc-group-typologyStartSeverity > label").removeClass("mdc-text-field__label--float-above");
-    $("#mdc-group-typologyStartSeverityHours > label").removeClass("mdc-text-field__label--float-above");
-    $("#mdc-group-typologyFinalSeverity > label").removeClass("mdc-text-field__label--float-above");
-    $("#mdc-group-typologyFinalSeverityHours > label").removeClass("mdc-text-field__label--float-above");
     $("#mdc-group-componentName > label").removeClass("mdc-text-field__label--float-above");
     $("#mdc-group-requirementName > label").removeClass("mdc-text-field__label--float-above");
     $("#mdc-group-componentVersion > label").removeClass("mdc-text-field__label--float-above");
@@ -252,7 +275,20 @@ $(function () {
     $("#mdc-group-componentPreviewDeliverDate > label").removeClass("mdc-text-field__label--float-above");
     $("#mdc-group-componentPossibleDeliverDate > label").removeClass("mdc-text-field__label--float-above");
     $("#mdc-group-componentRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc-group-typologyStartSeverity > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc-group-typologyStartSeverityHours > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc-group-typologyFinalSeverity > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc-group-typologyFinalSeverityHours > label").removeClass("mdc-text-field__label--float-above");
 
+    /** Results section */
+    $("#tab-componentes > table > tbody").html("");
+    $("#tab-fecha > table > tbody").html("");
+    $("#tab-cierre > table > tbody").html("");
+    $("#row-title-results").hide();
+    $("#row-content-results").hide();
+    $("#row-buttons-results").hide();
+
+    /** MDC SELECT */
     $("#slct_direccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
     $("#slct_subidreccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
     $("#slct_empresa > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
@@ -262,6 +298,27 @@ $(function () {
     $("#slct_tipologia_inicial > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
     $("#slct_tipologia_final > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
     $("#slct_estado_tipificado > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+
+    $("#slct_direccion > .mdc-select__surface > .mdc-select__selected-text").html("");
+    $("#slct_subidreccion > .mdc-select__surface > .mdc-select__selected-text").html("");
+    $("#slct_empresa > .mdc-select__surface > .mdc-select__selected-text").html("");
+    $("#slct_tecnologia > .mdc-select__surface > .mdc-select__selected-text").html("");
+    $("#slct_nuevo_modificado > .mdc-select__surface > .mdc-select__selected-text").html("");
+    $("#slct_estado > .mdc-select__surface > .mdc-select__selected-text").html("");
+    $("#slct_tipologia_inicial > .mdc-select__surface > .mdc-select__selected-text").html("");
+    $("#slct_tipologia_final > .mdc-select__surface > .mdc-select__selected-text").html("");
+    $("#slct_estado_tipificado > .mdc-select__surface > .mdc-select__selected-text").html("");
+
+    $("#slct_direccion").removeClass("mdc-select--upgraded");
+    $("#slct_subidreccion").removeClass("mdc-select--upgraded");
+    $("#slct_empresa").removeClass("mdc-select--upgraded");
+    $("#slct_tecnologia").removeClass("mdc-select--upgraded");
+    $("#slct_nuevo_modificado").removeClass("mdc-select--upgraded");
+    $("#slct_estado").removeClass("mdc-select--upgraded");
+    $("#slct_tipologia_inicial").removeClass("mdc-select--upgraded");
+    $("#slct_tipologia_final").removeClass("mdc-select--upgraded");
+    $("#slct_estado_tipificado").removeClass("mdc-select--upgraded");
+    
   });
 
   $("#update-all-dates").click(function(){});
@@ -270,5 +327,3 @@ $(function () {
   
   $("#update-closure").click(function(){});
 });
-
-mdc.autoInit()
