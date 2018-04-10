@@ -1,7 +1,14 @@
 * text=auto
 
+*.css text
+*.html text
+*.js text
+*.java text
+*.xml text
+
 *.png binary
 *.jpg binary
 *.woff binary
 *.ttf binary
 *.eof binary
+*.svg binary
