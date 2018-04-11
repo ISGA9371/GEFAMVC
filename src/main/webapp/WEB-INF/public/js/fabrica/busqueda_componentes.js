@@ -23,6 +23,35 @@ $(function () {
   });
 
 
+  $.ajax({
+    url: "/technologies",
+    method: "GET",
+    beforeSend: function () {
+      $("#slct_tecnologia").addClass("mdc-select--disabled");
+      $("#slct_tecnologia > .mdc-select__surface > .mdc-select__selected-text").html("");
+      $("#slct_tecnologia > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    }
+  }).done(function (data) {
+    lis = "";
+    if ('undefined' !== typeof data.data && 0 < data.data.length) {
+      $.each(data.data, function (index, value) {
+        lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.technologyId + "'>" + value.technologyName + "</li>";
+      });
+
+      $("#slct_tecnologia > .mdc-menu > ul").append(lis);
+      $("#slct_tecnologia").removeClass("mdc-select--disabled");
+    } else {
+      lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+      $("#slct_tecnologia > .mdc-menu > ul").append(lis);
+      $("#slct_tecnologia").addClass("mdc-select--disabled");
+    }
+  }).fail(function () {
+    lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+    $("#slct_tecnologia > .mdc-menu > ul").append(lis);
+    $("#slct_tecnologia").addClass("mdc-select--disabled");
+  });
+
+
   $("#tabs").tabs();
 
 
@@ -144,11 +173,33 @@ $(function () {
     $("#finalProductId").val(tipologia_final.value);
     $("#statusTypologyId").val(estado_tipificado.value);
 
+    var params = {
+      principalId: $("#principalId").val(),
+      subPrincipalId: $("#subPrincipalId").val(),
+      companyId: $("#companyId").val(),
+      technologyId: $("#technologyId").val(),
+      typologyNewComponent: $("#typologyNewComponent").val(),
+      statusId: $("#statusId").val(),
+      startProductId: $("#startProductId").val(),
+      finalProductId: $("#finalProductId").val(),
+      statusTypologyId: $("#statusTypologyId").val(),
+      componentName: $("#componentName").val(),
+      requirementName: $("#requirementName").val(),
+      componentVersion: $("#componentVersion").val(),
+      componentDesignRealDeliverDate: $("#componentDesignRealDeliverDate").val(),
+      componentPreviewDeliverDate: $("#componentPreviewDeliverDate").val(),
+      componentPossibleDeliverDate: $("#componentPossibleDeliverDate").val(),
+      componentRealDeliverDate: $("#componentRealDeliverDate").val(),
+      typologyStartSeverity: $("#typologyStartSeverity").val(),
+      typologyStartSeverityHours: $("#typologyStartSeverityHours").val(),
+      typologyFinalSeverity: $("#typologyFinalSeverity").val(),
+      typologyFinalSeverityHours: $("#typologyFinalSeverityHours").val(),
+    };
+
     $.ajax({
       url: "/components/search",
       method: "GET",
-      // data: JSON.stringify( $("#searchForm").serialize() ),
-      data: $.param( $("#searchForm").serialize() ),
+      data: $.param( params ),
       dataType: "json",
       beforeSend: function (xhr) {
         HoldOn.open({
