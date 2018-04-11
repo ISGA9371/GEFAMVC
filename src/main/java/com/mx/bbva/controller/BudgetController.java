@@ -54,7 +54,7 @@ public class BudgetController {
         transfer.setBudget(budget);
         transferService.saveTransfer(transfer);
 
-        return URL_BUDGET + EDIT_BUDGET;
+        return URL_BUDGET + EDIT_BUDGET + transfer.getTransferId();
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -67,15 +67,18 @@ public class BudgetController {
         return URL_BUDGET + SEARCH_BUDGETS;
     }
 
-    @RequestMapping(path = "/{budgetId}", method = RequestMethod.GET)
-    public String editBudget(Model model, @PathVariable(value = "budgetId") String budgetId) {
+    @RequestMapping(path = "/{transferId}", method = RequestMethod.GET)
+    public String editBudget(Model model, @PathVariable(value = "transferId") Integer transferId) {
         // TODO Validate user
-        LOG.info("Updating budget, ID: " + budgetId);
-        if (null != budgetId) {
-            Budget budget = budgetService.findBudget(budgetId);
-            model.addAttribute("budget", budget);
+        LOG.info("Updating budget, ID: " + transferId);
+        if (null != transferId) {
+            //Budget budget = budgetService.findBudget(budgetId);
+            Transfer transfer = transferService.findTransfer(transferId);
+            LOG.info("Selected budget: " + transfer);
+            LOG.info("Selected budgetId: " + transfer.getTransferId());
+            model.addAttribute("transfer", transfer);
         } else {
-            model.addAttribute("budget", new Budget());
+            model.addAttribute("transfer", new Transfer());
         }
         return URL_BUDGET + EDIT_BUDGET;
     }

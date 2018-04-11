@@ -223,10 +223,10 @@
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
-                            <input id="hidden-proy" type="text" value="" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <input id="hidden-proy" type="text" value="" required style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;" th:field="*{project.projectId}">
                             <div id="proy-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                                    <div class="mdc-select__label">Nombre del Proyecto</div>
+                                    <div class="mdc-select__label">Nombre del Proyecto*</div>
                                     <div class="mdc-select__selected-text"></div>
                                     <div class="mdc-select__bottom-line"></div>
                                 </div>
