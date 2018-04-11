@@ -14,13 +14,13 @@ $(function () {
 
     $("#datetimepicker4").on("dp.change", function (e) {
         var date = e.date;
-        var dateStr = date.year() + "/" + (date.month() + 1) + '/' + date.date();
+        var dateStr = date.date() + "/" + (date.month() + 1) + '/' + date.year();
         $("input[id=requirementStartDate]").val(dateStr);
     });
 
     $("#datetimepicker5").on("dp.change", function (e) {
         var date = e.date;
-        var dateStr = date.year() + "/" + (date.month() + 1) + '/' + date.date();
+        var dateStr = date.date() + "/" + (date.month() + 1) + '/' + date.year();
         $("input[id=requirementEndDate]").val(dateStr);
     });
 
@@ -143,6 +143,7 @@ $(function () {
         //SET HIDDEN FIELD VALUE
         $("#technologyId").val(id);
         console.log("TECHID " +id);
+        /*
         $.ajax({
             url: "/technologies/"+id+"/app"
         }).done(function(data) {
@@ -162,6 +163,7 @@ $(function () {
             }else $("#service-type-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
 
         });
+        */
     });
 
     const empresas = new mdc.select.MDCSelect(document.querySelector('#empresas'));
@@ -217,6 +219,7 @@ $(function () {
         var radioButton = $(this).find('input[type=radio]');
         radioButton.prop('checked', true);
         $("#edit-requirement").attr("href","/requirements/"+radioButton.val());
+        $("#add-component").attr("href","/components/add?requirementId="+radioButton.val());
     });
 
     //TODO APLICAICONES
