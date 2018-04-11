@@ -49,6 +49,22 @@ public class DoubtController {
         return URL_FACTORY + EDIT_DOUBT;
     }
 
+    @RequestMapping(value = "/filters", method = RequestMethod.GET)
+    public String filtersForDoubts(Model model) {
+        // model.addAttribute("doubtSearchDTO", new DoubtSearchDTO());
+        return URL_FACTORY + SEARCH_DOUBTS;
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String searchForDoubts(Model model) {
+        // TODO Work in progress
+        /*String query = new QueryGenerator().generate(doubtSearchDTO, "Doubt");
+        List<Doubt> doubts = new ArrayList<>();
+        doubts = doubtService.findByCustomQuery(query); */
+        model.addAttribute("doubts", doubtService.findAllDoubts());
+        return URL_FACTORY + SEARCH_DOUBTS;
+    }
+
     // Model Attributes will available to the view all the time
     // LevelTypeId 1 - Direccion
     @ModelAttribute("principals")
@@ -86,6 +102,11 @@ public class DoubtController {
         // 2 - Gestoria PBAS
         users.addAll(this.userService.findUsersByType(2));
         return users;
+    }
+
+    @ModelAttribute("doubtTypes")
+    public List<DoubtType> populateDoubtTypes() {
+        return this.doubtService.findAllDoubtTypes();
     }
 
     // Import services
