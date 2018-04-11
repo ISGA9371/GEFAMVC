@@ -1,8 +1,11 @@
 package com.mx.bbva.controller;
 
+import com.mx.bbva.business.dto.ResponseListDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +47,7 @@ public class DoubtController {
 
     @RequestMapping(value = "/{doubtId}", method = RequestMethod.GET)
     public String getOneDoubt(Model model, @PathVariable Integer doubtId) {
-        Doubt doubt = doubtService.findDoubt(doubtId);
+        Doubt doubt = this.doubtService.findDoubt(doubtId);
         model.addAttribute("doubt", doubt);
         return URL_FACTORY + EDIT_DOUBT;
     }
@@ -61,8 +64,14 @@ public class DoubtController {
         /*String query = new QueryGenerator().generate(doubtSearchDTO, "Doubt");
         List<Doubt> doubts = new ArrayList<>();
         doubts = doubtService.findByCustomQuery(query); */
-        model.addAttribute("doubts", doubtService.findAllDoubts());
+        model.addAttribute("doubts", this.doubtService.findAllDoubts());
         return URL_FACTORY + SEARCH_DOUBTS;
+    }
+
+    @RequestMapping(value = "/types", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> findAllDoubtTypes() {
+        List<DoubtType> doubtTypes = this.doubtService.findAllDoubtTypes();
+        return new ResponseEntity<Object>(new ResponseListDTO(doubtTypes), HttpStatus.OK);
     }
 
     // Model Attributes will available to the view all the time
