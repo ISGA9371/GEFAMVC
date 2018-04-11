@@ -6,19 +6,19 @@ $(function () {
    * datepicker
    * dateFormat: "dd-mm-yy"
   */
-  $('#componentDesignRealDeliverDate').datetimepicker({
+  $('#componentDesignRealDeliverDate').datepicker({
     format: 'DD/MM/YYYY'
   });
 
-  $('#componentPreviewDeliverDate').datetimepicker({
+  $('#componentPreviewDeliverDate').datepicker({
     format: 'DD/MM/YYYY'
   });
 
-  $('#componentPossibleDeliverDate').datetimepicker({
+  $('#componentPossibleDeliverDate').datepicker({
     format: 'DD/MM/YYYY'
   });
 
-  $('#componentRealDeliverDate').datetimepicker({
+  $('#componentRealDeliverDate').datepicker({
     format: 'DD/MM/YYYY'
   });
 
@@ -36,26 +36,62 @@ $(function () {
   const tipologia_final = new mdc.select.MDCSelect(document.querySelector('#slct_tipologia_final'));
   const estado_tipificado = new mdc.select.MDCSelect(document.querySelector('#slct_estado_tipificado'));
 
-  direccion.listen('MDCSelect:change', () => {
-    $("#slct_subidreccion").addClass("mdc-select--disabled");
+  componentDesignRealDeliverDate = new mdc.textField.MDCTextField(document.querySelector('#mdc-group-componentDesignRealDeliverDate'));
+  componentPreviewDeliverDate = new mdc.textField.MDCTextField(document.querySelector('#mdc-group-componentPreviewDeliverDate'));
+  componentPossibleDeliverDate = new mdc.textField.MDCTextField(document.querySelector('#mdc-group-componentPossibleDeliverDate'));
+  componentRealDeliverDate = new mdc.textField.MDCTextField(document.querySelector('#mdc-group-componentRealDeliverDate'));
 
+  $("#componentDesignRealDeliverDate").change(function () {
+    if ("" != componentDesignRealDeliverDate.value) {
+      $("#mdc-group-componentDesignRealDeliverDate > label").addClass("mdc-text-field__label--float-above");
+    } else {
+      $("#mdc-group-componentDesignRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+    }
+  });
+
+  $("#componentPreviewDeliverDate").change(function () {
+    if ("" != componentPreviewDeliverDate.value) {
+      $("#mdc-group-componentPreviewDeliverDate > label").addClass("mdc-text-field__label--float-above");
+    } else {
+      $("#mdc-group-componentPreviewDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+    }
+  });
+
+  $("#componentPossibleDeliverDate").change(function () {
+    if ("" != componentPossibleDeliverDate.value) {
+      $("#mdc-group-componentPossibleDeliverDate > label").addClass("mdc-text-field__label--float-above");
+    } else {
+      $("#mdc-group-componentPossibleDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+    }
+  });
+
+  $("#componentRealDeliverDate").change(function () {
+    if ("" != componentRealDeliverDate.value) {
+      $("#mdc-group-componentRealDeliverDate > label").addClass("mdc-text-field__label--float-above");
+    } else {
+      $("#mdc-group-componentRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+    }
+  });
+
+  direccion.listen('MDCSelect:change', () => {
+  $("#slct_subidreccion > .mdc-menu > ul").html("");
     idSuperior = direccion.value;
+
+    subidreccion.selectedIndex = -1;
+    subidreccion.value = "";
 
     $.ajax({
       url: "/levels/" + idSuperior + "/sublevel",
-      method: "GET"
+      method: "GET",
+      beforeSend: function() {
+        $("#slct_subidreccion").addClass("mdc-select--disabled");
+        $("#slct_subidreccion > .mdc-select__surface > .mdc-select__selected-text").html("");
+        $("#slct_subidreccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+      }
     }).done(function (data) {
-
-      $("#slct_subidreccion > .mdc-select__surface > .mdc-select__selected-text").html("");
-      $("#slct_subidreccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
-      subidreccion.selectedIndex = -1;
-      subidreccion.value = "";
 
       lis = "";
       if ( 'undefined' !== typeof data && 0 < data.length) {
-        
-        $("#slct_subidreccion > .mdc-menu > ul").html("");
-
         $.each(data, function (index, value) {
           lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.levelId + "'>" + value.levelName + "</li>";  
         });
@@ -68,11 +104,6 @@ $(function () {
         $("#slct_subidreccion").addClass("mdc-select--disabled");
       }
     }).fail(function(){
-      $("#slct_subidreccion > .mdc-select__surface > .mdc-select__selected-text").html("");
-      $("#slct_subidreccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
-      subidreccion.selectedIndex = -1;
-      subidreccion.value = "";
-
       lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
       $("#slct_subidreccion > .mdc-menu > ul").append(lis);
       $("#slct_subidreccion").addClass("mdc-select--disabled");
@@ -231,6 +262,11 @@ $(function () {
   $("#btn-clear").click(function () {
     
     $("#slct_subidreccion").addClass("mdc-select--disabled");
+
+    componentDesignRealDeliverDate.value = "";
+    componentPreviewDeliverDate.value = "";
+    componentPossibleDeliverDate.value = "";
+    componentRealDeliverDate.value = "";
 
     direccion.selectedIndex = -1;
     // subidreccion.selectedIndex = -1;
