@@ -379,7 +379,8 @@
                       <td></td>
                       <td></td>
                       <td class="detail-label" colspan="2">
-                        <button class="btn btn-primary">Asociar PEP</button>
+                        <a th:href="@{/requirements/{requirementId}/assign-budget(requirementId=${requirement.requirementId})}"
+                           class="btn btn-primary">Asociar PEP</a>
                       </td>
                     </tr>
                   </table>

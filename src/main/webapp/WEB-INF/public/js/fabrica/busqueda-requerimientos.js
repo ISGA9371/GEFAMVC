@@ -14,13 +14,13 @@ $(function () {
 
     $("#datetimepicker4").on("dp.change", function (e) {
         var date = e.date;
-        var dateStr = date.year() + "-" + (date.month() + 1) + '-' + date.date();
+        var dateStr = date.year() + "/" + (date.month() + 1) + '/' + date.date();
         $("input[id=requirementStartDate]").val(dateStr);
     });
 
     $("#datetimepicker5").on("dp.change", function (e) {
         var date = e.date;
-        var dateStr = date.year() + "-" + (date.month() + 1) + '-' + date.date();
+        var dateStr = date.year() + "/" + (date.month() + 1) + '/' + date.date();
         $("input[id=requirementEndDate]").val(dateStr);
     });
 
