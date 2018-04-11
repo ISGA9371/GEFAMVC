@@ -3,6 +3,7 @@ package com.mx.bbva.business.dto;
 import java.util.Date;
 
 public class ComponentSearchDTO {
+
     private String componentName;
     private String requirementName;
     private String componentVersion;
@@ -10,7 +11,7 @@ public class ComponentSearchDTO {
     private Integer subPrincipalId;
     private Integer companyId;
     private Integer technologyId;
-    private boolean typologyNewComponent;
+    private Boolean typologyNewComponent;
     private Integer statusId;
     private Date componentDesignRealDeliverDate;
     private Date componentPreviewDeliverDate;
@@ -18,10 +19,10 @@ public class ComponentSearchDTO {
     private Date componentPossibleDeliverDate;
     private Date componentRealDeliverDate;
     private Integer finalProductId;
-    private int typologyStartSeverity;
+    private Integer typologyStartSeverity;
     private Long typologyStartSeverityHours;
     private Integer statusTypologyId;
-    private int typologyFinalSeverity;
+    private Integer typologyFinalSeverity;
     private Long typologyFinalSeverityHours;
 
     public ComponentSearchDTO() {
@@ -83,11 +84,11 @@ public class ComponentSearchDTO {
         this.technologyId = technologyId;
     }
 
-    public boolean isTypologyNewComponent() {
+    public Boolean getTypologyNewComponent() {
         return typologyNewComponent;
     }
 
-    public void setTypologyNewComponent(boolean typologyNewComponent) {
+    public void setTypologyNewComponent(Boolean typologyNewComponent) {
         this.typologyNewComponent = typologyNewComponent;
     }
 
@@ -147,11 +148,11 @@ public class ComponentSearchDTO {
         this.finalProductId = finalProductId;
     }
 
-    public int getTypologyStartSeverity() {
+    public Integer getTypologyStartSeverity() {
         return typologyStartSeverity;
     }
 
-    public void setTypologyStartSeverity(int typologyStartSeverity) {
+    public void setTypologyStartSeverity(Integer typologyStartSeverity) {
         this.typologyStartSeverity = typologyStartSeverity;
     }
 
@@ -171,11 +172,11 @@ public class ComponentSearchDTO {
         this.statusTypologyId = statusTypologyId;
     }
 
-    public int getTypologyFinalSeverity() {
+    public Integer getTypologyFinalSeverity() {
         return typologyFinalSeverity;
     }
 
-    public void setTypologyFinalSeverity(int typologyFinalSeverity) {
+    public void setTypologyFinalSeverity(Integer typologyFinalSeverity) {
         this.typologyFinalSeverity = typologyFinalSeverity;
     }
 
