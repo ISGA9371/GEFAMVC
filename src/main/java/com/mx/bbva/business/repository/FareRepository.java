@@ -1,14 +1,11 @@
 package com.mx.bbva.business.repository;
 
-import com.mx.bbva.business.entity.Area;
-import com.mx.bbva.business.entity.Company;
-import com.mx.bbva.business.entity.Fare;
-import com.mx.bbva.business.entity.Technology;
+import com.mx.bbva.business.entity.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
 public interface FareRepository extends JpaRepository<Fare, Integer> {
-    Fare findFareValueByCompanyAndTechnologyAndArea(Company company, Technology technology, Area area);
+    Fare findFareValueByCompanyAndTechnologyAndAreaAndStatus(Company company, Technology technology, Area area, Status status);
 }
