@@ -12503,7 +12503,7 @@ var MDCSelectFoundation = function (_MDCFoundation) {
       this.adapter_.setMenuElAttr('aria-hidden', 'true');
       this.adapter_.setMenuElStyle('display', 'block');
       var menuHeight = this.adapter_.getMenuElOffsetHeight();
-      var itemOffsetTop = this.adapter_.getOffsetTopForOptionAtIndex(index);
+      var itemOffsetTop = 0;//this.adapter_.getOffsetTopForOptionAtIndex(index);
       this.adapter_.setMenuElStyle('display', '');
       this.adapter_.rmMenuElAttr('aria-hidden');
 

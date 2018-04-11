@@ -1,3 +1,7 @@
+function initGlobal(){
+    $(".mdc-menu").width($(".mdc-select").filter(":visible").filter(":first").width());
+}
+
 function customHolder(type, msg, fctn) {
     var options = null;
     fctn = fctn == undefined ? "" : fctn;
