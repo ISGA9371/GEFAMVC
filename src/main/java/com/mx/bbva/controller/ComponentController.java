@@ -38,14 +38,11 @@ public class ComponentController {
         Requirement requirement = requirementService.findOneRequirement(requirementId);
         model.addAttribute("requirementData", requirement);
         model.addAttribute("component", new Component());
-        Fare fare = fareService.findByRequirement(requirement);
-        if (fare != null) {
-            LOG.info("Tarifa: " + fare.getFareValue());
-            model.addAttribute("fare", fare);
-        } else {
-            // TODO 404
-            model.addAttribute("fare", new Fare());
-        }
+        Double fareValue = fareService.findByRequirement(requirement);
+
+        LOG.info("Tarifa: " + fareValue);
+        model.addAttribute("fareValue", fareValue);
+
         //TODO Add catalogs
         return URL_FACTORY + NEW_COMPONENT;
     }

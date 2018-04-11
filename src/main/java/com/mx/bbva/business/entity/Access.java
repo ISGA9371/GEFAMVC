@@ -23,11 +23,11 @@ public class Access implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CD_ACCESO", nullable = false)
     private Integer accessId;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "FH_VIG_ACC_LOG", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date accessLogicalExpDate;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "FH_VIG_ACC_FIS", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date accessPhysicalExpDate;

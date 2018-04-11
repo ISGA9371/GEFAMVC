@@ -23,11 +23,11 @@ public class Transfer implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CD_TRASPASO", nullable = false)
     private Integer transferId;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "FH_TRASPASO", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date transferDate;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "FH_RETIRO")
     @Temporal(TemporalType.DATE)
     private Date transferWithdrawalDate;

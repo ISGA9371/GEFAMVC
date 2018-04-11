@@ -29,7 +29,7 @@ public class BudgetRequirement implements Serializable {
     private Double budgetRequirementValue;
     @Column(name = "HM_PEP", precision = 22)
     private Double budgetRequirementHours;
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss.S")
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss.S")
     @Column(name = "TM_PEP_REQ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date budgetRequirementDate;

@@ -8,5 +8,5 @@ import java.util.List;
 public interface FareService {
     List<Fare> findAllFares();
 
-    Fare findByRequirement(Requirement requirement);
+    Double findByRequirement(Requirement requirement);
 }

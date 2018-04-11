@@ -90,7 +90,8 @@ public class RequirementController {
     public String searchForRequirements(@ModelAttribute("requirementSearchDTO") RequirementSearchDTO requirementSearchDTO, Model model) {
         // TODO Work in progress
         String query = new QueryGenerator().generate(requirementSearchDTO, "Requirement");
-        List<Requirement> requirements = requirementService.findByCustomQuery(query);
+        List<Requirement> requirements = new ArrayList<>();
+        requirements = requirementService.findByCustomQuery(query);
         model.addAttribute("requirements", requirements);
         return URL_FACTORY + SEARCH_REQUIREMENTS;
     }
