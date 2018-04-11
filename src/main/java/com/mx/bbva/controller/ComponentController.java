@@ -36,14 +36,12 @@ public class ComponentController {
         // TODO Validate user
         LOG.info("Creating new component");
         Requirement requirement = requirementService.findOneRequirement(requirementId);
-        model.addAttribute("requirementData", requirement);
-        model.addAttribute("component", new Component());
         Double fareValue = fareService.findByRequirement(requirement);
 
-        LOG.info("Tarifa: " + fareValue);
+        model.addAttribute("requirementData", requirement);
+        model.addAttribute("component", new Component());
         model.addAttribute("fareValue", fareValue);
 
-        //TODO Add catalogs
         return URL_FACTORY + NEW_COMPONENT;
     }
 
@@ -74,9 +72,12 @@ public class ComponentController {
             Component component = componentService.findComponent(componentId);
             if (null != component.getRequirement()) {
                 Requirement requirement = component.getRequirement();
+                Double fareValue = fareService.findByRequirement(requirement);
+                // TODO Use Enums ... Needs work here
                 List<Level> superiorLevels = levelService
                         .findSuperiorLevelsByLevelType(requirement.getLevel().getLevelType());
                 model.addAttribute("superiorLevels", superiorLevels);
+                model.addAttribute("fareValue", fareValue);
             }
             model.addAttribute("component", component);
         } else {
