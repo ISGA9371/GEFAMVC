@@ -3,7 +3,7 @@
 <head>
 
     <head th:replace="~{layout/mainHeader :: head ('Modificar Requerimientos')}"></head>
-    
+
     <script type="text/javascript" th:src="@{/js/fabrica/modificar-requerimiento.js}" defer></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/fabrica/modificar-requerimiento.css}">
 
@@ -23,7 +23,7 @@
     <form th:object="${requirement}" th:action="@{/requirements}" method="post" id="form">
         <!-- HIDDEN FIELDS -->
         <input type="hidden" th:field="*{requirementId}">
-        <input type="hidden" th:field="*{requirementHour}">
+        <input type="hidden" th:field="*{requirementTotalHours}">
         <input type="hidden" th:field="*{requirementBilledHours}">
         <input type="hidden" th:field="*{requirementNoBilledHours}">
 
@@ -279,9 +279,9 @@
         </tr>
         <tr>
             <td class="col-md-4" align="center">
-                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
                     <input type="number" maxlength="10"
-                           th:field="*{requirementTotalHours}" class="mdc-text-field__input" >
+                           th:field="*{requirementHour}" class="mdc-text-field__input" >
                     <label class="mdc-text-field__label">Horas</label>
                 </div>
             </td>
@@ -307,8 +307,8 @@
                            class="mdc-text-field__input mdc-text-field--disabled">
                     <label class="mdc-text-field__label">PEP</label>
                 </div>
-                <a th:href="@{/requirement/requirement.requirementId/assign-budget}"class="btn btn-primary" style="vertical-align: text-bottom;"
-                >Asociar PEP</a>
+                <a th:href="@{/requirements/{requirementId}/assign-budget(requirementId=${requirement.requirementId})}"
+                   class="btn btn-primary" style="vertical-align: text-bottom;">Asociar PEP</a>
             </td>
         </tr>
             <tr>

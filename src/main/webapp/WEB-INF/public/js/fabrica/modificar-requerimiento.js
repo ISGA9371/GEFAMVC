@@ -17,13 +17,13 @@ $(function () {
 
     picker1.on("dp.change", function (e) {
         var date = e.date;
-        var dateStr = date.year() + "-" + (date.month() + 1) + '-' + date.date();
+        var dateStr = date.year() + "/" + (date.month() + 1) + '/' + date.date();
         $("input[id=requirementStartDate]").val(dateStr);
     });
 
     picker2.on("dp.change", function (e) {
         var date = e.date;
-        var dateStr = date.year() + "-" + (date.month() + 1) + '-' + date.date();
+        var dateStr = date.year() + "/" + (date.month() + 1) + '/' + date.date();
         $("input[id=requirementEndDate]").val(dateStr);
     });
 
@@ -327,20 +327,14 @@ $(function () {
 
     //SET DATES
 
-    var compD1 = $("#requirementStartDate").val().split('-');
-    var startD = new Date(compD1[0],compD1[1]-1,compD1[2]);
-    var compD2 = $("#requirementEndDate").val().split('-');
-    var endD = new Date(compD2[0],compD2[1]-1,compD2[2]);
-    picker1.val(startD.getDate()+"/"+(startD.getMonth()+1)+"/"+startD.getFullYear());
-    picker2.val(endD.getDate()+"/"+(endD.getMonth()+1)+"/"+endD.getFullYear())
-
-    /*
-    * var compD1 =$("#requirementStartDate").val()(startDate.split('-');
-    var startD = new Date(compD1[0],compD1[1]-1,compD1[2]);
-    var compD2 =endDate.split('-');
-    var endD = new Date(compD2[0],compD2[1]-1,compD2[2]);
-    picker1.val(startD.getDate()+"/"+(startD.getMonth()+1)+"/"+startD.getFullYear());
-    picker2.val(endD.getDate()+"/"+(endD.getMonth()+1)+"/"+endD.getFullYear())
-    */
-
+    if($("#requirementStartDate").val()){
+        var compD1 = $("#requirementStartDate").val().split('-');
+        var startD = new Date(compD1[0],compD1[1]-1,compD1[2]);
+        picker1.val(startD.getDate()+"/"+(startD.getMonth()+1)+"/"+startD.getFullYear());
+    }
+    if($("#requirementEndDate").val()){
+        var compD2 = $("#requirementEndDate").val().split('-');
+        var endD = new Date(compD2[0],compD2[1]-1,compD2[2]);
+        picker2.val(endD.getDate()+"/"+(endD.getMonth()+1)+"/"+endD.getFullYear())
+    }
 });
