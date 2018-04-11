@@ -21,7 +21,7 @@ public class Fare implements Serializable {
     @Column(name = "CD_TARIFA", nullable = false)
     private Integer fareId;
     @Column(name = "IM_TARIFA", nullable = false)
-    private double fareValue;
+    private Double fareValue;
     @Column(name = "NU_ANO_TARIFA", nullable = false)
     private int fareYear;
     @JoinColumn(name = "CD_TECNOLOGIA", referencedColumnName = "CD_TECNOLOGIA", nullable = false)
@@ -44,12 +44,12 @@ public class Fare implements Serializable {
         this.fareId = fareId;
     }
 
-    public Fare(Integer fareId, double fareValue) {
+    public Fare(Integer fareId, Double fareValue) {
         this.fareId = fareId;
         this.fareValue = fareValue;
     }
 
-    public Fare(Integer fareId, double fareValue, int fareYear) {
+    public Fare(Integer fareId, Double fareValue, int fareYear) {
         this.fareId = fareId;
         this.fareValue = fareValue;
         this.fareYear = fareYear;
@@ -63,11 +63,11 @@ public class Fare implements Serializable {
         this.fareId = fareId;
     }
 
-    public double getFareValue() {
+    public Double getFareValue() {
         return fareValue;
     }
 
-    public void setFareValue(double fareValue) {
+    public void setFareValue(Double fareValue) {
         this.fareValue = fareValue;
     }
 
