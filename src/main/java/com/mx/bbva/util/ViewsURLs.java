@@ -1,6 +1,7 @@
 package com.mx.bbva.util;
 
 public class ViewsURLs {
+
     public static final String REDIRECT = "redirect:/";
     public static final String FORWARD = "forward:/";
 
@@ -45,6 +46,6 @@ public class ViewsURLs {
     public static final String NEW_DISPERSION = "AltaDeDispersion";
     public static final String NEW_TRANSFER = "AltaDeTraspaso";
     public static final String STATUS_PAYMENT = "SeguimientoDePago";
-    public static final String BILLING_CUT = "CorteDeFacturacion";
+    public static final String BILLING_CUT = "SeguimientoCorteDeFacturacion";
 
 }
