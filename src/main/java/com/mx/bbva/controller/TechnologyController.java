@@ -3,6 +3,7 @@ package com.mx.bbva.controller;
 import com.mx.bbva.business.dto.ResponseListDTO;
 import com.mx.bbva.business.entity.Technology;
 import com.mx.bbva.business.service.TechnologyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
 @RequestMapping("/technologies")
 public class TechnologyController {
     private static final Logger LOGGER = Logger.getLogger(TechnologyController.class.getName());
+
     private TechnologyService technologyService;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
@@ -25,4 +27,8 @@ public class TechnologyController {
         return new ResponseEntity<Object>(new ResponseListDTO(technologies), HttpStatus.OK);
     }
 
+    @Autowired
+    public void setTechnologyService(TechnologyService technologyService) {
+        this.technologyService = technologyService;
+    }
 }
