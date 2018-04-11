@@ -23,6 +23,7 @@ public class IssueController {
     private PriorityService priorityService;
     private ComponentService componentService;
     private UserService userService;
+    private LevelService levelService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String createIssue(Model model, @RequestParam(value = "componentId") Integer componentId) {
@@ -72,6 +73,19 @@ public class IssueController {
         return this.priorityService.findAllPriorities();
     }
 
+    // Model Attributes will available to the view all the time
+    // LevelTypeId 1 - Direccion
+    @ModelAttribute("principals")
+    public List<Level> populatePrincipals() {
+        return this.levelService.findByLevelType(new LevelType(1));
+    }
+
+    // LevelTypeId 2 - Sub-Direccion
+    @ModelAttribute("subPrincipals")
+    public List<Level> populateSubPrincipals() {
+        return this.levelService.findByLevelType(new LevelType(2));
+    }
+
     @ModelAttribute("users")
     public List<User> populateUsers() {
         List<User> users = new ArrayList<>();
@@ -106,5 +120,10 @@ public class IssueController {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setLevelService(LevelService levelService) {
+        this.levelService = levelService;
     }
 }
