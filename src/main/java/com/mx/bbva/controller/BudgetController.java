@@ -82,16 +82,16 @@ public class BudgetController {
 
     @RequestMapping(value = "/filters", method = RequestMethod.GET)
     public String filtersForRequirements(Model model) {
-        model.addAttribute("filters", new Budget());
+        model.addAttribute("budgetSearchDTO", new BudgetSearchDTO());
         return URL_BUDGET + SEARCH_BUDGETS;
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String searchForBudgets(@ModelAttribute("budgetSearchDTO") BudgetSearchDTO budgetSearchDTO, Model model) {
         // TODO Work in progress
-        String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
-        List<Budget> budgets = budgetService.findByCustomQuery(query);
-        model.addAttribute("budgets", budgets);
+        /*String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
+        List<Budget> budgets = budgetService.findByCustomQuery(query); */
+        model.addAttribute("budgets", budgetService.findAllBudgets());
         return URL_FACTORY + SEARCH_REQUIREMENTS;
     }
 
