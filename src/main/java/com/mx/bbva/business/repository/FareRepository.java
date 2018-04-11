@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FareRepository extends JpaRepository<Fare, Integer> {
-    Double findFareValueByCompanyAndTechnologyAndArea(Company company, Technology technology, Area area);
+    Fare findFareValueByCompanyAndTechnologyAndArea(Company company, Technology technology, Area area);
 }

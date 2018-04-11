@@ -20,9 +20,9 @@ public class FareServiceImpl implements FareService {
 
     @Override
     public Double findByRequirement(Requirement requirement) {
-        Double fareValue = fareRepository.findFareValueByCompanyAndTechnologyAndArea(
+        Fare fare = fareRepository.findFareValueByCompanyAndTechnologyAndArea(
                 requirement.getCompany(), requirement.getTechnology(), requirement.getArea());
-        return fareValue != null ? fareValue : new Double(0L);
+        return fare.getFareValue() != null ? fare.getFareValue() : new Double(0L);
     }
 
     @Autowired
