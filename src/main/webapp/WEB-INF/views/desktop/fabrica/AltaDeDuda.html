@@ -83,8 +83,6 @@
             <input id="hidden-status" type="hidden" required th:field="*{status.statusId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
             <input id="hidden-componente" type="hidden"  th:value="${componentData.componentId}">
             <input id="hidden-envcomponente" type="hidden" required th:field="*{component.componentId}" >
-
-            <input id="hidden-doubtType" type="hidden" required th:field="*{doubtType.doubtTypeId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
             <input id="doubtVersion" type="hidden" required th:field="*{doubtVersion}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
 
             <div >
@@ -131,7 +129,7 @@
 
                         </td>
                         <td class="col-md-4" align="center">
-                            <!--<input id="hidden-prioridad" type="text" value="" required th:field="*{priority.priorityId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">-->
+                            <input id="hidden-dudaSelect" type="text" value="" required th:field="*{doubtType.doubtTypeId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                             <div id="Duda-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                                     <div class="mdc-select__label">Tipo de Duda*</div>
@@ -140,7 +138,7 @@
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
                                     <ul class="mdc-list mdc-menu__items">
-                                        <!--<li th:each="priorities:${priorities}" class="mdc-list-item" th:id="${priorities.priorityId}" role="option" th:text="${priorities.priorityName}"></li>-->
+                                        <li th:each="doubtTypes:${doubtTypes}" class="mdc-list-item" th:id="${doubtTypes.doubtTypeId}" role="option" th:text="${doubtTypes.doubtTypeName}"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -230,6 +228,15 @@
         });
     });
 
+    demoReady(function() {
+        var rootEst = document.getElementById('Duda-js-select');
+        var hiddenEst = document.getElementById('hidden-dudaSelect');
+        var selectEst = new mdc.select.MDCSelect(rootEst);
+
+        rootEst.addEventListener('MDCSelect:change', function() {
+            hiddenEst.value = selectEst.value;
+        });
+    });
 
 </script>
 

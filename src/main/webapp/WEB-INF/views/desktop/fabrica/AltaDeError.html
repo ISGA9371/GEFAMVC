@@ -76,11 +76,10 @@
     </div>
                 <form style="display:block" action="#" th:action="@{/issues}" onsubmit="holder('Registrando Incidencia')" th:object="${issue}" method="post">
 
+                    <input id="hidden-componente" type="hidden"  th:value="${componentData.componentId}">
+                    <input id="hidden-envcomponente" type="hidden" required th:field="*{component.componentId}" >
 
-
-                    <input id="hidden-componente" type="text" required th:field="*{component.componentId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-
-                <table class="col-md-12">
+                    <table class="col-md-12">
                     <tr style="height:72px">
                         <td class="col-md-4" align="center" style="height:72px">
                             <input id="hidden-prioridad" type="text" value="" required th:field="*{priority.priorityId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
@@ -214,11 +213,13 @@
 </style>
 <script>
 
+    $("#hidden-envcomponente").val($("#hidden-componente").val());
    
     demoReady(function() {
         mdc.select.MDCSelect.attachTo(document.getElementById('Prioridad-js-select'));
         mdc.select.MDCSelect.attachTo(document.getElementById('Origen-js-select'));
         mdc.select.MDCSelect.attachTo(document.getElementById('Estado-js-select'));
+        mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
     });
 
     demoReady(function() {
@@ -242,6 +243,15 @@
     demoReady(function() {
         var rootEst = document.getElementById('Origen-js-select');
         var hiddenEst = document.getElementById('Origen-js-select2');
+        var selectEst = new mdc.select.MDCSelect(rootEst);
+
+        rootEst.addEventListener('MDCSelect:change', function() {
+            hiddenEst.value = selectEst.value;
+        });
+    });
+    demoReady(function() {
+        var rootEst = document.getElementById('responsable-js-select');
+        var hiddenEst = document.getElementById('hidden-responsable');
         var selectEst = new mdc.select.MDCSelect(rootEst);
 
         rootEst.addEventListener('MDCSelect:change', function() {
