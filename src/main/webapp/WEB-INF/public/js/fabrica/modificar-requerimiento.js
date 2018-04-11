@@ -329,12 +329,12 @@ $(function () {
 
     if($("#requirementStartDate").val()){
         var compD1 = $("#requirementStartDate").val().split('/');
-        var startD = new Date(compD1[0],compD1[1]-1,compD1[2]);
+        var startD = new Date(compD1[2],compD1[1]-1,compD1[0]);
         picker1.val(startD.getDate()+"/"+(startD.getMonth()+1)+"/"+startD.getFullYear());
     }
     if($("#requirementEndDate").val()){
         var compD2 = $("#requirementEndDate").val().split('/');
-        var endD = new Date(compD2[0],compD2[1]-1,compD2[2]);
+        var endD = new Date(compD2[2],compD2[1]-1,compD2[0]);
         picker2.val(endD.getDate()+"/"+(endD.getMonth()+1)+"/"+endD.getFullYear())
     }
 });
