@@ -47,7 +47,7 @@ public class CompanyController {
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> findAllCompanies() {
         // TODO Validate user
-        List<Company> companies = companyService.findAllCompaniesForDropDownList();
+        List<Company> companies = companyService.findAllCompanies();
         return new ResponseEntity<Object>(new ResponseListDTO(companies), HttpStatus.OK);
     }
 
