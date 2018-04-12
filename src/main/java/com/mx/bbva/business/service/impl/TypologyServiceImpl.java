@@ -22,6 +22,11 @@ public class TypologyServiceImpl implements TypologyService {
         return typologyRepository.findById(typologyId).orElse(null);
     }
 
+    @Override
+    public List<Typology> findAllTypologies() {
+        return typologyRepository.findAll();
+    }
+
     @Autowired
     public void setRequirementRepository(TypologyRepository requirementRepository) {
         this.typologyRepository = requirementRepository;

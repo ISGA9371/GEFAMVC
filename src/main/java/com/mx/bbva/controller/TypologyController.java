@@ -21,8 +21,15 @@ public class TypologyController {
 
     private TypologyService typologyService;
 
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> getAllTypologies() {
+        LOGGER.info("find typologies...");
+        List<Typology> typologies = typologyService.findAllTypologies();
+        return new ResponseEntity<Object>(new ResponseListDTO(typologies), HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/types", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> getAllTypologies(@RequestParam Boolean componentModified) {
+    public ResponseEntity<?> getAllTypologiesByType(@RequestParam(value = "componentModified", required = false) Boolean componentModified) {
         LOGGER.info("find typologies...");
         List<Typology> typologies = typologyService.findByComponent(componentModified);
         return new ResponseEntity<Object>(new ResponseListDTO(typologies), HttpStatus.OK);
