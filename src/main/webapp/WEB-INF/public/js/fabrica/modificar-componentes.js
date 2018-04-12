@@ -13,8 +13,9 @@ function init() {
     addHoursValidation();
     addButtonEvents();
 
-    $(".container").click();
+
     setTimeout("window.scrollTo(0, 0)",50);
+    setTimeout("$(\".container\").click();",50);
 }
 
 function fillFields() {
