@@ -89,3 +89,16 @@ msgAssets.warn = new Object();
 msgAssets.warn.defaultMsg = "Ocurrio un Evento Inesperado.";
 msgAssets.warn.icon = "iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAQAAAD/5HvMAAABoElEQVR4AezOMQ7BcBhA8aZJh06d2BiZmblAL8ABuAAH4AIcgAtwDWZmRjamTh2aNE86NJGm2g7N9/0l/b0LPKvxHxoNfHysOrKoI4c7NxxzhpYkFqYMtQlIBLTMGNqT2pkwNCQmFTPQHzrz7aQ9NCVrojnk8iTrgas3tCbPSmuoS0iekI7O0JFfDhpDY4qMpIdsrhS5YMsOzSkzkxzyeFPmhSc3tKWKjdRQn4gqInoyQ59269gGQBgGomjmy76wnmkRouDpIqDweYHfWHp7Pd32RtAs2fQgxyrMYetYpTlsHas0h61iFeewVazebZzuMoetY5WCHLaOVQpy2DpWKchh61ilIIetY5WCHLaOVQpy2DpWKchh61ilIIetY5WCHLaOVQpy2DpWKchhS1j1OWwJqz6HLWHV57AlrPoctoRVn8OWsOpz2DpW/e0JtoDVIAhgC1gNggC2gNUgCGALWA2CALaA1SAIYAtYDQawBawGA9gCVoMBbAGrwQC2gNVgAFvAajCALWA1GMA2xOp62IZYXQ/bUb+6DuqgDuqg7+8AxTRCLX3G8n0AAAAASUVORK5CYII=";
 msgAssets.warn.textColor = "#e6ac00";
+
+$(function () {
+    $("ul.sub-menu li a").click(function () {
+        HoldOn.open({
+            theme: "sk-cube",
+            content: '',
+            message: 'Cargando...',
+            // backgroundColor: "#004582",
+            backgroundColor: "#0c71ca",
+            textColor: "white",
+        });
+    });
+});
