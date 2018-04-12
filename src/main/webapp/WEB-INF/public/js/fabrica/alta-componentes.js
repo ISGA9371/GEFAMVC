@@ -174,10 +174,10 @@ function addSelectEvents() {
 function loadSelects() {
     mdc.select.MDCSelect.attachTo(document.getElementById('nuemod-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-empty-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-news-js-select'));
     $.ajax({
         type: "GET",
         dataType: "json",
+        async: false,
         url: "http://localhost:8080/typologies/types?componentModified=false",
         success: function(json){
             $.each(json.data, function(i, data) {
@@ -187,7 +187,6 @@ function loadSelects() {
                 $liElement.attr("id",data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours);
                 $liElement.append(data.product.productName);
                 $("#tipologia-news-js-select").find("ul:first").append($liElement);
-                //$("#tipologia-news-js-select").find("ul:first").append("<li class=\"mdc-list-item\" id=\""+data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours+"\" role=\"option\">"+data.product.productName+"</li>");;
             });
             mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-news-js-select'));
         },
@@ -199,16 +198,16 @@ function loadSelects() {
     $.ajax({
         type: "GET",
         dataType: "json",
+        async: false,
         url: "http://localhost:8080/typologies/types?componentModified=true",
         success: function(json){
             $.each(json.data, function(i, data) {
-                /*$liElement = $("<li>");
+                $liElement = $("<li>");
                 $liElement.attr("class","mdc-list-item");
                 $liElement.attr("role","option");
                 $liElement.attr("id",data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours);
                 $liElement.append(data.product.productName);
-                $("#tipologia-mods-js-select").find("ul:first").append($liElement);*/
-                $("#tipologia-mods-js-select").find("ul:first").append("<li class=\"mdc-list-item\" id=\""+data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours+"\" role=\"option\">"+data.product.productName+"</li>");;
+                $("#tipologia-mods-js-select").find("ul:first").append($liElement);
             });
             mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-mods-js-select'));
         },
