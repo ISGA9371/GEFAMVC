@@ -1,6 +1,7 @@
 function init() {
     //showH();
     initGlobal();
+    holder("Cargando");
     addCalendars();
     loadSelects();
     getVersion();

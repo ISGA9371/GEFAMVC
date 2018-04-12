@@ -1,6 +1,7 @@
 function init() {
     //showH();
     initGlobal();
+    holder("Cargando");
     addCalendars();
     loadSelects();
     fillFields();
@@ -16,6 +17,7 @@ function init() {
 
     setTimeout("window.scrollTo(0, 0)",50);
     setTimeout("$(\".container\").click();",50);
+    HoldOn.close();
 }
 
 function fillFields() {
@@ -308,14 +310,58 @@ function loadSelects() {
     //mdc.select.MDCSelect.attachTo(document.getElementById('subdireccion-js-select'));
     //mdc.select.MDCSelect.attachTo(document.getElementById('nuemod-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-empty-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-news-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-mods-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-final-empty-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-final-news-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-final-mods-js-select'));
+    mdc.select.MDCSelect.attachTo(document.getElementById('facturado-js-select'));
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        url: "http://localhost:8080/typologies/types?componentModified=false",
+        success: function(json){
+            $.each(json.data, function(i, data) {
+                $liElement = $("<li>");
+                $liElement.attr("class","mdc-list-item");
+                $liElement.attr("role","option");
+                $liElement.attr("id",data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours+"|"+data.typologyComponentModified);
+                $liElement.append(data.product.productName);
+                $("#tipologia-news-js-select").find("ul:first").append($liElement);
+                $("#tipologia-final-news-js-select").find("ul:first").append($liElement.clone());
+            });
+            mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-news-js-select'));
+            mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-final-news-js-select'));
+        },
+        error: function(xhr, status, error) {
+            console.log('¡Error al consultar combos!');
+            customHolder('error','¡Error al consultar combos!');
+        }
+    });
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        url: "http://localhost:8080/typologies/types?componentModified=true",
+        success: function(json){
+            $.each(json.data, function(i, data) {
+                $liElement = $("<li>");
+                $liElement.attr("class","mdc-list-item");
+                $liElement.attr("role","option");
+                $liElement.attr("id",data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours+"|"+data.typologyComponentModified);
+                $liElement.append(data.product.productName);
+                $("#tipologia-mods-js-select").find("ul:first").append($liElement);
+                $("#tipologia-final-mods-js-select").find("ul:first").append($liElement.clone());
+            });
+            mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-mods-js-select'));
+            mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-final-mods-js-select'));
+        },
+        error: function(xhr, status, error) {
+            console.log('¡Error al consultar combos!');
+            customHolder('error','¡Error al consultar combos!');
+        }
+    });
+
+
     mdc.select.MDCSelect.attachTo(document.getElementById('estatus-tipificacion-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('estatus-componente-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('facturado-js-select'));
 }
 
 function defaultTypologies() {
