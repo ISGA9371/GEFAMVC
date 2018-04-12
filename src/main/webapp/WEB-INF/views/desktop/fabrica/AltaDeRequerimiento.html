@@ -18,7 +18,7 @@
           <div class="col-md-12 subtitle-content">Datos Generales</div>
         </div>
 
-        <form th:object="${requirement}" th:action="@{/requirements}" method="post">
+        <form th:object="${requirement}" onsubmit="holder('Registrando Requerimiento')" th:action="@{/requirements}" method="post">
             <div class="row">
                 <table class="col-md-12" align="center">
                     <tr height="72px">
@@ -300,6 +300,7 @@
     </body>
 
     <div th:replace="~{layout/footer2 :: scripts }"></div>
+    <script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
     <script type="text/javascript" th:src="@{/js/fabrica/fn_AltaRequerimiento.js}"></script>
 
     <script>

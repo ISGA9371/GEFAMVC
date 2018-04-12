@@ -71,12 +71,12 @@ public class BudgetController {
     @RequestMapping(path = "/{transferId}", method = RequestMethod.GET)
     public String editBudget(Model model, @PathVariable(value = "transferId") Integer transferId) {
         // TODO Validate user
-        LOG.info("Updating budget, ID: " + transferId);
+        LOG.info("Updating transfer, ID: " + transferId);
         if (null != transferId) {
             //Budget budget = budgetService.findBudget(budgetId);
             Transfer transfer = transferService.findTransfer(transferId);
-            LOG.info("Selected budget: " + transfer);
-            LOG.info("Selected budgetId: " + transfer.getTransferId());
+            LOG.info("Selected transfer: " + transfer);
+            LOG.info("Selected transferId: " + transfer.getTransferId());
             model.addAttribute("transfer", transfer);
         } else {
             model.addAttribute("transfer", new Transfer());
