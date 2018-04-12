@@ -63,11 +63,9 @@ public class Component implements Serializable {
     @JoinColumn(name = "ST_COMPONENTE", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
-    @JsonIgnore // TODO WTF
     @JoinColumn(name = "CD_TIPOLOGIA", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Typology typology;
-    @JsonIgnore // TODO WTF
     @JoinColumn(name = "CD_TIPOLOGIA_EMP", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Typology typologyEmp;

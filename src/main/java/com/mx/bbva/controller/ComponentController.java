@@ -1,9 +1,12 @@
 package com.mx.bbva.controller;
 
 import com.mx.bbva.business.dto.ComponentSearchDTO;
+import com.mx.bbva.business.dto.ResponseDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +46,13 @@ public class ComponentController {
         model.addAttribute("fareValue", fareValue);
 
         return URL_FACTORY + NEW_COMPONENT;
+    }
+
+    @RequestMapping(value = "/fare", method = RequestMethod.GET)
+    public ResponseEntity<?> findFareValue(@RequestParam Integer requirementId) {
+        Requirement requirement = requirementService.findOneRequirement(requirementId);
+        Double fareValue = fareService.findByRequirement(requirement);
+        return new ResponseEntity<Object>(new ResponseDTO(fareValue), HttpStatus.OK);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)

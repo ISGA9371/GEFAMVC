@@ -1,12 +1,15 @@
 package com.mx.bbva.controller;
 
 import com.mx.bbva.business.dto.ResponseListDTO;
+import com.mx.bbva.business.entity.Application;
 import com.mx.bbva.business.entity.Technology;
+import com.mx.bbva.business.service.ApplicationService;
 import com.mx.bbva.business.service.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,6 +22,7 @@ public class TechnologyController {
     private static final Logger LOGGER = Logger.getLogger(TechnologyController.class.getName());
 
     private TechnologyService technologyService;
+    private ApplicationService applicationService;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> getAllTechnologiess() {
@@ -27,8 +31,20 @@ public class TechnologyController {
         return new ResponseEntity<Object>(new ResponseListDTO(technologies), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/{technologyId}/applications", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> getAllApplicationsByTech(@PathVariable("technologyId") Integer technologyId) {
+        LOGGER.info("find apps by tech..." + technologyId);
+        List<Application> applications = applicationService.findAllByTech(technologyId);
+        return new ResponseEntity<Object>(new ResponseListDTO(applications), HttpStatus.OK);
+    }
+
     @Autowired
     public void setTechnologyService(TechnologyService technologyService) {
         this.technologyService = technologyService;
+    }
+
+    @Autowired
+    public void setApplicationService(ApplicationService applicationService) {
+        this.applicationService = applicationService;
     }
 }
