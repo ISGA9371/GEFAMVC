@@ -187,4 +187,30 @@ public class ComponentSearchDTO {
     public void setTypologyFinalSeverityHours(Long typologyFinalSeverityHours) {
         this.typologyFinalSeverityHours = typologyFinalSeverityHours;
     }
+
+    @Override
+    public String toString() {
+        return "ComponentSearchDTO{" +
+                "componentName='" + componentName + '\'' +
+                ", requirementName='" + requirementName + '\'' +
+                ", componentVersion='" + componentVersion + '\'' +
+                ", principalId=" + principalId +
+                ", subPrincipalId=" + subPrincipalId +
+                ", companyId=" + companyId +
+                ", technologyId=" + technologyId +
+                ", typologyNewComponent=" + typologyNewComponent +
+                ", statusId=" + statusId +
+                ", componentDesignRealDeliverDate=" + componentDesignRealDeliverDate +
+                ", componentPreviewDeliverDate=" + componentPreviewDeliverDate +
+                ", startProductId=" + startProductId +
+                ", componentPossibleDeliverDate=" + componentPossibleDeliverDate +
+                ", componentRealDeliverDate=" + componentRealDeliverDate +
+                ", finalProductId=" + finalProductId +
+                ", typologyStartSeverity=" + typologyStartSeverity +
+                ", typologyStartSeverityHours=" + typologyStartSeverityHours +
+                ", statusTypologyId=" + statusTypologyId +
+                ", typologyFinalSeverity=" + typologyFinalSeverity +
+                ", typologyFinalSeverityHours=" + typologyFinalSeverityHours +
+                '}';
+    }
 }

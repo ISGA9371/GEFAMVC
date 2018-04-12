@@ -63,11 +63,11 @@ public class Component implements Serializable {
     @JoinColumn(name = "ST_COMPONENTE", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
-    @JsonIgnore
+    @JsonIgnore // TODO WTF
     @JoinColumn(name = "CD_TIPOLOGIA", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Typology typology;
-    @JsonIgnore
+    @JsonIgnore // TODO WTF
     @JoinColumn(name = "CD_TIPOLOGIA_EMP", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
     @ManyToOne(optional = false)
     private Typology typologyEmp;
@@ -195,28 +195,12 @@ public class Component implements Serializable {
         this.componentUploadDate = componentUploadDate;
     }
 
-    public List<Modification> getModifications() {
-        return modifications;
+    public Boolean getComponentForBill() {
+        return componentForBill;
     }
 
-    public void setModifications(List<Modification> modifications) {
-        this.modifications = modifications;
-    }
-
-    public List<Doubt> getDoubts() {
-        return doubts;
-    }
-
-    public void setDoubts(List<Doubt> doubts) {
-        this.doubts = doubts;
-    }
-
-    public List<Issue> getIssues() {
-        return issues;
-    }
-
-    public void setIssues(List<Issue> issues) {
-        this.issues = issues;
+    public void setComponentForBill(Boolean componentForBill) {
+        this.componentForBill = componentForBill;
     }
 
     public Status getStatusTypology() {
@@ -259,12 +243,28 @@ public class Component implements Serializable {
         this.requirement = requirement;
     }
 
-    public Boolean getComponentForBill() {
-        return componentForBill;
+    public List<Modification> getModifications() {
+        return modifications;
     }
 
-    public void setComponentForBill(Boolean componentForBill) {
-        this.componentForBill = componentForBill;
+    public void setModifications(List<Modification> modifications) {
+        this.modifications = modifications;
+    }
+
+    public List<Doubt> getDoubts() {
+        return doubts;
+    }
+
+    public void setDoubts(List<Doubt> doubts) {
+        this.doubts = doubts;
+    }
+
+    public List<Issue> getIssues() {
+        return issues;
+    }
+
+    public void setIssues(List<Issue> issues) {
+        this.issues = issues;
     }
 
     @Override

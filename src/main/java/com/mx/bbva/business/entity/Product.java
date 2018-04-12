@@ -20,7 +20,6 @@ public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CD_PRODUCTO", nullable = false, length = 3)
     private String productId;
     @Column(name = "NB_PRODUCTO", nullable = false, length = 50)

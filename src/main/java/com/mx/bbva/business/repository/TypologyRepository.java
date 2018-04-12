@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TypologyRepository extends JpaRepository<Typology, Integer> {
-    List<Typology> findAllByTypologyNewComponent(boolean typologyNewComponent);
+    List<Typology> findAllByTypologyComponentModified(boolean typologyComponentModified);
 }

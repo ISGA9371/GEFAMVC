@@ -14,7 +14,7 @@ public class TypologyServiceImpl implements TypologyService {
 
     @Override
     public List<Typology> findByComponent(boolean typologyComponent) {
-        return typologyRepository.findAllByTypologyNewComponent(typologyComponent);
+        return typologyRepository.findAllByTypologyComponentModified(typologyComponent);
     }
 
     @Override

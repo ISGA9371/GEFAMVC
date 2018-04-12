@@ -3,13 +3,13 @@ package com.mx.bbva.controller;
 import com.mx.bbva.business.dto.ComponentSearchDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
-import com.mx.bbva.util.query.ComponentQueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import static com.mx.bbva.util.ViewsURLs.*;
@@ -92,12 +92,13 @@ public class ComponentController {
         return URL_FACTORY + SEARCH_COMPONENTS;
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public List<Component> searchForComponents(@ModelAttribute("filters") ComponentSearchDTO filters) {
+    @RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
+    public List<Component> searchForComponents(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
-        String query = new ComponentQueryGenerator().generateQuery(filters);
-        return componentService.findByCustomQuery(query);
+        /*String query = new ComponentQueryGenerator().generateQuery(searchDTO);
+        return componentService.findByCustomQuery(query); */
+        return componentService.findAllComponents();
     }
 
     //TODO Use Enums
