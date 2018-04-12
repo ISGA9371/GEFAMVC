@@ -175,7 +175,21 @@ function loadSelects() {
     mdc.select.MDCSelect.attachTo(document.getElementById('nuemod-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-empty-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-news-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-mods-js-select'));
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "http://localhost:8080/typologies/types?componentModified=true",
+        success: function(json){
+            $.each(json.data, function(i, data) {
+                $("#tipologia-mods-js-select").find("ul:first").append("<li class=\"mdc-list-item\" id=\""+data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours+"\" role=\"option\">"+data.product.productName+"</li>");;
+            });
+            mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-mods-js-select'));
+        },
+        error: function(xhr, status, error) {
+            console.log('¡Error al consultar combos!');
+            customHolder('error','¡Error al consultar combos!');
+        }
+    });
 }
 
 function setDefaults() {
@@ -275,3 +289,20 @@ Number.prototype.formatMoney = function(c, d, t){
         j = (j = i.length) > 3 ? j % 3 : 0;
     return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 };
+
+/*
+$.ajax({
+    type: "GET",
+    dataType: "json",
+    url: "http://localhost:8080/typologies/types?componentModified=true",
+    success: function(json){
+        $.each(json.data, function(i, data) {
+            $("#tipologia-news-js-select").find("ul:first").append("<li class=\"mdc-list-item\" id=\""+data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours+"\" role=\"option\">"+data.product.productName+"</li>");;
+        });
+    },
+    error: function(xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        customHolder('error','¡Error al consultar combos!');
+    }
+});
+*/
