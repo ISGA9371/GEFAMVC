@@ -43,7 +43,7 @@ public class RequirementQueryGenerator {
             addFilter("x.projectType.projectTypeId", "'" + searchDTO.getProjectTypeId() + "'", EQUALS);
         }
         if (isNotNullInteger(searchDTO.getTechnologyId())) {
-            addFilter("x.technology.technologyId", "'" + searchDTO.getTechnologyId(), EQUALS);
+            addFilter("x.technology.technologyId", "'" + searchDTO.getTechnologyId() + "'", EQUALS);
         }
         if (isNotNullInteger(searchDTO.getCompanyId())) {
             addFilter("x.company.companyId", "'" + searchDTO.getCompanyId() + "'", EQUALS);
