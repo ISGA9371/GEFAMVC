@@ -380,7 +380,7 @@
                       <td></td>
                       <td class="detail-label" colspan="2">
                         <a th:href="@{/requirements/{requirementId}/assign-budget(requirementId=${requirement.requirementId})}"
-                           class="btn btn-primary">Asociar PEP</a>
+                           class="btn btn-primary" onclick="showHoldOn();">Asociar PEP</a>
                       </td>
                     </tr>
                   </table>
@@ -396,8 +396,8 @@
 
     <div class="row buttons" id="row-buttons-results">
       <div class="col-xs-12 text-center">
-        <a id="edit-requirement" class="btn btn-primary">Modificar</a>
-        <a id="add-component" class="btn btn-primary">Alta</a>
+        <a id="edit-requirement" class="btn btn-primary" onclick="showHoldOn();">Modificar</a>
+        <a id="add-component" class="btn btn-primary" onclick="showHoldOn();">Alta de Componente</a>
       </div>
     </div>
     <!-- .// row -->

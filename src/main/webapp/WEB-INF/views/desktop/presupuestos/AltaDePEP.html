@@ -10,16 +10,16 @@
 <div class="container">
 
     <div class="row">
-      <div class="col-md-12 text-center">
-        <h2 class="h2-title-content">Alta de PEP</h2>
-      </div>
+        <div class="col-md-12 text-center">
+            <h2 class="h2-title-content">Alta de PEP</h2>
+        </div>
     </div>
 
     <div class="row">
-      <div class="col-md-12 subtitle-content">Datos Generales</div>
+        <div class="col-md-12 subtitle-content">Datos Generales</div>
     </div>
 
-    <form th:action="@{/budgets}" method="post">
+    <form th:action="@{/budgets}" method="post" onsubmit="holder('Registrando PEP')">
 
         <!--Valores que no estan en ventana-->
         <input type="hidden" id="hdStatus" value="" th:field="*{budget.budgetStatus.statusId}">
@@ -179,7 +179,7 @@
                     <div class="dog1">
                         <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                             <input type='text' class="mdc-text-field__input" required th:field="*{transfer.transferDate}" value=""  row="2" id='fechaTranspaso' />
-                            <label for="demo-input" class="mdc-text-field__label">Fecha de Traspaso*</label>
+                            <label for="demo-input" class="mdc-text-field__label">Fecha de Traspaso</label>
                         </div>
                     </div>
 
@@ -272,7 +272,7 @@
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                         <input type="text" th:field="*{transfer.transferValue}" pattern="[0-9]+" maxlength="10" required onchange="asignMount(this.value);" value="" class="mdc-text-field__input" id="">
-                        <label for="demo-input" class="mdc-text-field__label" >Presupuestado MXN*</label>
+                        <label for="demo-input" class="mdc-text-field__label" >Presupuestado MXN</label>
                     </div>
                 </td>
             </tr>
@@ -314,6 +314,7 @@
 </body>
 
 <div th:replace="~{layout/footer2 :: scripts }"></div>
+<script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
 <script type="text/javascript" th:src="@{/js/fabrica/fn_AltaPep.js}"></script>
 
 <script>

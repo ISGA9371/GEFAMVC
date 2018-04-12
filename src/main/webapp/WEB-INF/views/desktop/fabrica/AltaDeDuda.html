@@ -202,7 +202,7 @@
 
 <div th:replace="~{layout/footer2 :: scripts }"></div>
 
-<script>mdc.autoInit()</script>
+
 <style rel="stylesheet">
     .mdc-text-field__input {
         border-bottom-color: rgba(15, 50, 242, 0.5);
@@ -210,13 +210,6 @@
 </style>
 
 <script>
-    demoReady(function() {
-        mdc.select.MDCSelect.attachTo(document.getElementById('Prioridad-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Duda-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
-    });
-
-
     demoReady(function() {
         var rootEst = document.getElementById('Prioridad-js-select');
         var hiddenEst = document.getElementById('hidden-prioridad');
@@ -247,36 +240,6 @@
         });
     });
 
-</script>
-
-<script>
-    $("#hidden-status").val("11");
-    $("#hidden-doubtType").val("13");
-    $("#hidden-envcomponente").val($("#hidden-componente").val());
-
-
-    var fecha=$("#datetimepicker").val();
-    var dia = fecha.substring(8,10);
-    var mes = fecha.substring(5,7);
-    var anio = fecha.substring(0,4);
-    $("#datetimepickerformat").val(dia+"/"+mes+"/"+anio);
-
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1;
-
-    var yyyy = today.getFullYear();
-    if (dd < 10) {
-        dd = '0' + dd;
-    }
-    if (mm < 10) {
-        mm = '0' + mm;
-    }
-    var today = 'v' + yyyy + mm + dd;
-
-    $('#doubtVersion').val(today);
-
-
     function holder(msg){
         HoldOn.open({
             theme: "sk-cube",
@@ -289,21 +252,18 @@
     }
 
 </script>
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker4').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
-    });
-
-    function addButtonEvents() {
-        var btnCancel = document.getElementById('cancelar-btn');
-        btnCancel.addEventListener("click", function () {
-            window.history.back();
-        })
-    }
-</script>
 
 <!--Footer que debe ir en todas las ventanas-->
 <div th:replace="layout/footer :: FooterPrincipal"></div>
+<script type="text/javascript" th:src="@{../js/fabrica/alta-duda.js}"></script>
+<script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
+
+<script>mdc.autoInit()</script>
+<script>
+    demoReady(function () {
+        init();
+        initGlobal();
+    });
+
+</script>
 </html>

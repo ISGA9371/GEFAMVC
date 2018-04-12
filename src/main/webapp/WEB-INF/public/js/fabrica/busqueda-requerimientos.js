@@ -215,8 +215,16 @@ $(function () {
         $("#programIncrementId").val(id);
     });
 
+    $('tr.clickable').find('input[type=radio]').click(function (event) {
+        //
+    });
+
     $('tr.clickable').click(function() {
+
         var radioButton = $(this).find('input[type=radio]');
+        var nameGroup = radioButton.attr("name");
+        $('input[type=radio][name='+nameGroup+']').prop("checked",false);
+        //console.log("hola"+ radioButton.prop("checked"));
         radioButton.prop('checked', true);
         $("#edit-requirement").attr("href","/requirements/"+radioButton.val());
         $("#add-component").attr("href","/components/add?requirementId="+radioButton.val());
@@ -233,7 +241,7 @@ function showHoldOn() {
     HoldOn.open({
         theme: "sk-cube",
         content: '',
-        message: 'Consultado Información',
+        message: 'Procesando...',
         backgroundColor: "#0c71ca",
         textColor: "white",
     });
