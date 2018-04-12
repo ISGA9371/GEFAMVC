@@ -38,6 +38,7 @@ public class BudgetRequirement implements Serializable {
     @JoinColumn(name = "CD_PEP", referencedColumnName = "CD_PEP", nullable = false)
     @ManyToOne(optional = false)
     private Budget budget;
+    @JsonIgnore
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false)
     @ManyToOne(optional = false)
     private Requirement requirement;
