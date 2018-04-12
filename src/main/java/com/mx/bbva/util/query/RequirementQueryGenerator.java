@@ -15,6 +15,11 @@ public class RequirementQueryGenerator {
         final String LIKE = " LIKE ";
 
         stringBuffer.append("FROM Requirement x ");
+        // TODO Check how to search the budget
+        /*
+        if (isNotNullString(searchDTO.getBudgetId())) {
+            addFilter("br.budget.budgetId", "'%" + searchDTO.getBudgetId() + "%'", LIKE);
+        }*/
         if (isNotNullString(searchDTO.getRequirementName())) {
             addFilter("x.requirementName", "'%" + searchDTO.getRequirementName() + "%'", LIKE);
         }
@@ -50,10 +55,6 @@ public class RequirementQueryGenerator {
         }
         if (isNotNullInteger(searchDTO.getServiceTypeId())) {
             addFilter("x.serviceType.serviceTypeId", "'" + searchDTO.getServiceTypeId() + "'", EQUALS);
-        }
-        // TODO Check how to search the budget
-        if (isNotNullString(searchDTO.getBudgetId())) {
-            addFilter("x.budgetRequirements.budget.budgetId", "'%" + searchDTO.getBudgetId() + "%'", LIKE);
         }
         if (isNotNullString(searchDTO.getRequirementStartDate())) {
             addFilter("x.requirementStartDate", "'%" + searchDTO.getRequirementStartDate() + "%'", LIKE);

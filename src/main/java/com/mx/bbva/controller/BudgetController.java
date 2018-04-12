@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -54,7 +55,7 @@ public class BudgetController {
         transfer.setBudget(budget);
         transferService.saveTransfer(transfer);
 
-        return URL_BUDGET + EDIT_BUDGET + transfer.getTransferId();
+        return REDIRECT + "budgets/" + transfer.getTransferId();
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -136,7 +137,7 @@ public class BudgetController {
     //FALTA COMBO AÑO TABLAS BUDGETS
     @ModelAttribute("budgetYears")
     public List<Integer> populateBubgetYears() {
-        return this.budgetService.findAllYears();
+        return Arrays.asList(2017, 2018, 2019);
     }
 
     //FALTA COMBO BANCAS TABLAS 34
