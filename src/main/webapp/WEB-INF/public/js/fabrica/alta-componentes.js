@@ -15,6 +15,7 @@ function init() {
 
     $("#statusTypology").val(8);
     $("#status").val(31);
+    HoldOn.close();
 }
 
 function getVersion() {
