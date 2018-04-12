@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head th:replace="~{layout/mainHeader :: head ('Alta de Incidencia')}"></head>
+
+<body>
+
+<header th:replace="~{layout/mainHeader :: header }"></header>
+
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2 class="h2-title-content">Alta de Incidencia</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 subtitle-content">Datos Componente</div>
+    </div>
+
+            <table class="col-md-12" >
+                <tr>
+                    <td class="col-md-4" align="center">
+                        <div id="nombre-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input disabled="disabled" th:value="${componentData.componentName}"  type="text"  required class="mdc-text-field__input"  id="demo-input">
+                            <label for="demo-input" class="mdc-text-field__label">Nombre de Componente</label>
+                        </div>
+                    </td>
+                    <td class="col-md-4" align="center">
+                        <div id="direccion-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input type="text" class="mdc-text-field__input"
+                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" value="" readonly="readonly"
+                                   th:each="principals:${principals}"
+                                   th:object="${principals}"
+                                   th:if="${principals.levelId} == ${componentData.requirement.level.levelSuperior.levelId}"
+                                   th:value="${principals.levelName}">
+
+
+                            <!--<input disabled="disabled" th:value="${componentData.requirement.level.levelName}"  type="text" required class="mdc-text-field__input"  id="demo-input">-->
+                            <label for="demo-input" class="mdc-text-field__label">Direccion</label>
+                    </td>
+                    <td class="col-md-4" align="center">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input disabled="disabled" th:value="${componentData.requirement.level.levelName}" type="text"  required class="mdc-text-field__input" id="demo-input">
+                            <label for="demo-input" class="mdc-text-field__label">Subdirección</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4" align="center">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input disabled="disabled" th:value="${componentData.componentVersion}" type="text"  class="mdc-text-field__input" id="version">
+                            <label for="demo-input" class="mdc-text-field__label">Versión</label>
+                        </div>
+                    </td>
+                    <td class="col-md-4" align="center">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input disabled="disabled" th:value="${componentData.requirement.requirementName}" type="text"  class="mdc-text-field__input" id="requerimiento">
+                            <label for="demo-input" class="mdc-text-field__label">Requerimiento></label>
+                        </div>
+                    </td>
+                    <td class="col-md-4" align="center">
+                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input disabled="disabled" th:value="${componentData.requirement.technology.technologyName}" type="text"  class="mdc-text-field__input" id="tecnologia">
+                            <label for="demo-input" class="mdc-text-field__label">Tecnologia</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4" align="center">
+                        <div class="dog1">
+                            <input disabled="disabled" th:value="${componentData.componentUploadDate}" type='hidden' class="mdc-text-field__input"  row="2" id='datetimepicker' />
+                            <div id="fechaAlta-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input disabled="disabled" th:value="${componentData.componentUploadDate}" type='text' class="mdc-text-field__input"  row="2" id='datetimepickerformat' />
+                                <label for="demo-input" class="mdc-text-field__label">Fecha de Alta</label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+    <div class="row">
+        <div class="col-md-12 subtitle-content">Datos de Incidencia</div>
+    </div>
+                <form style="display:block" action="#" th:action="@{/issues}" onsubmit="holder('Registrando Incidencia')" th:object="${issue}" method="post">
+
+                    <input id="hidden-componente" type="hidden"  th:value="${componentData.componentId}">
+                    <input id="hidden-envcomponente" type="hidden" required th:field="*{component.componentId}" >
+
+                    <table class="col-md-12">
+                    <tr style="height:72px">
+                        <td class="col-md-4" align="center" style="height:72px">
+                            <input id="hidden-prioridad" type="text" value="" required th:field="*{priority.priorityId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <div id="Prioridad-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                                    <div class="mdc-select__label">Prioridad*</div>
+                                    <div class="mdc-select__selected-text"></div>
+                                    <div class="mdc-select__bottom-line"></div>
+                                </div>
+                                <div class="mdc-menu mdc-select__menu col-md-3" >
+                                    <ul class="mdc-list mdc-menu__items">
+                                        <li th:each="priorities:${priorities}" class="mdc-list-item" th:id="${priorities.priorityId}" role="option" th:text="${priorities.priorityName}"></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </td>
+                        <td class="col-md-4" align="center">
+                            <!--<div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input type="text" maxlength="120" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{userSender.userInternalId}"  class="mdc-text-field__input" id="usuario-peticionario">
+                                <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
+                            </div>-->
+
+                            <input id="hidden-responsable" type="text"   value="" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{userSender.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <div id="responsable-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                                    <div class="mdc-select__label">Usuario Peticionario*</div>
+                                    <div class="mdc-select__selected-text"></div>
+                                    <div class="mdc-select__bottom-line"></div>
+                                </div>
+                                <div class="mdc-menu mdc-select__menu col-md-3" >
+                                    <ul class="mdc-list mdc-menu__items">
+                                        <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </td>
+                        <td class="col-md-4" align="center">
+
+                            <input id="Origen-js-select2" type="text"  required value="" th:field="*{origin.originId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;" />
+                            <div id="Origen-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                                    <div class="mdc-select__label">Origen*</div>
+                                    <div class="mdc-select__selected-text"></div>
+                                    <div class="mdc-select__bottom-line"></div>
+                                </div>
+                                <div class="mdc-menu mdc-select__menu col-md-3" >
+                                    <ul class="mdc-list mdc-menu__items">
+                                        <li th:each="origins:${origins}" class="mdc-list-item" th:id="${origins.originId}"  role="option" th:text="${origins.originName}"></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </td>
+                    </tr>
+                    <tr style="height:72px">
+                        <td class="col-md-4" align="center">
+
+                            <input id="hidden-estado" type="text" value="" required th:fiel="*{issueFixByDyD}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <div id="Estado-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                    <div class="mdc-select__label">Incidencia ya resuelto por DyD:</div>
+                                    <div class="mdc-select__selected-text"></div>
+                                    <div class="mdc-select__bottom-line"></div>
+                                </div>
+                                <div class="mdc-menu mdc-select__menu col-md-3" >
+                                    <ul class="mdc-list mdc-menu__items">
+                                        <li class="mdc-list-item" th:id="SI"  role="option" th:text="SI"></li>
+                                        <li class="mdc-list-item" th:id="NO"  role="option" th:text="NO"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                </table>
+
+
+                <table class="col-md-12" >
+                    <tr style="height:72px">
+                        <td class="col-md-4" align="center">
+                            <div  id="descripcion-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
+                                <input type="text" maxlength="200" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:value="${issue.issueInitialDescription}" name="issueInitialDescription" class="mdc-text-field__input" id="descrptor">
+                                <label for="demo-input" class="mdc-text-field__label">Descripción</label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="col-md-12" >
+                    <tr style="height:72px">
+                        <td class="col-md-4" align="center">
+                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input type="file" name="issueDoc" class="btn btn-primary" th:field="*{issueDoc}"  id="fileData" >
+                            </div>
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="col-md-12" >
+                    <tr>
+                        <td class="col-md-6" align="center">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="button" id="cancelar-btn" onclick="addButtonEvents()" class="btn btn-primary">Cancelar</button>
+                        </td>
+                    </tr>
+                </table>
+    </form>
+</div>
+
+</body>
+
+<div th:replace="~{layout/footer2 :: scripts }"></div>
+<script>mdc.autoInit()</script>
+<style rel="stylesheet">
+    .mdc-text-field__input {
+        border-bottom-color: rgba(15, 50, 242, 0.5);
+    }
+</style>
+<script>
+
+    $("#hidden-envcomponente").val($("#hidden-componente").val());
+
+    var fecha=$("#datetimepicker").val();
+    var dia = fecha.substring(8,10);
+    var mes = fecha.substring(5,7);
+    var anio = fecha.substring(0,4);
+    $("#datetimepickerformat").val(dia+"/"+mes+"/"+anio);
+
+    demoReady(function() {
+        mdc.select.MDCSelect.attachTo(document.getElementById('Prioridad-js-select'));
+        mdc.select.MDCSelect.attachTo(document.getElementById('Origen-js-select'));
+        mdc.select.MDCSelect.attachTo(document.getElementById('Estado-js-select'));
+        mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
+    });
+
+    demoReady(function() {
+        var rootEst = document.getElementById('Prioridad-js-select');
+        var hiddenEst = document.getElementById('hidden-prioridad');
+        var selectEst = new mdc.select.MDCSelect(rootEst);
+
+        rootEst.addEventListener('MDCSelect:change', function() {
+            hiddenEst.value = selectEst.value;
+        });
+    });
+    demoReady(function() {
+        var rootEst = document.getElementById('Estado-js-select');
+        var hiddenEst = document.getElementById('hidden-estado');
+        var selectEst = new mdc.select.MDCSelect(rootEst);
+
+        rootEst.addEventListener('MDCSelect:change', function() {
+            hiddenEst.value = selectEst.value;
+        });
+    });
+    demoReady(function() {
+        var rootEst = document.getElementById('Origen-js-select');
+        var hiddenEst = document.getElementById('Origen-js-select2');
+        var selectEst = new mdc.select.MDCSelect(rootEst);
+
+        rootEst.addEventListener('MDCSelect:change', function() {
+            hiddenEst.value = selectEst.value;
+        });
+    });
+    demoReady(function() {
+        var rootEst = document.getElementById('responsable-js-select');
+        var hiddenEst = document.getElementById('hidden-responsable');
+        var selectEst = new mdc.select.MDCSelect(rootEst);
+
+        rootEst.addEventListener('MDCSelect:change', function() {
+            hiddenEst.value = selectEst.value;
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker4').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+    });
+
+    function addButtonEvents() {
+        var btnCancel = document.getElementById('cancelar-btn');
+        btnCancel.addEventListener("click", function () {
+            window.history.back();
+        })
+    }
+</script>
+
+
+<!--Footer que debe ir en todas las ventanas-->
+<div th:replace="layout/footer :: FooterPrincipal"></div>
+</html>
