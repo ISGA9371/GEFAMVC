@@ -129,6 +129,8 @@ public class BudgetController {
         return URL_BUDGET + STATUS_PAYMENT;
     }
 
+    // CATALOGS
+
     @ModelAttribute("areas")
     public List<Area> populateAreas() {
         return this.areaService.findAllAreas();

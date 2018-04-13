@@ -20,11 +20,11 @@ public class ViewsURLs {
     public static final String SEARCH_COMPANIES = "BusquedaDeCompañias";
 
     public static final String NEW_DOUBT = "AltaDeDuda";
-    public static final String EDIT_DOUBT = "ModificarDuda";
+    public static final String EDIT_DOUBT = "ModificacionDeDuda";
     public static final String SEARCH_DOUBTS = "BusquedaDeDudas";
 
     public static final String NEW_ISSUE = "AltaDeError";
-    public static final String EDIT_ISSUE = "ModificarError";
+    public static final String EDIT_ISSUE = "ModificacionDeError";
     public static final String SEARCH_ISSUES = "BusquedaDeErrores";
 
     public static final String NEW_COMPONENT = "AltaDeComponente";

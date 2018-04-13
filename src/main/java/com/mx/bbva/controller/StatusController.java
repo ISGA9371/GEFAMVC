@@ -29,7 +29,7 @@ public class StatusController {
         return new ResponseEntity<Object>(new ResponseListDTO(statusList), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{statusTypeId}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/types/{statusTypeId}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> getAllStatusByType(@PathVariable(name = "statusTypeId", required = false) Integer statusTypeId) {
         LOGGER.info("find status by type...");
         List<Status> statusList = statusService.findStatusByType(new StatusType(statusTypeId));

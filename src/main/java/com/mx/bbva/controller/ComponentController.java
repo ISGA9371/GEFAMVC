@@ -48,13 +48,6 @@ public class ComponentController {
         return URL_FACTORY + NEW_COMPONENT;
     }
 
-    @RequestMapping(value = "/fare", method = RequestMethod.GET)
-    public ResponseEntity<?> findFareValue(@RequestParam Integer requirementId) {
-        Requirement requirement = requirementService.findOneRequirement(requirementId);
-        Double fareValue = fareService.findByRequirement(requirement);
-        return new ResponseEntity<Object>(new ResponseDTO(fareValue), HttpStatus.OK);
-    }
-
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveComponent(@ModelAttribute("component") Component component, Model model) {
         // TODO Validate user

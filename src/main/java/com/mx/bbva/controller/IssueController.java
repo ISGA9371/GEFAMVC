@@ -39,7 +39,7 @@ public class IssueController {
     public String saveIssue(@ModelAttribute("issuee") Issue issue) {
         // TODO Validate user
         issueService.saveIssue(issue);
-        return REDIRECT + URL_FACTORY + EDIT_ISSUE + issue.getIssueId();
+        return REDIRECT  + "issues/" + issue.getIssueId();
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)

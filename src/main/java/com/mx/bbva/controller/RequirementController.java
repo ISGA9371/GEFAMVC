@@ -2,10 +2,13 @@ package com.mx.bbva.controller;
 
 
 import com.mx.bbva.business.dto.RequirementSearchDTO;
+import com.mx.bbva.business.dto.ResponseDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import com.mx.bbva.util.query.RequirementQueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,6 +41,7 @@ public class RequirementController {
     private ProgramIncrementService programIncrementService;
     private StatusService statusService;
     private ProjectService projectService;
+    private FareService fareService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addRequirement(Model model) {
@@ -93,6 +97,13 @@ public class RequirementController {
         List<Requirement> requirements = requirementService.findByCustomQuery(query);
         model.addAttribute("requirements", requirements);
         return URL_FACTORY + SEARCH_REQUIREMENTS;
+    }
+
+    @RequestMapping(value = "/{requirementId}/fare", method = RequestMethod.GET)
+    public ResponseEntity<?> findFareValue(@PathVariable Integer requirementId) {
+        Requirement requirement = requirementService.findOneRequirement(requirementId);
+        Double fareValue = fareService.findByRequirement(requirement);
+        return new ResponseEntity<Object>(new ResponseDTO(fareValue), HttpStatus.OK);
     }
 
     // Model Attributes will available to the view all the time
@@ -248,5 +259,10 @@ public class RequirementController {
     @Autowired
     public void setProjectService(ProjectService projectService) {
         this.projectService = projectService;
+    }
+
+    @Autowired
+    public void setFareService(FareService fareService) {
+        this.fareService = fareService;
     }
 }
