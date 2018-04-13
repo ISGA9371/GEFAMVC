@@ -215,6 +215,41 @@ $(function () {
         $("#programIncrementId").val(id);
     });
 
+    $('#clear-form').click(function() {
+        $("#find")[0].reset();
+
+        select.selectedIndex = -1;
+        select.value = "";
+        subdirs.selectedIndex = -1;
+        subdirs.value = "";
+        responsables.selectedIndex = -1;
+        responsables.value = "";
+        gestores.selectedIndex = -1;
+        gestores.value = "";
+        areas.selectedIndex = -1;
+        areas.value = "";
+        tiposProy.selectedIndex = -1;
+        tiposProy.value = "";
+        techs.selectedIndex = -1;
+        techs.value = "";
+        empresas.selectedIndex = -1;
+        empresas.value = "";
+        tiposServ.selectedIndex = -1;
+        tiposServ.value = "";
+        app.selectedIndex = -1;
+        app.value = "";
+        canal.selectedIndex = -1;
+        canal.value = "";
+        pi.selectedIndex = -1;
+        pi.value = "";
+
+        $(".mdc-select__label").removeClass("mdc-select__label--float-above");
+        $(".mdc-text-field__label").removeClass("mdc-text-field__label--float-above");
+         
+        $("input[type=hidden]").val("");
+    });
+
+
     $('tr.clickable').find('input[type=radio]').click(function (event) {
         //
     });
