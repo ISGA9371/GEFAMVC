@@ -40,9 +40,8 @@ public class DoubtController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveDoubt(@ModelAttribute("doubt") Doubt doubt) {
         doubtService.saveDoubt(doubt);
-        // TODO
-        //return URL_FACTORY + EDIT_DOUBT;
-        return INDEX;
+        Doubt doubtSaved = this.doubtService.findDoubt(doubt.getDoubtId());
+        return REDIRECT + "doubts/" + doubtSaved.getDoubtId();
     }
 
     @RequestMapping(value = "/{doubtId}", method = RequestMethod.GET)

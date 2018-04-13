@@ -1,7 +1,5 @@
 package com.mx.bbva.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mx.bbva.business.dto.ResponseListDTO;
 import com.mx.bbva.business.entity.Level;
 import com.mx.bbva.business.entity.LevelType;
@@ -10,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -23,26 +22,14 @@ public class LevelController {
 
     private LevelService levelService;
 
-    @GetMapping(value = "/{superiorlevelId}/sublevel", produces = "application/json")
-    @ResponseBody
-    @Transactional
-    public String findByLevelType(@PathVariable Integer superiorlevelId) {
-        // TODO Validate IN values
-        List<Level> levels = levelService.findByLevelSuperior(superiorlevelId);
-
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonStr = null;
-        try {
-            jsonStr = mapper.writeValueAsString(levels);
-        } catch (JsonProcessingException e) {
-            LOG.severe("EXC: " + e.getMessage());
-        }
-
-        return jsonStr;
+    @RequestMapping(value = "/{superiorLevelId}/sub-level", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> findByLevelType(@PathVariable("superiorLevelId") Integer superiorLevelId) {
+        List<Level> levels = levelService.findByLevelSuperior(superiorLevelId);
+        return new ResponseEntity<Object>(new ResponseListDTO(levels), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/types/{levelTypeId}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> getAllLevelsByType(@PathVariable("levelTypeId") Integer levelTypeId) {
+    @RequestMapping(value = "/{levelTypeId}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> getAllLevelsByType(@PathVariable(name = "levelTypeId", required = false) Integer levelTypeId) {
         LOG.info("find levels by type ..." + levelTypeId);
         List<Level> levels = this.levelService.findByLevelType(new LevelType(levelTypeId));
         return new ResponseEntity<Object>(new ResponseListDTO(levels), HttpStatus.OK);
