@@ -8,4 +8,6 @@ public interface TypologyService {
     List<Typology> findByComponent(boolean typologyComponent);
 
     Typology findTypology(Integer typologyId);
+
+    List<Typology> findAllTypologies();
 }
