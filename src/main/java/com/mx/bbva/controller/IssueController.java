@@ -37,9 +37,9 @@ public class IssueController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveIssue(@ModelAttribute("issuee") Issue issue) {
-        // TODO Validate user
         issueService.saveIssue(issue);
-        return REDIRECT  + "issues/" + issue.getIssueId();
+        Issue issueSaved = issueService.findIssue(issue.getIssueId());
+        return REDIRECT + "issues/" + issueSaved.getIssueId();
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
