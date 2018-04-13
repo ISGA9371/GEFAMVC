@@ -4,6 +4,7 @@ import com.mx.bbva.business.entity.StatusType;
 import com.mx.bbva.business.repository.StatusTypeRepository;
 import com.mx.bbva.business.service.StatusTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class StatusTypeServiceImpl implements StatusTypeService {
 
     @Override
     public List<StatusType> findAllStatusTypes() {
-        return statusTypeRepository.findAll();
+        return statusTypeRepository.findAll(new Sort(Sort.Direction.ASC, "statusTypeId"));
     }
 
     @Override
