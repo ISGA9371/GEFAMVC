@@ -52,6 +52,45 @@ $(function () {
   });
 
 
+  var typologiesModified = [];
+  var optionsModified = "";
+  $.ajax({
+    url: "/typologies/types?componentModified=true",
+    method: "GET",
+  }).done(function (data) {
+    $.each(data.data, function(index, value){
+      typologiesModified.push({
+        id: value.typologyId,
+        severity: value.typologySeverity,
+        hours: value.typologySeverityHours,
+        year: value.typologyYear,
+        typology: value.product.productId
+      });
+      optionsModified += "<option value='" + value.typologyId + "' data-severity='" + value.typologySeverity + "' data-hours='" + value.typologySeverityHours+"'>" + value.product.productId + "</option>";
+    });
+  }).fail(function () {
+  });
+
+  var typologiesNew = [];
+  var optionsNew = "";
+  $.ajax({
+    url: "/typologies/types?componentModified=false",
+    method: "GET",
+  }).done(function (data) {
+    $.each(data.data, function (index, value) {
+      typologiesNew.push({
+        id: value.typologyId,
+        severity: value.typologySeverity,
+        hours: value.typologySeverityHours,
+        year: value.typologyYear,
+        typology: value.product.productId
+      });
+      optionsNew += "<option value='" + value.typologyId + "' data-severity='" + value.typologySeverity + "' data-hours='" + value.typologySeverityHours + "'>" + value.product.productId + "</option>";
+    });
+  }).fail(function () {
+  });
+
+
   $("#tabs").tabs();
 
 
@@ -101,6 +140,25 @@ $(function () {
       $("#mdc-group-componentRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
     }
   });
+
+
+  /*
+  $("td").on("change", ".component-new", function () {
+    console.log($(this));
+    console.log($(this).val());
+    console.log($(this).attr("id"));
+  });
+
+
+  $("td").on("change", ".component-modified", function () {
+    console.log($(this));
+    console.log($(this).val());
+    console.log($(this).attr("id"));
+  });
+
+  */
+
+  
 
   direccion.listen('MDCSelect:change', () => {
   $("#slct_subidreccion > .mdc-menu > ul").html("");
@@ -223,6 +281,17 @@ $(function () {
         $("#tab-cierre > table > tbody").html("");
 
         $.each(data, function (index, value) {
+
+          if ( value.typology.typologyComponentModified ) {
+            newModified = "MODIFICADO";
+            options = optionsModified;
+            classIdentifier = "component-modified";
+          } else {
+            newModified = "NUEVO";
+            options = optionsNew;
+            classIdentifier = "component-new";
+          }
+
           $("#tab-componentes > table > tbody").append(
             "<tr><td></td>" +
             "<td>" + value.componentName + "</td>" +
@@ -232,12 +301,12 @@ $(function () {
             "<td>" + value.requirement.level.levelName  + "</td>" +
             "<td>" + value.requirement.company.companyName + "</td>" +
             "<td>" + value.requirement.application.technology.technologyName + "</td>" +
-            "<td>" + "" + "</td>" +
-            "<td><a class='btn btn-primary btn-xs' href='/modifications/add?componentId=" + value.componentId + 
+            "<td>" + newModified + "</td>" +
+            "<td><a class='btn btn-primary btn-xs' style='color:white;' href='/modifications/add?componentId=" + value.componentId + 
               "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></td>" + 
-            "<td><a class='btn btn-primary btn-xs' href='/doubts/add?componentId=" + value.componentId + 
+            "<td><a class='btn btn-primary btn-xs' style='color:white;' href='/doubts/add?componentId=" + value.componentId + 
               "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></td>" + 
-            "<td><a class='btn btn-primary btn-xs' href='/issues/add?componentId=" + value.componentId + 
+            "<td><a class='btn btn-primary btn-xs' style='color:white;' href='/issues/add?componentId=" + value.componentId + 
               "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></td>" + 
             "<td><a class='btn btn-success btn-xs' href='/components/" + value.componentId + 
               "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> Editar</a></td></tr>"
@@ -259,26 +328,41 @@ $(function () {
             "<td><input type='text' id='date2-" + value.componentId + "' value='" + date2 + "' class='form-control'></td>" +
             "<td><input type='text' id='date3-" + value.componentId + "' value='" + date3 + "' class='form-control'></td>" +
             "<td><input type='text' id='date4-" + value.componentId + "' value='" + date4 + "' class='form-control'></td>" +
-            /* "<td><input type='text' id='estado-" + value.componentId + "' value='"+ value.status.statusName +"' class='form-control' readonly ></td></tr>" */
             "<td>"+ value.status.statusName +"</td></tr>"
           );
-          $("#date1-" + value.componentId).datetimepicker({ format: 'DD/MM/YYYY' });
-          $("#date2-" + value.componentId).datetimepicker({ format: 'DD/MM/YYYY' });
-          $("#date3-" + value.componentId).datetimepicker({ format: 'DD/MM/YYYY' });
-          $("#date4-" + value.componentId).datetimepicker({ format: 'DD/MM/YYYY' });
+          $("#date1-" + value.componentId).datepicker({ format: 'DD/MM/YYYY' });
+          $("#date2-" + value.componentId).datepicker({ format: 'DD/MM/YYYY' });
+          $("#date3-" + value.componentId).datepicker({ format: 'DD/MM/YYYY' });
+          $("#date4-" + value.componentId).datepicker({ format: 'DD/MM/YYYY' });
 
           $("#tab-cierre > table > tbody").append(
             "<tr><td>" + value.componentName + "</td>" +
             "<td>" + value.requirement.requirementName + "</td>" +
-            "<td><select class='form-control' id='tipFin-" + value.componentId + "'><option></option><option></option></select></td>" +
-            "<td><input type='text' id='difFin-" + value.componentId + "' value='' class='form-control' readonly></td>" +
-            "<td><input type='text' id='costFin-" + value.componentId + "' value='' class='form-control' readonly></td>" +
-            "<td><input type='text' id='horFin-" + value.componentId + "' value='' class='form-control' readonly></td>" +
+            "<td><select class='form-control "+classIdentifier+"' id='tipFin-" + value.componentId + "'>"+options+"</select></td>" +
+            "<td><input type='text' id='difFin-" + value.componentId + "' value='' class='form-control text-center' readonly></td>" +
+            "<td><input type='text' id='costFin-" + value.componentId + "' value='' class='form-control text-center' readonly></td>" +
+            "<td><input type='text' id='horFin-" + value.componentId + "' value='' class='form-control text-center' readonly></td>" +
             "<td><input type='text' id='comments-" + value.componentId + "' value='" + value.componentTypoComment + "' class='form-control'></td>" +
             "<td><select class='form-control' id='estatusTip-" + value.componentId + "'><option value=''></option></select></td>" +
             "<td><select class='form-control' id='facturar-" + value.componentId + "'><option value='1'>SI</option><option value='0'>NO</option></select></td></tr>"
           );
 
+          $("#tipFin-" + value.componentId).val(value.typologyEmp.typologyId);
+          $("#difFin-" + value.componentId).val(value.typologyEmp.typologySeverity);
+          $("#horFin-" + value.componentId).val(value.typologyEmp.typologySeverityHours);
+        });
+        $(".component-modified").change(function () {
+          var idElement = $(this).attr("id").substring(7, $(this).attr("id").length);
+          var optionElement = $("#tipFin-" + idElement).find("option[value=" + $(this).val() + "]");
+          $("#difFin-" + idElement).val( optionElement.data("severity") );
+          $("#horFin-" + idElement).val( optionElement.data("hours") );
+        });
+
+        $(".component-new ").change(function () {
+          var idElement = $(this).attr("id").substring(7, $(this).attr("id").length);
+          var optionElement = $("#tipFin-" + idElement).find("option[value=" + $(this).val() + "]");
+          $("#difFin-" + idElement).val(optionElement.data("severity"));
+          $("#horFin-" + idElement).val(optionElement.data("hours"));
         });
 
         $("#tab-fecha > table > tbody").append(
