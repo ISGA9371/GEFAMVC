@@ -22,6 +22,11 @@ public class LevelTypeServiceImpl implements LevelTypeService {
         return levelTypeRepository.findByLevelTypeName(levelTypeName);
     }
 
+    @Override
+    public LevelType findOneLevelType(Integer levelTypeId) {
+        return levelTypeRepository.findById(levelTypeId).orElse(null);
+    }
+
     @Autowired
     public void setLevelTypeRepository(LevelTypeRepository levelTypeRepository) {
         this.levelTypeRepository = levelTypeRepository;

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping(value = "/api/serviceTypes")
+@RequestMapping(value = "/api/service-types")
 public class ServiceTypeController {
     private static final Logger LOG = Logger.getLogger(ServiceTypeController.class.getName());
 

@@ -8,4 +8,6 @@ public interface LevelTypeService {
     List<LevelType> findAllLevelTypes();
 
     LevelType findByLevelTypeName(String levelTypeName);
+
+    LevelType findOneLevelType(Integer levelTypeId);
 }

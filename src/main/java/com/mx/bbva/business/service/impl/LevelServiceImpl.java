@@ -14,6 +14,11 @@ public class LevelServiceImpl implements LevelService {
     private LevelRepository levelRepository;
 
     @Override
+    public Level findOneLevel(Integer levelId) {
+        return levelRepository.findById(levelId).orElse(null);
+    }
+
+    @Override
     public List<Level> findAllLevels() {
         return levelRepository.findAll();
     }
@@ -24,13 +29,13 @@ public class LevelServiceImpl implements LevelService {
     }
 
     @Override
-    public List<Level> findByLevelSuperior(Integer levelSuperiorId) {
-        return levelRepository.findAllByLevelSuperior(levelSuperiorId);
+    public List<Level> findSuperiorLevelsByLevelType(LevelType levelType) {
+        return levelRepository.findLevelSuperiorByLevelType(levelType);
     }
 
     @Override
-    public List<Level> findSuperiorLevelsByLevelType(LevelType levelType) {
-        return levelRepository.findLevelSuperiorByLevelType(levelType);
+    public List<Level> findSubLevels(Integer levelId) {
+        return levelRepository.findAllByLevelSuperior_LevelId(levelId);
     }
 
     @Autowired

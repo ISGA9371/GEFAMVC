@@ -78,8 +78,8 @@ public class RequirementController {
         model.addAttribute("requirements", requirements);
         RequirementSearchDTO to = new RequirementSearchDTO();
 
-        List<Level> c = this.levelService.findByLevelSuperior(2);
-        LOGGER.info("SUPEROIOr " + c.size());
+        //List<Level> c = this.levelService.findByLevelSuperior(2);
+        //LOGGER.info("SUPEROIOr " + c.size());
         model.addAttribute("criteria", to);
         return URL_FACTORY + SEARCH_REQUIREMENTS;
     }
