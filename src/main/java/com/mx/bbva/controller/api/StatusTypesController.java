@@ -1,4 +1,4 @@
-package com.mx.bbva.controller;
+package com.mx.bbva.controller.api;
 
 import com.mx.bbva.business.dto.ResponseDTO;
 import com.mx.bbva.business.dto.ResponseListDTO;
@@ -9,16 +9,16 @@ import com.mx.bbva.business.service.StatusTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.logging.Logger;
 
-@Controller
-@RequestMapping("/status-types")
+@RestController
+@RequestMapping("/api/status-types")
 public class StatusTypesController {
     private static final Logger LOGGER = Logger.getLogger(StatusTypesController.class.getName());
 

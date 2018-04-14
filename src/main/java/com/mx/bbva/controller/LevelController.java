@@ -22,7 +22,7 @@ public class LevelController {
 
     private LevelService levelService;
 
-    @RequestMapping(value = "/{superiorLevelId}/sub-level", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/{superiorLevelId}/sub-levels", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> findByLevelType(@PathVariable("superiorLevelId") Integer superiorLevelId) {
         List<Level> levels = levelService.findByLevelSuperior(superiorLevelId);
         return new ResponseEntity<Object>(new ResponseListDTO(levels), HttpStatus.OK);
