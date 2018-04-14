@@ -12,11 +12,10 @@
     <div class="row">
         <div class="col-md-12" align="center" style="font-size:30; font-family:BBVA Web Book">Modificacion de PEP</div>
     </div>
-    <br>
+
     <div class="row">
-        <div class="col-md-12" style="font-size:20; font-family:BBVA Web Book; background-color:#004582; color:#FFFFFF">Datos Generales</div>
+        <div class="col-md-12 subtitle-content">Datos Generales</div>
     </div>
-    <br>
 
     <form>
 
@@ -39,7 +38,7 @@
                     <div id="anio-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                             <div class="mdc-select__label">Año</div>
-                            <div class="mdc-select__selected-text"></div>
+                            <div class="mdc-select__selected-text" th:field="*{transfer.budget.budgetYear}"></div>
                             <div class="mdc-select__bottom-line"></div>
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
@@ -57,7 +56,7 @@
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                             <div class="mdc-select__label">Area*</div>
                             <div class="mdc-select__selected-text"></div>
-                            <div class="mdc-select__bottom-line"></div>
+                            <div class="mdc-select__bottom-line" th:field="*{transfer.budget.area.areaId}"></div>
                         </div>
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">

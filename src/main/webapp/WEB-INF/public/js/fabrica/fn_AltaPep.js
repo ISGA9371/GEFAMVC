@@ -72,7 +72,7 @@ function addCalendars(){
 
 function addMissing(){
 
-    $('#hdStatus').val(40);
+    $('#hdStatus').val(41);
     $('#hdStatusDyd').val(42);
 
 }
