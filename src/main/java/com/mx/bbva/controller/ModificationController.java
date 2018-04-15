@@ -50,7 +50,7 @@ public class ModificationController {
     public String saveModification(@ModelAttribute("modificatione") Modification modification) {
         // TODO Validate user
 
-        // LOG.info("Saving new modification... " + modification.getModificationName());
+        //modification.setModificationDoneDyd("SI");
         modificationService.saveModification(modification);
 
         return URL_FACTORY + EDIT_MODIFICATION;
@@ -72,6 +72,7 @@ public class ModificationController {
         LOG.info("Updating modification, ID: " + modificationId);
         if (null != modificationId) {
             Modification modification = modificationService.findModification(modificationId);
+
             model.addAttribute("modification", modification);
         } else {
             model.addAttribute("modification", new Modification());

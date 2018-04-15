@@ -1,67 +1,20 @@
 <!DOCTYPE html>
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-<head>
+
     <header th:replace="~{layout/mainHeader :: header }"></header>
     <!--Encabezado que vive en otra ventana-->
-    <head th:replace="~{layout/mainHeader :: head ('Alta de Modificacion')}"></head>
+    <head th:replace="~{layout/mainHeader :: head ('Alta de Modificacion')}">
+        <style type="text/css">
+            #hidden-modificationStatus {
+            }
+        </style>
+    </head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Alta de Modificación</title>
-
-
-    <!-- Estilos -->
-    <script type="text/javascript" th:src="@{../js/jquery-3.2.1.min.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{../css/bootstrap.min.css}">
-    <script type="text/javascript" th:src="@{../js/bootstrap.min.js}"></script>
-
-    <!--Script generales-->
-    <link rel="stylesheet" type="text/css" th:href="@{../css/estilosGF.css}">
-
-
-    <!--Scripts para campos de texto-->
-    <link rel="stylesheet" type="text/css" th:href="@{../css/material-components-web.css}">
-    <script type="text/javascript" th:src="@{../js/material-components-web.js}"></script>
-
-
-    <!--Estilos para los combos-->
-    <link rel="stylesheet" type="text/css" th:href="@{../css/select.css}">
-    <script type="text/javascript" th:src="@{../js/ready.js}"></script>
-
-    <!--Estilos para los calendarios-->
-    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap-datetimepicker.css}">
-    <script type="text/javascript" th:src="@{../js/analytics.js}"></script>
-    <script type="text/javascript" th:src="@{../js/moment-with-locales.js}"></script>
-    <script type="text/javascript" th:src="@{../js/bootstrap-datetimepicker.js}"></script>
-
-</head>
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker4').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
-    });
-    $(function () {
-        $('#datetimepicker5').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
-    });
-    $(function () {
-        $('#datetimepicker6').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
-    });
-</script>
 
 <body>
 
-<head th:replace="~{layout/mainHeader :: head ('Alta de Modificacion')}"></head>
 
-<form style="" action="#" th:object="${modification}" th:action="@{/modifications}" method="post">
+<form style="" action="#" th:object="${modification}" th:action="@{/modifications}" method="post" onsubmit="holder('Registrando Modificacion')">
 
     <div class="container">
         <br>
@@ -71,27 +24,6 @@
                     <h2 class="h2-title-content">Alta de Modificacion</h2>
                 </div>
             </div>
-
-
-
-            <!--<input type="hidden" th:field="*{modificationsId}">
-            <input id="nombreDelComponente-js-hidden" type="text" th:field="*{doubt}" >
-            <input id="direccion-js-hidden" type="text" th:field="*{doubt}" >
-            <input id="subdireccion-js-hidden" type="text" th:field="*{doubt}" >
-            <input id="version-js-hidden" type="text" th:field="*{doubt}" >
-            <input id="requerimiento-js-hidden" type="text" th:field="*{doubt}" >
-            <input id="tecnologia-js-hidden" type="text" th:field="*{doubt}" >
-            <input id="tipologia-js-hidden" type="text" th:field="*{doubt}" >
-            <input id="fechaAlta-js-hidden" type="text" th:field="*{doubt}" >
-            <input id="dificultad-js-hidden" type="text" th:field="*{doubt}" >
-            <input id="estado-js-hidden" type="text" th:field="*{doubt}" >
-            <input id="tipologia-js-hidden" type="text" th:field="*{doubt}" >
-            <input id="tipologia-js-hidden" type="text" th:field="*{doubt}" >
-
-            <input type="submit" value="Guardar">-->
-
-
-
 
             <div class="row">
                 <div class="col-md-12 subtitle-content">Datos Generales</div>
@@ -161,6 +93,22 @@
                 </tr>
             </table>
 
+            <input id="hidden-envcomponente" type="hidden" th:value="${componentData.componentId}" >
+            <input id="hidden-comp" type="hidden"  th:field="*{component.componentId}" >
+
+            <input id="hidden-startTypology" type="hidden"  th:value="${componentData.typology.typologyId}" >
+            <input id="hidden-finalTypology" type="hidden"  th:value="${componentData.typology.typologyId}" >
+
+            <input id="hidden-startTyp" type="hidden"  th:field="*{startTypology.typologyId}" >
+            <input id="hidden-finalTyp" type="hidden"  th:field="*{finalTypology.typologyId}" >
+            <!--Campos Faltantes-->
+            <input id="hidden-modificationStatus" type="hidden"  th:field="*{modificationStatus.statusId}">
+            <input id="hidden-status" type="hidden"  th:field="*{status.statusId}">
+            <!--<input id="hidden-endDate" type="text"  >-->
+            <input id="hidden-userre" type="hidden"  th:field="*{userReceiver.userInternalId}">
+            <!--<input id="hidden-senddate" type="text"  th:field="*{modificationSendDate}">-->
+            <input id="hidden-fact" type="hidden"  th:value="S" th:field="*{modificationInvoiced}">
+
             <div class="row">
                 <div class="col-md-12 subtitle-content">Datos Modificacion</div>
             </div>
@@ -182,24 +130,14 @@
                             </div>
                             <div class="mdc-menu mdc-select__menu col-md-3" >
                                 <ul class="mdc-list mdc-menu__items">
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        0
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        1
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        2
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        3
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        4
-                                    </li>
-                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                        F
-                                    </li>
+                                    <ul class="mdc-list mdc-menu__items">
+                                        <li class="mdc-list-item" th:id="cero"  role="option" th:text="0"></li>
+                                        <li class="mdc-list-item" th:id="uno"  role="option" th:text="1"></li>
+                                        <li class="mdc-list-item" th:id="dos"  role="option" th:text="2"></li>
+                                        <li class="mdc-list-item" th:id="tres"  role="option" th:text="3"></li>
+                                        <li class="mdc-list-item" th:id="cuatro"  role="option" th:text="4"></li>
+                                        <li class="mdc-list-item" th:id="f"  role="option" th:text="F"></li>
+                                    </ul>
                                 </ul>
                             </div>
                         </div>
@@ -252,13 +190,13 @@
                       </td>
                       <td class="col-md-4" align="center">
                           <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                              <input type="text" maxlength="120" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{userSender.userInternalId}"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="usuario_peticionario">
+                              <input type="text"  maxlength="120"  pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{userSender.userInternalId}"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="usuario_peticionario">
                               <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
                           </div>
                       </td>
-
                       <td class="col-md-4" align="center">
 
+                          <input id="hidden-origen" type="text" value="" required th:field="*{origin.originId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                           <!-- <input id="Origen-js-select2" type="text"  required value="" th:field="*{origins}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;" />-->
                         <div id="origen-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
@@ -280,7 +218,7 @@
                     <td class="col-md-4" align="center">
                         <div class="dog1">
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input th:value="${componentPossibleDeliverDate}" type='text' class="mdc-text-field__input"  row="2" id='datetimepicker5' />
+                                <input th:field="*{modificationEndDate}" type='text' class="mdc-text-field__input"  row="2" id='datetimepicker5' />
                                 <label for="demo-input" class="mdc-text-field__label">F. Negociada Fact.>CGF software</label>
                             </div>
                         </div>
@@ -288,7 +226,7 @@
                     <td class="col-md-4" align="center">
                         <div class="dog1">
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input th:value="${componentRealDeliverDate}" type='text' class="mdc-text-field__input"  row="2" id='datetimepicker6' />
+                                <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker6' />
                                 <label for="demo-input" class="mdc-text-field__label">F. Real Fact.>CGF software</label>
                             </div>
                         </div>
@@ -296,17 +234,15 @@
                     <td class="col-md-4" align="center">
                         <div class="dog1">
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input th:value="${modificationSendDate}" type='text' class="mdc-text-field__input"  row="2" id='datetimepicker4' />
+                                <input  type="text"  th:field="*{modificationSendDate}"  class="mdc-text-field__input"  row="2" id='datetimepicker4' />
                                 <label for="demo-input" class="mdc-text-field__label">Fecha Envio</label>
                             </div>
                         </div>
                     </td>
-
-
                 </tr>
                 <tr>
                     <td class="col-md-4" align="center">
-                        <input id="hidden-estado" type="text" value="" required th:fiel="*{modificationOnTrack}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                        <input id="hidden-vuelo" type="text" value="" required th:field="*{modificationOnTrack}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                         <div id="modvuelo-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                                 <div class="mdc-select__label">Modificacion en vuelo</div>
@@ -322,7 +258,7 @@
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <input id="hidden-estado" type="text" value="" required th:fiel="*{modificationDoneDyd}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                        <input id="hidden-dyd" type="text" value="" name="modificationDoneDyd" required th:field="*{modificationDoneDyd}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                         <div id="moddyd-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                                 <div class="mdc-select__label">Modificacion ya realizada por DyD</div>
@@ -331,8 +267,8 @@
                             </div>
                             <div class="mdc-menu mdc-select__menu col-md-3" >
                                 <ul class="mdc-list mdc-menu__items">
-                                    <li class="mdc-list-item" th:id="si"  role="option" th:text="Si"></li>
-                                    <li class="mdc-list-item" th:id="no"  role="option" th:text="No"></li>
+                                    <li class="mdc-list-item" th:id="1"  role="option" th:text="Si"></li>
+                                    <li class="mdc-list-item" th:id="2"  role="option" th:text="No"></li>
                                 </ul>
                             </div>
                         </div>
@@ -363,59 +299,20 @@
         </div>
 
 </form>
-<br>
-<br>
 
-<!--Footer que debe ir en todas las ventanas-->
-<div th:replace="layout/footer :: FooterPrincipal"></div>
+<footer th:replace="~{layout/footer2 :: footer }"></footer>
 
+<div th:replace="~{layout/footer2 :: scripts }"></div>
+<script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
+<script type="text/javascript" th:src="@{/js/fabrica/fn_AltaModificar.js}"></script>
 </body>
-<script>mdc.autoInit()</script>
-<style rel="stylesheet">
-    .mdc-text-field__input {
-        border-bottom-color: rgba(242, 71, 119, 0.5);
-    }
-</style>
-<script>
-    demoReady(function() {
-        mdc.select.MDCSelect.attachTo(document.getElementById('DifMod-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('prioridad-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('origen-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('modvuelo-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('moddyd-js-select'));
-    });
 
-    demoReady(function() {
-        var rootEst = document.getElementById('prioridad-js-select');
-        var hiddenEst = document.getElementById('hidden-prioridad');
-        var selectEst = new mdc.select.MDCSelect(rootEst);
-
-        rootEst.addEventListener('MDCSelect:change', function() {
-            hiddenEst.value = selectEst.value;
-        });
-    });
-
-    demoReady(function() {
-        var rootEst = document.getElementById('origen-js-select');
-        var hiddenEst = document.getElementById('hidden-origen');
-        var selectEst = new mdc.select.MDCSelect(rootEst);
-
-        rootEst.addEventListener('MDCSelect:change', function() {
-            hiddenEst.value = selectEst.value;
-        });
-    });
-
-    function holder(msg){
-        HoldOn.open({
-            theme: "sk-cube",
-            content: '',
-            message: msg,
-            // backgroundColor: "#004582",
-            backgroundColor: "#0c71ca",
-            textColor: "white",
-        });
-    }
+<script>mdc.autoInit();
+init();
 </script>
+
+
+
 
 
 </html>
