@@ -48,6 +48,7 @@ public class DoubtController {
     public String getOneDoubt(Model model, @PathVariable Integer doubtId) {
         Doubt doubt = this.doubtService.findDoubt(doubtId);
         model.addAttribute("doubt", doubt);
+        model.addAttribute("componentData", doubt.getComponent());
         return URL_FACTORY + EDIT_DOUBT;
     }
 
