@@ -245,7 +245,7 @@ $(function () {
 
         $(".mdc-select__label").removeClass("mdc-select__label--float-above");
         $(".mdc-text-field__label").removeClass("mdc-text-field__label--float-above");
-         
+
         $("input[type=hidden]").val("");
     });
 
