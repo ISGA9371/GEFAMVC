@@ -130,7 +130,7 @@ public class BudgetController {
     @RequestMapping(value = "/assign", method = RequestMethod.PUT)
     public String assignBudget(Model model, @RequestParam("budgets") List<Budget> budgets) {
 
-        return URL_FACTORY + ASSOCIATE_BUDGET_REQUIREMENT;
+        return URL_FACTORY + ASSIGN_BUDGET_REQUIREMENT;
     }
 
     @RequestMapping(value = "/assign/filters", method = RequestMethod.GET)
@@ -138,7 +138,7 @@ public class BudgetController {
         Requirement requirement = requirementService.findOneRequirement(requirementId);
         model.addAttribute("requirementData", requirement);
         model.addAttribute("budgetSearchDTO", new BudgetSearchDTO());
-        return URL_FACTORY + ASSOCIATE_BUDGET_REQUIREMENT;
+        return URL_FACTORY + ASSIGN_BUDGET_REQUIREMENT;
     }
 
     @RequestMapping(value = "/assign/search", method = RequestMethod.GET)
@@ -147,7 +147,7 @@ public class BudgetController {
         /*String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
         List<Budget> budgets = budgetService.findByCustomQuery(query);*/
         model.addAttribute("budgets", budgetService.findAllBudgets());
-        return URL_FACTORY + ASSOCIATE_BUDGET_REQUIREMENT;
+        return URL_FACTORY + ASSIGN_BUDGET_REQUIREMENT;
     }
 
     // CATALOGS
