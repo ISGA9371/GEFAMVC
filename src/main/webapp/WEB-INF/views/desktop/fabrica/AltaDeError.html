@@ -39,6 +39,7 @@
 
                             <!--<input disabled="disabled" th:value="${componentData.requirement.level.levelName}"  type="text" required class="mdc-text-field__input"  id="demo-input">-->
                             <label for="demo-input" class="mdc-text-field__label">Direccion</label>
+                        </div>
                     </td>
                     <td class="col-md-4" align="center">
                         <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
@@ -219,76 +220,19 @@
         border-bottom-color: rgba(15, 50, 242, 0.5);
     }
 </style>
-<script>
-
-    $("#hidden-envcomponente").val($("#hidden-componente").val());
-
-    var fecha=$("#datetimepicker").val();
-    var dia = fecha.substring(8,10);
-    var mes = fecha.substring(5,7);
-    var anio = fecha.substring(0,4);
-    $("#datetimepickerformat").val(dia+"/"+mes+"/"+anio);
-
-    demoReady(function() {
-        mdc.select.MDCSelect.attachTo(document.getElementById('Prioridad-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Origen-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('Estado-js-select'));
-        mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
-    });
-
-    demoReady(function() {
-        var rootEst = document.getElementById('Prioridad-js-select');
-        var hiddenEst = document.getElementById('hidden-prioridad');
-        var selectEst = new mdc.select.MDCSelect(rootEst);
-
-        rootEst.addEventListener('MDCSelect:change', function() {
-            hiddenEst.value = selectEst.value;
-        });
-    });
-    demoReady(function() {
-        var rootEst = document.getElementById('Estado-js-select');
-        var hiddenEst = document.getElementById('hidden-estado');
-        var selectEst = new mdc.select.MDCSelect(rootEst);
-
-        rootEst.addEventListener('MDCSelect:change', function() {
-            hiddenEst.value = selectEst.value;
-        });
-    });
-    demoReady(function() {
-        var rootEst = document.getElementById('Origen-js-select');
-        var hiddenEst = document.getElementById('Origen-js-select2');
-        var selectEst = new mdc.select.MDCSelect(rootEst);
-
-        rootEst.addEventListener('MDCSelect:change', function() {
-            hiddenEst.value = selectEst.value;
-        });
-    });
-    demoReady(function() {
-        var rootEst = document.getElementById('responsable-js-select');
-        var hiddenEst = document.getElementById('hidden-responsable');
-        var selectEst = new mdc.select.MDCSelect(rootEst);
-
-        rootEst.addEventListener('MDCSelect:change', function() {
-            hiddenEst.value = selectEst.value;
-        });
-    });
-</script>
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker4').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
-    });
-
-    function addButtonEvents() {
-        var btnCancel = document.getElementById('cancelar-btn');
-        btnCancel.addEventListener("click", function () {
-            window.history.back();
-        })
-    }
-</script>
-
 
 <!--Footer que debe ir en todas las ventanas-->
 <div th:replace="layout/footer :: FooterPrincipal"></div>
+
+<script type="text/javascript" th:src="@{../js/fabrica/alta-error.js}"></script>
+<script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
+
+<script>mdc.autoInit()</script>
+<script>
+    demoReady(function () {
+        init();
+        initGlobal();
+    });
+
+</script>
 </html>
