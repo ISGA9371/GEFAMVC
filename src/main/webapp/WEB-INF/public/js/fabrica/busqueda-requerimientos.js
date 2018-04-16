@@ -35,10 +35,10 @@ $(function () {
         console.log("PRINCIPALID" +id);
 
         $.ajax({
-            url: "/levels/"+id+"/sublevel"
+            url: "/api/levels/"+id+"/sub-levels"
         }).done(function(data) {
             //let subdirs = JSON.parse(data);
-            let subs = data;
+            let subs = data.data;
             //console.log(subs.length);
             $("#subdir-sel-text").html("");
             subdirs.selectedIndex = -1;
