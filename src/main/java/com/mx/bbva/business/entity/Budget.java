@@ -74,8 +74,7 @@ public class Budget implements Serializable {
     @JoinColumn(name = "CD_NATURALEZA", referencedColumnName = "CD_NATURALEZA", nullable = false)
     @ManyToOne(optional = false)
     private Nature nature;
-    @JsonIgnore
-    @OneToMany(mappedBy = "budget")
+    @OneToMany(mappedBy = "budget", fetch = FetchType.EAGER)
     private List<Transfer> transfers;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "budget")

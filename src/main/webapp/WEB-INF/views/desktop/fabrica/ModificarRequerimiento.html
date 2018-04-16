@@ -307,7 +307,7 @@
                            class="mdc-text-field__input mdc-text-field--disabled">
                     <label class="mdc-text-field__label">PEP</label>
                 </div>
-                <a th:href="@{/requirements/{requirementId}/assign-budget(requirementId=${requirement.requirementId})}"
+                <a th:href="@{/budgets/assign/filters?requirementId=} + ${requirement.requirementId}"
                    class="btn btn-primary" style="vertical-align: text-bottom;">Asociar PEP</a>
             </td>
         </tr>

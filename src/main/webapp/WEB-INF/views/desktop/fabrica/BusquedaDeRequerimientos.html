@@ -379,7 +379,7 @@
                       <td></td>
                       <td></td>
                       <td class="detail-label" colspan="2">
-                        <a th:href="@{/requirements/{requirementId}/assign-budget(requirementId=${requirement.requirementId})}"
+                        <a th:href="@{/budgets/assign/filters?requirementId=} + ${requirement.requirementId}"
                            class="btn btn-primary" onclick="showHoldOn();">Asociar PEP</a>
                       </td>
                     </tr>

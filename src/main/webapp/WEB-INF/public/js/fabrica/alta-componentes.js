@@ -16,7 +16,9 @@ function init() {
 
     $("#statusTypology").val(8);
     $("#status").val(31);
-    HoldOn.close();
+    if(!showingError){
+        HoldOn.close();
+    }
 }
 
 function getVersion() {
@@ -177,46 +179,42 @@ function loadSelects() {
     mdc.select.MDCSelect.attachTo(document.getElementById('nuemod-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-empty-js-select'));
     $.ajax({
-        type: "GET",
-        dataType: "json",
         async: false,
-        url: "http://localhost:8080/typologies/types?componentModified=false",
-        success: function(json){
-            $.each(json.data, function(i, data) {
-                $liElement = $("<li>");
-                $liElement.attr("class","mdc-list-item");
-                $liElement.attr("role","option");
-                $liElement.attr("id",data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours);
-                $liElement.append(data.product.productName);
-                $("#tipologia-news-js-select").find("ul:first").append($liElement);
-            });
-            mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-news-js-select'));
-        },
-        error: function(xhr, status, error) {
-            console.log('¡Error al consultar combos!');
-            customHolder('error','¡Error al consultar combos!');
-        }
+        url: "/api/typologies/types?componentModified=false"
+    }).done(function(json){
+        $.each(json.data, function(i, data) {
+            $liElement = $("<li>");
+            $liElement.attr("class","mdc-list-item");
+            $liElement.attr("role","option");
+            $liElement.attr("id",data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours);
+            $liElement.append(data.product.productName);
+            $("#tipologia-news-js-select").find("ul:first").append($liElement);
+        });
+        mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-news-js-select'));
+    }).fail(function(xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        new mdc.select.MDCSelect(document.getElementById('nuemod-js-select')).disabled = true;
+        showingError = true;
+        customHolder('error','¡Error al consultar combos!');
     });
     $.ajax({
-        type: "GET",
-        dataType: "json",
         async: false,
-        url: "http://localhost:8080/typologies/types?componentModified=true",
-        success: function(json){
-            $.each(json.data, function(i, data) {
-                $liElement = $("<li>");
-                $liElement.attr("class","mdc-list-item");
-                $liElement.attr("role","option");
-                $liElement.attr("id",data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours);
-                $liElement.append(data.product.productName);
-                $("#tipologia-mods-js-select").find("ul:first").append($liElement);
-            });
-            mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-mods-js-select'));
-        },
-        error: function(xhr, status, error) {
-            console.log('¡Error al consultar combos!');
-            customHolder('error','¡Error al consultar combos!');
-        }
+        url: "/api/typologies/types?componentModified=true"
+    }).done(function(json){
+        $.each(json.data, function(i, data) {
+            $liElement = $("<li>");
+            $liElement.attr("class","mdc-list-item");
+            $liElement.attr("role","option");
+            $liElement.attr("id",data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours);
+            $liElement.append(data.product.productName);
+            $("#tipologia-mods-js-select").find("ul:first").append($liElement);
+        });
+        mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-mods-js-select'));
+    }).fail(function(xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        new mdc.select.MDCSelect(document.getElementById('nuemod-js-select')).disabled = true;
+        showingError = true;
+        customHolder('error','¡Error al consultar combos!');
     });
 }
 
@@ -318,19 +316,4 @@ Number.prototype.formatMoney = function(c, d, t){
     return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 };
 
-/*
-$.ajax({
-    type: "GET",
-    dataType: "json",
-    url: "http://localhost:8080/typologies/types?componentModified=true",
-    success: function(json){
-        $.each(json.data, function(i, data) {
-            $("#tipologia-news-js-select").find("ul:first").append("<li class=\"mdc-list-item\" id=\""+data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours+"\" role=\"option\">"+data.product.productName+"</li>");;
-        });
-    },
-    error: function(xhr, status, error) {
-        console.log('¡Error al consultar combos!');
-        customHolder('error','¡Error al consultar combos!');
-    }
-});
-*/
+var showingError = false;
