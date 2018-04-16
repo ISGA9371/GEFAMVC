@@ -13,7 +13,7 @@ public class ViewsURLs {
     public static final String NEW_REQUIREMENT = "AltaDeRequerimiento";
     public static final String EDIT_REQUIREMENT = "ModificarRequerimiento";
     public static final String SEARCH_REQUIREMENTS = "BusquedaDeRequerimientos";
-    public static final String ASSOCIATE_BUDGET_REQUIREMENT = "AsociarPEP";
+    public static final String ASSIGN_BUDGET_REQUIREMENT = "AsociarPEP";
 
     public static final String NEW_COMPANY = "AltaDeCompañia";
     public static final String EDIT_COMPANY = "ModificarCompañia";
