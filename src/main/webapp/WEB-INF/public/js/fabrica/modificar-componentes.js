@@ -17,7 +17,9 @@ function init() {
 
     setTimeout("window.scrollTo(0, 0)",50);
     setTimeout("$(\".container\").click();",50);
-    HoldOn.close();
+    if(!showingError){
+        HoldOn.close();
+    }
 }
 
 function fillFields() {
@@ -28,90 +30,106 @@ function fillFields() {
 
 
     var $elementTypologiaInicio = $("#typology").parent().find("li[id^='" + $('#typology').val() + "|']");
-    var idTypologiaInicio = $elementTypologiaInicio.attr('id');
-    var splittedTypologiaInicio = idTypologiaInicio.split('|');
-    if (splittedTypologiaInicio[3] == "false") {
-        splittedTypologiaInicio[3] = 0;
-    }
-    if (splittedTypologiaInicio[3] == "true") {
-        splittedTypologiaInicio[3] = 1;
-    }
-    if (splittedTypologiaInicio[3] === 0 ||splittedTypologiaInicio[3] === 1) {
-        if (splittedTypologiaInicio[3] == 0) {
-            new mdc.textField.MDCTextField(document.getElementById("nuemod-mdc-text")).value = "Nuevo";
-            $('#tipologia-empty-js-select').hide();
-            $('#tipologia-news-js-select').show();
-            $('#tipologia-mods-js-select').hide();
-            $("#tipologia-news-js-select").find("div").eq(0).click();
+    if($elementTypologiaInicio.length > 0) {
+        var idTypologiaInicio = $elementTypologiaInicio.attr('id');
+        var splittedTypologiaInicio = idTypologiaInicio.split('|');
+        if (splittedTypologiaInicio[3] == "false") {
+            splittedTypologiaInicio[3] = 0;
         }
-        if (splittedTypologiaInicio[3] == 1) {
-            new mdc.textField.MDCTextField(document.getElementById("nuemod-mdc-text")).value = "Modificado";
-            $('#tipologia-empty-js-select').hide();
+        if (splittedTypologiaInicio[3] == "true") {
+            splittedTypologiaInicio[3] = 1;
+        }
+        if (splittedTypologiaInicio[3] === 0 || splittedTypologiaInicio[3] === 1) {
+            if (splittedTypologiaInicio[3] == 0) {
+                new mdc.textField.MDCTextField(document.getElementById("nuemod-mdc-text")).value = "Nuevo";
+                $('#tipologia-empty-js-select').hide();
+                $('#tipologia-news-js-select').show();
+                $('#tipologia-mods-js-select').hide();
+                $("#tipologia-news-js-select").find("div").eq(0).click();
+            }
+            if (splittedTypologiaInicio[3] == 1) {
+                new mdc.textField.MDCTextField(document.getElementById("nuemod-mdc-text")).value = "Modificado";
+                $('#tipologia-empty-js-select').hide();
+                $('#tipologia-news-js-select').hide();
+                $('#tipologia-mods-js-select').show();
+                $("#tipologia-mods-js-select").find("div").eq(0).click();
+            }
+            $elementTypologiaInicio.click();
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = splittedTypologiaInicio[1];
+            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = splittedTypologiaInicio[2];
+        } else {
+            $('#tipologia-empty-js-select').show();
+            new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).selectedIndex = -1;
             $('#tipologia-news-js-select').hide();
-            $('#tipologia-mods-js-select').show();
-            $("#tipologia-mods-js-select").find("div").eq(0).click();
+            $('#tipologia-mods-js-select').hide();
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = "";
+            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = "";
         }
-        $elementTypologiaInicio.click();
-        new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = splittedTypologiaInicio[1];
-        new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = splittedTypologiaInicio[2];
     } else {
         $('#tipologia-empty-js-select').show();
-        new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).selectedIndex = -1;
         $('#tipologia-news-js-select').hide();
         $('#tipologia-mods-js-select').hide();
-        new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = "";
-        new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = "";
-    }
-    if ($("#typology-final").val() == "") {
-        $("#typology-final").val($("#typology").val())
     }
     if($('#componentStartCost').val() == ""){
         $('#componentStartCost').val(Number(new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value)*Number($("#auxFare").val()));
     }
+    if ($("#typology-final").val() == "") {
+        $("#typology-final").val($("#typology").val())
+    }
     new mdc.textField.MDCTextField(document.getElementById('initial-cost-mdc-text')).value = Number($('#componentStartCost').val()).formatMoney(2);
     var $elementTypologiaFinal = $("#typology-final").parent().find("li[id^='" + $('#typology-final').val() + "|']");
-    var idTypologiaFinal = $elementTypologiaFinal.attr('id');
-    var splittedTypologiaFinal = idTypologiaFinal.split('|');
-    if (splittedTypologiaFinal[3] == "false") {
-        splittedTypologiaFinal[3] = 0;
-    }
-    if (splittedTypologiaFinal[3] == "true") {
-        splittedTypologiaFinal[3] = 1;
-    }
-    if (splittedTypologiaFinal[3] === 0 ||splittedTypologiaFinal[3] === 1) {
-        if (splittedTypologiaFinal[3] == 0) {
-            new mdc.textField.MDCTextField(document.getElementById("nuemod-mdc-text")).value = "Nuevo";
-            $('#tipologia-final-empty-js-select').hide();
-            $('#tipologia-final-news-js-select').show();
-            $('#tipologia-final-mods-js-select').hide();
-            $("#tipologia-final-news-js-select").find("div").eq(0).click();
+    if($elementTypologiaFinal.length > 0) {
+        var idTypologiaFinal = $elementTypologiaFinal.attr('id');
+        var splittedTypologiaFinal = idTypologiaFinal.split('|');
+        if (splittedTypologiaFinal[3] == "false") {
+            splittedTypologiaFinal[3] = 0;
         }
-        if (splittedTypologiaFinal[3] == 1) {
-            new mdc.textField.MDCTextField(document.getElementById("nuemod-mdc-text")).value = "Modifcado";
-            $('#tipologia-final-empty-js-select').hide();
+        if (splittedTypologiaFinal[3] == "true") {
+            splittedTypologiaFinal[3] = 1;
+        }
+        if (splittedTypologiaFinal[3] === 0 || splittedTypologiaFinal[3] === 1) {
+            if (splittedTypologiaFinal[3] == 0) {
+                new mdc.textField.MDCTextField(document.getElementById("nuemod-mdc-text")).value = "Nuevo";
+                $('#tipologia-final-empty-js-select').hide();
+                $('#tipologia-final-news-js-select').show();
+                $('#tipologia-final-mods-js-select').hide();
+                $("#tipologia-final-news-js-select").find("div").eq(0).click();
+            }
+            if (splittedTypologiaFinal[3] == 1) {
+                new mdc.textField.MDCTextField(document.getElementById("nuemod-mdc-text")).value = "Modifcado";
+                $('#tipologia-final-empty-js-select').hide();
+                $('#tipologia-final-news-js-select').hide();
+                $('#tipologia-final-mods-js-select').show();
+                $("#tipologia-final-mods-js-select").find("div").eq(0).click();
+            }
+            $elementTypologiaFinal.click();
+        } else {
+            $('#tipologia-final-empty-js-select').show();
+            new mdc.select.MDCSelect(document.getElementById('tipologia-final-news-js-select')).selectedIndex = -1;
             $('#tipologia-final-news-js-select').hide();
-            $('#tipologia-final-mods-js-select').show();
-            $("#tipologia-final-mods-js-select").find("div").eq(0).click();
+            $('#tipologia-final-mods-js-select').hide();
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value = "";
+            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = "";
         }
-        $elementTypologiaFinal.click();
     } else {
         $('#tipologia-final-empty-js-select').show();
-        new mdc.select.MDCSelect(document.getElementById('tipologia-final-news-js-select')).selectedIndex = -1;
         $('#tipologia-final-news-js-select').hide();
         $('#tipologia-final-mods-js-select').hide();
-        new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value = "";
-        new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = "";
     }
     if($('#componentFinalCost').val() == ""){
         $('#componentFinalCost').val(Number(new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value)*Number($("#auxFare").val()));
     }
     new mdc.textField.MDCTextField(document.getElementById('final-cost-mdc-text')).value = Number($('#componentFinalCost').val()).formatMoney(2);
     var $statusTypology = $("#statusTypology").parent().find("li[id^='" + $('#statusTypology').val() + "']");
-    $("#estatus-tipificacion-js-select").find("div").eq(0).click();
-    $statusTypology.click();
+    if($statusTypology.length > 0) {
+        $("#estatus-tipificacion-js-select").find("div").eq(0).click();
+        $statusTypology.click();
+    }
     var $status = $("#status").parent().find("li[id^='" + $('#status').val() + "']");
-    $("#estatus-componente-js-select").find("div").eq(0).click();
-    $status.click();
+    if($status.length > 0) {
+        $("#estatus-componente-js-select").find("div").eq(0).click();
+        $status.click()
+    }
     var $componentForBill = "";
     $componentForBill = $('#componentForBill').val();
     if ($componentForBill == "false") {
@@ -222,29 +240,7 @@ function addButtonEvents() {
 
 function addCustomSelectEvents() {
     var hiddenTypology = document.getElementById('typology-final');
-    //var rootType = document.getElementById('nuemod-js-select');
-    /*var selectType = new mdc.select.MDCSelect(rootType);
 
-    rootType.addEventListener('MDCSelect:change', function () {
-        $("#componentNewMod").val(selectType.value);
-        if (selectType.value == 0) {
-            $('#tipologia-final-empty-js-select').hide();
-            new mdc.select.MDCSelect(document.getElementById('tipologia-final-news-js-select')).selectedIndex = -1;
-            $('#tipologia-final-news-js-select').show();
-            $('#tipologia-final-mods-js-select').hide();
-        }
-        if (selectType.value == 1) {
-            $('#tipologia-final-empty-js-select').hide();
-            new mdc.select.MDCSelect(document.getElementById('tipologia-final-mods-js-select')).selectedIndex = -1;
-            $('#tipologia-final-news-js-select').hide();
-            $('#tipologia-final-mods-js-select').show();
-        }
-        hiddenTypology.value = new mdc.select.MDCSelect(document.getElementById('tipologia-final-news-js-select')).value;
-        $("#typologyEmp").val(hiddenTypology.value);
-        new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value="";
-        new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value="";
-    });
-*/
     var rootNews = document.getElementById('tipologia-final-news-js-select');
     var selectNews = new mdc.select.MDCSelect(rootNews);
 
@@ -306,62 +302,91 @@ function hideData() {
 }
 
 function loadSelects() {
-    //mdc.select.MDCSelect.attachTo(document.getElementById('direccion-js-select'));
-    //mdc.select.MDCSelect.attachTo(document.getElementById('subdireccion-js-select'));
-    //mdc.select.MDCSelect.attachTo(document.getElementById('nuemod-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-empty-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-final-empty-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('facturado-js-select'));
     $.ajax({
-        type: "GET",
-        dataType: "json",
         async: false,
-        url: "http://localhost:8080/typologies/types?componentModified=false",
-        success: function(json){
-            $.each(json.data, function(i, data) {
-                $liElement = $("<li>");
-                $liElement.attr("class","mdc-list-item");
-                $liElement.attr("role","option");
-                $liElement.attr("id",data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours+"|"+data.typologyComponentModified);
-                $liElement.append(data.product.productName);
-                $("#tipologia-news-js-select").find("ul:first").append($liElement);
-                $("#tipologia-final-news-js-select").find("ul:first").append($liElement.clone());
-            });
-            mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-news-js-select'));
-            mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-final-news-js-select'));
-        },
-        error: function(xhr, status, error) {
-            console.log('¡Error al consultar combos!');
-            customHolder('error','¡Error al consultar combos!');
-        }
+        url: "/api/typologies/types?componentModified=false"
+    }).done(function(json){
+        $.each(json.data, function(i, data) {
+            $liElement = $("<li>");
+            $liElement.attr("class","mdc-list-item");
+            $liElement.attr("role","option");
+            $liElement.attr("id",data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours+"|"+data.typologyComponentModified);
+            $liElement.append(data.product.productName);
+            $("#tipologia-news-js-select").find("ul:first").append($liElement);
+            $("#tipologia-final-news-js-select").find("ul:first").append($liElement.clone());
+        });
+        mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-news-js-select'));
+        mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-final-news-js-select'));
+    }).fail(function(xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        customHolder('error','¡Error al consultar combos!');
+        $('#typology').val("");
+        showingError = true;
     });
     $.ajax({
-        type: "GET",
-        dataType: "json",
         async: false,
-        url: "http://localhost:8080/typologies/types?componentModified=true",
-        success: function(json){
-            $.each(json.data, function(i, data) {
-                $liElement = $("<li>");
-                $liElement.attr("class","mdc-list-item");
-                $liElement.attr("role","option");
-                $liElement.attr("id",data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours+"|"+data.typologyComponentModified);
-                $liElement.append(data.product.productName);
-                $("#tipologia-mods-js-select").find("ul:first").append($liElement);
-                $("#tipologia-final-mods-js-select").find("ul:first").append($liElement.clone());
-            });
-            mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-mods-js-select'));
-            mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-final-mods-js-select'));
-        },
-        error: function(xhr, status, error) {
-            console.log('¡Error al consultar combos!');
-            customHolder('error','¡Error al consultar combos!');
-        }
+        url: "/api/typologies/types?componentModified=true"
+    }).done(function(json){
+        $.each(json.data, function(i, data) {
+            $liElement = $("<li>");
+            $liElement.attr("class","mdc-list-item");
+            $liElement.attr("role","option");
+            $liElement.attr("id",data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours+"|"+data.typologyComponentModified);
+            $liElement.append(data.product.productName);
+            $("#tipologia-mods-js-select").find("ul:first").append($liElement);
+            $("#tipologia-final-mods-js-select").find("ul:first").append($liElement.clone());
+        });
+        mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-mods-js-select'));
+        mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-final-mods-js-select'));
+    }).fail(function(xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        customHolder('error','¡Error al consultar combos!');
+        showingError = true;
+        $("#typology-final").val("");
     });
-
-
-    mdc.select.MDCSelect.attachTo(document.getElementById('estatus-tipificacion-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('estatus-componente-js-select'));
+    $.ajax({
+        async: false,
+        url: "/api/status-types/3/status"
+    }).done(function(json){
+        $.each(json.data, function(i, data) {
+            $liElement = $("<li>");
+            $liElement.attr("class","mdc-list-item");
+            $liElement.attr("role","option");
+            $liElement.attr("id",data.statusId);
+            $liElement.append(data.statusName);
+            $("#estatus-tipificacion-js-select").find("ul:first").append($liElement);
+        });
+        mdc.select.MDCSelect.attachTo(document.getElementById('estatus-tipificacion-js-select'));
+    }).fail(function(xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        new mdc.select.MDCSelect(document.getElementById('estatus-tipificacion-js-select')).disabled = true;
+        customHolder('error','¡Error al consultar combos!');
+        showingError = true;
+        $('#statusTypology').val("");
+    });
+    $.ajax({
+        async: false,
+        url: "/api/status-types/8/status"
+    }).done(function(json){
+        $.each(json.data, function(i, data) {
+            $liElement = $("<li>");
+            $liElement.attr("class","mdc-list-item");
+            $liElement.attr("role","option");
+            $liElement.attr("id",data.statusId);
+            $liElement.append(data.statusName);
+            $("#estatus-componente-js-select").find("ul:first").append($liElement);
+        });
+        mdc.select.MDCSelect.attachTo(document.getElementById('estatus-componente-js-select'));
+    }).fail(function(xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        new mdc.select.MDCSelect(document.getElementById('estatus-componente-js-select')).disabled = true;
+        customHolder('error','¡Error al consultar combos!');
+        showingError = true;
+        $('#status').val("");
+    });
 }
 
 function defaultTypologies() {
@@ -468,7 +493,6 @@ function pad(n, width, z) {
     return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
 
-
 Number.prototype.formatMoney = function(c, d, t){
     var n = this,
         c = isNaN(c = Math.abs(c)) ? 2 : c,
@@ -479,3 +503,6 @@ Number.prototype.formatMoney = function(c, d, t){
         j = (j = i.length) > 3 ? j % 3 : 0;
     return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 };
+
+
+var showingError = false;
