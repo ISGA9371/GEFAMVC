@@ -182,9 +182,14 @@
                     <webResources>
                         <!-- in order to interpolate version from pom into appengine-web.xml -->
                         <resource>
-                            <directory>${basedir}/src/main/webapp/WEB-INF</directory>
+                            <directory>${basedir}/src/main/webapp/WEB-INF/public</directory>
                             <filtering>true</filtering>
-                            <targetPath>WEB-INF</targetPath>
+                            <targetPath>public</targetPath>
+                            <excludes>
+                                <exclude>**/*.woff</exclude>
+                                <exclude>**/*.woff2</exclude>
+                                <exclude>**/*.ttf</exclude>
+                            </excludes>
                         </resource>
                     </webResources>
                 </configuration>
