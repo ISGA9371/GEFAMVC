@@ -44,13 +44,13 @@ public class Requirement implements Serializable {
     private Date requirementDateUpload;
     @Column(name = "NU_FACTURABLE")
     private Boolean requirementCanBilled;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "FH_INICIO_REQ")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date requirementStartDate;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date requirementStartDate;
     @Column(name = "FH_FIN_REQ")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date requirementEndDate;
     @JoinColumn(name = "CD_USUARIO_GESTOR", referencedColumnName = "CD_USUARIO_CORP")
     @ManyToOne

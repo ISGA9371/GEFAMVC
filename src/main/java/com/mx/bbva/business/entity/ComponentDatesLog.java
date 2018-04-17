@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -23,12 +25,15 @@ public class ComponentDatesLog implements Serializable {
     private Integer componentDatesLogId;
     @Column(name = "TM_FH_MODIFICADA")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date componentDateModified;
     @Column(name = "FH_ANTERIOR")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date componentDateBefore;
     @Column(name = "FH_ACTUAL")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date componentDateCurrent;
     @JoinColumn(name = "CD_COMPONENTE", referencedColumnName = "CD_COMPONENTE")
     @ManyToOne

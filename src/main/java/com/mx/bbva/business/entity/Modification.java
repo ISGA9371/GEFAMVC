@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -28,15 +30,19 @@ public class Modification implements Serializable {
     private String modificationDescription;
     @Column(name = "FH_ENVIO", nullable = false)
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date modificationSendDate;
     @Column(name = "FH_PREV_FINAL")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date modificationPrevFinalDate;
     @Column(name = "FH_RENEGOCIADA")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date modificationRescheduleDate;
     @Column(name = "FH_CIERRE", nullable = false)
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date modificationEndDate;
     @Column(name = "TX_COMENT_MOD", length = 250)
     private String modificationComment;

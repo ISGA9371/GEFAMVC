@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -23,6 +25,7 @@ public class T955 implements Serializable {
     private String t955LevelPba;
     @Column(name = "FH_IDENTIFICACION", nullable = false)
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date t955IdentificationDate;
     @Column(name = "TX_MODULO_PAQ", length = 50)
     private String t955ModuloPackage;
@@ -36,6 +39,7 @@ public class T955 implements Serializable {
     private String t955AreaResponsible;
     @Column(name = "FH_ATENC_PREV")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date t955AttentionDate;
     @Column(name = "NU_PERIODO_CORREC")
     private Integer t955Fixes;
@@ -43,9 +47,11 @@ public class T955 implements Serializable {
     private String t955CommentsPba;
     @Column(name = "FH_SOLIC_VERIF")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date t955VerificationDate;
     @Column(name = "FH_REAL_CIERRE")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date t955RealDate;
     @JoinColumn(name = "CD_ENTORNO", referencedColumnName = "CD_ENTORNO", nullable = false)
     @ManyToOne(optional = false)

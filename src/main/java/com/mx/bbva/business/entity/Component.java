@@ -35,25 +35,25 @@ public class Component implements Serializable {
     private Double componentStartCost;
     @Column(name = "TX_COM_TIPIF_EMP", length = 600)
     private String componentTypoComment;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "FH_NEG_EMP_CGF_SW", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date componentPossibleDeliverDate;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date componentPossibleDeliverDate;
     @Column(name = "FH_PRV_EMP_CGF_SW", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date componentPreviewDeliverDate;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date componentPreviewDeliverDate;
     @Column(name = "FH_R_CGF_EMP_DIS", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date componentDesignRealDeliverDate;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date componentDesignRealDeliverDate;
     @Column(name = "FH_R_EMP_CGF_SW")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date componentRealDeliverDate;
-    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss.S")
     @Column(name = "TM_ALTA_COMP")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date componentUploadDate;
     @Column(name = "NU_FACTURABLE")
     private Boolean componentForBill;
