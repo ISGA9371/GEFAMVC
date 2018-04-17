@@ -24,7 +24,7 @@ $(function () {
 
 
   $.ajax({
-    url: "/technologies",
+    url: "/api/technologies",
     method: "GET",
     beforeSend: function () {
       $("#slct_tecnologia").addClass("mdc-select--disabled");
@@ -55,7 +55,7 @@ $(function () {
   var typologiesModified = [];
   var optionsModified = "";
   $.ajax({
-    url: "/typologies/types?componentModified=true",
+    url: "/api/typologies/types?componentModified=true",
     method: "GET",
   }).done(function (data) {
     $.each(data.data, function(index, value){
@@ -74,7 +74,7 @@ $(function () {
   var typologiesNew = [];
   var optionsNew = "";
   $.ajax({
-    url: "/typologies/types?componentModified=false",
+    url: "/api/typologies/types?componentModified=false",
     method: "GET",
   }).done(function (data) {
     $.each(data.data, function (index, value) {
@@ -140,35 +140,16 @@ $(function () {
       $("#mdc-group-componentRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
     }
   });
-
-
-  /*
-  $("td").on("change", ".component-new", function () {
-    console.log($(this));
-    console.log($(this).val());
-    console.log($(this).attr("id"));
-  });
-
-
-  $("td").on("change", ".component-modified", function () {
-    console.log($(this));
-    console.log($(this).val());
-    console.log($(this).attr("id"));
-  });
-
-  */
-
   
 
   direccion.listen('MDCSelect:change', () => {
-  $("#slct_subidreccion > .mdc-menu > ul").html("");
     idSuperior = direccion.value;
 
     subidreccion.selectedIndex = -1;
     subidreccion.value = "";
 
     $.ajax({
-      url: "/levels/" + idSuperior + "/sublevel",
+      url: "/api/levels/" + idSuperior + "/sub-levels",
       method: "GET",
       beforeSend: function() {
         $("#slct_subidreccion").addClass("mdc-select--disabled");
@@ -176,10 +157,10 @@ $(function () {
         $("#slct_subidreccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
       }
     }).done(function (data) {
-
+      $("#slct_subidreccion > .mdc-menu > ul").html("");
       lis = "";
-      if ( 'undefined' !== typeof data && 0 < data.length) {
-        $.each(data, function (index, value) {
+      if ( 'undefined' !== typeof data.data && 0 < data.data.length) {
+        $.each(data.data, function (index, value) {
           lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.levelId + "'>" + value.levelName + "</li>";  
         });
         
