@@ -3,6 +3,7 @@ package com.mx.bbva.business.service.impl;
 import com.mx.bbva.business.entity.Modification;
 import com.mx.bbva.business.repository.ModificationRepository;
 import com.mx.bbva.business.service.ModificationService;
+import com.mx.bbva.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ public class ModificationServiceImpl implements ModificationService {
 
     @Override
     public void saveModification(Modification modification) {
+        modification.setModificationSendDate(new DateUtils().getCurrentDate());
         modificationRepository.save(modification);
     }
 
