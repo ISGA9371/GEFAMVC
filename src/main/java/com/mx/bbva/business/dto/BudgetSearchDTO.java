@@ -7,7 +7,8 @@ public class BudgetSearchDTO {
     private Integer budgetYear;
     private Integer areaId;
     private Integer bankingId;
-    private String userInternalId;
+    private String userSenderId;
+    private String userReceiverId;
     private Integer corporationId;
     private Integer natureId;
     private String budgetCostCenter;
@@ -55,12 +56,20 @@ public class BudgetSearchDTO {
         this.bankingId = bankingId;
     }
 
-    public String getUserInternalId() {
-        return userInternalId;
+    public String getUserSenderId() {
+        return userSenderId;
     }
 
-    public void setUserInternalId(String userInternalId) {
-        this.userInternalId = userInternalId;
+    public void setUserSenderId(String userSenderId) {
+        this.userSenderId = userSenderId;
+    }
+
+    public String getUserReceiverId() {
+        return userReceiverId;
+    }
+
+    public void setUserReceiverId(String userReceiverId) {
+        this.userReceiverId = userReceiverId;
     }
 
     public Integer getCorporationId() {
