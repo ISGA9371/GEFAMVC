@@ -26,20 +26,19 @@
         <form id="searchForm" name="searchForm" method="GET">
           <div class="row">
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_solicitud">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_text_solicitud">
                 <input type="text" class="mdc-text-field__input" id="solicitud">
                 <label for="solicitud" class="mdc-text-field__label">Solicitud</label>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_aceptacion">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_text_aceptacion">
                 <input type="text" class="mdc-text-field__input" id="aceptacion">
                 <label for="aceptacion" class="mdc-text-field__label">Aceptación</label>
               </div>
             </div>
             <div class="col-md-4">
-              <input type="hidden" id="hdn_orden_compra" value="">
-              <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" id="mdc_group_orden_compra">
+              <div class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" id="mdc_select_orden_compra">
                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                   <div class="mdc-select__label">Órden de Compra</div>
                   <div class="mdc-select__selected-text"></div>
@@ -59,40 +58,48 @@
 
           <div class="row">
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_fecha_envio">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_text_fecha_envio">
                 <input type='text' class="mdc-text-field__input" id='fecha_envio' />
                 <label for="fecha_envio" class="mdc-text-field__label">Fecha de Envio</label>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_hoja_entrada">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_text_hoja_entrada">
                 <input type="text" class="mdc-text-field__input" id="hoja_entrada">
                 <label for="hoja_entrada" class="mdc-text-field__label">Hoja de Entrada</label>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_estado">
-                <input type="text" class="mdc-text-field__input" id="estado">
-                <label for="estado" class="mdc-text-field__label">Estado</label>
+              <div class="mdc-select mdc-select--disabled" role="listbox" data-mdc-auto-init="MDCSelect" id="mdc_select_estado">
+                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                  <div class="mdc-select__label">Estado</div>
+                  <div class="mdc-select__selected-text"></div>
+                  <div class="mdc-select__bottom-line"></div>
+                </div>
+                <div class="mdc-menu mdc-select__menu">
+                  <ul class="mdc-list mdc-menu__items">
+                  </ul>
+                </div>
               </div>
+
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_fecha_desde">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_text_fecha_desde">
                 <input type="text" class="mdc-text-field__input" id="fecha_desde">
                 <label for="fecha_desde" class="mdc-text-field__label">Fecha Del</label>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_fecha_hasta">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_text_fecha_hasta">
                 <input type="text" class="mdc-text-field__input" id="fecha_hasta">
                 <label for="fecha_hasta" class="mdc-text-field__label">Fecha Hasta</label>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="mdc-select mdc-select--disabled" role="listbox" data-mdc-auto-init="MDCSelect" id="mdc_group_empresa">
+              <div class="mdc-select mdc-select--disabled" role="listbox" data-mdc-auto-init="MDCSelect" id="mdc_select_empresa">
                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                   <div class="mdc-select__label">Empresa</div>
                   <div class="mdc-select__selected-text"></div>
@@ -108,7 +115,7 @@
 
           <div class="row">
             <div class="col-md-4">
-              <div class="mdc-select mdc-select--disabled" role="listbox" data-mdc-auto-init="MDCSelect" id="mdc_group_tecnologia">
+              <div class="mdc-select mdc-select--disabled" role="listbox" data-mdc-auto-init="MDCSelect" id="mdc_select_tecnologia">
                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                   <div class="mdc-select__label">Tecnología</div>
                   <div class="mdc-select__selected-text"></div>
@@ -121,7 +128,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_group_area_atencion">
+              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc_text_area_atencion">
                 <input type="text" class="mdc-text-field__input" id="area_atencion">
                 <label for="area_atencion" class="mdc-text-field__label">Área de Atención</label>
               </div>
@@ -143,12 +150,12 @@
     </div>
     <!-- .// row -->
 
-    <div class="row" id="row-title-results" style="">
+    <div class="row" id="row-title-results" style="display: none">
       <div class="col-md-12 subtitle-content">Resultados De Búsqueda</div>
     </div>
     <!-- .// row -->
 
-    <div class="row" id="row-content-results" style="">
+    <div class="row" id="row-content-results" style="display: none">
       <table class="table table-striped" style="font-size:12;">
         <thead>
           <tr>
@@ -194,7 +201,7 @@
     </div>
     <!-- .// row -->
 
-    <div class="row buttons">
+    <div class="row buttons" id="row-buttons-results" style="display: none">
       <div class="col-md-4 text-right">
         <button type="button" class="btn btn-warning" id="delete_request">Eliminar Solicitud</button>
       </div>
