@@ -32,6 +32,17 @@ function loadSelects() {
     mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
 }
 
+function holder(msg){
+    HoldOn.open({
+        theme: "sk-cube",
+        content: '',
+        message: msg,
+        // backgroundColor: "#004582",
+        backgroundColor: "#0c71ca",
+        textColor: "white",
+    });
+}
+
 demoReady(function() {
     var rootEst = document.getElementById('Prioridad-js-select');
     var hiddenEst = document.getElementById('hidden-prioridad');
