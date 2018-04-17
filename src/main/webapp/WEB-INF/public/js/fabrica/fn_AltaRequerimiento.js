@@ -11,9 +11,9 @@ function init(){
 
 function crearCombos(){
 
-    mdc.select.MDCSelect.attachTo(document.getElementById('direccion-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('subdireccion-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('area-js-select'));
+    //mdc.select.MDCSelect.attachTo(document.getElementById('direccion-js-select'));
+    //mdc.select.MDCSelect.attachTo(document.getElementById('subdireccion-js-select'));
+    //mdc.select.MDCSelect.attachTo(document.getElementById('area-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tecnologia-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('tipoProyecto-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('aplicacion-js-select'));
@@ -24,8 +24,8 @@ function crearCombos(){
     mdc.select.MDCSelect.attachTo(document.getElementById('proy-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('estado-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('facturado-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('gestor-js-select'));
+    //mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
+    //mdc.select.MDCSelect.attachTo(document.getElementById('gestor-js-select'));
 
 }
 
@@ -43,17 +43,122 @@ function asignarCombos(){
         });
     });
 
-    //Seleccion especial para el select de subdireccion
-     var rootSD = document.getElementById('subdireccion-js-select');
-     var hiddenSD = document.getElementById('hidden-subdireccion');
-     var viewSD = document.getElementById('subDir');
-     var selectSD = new mdc.select.MDCSelect(rootSD);
+    //function direction and subdirection
+    const select = new mdc.select.MDCSelect(document.querySelector('#dirs'));
+    const subdirs = new mdc.select.MDCSelect(document.querySelector('#subdirs'));
+    let coso = 0;
+    select.listen('MDCSelect:change', () => {
+    if (coso!= 0) return; else coso = 1;
+    let id = select.selectedOptions[0].value;
+    //SET HIDDEN FIELD VALUE
+    $("#hidden-direccion").val(id);
+    //clean subdir
+    $("#hidden-subdireccion").val("");
+    //console.log("seleccion "+ id);
+    //console.log("hidden"+ $("#hidden-direccion").val());
 
-     rootSD.addEventListener('MDCSelect:change', function() {
-         hiddenSD.value = selectSD.value.split("|")[0];
-         viewSD.value = selectSD.value.split("|")[1];
-         viewSD.focus();
-     });
+    $.ajax({
+        url: "/api/levels/"+id+"/sub-levels"
+    }).done(function(data) {
+        //let subdirs = JSON.parse(data);
+        let subs = data.data;
+        //console.log(subs.length);
+        $("#subdir-sel-text").html("");
+        subdirs.selectedIndex = -1;
+        subdirs.value = "";
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#subdir-select").html("");
+            $.each(subs, function( index, value ) {
+                //console.log( index + ": " + value.user.userInternalId );
+                //console.log( index + ": " + value.userInternalId );
+                $("#subdir-select").append(
+                    "<li class='mdc-list-item' role='option' tabindex='0' " +
+                    "id='"+value.levelId+"|"+value.user.userInternalId+"'>"+value.levelName+"</li>");
+            });
+        }else $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+        coso=0;
+    });
+
+    });
+
+    var rootSelect = document.getElementById("subdirs");
+    var selectObj = new mdc.select.MDCSelect(rootSelect);
+
+    rootSelect.addEventListener('MDCSelect:change', function () {
+        $("#subDir").val(selectObj.value.split("|")[1]);
+        $("#hidden-subdireccion").val(selectObj.value.split("|")[0]);
+        $("#subDir").focus();
+    });
+
+    //select userinternal
+    const users = new mdc.select.MDCSelect(document.querySelector('#responsable-js-select'));
+    $.ajax({
+        url: "/api/users/"
+    }).done(function(data) {
+        //let subdirs = JSON.parse(data);
+        let subs = data.data;
+        //console.log(subs.length);
+        $("#subdir-users-text").html("");
+        users.selectedIndex = -1;
+        users.value = "";
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#users-select").html("");
+            $.each(subs, function( index, value ) {
+
+                //console.log("impresion"+ value.profileType.profileTypeId );
+               if(value.profileType.profileTypeId==7){
+                   $("#users-select").append(
+                       "<li class='mdc-list-item' role='option' tabindex='0' " +
+                       "value='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
+               }
+
+
+            });
+        }else $("#users-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+
+    });
+
+
+    //select userinternalarea
+    const areaG = new mdc.select.MDCSelect(document.querySelector('#area-js-select'));
+    const userG = new mdc.select.MDCSelect(document.querySelector('#gestor-js-select'));
+    let valuesS = parseInt("0");
+    areaG.listen('MDCSelect:change', () => {
+        if (valuesS!= 0) return; else valuesS = 1;
+    let id = areaG.selectedOptions[0].id;
+    //SET HIDDEN FIELD VALUE
+    $("#hidden-direccion").val(id);
+    //clean userG
+    $("#hidden-gestor").val("");
+    //console.log("Seleccion"+id);
+
+
+    $.ajax({
+        url: "/api/users/"
+    }).done(function(data) {
+        //let subdirs = JSON.parse(data);
+        let subs = data.data;
+        //console.log(subs.length);
+        $("#subdir-usersG-text").html("");
+        userG.selectedIndex = -1;
+        userG.value = "";
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#usersG-select").html("");
+            $.each(subs, function( index, value ) {
+
+                if(value.profileType.profileTypeId==id){
+                    $("#usersG-select").append(
+                        "<li class='mdc-list-item' role='option' tabindex='0' " +
+                        "value='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
+                }
+
+            });
+        }else $("#usersG-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+        valuesS=0;
+    });
+    });
+
+
 
 }
 
