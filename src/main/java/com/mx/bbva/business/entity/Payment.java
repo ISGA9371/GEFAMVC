@@ -6,6 +6,7 @@
 package com.mx.bbva.business.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,6 +38,7 @@ public class Payment implements Serializable {
     private String paymentReception;
     @Column(name = "FH_RECEPCION")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date paymentReceptionDate;
     @JsonIgnore
     @OneToMany(mappedBy = "payment")

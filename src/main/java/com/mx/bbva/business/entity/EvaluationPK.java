@@ -5,12 +5,16 @@
  */
 package com.mx.bbva.business.entity;
 
-import javax.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
  * @author manug
  */
 @Embeddable
@@ -18,9 +22,11 @@ public class EvaluationPK implements Serializable {
 
     @Column(name = "FH_INICIO")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date evaluationStartDate;
     @Column(name = "FH_FIN")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date evaluationFinalDate;
 
     public EvaluationPK() {
@@ -74,5 +80,5 @@ public class EvaluationPK implements Serializable {
     public String toString() {
         return "com.mx.bbva.business.entity.EvaluationPK[ evaluationStartDate=" + evaluationStartDate + ", evaluationFinalDate=" + evaluationFinalDate + " ]";
     }
-    
+
 }

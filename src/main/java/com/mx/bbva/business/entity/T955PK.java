@@ -5,7 +5,6 @@
  */
 package com.mx.bbva.business.entity;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;

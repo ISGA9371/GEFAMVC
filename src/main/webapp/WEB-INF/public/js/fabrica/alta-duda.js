@@ -1,16 +1,7 @@
 function init() {
-    //showH();
-    //initGlobal();
+
     addCalendars();
     loadSelects();
-    //getVersion();
-    //addHiddenEvents();
-    //setDefaults();
-    //addSelectEvents();
-    //addComponentValidation();
-    //addRequirementValidation();
-    //addDifficultyValidation();
-    //addHoursValidation();
     addButtonEvents();
 
     $("#hidden-status").val("11");
@@ -63,3 +54,46 @@ function addButtonEvents() {
         window.history.back();
     })
 }
+
+function holder(msg){
+    HoldOn.open({
+        theme: "sk-cube",
+        content: '',
+        message: msg,
+        // backgroundColor: "#004582",
+        backgroundColor: "#0c71ca",
+        textColor: "white",
+    });
+}
+
+
+
+demoReady(function() {
+    var rootEst = document.getElementById('Prioridad-js-select');
+    var hiddenEst = document.getElementById('hidden-prioridad');
+    var selectEst = new mdc.select.MDCSelect(rootEst);
+
+    rootEst.addEventListener('MDCSelect:change', function() {
+        hiddenEst.value = selectEst.value;
+    });
+});
+
+demoReady(function() {
+    var rootEst = document.getElementById('responsable-js-select');
+    var hiddenEst = document.getElementById('hidden-responsable');
+    var selectEst = new mdc.select.MDCSelect(rootEst);
+
+    rootEst.addEventListener('MDCSelect:change', function() {
+        hiddenEst.value = selectEst.value;
+    });
+});
+
+demoReady(function() {
+    var rootEst = document.getElementById('Duda-js-select');
+    var hiddenEst = document.getElementById('hidden-dudaSelect');
+    var selectEst = new mdc.select.MDCSelect(rootEst);
+
+    rootEst.addEventListener('MDCSelect:change', function() {
+        hiddenEst.value = selectEst.value;
+    });
+});

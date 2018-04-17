@@ -198,51 +198,6 @@
         border-bottom-color: rgba(15, 50, 242, 0.5);
     }
 </style>
-
-<script>
-    demoReady(function() {
-        var rootEst = document.getElementById('Prioridad-js-select');
-        var hiddenEst = document.getElementById('hidden-prioridad');
-        var selectEst = new mdc.select.MDCSelect(rootEst);
-
-        rootEst.addEventListener('MDCSelect:change', function() {
-            hiddenEst.value = selectEst.value;
-        });
-    });
-
-    demoReady(function() {
-        var rootEst = document.getElementById('responsable-js-select');
-        var hiddenEst = document.getElementById('hidden-responsable');
-        var selectEst = new mdc.select.MDCSelect(rootEst);
-
-        rootEst.addEventListener('MDCSelect:change', function() {
-            hiddenEst.value = selectEst.value;
-        });
-    });
-
-    demoReady(function() {
-        var rootEst = document.getElementById('Duda-js-select');
-        var hiddenEst = document.getElementById('hidden-dudaSelect');
-        var selectEst = new mdc.select.MDCSelect(rootEst);
-
-        rootEst.addEventListener('MDCSelect:change', function() {
-            hiddenEst.value = selectEst.value;
-        });
-    });
-
-    function holder(msg){
-        HoldOn.open({
-            theme: "sk-cube",
-            content: '',
-            message: msg,
-            // backgroundColor: "#004582",
-            backgroundColor: "#0c71ca",
-            textColor: "white",
-        });
-    }
-
-</script>
-
 <!--Footer que debe ir en todas las ventanas-->
 <div th:replace="layout/footer :: FooterPrincipal"></div>
 <script type="text/javascript" th:src="@{../js/fabrica/alta-duda.js}"></script>

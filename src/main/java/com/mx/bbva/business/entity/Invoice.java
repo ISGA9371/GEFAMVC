@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -23,6 +25,7 @@ public class Invoice implements Serializable {
     private Integer invoiceId;
     @Column(name = "FH_CORTE", nullable = false)
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date invoiceCutDate;
     @Column(name = "IM_TARIFA", nullable = false)
     private double invoiceRate;
@@ -34,11 +37,13 @@ public class Invoice implements Serializable {
     private String invoiceNotice;
     @Column(name = "FH_ENVIO_IMPLANT")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date invoiceSendDate;
     @Column(name = "NB_GLG", length = 23)
     private String invoiceNameGlg;
     @Column(name = "FH_REG_PAGO_GEST")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date invoiceManagerPaymentDate;
     @Column(name = "TX_OBSERVACION", length = 500)
     private String invoiceNote;
@@ -48,6 +53,7 @@ public class Invoice implements Serializable {
     private Double invoiceValue;
     @Column(name = "FH_INGRESO_FACT")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date invoiceInDate;
     @Column(name = "TX_VIA_INGRESO", length = 25)
     private String invoiceEntryWay;

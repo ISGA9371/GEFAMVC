@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author  Guevara Manuel
+ * @author Guevara Manuel
  */
 @Entity
 @Table(name = "thge052_causa_rech", uniqueConstraints = {

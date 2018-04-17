@@ -27,9 +27,9 @@ public class Access implements Serializable {
     @Column(name = "FH_VIG_ACC_LOG", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date accessLogicalExpDate;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "FH_VIG_ACC_FIS", nullable = false)
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date accessPhysicalExpDate;
     @JoinColumn(name = "CD_EXTERNO", referencedColumnName = "CD_EXTERNO_CORP", nullable = false)
     @ManyToOne(optional = false)
