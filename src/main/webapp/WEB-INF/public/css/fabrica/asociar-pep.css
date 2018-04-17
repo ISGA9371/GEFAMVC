@@ -8,3 +8,24 @@
 input.mdc-text-field__input{
     border-bottom-color:rgba(28, 59, 224, 0.5)
 }
+
+.pep-title{
+    background: #8F7AE5;
+    font-size: 20px;
+    color: white;
+    padding: 4px 0;
+}
+
+#results-table *{
+    font-size: 12px;
+    text-align: center;
+}
+
+#results-table thead{
+    background-color:#F4F4F4;
+    color:#005EB8;
+}
+#results-table thead th {
+    padding: 12px 0;
+    font-weight: normal;
+}
