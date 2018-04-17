@@ -41,9 +41,9 @@ $(function () {
     const subPrincipal = new mdc.select.MDCSelect(document.querySelector('#subprincipal'));
     //LOAD SUB LEVELS FROM PRINCIPAL
     $.ajax({
-        url: "/levels/"+principalId+"/sublevel"
+        url: "/api/levels/"+principalId+"/sub-levels"
     }).done(function(data) {
-        let subdirs = data;
+        let subdirs = data.data;
         $("#subdir-sel-text").html("");
         if (typeof subdirs !== 'undefined' && subdirs.length > 0) {
             $("#subdir-select").html("");
@@ -82,9 +82,9 @@ $(function () {
         let id = principal.selectedOptions[0].value;
 
         $.ajax({
-            url: "/levels/"+id+"/sublevel"
+            url: "/api/levels/"+id+"/sub-levels"
         }).done(function(data) {
-            let subdirs = data;
+            let subdirs = data.data;
             $("#subdir-sel-text").html("");
             subPrincipal.selectedIndex = -1;
             subPrincipal.value = "";

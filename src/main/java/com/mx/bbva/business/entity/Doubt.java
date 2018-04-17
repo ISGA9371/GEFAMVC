@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -23,6 +25,7 @@ public class Doubt implements Serializable {
     private Integer doubtId;
     @Column(name = "FH_ALTA")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date doubtUploadDate;
     @Column(name = "TX_VENTREGA", nullable = false, length = 9)
     private String doubtVersion;
@@ -35,6 +38,7 @@ public class Doubt implements Serializable {
     private byte[] doubtFile;
     @Column(name = "FH_RESOLUCION")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date doubtDateResolution;
     @Column(name = "NU_RES_INCORR")
     private Integer doubtWrongResponse;

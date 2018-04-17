@@ -5,6 +5,8 @@
  */
 package com.mx.bbva.business.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -23,6 +25,7 @@ public class RequirementTracking implements Serializable {
     private Integer requirementTrackingId;
     @Column(name = "TM_SEG_REQ")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date requirementTrackingDate;
     @Column(name = "NB_DEPENDENCIA")
     private String requirementTrackingDependency;

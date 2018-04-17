@@ -6,6 +6,7 @@
 package com.mx.bbva.business.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,6 +38,7 @@ public class ExternalUser implements Serializable {
     private String externalUserNss;
     @Column(name = "FH_NACIMIENTO")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date externalUserBirthDate;
     @Column(name = "CD_GENERO", nullable = false)
     private Character externalUserGender;
@@ -50,6 +52,7 @@ public class ExternalUser implements Serializable {
     private String externalUserProjectStartDate;
     @Column(name = "FH_FIN_PROY")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date externalUserProjectFinalDate;
     @Column(name = "TX_HOST", length = 2)
     private String externalUserHost;
@@ -57,6 +60,7 @@ public class ExternalUser implements Serializable {
     private String externalUserVpn;
     @Column(name = "FH_VIGENCIA_TOKEN")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date externalUserTokenExpirationDate;
     @Column(name = "NU_PISO")
     private Integer externalUserFloor;
@@ -68,9 +72,11 @@ public class ExternalUser implements Serializable {
     private String externalUserSchedule;
     @Column(name = "FH_ALTA")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date externalUserUploadDate;
     @Column(name = "FH_BAJA")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date externalUserEndDate;
     @JoinColumn(name = "CD_PROYECTO_AG", referencedColumnName = "CD_TP_PROYECTO")
     @ManyToOne(optional = false)

@@ -115,20 +115,6 @@
         </tr>
         <tr style="height:72px">
             <td class="col-md-4" align="center">
-               <!-- <div id="direccion-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label">Direccion</div>
-                        <div class="mdc-select__selected-text"></div>
-                        <div class="mdc-select__bottom-line"></div>
-                    </div>
-                    <div class="mdc-menu mdc-select__menu col-md-3" >
-                        <ul class="mdc-list mdc-menu__items">
-                            <li class="mdc-list-item" role="option" tabindex="0">
-                                Direccion 1
-                            </li>
-                        </ul>
-                    </div>
-                </div>-->
 
                <!-- <input id="hidden-prioridad" type="text" value="" required th:field="*{principals.levelId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">-->
                 <div id="direccion-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
@@ -146,7 +132,22 @@
 
             </td>
             <td class="col-md-4" align="center">
-                <div id="director-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+
+                <!--<input id="hidden-responsable" type="text"   value="" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{userSender.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">-->
+                <div id="director-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                        <div class="mdc-select__label">Director</div>
+                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__bottom-line"></div>
+                    </div>
+                    <div class="mdc-menu mdc-select__menu col-md-3" >
+                        <ul class="mdc-list mdc-menu__items">
+                            <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--<div id="director-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                         <div class="mdc-select__label">Director</div>
                         <div class="mdc-select__selected-text"></div>
@@ -169,7 +170,7 @@
 
                         </ul>
                     </div>
-                </div>
+                </div>-->
             </td>
             <td class="col-md-4" align="center">
                 <div id="grupo-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
@@ -199,7 +200,20 @@
         </tr>
         <tr style="height:72px">
             <td class="col-md-4" align="center">
-                <div id="resparea-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                <!--<input id="hidden-responsable" type="text"   value="" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{userSender.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">-->
+                <div id="resparea-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                        <div class="mdc-select__label">Resp. Area</div>
+                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__bottom-line"></div>
+                    </div>
+                    <div class="mdc-menu mdc-select__menu col-md-3" >
+                        <ul class="mdc-list mdc-menu__items">
+                            <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--<div id="resparea-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                         <div class="mdc-select__label">Resp. Area</div>
                         <div class="mdc-select__selected-text"></div>
@@ -222,10 +236,25 @@
 
                         </ul>
                     </div>
-                </div>
+                </div>-->
             </td>
             <td class="col-md-4" align="center">
-                <div id="respdyd-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+
+                <!--<input id="hidden-responsable" type="text"   value="" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{userSender.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">-->
+                <div id="respdyd-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                        <div class="mdc-select__label">Resp. DYD</div>
+                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__bottom-line"></div>
+                    </div>
+                    <div class="mdc-menu mdc-select__menu col-md-3" >
+                        <ul class="mdc-list mdc-menu__items">
+                            <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--<div id="respdyd-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                         <div class="mdc-select__label">Resp. DYD</div>
                         <div class="mdc-select__selected-text"></div>
@@ -248,7 +277,7 @@
 
                         </ul>
                     </div>
-                </div>
+                </div>-->
             </td>
             <td class="col-md-4" align="center">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
