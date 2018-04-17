@@ -91,6 +91,18 @@ $(function () {
   });
 
 
+  var optionsTipif = "<option value=''></option>";
+  $.ajax({
+    url: "/api/status-types/3/status",
+    method: "GET",
+  }).done(function (data) {
+    $.each(data.data, function (index, value) {
+      optionsTipif += "<option value='" + value.statusId + "'>" + value.statusName + "</option>";
+    });
+  }).fail(function () {
+  });
+
+
   $("#tabs").tabs();
 
 
@@ -324,13 +336,14 @@ $(function () {
             "<td><input type='text' id='costFin-" + value.componentId + "' value='' class='form-control text-center' readonly></td>" +
             "<td><input type='text' id='horFin-" + value.componentId + "' value='' class='form-control text-center' readonly></td>" +
             "<td><input type='text' id='comments-" + value.componentId + "' value='" + value.componentTypoComment + "' class='form-control'></td>" +
-            "<td><select class='form-control' id='estatusTip-" + value.componentId + "'><option value=''></option></select></td>" +
+            "<td><select class='form-control' id='estatusTip-" + value.componentId + "'>" + optionsTipif+"</select></td>" +
             "<td><select class='form-control' id='facturar-" + value.componentId + "'><option value='1'>SI</option><option value='0'>NO</option></select></td></tr>"
           );
 
           $("#tipFin-" + value.componentId).val(value.typologyEmp.typologyId);
           $("#difFin-" + value.componentId).val(value.typologyEmp.typologySeverity);
           $("#horFin-" + value.componentId).val(value.typologyEmp.typologySeverityHours);
+          $("#estatusTip-" + value.componentId).val(value.statusTypology.statusId);
         });
         $(".component-modified").change(function () {
           var idElement = $(this).attr("id").substring(7, $(this).attr("id").length);
