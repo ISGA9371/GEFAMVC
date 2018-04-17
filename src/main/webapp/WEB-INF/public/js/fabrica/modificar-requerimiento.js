@@ -38,7 +38,7 @@ $(function () {
     principal.selectedIndex = principalId - 1;
     principal.value = principalEL.find("li[value="+principalId+"]").html();
 
-    const subPrincipal = new mdc.select.MDCSelect(document.querySelector('#subprincipal'));
+    var subPrincipal = new mdc.select.MDCSelect(document.querySelector('#subprincipal'));
     //LOAD SUB LEVELS FROM PRINCIPAL
     $.ajax({
         url: "/api/levels/"+principalId+"/sub-levels"
@@ -77,6 +77,22 @@ $(function () {
     //LOADING SUBDIRECCIONES CUANDO DIRECCION CMABIA
     let coso = parseInt("0");
     principal.listen('MDCSelect:change', () => {
+        var base_combo = "<div id=\"subprincipal\" class=\"mdc-select\" role=\"listbox\" data-mdc-auto-init=\"MDCSelect\">\n" +
+            "                    <div class=\"mdc-select__surface mdc-ripple-upgraded\" tabindex=\"0\" >\n" +
+        "                        <div class=\"mdc-select__label mdc-select__label--float-above\">Subdireccion *</div>\n" +
+        "                        <div class=\"mdc-select__selected-text\" id=\"subdir-sel-text\"></div>\n" +
+        "                        <div class=\"mdc-select__bottom-line\"></div>\n" +
+        "                    </div>\n" +
+        "                    <div class=\"mdc-menu mdc-select__menu col-md-3\">\n" +
+        "                        <ul class=\"mdc-list mdc-menu__items\" id=\"subdir-select\">\n" +
+        "                            <li class=\"mdc-list-item\" role=\"option\" tabindex=\"0\"></li>\n" +
+        "                        </ul>\n" +
+        "                    </div>\n" +
+        "                </div>";
+    papa = $("#subprincipal").parent();
+    papa.empty();
+    papa.append(base_combo);
+    var subPrincipal = new mdc.select.MDCSelect(document.querySelector('#subprincipal'));
         if (coso++ === 0) return; else coso = 0;
         subPrincipal.disabled = true;
         let id = principal.selectedOptions[0].value;
@@ -97,7 +113,6 @@ $(function () {
                 });
             }else $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
             subPrincipal.disabled = false;
-
         });
     });
 
