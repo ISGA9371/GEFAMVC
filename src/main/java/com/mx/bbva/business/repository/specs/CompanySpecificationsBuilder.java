@@ -2,7 +2,6 @@ package com.mx.bbva.business.repository.specs;
 
 import com.mx.bbva.business.entity.Company;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.jpa.domain.Specifications;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +30,7 @@ public class CompanySpecificationsBuilder {
 
         Specification<Company> result = specs.get(0);
         for (int i = 1; i < specs.size(); i++) {
-            result = Specifications.where(result).and(specs.get(i));
+            result = Specification.where(result).or(specs.get(i));
         }
         return result;
     }

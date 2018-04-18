@@ -26,7 +26,7 @@ public class Typology implements Serializable {
     @Column(name = "TP_COMPONENTE", nullable = false)
     private Boolean typologyComponentModified;
     @Column(name = "NU_DIFICULTAD")
-    private Integer typologySeverity;
+    private Character typologySeverity;
     @Column(name = "NU_HM_DIFICULTAD", precision = 12)
     private Float typologySeverityHours;
     @Column(name = "NU_ANO", nullable = false)
@@ -78,11 +78,11 @@ public class Typology implements Serializable {
         this.typologyComponentModified = typologyComponentModified;
     }
 
-    public Integer getTypologySeverity() {
+    public Character getTypologySeverity() {
         return typologySeverity;
     }
 
-    public void setTypologySeverity(Integer typologySeverity) {
+    public void setTypologySeverity(Character typologySeverity) {
         this.typologySeverity = typologySeverity;
     }
 

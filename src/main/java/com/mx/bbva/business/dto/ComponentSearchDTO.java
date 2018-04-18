@@ -19,10 +19,10 @@ public class ComponentSearchDTO {
     private Date componentPossibleDeliverDate;
     private Date componentRealDeliverDate;
     private Integer finalProductId;
-    private Integer typologyStartSeverity;
+    private Character typologyStartSeverity;
     private Long typologyStartSeverityHours;
     private Integer statusTypologyId;
-    private Integer typologyFinalSeverity;
+    private Character typologyFinalSeverity;
     private Long typologyFinalSeverityHours;
 
     public ComponentSearchDTO() {
@@ -148,14 +148,6 @@ public class ComponentSearchDTO {
         this.finalProductId = finalProductId;
     }
 
-    public Integer getTypologyStartSeverity() {
-        return typologyStartSeverity;
-    }
-
-    public void setTypologyStartSeverity(Integer typologyStartSeverity) {
-        this.typologyStartSeverity = typologyStartSeverity;
-    }
-
     public Long getTypologyStartSeverityHours() {
         return typologyStartSeverityHours;
     }
@@ -172,20 +164,28 @@ public class ComponentSearchDTO {
         this.statusTypologyId = statusTypologyId;
     }
 
-    public Integer getTypologyFinalSeverity() {
-        return typologyFinalSeverity;
-    }
-
-    public void setTypologyFinalSeverity(Integer typologyFinalSeverity) {
-        this.typologyFinalSeverity = typologyFinalSeverity;
-    }
-
     public Long getTypologyFinalSeverityHours() {
         return typologyFinalSeverityHours;
     }
 
     public void setTypologyFinalSeverityHours(Long typologyFinalSeverityHours) {
         this.typologyFinalSeverityHours = typologyFinalSeverityHours;
+    }
+
+    public Character getTypologyStartSeverity() {
+        return typologyStartSeverity;
+    }
+
+    public void setTypologyStartSeverity(Character typologyStartSeverity) {
+        this.typologyStartSeverity = typologyStartSeverity;
+    }
+
+    public Character getTypologyFinalSeverity() {
+        return typologyFinalSeverity;
+    }
+
+    public void setTypologyFinalSeverity(Character typologyFinalSeverity) {
+        this.typologyFinalSeverity = typologyFinalSeverity;
     }
 
     @Override
