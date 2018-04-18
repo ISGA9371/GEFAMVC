@@ -1,9 +1,6 @@
 package com.mx.bbva.util.query;
 
-import com.mx.bbva.business.dto.ComponentSearchDTO;
-
-import java.util.Date;
-import java.util.Optional;
+import java.util.Map;
 import java.util.logging.Logger;
 
 public class ComponentQueryGenerator {
@@ -11,79 +8,72 @@ public class ComponentQueryGenerator {
     private StringBuffer stringBuffer = new StringBuffer();
     private boolean firstOne = true;
 
-    public String generateQuery(ComponentSearchDTO componentSearchDTO) {
-        LOG.info("Creating query for Requirement...");
+    public String generateQuery(Map<String, String> componentSearchDTO) {
+        // TODO This solution SUCKS
+        LOG.info("Creating query for Component...");
         final String EQUALS = " = ";
         final String LIKE = " LIKE ";
 
         stringBuffer.append("FROM Component x ");
-        if (isNotNullString(componentSearchDTO.getComponentName())) {
-            addFilter("x.componentName", "%" + componentSearchDTO.getComponentName() + "%", LIKE);
-        }
-        if (isNotNullString(componentSearchDTO.getRequirementName())) {
-            addFilter("x.requirement.requirementName", "%" + componentSearchDTO.getRequirementName() + "%", LIKE);
-        }
-        if (isNotNullString(componentSearchDTO.getComponentVersion())) {
-            addFilter("x.componentVersion", "%" + componentSearchDTO.getComponentVersion() + "%", LIKE);
-        }
-        if (isNotNullInteger(componentSearchDTO.getPrincipalId())) {
-            addFilter("x.requirement.level.levelId", "'" + componentSearchDTO.getPrincipalId() + "'", EQUALS);
-        }
-        /* TODO Check this value
-        if (isNotNullInteger(componentSearchDTO.getSubPrincipalId())) {
-            addFilter("x.subPrincipal.levelId", "'" + componentSearchDTO.getSubPrincipalId() + "'", EQUALS);
-        } */
-        if (isNotNullInteger(componentSearchDTO.getCompanyId())) {
-            addFilter("x.requirement.company.companyId", "%" + componentSearchDTO.getCompanyId() + "%", EQUALS);
-        }
-        if (isNotNullInteger(componentSearchDTO.getTechnologyId())) {
-            addFilter("x.requirement.technology.technologyId", "%" + componentSearchDTO.getTechnologyId() + "%", EQUALS);
-        }
-        if (componentSearchDTO.getTypologyNewComponent() != null) {
-            addFilter("x.typology.typologyNewComponent", componentSearchDTO.getTypologyNewComponent().toString(), EQUALS);
-        }
-        if (isNotNullInteger(componentSearchDTO.getStatusId())) {
-            addFilter("x.status.statusId", "'" + componentSearchDTO.getStatusId() + "'", LIKE);
-        }
 
-        if (isNotNullDate(componentSearchDTO.getComponentDesignRealDeliverDate())) {
-            addFilter("x.componentDesignRealDeliverDate",
-                    "%" + componentSearchDTO.getComponentDesignRealDeliverDate() + "%", LIKE);
+        if (componentSearchDTO.containsKey("componentName") && !componentSearchDTO.get("componentName").isEmpty()) {
+            addFilter("x.componentName", "'%" + componentSearchDTO.get("componentName") + "%'", LIKE);
         }
-
-        /*
-        if (isNotNullString(componentSearchDTO.getComponentPreviewDeliverDate())) {
-            addFilter("", "%" + someValue + "%", LIKE);
+        if (componentSearchDTO.containsKey("requirementName") && !componentSearchDTO.get("requirementName").isEmpty()) {
+            addFilter("x.requirement.requirementName", "'%" + componentSearchDTO.get("requirementName") + "%'", LIKE);
         }
-        if (isNotNullString(componentSearchDTO.getComponentPossibleDeliverDate())) {
-            addFilter("", "%" + someValue + "%", LIKE);
+        if (componentSearchDTO.containsKey("componentVersion") && !componentSearchDTO.get("componentVersion").isEmpty()) {
+            addFilter("x.componentVersion", "'%" + componentSearchDTO.get("componentVersion") + "%'", LIKE);
         }
-        if (isNotNullString(componentSearchDTO.getComponentRealDeliverDate())) {
-            addFilter("", "%" + someValue + "%", LIKE);
+        if (componentSearchDTO.containsKey("subPrincipalId") && !componentSearchDTO.get("subPrincipalId").isEmpty()) {
+            addFilter("x.requirement.level.levelId", "'" + componentSearchDTO.get("subPrincipalId") + "'", EQUALS);
         }
-
-        if (isNotNullInteger(componentSearchDTO.getStartProductId())) {
-            addFilter("", "'" + componentSearchDTO.getStartProductId() + "'", EQUALS);
+        if (componentSearchDTO.containsKey("companyId") && !componentSearchDTO.get("companyId").isEmpty()) {
+            addFilter("x.requirement.company.companyId", "'%" + componentSearchDTO.get("companyId") + "%'", EQUALS);
         }
-        if (isNotNullInteger(componentSearchDTO.getFinalProductId())) {
-            addFilter("", "'" + componentSearchDTO.getFinalProductId() + "'", EQUALS);
+        if (componentSearchDTO.containsKey("technologyId") && !componentSearchDTO.get("technologyId").isEmpty()) {
+            addFilter("x.requirement.technology.technologyId", "'%" + componentSearchDTO.get("technologyId") + "%'", EQUALS);
         }
-        if (isNotNullInteger(componentSearchDTO.getTypologyStartSeverity())) {
-            addFilter("", "'" + componentSearchDTO.getTypologyStartSeverity() + "'", EQUALS);
-        }  */
-                /* TODO Long
-                if (isNotNullString(componentSearchDTO.getTypologyStartSeverityHours())) {
-                    addFilter("", "'" + someValue + "'", EQUALS);
-                }
-                if (isNotNullString(componentSearchDTO.getTypologyFinalSeverityHours())) {
-                    addFilter("", "'" + someValue + "'", EQUALS);
-                }*/
-        if (isNotNullInteger(componentSearchDTO.getStatusTypologyId())) {
-            addFilter("x.statusTypology.statusId", "'" + componentSearchDTO.getStatusTypologyId() + "'", EQUALS);
+        if (componentSearchDTO.containsKey("typologyComponentModified") && !componentSearchDTO.get("typologyComponentModified").isEmpty()) {
+            addFilter("x.typology.typologyComponentModified", componentSearchDTO.get("typologyComponentModified"), EQUALS);
         }
-        //if (isNotNullInteger(componentSearchDTO.getTypologyFinalSeverity())) {
-        //    addFilter("", "'" + componentSearchDTO.getTypologyFinalSeverity() + "'", EQUALS);
-        //}
+        if (componentSearchDTO.containsKey("statusId") && !componentSearchDTO.get("statusId").isEmpty()) {
+            addFilter("x.status.statusId", "'" + componentSearchDTO.get("statusId") + "'", LIKE);
+        }
+        if (componentSearchDTO.containsKey("componentDesignRealDeliverDate") && !componentSearchDTO.get("componentDesignRealDeliverDate").isEmpty()) {
+            addFilter("x.componentDesignRealDeliverDate", "'%" + componentSearchDTO.get("componentDesignRealDeliverDate") + "%'", LIKE);
+        }
+        if (componentSearchDTO.containsKey("componentPreviewDeliverDate") && !componentSearchDTO.get("componentPreviewDeliverDate").isEmpty()) {
+            addFilter("x.componentPreviewDeliverDate", "'%" + componentSearchDTO.get("componentPreviewDeliverDate") + "%'", LIKE);
+        }
+        if (componentSearchDTO.containsKey("componentPossibleDeliverDate") && !componentSearchDTO.get("componentPossibleDeliverDate").isEmpty()) {
+            addFilter("x.componentPossibleDeliverDate", "'%" + componentSearchDTO.get("componentPossibleDeliverDate") + "%'", LIKE);
+        }
+        if (componentSearchDTO.containsKey("componentRealDeliverDate") && !componentSearchDTO.get("componentRealDeliverDate").isEmpty()) {
+            addFilter("x.componentRealDeliverDate", "'%" + componentSearchDTO.get("componentRealDeliverDate") + "%'", LIKE);
+        }
+        if (componentSearchDTO.containsKey("startProductId") && !componentSearchDTO.get("startProductId").isEmpty()) {
+            addFilter("x.startTypology.product.productId", "'%" + componentSearchDTO.get("startProductId") + "%'", LIKE);
+        }
+        if (componentSearchDTO.containsKey("typologyStartSeverity") && !componentSearchDTO.get("typologyStartSeverity").isEmpty()) {
+            addFilter("x.startTypology.typologySeverity", "'" + componentSearchDTO.get("typologyStartSeverity") + "'", EQUALS);
+        }
+        if (componentSearchDTO.containsKey("typologyStartSeverityHours") && !componentSearchDTO.get("typologyStartSeverityHours").isEmpty()) {
+            addFilter("x.startTypology.typologySeverityHours", "'" + componentSearchDTO.get("typologyStartSeverityHours") + "'", EQUALS);
+        }
+        if (componentSearchDTO.containsKey("finalProductId") && !componentSearchDTO.get("finalProductId").isEmpty()) {
+            addFilter("x.finalTypology.product.productId", "'%" + componentSearchDTO.get("startProductId") + "%'", LIKE);
+        }
+        if (componentSearchDTO.containsKey("typologyFinalSeverity") && !componentSearchDTO.get("typologyFinalSeverity").isEmpty()) {
+            addFilter("x.finalTypology.typologySeverity", "'" + componentSearchDTO.get("typologyStartSeverity") + "'", EQUALS);
+        }
+        if (componentSearchDTO.containsKey("typologyFinalSeverityHours") && !componentSearchDTO.get("typologyFinalSeverityHours").isEmpty()) {
+            addFilter("x.finalTypology.typologySeverityHours", "'" + componentSearchDTO.get("typologyFinalSeverityHours") + "'", EQUALS);
+        }
+        if (componentSearchDTO.containsKey("statusTypologyId") && !componentSearchDTO.get("statusTypologyId").isEmpty()) {
+            addFilter("x.statusTypology.statusId", "'" + componentSearchDTO.get("statusTypologyId") + "'", EQUALS);
+        }
+        LOG.info("Query made: " + stringBuffer.toString());
         return stringBuffer.toString();
     }
 
@@ -95,18 +85,5 @@ public class ComponentQueryGenerator {
             stringBuffer.append(" OR ");
         }
         stringBuffer.append(filter).append(operator).append(value);
-    }
-
-    private boolean isNotNullString(String value) {
-        return value != null && !value.isEmpty();
-    }
-
-    private boolean isNotNullInteger(Integer value) {
-        return value != null && !value.equals(0);
-    }
-
-    private boolean isNotNullDate(Date value) {
-        Optional<Date> finalDate = Optional.ofNullable(value);
-        return finalDate.isPresent();
     }
 }

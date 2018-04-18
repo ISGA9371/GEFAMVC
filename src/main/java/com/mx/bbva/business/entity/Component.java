@@ -65,10 +65,10 @@ public class Component implements Serializable {
     private Status status;
     @JoinColumn(name = "CD_TIPOLOGIA", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private Typology typology;
+    private Typology startTypology;
     @JoinColumn(name = "CD_TIPOLOGIA_EMP", referencedColumnName = "CD_TIPOLOGIA", nullable = false)
     @ManyToOne(optional = false)
-    private Typology typologyEmp;
+    private Typology finalTypology;
     @JoinColumn(name = "CD_REQUERIMIENTO", referencedColumnName = "CD_REQUERIMIENTO", nullable = false)
     @ManyToOne(optional = false)
     private Requirement requirement;
@@ -217,20 +217,20 @@ public class Component implements Serializable {
         this.status = status;
     }
 
-    public Typology getTypology() {
-        return typology;
+    public Typology getStartTypology() {
+        return startTypology;
     }
 
-    public void setTypology(Typology typology) {
-        this.typology = typology;
+    public void setStartTypology(Typology startTypology) {
+        this.startTypology = startTypology;
     }
 
-    public Typology getTypologyEmp() {
-        return typologyEmp;
+    public Typology getFinalTypology() {
+        return finalTypology;
     }
 
-    public void setTypologyEmp(Typology typologyEmp) {
-        this.typologyEmp = typologyEmp;
+    public void setFinalTypology(Typology finalTypology) {
+        this.finalTypology = finalTypology;
     }
 
     public Requirement getRequirement() {

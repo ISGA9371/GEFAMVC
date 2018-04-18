@@ -38,10 +38,10 @@ public class Typology implements Serializable {
     @ManyToOne(optional = false)
     private Status status;
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "typology")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "startTypology")
     private List<Component> components;
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "typologyEmp")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "finalTypology")
     private List<Component> componentList;
     @JsonIgnore
     @OneToMany(mappedBy = "startTypology")
