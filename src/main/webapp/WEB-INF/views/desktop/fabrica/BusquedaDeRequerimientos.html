@@ -89,10 +89,12 @@
                     <div class="mdc-select__bottom-line"></div>
                   </div>
                   <div class="mdc-menu mdc-select__menu col-md-3">
-                    <ul class="mdc-list mdc-menu__items">
+                    <ul class="mdc-list mdc-menu__items" id="responsables-ul">
+                      <!-- THANKS OBAMA
                       <li class="mdc-list-item" role="option" tabindex="0" th:each="user : ${users}"
                           th:id="${user.userInternalId}" th:text="${user.userInternalId}">
                       </li>
+                      -->
                     </ul>
                   </div>
                 </div>
@@ -396,8 +398,8 @@
 
     <div class="row buttons" id="row-buttons-results">
       <div class="col-xs-12 text-center">
-        <a id="edit-requirement" class="btn btn-primary" onclick="showHoldOn();">Modificar</a>
-        <a id="add-component" class="btn btn-primary" onclick="showHoldOn();">Alta de Componente</a>
+        <a id="edit-requirement" class="btn btn-primary" disabled="disabled">Modificar</a>
+        <a id="add-component" class="btn btn-primary" disabled="disabled">Alta de Componente</a>
       </div>
     </div>
     <!-- .// row -->

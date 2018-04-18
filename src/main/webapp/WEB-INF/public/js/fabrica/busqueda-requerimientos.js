@@ -48,8 +48,8 @@ $(function () {
                 $.each(subs, function( index, value ) {
                     //console.log( index + ": " + value.levelId );
                     $("#subdir-select").append(
-                        "<li class='mdc-list-item' role='option' tabindex='0' " +
-                        "value='"+value.levelId+"'>"+value.levelName+"</li>");
+                        "<li class='mdc-list-item' role='option' tabindex='0' data-sublevel-user='"
+                        +value.user.userInternalId+"' value='"+value.levelId+"'>"+value.levelName+"</li>");
                 });
             }else $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
 
@@ -66,6 +66,24 @@ $(function () {
 
     let index3 = parseInt("0");
     const responsables = new mdc.select.MDCSelect(document.querySelector('#responsables'));
+    $.ajax({
+        url: "/api/users/"
+    }).done(function(data) {
+        let resps = data.data;
+        responsables.selectedIndex = -1;
+        responsables.value = "";
+        if (typeof resps !== 'undefined' && resps.length > 0) {
+            $("#responsables-ul").html("");
+            $.each(resps, function( index, value ) {
+                if(value.profileType.profileTypeId === 7){
+                    $("#responsables-ul").append(
+                        "<li class='mdc-list-item' role='option' tabindex='0' " +
+                        "value='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
+                }
+            });
+        }else $("#responsables-ul").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+    });
+
     responsables.listen('MDCSelect:change', () => {
         if (index3++ === 0) return; else index3 = 0;
         let id = responsables.selectedOptions[0].id;
@@ -254,16 +272,26 @@ $(function () {
         //
     });
 
-    $('tr.clickable').click(function() {
+    var editReq = $("#edit-requirement");
+    var addComp = $("#add-component");
 
+    $('tr.clickable').click(function() {
         var radioButton = $(this).find('input[type=radio]');
         var nameGroup = radioButton.attr("name");
         $('input[type=radio][name='+nameGroup+']').prop("checked",false);
         //console.log("hola"+ radioButton.prop("checked"));
         radioButton.prop('checked', true);
-        $("#edit-requirement").attr("href","/requirements/"+radioButton.val());
-        $("#add-component").attr("href","/components/add?requirementId="+radioButton.val());
+        editReq.attr("href","/requirements/"+radioButton.val());
+        editReq.removeAttr("disabled");
+        addComp.attr("href","/components/add?requirementId="+radioButton.val());
+        addComp.$("#add-component").removeAttr("disabled");
     });
+
+    editReq.click(function () { if($(this).attr("href")) showHoldOn(); });
+    addComp.click(function () {
+        if($(this).attr("href")) showHoldOn();
+    });
+
 
     //TODO APLICAICONES
 
