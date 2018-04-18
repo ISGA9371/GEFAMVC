@@ -1,6 +1,7 @@
 package com.mx.bbva.business.service;
 
 import com.mx.bbva.business.entity.Company;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface CompanyService {
 
     Company findCompany(Integer companyId);
 
-    List<Company> findAllCompanies();
+    List<Company> findAllCompanies(Specification<Company> spec);
 
     List<Company> findAllCompaniesForDropDownList();
 }

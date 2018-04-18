@@ -5,6 +5,7 @@ import com.mx.bbva.business.entity.Company;
 import com.mx.bbva.business.repository.CompanyRepository;
 import com.mx.bbva.business.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,8 +26,8 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public List<Company> findAllCompanies() {
-        return companyRepository.findAll();
+    public List<Company> findAllCompanies(Specification<Company> spec) {
+        return companyRepository.findAll(spec);
     }
 
     @Override

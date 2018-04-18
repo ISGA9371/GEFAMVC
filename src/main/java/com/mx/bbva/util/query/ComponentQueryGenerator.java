@@ -1,5 +1,8 @@
 package com.mx.bbva.util.query;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -7,74 +10,26 @@ public class ComponentQueryGenerator {
     private static final Logger LOG = Logger.getLogger(ComponentQueryGenerator.class.getName());
     private StringBuffer stringBuffer = new StringBuffer();
     private boolean firstOne = true;
+    private final String EQUALS = " = ";
+    private final String LIKE = " LIKE ";
+    private Map<String, List<String>> items = new HashMap<>();
 
     public String generateQuery(Map<String, String> componentSearchDTO) {
-        // TODO This solution SUCKS
         LOG.info("Creating query for Component...");
-        final String EQUALS = " = ";
-        final String LIKE = " LIKE ";
-
+        fillComponentValues();
         stringBuffer.append("FROM Component x ");
 
-        if (componentSearchDTO.containsKey("componentName") && !componentSearchDTO.get("componentName").isEmpty()) {
-            addFilter("x.componentName", "'%" + componentSearchDTO.get("componentName") + "%'", LIKE);
-        }
-        if (componentSearchDTO.containsKey("requirementName") && !componentSearchDTO.get("requirementName").isEmpty()) {
-            addFilter("x.requirement.requirementName", "'%" + componentSearchDTO.get("requirementName") + "%'", LIKE);
-        }
-        if (componentSearchDTO.containsKey("componentVersion") && !componentSearchDTO.get("componentVersion").isEmpty()) {
-            addFilter("x.componentVersion", "'%" + componentSearchDTO.get("componentVersion") + "%'", LIKE);
-        }
-        if (componentSearchDTO.containsKey("subPrincipalId") && !componentSearchDTO.get("subPrincipalId").isEmpty()) {
-            addFilter("x.requirement.level.levelId", "'" + componentSearchDTO.get("subPrincipalId") + "'", EQUALS);
-        }
-        if (componentSearchDTO.containsKey("companyId") && !componentSearchDTO.get("companyId").isEmpty()) {
-            addFilter("x.requirement.company.companyId", "'%" + componentSearchDTO.get("companyId") + "%'", EQUALS);
-        }
-        if (componentSearchDTO.containsKey("technologyId") && !componentSearchDTO.get("technologyId").isEmpty()) {
-            addFilter("x.requirement.technology.technologyId", "'%" + componentSearchDTO.get("technologyId") + "%'", EQUALS);
-        }
-        if (componentSearchDTO.containsKey("typologyComponentModified") && !componentSearchDTO.get("typologyComponentModified").isEmpty()) {
-            addFilter("x.typology.typologyComponentModified", componentSearchDTO.get("typologyComponentModified"), EQUALS);
-        }
-        if (componentSearchDTO.containsKey("statusId") && !componentSearchDTO.get("statusId").isEmpty()) {
-            addFilter("x.status.statusId", "'" + componentSearchDTO.get("statusId") + "'", LIKE);
-        }
-        if (componentSearchDTO.containsKey("componentDesignRealDeliverDate") && !componentSearchDTO.get("componentDesignRealDeliverDate").isEmpty()) {
-            addFilter("x.componentDesignRealDeliverDate", "'%" + componentSearchDTO.get("componentDesignRealDeliverDate") + "%'", LIKE);
-        }
-        if (componentSearchDTO.containsKey("componentPreviewDeliverDate") && !componentSearchDTO.get("componentPreviewDeliverDate").isEmpty()) {
-            addFilter("x.componentPreviewDeliverDate", "'%" + componentSearchDTO.get("componentPreviewDeliverDate") + "%'", LIKE);
-        }
-        if (componentSearchDTO.containsKey("componentPossibleDeliverDate") && !componentSearchDTO.get("componentPossibleDeliverDate").isEmpty()) {
-            addFilter("x.componentPossibleDeliverDate", "'%" + componentSearchDTO.get("componentPossibleDeliverDate") + "%'", LIKE);
-        }
-        if (componentSearchDTO.containsKey("componentRealDeliverDate") && !componentSearchDTO.get("componentRealDeliverDate").isEmpty()) {
-            addFilter("x.componentRealDeliverDate", "'%" + componentSearchDTO.get("componentRealDeliverDate") + "%'", LIKE);
-        }
-        if (componentSearchDTO.containsKey("startProductId") && !componentSearchDTO.get("startProductId").isEmpty()) {
-            addFilter("x.startTypology.product.productId", "'%" + componentSearchDTO.get("startProductId") + "%'", LIKE);
-        }
-        if (componentSearchDTO.containsKey("typologyStartSeverity") && !componentSearchDTO.get("typologyStartSeverity").isEmpty()) {
-            addFilter("x.startTypology.typologySeverity", "'" + componentSearchDTO.get("typologyStartSeverity") + "'", EQUALS);
-        }
-        if (componentSearchDTO.containsKey("typologyStartSeverityHours") && !componentSearchDTO.get("typologyStartSeverityHours").isEmpty()) {
-            addFilter("x.startTypology.typologySeverityHours", "'" + componentSearchDTO.get("typologyStartSeverityHours") + "'", EQUALS);
-        }
-        if (componentSearchDTO.containsKey("finalProductId") && !componentSearchDTO.get("finalProductId").isEmpty()) {
-            addFilter("x.finalTypology.product.productId", "'%" + componentSearchDTO.get("startProductId") + "%'", LIKE);
-        }
-        if (componentSearchDTO.containsKey("typologyFinalSeverity") && !componentSearchDTO.get("typologyFinalSeverity").isEmpty()) {
-            addFilter("x.finalTypology.typologySeverity", "'" + componentSearchDTO.get("typologyStartSeverity") + "'", EQUALS);
-        }
-        if (componentSearchDTO.containsKey("typologyFinalSeverityHours") && !componentSearchDTO.get("typologyFinalSeverityHours").isEmpty()) {
-            addFilter("x.finalTypology.typologySeverityHours", "'" + componentSearchDTO.get("typologyFinalSeverityHours") + "'", EQUALS);
-        }
-        if (componentSearchDTO.containsKey("statusTypologyId") && !componentSearchDTO.get("statusTypologyId").isEmpty()) {
-            addFilter("x.statusTypology.statusId", "'" + componentSearchDTO.get("statusTypologyId") + "'", EQUALS);
-        }
+        componentSearchDTO.forEach(this::newFilter);
+
         LOG.info("Query made: " + stringBuffer.toString());
         return stringBuffer.toString();
+    }
+
+    private void newFilter(String key, String value) {
+        if (items.containsKey(key) && !value.isEmpty()) {
+            List<String> componentValues = items.get(key);
+            addFilter(componentValues.get(0), value, componentValues.get(1));
+        }
     }
 
     private void addFilter(String filter, String value, String operator) {
@@ -84,6 +39,35 @@ public class ComponentQueryGenerator {
         } else {
             stringBuffer.append(" OR ");
         }
-        stringBuffer.append(filter).append(operator).append(value);
+        stringBuffer.append(filter).append(operator);
+
+        if (operator.equals(LIKE)) {
+            stringBuffer.append("'%").append(value).append("%'");
+        } else if (operator.equals(EQUALS)) {
+            stringBuffer.append("'").append(value).append("'");
+        }
     }
+
+    private void fillComponentValues() {
+        items.put("componentName", Arrays.asList("x.componentName", LIKE));
+        items.put("componentVersion", Arrays.asList("x.componentVersion", LIKE));
+        items.put("componentDesignRealDeliverDate", Arrays.asList("x.componentDesignRealDeliverDate", LIKE));
+        items.put("componentPreviewDeliverDate", Arrays.asList("x.componentPreviewDeliverDate", LIKE));
+        items.put("componentPossibleDeliverDate", Arrays.asList("x.componentPossibleDeliverDate", LIKE));
+        items.put("componentRealDeliverDate", Arrays.asList("x.componentRealDeliverDate", LIKE));
+        items.put("requirementName", Arrays.asList("x.requirement.requirementName", LIKE));
+        items.put("subPrincipalId", Arrays.asList("x.requirement.level.levelId", EQUALS));
+        items.put("companyId", Arrays.asList("x.requirement.company.companyId", EQUALS));
+        items.put("technologyId", Arrays.asList("x.requirement.technology.technologyId", EQUALS));
+        items.put("typologyComponentModified", Arrays.asList("x.typology.typologyComponentModified", EQUALS));
+        items.put("statusId", Arrays.asList("x.status.statusId", EQUALS));
+        items.put("startProductId", Arrays.asList("x.startTypology.product.productId", LIKE));
+        items.put("typologyStartSeverity", Arrays.asList("x.startTypology.typologySeverity", EQUALS));
+        items.put("typologyStartSeverityHours", Arrays.asList("x.startTypology.typologySeverityHours", EQUALS));
+        items.put("finalProductId", Arrays.asList("x.finalTypology.product.productId", LIKE));
+        items.put("typologyFinalSeverity", Arrays.asList("x.finalTypology.typologySeverity", EQUALS));
+        items.put("typologyFinalSeverityHours", Arrays.asList("x.finalTypology.typologySeverityHours", EQUALS));
+        items.put("statusTypologyId", Arrays.asList("x.statusTypology.statusId", EQUALS));
+    }
+
 }
