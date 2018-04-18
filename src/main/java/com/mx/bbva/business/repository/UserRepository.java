@@ -13,4 +13,6 @@ public interface UserRepository extends JpaRepository<User, String> {
     User findByUserInternalId(String userInternalId);
 
     List<User> findByProfileType_profileTypeId(Integer profileTypeId);
+
+    User findByUserInternalIdAndProfileType_profileTypeId(String userInternalId, Integer profileTypeId);
 }

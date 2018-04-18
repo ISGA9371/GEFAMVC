@@ -14,4 +14,6 @@ public interface UserService {
     List<User> findUsersByType(Integer profileTypeId);
 
     List<User> findAllUsers();
+
+    User findUserByIdAndType(String userInternalId, Integer profileTypeId);
 }

@@ -37,6 +37,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
+    @Override
+    public User findUserByIdAndType(String userInternalId, Integer profileTypeId) {
+        return userRepository.findByUserInternalIdAndProfileType_profileTypeId(userInternalId, profileTypeId);
+    }
+
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
