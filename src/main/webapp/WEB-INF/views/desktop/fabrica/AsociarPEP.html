@@ -73,11 +73,11 @@
     <br>
     <br>
     <form th:action="@{/budgets/assign/search}" th:object="${budgetSearchDTO}" method="get" id="find">
-–
         <input th:field="*{areaId}" type="hidden" />
         <input th:field="*{bankingId}" type="hidden" />
         <input th:field="*{corporationId}" type="hidden" />
         <input th:field="*{natureId}" type="hidden" />
+        <input th:field="${requirementData.requirementId}" type="hidden" />
 
     <table class="col-md-12" >
         <div class="row">
@@ -237,19 +237,20 @@
                     <td>
                         <input type="radio" name="budgets" th:id="${budget.budgetId}" th:value="${budget.budgetId}">
                     </td>
-                    <td th:text="${budget.budgetName}"></td>disper
+                    <td th:text="${budget.budgetId}"></td>
+                    <td th:text="${budget.budgetName}"></td>
                     <td th:text="${budget.transfers[0].level.levelSuperior.levelName}"></td>
                     <td th:text="${budget.transfers[0].level.levelName}"></td>
-                    <td th:text="${budget.transfers[0].user}"></td>
-                    <td th:text="${budget.budgetName}"></td>
-                    <td th:text="${budget.budgetName}"></td>
-                    <td th:text="${budget.budgetName}"></td>
-                    <td th:text="${budget.budgetName}"></td>
-                    <td th:text="${budget.budgetName}"></td>
-                    <td th:text="${budget.budgetName}"></td>
-                    <td th:text="${budget.budgetName}"></td>
+                    <td th:text="${budget.transfers[0].user.userInternalId}"></td>
+                    <td th:text="${budget.transfers[0].transferWithdrawalValue}"></td>
+                    <td th:text="${budget.transfers[0].transferValue - budget.transfers[0].transferWithdrawalValue}"></td>
+                    <td th:text="${budget.budgetIncurredTestFactory}"></td>
+                    <td th:text="${budget.budgetIncurredSoftwareFactory}"></td>
+                    <td>0</td>
+                    <td>0</td>
                 </tr>
 
+                <!--
                 <tr>
                     <td colspan="11" class="detail-td">
                         <div th:id="${'row-detail-wrapper-' + stat.count}" class="collapse" >
@@ -262,13 +263,18 @@
                         </div>
                     </td>
                 </tr>
+                -->
 
             </th:block>
-
-
-
             </tbody>
         </table>
+    </div>
+
+    <div class="row buttons" id="row-buttons-results" style="margin-top: 48px; margin-bottom: 96px;">
+        <div class="col-xs-12 text-center">
+            <a id="edit-requirement" class="btn btn-primary" onclick="showHoldn();">Agregar</a>
+            <a id="add-component" class="btn btn-primary" onclick="showHoldn();">Cancelar</a>
+        </div>
     </div>
 
 </div>
