@@ -152,6 +152,17 @@ $(function () {
       $("#mdc-group-componentRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
     }
   });
+
+
+  $("#tab-componentes > table > tbody").on("click", "a.changeWindow", function (event) {
+    HoldOn.open({
+      theme: "sk-cube",
+      content: '',
+      message: 'Cargando...',
+      backgroundColor: "#0c71ca",
+      textColor: "white",
+    });
+  });
   
 
   direccion.listen('MDCSelect:change', () => {
@@ -273,9 +284,11 @@ $(function () {
         $("#tab-fecha > table > tbody").html("");
         $("#tab-cierre > table > tbody").html("");
 
+        idsSearch = [];
+
         $.each(data, function (index, value) {
 
-          if ( value.typology.typologyComponentModified ) {
+          if ( value.startTypology.typologyComponentModified ) {
             newModified = "MODIFICADO";
             options = optionsModified;
             classIdentifier = "component-modified";
@@ -295,13 +308,13 @@ $(function () {
             "<td>" + value.requirement.company.companyName + "</td>" +
             "<td>" + value.requirement.application.technology.technologyName + "</td>" +
             "<td>" + newModified + "</td>" +
-            "<td><a class='btn btn-primary btn-xs' style='color:white;' href='/modifications/add?componentId=" + value.componentId + 
+            "<td><a class='btn btn-primary btn-xs changeWindow' style='color:white;' href='/modifications/add?componentId=" + value.componentId + 
               "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></td>" + 
-            "<td><a class='btn btn-primary btn-xs' style='color:white;' href='/doubts/add?componentId=" + value.componentId + 
+            "<td><a class='btn btn-primary btn-xs changeWindow' style='color:white;' href='/doubts/add?componentId=" + value.componentId + 
               "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></td>" + 
-            "<td><a class='btn btn-primary btn-xs' style='color:white;' href='/issues/add?componentId=" + value.componentId + 
+            "<td><a class='btn btn-primary btn-xs changeWindow' style='color:white;' href='/issues/add?componentId=" + value.componentId + 
               "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></td>" + 
-            "<td><a class='btn btn-success btn-xs' href='/components/" + value.componentId + 
+            "<td><a class='btn btn-primary btn-xs changeWindow' style='color:white;' href='/components/" + value.componentId + 
               "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> Editar</a></td></tr>"
           );
 
@@ -317,10 +330,10 @@ $(function () {
           $("#tab-fecha > table > tbody").append(
             "<tr><td>" + value.componentName + "</td>" +
             "<td>" + value.requirement.requirementName + "</td>" +
-            "<td><input type='text' id='date1-" + value.componentId + "' value='" + date1 +"' class='form-control'></td>" +
-            "<td><input type='text' id='date2-" + value.componentId + "' value='" + date2 + "' class='form-control'></td>" +
-            "<td><input type='text' id='date3-" + value.componentId + "' value='" + date3 + "' class='form-control'></td>" +
-            "<td><input type='text' id='date4-" + value.componentId + "' value='" + date4 + "' class='form-control'></td>" +
+            "<td><input type='text' id='date1-" + value.componentId + "' value='" + date1 +"' class='form-control date1Text'></td>" +
+            "<td><input type='text' id='date2-" + value.componentId + "' value='" + date2 + "' class='form-control date2Text'></td>" +
+            "<td><input type='text' id='date3-" + value.componentId + "' value='" + date3 + "' class='form-control date3Text'></td>" +
+            "<td><input type='text' id='date4-" + value.componentId + "' value='" + date4 + "' class='form-control date4Text'></td>" +
             "<td>"+ value.status.statusName +"</td></tr>"
           );
           $("#date1-" + value.componentId).datepicker({ format: 'DD/MM/YYYY' });
@@ -340,10 +353,12 @@ $(function () {
             "<td><select class='form-control' id='facturar-" + value.componentId + "'><option value='1'>SI</option><option value='0'>NO</option></select></td></tr>"
           );
 
-          $("#tipFin-" + value.componentId).val(value.typologyEmp.typologyId);
-          $("#difFin-" + value.componentId).val(value.typologyEmp.typologySeverity);
-          $("#horFin-" + value.componentId).val(value.typologyEmp.typologySeverityHours);
+          $("#tipFin-" + value.componentId).val(value.finalTypology.typologyId);
+          $("#difFin-" + value.componentId).val(value.finalTypology.typologySeverity);
+          $("#horFin-" + value.componentId).val(value.finalTypology.typologySeverityHours);
           $("#estatusTip-" + value.componentId).val(value.statusTypology.statusId);
+
+          idsSearch.push(value.componentId);
         });
         $(".component-modified").change(function () {
           var idElement = $(this).attr("id").substring(7, $(this).attr("id").length);
@@ -486,9 +501,59 @@ $(function () {
     
   });
 
-  $("#update-all-dates").click(function(){});
+  $("#update-all-dates").click(function(){
+    data = {
+      'designRealDeliverDate': date1,
+      'possibleDeliverDate': date2,
+      'previewDeliverDate': date3,
+      'realDeliverDate': date4,
+      'ids': idsSearch,
+    };
+    console.log(data);
+
+  });
   
-  $("#update-dates").click(function(){});
+  $("#update-dates").click(function(){
+    data = [];
+
+    var date1 = $(".date1Text");
+    var date2 = $(".date2Text");
+    var date3 = $(".date3Text");
+    var date4 = $(".date4Text");
+
+    $.each(date1, function(index, value){
+      data.push({
+        'id': value.id,
+        'designRealDeliverDate': value.value,
+        'possibleDeliverDate': date2[index].value,
+        'previewDeliverDate': date3[index].value,
+        'realDeliverDate': date4[index].value,
+      });
+    });
+    console.log(data);
+  });
   
-  $("#update-closure").click(function(){});
+  $("#update-closure").click(function(){
+    data = [];
+
+    var tr = $("#tab-cierre > table > tbody").children();
+    $.each(tr, function(index, value){
+      tds = $(value).children();;
+      id = $(tds[2]).children().attr("id").substring(7, $(tds[2]).children().attr("id").length);
+
+      data.push({
+        'tipFinal': $(tds[2]).children().val(),
+        'difFinal': $(tds[3]).children().val(),
+        'cosFinal': $(tds[4]).children().val(),
+        'horsFinal': $(tds[5]).children().val(),
+        'comments': $(tds[6]).children().val(),
+        'statusTipif': $(tds[7]).children().val(),
+        'facturar': $(tds[8]).children().val(),
+        'id': id,
+      });
+
+    });
+
+    console.log(data);
+  });
 });

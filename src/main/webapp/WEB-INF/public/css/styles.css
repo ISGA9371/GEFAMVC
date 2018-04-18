@@ -96,6 +96,7 @@ body {
 
 body > .container {
   margin-bottom: 40px;
+  padding-bottom: 30px;
 }
 
 header #top-bar {
