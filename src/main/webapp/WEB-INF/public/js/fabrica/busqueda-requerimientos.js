@@ -48,8 +48,8 @@ $(function () {
                 $.each(subs, function( index, value ) {
                     //console.log( index + ": " + value.levelId );
                     $("#subdir-select").append(
-                        "<li class='mdc-list-item' role='option' tabindex='0' data-sublevel-user='"
-                        +value.user.userInternalId+"' value='"+value.levelId+"'>"+value.levelName+"</li>");
+                        "<li class='mdc-list-item' role='option' tabindex='0' " +
+                        "value='"+value.levelId+"'>"+value.levelName+"</li>");
                 });
             }else $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
 
@@ -92,9 +92,25 @@ $(function () {
         $("#userInternalId").val(id);
     });
 
-
     let index4 = parseInt("0");
     const gestores= new mdc.select.MDCSelect(document.querySelector('#gestores'));
+    $.ajax({
+        url: "/api/users/"
+    }).done(function(data) {
+        let gests = data.data;
+        gestores.selectedIndex = -1;
+        gestores.value = "";
+        if (typeof gests !== 'undefined' && gests.length > 0) {
+            $("#gestores-ul").html("");
+            $.each(gests, function( index, value ) {
+                if(value.profileType.profileTypeId === 1 || value.profileType.profileTypeId === 2){
+                    $("#gestores-ul").append(
+                        "<li class='mdc-list-item' role='option' tabindex='0' " +
+                        "value='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
+                }
+            });
+        }else $("#gestores-ul").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+    });
     gestores.listen('MDCSelect:change', () => {
         if (index4++ === 0) return; else index4 = 0;
         let id = gestores.selectedOptions[0].id;
@@ -265,6 +281,8 @@ $(function () {
         $(".mdc-text-field__label").removeClass("mdc-text-field__label--float-above");
 
         $("input[type=hidden]").val("");
+
+        $("#results-table tbody").html("");
     });
 
 
@@ -277,19 +295,26 @@ $(function () {
 
     $('tr.clickable').click(function() {
         var radioButton = $(this).find('input[type=radio]');
-        var nameGroup = radioButton.attr("name");
-        $('input[type=radio][name='+nameGroup+']').prop("checked",false);
-        //console.log("hola"+ radioButton.prop("checked"));
+        console.log("hola"+ radioButton.length);
         radioButton.prop('checked', true);
+
         editReq.attr("href","/requirements/"+radioButton.val());
         editReq.removeAttr("disabled");
         addComp.attr("href","/components/add?requirementId="+radioButton.val());
-        addComp.$("#add-component").removeAttr("disabled");
+        addComp.removeAttr("disabled");
     });
 
-    editReq.click(function () { if($(this).attr("href")) showHoldOn(); });
+    editReq.click(function () {
+        if($(this).attr("href")) {
+            showHoldOn();
+            $("#results-table tbody").html("");
+        }
+    });
     addComp.click(function () {
-        if($(this).attr("href")) showHoldOn();
+        if($(this).attr("href")){
+            showHoldOn();
+            $("#results-table tbody").html("");
+        }
     });
 
 
