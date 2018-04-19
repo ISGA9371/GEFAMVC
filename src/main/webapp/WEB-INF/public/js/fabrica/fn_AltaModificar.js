@@ -7,6 +7,7 @@ function init() {
     asignarCombos();
     addCalendars();
     addMissing();
+    addButtonEvents();
 
 
 }
@@ -72,6 +73,13 @@ function addMissing() {
 
 
 
+}
+
+function addButtonEvents() {
+    var btnCancel = document.getElementById('cancelar-btn');
+    btnCancel.addEventListener("click", function () {
+        window.history.back();
+    })
 }
 
 function holder(msg){

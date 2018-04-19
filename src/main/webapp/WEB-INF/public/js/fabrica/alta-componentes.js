@@ -234,7 +234,7 @@ function addHiddenEvents() {
     addTextSyncMdcToHtml("componentVersion", "version-mdc-text");
     addTextSyncMdcToHtml("componentDesignRealDeliverDate", "FecRealCFG-mdc-text");
     addTextSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text");
-    addTextSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-txt");
+    addTextSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-text");
     addTextSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text");
     $("#requirement").val($("#requirementHidden").val());
 }
