@@ -29,7 +29,7 @@ function loadSelects() {
     mdc.select.MDCSelect.attachTo(document.getElementById('Prioridad-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('Origen-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('Estado-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
+    //mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
 }
 
 function holder(msg){

@@ -35,7 +35,7 @@ function init() {
 function loadSelects() {
     mdc.select.MDCSelect.attachTo(document.getElementById('Prioridad-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('Duda-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
+    //mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
 }
 
 function addCalendars() {
