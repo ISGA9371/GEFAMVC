@@ -49,8 +49,8 @@ $(function () {
             $("#subdir-select").html("");
             $.each(subdirs, function( index, value ) {
                 $("#subdir-select").append(
-                    "<li class='mdc-list-item' role='option' tabindex='0' " +
-                    "value='"+value.levelId+"'>"+value.levelName+"</li>");
+                    "<li class='mdc-list-item' role='option' tabindex='0' data-subdir='" +
+                    value.user.userInternalId+"' value='"+value.levelId+"'>"+value.levelName+"</li>");
             });
 
             var subPrincipalEL = $('#subprincipal');
@@ -69,14 +69,18 @@ $(function () {
     var idx = parseInt("0");
     subPrincipal.listen('MDCSelect:change', () => {
         if (idx++ === 0) return; else idx = 0;
-        let id = subPrincipal.selectedOptions[0].value;
+        let selectedOpt = subPrincipal.selectedOptions[0];
+        let id = selectedOpt.value;
         console.log("SELECTEDSUBDIR "+id);
+        $("#subdir").val(selectedOpt.dataset.subdir);
+
         $("#level\\.levelId").val(id);
     });
 
     //LOADING SUBDIRECCIONES CUANDO DIRECCION CMABIA
     let coso = parseInt("0");
     principal.listen('MDCSelect:change', () => {
+        /*
         var base_combo = "<div id=\"subprincipal\" class=\"mdc-select\" role=\"listbox\" data-mdc-auto-init=\"MDCSelect\">\n" +
             "                    <div class=\"mdc-select__surface mdc-ripple-upgraded\" tabindex=\"0\" >\n" +
         "                        <div class=\"mdc-select__label mdc-select__label--float-above\">Subdireccion *</div>\n" +
@@ -91,7 +95,7 @@ $(function () {
         "                </div>";
     papa = $("#subprincipal").parent();
     papa.empty();
-    papa.append(base_combo);
+    papa.append(base_combo);*/
     var subPrincipal = new mdc.select.MDCSelect(document.querySelector('#subprincipal'));
         if (coso++ === 0) return; else coso = 0;
         subPrincipal.disabled = true;
@@ -108,8 +112,8 @@ $(function () {
                 $("#subdir-select").html("");
                 $.each(subdirs, function( index, value ) {
                     $("#subdir-select").append(
-                        "<li class='mdc-list-item' role='option' tabindex='0' " +
-                        "value='"+value.levelId+"'>"+value.levelName+"</li>");
+                        "<li class='mdc-list-item' role='option' tabindex='0' data-subdir='" +
+                        value.user.userInternalId+"' value='"+value.levelId+"'>"+value.levelName+"</li>");
                 });
             }else $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
             subPrincipal.disabled = false;
