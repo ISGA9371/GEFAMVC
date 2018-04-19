@@ -36,7 +36,7 @@ public class ProjectController {
         // TODO Validate user
         projectService.saveProject(project);
 
-        return URL_FACTORY + EDIT_PROJECT;
+        return REDIRECT + "projects/" + project.getProjectId();
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)

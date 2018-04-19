@@ -46,7 +46,7 @@ public class ModificationController {
     public String saveModification(@ModelAttribute("modificatione") Modification modification) {
         // TODO Validate user
         modificationService.saveModification(modification);
-        return URL_FACTORY + EDIT_MODIFICATION;
+        return REDIRECT + "modifications/" + modification.getModificationId();
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
