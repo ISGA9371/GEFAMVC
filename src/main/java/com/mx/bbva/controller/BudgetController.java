@@ -142,10 +142,12 @@ public class BudgetController {
     }
 
     @RequestMapping(value = "/assign/search", method = RequestMethod.GET)
-    public String searchForBudgetAssing(@ModelAttribute("budgetSearchDTO") BudgetSearchDTO budgetSearchDTO, Model model) {
+    public String searchForBudgetAssing(@ModelAttribute("budgetSearchDTO") BudgetSearchDTO budgetSearchDTO,
+                                        @ModelAttribute("requirementData") Requirement requirement, Model model) {
         // TODO Work in progress
         /*String query =
         List<Budget> budgets = budgetService.findByCustomQuery(query);*/
+        model.addAttribute("requirementData", requirement);
         model.addAttribute("budgets", budgetService.findAllBudgets());
         return URL_FACTORY + ASSIGN_BUDGET_REQUIREMENT;
     }
