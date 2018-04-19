@@ -15,7 +15,7 @@
     <input id="status" style="display: none;" type="number" required value="31" class="hiddenField"
            th:field="*{status.statusId}"/>
     <input id="typologyEmp" style="display: none;" type="number" required value="0" class="hiddenField"
-           th:field="*{typologyEmp.typologyId}"/>
+           th:field="*{finalTypology.typologyId}"/>
     <input id="auxFare" style="display: none;" type="hidden" value="0" th:value="${fareValue}"/>
 
     <!--input type="submit" value="Guardar"-->
@@ -89,7 +89,7 @@
                     </td>
                     <td class="col-md-4" align="center">
                         <input id="typology" type="number" required value="" class="hiddenField"
-                               th:field="*{typology.typologyId}">
+                               th:field="*{startTypology.typologyId}">
                         <div id="tipologia-empty-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
@@ -179,7 +179,7 @@
                     <td class="col-md-4" align="center">
                         <input id="componentPossibleDeliverDate" type="text" required value="" class="hiddenField"
                                th:field="*{componentPossibleDeliverDate}">
-                        <div id='FecNegFac-mdc-txt' class="mdc-text-field" data-mdc-auto-init="MDCTextField"
+                        <div id='FecNegFac-mdc-text' class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
                             <input type='text' class="mdc-text-field__input" row="2" onkeydown="return false"
                                    id='FecNegFac'/>

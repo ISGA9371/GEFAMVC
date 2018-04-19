@@ -144,7 +144,7 @@ function fillFields() {
         clickSelectOption("componentForBill");
     }
     $('#componentForBill').val($componentForBill);
-    var d = new Date($('#componentDesignRealDeliverDate').val());
+    /*var d = new Date($('#componentDesignRealDeliverDate').val());
     $('#componentDesignRealDeliverDate').val(pad(d.getDate(),2) + "/" + pad(d.getMonth()+1,2) + "/" + d.getFullYear());
     new mdc.textField.MDCTextField(document.getElementById('FecRealCFG-mdc-text')).value = $('#componentDesignRealDeliverDate').val();
     var d = new Date($('#componentPreviewDeliverDate').val());
@@ -155,6 +155,10 @@ function fillFields() {
     new mdc.textField.MDCTextField(document.getElementById('FecNegFac-mdc-txt')).value = $('#componentPossibleDeliverDate').val();
     var d = new Date($('#componentRealDeliverDate').val());
     $('#componentRealDeliverDate').val(pad(d.getDate(),2) + "/" + pad(d.getMonth()+1,2) + "/" + d.getFullYear());
+    new mdc.textField.MDCTextField(document.getElementById('FecRealFac-mdc-text')).value = $('#componentRealDeliverDate').val();*/
+    new mdc.textField.MDCTextField(document.getElementById('FecRealCFG-mdc-text')).value = $('#componentDesignRealDeliverDate').val();
+    new mdc.textField.MDCTextField(document.getElementById('FecPreFac-mdc-text')).value = $('#componentPreviewDeliverDate').val();
+    new mdc.textField.MDCTextField(document.getElementById('FecNegFac-mdc-text')).value = $('#componentPossibleDeliverDate').val();
     new mdc.textField.MDCTextField(document.getElementById('FecRealFac-mdc-text')).value = $('#componentRealDeliverDate').val();
 }
 
@@ -401,7 +405,7 @@ function addHiddenEvents() {
     addTextSyncMdcToHtml("componentVersion", "version-mdc-text");
     addTextSyncMdcToHtml("componentDesignRealDeliverDate", "FecRealCFG-mdc-text");
     addTextSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text");
-    addTextSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-txt");
+    addTextSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-text");
     addTextSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text");
     addTextSyncMdcToHtml("componentTypoComment", "descripcion-mdc-text");
     //$("#requirement").val($("#requirementHidden").val());
