@@ -160,6 +160,20 @@ function fillFields() {
     new mdc.textField.MDCTextField(document.getElementById('FecPreFac-mdc-text')).value = $('#componentPreviewDeliverDate').val();
     new mdc.textField.MDCTextField(document.getElementById('FecNegFac-mdc-text')).value = $('#componentPossibleDeliverDate').val();
     new mdc.textField.MDCTextField(document.getElementById('FecRealFac-mdc-text')).value = $('#componentRealDeliverDate').val();
+
+    new mdc.textField.MDCTextField(document.getElementById('version-mdc-text')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('level-superior-mdc-text')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('level-mdc-text')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('company-mdc-text')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('technology-mdc-text')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('nuemod-mdc-text')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('requieriment-mdc-text')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('difficulty-mdc-text')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('hours-mdc-text')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('initial-cost-mdc-text')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('difficulty-final-mdc-text')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('hours-final-mdc-text')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('final-cost-mdc-text')).disabled = true;
 }
 
 function clickSelectOption(idHolder){

@@ -40,6 +40,7 @@ function getVersion() {
 
     textVersion.value = today;
     $('#componentVersion').val(textVersion.value);
+    textVersion.disabled = true;
 }
 
 function addComponentValidation() {
@@ -227,6 +228,10 @@ function setDefaults() {
     new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
     new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value="";
     new mdc.textField.MDCTextField(document.getElementById("requieriment-mdc-text")).value=new mdc.textField.MDCTextField(document.getElementById("requieriment-mdc-text")).value;
+    new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("requieriment-mdc-text")).disabled = true;
 }
 
 function addHiddenEvents() {
