@@ -34,6 +34,8 @@ $(function () {
         $("#principalId").val(id);
         console.log("PRINCIPALID" +id);
 
+        $("#subdirs").addClass("mdc-select--disabled");
+
         $.ajax({
             url: "/api/levels/"+id+"/sub-levels"
         }).done(function(data) {
@@ -51,6 +53,8 @@ $(function () {
                         "<li class='mdc-list-item' role='option' tabindex='0' " +
                         "value='"+value.levelId+"'>"+value.levelName+"</li>");
                 });
+                $("#subdirs").removeClass("mdc-select--disabled");
+                $("#subdirs div.mdc-select__label").removeClass("mdc-select__label--float-above");
             }else $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
 
         });
@@ -129,10 +133,16 @@ $(function () {
         console.log("AREAID " +id);
         $("#areaId").val(id);
 
-        if(id === 1)
+        $("#tipos-serv div.mdc-select__label").removeClass("mdc-select__label--float-above");
+        if(id === 1){
             $("#service-type-select").html( $("#service-types-ul").html() );
-        else
+            $("#tipos-serv").removeClass("mdc-select--disabled");
+        }else {
+            tiposServ.selectedIndex = -1;
+            tiposServ.value = "";
+            $("#tipos-serv").addClass("mdc-select--disabled");
             $("#service-type-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+        }
         /*
         $.ajax({
             url: "/service-types/area/"+id
@@ -251,6 +261,7 @@ $(function () {
 
     $('#clear-form').click(function() {
         $("#find")[0].reset();
+        $("input[type=text]").val("");
 
         select.selectedIndex = -1;
         select.value = "";
@@ -291,7 +302,7 @@ $(function () {
     });
 
     var editReq = $("#edit-requirement");
-    var addComp = $("#add-component");
+    //var addComp = $("#add-component");
 
     $('tr.clickable').click(function() {
         var radioButton = $(this).find('input[type=radio]');
@@ -300,8 +311,8 @@ $(function () {
 
         editReq.attr("href","/requirements/"+radioButton.val());
         editReq.removeAttr("disabled");
-        addComp.attr("href","/components/add?requirementId="+radioButton.val());
-        addComp.removeAttr("disabled");
+        //addComp.attr("href","/components/add?requirementId="+radioButton.val());
+        //addComp.removeAttr("disabled");
     });
 
     editReq.click(function () {
@@ -310,12 +321,13 @@ $(function () {
             $("#results-table tbody").html("");
         }
     });
+    /*
     addComp.click(function () {
         if($(this).attr("href")){
             showHoldOn();
             $("#results-table tbody").html("");
         }
-    });
+    });*/
 
 
     //TODO APLICAICONES

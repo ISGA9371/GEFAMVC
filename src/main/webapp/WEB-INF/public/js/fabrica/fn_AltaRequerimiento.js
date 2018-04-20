@@ -6,6 +6,7 @@ function init(){
     initGlobal();
     crearCombos();
     asignarCombos();
+    desHabilitarDep();
 
 }
 
@@ -166,6 +167,13 @@ function funcionCancelar(){
 
     //Lleva a la ventana principal
     window.location="/";
+
+}
+
+function desHabilitarDep(){
+
+    new mdc.select.MDCSelect(document.getElementById('estatus-tipificacion-js-select')).disabled = true;
+    new mdc.select.MDCSelect(document.getElementById('estatus-tipificacion-js-select')).disabled = true;
 
 }
 
