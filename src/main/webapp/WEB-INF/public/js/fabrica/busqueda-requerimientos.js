@@ -261,6 +261,7 @@ $(function () {
 
     $('#clear-form').click(function() {
         $("#find")[0].reset();
+        $("input[type=text]").val("");
 
         select.selectedIndex = -1;
         select.value = "";
@@ -301,7 +302,7 @@ $(function () {
     });
 
     var editReq = $("#edit-requirement");
-    var addComp = $("#add-component");
+    //var addComp = $("#add-component");
 
     $('tr.clickable').click(function() {
         var radioButton = $(this).find('input[type=radio]');
@@ -310,8 +311,8 @@ $(function () {
 
         editReq.attr("href","/requirements/"+radioButton.val());
         editReq.removeAttr("disabled");
-        addComp.attr("href","/components/add?requirementId="+radioButton.val());
-        addComp.removeAttr("disabled");
+        //addComp.attr("href","/components/add?requirementId="+radioButton.val());
+        //addComp.removeAttr("disabled");
     });
 
     editReq.click(function () {
@@ -320,12 +321,13 @@ $(function () {
             $("#results-table tbody").html("");
         }
     });
+    /*
     addComp.click(function () {
         if($(this).attr("href")){
             showHoldOn();
             $("#results-table tbody").html("");
         }
-    });
+    });*/
 
 
     //TODO APLICAICONES
