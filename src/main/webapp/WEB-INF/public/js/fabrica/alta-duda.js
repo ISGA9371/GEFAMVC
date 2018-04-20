@@ -78,7 +78,7 @@ demoReady(function() {
     });
 });
 
-demoReady(function() {
+/*demoReady(function() {
     var rootEst = document.getElementById('responsable-js-select');
     var hiddenEst = document.getElementById('hidden-responsable');
     var selectEst = new mdc.select.MDCSelect(rootEst);
@@ -86,7 +86,7 @@ demoReady(function() {
     rootEst.addEventListener('MDCSelect:change', function() {
         hiddenEst.value = selectEst.value;
     });
-});
+});*/
 
 demoReady(function() {
     var rootEst = document.getElementById('Duda-js-select');
