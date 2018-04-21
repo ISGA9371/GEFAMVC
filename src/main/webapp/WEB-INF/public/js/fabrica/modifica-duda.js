@@ -7,6 +7,7 @@ function init() {
     $("#hidden-status").val("11");
     $("#hidden-doubtType").val("13");
     $("#hidden-envcomponente").val($("#hidden-componente").val());
+    //$("#descripcion").val($("#hidden-descri").val());
 
 
     var fecha=$("#datetimepicker").val();

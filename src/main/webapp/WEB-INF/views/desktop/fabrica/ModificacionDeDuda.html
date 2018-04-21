@@ -141,11 +141,13 @@
                     </tr>
                 </table>
 
+                <input id="hidden-descri" type="text" value="" required th:field="*{doubtDescription}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+
                 <table class="col-md-12" >
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
                             <div  id="descripcion-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
-                                <input disabled="disabled" type="text" maxlength="220" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{doubtDescription}" class="mdc-text-field__input" id="usuario-peticionario">
+                                <input disabled="disabled" type="text" th:value="*{doubtDescription}" class="mdc-text-field__input" id="descripcion">
                                 <label for="demo-input" class="mdc-text-field__label">Descripción</label>
                             </div>
                         </td>
@@ -155,7 +157,7 @@
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
                             <div  id="descripcion-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
-                                <input type="text" maxlength="220" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required  class="mdc-text-field__input" id="usuario-peticionario">
+                                <input type="text" maxlength="220" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required  class="mdc-text-field__input" id="descripcion2">
                                 <label for="demo-input" class="mdc-text-field__label">Descripción agregar user</label>
                             </div>
                         </td>
