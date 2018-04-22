@@ -20,7 +20,7 @@ public class ModificationServiceImpl implements ModificationService {
         if (modification.getModificationId() == null) {
             // TODO Use enums
             modification.setUserSender(new User("XMY3070"));
-            modification.setStatus(new Status(11));
+            modification.setStatus(new Status(5));
             modification.setModificationSendDate(new DateUtils().getCurrentDate());
         }
         modificationRepository.save(modification);
