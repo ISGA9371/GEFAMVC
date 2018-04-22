@@ -11,7 +11,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -93,8 +92,9 @@ public class Requirement implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<Invoice> invoices;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "requirement")
-    private List<BudgetRequirement> budgetRequirements;
+    private List<BudgetRequirement> budgetRequirementsList;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<T926> t926List;
@@ -110,6 +110,8 @@ public class Requirement implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "requirement")
     private List<ProjectControl> projectControls;
+    @Transient
+    private List<BudgetRequirement> budgetRequirements;
 
     public Requirement() {
     }
@@ -121,38 +123,6 @@ public class Requirement implements Serializable {
     public Requirement(Integer requirementId, String requirementName) {
         this.requirementId = requirementId;
         this.requirementName = requirementName;
-    }
-
-    public Requirement(Integer requirementId, String requirementName, Double requirementHour, Integer requirementTotalHours,
-                       Integer requirementBilledHours, Integer requirementNoBilledHours, Boolean requirementBilled,
-                       Date requirementDateUpload, Boolean requirementCanBilled, Date requirementStartDate,
-                       Date requirementEndDate, User userManager, Technology technology, Company company, Status status,
-                       Level level, User user, Application application, Project project, Area area, ServiceType serviceType,
-                       Channel channel, ProgramIncrement programIncrement, List<BudgetRequirement> budgetRequirements) {
-        this.requirementId = requirementId;
-        this.requirementName = requirementName;
-        this.requirementHour = requirementHour;
-        this.requirementTotalHours = requirementTotalHours;
-        this.requirementBilledHours = requirementBilledHours;
-        this.requirementNoBilledHours = requirementNoBilledHours;
-        this.requirementBilled = requirementBilled;
-        this.requirementDateUpload = requirementDateUpload;
-        this.requirementCanBilled = requirementCanBilled;
-        this.requirementStartDate = requirementStartDate;
-        this.requirementEndDate = requirementEndDate;
-        this.userManager = userManager;
-        this.technology = technology;
-        this.company = company;
-        this.status = status;
-        this.level = level;
-        this.user = user;
-        this.application = application;
-        this.project = project;
-        this.area = area;
-        this.serviceType = serviceType;
-        this.channel = channel;
-        this.programIncrement = programIncrement;
-        this.budgetRequirements = new ArrayList<>(budgetRequirements);
     }
 
     public Integer getRequirementId() {
@@ -345,6 +315,14 @@ public class Requirement implements Serializable {
 
     public void setInvoices(List<Invoice> invoices) {
         this.invoices = invoices;
+    }
+
+    public List<BudgetRequirement> getBudgetRequirementsList() {
+        return budgetRequirementsList;
+    }
+
+    public void setBudgetRequirementsList(List<BudgetRequirement> budgetRequirementsList) {
+        this.budgetRequirementsList = budgetRequirementsList;
     }
 
     public List<BudgetRequirement> getBudgetRequirements() {

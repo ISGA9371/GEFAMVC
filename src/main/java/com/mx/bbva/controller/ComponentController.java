@@ -104,7 +104,9 @@ public class ComponentController {
     @RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
     public List<Component> searchForComponents(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
+
         String query = new ComponentQueryGenerator().generateQuery(parameters);
+
         return componentService.findByCustomQuery(query);
     }
 
