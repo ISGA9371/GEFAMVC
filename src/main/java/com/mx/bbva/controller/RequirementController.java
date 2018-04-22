@@ -40,6 +40,7 @@ public class RequirementController {
     private StatusService statusService;
     private ProjectService projectService;
     private FareService fareService;
+    private BudgetService budgetService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addRequirement(Model model) {
@@ -95,8 +96,10 @@ public class RequirementController {
         // TODO Work in progress
         String query = new RequirementQueryGenerator().generateQuery(parameters);
         List<Requirement> requirements = requirementService.findByCustomQuery(query);
+
         model.addAttribute("requirementSearchDTO", requirementSearchDTO);
         model.addAttribute("requirements", requirements);
+
         return URL_FACTORY + SEARCH_REQUIREMENTS;
     }
 

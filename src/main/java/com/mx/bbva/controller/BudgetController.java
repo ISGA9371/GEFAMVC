@@ -3,6 +3,7 @@ package com.mx.bbva.controller;
 import com.mx.bbva.business.dto.BudgetSearchDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
+import com.mx.bbva.util.query.BudgetQueryGenerator;
 import com.mx.bbva.util.query.QueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import static com.mx.bbva.util.ViewsURLs.*;
@@ -93,7 +95,7 @@ public class BudgetController {
         // TODO Work in progress
         /*String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
         List<Budget> budgets = budgetService.findByCustomQuery(query); */
-        model.addAttribute("budgets", budgetService.findAllBudgets());
+        model.addAttribute("transfers", transferService.findAllTransfers());
         return URL_FACTORY + SEARCH_REQUIREMENTS;
     }
 
@@ -128,27 +130,35 @@ public class BudgetController {
     }
 
     @RequestMapping(value = "/assign", method = RequestMethod.PUT)
-    public String assignBudget(Model model, @RequestParam("budgets") List<Budget> budgets) {
+    public String assignBudget(Model model, @RequestParam("budgets") List<BudgetRequirement> budgetRequirements) {
+
+        budgetService.assignBudget(budgetRequirements);
 
         return URL_FACTORY + ASSIGN_BUDGET_REQUIREMENT;
     }
 
     @RequestMapping(value = "/assign/filters", method = RequestMethod.GET)
     public String filtersForBudgetAssign(@RequestParam("requirementId") Integer requirementId, Model model) {
+
         Requirement requirement = requirementService.findOneRequirement(requirementId);
         model.addAttribute("requirementData", requirement);
         model.addAttribute("budgetSearchDTO", new BudgetSearchDTO());
+
         return URL_FACTORY + ASSIGN_BUDGET_REQUIREMENT;
     }
 
     @RequestMapping(value = "/assign/search", method = RequestMethod.GET)
     public String searchForBudgetAssing(@ModelAttribute("budgetSearchDTO") BudgetSearchDTO budgetSearchDTO,
-                                        @ModelAttribute("requirementData") Requirement requirement, Model model) {
+                                        @ModelAttribute("requirementData") Requirement requirement,
+                                        @RequestParam Map<String, String> parameters, Model model) {
         // TODO Work in progress
-        /*String query =
-        List<Budget> budgets = budgetService.findByCustomQuery(query);*/
+        String query = new BudgetQueryGenerator().generateQuery(parameters);
+        List<Budget> budgets = budgetService.findByCustomQuery(query);
+
+        model.addAttribute("budgetSearchDTO", budgetSearchDTO);
         model.addAttribute("requirementData", requirement);
-        model.addAttribute("budgets", budgetService.findAllBudgets());
+        model.addAttribute("budgets", budgets);
+
         return URL_FACTORY + ASSIGN_BUDGET_REQUIREMENT;
     }
 

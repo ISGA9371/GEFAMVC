@@ -17,9 +17,13 @@ public class RequirementQueryGenerator {
     public String generateQuery(Map<String, String> searchDTO) {
         LOG.info("Creating query for Requirement...");
         fillValues();
-        stringBuffer.append("FROM Requirement x ");
+        stringBuffer.append(" SELECT x FROM Requirement x ");
 
-        // TODO Check how to search the budget
+        if (searchDTO.containsKey("budgetId") && !searchDTO.get("budgetId").isEmpty()) {
+            firstOne = false;
+            stringBuffer.append(" join x.budgetRequirements AS brs WHERE brs.budget.budgetId LIKE '%")
+                    .append(searchDTO.get("budgetId")).append("%' ");
+        }
         searchDTO.forEach(this::newFilter);
 
         return stringBuffer.toString();
@@ -61,7 +65,7 @@ public class RequirementQueryGenerator {
         items.put("programIncrementId", Arrays.asList("x.programIncrement.programIncrementId", EQUALS));
         items.put("channelId", Arrays.asList("x.channel.channelId", EQUALS));
         items.put("applicationId", Arrays.asList("x.application.applicationId", EQUALS));
-        items.put("projectTypeId", Arrays.asList("x.projectType.projectTypeId", EQUALS));
+        items.put("projectId", Arrays.asList("x.project.projectId", EQUALS));
         items.put("serviceTypeId", Arrays.asList("x.serviceType.serviceTypeId", EQUALS));
     }
 }

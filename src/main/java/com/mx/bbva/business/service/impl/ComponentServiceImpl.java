@@ -32,6 +32,11 @@ public class ComponentServiceImpl implements ComponentService {
         return componentRepository.findAll();
     }
 
+    @Override
+    public void deleteComponent(Integer componentId) {
+        componentRepository.deleteById(componentId);
+    }
+
     @Autowired
     public void setComponentRepository(ComponentRepository componentRepository) {
         this.componentRepository = componentRepository;

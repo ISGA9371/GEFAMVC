@@ -12,4 +12,6 @@ public interface ComponentService {
     Component findComponent(Integer componentId);
 
     List<Component> findAllComponents();
+
+    void deleteComponent(Integer componentId);
 }

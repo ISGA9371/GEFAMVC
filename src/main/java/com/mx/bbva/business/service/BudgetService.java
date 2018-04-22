@@ -1,6 +1,7 @@
 package com.mx.bbva.business.service;
 
 import com.mx.bbva.business.entity.Budget;
+import com.mx.bbva.business.entity.BudgetRequirement;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface BudgetService {
     List<Budget> findByCustomQuery(String query);
 
     List<Integer> findAllYears();
+
+    void assignBudget(List<BudgetRequirement> budgetRequirements);
 }

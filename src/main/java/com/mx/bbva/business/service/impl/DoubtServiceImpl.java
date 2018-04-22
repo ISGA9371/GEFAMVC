@@ -3,6 +3,7 @@ package com.mx.bbva.business.service.impl;
 import com.mx.bbva.business.entity.Doubt;
 import com.mx.bbva.business.entity.DoubtType;
 import com.mx.bbva.business.entity.Status;
+import com.mx.bbva.business.entity.User;
 import com.mx.bbva.business.repository.DoubtRepository;
 import com.mx.bbva.business.repository.DoubtTypeRepository;
 import com.mx.bbva.business.service.DoubtService;
@@ -25,6 +26,7 @@ public class DoubtServiceImpl implements DoubtService {
     public void saveDoubt(Doubt doubt) {
         if (doubt.getDoubtId() == null) {
             // TODO Use enums
+            doubt.setUserSender(new User("XMY3070"));
             doubt.setStatus(new Status(11));
         }
         doubtRepository.save(doubt);

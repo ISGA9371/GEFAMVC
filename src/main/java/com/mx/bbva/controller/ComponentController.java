@@ -87,6 +87,13 @@ public class ComponentController {
         return URL_FACTORY + EDIT_COMPONENT;
     }
 
+    @RequestMapping(value = "/{componentId}", method = RequestMethod.DELETE)
+    public String deleteComponent(Model model, @PathVariable(value = "componentId") Integer componentId) {
+        // TODO Validate if you can erase a component... status bla bla bla
+        componentService.deleteComponent(componentId);
+        return URL_FACTORY + EDIT_COMPONENT;
+    }
+
     @RequestMapping(value = "/filters", method = RequestMethod.GET)
     public String filtersForComponents(Model model) {
         model.addAttribute("filters", new ComponentSearchDTO());
