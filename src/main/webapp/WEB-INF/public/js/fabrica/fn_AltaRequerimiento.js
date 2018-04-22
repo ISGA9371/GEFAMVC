@@ -7,6 +7,7 @@ function init(){
     crearCombos();
     asignarCombos();
     desHabilitarDep();
+    habilitaFechas();
 
 }
 
@@ -57,6 +58,8 @@ function asignarCombos(){
     $("#hidden-subdireccion").val("");
     //console.log("seleccion "+ id);
     //console.log("hidden"+ $("#hidden-direccion").val());
+
+    new mdc.select.MDCSelect(document.getElementById('subdirs')).disabled = false;
 
     $.ajax({
         url: "/api/levels/"+id+"/sub-levels"
@@ -133,6 +136,7 @@ function asignarCombos(){
     $("#hidden-gestor").val("");
     //console.log("Seleccion"+id);
 
+    new mdc.select.MDCSelect(document.getElementById('gestor-js-select')).disabled = false;
 
     $.ajax({
         url: "/api/users/"
@@ -172,8 +176,27 @@ function funcionCancelar(){
 
 function desHabilitarDep(){
 
-    new mdc.select.MDCSelect(document.getElementById('estatus-tipificacion-js-select')).disabled = true;
-    new mdc.select.MDCSelect(document.getElementById('estatus-tipificacion-js-select')).disabled = true;
+    new mdc.select.MDCSelect(document.getElementById('subdirs')).disabled = true;
+    new mdc.select.MDCSelect(document.getElementById('gestor-js-select')).disabled = true;
+
+}
+
+function habilitaFechas(){
+
+    var picker1 = $("#datetimepicker1");
+    var picker2 = $("#datetimepicker2");
+
+    picker1.datetimepicker({
+        format: 'DD/MM/YYYY',
+        locale: 'es-mx',
+        useCurrent: false
+    });
+
+    picker2.datetimepicker({
+        format: 'DD/MM/YYYY',
+        locale: 'es-mx',
+        useCurrent: false
+    });
 
 }
 
