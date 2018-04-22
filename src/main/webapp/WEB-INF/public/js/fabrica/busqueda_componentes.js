@@ -308,12 +308,12 @@ $(function () {
             "<td>" + value.requirement.company.companyName + "</td>" +
             "<td>" + value.requirement.application.technology.technologyName + "</td>" +
             "<td>" + newModified + "</td>" +
-            "<td><a class='btn btn-primary btn-xs changeWindow' style='color:white;' href='/modifications/add?componentId=" + value.componentId + 
-              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></td>" + 
-            "<td><a class='btn btn-primary btn-xs changeWindow' style='color:white;' href='/doubts/add?componentId=" + value.componentId + 
-              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></td>" + 
-            "<td><a class='btn btn-primary btn-xs changeWindow' style='color:white;' href='/issues/add?componentId=" + value.componentId + 
-              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></td>" + 
+            "<td><a class='changeWindow' style='color:white;' href='/modifications/add?componentId=" + value.componentId + 
+              "'><img src='/img/edit_icon.png' style='width: 30px;'></a></td>" +
+            "<td><a class='changeWindow' style='color:white;' href='/doubts/add?componentId=" + value.componentId + 
+              "'><img src='/img/question_icon.png' style='width: 30px;'></a></td>" + 
+            "<td><a class='changeWindow' style='color:white;' href='/issues/add?componentId=" + value.componentId + 
+              "'><img src='/img/cancel_icon.png' style='width: 30px;'></a></td>" + 
             "<td><a class='btn btn-primary btn-xs changeWindow' style='color:white;' href='/components/" + value.componentId + 
               "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> Editar</a></td></tr>"
           );
