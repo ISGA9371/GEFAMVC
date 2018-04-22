@@ -156,7 +156,7 @@ public class BudgetController {
         List<Budget> budgets = budgetService.findByCustomQuery(query);
 
         model.addAttribute("budgetSearchDTO", budgetSearchDTO);
-        model.addAttribute("requirementData", requirement);
+        model.addAttribute("requirementData", requirementService.findOneRequirement(requirement.getRequirementId()));
         model.addAttribute("budgets", budgets);
 
         return URL_FACTORY + ASSIGN_BUDGET_REQUIREMENT;
