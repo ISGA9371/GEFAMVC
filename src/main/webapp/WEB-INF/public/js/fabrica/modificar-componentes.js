@@ -249,6 +249,15 @@ function addButtonEvents() {
             backgroundColor: "#0c71ca",
             textColor: "white",
         });
+        $.ajax({
+            async: false,
+            url: "/components/" + $("#componentId").val(),
+            type: 'DELETE'
+        }).done(function(json){
+            customHolder("info","Componente Eliminado.", "window.location.href = \"/components/filters\";");
+        }).fail(function(xhr, status, error) {
+            customHolder("info","Ocurrio un Error al Eliminar el Componente.")
+        });
     });
     var btnCancel = document.getElementById('cancelar-btn');
     btnCancel.addEventListener("click", function () {
