@@ -82,7 +82,7 @@ $(function () {
                 if(value.profileType.profileTypeId === 7){
                     $("#responsables-ul").append(
                         "<li class='mdc-list-item' role='option' tabindex='0' " +
-                        "value='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
+                        "id='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
                 }
             });
         }else $("#responsables-ul").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");

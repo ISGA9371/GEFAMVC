@@ -138,7 +138,7 @@
             <td class="col-md-4" align="center">
                 <div id="manager" class="mdc-select" role="listbox">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label mdc-select__label--float-above">Gestor*</div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Gestor</div>
                         <div class="mdc-select__selected-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
@@ -314,8 +314,8 @@
             <td class="col-md-4" align="center">
                 <div id="pep" class="mdc-text-field" data-mdc-auto-init="MDCTextField"
                      style="width: 56%; margin-right: 16px;">
-                    <input type="text" th:value="*{(budgetRequirements == null || budgetRequirements.isEmpty()) ?
-                    '' : budgetRequirements[0].budget.budgetName}"
+                    <input type="text" th:value="*{(budgetRequirementsList.isEmpty()) ?
+                    '' : budgetRequirementsList[0].budget.budgetName}"
                            class="mdc-text-field__input mdc-text-field--disabled">
                     <label class="mdc-text-field__label">PEP</label>
                 </div>
