@@ -169,8 +169,10 @@ function asignarCombos(){
 
 function funcionCancelar(){
 
+    holder("Cargando...");
+
     //Lleva a la ventana principal
-    window.location="/";
+    window.location="/requirements/filters";
 
 }
 
