@@ -171,7 +171,7 @@
                     <tr>
                         <td class="col-md-6" align="center">
                             <button type="submit" class="btn btn-primary">Guardar</button>
-                            <button type="button" id="cancelar-btn" onclick="addButtonEvents()" class="btn btn-primary">Cancelar</button>
+                            <button type="button" id="cancelar-btn" class="btn btn-primary">Cancelar</button>
                         </td>
                     </tr>
                 </table>
@@ -191,24 +191,6 @@
         border-bottom-color: rgba(15, 50, 242, 0.5);
     }
 </style>
-
-<script>
-    demoReady(function() {
-        var rootdescripcion = document.getElementById('descripcion2');
-        var inputdescripcion = rootdescripcion.querySelector('input');
-        var hiddendescripcion = document.getElementById('hidden-descri');
-        var textdescripcion = new mdc.textField.MDCTextField(rootdescripcion);
-        inputdescripcion.addEventListener('keyup', function() {
-            hiddendescripcion.value = hiddendescripcion.value+textdescripcion.value;
-        });
-        inputdescripcion.addEventListener('change', function() {
-            hiddendescripcion.value = hiddendescripcion.value+textdescripcion.value;
-        });
-        inputdescripcion.addEventListener('blur', function() {
-            hiddendescripcion.value = hiddendescripcion.value+textdescripcion.value;
-        });
-    });
-</script>
 
 <!--Footer que debe ir en todas las ventanas-->
 <div th:replace="layout/footer :: FooterPrincipal"></div>

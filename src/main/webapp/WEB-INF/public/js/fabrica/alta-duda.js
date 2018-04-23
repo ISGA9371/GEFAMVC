@@ -51,11 +51,10 @@ function loadSelects() {
 }*/
 
 function addButtonEvents() {
-
     var btnCancel = document.getElementById('cancelar-btn');
     btnCancel.addEventListener("click", function () {
-        window.history.back();
-        //holder('Registro cancelado');
+        holder("Cargando...");
+        window.location.href = "/components/filters";
     })
 }
 
