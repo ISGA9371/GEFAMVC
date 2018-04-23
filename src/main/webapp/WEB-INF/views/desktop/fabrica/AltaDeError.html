@@ -63,7 +63,7 @@
                     <td class="col-md-4" align="center">
                         <div class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                             <input disabled="disabled" th:value="${componentData.requirement.technology.technologyName}" type="text"  class="mdc-text-field__input" id="tecnologia">
-                            <label for="demo-input" class="mdc-text-field__label">Tecnologóa</label>
+                            <label for="demo-input" class="mdc-text-field__label">Tecnología</label>
                         </div>
                     </td>
                 </tr>
@@ -141,7 +141,7 @@
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
 
-                            <input id="hidden-estado" type="text" value="" th:fiel="*{issueFixByDyD}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <input id="hidden-estado" type="text" th:field="*{issueFixByDyD}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                             <div id="Estado-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                                     <div class="mdc-select__label">Incidencia ya Resuelta por DyD:</div>
@@ -170,7 +170,7 @@
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
                             <div  id="descripcion-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
-                                <input type="text" maxlength="200" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:value="${issue.issueInitialDescription}" name="issueInitialDescription" class="mdc-text-field__input" id="descrptor">
+                                <input type="text" th:value="${issue.issueInitialDescription}" name="issueInitialDescription" class="mdc-text-field__input" id="descrptor">
                                 <label for="demo-input" class="mdc-text-field__label">Descripción</label>
                             </div>
                         </td>
