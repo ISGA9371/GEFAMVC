@@ -323,7 +323,7 @@
 
 
           <th:block th:each="requirement, stat : ${requirements}">
-            <tr th:href="${'#row-detail-wrapper-' + stat.count}" data-toggle="collapse" class="clickable"
+            <tr th:href="${'#row-detail-wrapper-' + stat.count}" data-tggle="collapse" class="clickable"
                 th:aria-controls="${'row-detail-wrapper-' + stat.count}">
               <td>
                 <input type="radio" name="requirements" th:id="${requirement.requirementId}" th:value="${requirement.requirementId}">

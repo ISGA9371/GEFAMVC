@@ -90,8 +90,8 @@
                     <table class="col-md-12">
                     <tr style="height:72px">
                         <td class="col-md-4" align="center" style="height:72px">
-                            <!--<input id="hidden-prioridad" type="text" value="" required th:field="*{priority.priorityId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                            <div id="Prioridad-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                            <input id="hidden-prioridad" type="text" value="" required th:field="*{priority.priorityId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <!--<div id="Prioridad-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                                     <div class="mdc-select__label">Prioridad*</div>
                                     <div class="mdc-select__selected-text"></div>
@@ -177,7 +177,7 @@
 
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                                 <input disabled="disabled" th:field="*{issueFixByDyD}" type="text"  class="mdc-text-field__input" id="tecnologia">
-                                <label for="demo-input" class="mdc-text-field__label">Incidencia ya resuelto por DyD:</label>
+                                <label for="demo-input" class="mdc-text-field__label">Incidencia ya Resuelta por DyD:</label>
                             </div>
                         </td>
                         <td>
@@ -190,21 +190,21 @@
                 </table>
 
                     <input id="hidden-descri" type="text" value="" required th:field="*{issueInitialDescription}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                <table class="col-md-12" >
-                    <tr style="height:72px">
-                        <td class="col-md-4" align="center">
-                            <div  id="descripcion-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
-                                <input disabled="disabled" type="text" maxlength="200" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:value="${issueInitialDescription}" name="issueInitialDescription" class="mdc-text-field__input" id="descrptor">
-                                <label for="demo-input" class="mdc-text-field__label">Descripción</label>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
                     <table class="col-md-12" >
                         <tr style="height:72px">
                             <td class="col-md-4" align="center">
-                                <div  id="descripcion-js-text2" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
-                                    <input type="text" maxlength="200" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" name="issueInitialDescription" class="mdc-text-field__input" id="descrptor">
+                                <div  id="descripcion-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
+                                    <input disabled="disabled" type="text" th:value="*{issueInitialDescription}" class="mdc-text-field__input" id="descripcion">
+                                    <label for="demo-input" class="mdc-text-field__label">Descripción</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="col-md-12" >
+                        <tr style="height:72px">
+                            <td class="col-md-4" align="center">
+                                <div  id="descripcion-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
+                                    <input type="text" maxlength="220" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" class="mdc-text-field__input" id="descripcion2">
                                     <label for="demo-input" class="mdc-text-field__label">Descripción agregar user</label>
                                 </div>
                             </td>
