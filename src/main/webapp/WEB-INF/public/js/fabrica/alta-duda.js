@@ -1,14 +1,15 @@
 function init() {
 
-    addCalendars();
+    //addCalendars();
     loadSelects();
     addButtonEvents();
 
     $("#hidden-status").val("11");
     $("#hidden-doubtType").val("13");
     $("#hidden-envcomponente").val($("#hidden-componente").val());
-    $("#hidden-responsable").val($("#responsabletxt").val());
-
+    //$("#hidden-responsable").val($("#responsabletxt").val());
+    $("#responsabletxt").val("XMY3080");
+    $("#hidden-responsable").val("XMY3080");
 
     var fecha=$("#datetimepicker").val();
     var dia = fecha.substring(8,10);
@@ -39,7 +40,7 @@ function loadSelects() {
     //mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
 }
 
-function addCalendars() {
+/*function addCalendars() {
     $('#FecRealCFG').datetimepicker({
         format: 'DD/MM/YYYY',
         widgetPositioning: {
@@ -47,12 +48,14 @@ function addCalendars() {
             vertical: 'top'
         }
     });
-}
+}*/
 
 function addButtonEvents() {
+
     var btnCancel = document.getElementById('cancelar-btn');
     btnCancel.addEventListener("click", function () {
         window.history.back();
+        //holder('Registro cancelado');
     })
 }
 

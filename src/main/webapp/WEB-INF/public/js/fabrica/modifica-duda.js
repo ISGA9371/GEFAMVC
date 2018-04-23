@@ -28,8 +28,9 @@ function init() {
         mm = '0' + mm;
     }
     var today = 'v' + yyyy + mm + dd;
-
+    var desfes  = dd + mm + yyyy;
     $('#doubtVersion').val(today);
+
 
 }
 /*
@@ -69,7 +70,7 @@ function holder(msg){
 
 
 
-demoReady(function() {
+/*demoReady(function() {
     var rootEst = document.getElementById('Prioridad-js-select');
     var hiddenEst = document.getElementById('hidden-prioridad');
     var selectEst = new mdc.select.MDCSelect(rootEst);
@@ -97,4 +98,4 @@ demoReady(function() {
     rootEst.addEventListener('MDCSelect:change', function() {
         hiddenEst.value = selectEst.value;
     });
-});
+});*/

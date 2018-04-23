@@ -4,6 +4,10 @@ function init() {
 
     $("#hidden-envcomponente").val($("#hidden-componente").val());
 
+    //$("#hidden-responsable").val($("#responsabletxt").val());
+    $("#responsabletxt").val("XMY3080");
+    $("#hidden-responsable").val("XMY3080");
+
     var fecha=$("#datetimepicker").val();
     var dia = fecha.substring(8,10);
     var mes = fecha.substring(5,7);

@@ -194,46 +194,20 @@
 
 <script>
     demoReady(function() {
-        var rootEst = document.getElementById('Prioridad-js-select');
-        var hiddenEst = document.getElementById('hidden-prioridad');
-        var selectEst = new mdc.select.MDCSelect(rootEst);
-
-        rootEst.addEventListener('MDCSelect:change', function() {
-            hiddenEst.value = selectEst.value;
+        var rootdescripcion = document.getElementById('descripcion2');
+        var inputdescripcion = rootdescripcion.querySelector('input');
+        var hiddendescripcion = document.getElementById('hidden-descri');
+        var textdescripcion = new mdc.textField.MDCTextField(rootdescripcion);
+        inputdescripcion.addEventListener('keyup', function() {
+            hiddendescripcion.value = hiddendescripcion.value+textdescripcion.value;
+        });
+        inputdescripcion.addEventListener('change', function() {
+            hiddendescripcion.value = hiddendescripcion.value+textdescripcion.value;
+        });
+        inputdescripcion.addEventListener('blur', function() {
+            hiddendescripcion.value = hiddendescripcion.value+textdescripcion.value;
         });
     });
-
-    demoReady(function() {
-        var rootEst = document.getElementById('responsable-js-select');
-        var hiddenEst = document.getElementById('hidden-responsable');
-        var selectEst = new mdc.select.MDCSelect(rootEst);
-
-        rootEst.addEventListener('MDCSelect:change', function() {
-            hiddenEst.value = selectEst.value;
-        });
-    });
-
-    demoReady(function() {
-        var rootEst = document.getElementById('Duda-js-select');
-        var hiddenEst = document.getElementById('hidden-dudaSelect');
-        var selectEst = new mdc.select.MDCSelect(rootEst);
-
-        rootEst.addEventListener('MDCSelect:change', function() {
-            hiddenEst.value = selectEst.value;
-        });
-    });
-
-    function holder(msg){
-        HoldOn.open({
-            theme: "sk-cube",
-            content: '',
-            message: msg,
-            // backgroundColor: "#004582",
-            backgroundColor: "#0c71ca",
-            textColor: "white",
-        });
-    }
-
 </script>
 
 <!--Footer que debe ir en todas las ventanas-->

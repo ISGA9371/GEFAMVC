@@ -37,7 +37,7 @@
 
 
                             <!--<input disabled="disabled" th:value="${componentData.requirement.level.levelName}"  type="text" required class="mdc-text-field__input"  id="demo-input">-->
-                            <label for="demo-input" class="mdc-text-field__label">Direccion</label>
+                            <label for="demo-input" class="mdc-text-field__label">Dirección</label>
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
@@ -57,17 +57,17 @@
                     <td class="col-md-4" align="center">
                         <div class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                             <input disabled="disabled" th:value="${componentData.requirement.requirementName}" type="text"  class="mdc-text-field__input" id="requerimiento">
-                            <label for="demo-input" class="mdc-text-field__label">Requerimiento></label>
+                            <label for="demo-input" class="mdc-text-field__label">Requerimiento</label>
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
                         <div class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                             <input disabled="disabled" th:value="${componentData.requirement.technology.technologyName}" type="text"  class="mdc-text-field__input" id="tecnologia">
-                            <label for="demo-input" class="mdc-text-field__label">Tecnologia</label>
+                            <label for="demo-input" class="mdc-text-field__label">Tecnologóa</label>
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <tr style="height:72px">
                     <td class="col-md-4" align="center">
                         <div class="dog1">
                             <input disabled="disabled" th:value="${componentData.componentUploadDate}" type='hidden' class="mdc-text-field__input"  row="2" id='datetimepicker' />
@@ -79,7 +79,10 @@
                     </td>
                 </tr>
             </table>
-    <div class="row">
+    <br>
+    <br>
+    <div class="row" >
+        <br>
         <div class="col-md-12 subtitle-content">Datos de Incidencia</div>
     </div>
                 <form style="display:block" action="#" th:action="@{/issues}" onsubmit="holder('Registrando Incidencia')" th:object="${issue}" method="post">
@@ -106,29 +109,15 @@
 
                         </td>
                         <td class="col-md-4" align="center">
-                            <!--<div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input type="text" maxlength="120" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{userSender.userInternalId}"  class="mdc-text-field__input" id="usuario-peticionario">
-                                <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
-                            </div>-->
-
-                            <!--<input id="hidden-responsable" type="text"   value="" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{userSender.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                            <div id="responsable-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                                    <div class="mdc-select__label">Usuario Peticionario*</div>
-                                    <div class="mdc-select__selected-text"></div>
-                                    <div class="mdc-select__bottom-line"></div>
-                                </div>
-                                <div class="mdc-menu mdc-select__menu col-md-3" >
-                                    <ul class="mdc-list mdc-menu__items">
-                                        <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
-                                    </ul>
-                                </div>
-                            </div>-->
-
+                            <input id="hidden-responsable" type="text"   value="" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{userSender.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                             <div id="tipologia-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input disabled="disabled" th:value="${user.userInternalId}"  type="text"  class="mdc-text-field__input" id="tipologia">
+                                <input disabled="disabled" type="text" value=" "  class="mdc-text-field__input" id="responsabletxt">
                                 <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
                             </div>
+                            <!--<div id="tipologia-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input disabled="disabled" th:field="*{userSender.userInternalId}" type="text"  class="mdc-text-field__input" id="responsabletxt">
+                                <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
+                            </div>-->
                         </td>
                         <td class="col-md-4" align="center">
 
@@ -152,10 +141,10 @@
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
 
-                            <input id="hidden-estado" type="text" value="" required th:fiel="*{issueFixByDyD}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <input id="hidden-estado" type="text" value="" th:fiel="*{issueFixByDyD}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                             <div id="Estado-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                                    <div class="mdc-select__label">Incidencia ya resuelto por DyD:</div>
+                                    <div class="mdc-select__label">Incidencia ya Resuelta por DyD:</div>
                                     <div class="mdc-select__selected-text"></div>
                                     <div class="mdc-select__bottom-line"></div>
                                 </div>

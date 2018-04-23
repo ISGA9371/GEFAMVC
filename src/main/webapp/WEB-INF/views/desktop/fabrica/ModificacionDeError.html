@@ -189,12 +189,12 @@
                     </tr>
                 </table>
 
-
+                    <input id="hidden-descri" type="text" value="" required th:field="*{issueInitialDescription}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                 <table class="col-md-12" >
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
                             <div  id="descripcion-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
-                                <input disabled="disabled" type="text" maxlength="200" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:value="${issue.issueInitialDescription}" name="issueInitialDescription" class="mdc-text-field__input" id="descrptor">
+                                <input disabled="disabled" type="text" maxlength="200" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:value="${issueInitialDescription}" name="issueInitialDescription" class="mdc-text-field__input" id="descrptor">
                                 <label for="demo-input" class="mdc-text-field__label">Descripción</label>
                             </div>
                         </td>
@@ -203,9 +203,9 @@
                     <table class="col-md-12" >
                         <tr style="height:72px">
                             <td class="col-md-4" align="center">
-                                <div  id="descripcion-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
-                                    <input type="text" maxlength="200" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:value="${issue.issueInitialDescription}" name="issueInitialDescription" class="mdc-text-field__input" id="descrptor">
-                                    <label for="demo-input" class="mdc-text-field__label">Descripción</label>
+                                <div  id="descripcion-js-text2" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
+                                    <input type="text" maxlength="200" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" name="issueInitialDescription" class="mdc-text-field__input" id="descrptor">
+                                    <label for="demo-input" class="mdc-text-field__label">Descripción agregar user</label>
                                 </div>
                             </td>
                         </tr>
@@ -312,6 +312,10 @@
         btnCancel.addEventListener("click", function () {
             window.history.back();
         })
+    }
+
+    function llenarHideen() {
+        var descripTotal = $('hidden-descri').val() + $('descripcion-js-text2').val() + ;
     }
 </script>
 
