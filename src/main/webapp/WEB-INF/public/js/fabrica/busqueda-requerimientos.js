@@ -311,6 +311,9 @@ $(function () {
 
         editReq.attr("href","/requirements/"+radioButton.val());
         editReq.removeAttr("disabled");
+        let target = $(this).attr("aria-controls");
+
+        $("#"+target).collapse('toggle');
         //addComp.attr("href","/components/add?requirementId="+radioButton.val());
         //addComp.removeAttr("disabled");
     });
