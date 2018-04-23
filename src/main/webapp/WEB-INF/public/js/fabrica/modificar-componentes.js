@@ -252,7 +252,8 @@ function addButtonEvents() {
     });
     var btnCancel = document.getElementById('cancelar-btn');
     btnCancel.addEventListener("click", function () {
-        window.history.back();
+        holder("Cargando...");
+        window.location.href = "/components/filters";
     });
 }
 
