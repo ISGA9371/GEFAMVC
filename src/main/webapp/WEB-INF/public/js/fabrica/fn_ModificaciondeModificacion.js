@@ -59,6 +59,14 @@ function addCalendars() {
         format: 'DD/MM/YYYY'
     });
 
+    $('#datetimepicker8').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+
+    $('#datetimepicker9').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+
 
 }
 

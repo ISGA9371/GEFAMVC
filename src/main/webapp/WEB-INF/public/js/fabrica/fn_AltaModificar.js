@@ -19,6 +19,7 @@ function crearCombos() {
     mdc.select.MDCSelect.attachTo(document.getElementById('origen-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('modvuelo-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('moddyd-js-select'));
+    mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
 }
 
 function asignarCombos (){

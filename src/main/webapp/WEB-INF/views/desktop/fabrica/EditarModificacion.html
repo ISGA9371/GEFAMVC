@@ -46,7 +46,7 @@
                     </td>
                     <td class="col-md-4" align="center">
                         <div id="version-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input type="text" th:value="${componentData.componentVersion}" disabled class="mdc-text-field__input" id="version">
+                            <input type="text" th:value="${componentData.componentVersion}" disabled class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="version">
                             <label for="demo-input" class="mdc-text-field__label">Versión</label>
                         </div>
                     </td>
@@ -54,7 +54,7 @@
                 <tr>
                     <td class="col-md-4" align="center">
                         <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input type="text" th:value="${componentData.componentName}" disabled class="mdc-text-field__input" id="nombre_componente">
+                            <input type="text" th:value="${componentData.componentName}" disabled class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="nombre_componente">
                             <label for="demo-input" class="mdc-text-field__label">Nombre de Componente</label>
                         </div>
                     </td>
@@ -67,8 +67,8 @@
                     <td class="col-md-4" align="center">
                         <div class="dog1">
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker7' />
-                                <label for="demo-input" class="mdc-text-field__label">F. Real Fact.>CGF software</label>
+                                <input type='text' disabled class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)"  row="2"  id='datetimepicker7' />
+                                <label for="demo-input" class="mdc-text-field__label">Fecha Envio</label>
                             </div>
                         </div>
                     </td>
@@ -123,6 +123,73 @@
                             <label for="demo-input" class="mdc-text-field__label">Tipologia de la Modificacion</label>
                         </div>
                     </td>
+                    <td class="col-md-8" align="center">
+                        <div  id="descripcion-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
+                            <input type="text" maxlength="1000" th:field="*{modificationDescription}"  pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" class="mdc-text-field__input" id="usuario-peticionario">
+                            <label for="demo-input" class="mdc-text-field__label">Descripción de la Modificacion</label>
+                        </div>
+                    </td>
+                </tr>
+                <table class="col-md-12" >
+                    <tr style="height:72px">
+                        <td class="col-md-4" align="center">
+                            <input id="hidden-prioridad" type="text" value="" required th:field="*{priority.priorityId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <div id="prioridad-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                                    <div class="mdc-select__label">Prioridad*</div>
+                                    <div class="mdc-select__selected-text"></div>
+                                    <div class="mdc-select__bottom-line"></div>
+                                </div>
+                                <div class="mdc-menu mdc-select__menu col-md-3" >
+                                    <ul class="mdc-list mdc-menu__items">
+                                        <li th:each="priorities:${priorities}" class="mdc-list-item" th:id="${priorities.priorityId}" role="option" th:text="${priorities.priorityName}"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-md-4" align="center">
+                            <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input type="text"  maxlength="120"  pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{userSender.userInternalId}"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="usuario_peticionario">
+                                <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
+                            </div>
+                        </td>
+                        <td class="col-md-4" align="center">
+
+                            <input id="hidden-origen" type="text" value="" required th:field="*{origin.originId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <!-- <input id="Origen-js-select2" type="text"  required value="" th:field="*{origins}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;" />-->
+                            <div id="origen-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                                    <div class="mdc-select__label">Origen*</div>
+                                    <div class="mdc-select__selected-text"></div>
+                                    <div class="mdc-select__bottom-line"></div>
+                                </div>
+                                <div class="mdc-menu mdc-select__menu col-md-3" >
+                                    <ul class="mdc-list mdc-menu__items">
+                                        <li th:each="origins:${origins}" class="mdc-list-item" th:id="${origins.originId}"  role="option" th:text="${origins.originName}"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <tr>
+                    <td class="col-md-4" align="center">
+                        <div class="dog1">
+                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker8' />
+                                <label for="demo-input" class="mdc-text-field__label">Fecha Prevista de Finalizacion</label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-md-4" align="center">
+                        <div class="dog1">
+                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input  type="text"  th:field="*{modificationSendDate}"  class="mdc-text-field__input"  row="2" id='datetimepicker9' />
+                                <label for="demo-input" class="mdc-text-field__label">F. Negociada</label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                    <tr>
                     <td class="col-md-4" align="center">
                         <div id="DifMod-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
@@ -184,48 +251,6 @@
                 </tr>
             </table>
             <table class="col-md-12" >
-                <tr style="height:72px">
-                    <td class="col-md-4" align="center">
-                        <input id="hidden-prioridad" type="text" value="" required th:field="*{priority.priorityId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                        <div id="prioridad-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                                <div class="mdc-select__label">Prioridad*</div>
-                                <div class="mdc-select__selected-text"></div>
-                                <div class="mdc-select__bottom-line"></div>
-                            </div>
-                            <div class="mdc-menu mdc-select__menu col-md-3" >
-                                <ul class="mdc-list mdc-menu__items">
-                                    <li th:each="priorities:${priorities}" class="mdc-list-item" th:id="${priorities.priorityId}" role="option" th:text="${priorities.priorityName}"></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="col-md-4" align="center">
-                        <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input type="text"  maxlength="120"  pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{userSender.userInternalId}"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="usuario_peticionario">
-                            <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
-                        </div>
-                    </td>
-                    <td class="col-md-4" align="center">
-
-                        <input id="hidden-origen" type="text" value="" required th:field="*{origin.originId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                        <!-- <input id="Origen-js-select2" type="text"  required value="" th:field="*{origins}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;" />-->
-                        <div id="origen-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                                <div class="mdc-select__label">Origen*</div>
-                                <div class="mdc-select__selected-text"></div>
-                                <div class="mdc-select__bottom-line"></div>
-                            </div>
-                            <div class="mdc-menu mdc-select__menu col-md-3" >
-                                <ul class="mdc-list mdc-menu__items">
-                                    <li th:each="origins:${origins}" class="mdc-list-item" th:id="${origins.originId}"  role="option" th:text="${origins.originName}"></li>
-                                </ul>
-                            </div>
-                        </div>
-
-
-                    </td>
-                </tr>
                 <tr>
                     <td class="col-md-4" align="center">
                         <div class="dog1">
