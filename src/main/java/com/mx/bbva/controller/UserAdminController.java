@@ -18,8 +18,8 @@ import static com.mx.bbva.util.ViewsURLs.URL_FACTORY;
 
 @Controller
 @RequestMapping(value = "/users")
-public class UserController {
-    private static final Logger LOG = Logger.getLogger(UserController.class.getName());
+public class UserAdminController {
+    private static final Logger LOG = Logger.getLogger(UserAdminController.class.getName());
 
     private UserService userService;
 
