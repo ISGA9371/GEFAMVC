@@ -254,7 +254,7 @@ function addButtonEvents() {
             url: "/components/" + $("#componentId").val(),
             type: 'DELETE'
         }).done(function(json){
-            customHolder("info","Componente Eliminado.", "window.location.href = \"/components/filters\";");
+            customHolder("info","Componente Eliminado.", "document.getElementById('cancelar-btn').click()");
         }).fail(function(xhr, status, error) {
             customHolder("info","Ocurrio un Error al Eliminar el Componente.")
         });
