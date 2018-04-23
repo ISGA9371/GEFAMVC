@@ -106,8 +106,16 @@ public class ComponentController {
         // TODO Work in progress
 
         String query = new ComponentQueryGenerator().generateQuery(parameters);
+        List<Component> components = componentService.findByCustomQuery(query);
+        //List<Fare> fares = fareService.findAllFares();
+        for (Component component : components) {
+            Requirement requirement = component.getRequirement();
+            Double fareValue = fareService.findByRequirement(requirement);
+            requirement.setFareValue(fareValue);
+            component.setRequirement(requirement);
+        }
 
-        return componentService.findByCustomQuery(query);
+        return components;
     }
 
     //TODO Use Enums

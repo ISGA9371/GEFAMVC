@@ -10,7 +10,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -112,6 +111,8 @@ public class Requirement implements Serializable {
     private List<ProjectControl> projectControls;
     @Transient
     private List<BudgetRequirement> budgetRequirements;
+    @Transient
+    private Double fareValue;
 
     public Requirement() {
     }
@@ -371,6 +372,14 @@ public class Requirement implements Serializable {
 
     public void setProjectControls(List<ProjectControl> projectControls) {
         this.projectControls = projectControls;
+    }
+
+    public Double getFareValue() {
+        return fareValue;
+    }
+
+    public void setFareValue(Double fareValue) {
+        this.fareValue = fareValue;
     }
 
     @Override

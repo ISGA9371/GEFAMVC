@@ -48,4 +48,6 @@ public class ViewsURLs {
     public static final String STATUS_PAYMENT = "SeguimientoDePago";
     public static final String BILLING_CUT = "SeguimientoCorteDeFacturacion";
 
+    public static final String ADMIN_USERS = "AdministracionDeUsuarios";
+
 }
