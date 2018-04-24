@@ -37,6 +37,13 @@ public class ComponentServiceImpl implements ComponentService {
         componentRepository.deleteById(componentId);
     }
 
+    @Override
+    public void updateDates(List<Component> components) {
+        for (Component component : components) {
+            componentRepository.updateDatesById(component);
+        }
+    }
+
     @Autowired
     public void setComponentRepository(ComponentRepository componentRepository) {
         this.componentRepository = componentRepository;

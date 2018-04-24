@@ -5,6 +5,8 @@ import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import com.mx.bbva.util.query.ComponentQueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -56,6 +58,13 @@ public class ComponentController {
         return REDIRECT + "components/" + savedComponent.getComponentId();
     }
 
+    @RequestMapping(value = "/update-dates", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateComponentDates(@RequestParam("components") List<Component> components) {
+        // TODO Validate user
+        componentService.updateDates(components);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String findAllComponents(Model model) {
         // TODO Validate user
@@ -91,7 +100,7 @@ public class ComponentController {
     public String deleteComponent(Model model, @PathVariable(value = "componentId") Integer componentId) {
         // TODO Validate if you can erase a component... status bla bla bla
         componentService.deleteComponent(componentId);
-        return URL_FACTORY + EDIT_COMPONENT;
+        return URL_FACTORY + SEARCH_COMPONENTS;
     }
 
     @RequestMapping(value = "/filters", method = RequestMethod.GET)

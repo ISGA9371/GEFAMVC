@@ -14,4 +14,6 @@ public interface ComponentService {
     List<Component> findAllComponents();
 
     void deleteComponent(Integer componentId);
+
+    void updateDates(List<Component> components);
 }

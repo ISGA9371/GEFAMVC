@@ -26,6 +26,25 @@ public class ComponentRepositoryCustomImpl implements ComponentRepositoryCustom 
         }
     }
 
+    @Override
+    public void updateDatesById(Component component) {
+        try {
+            entityManager.createQuery("UPDATE Component c SET c.componentPossibleDeliverDate = :possibleDeliverDate, " +
+                    "c.componentPreviewDeliverDate = :previewDeliverDate, c.componentDesignRealDeliverDate = :designRealDeliverDate, " +
+                    "c.componentRealDeliverDate = :realDeliverDate WHERE c.componentId = :componentId", Component.class)
+                    .setParameter("possibleDeliverDate", component.getComponentPossibleDeliverDate())
+                    .setParameter("previewDeliverDate", component.getComponentPreviewDeliverDate())
+                    .setParameter("designRealDeliverDate", component.getComponentDesignRealDeliverDate())
+                    .setParameter("realDeliverDate", component.getComponentRealDeliverDate())
+                    .setParameter("componentId", component.getComponentId())
+                    .executeUpdate();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+    }
+
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

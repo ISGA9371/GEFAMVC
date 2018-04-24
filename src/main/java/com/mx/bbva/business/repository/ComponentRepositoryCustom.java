@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ComponentRepositoryCustom {
     List<Component> findByCustomQuery(String query);
+
+    void updateDatesById(Component component);
 }
