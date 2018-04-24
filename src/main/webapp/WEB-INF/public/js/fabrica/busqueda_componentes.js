@@ -163,6 +163,28 @@ $(function () {
       textColor: "white",
     });
   });
+
+  $("body").on("change", "select.component-modified", function (event) {
+    var idElement = $(this).attr("id").substring(7, $(this).attr("id").length);
+    var optionElement = $("#tipFin-" + idElement).find("option[value=" + $(this).val() + "]");
+    $("#difFin-" + idElement).val(optionElement.data("severity"));
+    $("#horFin-" + idElement).val(optionElement.data("hours"));
+
+    theFare = $("#costFin-" + idElement).data("costo");
+    newFare = parseInt(theFare) * parseInt(optionElement.data("hours"));
+    $("#costFin-" + idElement).val(newFare);
+  });
+
+  $("body").on("change", "select.component-new", function (event) {
+    var idElement = $(this).attr("id").substring(7, $(this).attr("id").length);
+    var optionElement = $("#tipFin-" + idElement).find("option[value=" + $(this).val() + "]");
+    $("#difFin-" + idElement).val(optionElement.data("severity"));
+    $("#horFin-" + idElement).val(optionElement.data("hours"));
+
+    theFare = $("#costFin-" + idElement).data("costo");
+    newFare = parseInt(theFare) * parseInt(optionElement.data("hours"));
+    $("#costFin-" + idElement).val(newFare);
+  });
   
 
   direccion.listen('MDCSelect:change', () => {
@@ -361,27 +383,6 @@ $(function () {
           $("#estatusTip-" + value.componentId).val(value.statusTypology.statusId);
 
           idsSearch.push(value.componentId);
-        });
-        $(".component-modified").change(function () {
-          var idElement = $(this).attr("id").substring(7, $(this).attr("id").length);
-          var optionElement = $("#tipFin-" + idElement).find("option[value=" + $(this).val() + "]");
-          $("#difFin-" + idElement).val( optionElement.data("severity") );
-          $("#horFin-" + idElement).val( optionElement.data("hours") );
-
-          theFare = $("#costFin" + idElement).data("costo");
-          newFare = parseInt(theFare) * parseInt( optionElement.data("hours") );
-          $("#costFin" + idElement).val(newFare);
-        });
-
-        $(".component-new ").change(function () {
-          var idElement = $(this).attr("id").substring(7, $(this).attr("id").length);
-          var optionElement = $("#tipFin-" + idElement).find("option[value=" + $(this).val() + "]");
-          $("#difFin-" + idElement).val(optionElement.data("severity"));
-          $("#horFin-" + idElement).val(optionElement.data("hours"));
-
-          theFare = $("#costFin" + idElement).data("costo");
-          newFare = parseInt(theFare) * parseInt(optionElement.data("hours"));
-          $("#costFin" + idElement).val(newFare);
         });
 
         $("#tab-fecha > table > tbody").append(
