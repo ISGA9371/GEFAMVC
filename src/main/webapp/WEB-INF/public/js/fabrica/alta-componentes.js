@@ -103,7 +103,7 @@ function addButtonEvents() {
     var btnCancel = document.getElementById('cancelar-btn');
     btnCancel.addEventListener("click", function () {
         holder("Cargando...");
-        window.location.href = "/components/filters";
+        window.location.href = "/requirements/filters";
     })
 }
 
