@@ -346,15 +346,17 @@ $(function () {
             "<td>" + value.requirement.requirementName + "</td>" +
             "<td><select class='form-control "+classIdentifier+"' id='tipFin-" + value.componentId + "'>"+options+"</select></td>" +
             "<td><input type='text' id='difFin-" + value.componentId + "' value='' class='form-control text-center' readonly></td>" +
-            "<td><input type='text' id='costFin-" + value.componentId + "' value='' class='form-control text-center' readonly></td>" +
+            "<td><input type='text' id='costFin-" + value.componentId + "' value='' class='form-control text-center' readonly data-costo='"+value.requirement.fareValue+"'></td>" +
             "<td><input type='text' id='horFin-" + value.componentId + "' value='' class='form-control text-center' readonly></td>" +
             "<td><input type='text' id='comments-" + value.componentId + "' value='" + value.componentTypoComment + "' class='form-control'></td>" +
             "<td><select class='form-control' id='estatusTip-" + value.componentId + "'>" + optionsTipif+"</select></td>" +
             "<td><select class='form-control' id='facturar-" + value.componentId + "'><option value='1'>SI</option><option value='0'>NO</option></select></td></tr>"
           );
 
+          fare = parseInt(value.requirement.fareValue) * parseInt(value.finalTypology.typologySeverityHours);
           $("#tipFin-" + value.componentId).val(value.finalTypology.typologyId);
           $("#difFin-" + value.componentId).val(value.finalTypology.typologySeverity);
+          $("#costFin-" + value.componentId).val(fare);
           $("#horFin-" + value.componentId).val(value.finalTypology.typologySeverityHours);
           $("#estatusTip-" + value.componentId).val(value.statusTypology.statusId);
 
@@ -365,6 +367,10 @@ $(function () {
           var optionElement = $("#tipFin-" + idElement).find("option[value=" + $(this).val() + "]");
           $("#difFin-" + idElement).val( optionElement.data("severity") );
           $("#horFin-" + idElement).val( optionElement.data("hours") );
+
+          theFare = $("#costFin" + idElement).data("costo");
+          newFare = parseInt(theFare) * parseInt( optionElement.data("hours") );
+          $("#costFin" + idElement).val(newFare);
         });
 
         $(".component-new ").change(function () {
@@ -372,6 +378,10 @@ $(function () {
           var optionElement = $("#tipFin-" + idElement).find("option[value=" + $(this).val() + "]");
           $("#difFin-" + idElement).val(optionElement.data("severity"));
           $("#horFin-" + idElement).val(optionElement.data("hours"));
+
+          theFare = $("#costFin" + idElement).data("costo");
+          newFare = parseInt(theFare) * parseInt(optionElement.data("hours"));
+          $("#costFin" + idElement).val(newFare);
         });
 
         $("#tab-fecha > table > tbody").append(
@@ -509,8 +519,37 @@ $(function () {
       'realDeliverDate': date4,
       'ids': idsSearch,
     };
+
     console.log(data);
 
+    $.ajax({
+      url: "/components/update-dates",
+      method: "PUT",
+      data: data,
+      beforeSend: function () {
+        HoldOn.open({
+          theme: "sk-cube",
+          content: '',
+          message: 'Actualizando Información',
+          backgroundColor: "#0c71ca",
+          textColor: "white",
+        });
+      }
+    }).done(function (data ) {
+      HoldOn.close();
+      new jBox('Notice', {
+        content: 'Información actualizada exitosamente',
+        animation: 'pulse',
+        color: 'green'
+      });
+    }).fail(function ( error ) {
+      HoldOn.close();
+      new jBox('Notice', {
+        content: 'Hubo un error al guardar, intenta de nuevo.',
+        animation: 'pulse',
+        color: 'red'
+      });
+    });
   });
   
   $("#update-dates").click(function(){
@@ -530,7 +569,37 @@ $(function () {
         'realDeliverDate': date4[index].value,
       });
     });
+    
     console.log(data);
+
+    $.ajax({
+      url: "/components/update-dates",
+      method: "PUT",
+      data: data,
+      beforeSend: function () {
+        HoldOn.open({
+          theme: "sk-cube",
+          content: '',
+          message: 'Actualizando Información',
+          backgroundColor: "#0c71ca",
+          textColor: "white",
+        });
+      }
+    }).done(function (data) {
+      HoldOn.close();
+      new jBox('Notice', {
+        content: 'Información actualizada exitosamente',
+        animation: 'pulse',
+        color: 'green'
+      });
+    }).fail(function (error) {
+      HoldOn.close();
+      new jBox('Notice', {
+        content: 'Hubo un error al guardar, intenta de nuevo.',
+        animation: 'pulse',
+        color: 'red'
+      });
+    });
   });
   
   $("#update-closure").click(function(){
