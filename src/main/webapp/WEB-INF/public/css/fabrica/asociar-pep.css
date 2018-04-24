@@ -13,19 +13,45 @@ input.mdc-text-field__input{
     background: #8F7AE5;
     font-size: 20px;
     color: white;
-    padding: 4px 0;
+    padding: 10px 16px;
 }
 
 #results-table *{
     font-size: 12px;
     text-align: center;
 }
-
-#results-table thead{
+#row-buttons-results{
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+#row-buttons-actions{
+    margin-top: 60px;
+    margin-bottom: 96px;
+}
+#cancel{
+    margin-left: 24px;
+}
+table thead{
     background-color:#F4F4F4;
     color:#005EB8;
 }
-#results-table thead th {
+table thead th {
     padding: 12px 0;
     font-weight: normal;
+}
+#hours-section{
+    font-family: 'BBVA Web Light';
+    float: right;
+}
+#acum-hours{
+    margin-left: 8px;
+    margin-right: 24px;
+}
+.sep{
+    margin: 0 24px;
+}
+#save{
+    margin-right: 24px;
+}
+#inc-hours{
 }

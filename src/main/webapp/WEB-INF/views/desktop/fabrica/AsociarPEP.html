@@ -185,12 +185,9 @@
         </div>
     </table>
 
-    <div class="row">
+    <div class="row" style="margin-top: 48px; margin-bottom: 60px;">
         <table class="col-md-12" >
             <tr>
-                <br>
-                <br>
-                <br>
                 <td class="col-md-6" align="Center">
                     <button type="submit" class="btn btn-primary">Buscar</button>
                     <button type="button" class="btn btn-primary">Cancelar</button>
@@ -232,15 +229,17 @@
                 </td>
             </tr>
             <th:block th:each="budget, stat : ${budgets}">
-                <tr th:href="${'#row-detail-wrapper-' + stat.count}" data-toggle="collapse" class="clickable"
+                <tr th:href="${'#row-detail-wrapper-' + stat.count}"
+                    th:data-id="${budget.budgetId}"
+                    data-toggle="colapse" class="clickable"
                     th:aria-controls="${'row-detail-wrapper-' + stat.count}">
                     <td>
                         <input type="radio" name="budgets" th:id="${budget.budgetId}" th:value="${budget.budgetId}">
                     </td>
-                    <td th:text="${budget.budgetId}"></td>
-                    <td th:text="${budget.budgetName}"></td>
+                    <td data-select th:text="${budget.budgetId}"></td>
+                    <td data-select th:text="${budget.budgetName}"></td>
                     <td th:text="${budget.transfers[0].level.levelSuperior.levelName}"></td>
-                    <td th:text="${budget.transfers[0].level.levelName}"></td>
+                    <td data-select th:text="${budget.transfers[0].level.levelName}"></td>
                     <td th:text="${budget.transfers[0].user.userInternalId}"></td>
                     <td th:text="${budget.transfers[0].transferWithdrawalValue}"></td>
                     <td th:text="${budget.transfers[0].transferValue - budget.transfers[0].transferWithdrawalValue}"></td>
@@ -270,17 +269,61 @@
         </table>
     </div>
 
-    <div class="row buttons" id="row-buttons-results" style="margin-top: 48px; margin-bottom: 96px;">
+    <div class="row buttons" id="row-buttons-results">
         <div class="col-xs-12 text-center">
-            <a id="edit-requirement" class="btn btn-primary" onclick="showHoldn();">Agregar</a>
-            <a id="add-component" class="btn btn-primary" onclick="showHoldn();">Cancelar</a>
+            <a id="add-budget" class="btn btn-primary" disabled="">Agregar</a>
+            <a id="cancel" class="btn btn-primary" onclick="showHoldn();" disabled="">Cancelar</a>
         </div>
     </div>
 
-</div>
+    <div class="row" style="margin-top: 24px;">
+        <div class="col-md-12 col-sm-12 subtitle-content">
+            <p>PEPs Seleccionados
+                <span id="hours-section">
+                Acumulado: <span id="acum-hours"></span>
+                <span class="sep">|</span>
+                Total a incurrir: <span id="inc-hours"></span>
+            </span></p>
+
+
+        </div>
+    </div>
+    <div class="row">
+        <table id="selected-budgets" class="col-md-12 col-sm-12 table table-hover table-condensed">
+            <thead>
+            <th></th> <!-- RADIO -->
+            <th>PEP</th>
+            <th>Nombre del PEP</th>
+            <th>Subdirección</th>
+            <th>Incurrido MXN</th>
+            <th>Incurrido horas</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row buttons" id="row-buttons-actions">
+        <div class="col-xs-12 text-center">
+            <a id="save" class="btn btn-primary" onclick="showHoldn();" disabled="">Guardar</a>
+            <a id="cancel-save" class="btn btn-primary" onclick="showHoldn();" disabled="">Cancelar</a>
+        </div>
+    </div>
+
+    </div>
 
 
 <footer th:replace="~{layout/footer2 :: footer }"></footer>
+
+<table style="display: none;">
+    <tr>
+        <td id="botecito"><img th:src="@{/img/trash_icon.png}" height="12"></td>
+        <td id="incurrido"></td>
+        <td id="incurrido-hrs">
+            <input class="form-control" type="number" style="width: 80px;">
+        </td>
+    </tr>
+</table>
 
 </body>
 

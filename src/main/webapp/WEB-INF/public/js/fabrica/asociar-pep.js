@@ -1,3 +1,4 @@
+let dataId;
 $(function () {
     const areas = new mdc.select.MDCSelect(document.querySelector('#areas'));
     let index = parseInt("0");
@@ -37,6 +38,46 @@ $(function () {
         //SET HIDDEN FIELD VALUE
         console.log("NATUREID " +id);
         $("#natureId").val(id);
+    });
+
+    let addBudget = $("#add-budget");
+    let cancelBudget = $("#cancel");
+
+    $('tr.clickable').click(function() {
+        var radioButton = $(this).find('input[type=radio]');
+        console.log("hola"+ radioButton.length);
+        radioButton.prop('checked', 'checked');
+        dataId = $(this).closest('tr').data("id");
+
+        addBudget.removeAttr("disabled");
+        cancelBudget.removeAttr("disabled");
+
+        //addComp.attr("href","/components/add?requirementId="+radioButton.val());
+        //addComp.removeAttr("disabled");
+    });
+
+    $('input[name=budgets]').change(function () {
+    });
+
+    /*SELECCIONAR PEPE*/
+    addBudget.click(function (e) {
+        //e.stopPropagation();
+
+        var row = $("tr[data-id="+dataId+"]");
+
+        row.hide('slow', function () {
+            row.find("td").not("td[data-select='']").css("display","none");
+
+            row.prepend($("#botecito").clone());
+            row.append($("#incurrido").clone());
+            row.append($("#incurrido-hrs").clone());
+            row.css("display","table-row");
+
+            console.log("");
+            $("#selected-budgets tbody").prepend(row[0].outerHTML);
+
+            row.remove();
+        });
     });
 
 });
