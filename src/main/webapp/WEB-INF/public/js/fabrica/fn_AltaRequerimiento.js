@@ -202,6 +202,12 @@ function habilitaFechas(){
 
 }
 
+function asignHours(){
+
+    $("#hoursRequerimentFinal").val($("#hoursRequirement").val());
+
+}
+
 function holder(msg){
     HoldOn.open({
         theme: "sk-cube",
