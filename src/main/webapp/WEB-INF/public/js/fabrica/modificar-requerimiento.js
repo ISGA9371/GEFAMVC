@@ -301,6 +301,9 @@ $(function () {
         var endD = new Date(compD2[2],compD2[1]-1,compD2[0]);
         picker2.val(endD.getDate()+"/"+(endD.getMonth()+1)+"/"+endD.getFullYear())
     }
+    $("#form").submit(function () {
+        showHoldOn();
+    });
 });
 
 function showHoldOn() {
