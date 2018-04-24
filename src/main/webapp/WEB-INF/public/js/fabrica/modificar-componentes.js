@@ -256,7 +256,7 @@ function addButtonEvents() {
         }).done(function(json){
             customHolder("info","Componente Eliminado.", "document.getElementById('cancelar-btn').click()");
         }).fail(function(xhr, status, error) {
-            customHolder("info","Ocurrio un Error al Eliminar el Componente.")
+            customHolder("error","Ocurrio un Error al Eliminar el Componente.")
         });
     });
     var btnCancel = document.getElementById('cancelar-btn');
