@@ -1,5 +1,6 @@
 package com.mx.bbva.business.service.impl;
 
+import com.mx.bbva.business.dto.ComponentUpdateDatesDTO;
 import com.mx.bbva.business.entity.Component;
 import com.mx.bbva.business.repository.ComponentRepository;
 import com.mx.bbva.business.service.ComponentService;
@@ -38,8 +39,8 @@ public class ComponentServiceImpl implements ComponentService {
     }
 
     @Override
-    public void updateDates(List<Component> components) {
-        for (Component component : components) {
+    public void updateDates(List<ComponentUpdateDatesDTO> components) {
+        for (ComponentUpdateDatesDTO component : components) {
             componentRepository.updateDatesById(component);
         }
     }
