@@ -46,7 +46,12 @@ public class ComponentServiceImpl implements ComponentService {
     @Override
     public void updateDates(List<ComponentUpdateDatesDTO> components) {
         for (ComponentUpdateDatesDTO component : components) {
-            componentRepository.updateDatesById(component);
+            if (component.getComponentIds() != null) {
+                componentRepository.updateAllDates(component);
+                break;
+            } else {
+                componentRepository.updateDatesById(component);
+            }
         }
     }
 

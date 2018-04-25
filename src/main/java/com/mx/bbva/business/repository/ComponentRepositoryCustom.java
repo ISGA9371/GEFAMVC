@@ -9,4 +9,6 @@ public interface ComponentRepositoryCustom {
     List<Component> findByCustomQuery(String query);
 
     void updateDatesById(ComponentUpdateDatesDTO component);
+
+    void updateAllDates(ComponentUpdateDatesDTO component);
 }

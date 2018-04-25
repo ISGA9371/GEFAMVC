@@ -91,6 +91,7 @@ public class ExceptionController {
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     Map<String, String> dataAccessException(Exception e) {
         Map<String, String> exception = new HashMap<>();
+        LOG.warning("Exception occurred: " + e.getMessage());
         exception.put("code", "500");
         exception.put("message", "Error en base de datos, revisar log.");
 

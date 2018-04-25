@@ -5,8 +5,11 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.util.List;
+
 public class ComponentUpdateDatesDTO {
     private Integer componentId;
+    private List<Integer> componentIds;
     private String componentDesignRealDeliverDate;
     private String componentPossibleDeliverDate;
     private String componentPreviewDeliverDate;
@@ -21,6 +24,14 @@ public class ComponentUpdateDatesDTO {
 
     public void setComponentId(Integer componentId) {
         this.componentId = componentId;
+    }
+
+    public List<Integer> getComponentIds() {
+        return componentIds;
+    }
+
+    public void setComponentIds(List<Integer> componentIds) {
+        this.componentIds = componentIds;
     }
 
     public String getComponentDesignRealDeliverDate() {

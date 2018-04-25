@@ -5,11 +5,13 @@ import com.mx.bbva.business.entity.Component;
 import com.mx.bbva.business.repository.ComponentRepositoryCustom;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -46,6 +48,33 @@ public class ComponentRepositoryCustomImpl implements ComponentRepositoryCustom 
                 entityManager.close();
             }
         }
+    }
+
+    @Override
+    @Transactional
+    public void updateAllDates(ComponentUpdateDatesDTO component) {
+        try {
+            Query query = entityManager.createQuery("UPDATE Component c " +
+                    "SET c.componentPossibleDeliverDate = '" + component.getComponentPossibleDeliverDate() + "', " +
+                    "c.componentPreviewDeliverDate = '" + component.getComponentPreviewDeliverDate() + "', " +
+                    "c.componentDesignRealDeliverDate = '" + component.getComponentDesignRealDeliverDate() + "', " +
+                    "c.componentRealDeliverDate = '" + component.getComponentRealDeliverDate() + "' " +
+                    "WHERE c.componentId IN (" + getComponentIds(component.getComponentIds()) + ")");
+            query.executeUpdate();
+            entityManager.flush();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+    }
+
+    private String getComponentIds(List<Integer> componentIds) {
+        List<String> finalIds = new ArrayList<>();
+        for (Integer componentId : componentIds) {
+            finalIds.add("'" + componentId + "'");
+        }
+        return StringUtils.arrayToCommaDelimitedString(finalIds.toArray());
     }
 
     public void setEntityManager(EntityManager entityManager) {
