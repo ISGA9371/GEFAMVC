@@ -7,19 +7,19 @@ $(function () {
    * dateFormat: "dd-mm-yy"
   */
   $('#componentDesignRealDeliverDate').datepicker({
-    dateFormat: "dd-mm-yy"
+    dateFormat: "dd/mm/yy"
   });
 
   $('#componentPreviewDeliverDate').datepicker({
-    dateFormat: "dd-mm-yy"
+    dateFormat: "dd/mm/yy"
   });
 
   $('#componentPossibleDeliverDate').datepicker({
-    dateFormat: "dd-mm-yy"
+    dateFormat: "dd/mm/yy"
   });
 
   $('#componentRealDeliverDate').datepicker({
-    dateFormat: "dd-mm-yy"
+    dateFormat: "dd/mm/yy"
   });
 
   var numberMonths = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
@@ -346,25 +346,25 @@ $(function () {
           designRealDeliverDate = new Date(value.componentDesignRealDeliverDate);
           if ( parseInt(designRealDeliverDate.getDate()) < 10 ) { date1 += "0" + designRealDeliverDate.getDate(); } 
           else { date1 += designRealDeliverDate.getDate(); }
-          date1 += "-" + numberMonths[designRealDeliverDate.getMonth()] + "-" + designRealDeliverDate.getFullYear();
+          date1 += "/" + numberMonths[designRealDeliverDate.getMonth()] + "/" + designRealDeliverDate.getFullYear();
           
           date2 = "";
           possibleDeliverDate = new Date(value.componentPossibleDeliverDate);
           if ( parseInt(possibleDeliverDate.getDate()) < 10 ) { date2 += "0" + possibleDeliverDate.getDate(); } 
           else { date2 += possibleDeliverDate.getDate(); }
-          date2 += "-" + numberMonths[possibleDeliverDate.getMonth()] + "-" + possibleDeliverDate.getFullYear();
+          date2 += "/" + numberMonths[possibleDeliverDate.getMonth()] + "/" + possibleDeliverDate.getFullYear();
           
           date3 = "";
           previewDeliverDate = new Date(value.componentPreviewDeliverDate);
           if ( parseInt(previewDeliverDate.getDate()) < 10 ) { date3 += "0" + previewDeliverDate.getDate(); } 
           else { date3 += previewDeliverDate.getDate(); }
-          date3 += "-" + numberMonths[previewDeliverDate.getMonth()] + "-" + previewDeliverDate.getFullYear();
+          date3 += "/" + numberMonths[previewDeliverDate.getMonth()] + "/" + previewDeliverDate.getFullYear();
           
           date4 = "";
           realDeliverDate = new Date(value.componentRealDeliverDate);
           if ( parseInt(realDeliverDate.getDate()) < 10 ) { date4 += "0" + realDeliverDate.getDate(); } 
           else { date4 += realDeliverDate.getDate(); }
-          date4 += "-" + numberMonths[realDeliverDate.getMonth()] + "-" + realDeliverDate.getFullYear();
+          date4 += "/" + numberMonths[realDeliverDate.getMonth()] + "/" + realDeliverDate.getFullYear();
 
 
           $("#tab-fecha > table > tbody").append(
@@ -376,10 +376,10 @@ $(function () {
             "<td><input type='text' id='date4-" + value.componentId + "' value='" + date4 + "' class='form-control date4Text'></td>" +
             "<td>"+ value.status.statusName +"</td></tr>"
           );
-          $("#date1-" + value.componentId).datepicker({ dateFormat: "dd-mm-yy" });
-          $("#date2-" + value.componentId).datepicker({ dateFormat: "dd-mm-yy" });
-          $("#date3-" + value.componentId).datepicker({ dateFormat: "dd-mm-yy" });
-          $("#date4-" + value.componentId).datepicker({ dateFormat: "dd-mm-yy" });
+          $("#date1-" + value.componentId).datepicker({ dateFormat: "dd/mm/yy" });
+          $("#date2-" + value.componentId).datepicker({ dateFormat: "dd/mm/yy" });
+          $("#date3-" + value.componentId).datepicker({ dateFormat: "dd/mm/yy" });
+          $("#date4-" + value.componentId).datepicker({ dateFormat: "dd/mm/yy" });
 
           $("#tab-cierre > table > tbody").append(
             "<tr><td>" + value.componentName + "</td>" +
@@ -400,7 +400,7 @@ $(function () {
           $("#horFin-" + value.componentId).val(value.finalTypology.typologySeverityHours);
           $("#estatusTip-" + value.componentId).val(value.statusTypology.statusId);
 
-          idsSearch.push(value.componentId);
+          idsSearch.push(parseInt(value.componentId));
         });
 
         $("#tab-fecha > table > tbody").append(
@@ -413,10 +413,10 @@ $(function () {
           "<td></td></tr>"
         );
 
-        $('#date1').datepicker({dateFormat: "dd-mm-yy"});
-        $('#date2').datepicker({dateFormat: "dd-mm-yy"});
-        $('#date3').datepicker({dateFormat: "dd-mm-yy"});
-        $('#date4').datepicker({dateFormat: "dd-mm-yy"});
+        $('#date1').datepicker({dateFormat: "dd/mm/yy"});
+        $('#date2').datepicker({dateFormat: "dd/mm/yy"});
+        $('#date3').datepicker({dateFormat: "dd/mm/yy"});
+        $('#date4').datepicker({dateFormat: "dd/mm/yy"});
       } else {
         new jBox('Notice', {
           content: 'Tu búsqueda no devolvió resultados',
@@ -584,7 +584,7 @@ $(function () {
     $.each(date1, function(index, value){
       var id = value.id.substring(6, value.id.length);
       data.push({
-        'componentId': id,
+        'componentId': parseInt(id),
         'componentDesignRealDeliverDate': value.value,
         'componentPossibleDeliverDate': date2[index].value,
         'componentPreviewDeliverDate': date3[index].value,
