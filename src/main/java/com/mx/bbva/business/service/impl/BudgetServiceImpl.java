@@ -43,11 +43,7 @@ public class BudgetServiceImpl implements BudgetService {
 
     @Override
     public void assignBudget(List<BudgetRequirement> budgetRequirements) {
-        for (BudgetRequirement budgetRequirement : budgetRequirements) {
-            // TODO
-            budgetRequirement.getBudget();
-            budgetRequirement.getRequirement();
-        }
+        budgetRequirementRepository.saveAll(budgetRequirements);
     }
 
     @Autowired
