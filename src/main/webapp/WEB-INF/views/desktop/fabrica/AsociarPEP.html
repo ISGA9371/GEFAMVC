@@ -7,6 +7,12 @@
     <script type="text/javascript" th:src="@{/js/fabrica/asociar-pep.js}" defer></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/fabrica/asociar-pep.css}">
 
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var requirementId = /*[[${requirementData.requirementId}]]*/  'dynamic';
+        /*]]>*/
+    </script>
+
 </head>
 
 <body>
@@ -26,43 +32,42 @@
             <tr>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" th:value="${requirementData.level.levelSuperior.levelName}"
+                        <input th:value="${requirementData.level.levelSuperior.levelName}"
                                class="mdc-text-field__input mdc-text-field--disabled">
                         <label class="mdc-text-field__label">Dirección</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" th:value="${requirementData.level.levelName}"
+                        <input th:value="${requirementData.level.levelName}"
                                class="mdc-text-field__input mdc-text-field--disabled">
                         <label class="mdc-text-field__label">Subdirección</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text"
-                               class="mdc-text-field__input mdc-text-field--disabled">
+                        <input class="mdc-text-field__input mdc-text-field--disabled">
                         <label class="mdc-text-field__label">Subdirector</label>
                     </div>
                 </td>
             <tr style="height:72px">
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" th:value="${requirementData.user.userInternalId}"
+                        <input th:value="${requirementData.user.userInternalId}"
                                class="mdc-text-field__input mdc-text-field--disabled">
                         <label class="mdc-text-field__label">Responsable</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" th:value="${requirementData.area.areaName}"
+                        <input th:value="${requirementData.area.areaName}"
                                class="mdc-text-field__input mdc-text-field--disabled">
                         <label class="mdc-text-field__label">Area</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" th:value="${requirementData.requirementTotalHours}"
+                        <input th:value="${requirementData.requirementTotalHours}"
                                class="mdc-text-field__input mdc-text-field--disabled">
                         <label class="mdc-text-field__label">Horas a Incurrir</label>
                     </div>
@@ -72,133 +77,133 @@
     </div>
     <br>
     <br>
-    <form th:action="@{/budgets/assign/search}" th:object="${budgetSearchDTO}" method="get" id="find">
+    <form th:action="@{/budgets/assign/search}" th:object="${budgetSearchDTO}" method="get">
         <input th:field="*{areaId}" type="hidden" />
         <input th:field="*{bankingId}" type="hidden" />
         <input th:field="*{corporationId}" type="hidden" />
         <input th:field="*{natureId}" type="hidden" />
         <input th:field="${requirementData.requirementId}" type="hidden" />
 
-    <table class="col-md-12" >
         <div class="row">
-            <div class="col-md-12 subtitle-content">Criterios de Búsqueda</div>
-            <tr>
-                <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" class="mdc-text-field__input" th:field="*{budgetId}">
-                        <label  class="mdc-text-field__label">PEP</label>
-                    </div>
-                </td>
-                <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" class="mdc-text-field__input" th:field="*{budgetYear}">
-                        <label class="mdc-text-field__label">Año</label>
-                    </div>
-                </td>
-                <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" class="mdc-text-field__input" th:field="*{budgetName}">
-                        <label class="mdc-text-field__label">Nombre PEP</label>
-                    </div>
-                </td>
-            <tr style="height:72px">
-                <td class="col-md-4" align="center">
-                    <div id="areas" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
-                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                            <div class="mdc-select__label">Area</div>
-                            <div class="mdc-select__selected-text"></div>
-                            <div class="mdc-select__bottom-line"></div>
-                        </div>
-                        <div class="mdc-menu mdc-select__menu col-md-3">
-                            <ul class="mdc-list mdc-menu__items">
-                                <li class="mdc-list-item" role="option" tabindex="0" th:each="area : ${areas}"
-                                    th:value="${area.areaId}" th:text="${area.areaName}">
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </td>
-                <td class="col-md-4" align="center">
-                    <div id="bankings" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
-                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                            <div class="mdc-select__label">Banca</div>
-                            <div class="mdc-select__selected-text"></div>
-                            <div class="mdc-select__bottom-line"></div>
-                        </div>
-                        <div class="mdc-menu mdc-select__menu col-md-3">
-                            <ul class="mdc-list mdc-menu__items">
-                                <li class="mdc-list-item" role="option" tabindex="0" th:each="banking : ${bankingList}"
-                                    th:value="${banking.bankingId}" th:text="${banking.bankingName}">
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </td>
-                <td class="col-md-4" align="center">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" >
-                        <input type="text" class="mdc-text-field__input" th:field="*{userReceiverId}">
-                        <label class="mdc-text-field__label">Responsable</label>
-                    </div>
-                </td>
-            </tr>
-            <tr style="height:72px">
-                <td class="col-md-4" align="center">
-                    <div id="corporations" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
-                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                            <div class="mdc-select__label">Entidad</div>
-                            <div class="mdc-select__selected-text"></div>
-                            <div class="mdc-select__bottom-line"></div>
-                        </div>
-                        <div class="mdc-menu mdc-select__menu col-md-3">
-                            <ul class="mdc-list mdc-menu__items">
-                                <li class="mdc-list-item" role="option" tabindex="0" th:each="corporation : ${corporations}"
-                                    th:value="${corporation.corporationId}" th:text="${corporation.corporationName}">
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </td>
-                <td class="col-md-4" align="center">
-                    <div id="natures" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
-                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                            <div class="mdc-select__label">I/G</div>
-                            <div class="mdc-select__selected-text"></div>
-                            <div class="mdc-select__bottom-line"></div>
-                        </div>
-                        <div class="mdc-menu mdc-select__menu col-md-3">
-                            <ul class="mdc-list mdc-menu__items">
-                                <li class="mdc-list-item" role="option" tabindex="0" th:each="nature : ${natures}"
-                                    th:value="${nature.natureId}" th:text="${nature.natureName}">
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </td>
+            <table class="col-md-12" >
+                <div class="row">
+                    <div class="col-md-12 subtitle-content">Criterios de Búsqueda</div>
+                    <tr>
+                        <td class="col-md-4" align="center">
+                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                                <input class="mdc-text-field__input" maxlength="40" th:field="*{budgetId}">
+                                <label  class="mdc-text-field__label">PEP</label>
+                            </div>
+                        </td>
+                        <td class="col-md-4" align="center">
+                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                                <input type="number" max="2099" min="1990" maxlength="4"
+                                       class="mdc-text-field__input" th:field="*{budgetYear}">
+                                <label class="mdc-text-field__label">Año</label>
+                            </div>
+                        </td>
+                        <td class="col-md-4" align="center">
+                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                                <input maxlength="40" class="mdc-text-field__input" th:field="*{budgetName}">
+                                <label class="mdc-text-field__label">Nombre PEP</label>
+                            </div>
+                        </td>
+                    <tr style="height:72px">
+                        <td class="col-md-4" align="center">
+                            <div id="areas" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                    <div class="mdc-select__label">Área</div>
+                                    <div class="mdc-select__selected-text"></div>
+                                    <div class="mdc-select__bottom-line"></div>
+                                </div>
+                                <div class="mdc-menu mdc-select__menu col-md-3">
+                                    <ul class="mdc-list mdc-menu__items">
+                                        <li class="mdc-list-item" role="option" tabindex="0" th:each="area : ${areas}"
+                                            th:value="${area.areaId}" th:text="${area.areaName}">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-md-4" align="center">
+                            <div id="bankings" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                    <div class="mdc-select__label">Banca</div>
+                                    <div class="mdc-select__selected-text"></div>
+                                    <div class="mdc-select__bottom-line"></div>
+                                </div>
+                                <div class="mdc-menu mdc-select__menu col-md-3">
+                                    <ul class="mdc-list mdc-menu__items">
+                                        <li class="mdc-list-item" role="option" tabindex="0" th:each="banking : ${bankingList}"
+                                            th:value="${banking.bankingId}" th:text="${banking.bankingName}">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-md-4" align="center">
+                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" >
+                                <input maxlength="40" class="mdc-text-field__input" th:field="*{userReceiverId}">
+                                <label class="mdc-text-field__label">Responsable</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="height:72px">
+                        <td class="col-md-4" align="center">
+                            <div id="corporations" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                    <div class="mdc-select__label">Entidad</div>
+                                    <div class="mdc-select__selected-text"></div>
+                                    <div class="mdc-select__bottom-line"></div>
+                                </div>
+                                <div class="mdc-menu mdc-select__menu col-md-3">
+                                    <ul class="mdc-list mdc-menu__items">
+                                        <li class="mdc-list-item" role="option" tabindex="0" th:each="corporation : ${corporations}"
+                                            th:value="${corporation.corporationId}" th:text="${corporation.corporationName}">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-md-4" align="center">
+                            <div id="natures" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                    <div class="mdc-select__label">I/G</div>
+                                    <div class="mdc-select__selected-text"></div>
+                                    <div class="mdc-select__bottom-line"></div>
+                                </div>
+                                <div class="mdc-menu mdc-select__menu col-md-3">
+                                    <ul class="mdc-list mdc-menu__items">
+                                        <li class="mdc-list-item" role="option" tabindex="0" th:each="nature : ${natures}"
+                                            th:value="${nature.natureId}" th:text="${nature.natureName}">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
 
-                <td class="col-md-4" align="center">
-                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                    <input type="text" class="mdc-text-field__input" th:field="*{budgetCostCenter}">
-                    <label class="mdc-text-field__label">CR</label>
+                        <td class="col-md-4" align="center">
+                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                                <input maxlength="40" class="mdc-text-field__input" th:field="*{budgetCostCenter}">
+                                <label class="mdc-text-field__label">CR</label>
+                            </div>
+                        </td>
+                    </tr>
                 </div>
-                </td>
-            </tr>
+            </table>
         </div>
-    </table>
 
     <div class="row" style="margin-top: 48px; margin-bottom: 60px;">
-        <table class="col-md-12" >
-            <tr>
-                <td class="col-md-6" align="Center">
-                    <button type="submit" class="btn btn-primary">Buscar</button>
-                    <button type="button" class="btn btn-primary">Cancelar</button>
-                </td>
-        </table>
-
+        <div class="col-xs-12 text-center">
+            <button type="submit" class="btn btn-primary" onclick="showHoldOn();">Buscar</button>
+            <a class="btn btn-primary" id="cancel-search" onclick="showHoldOn();">Cancelar</a>
+        </div>
     </div>
+
     </form>
 
     <div class="row" style="margin-top: 24px;">
-        <div class="col-md-12 col-sm-12 subtitle-content">Resultado de la búsqueda</div>
+        <div class="col-md-12 col-sm-12 subtitle-content">Resultado de la Búsqueda</div>
     </div>
 
     <div class="row">
@@ -229,14 +234,12 @@
                 </td>
             </tr>
             <th:block th:each="budget, stat : ${budgets}">
-                <tr th:href="${'#row-detail-wrapper-' + stat.count}"
-                    th:data-id="${budget.budgetId}"
-                    data-toggle="colapse" class="clickable"
+                <tr th:href="${'#row-detail-wrapper-' + stat.count}" th:data-id="${budget.budgetId}" class="clickable"
                     th:aria-controls="${'row-detail-wrapper-' + stat.count}">
                     <td>
                         <input type="radio" name="budgets" th:id="${budget.budgetId}" th:value="${budget.budgetId}">
                     </td>
-                    <td data-select th:text="${budget.budgetId}"></td>
+                    <td data-budget-id data-select th:text="${budget.budgetId}"></td>
                     <td data-select th:text="${budget.budgetName}"></td>
                     <td th:text="${budget.transfers[0].level.levelSuperior.levelName}"></td>
                     <td data-select th:text="${budget.transfers[0].level.levelName}"></td>
@@ -272,22 +275,24 @@
     <div class="row buttons" id="row-buttons-results">
         <div class="col-xs-12 text-center">
             <a id="add-budget" class="btn btn-primary" disabled="">Agregar</a>
-            <a id="cancel" class="btn btn-primary" onclick="showHoldn();" disabled="">Cancelar</a>
+            <a id="cancel-results" class="btn btn-primary" disabled="">Cancelar</a>
         </div>
     </div>
 
     <div class="row" style="margin-top: 24px;">
         <div class="col-md-12 col-sm-12 subtitle-content">
-            <p>PEPs Seleccionados
+            <p style="margin-bottom: 0">PEPs Seleccionados
                 <span id="hours-section">
-                Acumulado: <span id="acum-hours"></span>
-                <span class="sep">|</span>
-                Total a incurrir: <span id="inc-hours"></span>
-            </span></p>
-
-
+                    Acumulado: <span id="acum-hours"></span>
+                    <span class="sep">|</span>
+                    Total a incurrir: <span id="inc-hours"></span>
+                </span>
+            </p>
         </div>
     </div>
+
+
+    <form id="form">
     <div class="row">
         <table id="selected-budgets" class="col-md-12 col-sm-12 table table-hover table-condensed">
             <thead>
@@ -305,22 +310,23 @@
 
     <div class="row buttons" id="row-buttons-actions">
         <div class="col-xs-12 text-center">
-            <a id="save" class="btn btn-primary" onclick="showHoldn();" disabled="">Guardar</a>
-            <a id="cancel-save" class="btn btn-primary" onclick="showHoldn();" disabled="">Cancelar</a>
+            <button id="save" type="submit" class="btn btn-primary" disabled="">Guardar</button>
+            <a id="cancel-save" class="btn btn-primary" disabled="">Cancelar</a>
         </div>
     </div>
+    </form>
 
-    </div>
+</div>
 
 
 <footer th:replace="~{layout/footer2 :: footer }"></footer>
 
 <table style="display: none;">
     <tr>
-        <td id="botecito"><img th:src="@{/img/trash_icon.png}" height="12"></td>
-        <td id="incurrido"></td>
+        <td id="botecito" class="clickable" data-budget-id=""><img th:src="@{/img/trash_icon.png}" height="16"></td>
+        <td id="incurrido"><span></span> MXN</td>
         <td id="incurrido-hrs">
-            <input class="form-control" type="number" style="width: 80px;">
+            <input class="incurrido-horas form-control" type="number" min="0" max="999999" maxlength="6" required>
         </td>
     </tr>
 </table>

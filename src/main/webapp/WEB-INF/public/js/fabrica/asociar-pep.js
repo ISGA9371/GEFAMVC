@@ -1,5 +1,17 @@
 let dataId;
+var selectedBudgetsIds = [];
+let companyFare;
 $(function () {
+
+    $.ajax({
+        url: "/requirements/"+requirementId+"/fare"
+    }).done(function(data) {
+        companyFare = data.data;
+        console.log("REQUREMENTFARE "+data.data);
+    });
+
+    $("#cancel-search").attr("href","/requirements/"+requirementId);
+
     const areas = new mdc.select.MDCSelect(document.querySelector('#areas'));
     let index = parseInt("0");
     areas.listen('MDCSelect:change', () => {
@@ -41,42 +53,153 @@ $(function () {
     });
 
     let addBudget = $("#add-budget");
-    let cancelBudget = $("#cancel");
+    let cancelBudget = $("#cancel-results");
 
-    $('tr.clickable').click(function() {
+    $(document).on("click",'#results-table tbody tr.clickable', function () {
         var radioButton = $(this).find('input[type=radio]');
-        console.log("hola"+ radioButton.length);
         radioButton.prop('checked', 'checked');
         dataId = $(this).closest('tr').data("id");
 
         addBudget.removeAttr("disabled");
-        cancelBudget.removeAttr("disabled");
-
-        //addComp.attr("href","/components/add?requirementId="+radioButton.val());
-        //addComp.removeAttr("disabled");
+        //cancelBudget.removeAttr("disabled");
     });
 
-    $('input[name=budgets]').change(function () {
+    cancelBudget.click(function() {
+        /*$("#find")[0].reset();
+        $("input[type=text]").val("");
+
+        areas.selectedIndex = -1;
+        areas.value = "";
+        banking.selectedIndex = -1;
+        banking.value = "";
+        corporation.selectedIndex = -1;
+        corporation.value = "";
+        natures.selectedIndex = -1;
+        natures.value = "";
+
+        $(".mdc-select__label").removeClass("mdc-select__label--float-above");
+        $(".mdc-text-field__label").removeClass("mdc-text-field__label--float-above");
+
+        $("input[type=hidden]").val("");
+
+        $("#results-table tbody").html("");*/s
     });
 
     /*SELECCIONAR PEPE*/
+    let saveBudgets = $("#save");
+    let cancelSave = $("#cancel-save");
     addBudget.click(function (e) {
-        //e.stopPropagation();
-
         var row = $("tr[data-id="+dataId+"]");
-
+        selectedBudgetsIds.push(dataId);
         row.hide('slow', function () {
             row.find("td").not("td[data-select='']").css("display","none");
+            var botecito = $("#botecito").clone();
+            botecito.attr("data-budget-id",dataId);
 
-            row.prepend($("#botecito").clone());
+
+            row.prepend(botecito);
             row.append($("#incurrido").clone());
             row.append($("#incurrido-hrs").clone());
-            row.css("display","table-row");
+            row.removeClass("clickable");
 
-            console.log("");
+            row.css("display","table-row");
             $("#selected-budgets tbody").prepend(row[0].outerHTML);
 
             row.remove();
+
+            addBudget.attr("disabled","disabled");
+            saveBudgets.removeAttr("disabled");
+            cancelSave.removeAttr("disabled");
+        });
+    });
+
+    cancelSave.click(function () {
+        $("#selected-budgets tbody tr td#botecito").each(function (index, element) {
+            element.click();
+        });
+    });
+
+    $(document).on("click","tr td#botecito",function () {
+        console.log("BOTECITO");
+        var row = $(this).closest("tr");
+        row.hide('slow', function () {
+            row.find("td").not("td[data-select='']").css("display","table-cell");
+
+            var budgetId = row.data("budgetId");
+            console.log("BUDGETOID "+budgetId);
+            var index = selectedBudgetsIds.indexOf(budgetId);
+            if (index > -1) selectedBudgetsIds.splice(index, 1);
+
+            row.find($("#botecito")).remove();
+            row.find($("#incurrido")).remove();
+            row.find($("#incurrido-hrs")).remove();
+
+            row.css("display","table-row");
+            row.addClass("clickable");
+            $("#results-table tbody").prepend(row[0].outerHTML);
+            row.remove();
+
+            let selectedBudgetsCount = $("#selected-budgets tbody tr").length;
+            console.log("BOTECITOCUANTOS "+selectedBudgetsCount);
+            if(selectedBudgetsCount === 0){
+                saveBudgets.attr("disabled","disabled");
+                cancelSave.attr("disabled","disabled");
+            }
+        });
+    });
+
+    $(document).on("input","input.incurrido-horas",function () {
+        let amountSpan = $(this).closest("tr").find("td#incurrido span");
+        let mult = parseFloat($(this).val()) * parseFloat(companyFare);
+        let multStr = parseFloat(mult, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString();
+        amountSpan.attr("data-raw",mult);
+        amountSpan.html(multStr);
+    });
+
+
+    $(document).on('submit','#form',function(e) {
+        e.preventDefault();
+
+        let budgetRequirementsList = [];
+        $("#selected-budgets tbody tr").each(function (index, value) {
+            let row = value;
+            let budgetId = $(row).find("td#botecito").attr("data-budget-id");
+            let budget = {};
+            budget["budgetId"] = budgetId;
+
+            let requirement = {};
+            requirement["requirementId"] = requirementId;
+
+            let budgetRequirement = {};
+            let reqValue = $(row).find("td#incurrido span").attr("data-raw");
+            let reqHours= $(row).find("td#incurrido-hrs input.incurrido-horas").val();
+            budgetRequirement["budgetRequirementValue"] = reqValue; //INCURRIDO MXN
+            budgetRequirement["budgetRequirementHours"] = reqHours; //INCURRIDO HORAS
+            budgetRequirement["budgetRequirementBilled"] = "false";
+            budgetRequirement["budget"] = budget;
+            budgetRequirement["requirement"] = requirement;
+
+            budgetRequirementsList.push(budgetRequirement);
+
+        });
+
+        let budgets = {};
+        budgets["budgets"] = budgetRequirementsList;
+
+        //console.log(JSON.stringify(budgets));
+        console.log(JSON.stringify(budgetRequirementsList));
+
+
+        $.ajax({
+            type: "PUT",
+            url:   "/budgets/assign",
+            //data:  JSON.stringify(budgets),
+            data:  JSON.stringify(budgetRequirementsList),
+            contentType:'application/json'
+        }).done(function(data){
+            console.log("hola")
+        }).fail(function () {
+            console.log("fail")
         });
     });
 
