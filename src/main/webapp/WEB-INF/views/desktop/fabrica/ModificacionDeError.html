@@ -23,13 +23,13 @@
                 <tr>
                     <td class="col-md-4" align="center">
                         <div id="nombre-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input disabled="disabled" th:value="${issue.component.componentName}"  type="text"  required class="mdc-text-field__input"  id="demo-input">
+                            <input disabled="disabled" th:value="${issue.component.componentName}"  type="text" class="mdc-text-field__input mdc-text-field--disabled" id="demo-input">
                             <label for="demo-input" class="mdc-text-field__label">Nombre de Componente</label>
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
                         <div id="direccion-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input type="text" class="mdc-text-field__input"
+                            <input type="text" class="mdc-text-field__input mdc-text-field--disabled"
                                    style="border-bottom-color:rgba(28, 59, 224, 0.5)" value="" readonly="readonly"
                                    th:each="principals:${principals}"
                                    th:object="${principals}"
@@ -42,7 +42,7 @@
                     </td>
                     <td class="col-md-4" align="center">
                         <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input disabled="disabled" th:value="${issue.component.requirement.level.levelName}" type="text"  required class="mdc-text-field__input" id="demo-input">
+                            <input disabled="disabled" th:value="${issue.component.requirement.level.levelName}" type="text" class="mdc-text-field__input mdc-text-field--disabled" id="demo-input">
                             <label for="demo-input" class="mdc-text-field__label">Subdirección</label>
                         </div>
                     </td>
@@ -50,19 +50,19 @@
                 <tr>
                     <td class="col-md-4" align="center">
                         <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input disabled="disabled" th:value="${issue.component.componentVersion}" type="text"  class="mdc-text-field__input" id="version">
+                            <input disabled="disabled" th:value="${issue.component.componentVersion}" type="text" class="mdc-text-field__input mdc-text-field--disabled" id="version">
                             <label for="demo-input" class="mdc-text-field__label">Versión</label>
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
                         <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input disabled="disabled" th:value="${issue.component.requirement.requirementName}" type="text"  class="mdc-text-field__input" id="requerimiento">
+                            <input disabled="disabled" th:value="${issue.component.requirement.requirementName}" type="text" class="mdc-text-field__input mdc-text-field--disabled" id="requerimiento">
                             <label for="demo-input" class="mdc-text-field__label">Requerimiento</label>
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
                         <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input disabled="disabled" th:value="${issue.component.requirement.technology.technologyName}" type="text"  class="mdc-text-field__input" id="tecnologia">
+                            <input disabled="disabled" th:value="${issue.component.requirement.technology.technologyName}" type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tecnologia">
                             <label for="demo-input" class="mdc-text-field__label">Tecnología</label>
                         </div>
                     </td>
@@ -72,7 +72,7 @@
                         <div class="dog1">
                             <input disabled="disabled" th:value="${issue.component.componentUploadDate}" type='hidden' class="mdc-text-field__input"  row="2" id='datetimepicker' />
                             <div id="fechaAlta-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input disabled="disabled" th:value="${issue.component.componentUploadDate}" type='text' class="mdc-text-field__input"  row="2" id='datetimepickerformat' />
+                                <input disabled="disabled" th:value="${issue.component.componentUploadDate}" type='text' class="mdc-text-field__input mdc-text-field--disabled"  row="2" id='datetimepickerformat' />
                                 <label for="demo-input" class="mdc-text-field__label">Fecha de Alta</label>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
     <div class="row">
         <div class="col-md-12 subtitle-content">Datos de Incidencia</div>
     </div>
-                <form style="display:block" action="#" th:action="@{/issues}" onsubmit="holder('Registrando Incidencia')" th:object="${issue}" method="post">
+                <form style="display:block" action="#" th:action="@{/issues/}" onsubmit="holder('Registrando Incidecia')" th:object="${issue}" method="post">
 
                     <input id="hidden-componente" type="hidden"  th:value="${issue.component.componentId}">
                     <input id="hidden-envcomponente" type="hidden" required th:field="*{component.componentId}" >
@@ -91,67 +91,20 @@
                     <tr style="height:72px">
                         <td class="col-md-4" align="center" style="height:72px">
                             <input id="hidden-prioridad" type="text" value="" required th:field="*{priority.priorityId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                            <!--<div id="Prioridad-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                                    <div class="mdc-select__label">Prioridad*</div>
-                                    <div class="mdc-select__selected-text"></div>
-                                    <div class="mdc-select__bottom-line"></div>
-                                </div>
-                                <div class="mdc-menu mdc-select__menu col-md-3" >
-                                    <ul class="mdc-list mdc-menu__items">
-                                        <li th:each="priorities:${priorities}" class="mdc-list-item" th:id="${priorities.priorityId}" role="option" th:text="${priorities.priorityName}"></li>
-                                    </ul>
-                                </div>
-                            </div>-->
-
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input disabled="disabled" th:field="*{priority.priorityName}" type="text"  class="mdc-text-field__input" id="tecnologia">
+                                <input disabled="disabled" th:field="*{priority.priorityName}" type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tecnologia">
                                 <label for="demo-input" class="mdc-text-field__label">Prioridad</label>
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
-                            <!--<div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input type="text" maxlength="120" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{userSender.userInternalId}"  class="mdc-text-field__input" id="usuario-peticionario">
-                                <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
-                            </div>-->
-
-                            <!--<input id="hidden-responsable" type="text"   value="" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{userSender.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                            <div id="responsable-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                                    <div class="mdc-select__label">Usuario Peticionario*</div>
-                                    <div class="mdc-select__selected-text"></div>
-                                    <div class="mdc-select__bottom-line"></div>
-                                </div>
-                                <div class="mdc-menu mdc-select__menu col-md-3" >
-                                    <ul class="mdc-list mdc-menu__items">
-                                        <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
-                                    </ul>
-                                </div>
-                            </div>-->
-
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input disabled="disabled" th:field="*{userSender.userInternalId}" type="text"  class="mdc-text-field__input" id="tecnologia">
+                                <input disabled="disabled" th:field="*{userSender.userInternalId}" type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tecnologia">
                                 <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
-
-                            <!--<input id="Origen-js-select2" type="text"  required value="" th:field="*{origin.originId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;" />
-                            <div id="Origen-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                                    <div class="mdc-select__label">Origen*</div>
-                                    <div class="mdc-select__selected-text"></div>
-                                    <div class="mdc-select__bottom-line"></div>
-                                </div>
-                                <div class="mdc-menu mdc-select__menu col-md-3" >
-                                    <ul class="mdc-list mdc-menu__items">
-                                        <li th:each="origins:${origins}" class="mdc-list-item" th:id="${origins.originId}"  role="option" th:text="${origins.originName}"></li>
-                                    </ul>
-                                </div>
-                            </div>-->
-
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input disabled="disabled" th:field="*{origin.originName}" type="text"  class="mdc-text-field__input" id="tecnologia">
+                                <input disabled="disabled" th:field="*{origin.originName}" type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tecnologia">
                                 <label for="demo-input" class="mdc-text-field__label">Origen</label>
                             </div>
 
@@ -159,24 +112,8 @@
                     </tr>
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
-
-                            <!--<input id="hidden-estado" type="text" value="" required th:fiel="*{issueFixByDyD}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                            <div id="Estado-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                                    <div class="mdc-select__label">Incidencia ya resuelto por DyD:</div>
-                                    <div class="mdc-select__selected-text"></div>
-                                    <div class="mdc-select__bottom-line"></div>
-                                </div>
-                                <div class="mdc-menu mdc-select__menu col-md-3" >
-                                    <ul class="mdc-list mdc-menu__items">
-                                        <li class="mdc-list-item" th:id="SI"  role="option" th:text="SI"></li>
-                                        <li class="mdc-list-item" th:id="NO"  role="option" th:text="NO"></li>
-                                    </ul>
-                                </div>
-                            </div>-->
-
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input disabled="disabled" th:field="*{issueFixByDyD}" type="text"  class="mdc-text-field__input" id="tecnologia">
+                                <input disabled="disabled" th:field="*{issueFixByDyD}" type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tecnologia">
                                 <label for="demo-input" class="mdc-text-field__label">Incidencia ya Resuelta por DyD:</label>
                             </div>
                         </td>
@@ -194,7 +131,7 @@
                         <tr style="height:72px">
                             <td class="col-md-4" align="center">
                                 <div  id="descripcion-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
-                                    <input disabled="disabled" type="text" th:value="*{issueInitialDescription}" class="mdc-text-field__input" id="descripcion">
+                                    <input disabled="disabled" type="text" th:value="*{issueInitialDescription}" class="mdc-text-field__input mdc-text-field--disabled" id="descripcion">
                                     <label for="demo-input" class="mdc-text-field__label">Descripción</label>
                                 </div>
                             </td>
@@ -229,7 +166,7 @@
                 <table class="col-md-12" >
                     <tr>
                         <td class="col-md-6" align="center">
-                           <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
                            <button type="button" id="cancelar-btn" class="btn btn-primary">Cancelar</button>
                         </td>
                     </tr>
@@ -248,7 +185,7 @@
 </style>
 <script>
 
-    $("#hidden-envcomponente").val($("#hidden-componente").val());
+  /*  $("#hidden-envcomponente").val($("#hidden-componente").val());
 
     var fecha=$("#datetimepicker").val();
     var dia = fecha.substring(8,10);
@@ -298,7 +235,7 @@
         rootEst.addEventListener('MDCSelect:change', function() {
             hiddenEst.value = selectEst.value;
         });
-    });
+    });*/
 </script>
 <script type="text/javascript">
     $(function () {
@@ -307,7 +244,7 @@
         });
     });
 
-    function addButtonEvents() {
+    /*function addButtonEvents() {
         var btnCancel = document.getElementById('cancelar-btn');
         btnCancel.addEventListener("click", function () {
             window.history.back();
@@ -316,10 +253,20 @@
 
     function llenarHideen() {
         var descripTotal = $('hidden-descri').val() + $('descripcion-js-text2').val() + ;
-    }
+    }*/
 </script>
-
 
 <!--Footer que debe ir en todas las ventanas-->
 <div th:replace="layout/footer :: FooterPrincipal"></div>
+<script type="text/javascript" th:src="@{../js/fabrica/modifica-error.js}"></script>
+<script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
+
+<script>mdc.autoInit()</script>
+<script>
+    demoReady(function () {
+        init();
+        initGlobal();
+    });
+
+</script>
 </html>

@@ -1,11 +1,14 @@
 package com.mx.bbva.business.repository.impl;
 
+import com.mx.bbva.business.dto.ComponentUpdateDatesDTO;
 import com.mx.bbva.business.entity.Component;
 import com.mx.bbva.business.repository.ComponentRepositoryCustom;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -27,17 +30,17 @@ public class ComponentRepositoryCustomImpl implements ComponentRepositoryCustom 
     }
 
     @Override
-    public void updateDatesById(Component component) {
+    @Transactional
+    public void updateDatesById(ComponentUpdateDatesDTO component) {
         try {
-            entityManager.createQuery("UPDATE Component c SET c.componentPossibleDeliverDate = :possibleDeliverDate, " +
-                    "c.componentPreviewDeliverDate = :previewDeliverDate, c.componentDesignRealDeliverDate = :designRealDeliverDate, " +
-                    "c.componentRealDeliverDate = :realDeliverDate WHERE c.componentId = :componentId", Component.class)
-                    .setParameter("possibleDeliverDate", component.getComponentPossibleDeliverDate())
-                    .setParameter("previewDeliverDate", component.getComponentPreviewDeliverDate())
-                    .setParameter("designRealDeliverDate", component.getComponentDesignRealDeliverDate())
-                    .setParameter("realDeliverDate", component.getComponentRealDeliverDate())
-                    .setParameter("componentId", component.getComponentId())
-                    .executeUpdate();
+            Query query = entityManager.createQuery("UPDATE Component c " +
+                    "SET c.componentPossibleDeliverDate = '" + component.getComponentPossibleDeliverDate() + "', " +
+                    "c.componentPreviewDeliverDate = '" + component.getComponentPreviewDeliverDate() + "', " +
+                    "c.componentDesignRealDeliverDate = '" + component.getComponentDesignRealDeliverDate() + "', " +
+                    "c.componentRealDeliverDate = '" + component.getComponentRealDeliverDate() + "' " +
+                    "WHERE c.componentId = '" + component.getComponentId() + "'");
+            query.executeUpdate();
+            entityManager.flush();
         } finally {
             if (entityManager != null) {
                 entityManager.close();
