@@ -4,6 +4,7 @@ import com.mx.bbva.business.dto.ComponentUpdateDatesDTO;
 import com.mx.bbva.business.entity.Component;
 import com.mx.bbva.business.repository.ComponentRepository;
 import com.mx.bbva.business.service.ComponentService;
+import com.mx.bbva.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,9 @@ public class ComponentServiceImpl implements ComponentService {
 
     @Override
     public Component saveComponent(Component component) {
+        if (component.getComponentId() == null) {
+            component.setComponentUploadDate(new DateUtils().getCurrentDate());
+        }
         return componentRepository.saveAndFlush(component);
     }
 

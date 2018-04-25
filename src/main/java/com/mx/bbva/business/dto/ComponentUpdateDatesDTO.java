@@ -1,5 +1,10 @@
 package com.mx.bbva.business.dto;
 
+
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 public class ComponentUpdateDatesDTO {
     private Integer componentId;
     private String componentDesignRealDeliverDate;
@@ -19,7 +24,7 @@ public class ComponentUpdateDatesDTO {
     }
 
     public String getComponentDesignRealDeliverDate() {
-        return componentDesignRealDeliverDate;
+        return componentDesignRealDeliverDate = formatDate(this.componentDesignRealDeliverDate);
     }
 
     public void setComponentDesignRealDeliverDate(String componentDesignRealDeliverDate) {
@@ -27,7 +32,7 @@ public class ComponentUpdateDatesDTO {
     }
 
     public String getComponentPossibleDeliverDate() {
-        return componentPossibleDeliverDate;
+        return componentPossibleDeliverDate = formatDate(this.componentPossibleDeliverDate);
     }
 
     public void setComponentPossibleDeliverDate(String componentPossibleDeliverDate) {
@@ -35,7 +40,7 @@ public class ComponentUpdateDatesDTO {
     }
 
     public String getComponentPreviewDeliverDate() {
-        return componentPreviewDeliverDate;
+        return componentPreviewDeliverDate = formatDate(this.componentPreviewDeliverDate);
     }
 
     public void setComponentPreviewDeliverDate(String componentPreviewDeliverDate) {
@@ -43,10 +48,16 @@ public class ComponentUpdateDatesDTO {
     }
 
     public String getComponentRealDeliverDate() {
-        return componentRealDeliverDate;
+        return componentRealDeliverDate = formatDate(this.componentRealDeliverDate);
     }
 
     public void setComponentRealDeliverDate(String componentRealDeliverDate) {
         this.componentRealDeliverDate = componentRealDeliverDate;
+    }
+
+    private String formatDate(String inputValue) {
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy");
+        DateTime dt = formatter.parseDateTime(inputValue);
+        return dt.toString("yyyy-MM-dd");
     }
 }
