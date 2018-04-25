@@ -1,10 +1,12 @@
 package com.mx.bbva.controller;
 
+import com.mx.bbva.business.dto.ComponentCloseDTO;
 import com.mx.bbva.business.dto.ComponentSearchDTO;
 import com.mx.bbva.business.dto.ComponentUpdateDatesDTO;
 import com.mx.bbva.business.dto.ResponseDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
+import com.mx.bbva.config.exception.ConflictException;
 import com.mx.bbva.util.query.ComponentQueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -67,6 +69,13 @@ public class ComponentController {
         return new ResponseEntity<Object>(new ResponseDTO(), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/closure", method = RequestMethod.PUT)
+    public ResponseEntity<?> closureComponent(@RequestBody List<ComponentCloseDTO> components) {
+        // TODO Validate user
+        componentService.updateClosureComponent(components);
+        return new ResponseEntity<Object>(new ResponseDTO(), HttpStatus.OK);
+    }
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String findAllComponents(Model model) {
         // TODO Validate user
@@ -100,7 +109,11 @@ public class ComponentController {
 
     @RequestMapping(value = "/{componentId}", method = RequestMethod.DELETE)
     public String deleteComponent(Model model, @PathVariable(value = "componentId") Integer componentId) {
-        // TODO Validate if you can erase a component... status bla bla bla
+        Component component = componentService.findComponent(componentId);
+        if (component.getComponentForBill()) {
+            LOG.fine("Error #0000 Component committed, can't be deleted.");
+            throw new ConflictException("Error #0000 Componente comprometido, no puede ser eliminado");
+        }
         componentService.deleteComponent(componentId);
         return URL_FACTORY + SEARCH_COMPONENTS;
     }

@@ -1,5 +1,6 @@
 package com.mx.bbva.business.service;
 
+import com.mx.bbva.business.dto.ComponentCloseDTO;
 import com.mx.bbva.business.dto.ComponentUpdateDatesDTO;
 import com.mx.bbva.business.entity.Component;
 
@@ -17,4 +18,6 @@ public interface ComponentService {
     void deleteComponent(Integer componentId);
 
     void updateDates(List<ComponentUpdateDatesDTO> components);
+
+    void updateClosureComponent(List<ComponentCloseDTO> components);
 }

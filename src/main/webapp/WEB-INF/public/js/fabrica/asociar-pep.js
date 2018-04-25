@@ -160,6 +160,10 @@ $(function () {
     $(document).on('submit','#form',function(e) {
         e.preventDefault();
 
+        delete requirementObj["requirementDateUpload"];
+        delete requirementObj["requirementStartDate"];
+        delete requirementObj["requirementEndDate"];
+
         let budgetRequirementsList = [];
         $("#selected-budgets tbody tr").each(function (index, value) {
             let row = value;
@@ -171,13 +175,13 @@ $(function () {
             requirement["requirementId"] = requirementId;
 
             let budgetRequirement = {};
+            budgetRequirement["requirement"] = requirement;
             let reqValue = $(row).find("td#incurrido span").attr("data-raw");
             let reqHours= $(row).find("td#incurrido-hrs input.incurrido-horas").val();
             budgetRequirement["budgetRequirementValue"] = reqValue; //INCURRIDO MXN
             budgetRequirement["budgetRequirementHours"] = reqHours; //INCURRIDO HORAS
             budgetRequirement["budgetRequirementBilled"] = "false";
             budgetRequirement["budget"] = budget;
-            budgetRequirement["requirement"] = requirement;
 
             budgetRequirementsList.push(budgetRequirement);
 
@@ -193,8 +197,8 @@ $(function () {
         $.ajax({
             type: "PUT",
             url:   "/budgets/assign",
-            //data:  JSON.stringify(budgets),
             data:  JSON.stringify(budgetRequirementsList),
+            //data:  requirementObj,
             contentType:'application/json'
         }).done(function(data){
             console.log("hola")
