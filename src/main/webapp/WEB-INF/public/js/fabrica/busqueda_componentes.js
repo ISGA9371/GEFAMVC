@@ -531,13 +531,13 @@ $(function () {
   });
 
   $("#update-all-dates").click(function(){
-    data = {
+    data = [{
       'componentDesignRealDeliverDate': date1,
       'componentPossibleDeliverDate': date2,
       'componentPreviewDeliverDate': date3,
       'componentRealDeliverDate': date4,
       'componentIds': idsSearch,
-    };
+    }];
 
     console.log(data);
 
@@ -631,7 +631,7 @@ $(function () {
 
     var tr = $("#tab-cierre > table > tbody").children();
     $.each(tr, function(index, value){
-      tds = $(value).children();;
+      tds = $(value).children();
       id = $(tds[2]).children().attr("id").substring(7, $(tds[2]).children().attr("id").length);
 
       data.push({
