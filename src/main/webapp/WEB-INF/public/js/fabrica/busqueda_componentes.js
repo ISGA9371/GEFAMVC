@@ -532,11 +532,11 @@ $(function () {
 
   $("#update-all-dates").click(function(){
     data = {
-      'designRealDeliverDate': date1,
-      'possibleDeliverDate': date2,
-      'previewDeliverDate': date3,
-      'realDeliverDate': date4,
-      'ids': idsSearch,
+      'componentDesignRealDeliverDate': date1,
+      'componentPossibleDeliverDate': date2,
+      'componentPreviewDeliverDate': date3,
+      'componentRealDeliverDate': date4,
+      'componentIds': idsSearch,
     };
 
     console.log(data);
@@ -584,11 +584,11 @@ $(function () {
     $.each(date1, function(index, value){
       var id = value.id.substring(6, value.id.length);
       data.push({
-        'id': id,
-        'designRealDeliverDate': value.value,
-        'possibleDeliverDate': date2[index].value,
-        'previewDeliverDate': date3[index].value,
-        'realDeliverDate': date4[index].value,
+        'componentId': id,
+        'componentDesignRealDeliverDate': value.value,
+        'componentPossibleDeliverDate': date2[index].value,
+        'componentPreviewDeliverDate': date3[index].value,
+        'componentRealDeliverDate': date4[index].value,
       });
     });
     
