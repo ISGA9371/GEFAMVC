@@ -7,20 +7,22 @@ $(function () {
    * dateFormat: "dd-mm-yy"
   */
   $('#componentDesignRealDeliverDate').datepicker({
-    format: 'DD/MM/YYYY'
+    dateFormat: "dd-mm-yy"
   });
 
   $('#componentPreviewDeliverDate').datepicker({
-    format: 'DD/MM/YYYY'
+    dateFormat: "dd-mm-yy"
   });
 
   $('#componentPossibleDeliverDate').datepicker({
-    format: 'DD/MM/YYYY'
+    dateFormat: "dd-mm-yy"
   });
 
   $('#componentRealDeliverDate').datepicker({
-    format: 'DD/MM/YYYY'
+    dateFormat: "dd-mm-yy"
   });
+
+  var numberMonths = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
 
 
   $.ajax({
@@ -340,14 +342,30 @@ $(function () {
               "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> Editar</a></td></tr>"
           );
 
+          date1 = "";
           designRealDeliverDate = new Date(value.componentDesignRealDeliverDate);
-          date1 = designRealDeliverDate.getDate() + "/" + designRealDeliverDate.getMonth() + "/" + designRealDeliverDate.getFullYear();
+          if ( parseInt(designRealDeliverDate.getDate()) < 10 ) { date1 += "0" + designRealDeliverDate.getDate(); } 
+          else { date1 += designRealDeliverDate.getDate(); }
+          date1 += "-" + numberMonths[designRealDeliverDate.getMonth()] + "-" + designRealDeliverDate.getFullYear();
+          
+          date2 = "";
           possibleDeliverDate = new Date(value.componentPossibleDeliverDate);
-          date2 = possibleDeliverDate.getDate() + "/" + possibleDeliverDate.getMonth() + "/" + possibleDeliverDate.getFullYear();
+          if ( parseInt(possibleDeliverDate.getDate()) < 10 ) { date2 += "0" + possibleDeliverDate.getDate(); } 
+          else { date2 += possibleDeliverDate.getDate(); }
+          date2 += "-" + numberMonths[possibleDeliverDate.getMonth()] + "-" + possibleDeliverDate.getFullYear();
+          
+          date3 = "";
           previewDeliverDate = new Date(value.componentPreviewDeliverDate);
-          date3 = previewDeliverDate.getDate() + "/" + previewDeliverDate.getMonth() + "/" + previewDeliverDate.getFullYear();
+          if ( parseInt(previewDeliverDate.getDate()) < 10 ) { date3 += "0" + previewDeliverDate.getDate(); } 
+          else { date3 += previewDeliverDate.getDate(); }
+          date3 += "-" + numberMonths[previewDeliverDate.getMonth()] + "-" + previewDeliverDate.getFullYear();
+          
+          date4 = "";
           realDeliverDate = new Date(value.componentRealDeliverDate);
-          date4 = realDeliverDate.getDate() + "/" + realDeliverDate.getMonth() + "/" + realDeliverDate.getFullYear();
+          if ( parseInt(realDeliverDate.getDate()) < 10 ) { date4 += "0" + realDeliverDate.getDate(); } 
+          else { date4 += realDeliverDate.getDate(); }
+          date4 += "-" + numberMonths[realDeliverDate.getMonth()] + "-" + realDeliverDate.getFullYear();
+
 
           $("#tab-fecha > table > tbody").append(
             "<tr><td>" + value.componentName + "</td>" +
@@ -358,10 +376,10 @@ $(function () {
             "<td><input type='text' id='date4-" + value.componentId + "' value='" + date4 + "' class='form-control date4Text'></td>" +
             "<td>"+ value.status.statusName +"</td></tr>"
           );
-          $("#date1-" + value.componentId).datepicker({ format: 'DD/MM/YYYY' });
-          $("#date2-" + value.componentId).datepicker({ format: 'DD/MM/YYYY' });
-          $("#date3-" + value.componentId).datepicker({ format: 'DD/MM/YYYY' });
-          $("#date4-" + value.componentId).datepicker({ format: 'DD/MM/YYYY' });
+          $("#date1-" + value.componentId).datepicker({ dateFormat: "dd-mm-yy" });
+          $("#date2-" + value.componentId).datepicker({ dateFormat: "dd-mm-yy" });
+          $("#date3-" + value.componentId).datepicker({ dateFormat: "dd-mm-yy" });
+          $("#date4-" + value.componentId).datepicker({ dateFormat: "dd-mm-yy" });
 
           $("#tab-cierre > table > tbody").append(
             "<tr><td>" + value.componentName + "</td>" +
@@ -395,10 +413,10 @@ $(function () {
           "<td></td></tr>"
         );
 
-        $('#date1').datetimepicker({format: 'DD/MM/YYYY'});
-        $('#date2').datetimepicker({format: 'DD/MM/YYYY'});
-        $('#date3').datetimepicker({format: 'DD/MM/YYYY'});
-        $('#date4').datetimepicker({format: 'DD/MM/YYYY'});
+        $('#date1').datepicker({dateFormat: "dd-mm-yy"});
+        $('#date2').datepicker({dateFormat: "dd-mm-yy"});
+        $('#date3').datepicker({dateFormat: "dd-mm-yy"});
+        $('#date4').datepicker({dateFormat: "dd-mm-yy"});
       } else {
         new jBox('Notice', {
           content: 'Tu búsqueda no devolvió resultados',
@@ -526,7 +544,9 @@ $(function () {
     $.ajax({
       url: "/components/update-dates",
       method: "PUT",
-      data: data,
+      data: JSON.stringify(data),
+      dataType: "json",
+      contentType: 'application/json',
       beforeSend: function () {
         HoldOn.open({
           theme: "sk-cube",
@@ -576,7 +596,9 @@ $(function () {
     $.ajax({
       url: "/components/update-dates",
       method: "PUT",
-      data: data,
+      data: JSON.stringify(data),
+      dataType: "json",
+      contentType: 'application/json',
       beforeSend: function () {
         HoldOn.open({
           theme: "sk-cube",
