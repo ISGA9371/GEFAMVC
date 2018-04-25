@@ -1,5 +1,6 @@
 package com.mx.bbva.business.repository.impl;
 
+import com.mx.bbva.business.dto.ComponentClosureDTO;
 import com.mx.bbva.business.dto.ComponentUpdateDatesDTO;
 import com.mx.bbva.business.entity.Component;
 import com.mx.bbva.business.repository.ComponentRepositoryCustom;
@@ -60,6 +61,25 @@ public class ComponentRepositoryCustomImpl implements ComponentRepositoryCustom 
                     "c.componentDesignRealDeliverDate = '" + component.getComponentDesignRealDeliverDate() + "', " +
                     "c.componentRealDeliverDate = '" + component.getComponentRealDeliverDate() + "' " +
                     "WHERE c.componentId IN (" + getComponentIds(component.getComponentIds()) + ")");
+            query.executeUpdate();
+            entityManager.flush();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+    }
+
+    @Override
+    @Transactional
+    public void updateClosureById(ComponentClosureDTO component) {
+        try {
+            Query query = entityManager.createQuery("UPDATE Component c " +
+                    "SET c.componentTypoComment = '" + component.getComponentTypoComment() + "', " +
+                    "c.componentForBill = " + component.getComponentForBill() + ", " +
+                    "c.finalTypology.typologyId = '" + component.getFinalTypologyId() + "', " +
+                    "c.statusTypology.statusId = '" + component.getStatusTypologyId() + "' " +
+                    "WHERE c.componentId = '" + component.getComponentId() + "'");
             query.executeUpdate();
             entityManager.flush();
         } finally {

@@ -1,6 +1,6 @@
 package com.mx.bbva.business.service.impl;
 
-import com.mx.bbva.business.dto.ComponentCloseDTO;
+import com.mx.bbva.business.dto.ComponentClosureDTO;
 import com.mx.bbva.business.dto.ComponentUpdateDatesDTO;
 import com.mx.bbva.business.entity.Component;
 import com.mx.bbva.business.repository.ComponentRepository;
@@ -56,8 +56,10 @@ public class ComponentServiceImpl implements ComponentService {
     }
 
     @Override
-    public void updateClosureComponent(List<ComponentCloseDTO> components) {
-
+    public void updateClosureComponent(List<ComponentClosureDTO> components) {
+        for (ComponentClosureDTO component : components) {
+            componentRepository.updateClosureById(component);
+        }
     }
 
     @Autowired

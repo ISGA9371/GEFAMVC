@@ -1,13 +1,13 @@
 package com.mx.bbva.business.dto;
 
-public class ComponentCloseDTO {
+public class ComponentClosureDTO {
     private Integer componentId;
     private String componentTypoComment;
     private Integer statusTypologyId;
-    private Boolean componentForBill;
+    private String componentForBill;
     private Integer finalTypologyId;
 
-    public ComponentCloseDTO() {
+    public ComponentClosureDTO() {
     }
 
     public Integer getComponentId() {
@@ -34,11 +34,11 @@ public class ComponentCloseDTO {
         this.statusTypologyId = statusTypologyId;
     }
 
-    public Boolean getComponentForBill() {
+    public String getComponentForBill() {
         return componentForBill;
     }
 
-    public void setComponentForBill(Boolean componentForBill) {
+    public void setComponentForBill(String componentForBill) {
         this.componentForBill = componentForBill;
     }
 
