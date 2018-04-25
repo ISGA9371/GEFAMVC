@@ -1,5 +1,5 @@
 function init() {
-    loadSelects();
+    //loadSelects();
     addButtonEvents();
 
     $("#hidden-envcomponente").val($("#hidden-componente").val());
@@ -26,12 +26,12 @@ function addButtonEvents() {
     })
 }
 
-function loadSelects() {
+/*function loadSelects() {
     mdc.select.MDCSelect.attachTo(document.getElementById('Prioridad-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('Origen-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('Estado-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
-}
+}*/
 
 function holder(msg){
     HoldOn.open({
@@ -44,7 +44,7 @@ function holder(msg){
     });
 }
 
-demoReady(function() {
+/*demoReady(function() {
     var rootEst = document.getElementById('Prioridad-js-select');
     var hiddenEst = document.getElementById('hidden-prioridad');
     var selectEst = new mdc.select.MDCSelect(rootEst);
@@ -79,4 +79,4 @@ demoReady(function() {
     rootEst.addEventListener('MDCSelect:change', function() {
         hiddenEst.value = selectEst.value;
     });
-});
+});*/
