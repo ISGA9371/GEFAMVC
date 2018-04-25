@@ -532,10 +532,10 @@ $(function () {
 
   $("#update-all-dates").click(function(){
     data = [{
-      'componentDesignRealDeliverDate': date1,
-      'componentPossibleDeliverDate': date2,
-      'componentPreviewDeliverDate': date3,
-      'componentRealDeliverDate': date4,
+      'componentDesignRealDeliverDate': $("#date1").val(),
+      'componentPossibleDeliverDate': $("#date2").val(),
+      'componentPreviewDeliverDate': $("#date3").val(),
+      'componentRealDeliverDate': $("#date4").val(),
       'componentIds': idsSearch,
     }];
 
