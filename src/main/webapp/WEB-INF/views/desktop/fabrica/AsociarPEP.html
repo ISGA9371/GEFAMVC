@@ -10,6 +10,7 @@
     <script th:inline="javascript">
         /*<![CDATA[*/
         var requirementId = /*[[${requirementData.requirementId}]]*/  'dynamic';
+        var requirementObj = /*[[${requirementData}]]*/  'dynamic';
         /*]]>*/
     </script>
 
@@ -285,7 +286,7 @@
                 <span id="hours-section">
                     Acumulado: <span id="acum-hours"></span>
                     <span class="sep">|</span>
-                    Total a incurrir: <span id="inc-hours"></span>
+                    Total a incurrir: <span id="inc-hours" th:text="${requirementData.requirementTotalHours}"></span>
                 </span>
             </p>
         </div>
