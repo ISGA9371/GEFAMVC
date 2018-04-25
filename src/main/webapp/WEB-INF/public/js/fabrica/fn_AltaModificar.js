@@ -72,17 +72,15 @@ function addMissing() {
     $("#hidden-userre").val("XMY3080");
 
 
-
-
 }
 
 function addButtonEvents() {
     var btnCancel = document.getElementById('cancelar-btn');
     btnCancel.addEventListener("click", function () {
-        window.history.back();
+        holder("Cargando...");
+        window.location.href = "/components/filters";
     })
 }
-
 function holder(msg){
     HoldOn.open({
         theme: "sk-cube",
