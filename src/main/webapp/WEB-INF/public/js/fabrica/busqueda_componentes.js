@@ -249,6 +249,15 @@ $(function () {
 
   $("#btn-submit").click(function () {
 
+    /** Results section */
+    $("#tab-componentes > table > tbody").html("");
+    $("#tab-fecha > table > tbody").html("");
+    $("#tab-cierre > table > tbody").html("");
+    $("#row-title-results").hide();
+    $("#row-content-results").hide();
+    $("#row-buttons-results").hide();
+    $("#tabs").tabs("option", "active", 0);
+
     $("#principalId").val(direccion.value);
     $("#subPrincipalId").val(subidreccion.value);
     $("#companyId").val(empresa.value);
@@ -261,8 +270,10 @@ $(function () {
 
     if ($("#typologyNewComponent").val() == "1") {
       var newMod = true;
-    } else {
+    } else if ($("#typologyNewComponent").val() == "0") {
       var newMod = false;
+    } else {
+      var newMod = "";
     }
 
     var params = {
@@ -404,6 +415,7 @@ $(function () {
           $("#difFin-" + value.componentId).val(value.finalTypology.typologySeverity);
           $("#costFin-" + value.componentId).val(fare);
           $("#horFin-" + value.componentId).val(value.finalTypology.typologySeverityHours);
+          $("#estatusTip-" + value.componentId).val(value.statusTypology.statusId);
           if ( value.componentForBill ) {
             $("#facturar-" + value.componentId).val("1");
           } else {
@@ -446,13 +458,22 @@ $(function () {
     
     $("#slct_subidreccion").addClass("mdc-select--disabled");
 
+    direccion.value = "";
+    subidreccion.value = "";
+    empresa.value = "";
+    tecnologia.value = "";
+    nuevo_modificado.value = "";
+    estado.value = "";
+    tipologia_inicial.value = "";
+    tipologia_final.value = "";
+    estado_tipificado.value = "";
     componentDesignRealDeliverDate.value = "";
     componentPreviewDeliverDate.value = "";
     componentPossibleDeliverDate.value = "";
     componentRealDeliverDate.value = "";
 
     direccion.selectedIndex = -1;
-    // subidreccion.selectedIndex = -1;
+    subidreccion.selectedIndex = -1;
     empresa.selectedIndex = -1;
     tecnologia.selectedIndex = -1;
     nuevo_modificado.selectedIndex = -1;
