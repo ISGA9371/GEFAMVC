@@ -1,16 +1,14 @@
 package com.mx.bbva.controller;
 
 import com.mx.bbva.business.dto.ModificationSearchDTO;
-import com.mx.bbva.business.entity.Component;
-import com.mx.bbva.business.entity.Modification;
-import com.mx.bbva.business.entity.Origin;
-import com.mx.bbva.business.entity.Priority;
+import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -26,7 +24,7 @@ public class ModificationController {
     private ComponentService componentService;
     private OriginService originService;
     private PriorityService priorityService;
-
+    private UserService userService;
     /**
      * TODO: EVERY CONTROLLER NEEDS TO HAVE A CUSTOM SEARCH METHOD
      */
@@ -89,6 +87,17 @@ public class ModificationController {
         return URL_FACTORY + SEARCH_MODIFICATIONS;
     }
 
+    @ModelAttribute("users")
+    public List<User> populateUsers() {
+        List<User> users = new ArrayList<>();
+        // TODO Use Enum's
+        // 1 - Gestoria FSW
+        users.addAll(this.userService.findUsersByType(1));
+        // 2 - Gestoria PBAS
+        users.addAll(this.userService.findUsersByType(2));
+        return users;
+    }
+
     @ModelAttribute("priorities")
     public List<Priority> populatePriorities() {
         return this.priorityService.findAllPriorities();
@@ -122,5 +131,10 @@ public class ModificationController {
     @Autowired
     public void setPriorityService(PriorityService priorityService) {
         this.priorityService = priorityService;
+    }
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }
