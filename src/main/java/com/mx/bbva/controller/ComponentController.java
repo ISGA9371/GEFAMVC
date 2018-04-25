@@ -1,6 +1,8 @@
 package com.mx.bbva.controller;
 
 import com.mx.bbva.business.dto.ComponentSearchDTO;
+import com.mx.bbva.business.dto.ComponentUpdateDatesDTO;
+import com.mx.bbva.business.dto.ResponseDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import com.mx.bbva.util.query.ComponentQueryGenerator;
@@ -59,10 +61,10 @@ public class ComponentController {
     }
 
     @RequestMapping(value = "/update-dates", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateComponentDates(@RequestParam("components") List<Component> components) {
+    public ResponseEntity<?> updateComponentDates(@RequestBody List<ComponentUpdateDatesDTO> components) {
         // TODO Validate user
         componentService.updateDates(components);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<Object>(new ResponseDTO(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
