@@ -582,8 +582,9 @@ $(function () {
     var date4 = $(".date4Text");
 
     $.each(date1, function(index, value){
+      var id = value.id.substring(6, value.id.length);
       data.push({
-        'id': value.id,
+        'id': id,
         'designRealDeliverDate': value.value,
         'possibleDeliverDate': date2[index].value,
         'previewDeliverDate': date3[index].value,
