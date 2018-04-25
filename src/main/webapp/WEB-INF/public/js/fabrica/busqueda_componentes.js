@@ -635,18 +635,49 @@ $(function () {
       id = $(tds[2]).children().attr("id").substring(7, $(tds[2]).children().attr("id").length);
 
       data.push({
-        'tipFinal': $(tds[2]).children().val(),
-        'difFinal': $(tds[3]).children().val(),
-        'cosFinal': $(tds[4]).children().val(),
-        'horsFinal': $(tds[5]).children().val(),
-        'comments': $(tds[6]).children().val(),
-        'statusTipif': $(tds[7]).children().val(),
-        'facturar': $(tds[8]).children().val(),
-        'id': id,
+        'finalTypologyId': $(tds[2]).children().val(),
+        // 'difFinal': $(tds[3]).children().val(),
+        // 'cosFinal': $(tds[4]).children().val(),
+        // 'horsFinal': $(tds[5]).children().val(),
+        'componentTypoComment': $(tds[6]).children().val(),
+        'statusTypologyId': $(tds[7]).children().val(),
+        'componentForBill': $(tds[8]).children().val(),
+        'componentId': id,
       });
 
     });
 
     console.log(data);
+
+    $.ajax({
+      url: "/components/closure",
+      method: "PUT",
+      data: JSON.stringify(data),
+      dataType: "json",
+      contentType: 'application/json',
+      beforeSend: function () {
+        HoldOn.open({
+          theme: "sk-cube",
+          content: '',
+          message: 'Actualizando Información',
+          backgroundColor: "#0c71ca",
+          textColor: "white",
+        });
+      }
+    }).done(function (data) {
+      HoldOn.close();
+      new jBox('Notice', {
+        content: 'Información actualizada exitosamente',
+        animation: 'pulse',
+        color: 'green'
+      });
+    }).fail(function (error) {
+      HoldOn.close();
+      new jBox('Notice', {
+        content: 'Hubo un error al guardar, intenta de nuevo.',
+        animation: 'pulse',
+        color: 'red'
+      });
+    });
   });
 });
