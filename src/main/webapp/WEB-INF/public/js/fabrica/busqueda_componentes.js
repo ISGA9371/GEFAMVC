@@ -259,12 +259,18 @@ $(function () {
     $("#finalProductId").val(tipologia_final.value);
     $("#statusTypologyId").val(estado_tipificado.value);
 
+    if ($("#typologyNewComponent").val() == "1") {
+      var newMod = true;
+    } else {
+      var newMod = false;
+    }
+
     var params = {
       principalId: $("#principalId").val(),
       subPrincipalId: $("#subPrincipalId").val(),
       companyId: $("#companyId").val(),
       technologyId: $("#technologyId").val(),
-      typologyNewComponent: $("#typologyNewComponent").val(),
+      typologyNewComponent: newMod,
       statusId: $("#statusId").val(),
       startProductId: $("#startProductId").val(),
       finalProductId: $("#finalProductId").val(),
@@ -398,7 +404,11 @@ $(function () {
           $("#difFin-" + value.componentId).val(value.finalTypology.typologySeverity);
           $("#costFin-" + value.componentId).val(fare);
           $("#horFin-" + value.componentId).val(value.finalTypology.typologySeverityHours);
-          $("#estatusTip-" + value.componentId).val(value.statusTypology.statusId);
+          if ( value.componentForBill ) {
+            $("#facturar-" + value.componentId).val("1");
+          } else {
+            $("#facturar-" + value.componentId).val("0");
+          }
 
           idsSearch.push(parseInt(value.componentId));
         });
@@ -527,19 +537,24 @@ $(function () {
     $("#slct_tipologia_inicial").removeClass("mdc-select--upgraded");
     $("#slct_tipologia_final").removeClass("mdc-select--upgraded");
     $("#slct_estado_tipificado").removeClass("mdc-select--upgraded");
+
+    $("#tabs").tabs("option", "active", 0);
     
   });
 
   $("#update-all-dates").click(function(){
+    var updateDate1 = $("#date1").val();
+    var updateDate2 = $("#date2").val();
+    var updateDate3 = $("#date3").val();
+    var updateDate4 = $("#date4").val();
+
     data = [{
-      'componentDesignRealDeliverDate': $("#date1").val(),
-      'componentPossibleDeliverDate': $("#date2").val(),
-      'componentPreviewDeliverDate': $("#date3").val(),
-      'componentRealDeliverDate': $("#date4").val(),
+      'componentDesignRealDeliverDate': updateDate1,
+      'componentPossibleDeliverDate': updateDate2,
+      'componentPreviewDeliverDate': updateDate3,
+      'componentRealDeliverDate': updateDate4,
       'componentIds': idsSearch,
     }];
-
-    console.log(data);
 
     $.ajax({
       url: "/components/update-dates",
@@ -557,6 +572,16 @@ $(function () {
         });
       }
     }).done(function (data ) {
+      var date1 = $(".date1Text");
+
+      $.each(date1, function (index, value) {
+        var id = value.id.substring(6, value.id.length);
+        $("#date1-" + id).val(updateDate1);
+        $("#date2-" + id).val(updateDate2);
+        $("#date3-" + id).val(updateDate3);
+        $("#date4-" + id).val(updateDate4);
+      });
+
       HoldOn.close();
       new jBox('Notice', {
         content: 'Información actualizada exitosamente',
@@ -591,8 +616,6 @@ $(function () {
         'componentRealDeliverDate': date4[index].value,
       });
     });
-    
-    console.log(data);
 
     $.ajax({
       url: "/components/update-dates",
@@ -634,20 +657,21 @@ $(function () {
       tds = $(value).children();
       id = $(tds[2]).children().attr("id").substring(7, $(tds[2]).children().attr("id").length);
 
+      if ($(tds[8]).children().val() == "1" ) {
+        bill = true;
+      } else {
+        bill = false;
+      }
+
       data.push({
         'finalTypologyId': $(tds[2]).children().val(),
-        // 'difFinal': $(tds[3]).children().val(),
-        // 'cosFinal': $(tds[4]).children().val(),
-        // 'horsFinal': $(tds[5]).children().val(),
         'componentTypoComment': $(tds[6]).children().val(),
         'statusTypologyId': $(tds[7]).children().val(),
-        'componentForBill': $(tds[8]).children().val(),
-        'componentId': id,
+        'componentForBill': bill,
+        'componentId': parseInt(id),
       });
 
     });
-
-    console.log(data);
 
     $.ajax({
       url: "/components/closure",
