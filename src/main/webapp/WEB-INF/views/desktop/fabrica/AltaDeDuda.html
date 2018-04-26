@@ -114,7 +114,7 @@
                         <td class="col-md-4" align="center">
                             <input id="hidden-responsable" type="text"   value="" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{userSender.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                             <div id="tipologia-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input disabled="disabled" type="text" value=" "  class="mdc-text-field__input" id="responsabletxt">
+                                <input disabled="disabled" type="text" value=" " class="mdc-text-field__input mdc-text-field--disabled" id="responsabletxt">
                                 <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
                             </div>
                             <!--<div id="tipologia-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
@@ -144,7 +144,7 @@
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
                             <div  id="descripcion-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
-                                <input type="text" maxlength="220" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{doubtDescription}" class="mdc-text-field__input" id="usuario-peticionario">
+                                <input type="text" maxlength="200" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{doubtDescription}" class="mdc-text-field__input" id="usuario-peticionario">
                                 <label for="demo-input" class="mdc-text-field__label">Descripción</label>
                             </div>
                         </td>

@@ -1,5 +1,5 @@
 function init() {
-    //loadSelects();
+    camp();
     addButtonEvents();
 
     $("#hidden-envcomponente").val($("#hidden-componente").val());
@@ -10,6 +10,29 @@ function init() {
     var anio = fecha.substring(0,4);
     $("#datetimepickerformat").val(dia+"/"+mes+"/"+anio);
 
+
+
+}
+
+function rojelia(){
+    var descrip = $('#descripcion2').val();
+    var descri = $('#descripcion').val();
+    var des = $('#desfijo').val();
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    var today = 'v' + yyyy + mm + dd;
+
+    $('#desfijo').val(descri + " - inicial - " + descrip + " - "+ dd+"/"+mm+"/"+yyyy);
 }
 
 $(function () {
@@ -80,3 +103,18 @@ demoReady(function() {
         hiddenEst.value = selectEst.value;
     });
 });*/
+
+function camp() {
+    new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Subdireccion-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Version-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Prioridad")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Incidencia")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+}

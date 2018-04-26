@@ -1,6 +1,7 @@
 function init() {
     loadSelects();
     addButtonEvents();
+    camp();
 
     $("#hidden-envcomponente").val($("#hidden-componente").val());
 
@@ -84,3 +85,13 @@ demoReady(function() {
         hiddenEst.value = selectEst.value;
     });
 });
+
+function camp() {
+    new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("subdireccon")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Versi")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+}
