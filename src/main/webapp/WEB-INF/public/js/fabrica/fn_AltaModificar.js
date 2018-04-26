@@ -40,17 +40,25 @@ function addCalendars() {
 
     type="text/javascript">
 
-        $('#datetimepicker4').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
+        /**
+         * datepicker
+         * dateFormat: "dd-mm-yy"
+         */
 
-        $('#datetimepicker5').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
 
-        $('#datetimepicker6').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
+    $('#componentPreviewDeliverDate').datepicker({
+        dateFormat: "dd/mm/yy"
+    });
+
+    $('#componentPossibleDeliverDate').datepicker({
+        dateFormat: "dd/mm/yy"
+    });
+
+    $('#componentRealDeliverDate').datepicker({
+        dateFormat: "dd/mm/yy"
+    });
+
+    var numberMonths = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
 
 
 }

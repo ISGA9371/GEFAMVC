@@ -201,7 +201,6 @@
                           </div>
                       </td>
                       <td class="col-md-4" align="center">
-
                           <input id="hidden-origen" type="text" value="" required th:field="*{origin.originId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                           <!-- <input id="Origen-js-select2" type="text"  required value="" th:field="*{origins}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;" />-->
                         <div id="origen-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
@@ -216,15 +215,13 @@
                                 </ul>
                             </div>
                         </div>
-
-
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4" align="center">
                         <div class="dog1">
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input th:field="*{modificationEndDate}" type='text' class="mdc-text-field__input"  row="2" id='datetimepicker5' />
+                                <input th:field="*{modificationEndDate}" type='text' class="mdc-text-field__input"  name="componentPreviewDeliverDate" id="componentPreviewDeliverDate" />
                                 <label for="demo-input" class="mdc-text-field__label">F. Negociada Fact.>CGF Software</label>
                             </div>
                         </div>
@@ -232,7 +229,7 @@
                     <td class="col-md-4" align="center">
                         <div class="dog1">
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker6' />
+                                <input type='text' class="mdc-text-field__input"  name="componentPossibleDeliverDate" id="componentPossibleDeliverDate" />
                                 <label for="demo-input" class="mdc-text-field__label">F. Real Fact.>CGF Software</label>
                             </div>
                         </div>
@@ -240,7 +237,7 @@
                     <td class="col-md-4" align="center">
                         <div class="dog1">
                             <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input  type="text"  th:field="*{modificationSendDate}"  class="mdc-text-field__input"  row="2" id='datetimepicker4' />
+                                <input  type="text"  th:field="*{modificationSendDate}"  class="mdc-text-field__input" name="componentRealDeliverDate" id="componentRealDeliverDate"  />
                                 <label for="demo-input" class="mdc-text-field__label">Fecha Envio</label>
                             </div>
                         </div>
@@ -248,7 +245,6 @@
                 </tr>
                 <tr>
                     <td class="col-md-4" align="center">
-                        <input id="hidden-vuelo" type="text" value=""  th:field="*{modificationOnTrack}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                         <div id="modvuelo-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                                 <div class="mdc-select__label">Modificación en Vuelo</div>
@@ -281,8 +277,6 @@
                     </td>
                 </tr>
             </table>
-
-
         </div>
         <div class="row">
 
