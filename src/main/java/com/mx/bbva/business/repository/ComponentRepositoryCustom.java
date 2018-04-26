@@ -1,5 +1,6 @@
 package com.mx.bbva.business.repository;
 
+import com.mx.bbva.business.dto.ComponentClosureDTO;
 import com.mx.bbva.business.dto.ComponentUpdateDatesDTO;
 import com.mx.bbva.business.entity.Component;
 
@@ -9,4 +10,8 @@ public interface ComponentRepositoryCustom {
     List<Component> findByCustomQuery(String query);
 
     void updateDatesById(ComponentUpdateDatesDTO component);
+
+    void updateAllDates(ComponentUpdateDatesDTO component);
+
+    void updateClosureById(ComponentClosureDTO component);
 }

@@ -1,6 +1,6 @@
 package com.mx.bbva.controller;
 
-import com.mx.bbva.business.dto.ComponentCloseDTO;
+import com.mx.bbva.business.dto.ComponentClosureDTO;
 import com.mx.bbva.business.dto.ComponentSearchDTO;
 import com.mx.bbva.business.dto.ComponentUpdateDatesDTO;
 import com.mx.bbva.business.dto.ResponseDTO;
@@ -70,7 +70,7 @@ public class ComponentController {
     }
 
     @RequestMapping(value = "/closure", method = RequestMethod.PUT)
-    public ResponseEntity<?> closureComponent(@RequestBody List<ComponentCloseDTO> components) {
+    public ResponseEntity<?> closureComponent(@RequestBody List<ComponentClosureDTO> components) {
         // TODO Validate user
         componentService.updateClosureComponent(components);
         return new ResponseEntity<Object>(new ResponseDTO(), HttpStatus.OK);

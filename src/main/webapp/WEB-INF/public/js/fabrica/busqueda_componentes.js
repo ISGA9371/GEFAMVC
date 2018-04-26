@@ -187,6 +187,36 @@ $(function () {
     newFare = parseInt(theFare) * parseInt(optionElement.data("hours"));
     $("#costFin-" + idElement).val(newFare);
   });
+
+
+  $("body").on("change", "#date1", function (event) {
+    if ( $(this).val() != "" && $("#date2").val() != "" && $("#date3").val() != "" && $("#date4").val() != "" ) {
+      $("#update-all-dates").removeAttr("disabled");
+    } else {
+      $("#update-all-dates").attr("disabled", "disabled");
+    }
+  });
+  $("body").on("change", "#date2", function (event) {
+    if ( $(this).val() != "" && $("#date1").val() != "" && $("#date3").val() != "" && $("#date4").val() != "" ) {
+      $("#update-all-dates").removeAttr("disabled");
+    } else {
+      $("#update-all-dates").attr("disabled", "disabled");
+    }
+  });
+  $("body").on("change", "#date3", function (event) {
+    if ( $(this).val() != "" && $("#date2").val() != "" && $("#date1").val() != "" && $("#date4").val() != "" ) {
+      $("#update-all-dates").removeAttr("disabled");
+    } else {
+      $("#update-all-dates").attr("disabled", "disabled");
+    }
+  });
+  $("body").on("change", "#date4", function (event) {
+    if ( $(this).val() != "" && $("#date2").val() != "" && $("#date3").val() != "" && $("#date1").val() != "" ) {
+      $("#update-all-dates").removeAttr("disabled");
+    } else {
+      $("#update-all-dates").attr("disabled", "disabled");
+    }
+  });
   
 
   direccion.listen('MDCSelect:change', () => {
@@ -249,6 +279,15 @@ $(function () {
 
   $("#btn-submit").click(function () {
 
+    /** Results section */
+    $("#tab-componentes > table > tbody").html("");
+    $("#tab-fecha > table > tbody").html("");
+    $("#tab-cierre > table > tbody").html("");
+    $("#row-title-results").hide();
+    $("#row-content-results").hide();
+    $("#row-buttons-results").hide();
+    $("#tabs").tabs("option", "active", 0);
+
     $("#principalId").val(direccion.value);
     $("#subPrincipalId").val(subidreccion.value);
     $("#companyId").val(empresa.value);
@@ -259,12 +298,20 @@ $(function () {
     $("#finalProductId").val(tipologia_final.value);
     $("#statusTypologyId").val(estado_tipificado.value);
 
+    if ($("#typologyNewComponent").val() == "1") {
+      var newMod = true;
+    } else if ($("#typologyNewComponent").val() == "0") {
+      var newMod = false;
+    } else {
+      var newMod = "";
+    }
+
     var params = {
       principalId: $("#principalId").val(),
       subPrincipalId: $("#subPrincipalId").val(),
       companyId: $("#companyId").val(),
       technologyId: $("#technologyId").val(),
-      typologyNewComponent: $("#typologyNewComponent").val(),
+      typologyNewComponent: newMod,
       statusId: $("#statusId").val(),
       startProductId: $("#startProductId").val(),
       finalProductId: $("#finalProductId").val(),
@@ -399,6 +446,11 @@ $(function () {
           $("#costFin-" + value.componentId).val(fare);
           $("#horFin-" + value.componentId).val(value.finalTypology.typologySeverityHours);
           $("#estatusTip-" + value.componentId).val(value.statusTypology.statusId);
+          if ( value.componentForBill ) {
+            $("#facturar-" + value.componentId).val("1");
+          } else {
+            $("#facturar-" + value.componentId).val("0");
+          }
 
           idsSearch.push(parseInt(value.componentId));
         });
@@ -436,13 +488,22 @@ $(function () {
     
     $("#slct_subidreccion").addClass("mdc-select--disabled");
 
+    direccion.value = "";
+    subidreccion.value = "";
+    empresa.value = "";
+    tecnologia.value = "";
+    nuevo_modificado.value = "";
+    estado.value = "";
+    tipologia_inicial.value = "";
+    tipologia_final.value = "";
+    estado_tipificado.value = "";
     componentDesignRealDeliverDate.value = "";
     componentPreviewDeliverDate.value = "";
     componentPossibleDeliverDate.value = "";
     componentRealDeliverDate.value = "";
 
     direccion.selectedIndex = -1;
-    // subidreccion.selectedIndex = -1;
+    subidreccion.selectedIndex = -1;
     empresa.selectedIndex = -1;
     tecnologia.selectedIndex = -1;
     nuevo_modificado.selectedIndex = -1;
@@ -527,19 +588,24 @@ $(function () {
     $("#slct_tipologia_inicial").removeClass("mdc-select--upgraded");
     $("#slct_tipologia_final").removeClass("mdc-select--upgraded");
     $("#slct_estado_tipificado").removeClass("mdc-select--upgraded");
+
+    $("#tabs").tabs("option", "active", 0);
     
   });
 
   $("#update-all-dates").click(function(){
+    var updateDate1 = $("#date1").val();
+    var updateDate2 = $("#date2").val();
+    var updateDate3 = $("#date3").val();
+    var updateDate4 = $("#date4").val();
+
     data = [{
-      'componentDesignRealDeliverDate': date1,
-      'componentPossibleDeliverDate': date2,
-      'componentPreviewDeliverDate': date3,
-      'componentRealDeliverDate': date4,
+      'componentDesignRealDeliverDate': updateDate1,
+      'componentPossibleDeliverDate': updateDate2,
+      'componentPreviewDeliverDate': updateDate3,
+      'componentRealDeliverDate': updateDate4,
       'componentIds': idsSearch,
     }];
-
-    console.log(data);
 
     $.ajax({
       url: "/components/update-dates",
@@ -557,6 +623,16 @@ $(function () {
         });
       }
     }).done(function (data ) {
+      var date1 = $(".date1Text");
+
+      $.each(date1, function (index, value) {
+        var id = value.id.substring(6, value.id.length);
+        $("#date1-" + id).val(updateDate1);
+        $("#date2-" + id).val(updateDate2);
+        $("#date3-" + id).val(updateDate3);
+        $("#date4-" + id).val(updateDate4);
+      });
+
       HoldOn.close();
       new jBox('Notice', {
         content: 'Información actualizada exitosamente',
@@ -591,8 +667,6 @@ $(function () {
         'componentRealDeliverDate': date4[index].value,
       });
     });
-    
-    console.log(data);
 
     $.ajax({
       url: "/components/update-dates",
@@ -634,20 +708,21 @@ $(function () {
       tds = $(value).children();
       id = $(tds[2]).children().attr("id").substring(7, $(tds[2]).children().attr("id").length);
 
+      if ($(tds[8]).children().val() == "1" ) {
+        bill = true;
+      } else {
+        bill = false;
+      }
+
       data.push({
         'finalTypologyId': $(tds[2]).children().val(),
-        // 'difFinal': $(tds[3]).children().val(),
-        // 'cosFinal': $(tds[4]).children().val(),
-        // 'horsFinal': $(tds[5]).children().val(),
         'componentTypoComment': $(tds[6]).children().val(),
         'statusTypologyId': $(tds[7]).children().val(),
-        'componentForBill': $(tds[8]).children().val(),
-        'componentId': id,
+        'componentForBill': bill,
+        'componentId': parseInt(id),
       });
 
     });
-
-    console.log(data);
 
     $.ajax({
       url: "/components/closure",

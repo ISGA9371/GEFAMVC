@@ -1,11 +1,14 @@
 package com.mx.bbva.controller;
 
 import com.mx.bbva.business.dto.BudgetSearchDTO;
+import com.mx.bbva.business.dto.ResponseDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import com.mx.bbva.util.query.BudgetQueryGenerator;
 import com.mx.bbva.util.query.QueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -130,11 +133,11 @@ public class BudgetController {
     }
 
     @RequestMapping(value = "/assign", method = RequestMethod.PUT)
-    public String assignBudget(Model model, @RequestParam("budgets") List<BudgetRequirement> budgetRequirements) {
+    public ResponseEntity<?> assignBudget(Model model, @RequestBody List<BudgetRequirement> budgetRequirements) {
 
         budgetService.assignBudget(budgetRequirements);
 
-        return URL_FACTORY + ASSIGN_BUDGET_REQUIREMENT;
+        return new ResponseEntity<Object>(new ResponseDTO(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/assign/filters", method = RequestMethod.GET)
