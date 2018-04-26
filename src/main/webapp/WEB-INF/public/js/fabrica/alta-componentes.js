@@ -1,6 +1,8 @@
 function init() {
     //showH();
     initGlobal();
+    $("#statusTypology").val(8);
+    $("#status").val(31);
     holder("Cargando");
     addCalendars();
     loadSelects();
@@ -14,8 +16,6 @@ function init() {
     addHoursValidation();
     addButtonEvents();
 
-    $("#statusTypology").val(8);
-    $("#status").val(31);
     if(!showingError){
         HoldOn.close();
     }
