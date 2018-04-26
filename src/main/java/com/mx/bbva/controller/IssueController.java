@@ -36,7 +36,7 @@ public class IssueController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String saveIssue(@ModelAttribute("issuee") Issue issue) {
+    public String saveIssue(@ModelAttribute("issue") Issue issue) {
         issueService.saveIssue(issue);
         Issue issueSaved = issueService.findIssue(issue.getIssueId());
         return REDIRECT + "issues/" + issueSaved.getIssueId();
