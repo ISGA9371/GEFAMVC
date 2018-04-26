@@ -1,7 +1,7 @@
 function init() {
 
     addCalendars();
-   // loadSelects();
+    camp();
     addButtonEvents();
 
     $("#hidden-status").val("11");
@@ -90,33 +90,13 @@ function rojelia(){
     $('#desfijo').val(descri + " - inicial - " + descrip + " - "+ dd+"/"+mm+"/"+yyyy);
 }
 
-
-/*demoReady(function() {
-    var rootEst = document.getElementById('Prioridad-js-select');
-    var hiddenEst = document.getElementById('hidden-prioridad');
-    var selectEst = new mdc.select.MDCSelect(rootEst);
-
-    rootEst.addEventListener('MDCSelect:change', function() {
-        hiddenEst.value = selectEst.value;
-    });
-});
-
-demoReady(function() {
-    var rootEst = document.getElementById('responsable-js-select');
-    var hiddenEst = document.getElementById('hidden-responsable');
-    var selectEst = new mdc.select.MDCSelect(rootEst);
-
-    rootEst.addEventListener('MDCSelect:change', function() {
-        hiddenEst.value = selectEst.value;
-    });
-});
-
-demoReady(function() {
-    var rootEst = document.getElementById('Duda-js-select');
-    var hiddenEst = document.getElementById('hidden-dudaSelect');
-    var selectEst = new mdc.select.MDCSelect(rootEst);
-
-    rootEst.addEventListener('MDCSelect:change', function() {
-        hiddenEst.value = selectEst.value;
-    });
-});*/
+function camp() {
+    new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("subdireccion-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("version-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("requerimiento-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("tecnologia-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+}
