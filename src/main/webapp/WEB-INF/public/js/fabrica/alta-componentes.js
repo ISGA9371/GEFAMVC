@@ -238,10 +238,10 @@ function setDefaults() {
 function addHiddenEvents() {
     addTextSyncMdcToHtml("componentName", "component-mdc-text");
     addTextSyncMdcToHtml("componentVersion", "version-mdc-text");
-    addTextSyncMdcToHtml("componentDesignRealDeliverDate", "FecRealCFG-mdc-text");
-    addTextSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text");
-    addTextSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-text");
-    addTextSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text");
+    addDateSyncMdcToHtml("componentDesignRealDeliverDate", "FecRealCFG-mdc-text");
+    addDateSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text");
+    addDateSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-text");
+    addDateSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text")
     $("#requirement").val($("#requirementHidden").val());
 }
 
@@ -250,6 +250,7 @@ function addTextSyncMdcToHtml(htmlField, mdcField) {
     var inputName = rootName.querySelector('input');
     var hiddenName = document.getElementById(htmlField);
     var textName = new mdc.textField.MDCTextField(rootName);
+    textName.value = textName.value;
 
     inputName.addEventListener('keyup', function () {
         hiddenName.value = textName.value;
@@ -259,6 +260,21 @@ function addTextSyncMdcToHtml(htmlField, mdcField) {
     });
     inputName.addEventListener('blur', function () {
         hiddenName.value = textName.value;
+    });
+}
+
+function addDateSyncMdcToHtml(htmlField, mdcField) {
+    var rootName = document.querySelector('#'+mdcField);
+    var inputName = rootName.querySelector('input');
+    var hiddenName = document.getElementById(htmlField);
+    var textName = new mdc.textField.MDCTextField(rootName);
+    $(inputName).change(function () {
+        hiddenName.value = textName.value;
+        if ("" != textName.value) {
+            $("#"+mdcField+" > label").addClass("mdc-text-field__label--float-above");
+        } else {
+            $("#"+mdcField+" > label").removeClass("mdc-text-field__label--float-above");
+        }
     });
 }
 
