@@ -112,7 +112,6 @@ function camp() {
     new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("Prioridad")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("Incidencia")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;

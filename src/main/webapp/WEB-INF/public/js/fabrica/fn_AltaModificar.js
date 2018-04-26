@@ -8,6 +8,7 @@ function init() {
     addCalendars();
     addMissing();
     addButtonEvents();
+    camp();
 
 
 }
@@ -40,17 +41,25 @@ function addCalendars() {
 
     type="text/javascript">
 
-        $('#datetimepicker4').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
+        /**
+         * datepicker
+         * dateFormat: "dd-mm-yy"
+         */
 
-        $('#datetimepicker5').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
 
-        $('#datetimepicker6').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
+    $('#componentPreviewDeliverDate').datepicker({
+        dateFormat: "dd/mm/yy"
+    });
+
+    $('#componentPossibleDeliverDate').datepicker({
+        dateFormat: "dd/mm/yy"
+    });
+
+    $('#componentRealDeliverDate').datepicker({
+        dateFormat: "dd/mm/yy"
+    });
+
+    var numberMonths = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
 
 
 }
@@ -90,4 +99,16 @@ function holder(msg){
         backgroundColor: "#0c71ca",
         textColor: "white",
     });
+}
+
+function camp() {
+    new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("subdireccion-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("version-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("requerimiento-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("tecnologia-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("dificultad-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("estado-js-text")).disabled = true;
 }

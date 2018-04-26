@@ -1,17 +1,40 @@
 $(function () {
 
-    $('#datetimepicker4').datetimepicker({
-        format: 'DD/MM/YYYY',
-        locale: 'es-mx',
-        useCurrent: false
+    /**
+     * datepicker
+     * dateFormat: "dd-mm-yy"
+     */
+
+    $('#datetimepicker4').datepicker({
+        dateFormat: 'dd/mm/yy'
     });
 
-    $('#datetimepicker5').datetimepicker({
-        format: 'DD/MM/YYYY',
-        locale: 'es-mx',
-        useCurrent: false
+    $('#datetimepicker5').datepicker({
+        dateFormat: 'dd/mm/yy'
     });
 
+
+    $("#datetimepicker4").change(function () {
+        console.log("CAMBIO FECHA 1");
+        if ($('#datetimepicker4').val() !== "") {
+            $("#datetimepicker4").parent().find("label").addClass("mdc-text-field__label--float-above");
+            $("input[id=requirementStartDate]").val("coso");
+        } else {
+            $("#datetimepicker4").parent().find("label").removeClass("mdc-text-field__label--float-above");
+        }
+    });
+
+    $("#datetimepicker5").change(function () {
+        console.log("CAMBIO FECHA 2");
+        if ($('#datetimepicker5').val() !== "") {
+            $("#datetimepicker5").parent().find("label").addClass("mdc-text-field__label--float-above");
+            $("input[id=requirementEndDate]").val("coso");
+        } else {
+            $("#datetimepicker5").parent().find("label").removeClass("mdc-text-field__label--float-above");
+        }
+    });
+
+    /*
     $("#datetimepicker4").on("dp.change", function (e) {
         var date = e.date;
         var dateStr = date.date() + "/" + (date.month() + 1) + '/' + date.year();
@@ -23,6 +46,7 @@ $(function () {
         var dateStr = date.date() + "/" + (date.month() + 1) + '/' + date.year();
         $("input[id=requirementEndDate]").val(dateStr);
     });
+    */
 
     const select = new mdc.select.MDCSelect(document.querySelector('#dirs'));
     const subdirs = new mdc.select.MDCSelect(document.querySelector('#subdirs'));
@@ -176,7 +200,7 @@ $(function () {
         let id = tiposProy.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         console.log("PROYECTTYPEID " +id);
-        $("#projectTypeId").val(id);
+        $("#methodologyId").val(id);
     });
 
     const techs = new mdc.select.MDCSelect(document.querySelector('#techs'));

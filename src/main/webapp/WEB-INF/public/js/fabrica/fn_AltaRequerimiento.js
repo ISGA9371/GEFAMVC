@@ -7,9 +7,33 @@ function init(){
     crearCombos();
     asignarCombos();
     desHabilitarDep();
-    habilitaFechas();
+    calendar();
 
 }
+
+function calendar(){
+
+    $('#fecPropInic').datepicker({dateFormat: "dd/mm/yy"});
+    $('#fecPropFin').datepicker({dateFormat: "dd/mm/yy"});
+
+    $("#fecPropInic").change(function () {
+        if ("" != fecPropInic.value) {
+            $("#mdc-group-fecPropInic > label").addClass("mdc-text-field__label--float-above");
+        } else {
+            $("#mdc-group-fecPropInic > label").removeClass("mdc-text-field__label--float-above");
+        }
+    });
+
+    $("#fecPropFin").change(function () {
+        if ("" != fecPropFin.value) {
+            $("#mdc-group-fecPropFin > label").addClass("mdc-text-field__label--float-above");
+        } else {
+            $("#mdc-group-fecPropFin > label").removeClass("mdc-text-field__label--float-above");
+        }
+    });
+
+}
+
 
 function crearCombos(){
 
@@ -89,9 +113,11 @@ function asignarCombos(){
     var selectObj = new mdc.select.MDCSelect(rootSelect);
 
     rootSelect.addEventListener('MDCSelect:change', function () {
+        new mdc.textField.MDCTextField(document.getElementById('subDirDiv')).disabled = true;
         $("#subDir").val(selectObj.value.split("|")[1]);
         $("#hidden-subdireccion").val(selectObj.value.split("|")[0]);
         $("#subDir").focus();
+        new mdc.textField.MDCTextField(document.getElementById('subDirDiv')).disabled = true;
     });
 
     //select userinternal
@@ -180,25 +206,7 @@ function desHabilitarDep(){
 
     new mdc.select.MDCSelect(document.getElementById('subdirs')).disabled = true;
     new mdc.select.MDCSelect(document.getElementById('gestor-js-select')).disabled = true;
-
-}
-
-function habilitaFechas(){
-
-    var picker1 = $("#datetimepicker1");
-    var picker2 = $("#datetimepicker2");
-
-    picker1.datetimepicker({
-        format: 'DD/MM/YYYY',
-        locale: 'es-mx',
-        useCurrent: false
-    });
-
-    picker2.datetimepicker({
-        format: 'DD/MM/YYYY',
-        locale: 'es-mx',
-        useCurrent: false
-    });
+    new mdc.textField.MDCTextField(document.getElementById('subDirDiv')).disabled = true;
 
 }
 

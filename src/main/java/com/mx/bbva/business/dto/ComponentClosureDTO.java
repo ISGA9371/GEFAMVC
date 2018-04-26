@@ -4,7 +4,7 @@ public class ComponentClosureDTO {
     private Integer componentId;
     private String componentTypoComment;
     private Integer statusTypologyId;
-    private String componentForBill;
+    private boolean componentForBill;
     private Integer finalTypologyId;
 
     public ComponentClosureDTO() {
@@ -34,11 +34,11 @@ public class ComponentClosureDTO {
         this.statusTypologyId = statusTypologyId;
     }
 
-    public String getComponentForBill() {
+    public boolean isComponentForBill() {
         return componentForBill;
     }
 
-    public void setComponentForBill(String componentForBill) {
+    public void setComponentForBill(boolean componentForBill) {
         this.componentForBill = componentForBill;
     }
 

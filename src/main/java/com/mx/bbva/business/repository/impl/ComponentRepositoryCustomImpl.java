@@ -76,7 +76,7 @@ public class ComponentRepositoryCustomImpl implements ComponentRepositoryCustom 
         try {
             Query query = entityManager.createQuery("UPDATE Component c " +
                     "SET c.componentTypoComment = '" + component.getComponentTypoComment() + "', " +
-                    "c.componentForBill = " + component.getComponentForBill() + ", " +
+                    "c.componentForBill = " + component.isComponentForBill() + ", " +
                     "c.finalTypology.typologyId = '" + component.getFinalTypologyId() + "', " +
                     "c.statusTypology.statusId = '" + component.getStatusTypologyId() + "' " +
                     "WHERE c.componentId = '" + component.getComponentId() + "'");
