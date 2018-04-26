@@ -4,13 +4,13 @@ $(function () {
     var picker2 = $("#datetimepicker2");
 
     picker1.datetimepicker({
-        format: 'DD/MM/YYYY',
+        format: 'DD/M/YYYY',
         locale: 'es-mx',
         useCurrent: false
     });
 
     picker2.datetimepicker({
-        format: 'DD/MM/YYYY',
+        format: 'DD/M/YYYY',
         locale: 'es-mx',
         useCurrent: false
     });
@@ -301,8 +301,25 @@ $(function () {
         var endD = new Date(compD2[2],compD2[1]-1,compD2[0]);
         picker2.val(endD.getDate()+"/"+(endD.getMonth()+1)+"/"+endD.getFullYear())
     }
-    $("#form").submit(function () {
+    $("#form").submit(function (e) {
+        e.preventDefault();
         showHoldOn();
+
+        var datas= $( this ).serialize();
+
+        $.ajax({
+            type: "POST",
+            url:   "/requirements",
+            data:  datas
+        }).done(function(data){
+            HoldOn.close();
+            console.log("EXITE");
+            customHolder("info","El Requerimiento se actualizó correctamente.");
+        }).fail(function () {
+            HoldOn.close();
+            console.log("FALLE");
+            customHolder("error","Ocurrio un error al actualizar el Requerimiento :-( .");
+        });
     });
 });
 
@@ -310,7 +327,7 @@ function showHoldOn() {
     HoldOn.open({
         theme: "sk-cube",
         content: '',
-        message: 'Procesando...',
+        message: 'Actualizando requerimiento...',
         backgroundColor: "#0c71ca",
         textColor: "white",
     });
