@@ -99,4 +99,8 @@ function camp() {
     new mdc.textField.MDCTextField(document.getElementById("tecnologia-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("prioridad-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("peticionario-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("tioDuda-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
 }
