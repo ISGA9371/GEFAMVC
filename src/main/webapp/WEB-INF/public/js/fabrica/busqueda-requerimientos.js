@@ -133,7 +133,7 @@ $(function () {
         console.log("AREAID " +id);
         $("#areaId").val(id);
 
-        $("#tipos-serv div.mdc-select__label").removeClass("mdc-select__label--float-above");
+        /*$("#tipos-serv div.mdc-select__label").removeClass("mdc-select__label--float-above");
         if(id === 1){
             $("#service-type-select").html( $("#service-types-ul").html() );
             $("#tipos-serv").removeClass("mdc-select--disabled");
@@ -142,7 +142,7 @@ $(function () {
             tiposServ.value = "";
             $("#tipos-serv").addClass("mdc-select--disabled");
             $("#service-type-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
-        }
+        }*/
         /*
         $.ajax({
             url: "/service-types/area/"+id
@@ -293,6 +293,8 @@ $(function () {
 
         $("input[type=hidden]").val("");
 
+        editReq.attr("disabled","disabled");
+
         $("#results-table tbody").html("");
     });
 
@@ -322,6 +324,7 @@ $(function () {
         if($(this).attr("href")) {
             showHoldOn();
             $("#results-table tbody").html("");
+            editReq.attr("disabled","disabled");
         }
     });
     /*
