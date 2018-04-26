@@ -154,6 +154,13 @@ $(function () {
         let multStr = parseFloat(mult, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString();
         amountSpan.attr("data-raw",mult);
         amountSpan.html(multStr);
+
+        let sum = parseFloat("0");
+        $("#selected-budgets tr td#incurrido-hrs input.incurrido-horas").each(function (index, value) {
+            sum += parseFloat($(value).val());
+        });
+        $("#acum-hours").html(sum);
+
     });
 
 
