@@ -163,6 +163,10 @@ $(function () {
 
     });
 
+    $("#search-form").submit(function (e) {
+        showHoldOn();
+    });
+
 
     $(document).on('submit','#form',function(e) {
         e.preventDefault();

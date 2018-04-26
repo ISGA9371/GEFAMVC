@@ -247,22 +247,26 @@ function addButtonEvents() {
             message: 'Eliminando Componente',
             // backgroundColor: "#004582",
             backgroundColor: "#0c71ca",
-            textColor: "white",
+            textColor: "white"
         });
-        $.ajax({
-            async: false,
-            url: "/components/" + $("#componentId").val(),
-            type: 'DELETE'
-        }).done(function(json){
-            customHolder("info","Componente Eliminado.", "document.getElementById('cancelar-btn').click()");
-        }).fail(function(xhr, status, error) {
-            customHolder("error","Ocurrio un Error al Eliminar el Componente.")
-        });
+        setTimeout("ajaxEliminar();",1000)
     });
     var btnCancel = document.getElementById('cancelar-btn');
     btnCancel.addEventListener("click", function () {
         holder("Cargando...");
         window.location.href = "/components/filters";
+    });
+}
+
+function ajaxEliminar(){
+    $.ajax({
+        async: false,
+        url: "/components/" + $("#componentId").val(),
+        type: 'DELETE'
+    }).done(function(json){
+        customHolder("info","Componente Eliminado.", "document.getElementById('cancelar-btn').click()");
+    }).fail(function(xhr, status, error) {
+        customHolder("error",xhr.responseJSON.message)
     });
 }
 
@@ -471,36 +475,20 @@ function showH() {
 }
 
 function addCalendars(){
-    $('#FecRealCFG').datetimepicker({
-        format: 'DD/MM/YYYY',
-        widgetPositioning: {
-            horizontal: 'auto',
-            vertical: 'top'
-        }
+    $('#FecRealCFG').datepicker({
+        dateFormat: "dd/mm/yy"
     });
 
-    $('#FecPreFac').datetimepicker({
-        format: 'DD/MM/YYYY',
-        widgetPositioning: {
-            horizontal: 'auto',
-            vertical: 'top'
-        }
+    $('#FecPreFac').datepicker({
+        dateFormat: "dd/mm/yy"
     });
 
-    $('#FecNegFac').datetimepicker({
-        format: 'DD/MM/YYYY',
-        widgetPositioning: {
-            horizontal: 'auto',
-            vertical: 'top'
-        }
+    $('#FecNegFac').datepicker({
+        dateFormat: "dd/mm/yy"
     });
 
-    $('#FecRealFac').datetimepicker({
-        format: 'DD/MM/YYYY',
-        widgetPositioning: {
-            horizontal: 'auto',
-            vertical: 'top'
-        }
+    $('#FecRealFac').datepicker({
+        dateFormat: "dd/mm/yy"
     });
 }
 
@@ -511,7 +499,7 @@ function holder(msg){
         message: msg,
         // backgroundColor: "#004582",
         backgroundColor: "#0c71ca",
-        textColor: "white",
+        textColor: "white"
     });
 }
 
