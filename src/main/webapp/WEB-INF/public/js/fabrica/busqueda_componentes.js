@@ -187,6 +187,36 @@ $(function () {
     newFare = parseInt(theFare) * parseInt(optionElement.data("hours"));
     $("#costFin-" + idElement).val(newFare);
   });
+
+
+  $("body").on("change", "#date1", function (event) {
+    if ( $(this).val() != "" && $("#date2").val() != "" && $("#date3").val() != "" && $("#date4").val() != "" ) {
+      $("#update-all-dates").removeAttr("disabled");
+    } else {
+      $("#update-all-dates").attr("disabled", "disabled");
+    }
+  });
+  $("body").on("change", "#date2", function (event) {
+    if ( $(this).val() != "" && $("#date1").val() != "" && $("#date3").val() != "" && $("#date4").val() != "" ) {
+      $("#update-all-dates").removeAttr("disabled");
+    } else {
+      $("#update-all-dates").attr("disabled", "disabled");
+    }
+  });
+  $("body").on("change", "#date3", function (event) {
+    if ( $(this).val() != "" && $("#date2").val() != "" && $("#date1").val() != "" && $("#date4").val() != "" ) {
+      $("#update-all-dates").removeAttr("disabled");
+    } else {
+      $("#update-all-dates").attr("disabled", "disabled");
+    }
+  });
+  $("body").on("change", "#date4", function (event) {
+    if ( $(this).val() != "" && $("#date2").val() != "" && $("#date3").val() != "" && $("#date1").val() != "" ) {
+      $("#update-all-dates").removeAttr("disabled");
+    } else {
+      $("#update-all-dates").attr("disabled", "disabled");
+    }
+  });
   
 
   direccion.listen('MDCSelect:change', () => {
