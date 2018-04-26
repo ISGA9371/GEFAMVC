@@ -32,41 +32,41 @@
     </div>
     <div class="row" id="req-data-row">
         <div class="col-md-2">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+            <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField">
                 <input th:value="${requirementData.level.levelSuperior.levelName}"
-                       class="mdc-text-field__input mdc-text-field--disabled">
+                       class="mdc-text-field__input">
                 <label class="mdc-text-field__label">Dirección</label>
             </div>
         </div>
         <div class="col-md-2">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+            <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField">
                 <input th:value="${requirementData.level.levelName}"
                        class="mdc-text-field__input mdc-text-field--disabled">
                 <label class="mdc-text-field__label">Subdirección</label>
             </div>
         </div>
         <div class="col-md-2">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+            <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField">
                 <input class="mdc-text-field__input mdc-text-field--disabled">
                 <label class="mdc-text-field__label">Subdirector</label>
             </div>
         </div>
         <div class="col-md-2">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+            <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField">
                 <input th:value="${requirementData.user.userInternalId}"
                        class="mdc-text-field__input mdc-text-field--disabled">
                 <label class="mdc-text-field__label">Responsable</label>
             </div>
         </div>
         <div class="col-md-2">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+            <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField">
                 <input th:value="${requirementData.area.areaName}"
                        class="mdc-text-field__input mdc-text-field--disabled">
-                <label class="mdc-text-field__label">Area</label>
+                <label class="mdc-text-field__label">Área</label>
             </div>
         </div>
         <div class="col-md-2">
-            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+            <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField">
                 <input th:value="${requirementData.requirementTotalHours}"
                        class="mdc-text-field__input mdc-text-field--disabled">
                 <label class="mdc-text-field__label">Horas a Incurrir</label>
@@ -75,7 +75,7 @@
     </div>
     <br>
     <br>
-    <form th:action="@{/budgets/assign/search}" th:object="${budgetSearchDTO}" method="get">
+    <form th:action="@{/budgets/assign/search}" th:object="${budgetSearchDTO}" method="get" id="search-form">
         <input th:field="*{areaId}" type="hidden" />
         <input th:field="*{bankingId}" type="hidden" />
         <input th:field="*{corporationId}" type="hidden" />
@@ -193,7 +193,7 @@
 
     <div class="row" style="margin-top: 48px; margin-bottom: 60px;">
         <div class="col-xs-12 text-center">
-            <button type="submit" class="btn btn-primary" onclick="showHoldOn();">Buscar</button>
+            <button type="submit" class="btn btn-primary">Buscar</button>
             <a class="btn btn-primary" id="cancel-search" onclick="showHoldOn();">Cancelar</a>
         </div>
     </div>

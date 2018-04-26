@@ -6,7 +6,7 @@ public class RequirementSearchDTO {
     private Integer subPrincipalId;
     private String userInternalId;
     private Integer areaId;
-    private Integer projectTypeId;
+    private Integer methodologyId;
     private Integer technologyId;
     private Integer companyId;
     private Integer serviceTypeId;
@@ -61,12 +61,12 @@ public class RequirementSearchDTO {
         this.areaId = areaId;
     }
 
-    public Integer getProjectTypeId() {
-        return projectTypeId;
+    public Integer getMethodologyId() {
+        return methodologyId;
     }
 
-    public void setProjectTypeId(Integer projectTypeId) {
-        this.projectTypeId = projectTypeId;
+    public void setMethodologyId(Integer methodologyId) {
+        this.methodologyId = methodologyId;
     }
 
     public Integer getTechnologyId() {
@@ -149,14 +149,4 @@ public class RequirementSearchDTO {
         this.programIncrementId = programIncrementId;
     }
 
-    @Override
-    public String toString() {
-        return "RequirementSearchDTO{" + "requirementName='" + requirementName + '\'' + ", principalId=" + principalId +
-                ", subPrincipalId=" + subPrincipalId + ", userInternalId='" + userInternalId + '\'' + ", areaId=" + areaId +
-                ", projectTypeId=" + projectTypeId + ", technologyId=" + technologyId + ", companyId=" + companyId +
-                ", serviceTypeId=" + serviceTypeId + ", requirementStartDate='" + requirementStartDate + '\'' +
-                ", requirementEndDate='" + requirementEndDate + '\'' + ", userManagerId='" + userManagerId + '\''
-                + ", applicationId=" + applicationId + ", channelId=" + channelId + ", programIncrementId='"
-                + programIncrementId + '\'' + '}';
-    }
 }

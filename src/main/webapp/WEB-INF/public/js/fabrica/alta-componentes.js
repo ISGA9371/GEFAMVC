@@ -1,6 +1,8 @@
 function init() {
     //showH();
     initGlobal();
+    $("#statusTypology").val(8);
+    $("#status").val(31);
     holder("Cargando");
     addCalendars();
     loadSelects();
@@ -14,8 +16,6 @@ function init() {
     addHoursValidation();
     addButtonEvents();
 
-    $("#statusTypology").val(8);
-    $("#status").val(31);
     if(!showingError){
         HoldOn.close();
     }
@@ -267,36 +267,20 @@ function showH() {
 }
 
 function addCalendars(){
-    $('#FecRealCFG').datetimepicker({
-        format: 'DD/MM/YYYY',
-        widgetPositioning: {
-            horizontal: 'auto',
-            vertical: 'top'
-        }
+    $('#FecRealCFG').datepicker({
+        dateFormat: "dd/mm/yy"
     });
 
-    $('#FecPreFac').datetimepicker({
-        format: 'DD/MM/YYYY',
-        widgetPositioning: {
-            horizontal: 'auto',
-            vertical: 'top'
-        }
+    $('#FecPreFac').datepicker({
+        dateFormat: "dd/mm/yy"
     });
 
-    $('#FecNegFac').datetimepicker({
-        format: 'DD/MM/YYYY',
-        widgetPositioning: {
-            horizontal: 'auto',
-            vertical: 'top'
-        }
+    $('#FecNegFac').datepicker({
+        dateFormat: "dd/mm/yy"
     });
 
-    $('#FecRealFac').datetimepicker({
-        format: 'DD/MM/YYYY',
-        widgetPositioning: {
-            horizontal: 'auto',
-            vertical: 'top'
-        }
+    $('#FecRealFac').datepicker({
+        dateFormat: "dd/mm/yy"
     });
 }
 

@@ -69,6 +69,26 @@ function holder(msg){
     });
 }
 
+function rojelia(){
+    var descrip = $('#descripcion2').val();
+    var descri = $('#descripcion').val();
+    var des = $('#desfijo').val();
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    var today = 'v' + yyyy + mm + dd;
+
+    $('#desfijo').val(descri + " - inicial - " + descrip + " - "+ dd+"/"+mm+"/"+yyyy);
+}
 
 
 /*demoReady(function() {

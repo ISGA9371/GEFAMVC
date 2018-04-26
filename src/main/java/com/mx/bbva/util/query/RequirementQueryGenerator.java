@@ -59,13 +59,13 @@ public class RequirementQueryGenerator {
         items.put("subPrincipalId", Arrays.asList("x.level.levelId", EQUALS));
         items.put("companyId", Arrays.asList("x.company.companyId", EQUALS));
         items.put("technologyId", Arrays.asList("x.technology.technologyId", EQUALS));
-        items.put("userInternalId", Arrays.asList("x.user.userInternalId", LIKE));
-        items.put("userManagerId", Arrays.asList("x.userManager.userInternalId", LIKE));
+        items.put("userInternalId", Arrays.asList("x.user.userInternalId", EQUALS));
+        items.put("userManagerId", Arrays.asList("x.userManager.userInternalId", EQUALS));
         items.put("areaId", Arrays.asList("x.area.areaId", EQUALS));
         items.put("programIncrementId", Arrays.asList("x.programIncrement.programIncrementId", EQUALS));
         items.put("channelId", Arrays.asList("x.channel.channelId", EQUALS));
         items.put("applicationId", Arrays.asList("x.application.applicationId", EQUALS));
-        items.put("projectId", Arrays.asList("x.project.projectId", EQUALS));
         items.put("serviceTypeId", Arrays.asList("x.serviceType.serviceTypeId", EQUALS));
+        items.put("methodologyId", Arrays.asList("x.project.methodology.methodologyId", EQUALS));
     }
 }
