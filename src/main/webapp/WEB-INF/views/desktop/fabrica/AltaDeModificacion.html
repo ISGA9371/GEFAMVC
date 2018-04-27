@@ -245,7 +245,8 @@
                   </tr>
                   <tr>
                     <td class="col-md-4" align="center">
-                        <div id="modvuelo-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                        <input id="hidden-vuelo" type="hidden" value="" name="modificationVuelo" th:field="*{modificationOnTrack}" style="background-color:#F4F4F4; width:90%">
+                            <div id="modvuelo-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                                 <div class="mdc-select__label">Modificación en Vuelo</div>
                                 <div class="mdc-select__selected-text"></div>
@@ -313,9 +314,6 @@
 <script>mdc.autoInit();
 init();
 </script>
-
-
-
 
 
 </html>
