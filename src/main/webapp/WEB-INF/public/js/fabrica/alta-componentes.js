@@ -130,8 +130,7 @@ function ajaxGuardar() {
         type: 'post',
         data: formData
     }).done(function (data) {
-        okData = data;
-        customHolder("info", "Componente Dado de Alta Exitosamente.","window.location.href = '/components/" + $("#componentId").val() + "'; holder('Cargando...')");
+        customHolder("info", "Componente Dado de Alta Exitosamente.","window.location.href = '/components/" + $(data).find("#componentId").val() + "'; holder('Cargando...')");
         //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
     }).fail(function (xhr, status, error) {
         customHolder("error", xhr.responseJSON.message)
