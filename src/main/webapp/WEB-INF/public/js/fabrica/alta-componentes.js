@@ -100,11 +100,42 @@ function addHoursValidation() {
 }
 
 function addButtonEvents() {
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+        HoldOn.open({
+            theme: "sk-cube",
+            content: '',
+            message: 'Actualizando Componente',
+            // backgroundColor: "#004582",
+            backgroundColor: "#0c71ca",
+            textColor: "white"
+        });
+        setTimeout("ajaxGuardar();", 500)
+    });
     var btnCancel = document.getElementById('cancelar-btn');
     btnCancel.addEventListener("click", function () {
         holder("Cargando...");
         window.location.href = "/requirements/"+$("#requirement").val();
     })
+}
+
+function ajaxGuardar() {
+    var $form = $("form");
+    var url = $form.attr("action");
+    var formData = $($form).serializeArray();
+
+    $.ajax({
+        async: false,
+        url: url,
+        type: 'post',
+        data: formData
+    }).done(function (data) {
+        okData = data;
+        customHolder("info", "Componente Dado de Alta Exitosamente.","window.location.href = '/components/" + $("#componentId").val() + "'; holder('Cargando...')");
+        //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
+    }).fail(function (xhr, status, error) {
+        customHolder("error", xhr.responseJSON.message)
+    });
 }
 
 function addSelectEvents() {
@@ -323,3 +354,4 @@ Number.prototype.formatMoney = function(c, d, t){
 };
 
 var showingError = false;
+var okData = null;
