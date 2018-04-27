@@ -88,6 +88,8 @@
             <input id="hidden-componente" type="hidden"  th:value="${doubt.component.componentId}">
             <input id="hidden-envcomponente" type="hidden" required th:field="*{component.componentId}" >
             <input id="doubtVersion" type="hidden" required th:field="*{doubtVersion}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+            <input id="doubtId" type="hidden" required th:field="*{doubtId}" >
+            <input id="doubtUploadDate" type="hidden" required th:field="*{doubtUploadDate}" >
 
             <div >
                 <div class="row">
@@ -98,21 +100,21 @@
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
                             <input id="hidden-prioridad" type="text" value="" required th:field="*{priority.priorityId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                            <div id="tipologia-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <div id="prioridad-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                                 <input disabled="disabled" th:field="*{priority.priorityName}"  type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tipologia">
                                 <label for="demo-input" class="mdc-text-field__label">Prioridad</label>
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
                             <input id="hidden-responsable" type="text"   value="" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{userSender.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                            <div id="tipologia-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <div id="peticionario-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                                 <input disabled="disabled" th:field="*{userSender.userInternalId}"  type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tipologia">
                                 <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
                             <input id="hidden-dudaSelect" type="text" value="" required th:field="*{doubtType.doubtTypeId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                            <div id="tipologia-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <div id="tioDuda-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                                 <input disabled="disabled" th:field="*{doubtType.doubtTypeName}"  type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tipologia">
                                 <label for="demo-input" class="mdc-text-field__label">Tipo de Duda</label>
                             </div>
@@ -156,7 +158,7 @@
                 <table class="col-md-12" >
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
-                            <div  id="descripcion-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
+                            <div  id="descripcionedit-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
                                 <input type="text" maxlength="220" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required onchange="rojelia()" class="mdc-text-field__input" id="descripcion2">
                                 <label for="demo-input" class="mdc-text-field__label">Descripción agregar user</label>
                             </div>

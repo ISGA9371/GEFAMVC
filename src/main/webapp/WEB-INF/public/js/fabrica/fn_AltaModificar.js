@@ -20,7 +20,7 @@ function crearCombos() {
     mdc.select.MDCSelect.attachTo(document.getElementById('origen-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('modvuelo-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('moddyd-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
+    //mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
 }
 
 function asignarCombos (){
@@ -39,28 +39,35 @@ function asignarCombos (){
 
 function addCalendars() {
 
-    type="text/javascript">
+    $('#fechaNeg').datepicker({dateFormat: "dd/mm/yy"});
+    $('#fechaReal').datepicker({dateFormat: "dd/mm/yy"});
+    $('#fechaEnvio').datepicker({dateFormat: "dd/mm/yy"});
+    var fechaNeg = new mdc.textField.MDCTextField(document.querySelector('#mdc-fechaNeg'));
+    var fechaReal = new mdc.textField.MDCTextField(document.querySelector('#mdc-fechaReal'));
+    var fechaEnvio = new mdc.textField.MDCTextField(document.querySelector('#mdc-fechaEnvio'));
 
-        /**
-         * datepicker
-         * dateFormat: "dd-mm-yy"
-         */
-
-
-    $('#componentPreviewDeliverDate').datepicker({
-        dateFormat: "dd/mm/yy"
+    $("#fechaNeg").change(function () {
+        if ("" != fechaNeg.value) {
+            $("#mdc-fechaNeg > label").addClass("mdc-text-field__label--float-above");
+        } else {
+            $("#mdc-fechaNeg > label").removeClass("mdc-text-field__label--float-above");
+        }
+    });
+    $("#fechaReal").change(function () {
+        if ("" != fechaReal.value) {
+            $("#mdc-fechaReal > label").addClass("mdc-text-field__label--float-above");
+        } else {
+            $("#mdc-fechaReal > label").removeClass("mdc-text-field__label--float-above");
+        }
     });
 
-    $('#componentPossibleDeliverDate').datepicker({
-        dateFormat: "dd/mm/yy"
+    $("#fechaEnvio").change(function () {
+        if ("" != fechaEnvio.value) {
+            $("#mdc-fechaEnvio > label").addClass("mdc-text-field__label--float-above");
+        } else {
+            $("#mdc-fechaEnvio > label").removeClass("mdc-text-field__label--float-above");
+        }
     });
-
-    $('#componentRealDeliverDate').datepicker({
-        dateFormat: "dd/mm/yy"
-    });
-
-    var numberMonths = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
-
 
 }
 
@@ -79,6 +86,9 @@ function addMissing() {
     $("#hidden-status").val($("#hidden-modificationStatus").val());
 
     $("#hidden-userre").val("XMY3080");
+
+    $("#responsabletxt").val("XMY3080");
+    $("#hidden-responsable").val("XMY3080");
 
 
 }

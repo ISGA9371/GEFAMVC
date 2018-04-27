@@ -101,11 +101,10 @@
     <table class="col-md-12" >
         <tr style="height:72px">
             <td class="col-md-4" align="center">
-                <div class="dog1">
-                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker4' />
-                        <label for="demo-input" class="mdc-text-field__label">Fecha de Traspaso</label>
-                    </div>
+
+                <div id="mdc-fechaNeg" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                    <input type='text' class="mdc-text-field__input" row="2" name="fechaNeg" id="fechaNeg" />
+                    <label class="mdc-text-field__label mdc-text-field__label--float-above">Fecha de Traspaso</label>
                 </div>
             </td>
             <td class="col-md-4" align="center">
@@ -438,4 +437,11 @@
 </script>
 <!--Footer que debe ir en todas las ventanas-->
 <div th:replace="layout/footer :: FooterPrincipal"></div>
+<script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
+<script type="text/javascript" th:src="@{/js/presupuesto/AltaDispersion.js}"></script>
+
+
+<script>mdc.autoInit();
+init();
+</script>
 </html>

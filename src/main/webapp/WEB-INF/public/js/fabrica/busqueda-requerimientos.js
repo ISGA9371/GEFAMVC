@@ -1,59 +1,80 @@
 $(function () {
 
-    /**
-     * datepicker
-     * dateFormat: "dd-mm-yy"
-     */
-
-    $('#datetimepicker4').datepicker({
-        dateFormat: 'dd/mm/yy'
+    var datepicker1 = $('#datepicker1');
+    datepicker1.datepicker({
+        dateFormat: 'd/m/yy'
     });
 
-    $('#datetimepicker5').datepicker({
-        dateFormat: 'dd/mm/yy'
+    var datepicker2 = $('#datepicker2');
+    datepicker2.datepicker({
+        dateFormat: 'd/m/yy'
     });
 
-
-    $("#datetimepicker4").change(function () {
+    datepicker1.change(function () {
         console.log("CAMBIO FECHA 1");
-        if ($('#datetimepicker4').val() !== "") {
-            $("#datetimepicker4").parent().find("label").addClass("mdc-text-field__label--float-above");
-            $("input[id=requirementStartDate]").val("coso");
+        if (datepicker1.val() !== "") {
+            datepicker1.parent().find("label").addClass("mdc-text-field__label--float-above");
+            $("input[id=requirementStartDate]").val(datepicker1.val());
         } else {
-            $("#datetimepicker4").parent().find("label").removeClass("mdc-text-field__label--float-above");
+            datepicker1.parent().find("label").removeClass("mdc-text-field__label--float-above");
         }
     });
 
-    $("#datetimepicker5").change(function () {
+    datepicker2.change(function () {
         console.log("CAMBIO FECHA 2");
-        if ($('#datetimepicker5').val() !== "") {
-            $("#datetimepicker5").parent().find("label").addClass("mdc-text-field__label--float-above");
-            $("input[id=requirementEndDate]").val("coso");
+        if (datepicker2.val() !== "") {
+            datepicker2.parent().find("label").addClass("mdc-text-field__label--float-above");
+            $("input[id=requirementEndDate]").val(datepicker2.val());
         } else {
-            $("#datetimepicker5").parent().find("label").removeClass("mdc-text-field__label--float-above");
+            datepicker2.parent().find("label").removeClass("mdc-text-field__label--float-above");
         }
     });
 
-    /*
-    $("#datetimepicker4").on("dp.change", function (e) {
-        var date = e.date;
-        var dateStr = date.date() + "/" + (date.month() + 1) + '/' + date.year();
-        $("input[id=requirementStartDate]").val(dateStr);
-    });
-
-    $("#datetimepicker5").on("dp.change", function (e) {
-        var date = e.date;
-        var dateStr = date.date() + "/" + (date.month() + 1) + '/' + date.year();
-        $("input[id=requirementEndDate]").val(dateStr);
-    });
-    */
-
-    const select = new mdc.select.MDCSelect(document.querySelector('#dirs'));
+    const direc = new mdc.select.MDCSelect(document.querySelector('#dirs'));
     const subdirs = new mdc.select.MDCSelect(document.querySelector('#subdirs'));
+    if($("#dirs li[aria-selected]").length > 0) {
+        $("#dirs div.mdc-select__label").addClass("mdc-select__label--float-above");
+
+        var principalId = $("#principalId").val();
+        var subPrincipalId = $("#subPrincipalId").val();
+        console.log("SUBPID "+subPrincipalId);
+        $.ajax({
+            url: "/api/levels/"+principalId+"/sub-levels"
+        }).done(function(data) {
+            let subs = data.data;
+            $("#subdir-sel-text").html("");
+            subdirs.selectedIndex = -1;
+            subdirs.value = "";
+            if (typeof subs !== 'undefined' && subs.length > 0) {
+                $("#subdir-select").html("");
+                var subPrincipalEL = $("#subdirs");
+                $.each(subs, function( index, value ) {
+                    let aria = value.levelId == subPrincipalId ? ' aria-selected' : '';
+                    $("#subdir-select").append(
+                        "<li class='mdc-list-item' role='option' tabindex='0' " +  aria +
+                        " value='"+value.levelId+"'>"+value.levelName+"</li>");
+                });
+                if(subPrincipalId !== ''){
+                    $("#subdirs").removeClass("mdc-select--disabled");
+                    $("#subdirs div.mdc-select__label").addClass("mdc-select__label--float-above");
+
+                    mdc.select.MDCSelect.attachTo(document.getElementById('subdirs'));
+                    subdirs.selectedIndex = subPrincipalEL.find("ul li[value="+ subPrincipalId +"]").index();
+                    subdirs.value = subPrincipalEL.find("ul li[value="+subPrincipalId+"]").html();
+                }
+            }else {
+                mdc.select.MDCSelect.attachTo(document.getElementById('subdirs'));
+                $("#subdir-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+            }
+        });
+    }else{
+        mdc.select.MDCSelect.attachTo(document.getElementById('subdirs'));
+    }
+
     let coso = parseInt("0");
-    select.listen('MDCSelect:change', () => {
+    direc.listen('MDCSelect:change', () => {
         if (coso++ === 0) return; else coso = 0;
-        let id = select.selectedOptions[0].value;
+        let id = direc.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         $("#principalId").val(id);
         console.log("PRINCIPALID" +id);
@@ -83,6 +104,9 @@ $(function () {
 
         });
     });
+
+
+
     let index2 = parseInt("0");
     subdirs.listen('MDCSelect:change', () => {
         if (index2++ === 0) return; else index2 = 0;
@@ -100,16 +124,28 @@ $(function () {
         let resps = data.data;
         responsables.selectedIndex = -1;
         responsables.value = "";
+        var responsibleEL = $("#responsables");
+        var responsibleId = $("#userInternalId").val();
         if (typeof resps !== 'undefined' && resps.length > 0) {
             $("#responsables-ul").html("");
             $.each(resps, function( index, value ) {
                 if(value.profileType.profileTypeId === 7){
+                    let aria = value.userInternalId === responsibleId ? 'aria-selected ' : '';
                     $("#responsables-ul").append(
-                        "<li class='mdc-list-item' role='option' tabindex='0' " +
-                        "id='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
+                        "<li class='mdc-list-item' role='option' tabindex='0' " + aria+
+                        " id='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
                 }
             });
-        }else $("#responsables-ul").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+            mdc.select.MDCSelect.attachTo(document.getElementById('responsables'));
+            if(responsibleId !== ''){
+                $("#responsables div.mdc-select__label").addClass("mdc-select__label--float-above");
+                responsables.selectedIndex = responsibleEL.find("ul li[id="+ responsibleId +"]").index();
+                responsables.value = responsibleEL.find("ul li[id="+responsibleId+"]").html();
+            }
+        }else {
+            mdc.select.MDCSelect.attachTo(document.getElementById('responsables'));
+            $("#responsables-ul").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+        }
     });
 
     responsables.listen('MDCSelect:change', () => {
@@ -128,16 +164,28 @@ $(function () {
         let gests = data.data;
         gestores.selectedIndex = -1;
         gestores.value = "";
+        var gestorEL = $("#gestores");
+        var gestorId = $("#userManagerId").val();
         if (typeof gests !== 'undefined' && gests.length > 0) {
             $("#gestores-ul").html("");
             $.each(gests, function( index, value ) {
                 if(value.profileType.profileTypeId === 1 || value.profileType.profileTypeId === 2){
+                    let aria = value.userInternalId === gestorId ? 'aria-selected ' : '';
                     $("#gestores-ul").append(
-                        "<li class='mdc-list-item' role='option' tabindex='0' " +
-                        "value='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
+                        "<li class='mdc-list-item' role='option' tabindex='0' " + aria+
+                        " id='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
                 }
             });
-        }else $("#gestores-ul").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+            mdc.select.MDCSelect.attachTo(document.getElementById('gestores'));
+            if(gestorId !== ''){
+                $("#gestores div.mdc-select__label").addClass("mdc-select__label--float-above");
+                gestores.selectedIndex = gestorEL.find("ul li[id="+ gestorId +"]").index();
+                gestores.value = gestorEL.find("ul li[id="+gestorId+"]").html();
+            }
+        }else{
+            mdc.select.MDCSelect.attachTo(document.getElementById('gestores'));
+            $("#gestores-ul").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+        }
     });
     gestores.listen('MDCSelect:change', () => {
         if (index4++ === 0) return; else index4 = 0;
@@ -149,7 +197,12 @@ $(function () {
 
     const areas = new mdc.select.MDCSelect(document.querySelector('#areas'));
     const tiposServ = new mdc.select.MDCSelect(document.querySelector('#tipos-serv'));
+
+    if($("#areas li[aria-selected]").length > 0)
+        $("#areas div.mdc-select__label").addClass("mdc-select__label--float-above");
+
     let index5 = parseInt("0");
+
     areas.listen('MDCSelect:change', () => {
         if (index5++ === 0) return; else index5 = 0;
         let id = areas.selectedOptions[0].value;
@@ -194,6 +247,8 @@ $(function () {
     });
 
     const tiposProy = new mdc.select.MDCSelect(document.querySelector('#tipos-proy'));
+    if($("#tipos-proy li[aria-selected]").length > 0)
+        $("#tipos-proy div.mdc-select__label").addClass("mdc-select__label--float-above");
     let index6 = parseInt("0");
     tiposProy.listen('MDCSelect:change', () => {
         if (index6++ === 0) return; else index6 = 0;
@@ -204,6 +259,8 @@ $(function () {
     });
 
     const techs = new mdc.select.MDCSelect(document.querySelector('#techs'));
+    if($("#techs li[aria-selected]").length > 0)
+        $("#techs div.mdc-select__label").addClass("mdc-select__label--float-above");
     let index7 = parseInt("0");
     techs.listen('MDCSelect:change', () => {
         if (index7++ === 0) return; else index7 = 0;
@@ -235,6 +292,8 @@ $(function () {
     });
 
     const empresas = new mdc.select.MDCSelect(document.querySelector('#empresas'));
+    if($("#empresas li[aria-selected]").length > 0)
+        $("#empresas div.mdc-select__label").addClass("mdc-select__label--float-above");
     let index8 = parseInt("0");
     empresas.listen('MDCSelect:change', () => {
         if (index8++ === 0) return; else index8 = 0;
@@ -245,15 +304,19 @@ $(function () {
     });
 
     let index9 = parseInt("0");
+    if($("#tipos-serv li[aria-selected]").length > 0)
+        $("#tipos-serv div.mdc-select__label").addClass("mdc-select__label--float-above");
     tiposServ.listen('MDCSelect:change', () => {
         if (index9++ === 0) return; else index9 = 0;
         let id = tiposServ.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         console.log("TIPOSERVID " +id);
-        $("#tipos-serv").val(id);
+        $("#serviceTypeId").val(id);
     });
 
     const app = new mdc.select.MDCSelect(document.querySelector('#aplicacion'));
+    if($("#aplicacion li[aria-selected]").length > 0)
+        $("#aplicacion div.mdc-select__label").addClass("mdc-select__label--float-above");
     let index10 = parseInt("0");
     app.listen('MDCSelect:change', () => {
         if (index10++ === 0) return; else index10 = 0;
@@ -264,6 +327,8 @@ $(function () {
     });
 
     const canal = new mdc.select.MDCSelect(document.querySelector('#canal'));
+    if($("#canal li[aria-selected]").length > 0)
+        $("#canal div.mdc-select__label").addClass("mdc-select__label--float-above");
     let index11 = parseInt("0");
     canal.listen('MDCSelect:change', () => {
         if (index11++ === 0) return; else index11 = 0;
@@ -274,6 +339,8 @@ $(function () {
     });
 
     const pi = new mdc.select.MDCSelect(document.querySelector('#pi'));
+    if($("#pi li[aria-selected]").length > 0)
+        $("#pi div.mdc-select__label").addClass("mdc-select__label--float-above");
     let index12 = parseInt("0");
     pi.listen('MDCSelect:change', () => {
         if (index12++ === 0) return; else index12 = 0;
@@ -282,6 +349,20 @@ $(function () {
         console.log("PIID " +id);
         $("#programIncrementId").val(id);
     });
+
+    //SETDATES
+    if($("#requirementStartDate").val()){
+        var compD1 = $("#requirementStartDate").val().split('/');
+        var startD = new Date(compD1[2],compD1[1]-1,compD1[0]);
+        datepicker1.parent().find("label").addClass("mdc-text-field__label--float-above");
+        datepicker1.val(startD.getDate()+"/"+(startD.getMonth()+1)+"/"+startD.getFullYear());
+    }
+    if($("#requirementEndDate").val()){
+        var compD2 = $("#requirementEndDate").val().split('/');
+        var endD = new Date(compD2[2],compD2[1]-1,compD2[0]);
+        datepicker2.parent().find("label").addClass("mdc-text-field__label--float-above");
+        datepicker2.val(endD.getDate()+"/"+(endD.getMonth()+1)+"/"+endD.getFullYear())
+    }
 
     $('#clear-form').click(function() {
         $("#find")[0].reset();
