@@ -4,10 +4,21 @@
 function init(){
 
     initGlobal();
-    crearCombos();
     asignarCombos();
     desHabilitarDep();
     calendar();
+    addButtonEvents();
+    assigMiss();
+
+}
+
+function assigMiss(){
+
+    //Estado Activo
+    $("#hidden-estado").val("28");
+    //Facturado NO
+    $("#hidden-facturado").val("0");
+
 
 }
 
@@ -16,44 +27,8 @@ function calendar(){
     $('#fecPropInic').datepicker({dateFormat: "dd/mm/yy"});
     $('#fecPropFin').datepicker({dateFormat: "dd/mm/yy"});
 
-    $("#fecPropInic").change(function () {
-        if ("" != fecPropInic.value) {
-            $("#mdc-group-fecPropInic > label").addClass("mdc-text-field__label--float-above");
-        } else {
-            $("#mdc-group-fecPropInic > label").removeClass("mdc-text-field__label--float-above");
-        }
-    });
-
-    $("#fecPropFin").change(function () {
-        if ("" != fecPropFin.value) {
-            $("#mdc-group-fecPropFin > label").addClass("mdc-text-field__label--float-above");
-        } else {
-            $("#mdc-group-fecPropFin > label").removeClass("mdc-text-field__label--float-above");
-        }
-    });
-
 }
 
-
-function crearCombos(){
-
-    //mdc.select.MDCSelect.attachTo(document.getElementById('direccion-js-select'));
-    //mdc.select.MDCSelect.attachTo(document.getElementById('subdireccion-js-select'));
-    //mdc.select.MDCSelect.attachTo(document.getElementById('area-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('tecnologia-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('tipoProyecto-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('aplicacion-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('canal-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('empresa-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('servicio-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('pi-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('proy-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('estado-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('facturado-js-select'));
-    //mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
-    //mdc.select.MDCSelect.attachTo(document.getElementById('gestor-js-select'));
-
-}
 
 function asignarCombos(){
 
@@ -68,6 +43,106 @@ function asignarCombos(){
             $hiddenInput.val(selectObj.value);
         });
     });
+
+    //cmb direction
+    const directions = new mdc.select.MDCSelect(document.querySelector('#dirs'));
+    $.ajax({
+        url: "/api/levels"
+    }).done(function(data) {
+
+        let subs = data.data;
+
+        $("#dir-dir-text").html("");
+        directions.selectedIndex = -1;
+        directions.value = "";
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#dir-select").html("");
+            $.each(subs, function( index, value ) {
+
+                  $("#dir-select").append(
+                      "<li class='mdc-list-item' role='option' tabindex='0' " +
+                        "value='"+value.levelId+"'>"+value.levelName+"</li>");
+
+            });
+        }else $("#dir-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+
+    });
+
+    //cmb area
+    const areas = new mdc.select.MDCSelect(document.querySelector('#area-js-select'));
+
+    $.ajax({
+        url: "/api/areas"
+    }).done(function(data) {
+
+        let subs = data.data;
+
+        $("#area-area-text").html("");
+        areas.selectedIndex = -1;
+        areas.value = "";
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#area-select").html("");
+            $.each(subs, function( index, value ) {
+
+                $("#area-select").append(
+                    "<li class='mdc-list-item' role='option' tabindex='0' " +
+                    "value='"+value.areaId+"'>"+value.areaName+"</li>");
+
+            });
+        }else $("#area-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+
+    });
+
+    //cmb technology
+    const tecno = new mdc.select.MDCSelect(document.querySelector('#tecnologia-js-select'));
+
+    $.ajax({
+        url: "/api/technologies"
+    }).done(function(data) {
+
+        let subs = data.data;
+
+        $("#tecno-tecno-text").html("");
+        tecno.selectedIndex = -1;
+        tecno.value = "";
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#tecno-select").html("");
+            $.each(subs, function( index, value ) {
+
+                $("#tecno-select").append(
+                    "<li class='mdc-list-item' role='option' tabindex='0' " +
+                    "value='"+value.technologyId+"'>"+value.technologyName+"</li>");
+
+            });
+        }else $("#tecno-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+
+    });
+
+    //cmb channel
+    const canal = new mdc.select.MDCSelect(document.querySelector('#canal-js-select'));
+
+    $.ajax({
+        url: "/api/channels"
+    }).done(function(data) {
+
+        let subs = data.data;
+
+        $("#channel-channel-text").html("");
+        canal.selectedIndex = -1;
+        canal.value = "";
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#channel-select").html("");
+            $.each(subs, function( index, value ) {
+
+                $("#channel-select").append(
+                    "<li class='mdc-list-item' role='option' tabindex='0' " +
+                    "value='"+value.channelId+"'>"+value.channelName+"</li>");
+
+            });
+        }else $("#channel-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+
+    });
+
 
     //function direction and subdirection
     const select = new mdc.select.MDCSelect(document.querySelector('#dirs'));
@@ -152,15 +227,16 @@ function asignarCombos(){
     //select userinternalarea
     const areaG = new mdc.select.MDCSelect(document.querySelector('#area-js-select'));
     const userG = new mdc.select.MDCSelect(document.querySelector('#gestor-js-select'));
-    let valuesS = parseInt("0");
+    let cosoS = 0;
     areaG.listen('MDCSelect:change', () => {
-        if (valuesS!= 0) return; else valuesS = 1;
-    let id = areaG.selectedOptions[0].id;
+        if (cosoS!= 0) return; else cosoS = 1;
+    let id = areaG.selectedOptions[0].value;
     //SET HIDDEN FIELD VALUE
-    $("#hidden-direccion").val(id);
-    //clean userG
+    $("#hidden-area").val(id);
+    //clean subdir
     $("#hidden-gestor").val("");
-    //console.log("Seleccion"+id);
+    //console.log("seleccion "+ id);
+    //console.log("hidden"+ $("#hidden-direccion").val());
 
     new mdc.select.MDCSelect(document.getElementById('gestor-js-select')).disabled = false;
 
@@ -185,20 +261,11 @@ function asignarCombos(){
 
             });
         }else $("#usersG-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
-        valuesS=0;
+        cosoS=0;
     });
     });
 
 
-
-}
-
-function funcionCancelar(){
-
-    holder("Cargando...");
-
-    //Lleva a la ventana principal
-    window.location="/requirements/filters";
 
 }
 
@@ -224,5 +291,75 @@ function holder(msg){
         // backgroundColor: "#004582",
         backgroundColor: "#0c71ca",
         textColor: "white",
+    });
+}
+
+function addButtonEvents() {
+    //Actions for save requirements
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+        HoldOn.open({
+            theme: "sk-cube",
+            content: '',
+            message: 'Registrando Requerimiento',
+            // backgroundColor: "#004582",
+            backgroundColor: "#0c71ca",
+            textColor: "white"
+        });
+        setTimeout("ajaxGuardar();", 500)
+    });
+
+    //Actions for cancel requirements
+    var btnCancel = document.getElementById('cancelar-btn');
+    btnCancel.addEventListener("click", function () {
+        holder("Cargando...");
+        window.location.href = "/requirements/filters";
+    })
+}
+
+function ajaxGuardar() {
+    var $form = $("form");
+    var url = $form.attr("action");
+    var formData = $($form).serializeArray();
+
+    $.ajax({
+        async: false,
+        url: url,
+        type: 'post',
+        data: formData
+    }).done(function (data) {
+        customHolder("info", "Requerimiento Dado de Alta Exitosamente.","window.location.href = '/requirements/" + $(data).find("#requirementId").val() + "'; holder('Cargando...')");
+        //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
+    }).fail(function (xhr, status, error) {
+        console.log("fail");
+        customHolder("error", xhr.responseJSON.message)
+    });
+}
+
+function customHolder(type, msg, fctn) {
+    var options = null;
+    fctn = fctn == undefined ? "" : fctn;
+    switch(type){
+        case "Error":
+        case "ERROR":
+        case "error":
+            options = msgAssets.error;
+            break;
+        case "Aviso":
+        case "AVISO":
+        case "aviso":
+            options = msgAssets.warn;
+            break;
+        default:
+            options = msgAssets.info;
+    }
+    msg = msg == undefined ? options.defaultMsg : msg;
+    HoldOn.open({
+        theme: "custom",
+        // If theme == "custom" , the content option will be available to customize the logo
+        content: '<img style="height: 57px; margin-left: -5px;" src="data:image/png;base64,' + options.icon + '" >',
+        message: "<br>" + msg +'<br><br><input type="button" value="Aceptar" class="btn btn-default" onclick="HoldOn.close();'+fctn+'">',
+        backgroundColor: "#0c71ca",
+        textColor: "white"
     });
 }
