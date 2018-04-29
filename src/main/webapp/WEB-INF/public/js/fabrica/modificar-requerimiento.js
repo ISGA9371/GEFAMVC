@@ -1,32 +1,34 @@
 $(function () {
 
-    var picker1 = $("#datetimepicker1");
-    var picker2 = $("#datetimepicker2");
-
-    picker1.datetimepicker({
-        format: 'DD/M/YYYY',
-        locale: 'es-mx',
-        useCurrent: false
+    var datepicker1 = $('#datepicker1');
+    datepicker1.datepicker({
+        dateFormat: 'd/m/yy'
     });
 
-    picker2.datetimepicker({
-        format: 'DD/M/YYYY',
-        locale: 'es-mx',
-        useCurrent: false
+    var datepicker2 = $('#datepicker2');
+    datepicker2.datepicker({
+        dateFormat: 'd/m/yy'
     });
 
-    picker1.on("dp.change", function (e) {
-        var date = e.date;
-        var dateStr = date.date() + "/" + (date.month() + 1) + '/' + date.year();
-        $("input[id=requirementStartDate]").val(dateStr);
+    datepicker1.change(function () {
+        console.log("CAMBIO FECHA 1");
+        if (datepicker1.val() !== "") {
+            datepicker1.parent().find("label").addClass("mdc-text-field__label--float-above");
+            $("input[id=requirementStartDate]").val(datepicker1.val());
+        } else {
+            datepicker1.parent().find("label").removeClass("mdc-text-field__label--float-above");
+        }
     });
 
-    picker2.on("dp.change", function (e) {
-        var date = e.date;
-        var dateStr = date.date() + "/" + (date.month() + 1) + '/' + date.year();
-        $("input[id=requirementEndDate]").val(dateStr);
+    datepicker2.change(function () {
+        console.log("CAMBIO FECHA 2");
+        if (datepicker2.val() !== "") {
+            datepicker2.parent().find("label").addClass("mdc-text-field__label--float-above");
+            $("input[id=requirementEndDate]").val(datepicker2.val());
+        } else {
+            datepicker2.parent().find("label").removeClass("mdc-text-field__label--float-above");
+        }
     });
-
 
     const principal = new mdc.select.MDCSelect(document.querySelector('#principal'));
     var principalId = $("#level\\.levelSuperior\\.levelId").val();
@@ -77,7 +79,11 @@ $(function () {
     //LOADING SUBDIRECCIONES CUANDO DIRECCION CMABIA
     let coso = parseInt("0");
     principal.listen('MDCSelect:change', () => {
-    var subPrincipal = new mdc.select.MDCSelect(document.querySelector('#subprincipal'));
+
+        //LIMPIAR LA SUBDIRECCIÓN!
+        $("#level\\.levelId").val("");
+
+        var subPrincipal = new mdc.select.MDCSelect(document.querySelector('#subprincipal'));
         if (coso++ === 0) return; else coso = 0;
         subPrincipal.disabled = true;
         let id = principal.selectedOptions[0].value;
@@ -283,23 +289,16 @@ $(function () {
         $("#requirementBilled").val(id);
     });
 
-    //TODO Al enviar objeto, poner a null el level.levelSuperior.levelId ?
-    /*$('#form').submit(function() {
-        $("#level\\.levelSuperior\\.levelId").val(null);
-        return true;
-    });*/
-
     //SET DATES
-
     if($("#requirementStartDate").val()){
         var compD1 = $("#requirementStartDate").val().split('/');
         var startD = new Date(compD1[2],compD1[1]-1,compD1[0]);
-        picker1.val(startD.getDate()+"/"+(startD.getMonth()+1)+"/"+startD.getFullYear());
+        datepicker1.val(startD.getDate()+"/"+(startD.getMonth()+1)+"/"+startD.getFullYear());
     }
     if($("#requirementEndDate").val()){
         var compD2 = $("#requirementEndDate").val().split('/');
         var endD = new Date(compD2[2],compD2[1]-1,compD2[0]);
-        picker2.val(endD.getDate()+"/"+(endD.getMonth()+1)+"/"+endD.getFullYear())
+        datepicker2.val(endD.getDate()+"/"+(endD.getMonth()+1)+"/"+endD.getFullYear())
     }
     $("#form").submit(function (e) {
         e.preventDefault();
@@ -320,6 +319,11 @@ $(function () {
             console.log("FALLE");
             customHolder("error","Ocurrio un error al actualizar el Requerimiento :-( .");
         });
+    });
+
+    //HACK HOURS
+    $(document).on("input","#requirementHour",function () {
+        //this.value = parseFloat(this.value).toFixed(2);
     });
 });
 
