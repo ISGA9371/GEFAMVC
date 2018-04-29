@@ -41,6 +41,7 @@ function asignarCombos(){
 
         rootSelect.addEventListener('MDCSelect:change', function () {
             $hiddenInput.val(selectObj.value);
+
         });
     });
 
@@ -61,7 +62,7 @@ function asignarCombos(){
 
                   $("#dir-select").append(
                       "<li class='mdc-list-item' role='option' tabindex='0' " +
-                        "value='"+value.levelId+"'>"+value.levelName+"</li>");
+                        "id='"+value.levelId+"' value='"+value.levelId+"'>"+value.levelName+"</li>");
 
             });
         }else $("#dir-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
@@ -86,7 +87,7 @@ function asignarCombos(){
 
                 $("#area-select").append(
                     "<li class='mdc-list-item' role='option' tabindex='0' " +
-                    "value='"+value.areaId+"'>"+value.areaName+"</li>");
+                    "id='"+value.areaId+"' value='"+value.areaId+"'>"+value.areaName+"</li>");
 
             });
         }else $("#area-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
@@ -111,7 +112,8 @@ function asignarCombos(){
 
                 $("#tecno-select").append(
                     "<li class='mdc-list-item' role='option' tabindex='0' " +
-                    "value='"+value.technologyId+"'>"+value.technologyName+"</li>");
+                    "id='"+value.technologyId+"' value='"+value.technologyId+"'>"+value.technologyName+"</li>");
+
 
             });
         }else $("#tecno-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
@@ -136,7 +138,7 @@ function asignarCombos(){
 
                 $("#channel-select").append(
                     "<li class='mdc-list-item' role='option' tabindex='0' " +
-                    "value='"+value.channelId+"'>"+value.channelName+"</li>");
+                    "id='"+value.channelId+"' value='"+value.channelId+"'>"+value.channelName+"</li>");
 
             });
         }else $("#channel-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
@@ -155,7 +157,7 @@ function asignarCombos(){
     $("#hidden-direccion").val(id);
     //clean subdir
     $("#hidden-subdireccion").val("");
-    //console.log("seleccion "+ id);
+    console.log("seleccion "+ id);
     //console.log("hidden"+ $("#hidden-direccion").val());
 
     new mdc.select.MDCSelect(document.getElementById('subdirs')).disabled = false;
@@ -214,7 +216,7 @@ function asignarCombos(){
                if(value.profileType.profileTypeId==7){
                    $("#users-select").append(
                        "<li class='mdc-list-item' role='option' tabindex='0' " +
-                       "value='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
+                       "id='"+value.userInternalId+"' value='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
                }
 
 
@@ -256,7 +258,7 @@ function asignarCombos(){
                 if(value.profileType.profileTypeId==id){
                     $("#usersG-select").append(
                         "<li class='mdc-list-item' role='option' tabindex='0' " +
-                        "value='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
+                        "id='"+value.userInternalId+"' value='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
                 }
 
             });

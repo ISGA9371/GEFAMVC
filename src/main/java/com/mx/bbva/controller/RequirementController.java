@@ -48,6 +48,11 @@ public class RequirementController {
         return URL_FACTORY + NEW_REQUIREMENT;
     }
 
+    @RequestMapping(value = "/findMid", method = RequestMethod.GET)
+    public String findMID(Model model) {
+               return URL_FACTORY + "BusquedaMID";
+    }
+
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveRequirement(Model model, @ModelAttribute("requirement") Requirement requirement) {
         // TODO Validate XMY from the request
