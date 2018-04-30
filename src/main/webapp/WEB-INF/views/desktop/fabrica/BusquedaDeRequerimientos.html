@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
 
-<head th:replace="~{layout/mainHeader :: head ('Búsqueda de Requerimientos')}"></head>
+    <head th:replace="~{layout/mainHeader :: head ('Búsqueda de Requerimientos')}"></head>
 
-<script type="text/javascript" th:src="@{/js/fabrica/busqueda-requerimientos.js}" defer></script>
-<link rel="stylesheet" type="text/css" th:href="@{/css/fabrica/busqueda-requerimientos.css}">
+    <script type="text/javascript" th:src="@{/js/fabrica/busqueda-requerimientos.js}" defer></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fabrica/busqueda-requerimientos.css}">
 
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var requirementsSize = /*[[${requirements == null} ? '-1' : ${requirements.size()}]]*/ '-1';
+        /*]]>*/
+    </script>
+
+</head>
 <body>
 
 <header th:replace="~{layout/mainHeader :: header }"></header>
@@ -328,11 +336,13 @@
           </tr>
         </thead>
         <tbody>
+        <!--
         <tr th:if="${requirements!= null && requirements.size() < 1}">
           <td colspan="12">
             <h2>No se encontraron resultados para tu búsqueda.</h2>
           </td>
         </tr>
+        -->
 
 
           <th:block th:each="requirement, stat : ${requirements}">

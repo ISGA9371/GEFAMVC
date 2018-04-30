@@ -177,8 +177,8 @@
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
                             <li th:each="methodology : ${methodologies}" class="mdc-list-item" role="option"
-                                th:attrappend="aria-selected=(${methodology.methodologyId} ==
-                                *{project.methodology.methodologyId}) ? 'true'"
+                                th:attrappend="aria-selected=(${methodology.methodologyId}
+                                == *{project.methodology.methodologyId}) ? 'true'"
                                 th:value="${methodology.methodologyId}" th:text="${methodology.methodologyName}"></li>
                         </ul>
                     </div>
@@ -323,7 +323,7 @@
                     <label class="mdc-text-field__label">PEP</label>
                 </div>
                 <a th:href="@{/budgets/assign/filters?requirementId=} + ${requirement.requirementId}"
-                   class="btn btn-primary" style="vertical-align: text-bottom;" onclick="showHoldOn();">Asociar PEP</a>
+                   class="btn btn-primary" style="vertical-align: text-bottom;" onclick="showHoldOn('Procesando...');">Asociar PEP</a>
             </td>
         </tr>
             <tr>

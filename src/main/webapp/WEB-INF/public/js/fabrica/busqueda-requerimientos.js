@@ -2,12 +2,12 @@ $(function () {
 
     var datepicker1 = $('#datepicker1');
     datepicker1.datepicker({
-        dateFormat: 'd/m/yy'
+        dateFormat: 'dd/mm/yy'
     });
 
     var datepicker2 = $('#datepicker2');
     datepicker2.datepicker({
-        dateFormat: 'd/m/yy'
+        dateFormat: 'dd/mm/yy'
     });
 
     datepicker1.change(function () {
@@ -54,11 +54,11 @@ $(function () {
                         "<li class='mdc-list-item' role='option' tabindex='0' " +  aria +
                         " value='"+value.levelId+"'>"+value.levelName+"</li>");
                 });
-                if(subPrincipalId !== ''){
-                    $("#subdirs").removeClass("mdc-select--disabled");
-                    $("#subdirs div.mdc-select__label").addClass("mdc-select__label--float-above");
+                subPrincipalEL.removeClass("mdc-select--disabled");
+                mdc.select.MDCSelect.attachTo(document.getElementById('subdirs'));
 
-                    mdc.select.MDCSelect.attachTo(document.getElementById('subdirs'));
+                if(subPrincipalId !== ''){
+                    $("#subdirs div.mdc-select__label").addClass("mdc-select__label--float-above");
                     subdirs.selectedIndex = subPrincipalEL.find("ul li[value="+ subPrincipalId +"]").index();
                     subdirs.value = subPrincipalEL.find("ul li[value="+subPrincipalId+"]").html();
                 }
@@ -355,21 +355,25 @@ $(function () {
         var compD1 = $("#requirementStartDate").val().split('/');
         var startD = new Date(compD1[2],compD1[1]-1,compD1[0]);
         datepicker1.parent().find("label").addClass("mdc-text-field__label--float-above");
-        datepicker1.val(startD.getDate()+"/"+(startD.getMonth()+1)+"/"+startD.getFullYear());
+        var date1 = startD.getDate() < 10 ? '0'+ startD.getDate() : startD.getDate();
+        var menth1 = startD.getDate() < 9 ? '0'+ (startD.getMonth()+1) : (startD.getMonth()+1);
+        datepicker1.val(date1+"/"+menth1+"/"+startD.getFullYear());
     }
     if($("#requirementEndDate").val()){
         var compD2 = $("#requirementEndDate").val().split('/');
         var endD = new Date(compD2[2],compD2[1]-1,compD2[0]);
         datepicker2.parent().find("label").addClass("mdc-text-field__label--float-above");
-        datepicker2.val(endD.getDate()+"/"+(endD.getMonth()+1)+"/"+endD.getFullYear())
+        var date2 = startD.getDate() < 10 ? '0'+ startD.getDate() : startD.getDate();
+        var menth2 = startD.getDate() < 9 ? '0'+ (startD.getMonth()+1) : (startD.getMonth()+1);
+        datepicker2.val(date2+"/"+menth2+"/"+endD.getFullYear());
     }
 
     $('#clear-form').click(function() {
         $("#find")[0].reset();
         $("input[type=text]").val("");
 
-        select.selectedIndex = -1;
-        select.value = "";
+        direc.selectedIndex = -1;
+        direc.value = "";
         subdirs.selectedIndex = -1;
         subdirs.value = "";
         responsables.selectedIndex = -1;
@@ -446,6 +450,12 @@ $(function () {
     $("#row-content-results div.collapse").on('show.bs.collapse', function(){
         $(".collapse").collapse('hide');
     });
+
+    console.log("REQURIEZISE "+requirementsSize);
+    var reSize = parseInt(requirementsSize);
+    if(reSize === 0){
+        customHolder("info","No se encontraron resultados para tu búsqueda.");
+    }
 });
 
 function showHoldOn() {

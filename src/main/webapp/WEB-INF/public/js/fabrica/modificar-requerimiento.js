@@ -2,12 +2,12 @@ $(function () {
 
     var datepicker1 = $('#datepicker1');
     datepicker1.datepicker({
-        dateFormat: 'd/m/yy'
+        dateFormat: 'dd/mm/yy'
     });
 
     var datepicker2 = $('#datepicker2');
     datepicker2.datepicker({
-        dateFormat: 'd/m/yy'
+        dateFormat: 'dd/mm/yy'
     });
 
     datepicker1.change(function () {
@@ -47,7 +47,6 @@ $(function () {
             var subPrincipalId = $("#level\\.levelId").val();
             var subdir;
             $.each(subdirs, function( index, value ) {
-                console.log("SUBLEVEL ID "+subPrincipalId);
                 subdir = value.user.userInternalId;
                 let aria = value.levelId == subPrincipalId ? ' aria-selected' : '';
                 $("#subdir-select").append(
@@ -184,8 +183,8 @@ $(function () {
     let index3 = parseInt("0");
     managers.listen('MDCSelect:change', () => {
         if (index3++ === 0) return; else index3 = 0;
-        let id = manager.selectedOptions[0].id;
-        console.log("MANAGERID "+manager.selectedOptions.length+" " + id);
+        let id = managers.selectedOptions[0].id;
+        console.log("MANAGERID "+managers.selectedOptions.length+" " + id);
         $("#userManager\\.userInternalId").val(id);
     });
 
@@ -208,6 +207,7 @@ $(function () {
         if (index5++ === 0) return; else index5 = 0;
         let id = meth.selectedOptions[0].value;
         $("#project\\.methodology\\.methodologyId").val(id);
+        console.log("METH ID CH"+id);
     });
 
     const app = new mdc.select.MDCSelect(document.querySelector('#app'));
@@ -293,16 +293,20 @@ $(function () {
     if($("#requirementStartDate").val()){
         var compD1 = $("#requirementStartDate").val().split('/');
         var startD = new Date(compD1[2],compD1[1]-1,compD1[0]);
-        datepicker1.val(startD.getDate()+"/"+(startD.getMonth()+1)+"/"+startD.getFullYear());
+        var date1 = startD.getDate() < 10 ? '0'+ startD.getDate() : startD.getDate();
+        var menth1 = startD.getDate() < 9 ? '0'+ (startD.getMonth()+1) : (startD.getMonth()+1);
+        datepicker1.val(date1+"/"+menth1+"/"+startD.getFullYear());
     }
     if($("#requirementEndDate").val()){
         var compD2 = $("#requirementEndDate").val().split('/');
         var endD = new Date(compD2[2],compD2[1]-1,compD2[0]);
-        datepicker2.val(endD.getDate()+"/"+(endD.getMonth()+1)+"/"+endD.getFullYear())
+        var date2 = startD.getDate() < 10 ? '0'+ startD.getDate() : startD.getDate();
+        var menth2 = startD.getDate() < 9 ? '0'+ (startD.getMonth()+1) : (startD.getMonth()+1);
+        datepicker2.val(date2+"/"+menth2+"/"+endD.getFullYear());
     }
     $("#form").submit(function (e) {
         e.preventDefault();
-        showHoldOn();
+        showHoldOn('Actualizando requerimiento...');
 
         var datas= $( this ).serialize();
 
@@ -312,7 +316,7 @@ $(function () {
             data:  datas
         }).done(function(data){
             HoldOn.close();
-            console.log("EXITE");
+            console.log("EXITE "+data);
             customHolder("info","El Requerimiento se actualizó correctamente.");
         }).fail(function () {
             HoldOn.close();
@@ -327,11 +331,11 @@ $(function () {
     });
 });
 
-function showHoldOn() {
+function showHoldOn(message) {
     HoldOn.open({
         theme: "sk-cube",
         content: '',
-        message: 'Actualizando requerimiento...',
+        message: message,
         backgroundColor: "#0c71ca",
         textColor: "white",
     });
