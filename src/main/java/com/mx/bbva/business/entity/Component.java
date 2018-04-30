@@ -57,6 +57,8 @@ public class Component implements Serializable {
     private Date componentUploadDate;
     @Column(name = "NU_FACTURABLE")
     private Boolean componentForBill;
+    @Column(name = "HM_DIF_F")
+    private Double componentHours;
     @JoinColumn(name = "ST_TIPIFICACION", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status statusTypology;
@@ -199,6 +201,14 @@ public class Component implements Serializable {
 
     public void setComponentForBill(Boolean componentForBill) {
         this.componentForBill = componentForBill;
+    }
+
+    public Double getComponentHours() {
+        return componentHours;
+    }
+
+    public void setComponentHours(Double componentHours) {
+        this.componentHours = componentHours;
     }
 
     public Status getStatusTypology() {

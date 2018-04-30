@@ -15,9 +15,9 @@ function init() {
     addButtonEvents();
 
 
-    setTimeout("window.scrollTo(0, 0)",50);
-    setTimeout("$(\".container\").click();",50);
-    if(!showingError){
+    setTimeout("window.scrollTo(0, 0)", 50);
+    setTimeout("$(\".container\").click();", 50);
+    if (!showingError) {
         HoldOn.close();
     }
 }
@@ -28,9 +28,8 @@ function fillFields() {
     new mdc.textField.MDCTextField(document.getElementById('descripcion-mdc-text')).value = $('#componentTypoComment').val()
 
 
-
     var $elementTypologiaInicio = $("#typology").parent().find("li[id^='" + $('#typology').val() + "|']");
-    if($elementTypologiaInicio.length > 0) {
+    if ($elementTypologiaInicio.length > 0) {
         var idTypologiaInicio = $elementTypologiaInicio.attr('id');
         var splittedTypologiaInicio = idTypologiaInicio.split('|');
         if (splittedTypologiaInicio[3] == "false") {
@@ -70,15 +69,15 @@ function fillFields() {
         $('#tipologia-news-js-select').hide();
         $('#tipologia-mods-js-select').hide();
     }
-    if($('#componentStartCost').val() == ""){
-        $('#componentStartCost').val(Number(new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value)*Number($("#auxFare").val()));
+    if ($('#componentStartCost').val() == "") {
+        $('#componentStartCost').val(Number(new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value) * Number($("#auxFare").val()));
     }
     if ($("#typology-final").val() == "") {
         $("#typology-final").val($("#typology").val())
     }
     new mdc.textField.MDCTextField(document.getElementById('initial-cost-mdc-text')).value = Number($('#componentStartCost').val()).formatMoney(2);
     var $elementTypologiaFinal = $("#typology-final").parent().find("li[id^='" + $('#typology-final').val() + "|']");
-    if($elementTypologiaFinal.length > 0) {
+    if ($elementTypologiaFinal.length > 0) {
         var idTypologiaFinal = $elementTypologiaFinal.attr('id');
         var splittedTypologiaFinal = idTypologiaFinal.split('|');
         if (splittedTypologiaFinal[3] == "false") {
@@ -116,17 +115,17 @@ function fillFields() {
         $('#tipologia-final-news-js-select').hide();
         $('#tipologia-final-mods-js-select').hide();
     }
-    if($('#componentFinalCost').val() == ""){
-        $('#componentFinalCost').val(Number(new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value)*Number($("#auxFare").val()));
+    if ($('#componentFinalCost').val() == "") {
+        $('#componentFinalCost').val(Number(new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value) * Number($("#auxFare").val()));
     }
     new mdc.textField.MDCTextField(document.getElementById('final-cost-mdc-text')).value = Number($('#componentFinalCost').val()).formatMoney(2);
     var $statusTypology = $("#statusTypology").parent().find("li[id^='" + $('#statusTypology').val() + "']");
-    if($statusTypology.length > 0) {
+    if ($statusTypology.length > 0) {
         $("#estatus-tipificacion-js-select").find("div").eq(0).click();
         $statusTypology.click();
     }
     var $status = $("#status").parent().find("li[id^='" + $('#status').val() + "']");
-    if($status.length > 0) {
+    if ($status.length > 0) {
         $("#estatus-componente-js-select").find("div").eq(0).click();
         $status.click()
     }
@@ -139,7 +138,7 @@ function fillFields() {
         $componentForBill = 1;
     }
     $('#componentForBill').val($componentForBill);
-    if ($componentForBill === 0 || $componentForBill === 1){
+    if ($componentForBill === 0 || $componentForBill === 1) {
         $("#facturado-js-select").find("div").eq(0).click();
         clickSelectOption("componentForBill");
     }
@@ -176,9 +175,9 @@ function fillFields() {
     new mdc.textField.MDCTextField(document.getElementById('final-cost-mdc-text')).disabled = true;
 }
 
-function clickSelectOption(idHolder){
-    $holder =$("#"+idHolder);
-    $holder.parent().find("li[id^='"+$holder.val()+"']").click();
+function clickSelectOption(idHolder) {
+    $holder = $("#" + idHolder);
+    $holder.parent().find("li[id^='" + $holder.val() + "']").click();
 
 }
 
@@ -239,6 +238,18 @@ function addHoursValidation() {
 }
 
 function addButtonEvents() {
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+        HoldOn.open({
+            theme: "sk-cube",
+            content: '',
+            message: 'Actualizando Componente',
+            // backgroundColor: "#004582",
+            backgroundColor: "#0c71ca",
+            textColor: "white"
+        });
+        setTimeout("ajaxGuardar();", 500)
+    });
     var btnDelete = document.getElementById('eliminar-btn');
     btnDelete.addEventListener("click", function () {
         HoldOn.open({
@@ -249,7 +260,7 @@ function addButtonEvents() {
             backgroundColor: "#0c71ca",
             textColor: "white"
         });
-        setTimeout("ajaxEliminar();",1000)
+        setTimeout("ajaxEliminar();", 500)
     });
     var btnCancel = document.getElementById('cancelar-btn');
     btnCancel.addEventListener("click", function () {
@@ -258,15 +269,32 @@ function addButtonEvents() {
     });
 }
 
-function ajaxEliminar(){
+function ajaxEliminar() {
     $.ajax({
         async: false,
         url: "/components/" + $("#componentId").val(),
         type: 'DELETE'
-    }).done(function(json){
-        customHolder("info","Componente Eliminado.", "document.getElementById('cancelar-btn').click()");
-    }).fail(function(xhr, status, error) {
-        customHolder("error",xhr.responseJSON.message)
+    }).done(function (json) {
+        customHolder("info", "Componente Eliminado.", "document.getElementById('cancelar-btn').click()");
+    }).fail(function (xhr, status, error) {
+        customHolder("error", xhr.responseJSON.message)
+    });
+}
+
+function ajaxGuardar() {
+    var $form = $("form");
+    var url = $form.attr("action");
+    var formData = $($form).serializeArray();
+
+    $.ajax({
+        async: false,
+        url: url,
+        type: 'post',
+        data: formData
+    }).done(function (data) {
+        customHolder("info", "Componente Modificado Exitosamente.");
+    }).fail(function (xhr, status, error) {
+        customHolder("error", xhr.responseJSON.message)
     });
 }
 
@@ -277,20 +305,20 @@ function addCustomSelectEvents() {
     var selectNews = new mdc.select.MDCSelect(rootNews);
 
     rootNews.addEventListener('MDCSelect:change', function () {
-        if (selectNews.value !="") {
+        if (selectNews.value != "") {
             var splittedNews = selectNews.value.split('|');
             hiddenTypology.value = splittedNews[0];
             $("#typologyEmp").val(hiddenTypology.value);
-            new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value=splittedNews[1];
-            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value=splittedNews[2];
-            $("#componentFinalCost").val(Number(splittedNews[2])*Number($("#auxFare").val()));
-            new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value=Number($("#componentFinalCost").val()).formatMoney(2);
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value = splittedNews[1];
+            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = splittedNews[2];
+            $("#componentFinalCost").val(Number(splittedNews[2]) * Number($("#auxFare").val()));
+            new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value = Number($("#componentFinalCost").val()).formatMoney(2);
         } else {
             hiddenTypology.value = "";
             $("#typologyEmp").val(hiddenTypology.value);
-            new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value="";
-            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value="";
-            new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value = "";
+            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = "";
+            new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value = "";
         }
     });
 
@@ -298,20 +326,20 @@ function addCustomSelectEvents() {
     var selectMods = new mdc.select.MDCSelect(rootMods);
 
     rootMods.addEventListener('MDCSelect:change', function () {
-        if (selectMods.value !="") {
+        if (selectMods.value != "") {
             var splittedMods = selectMods.value.split('|');
             hiddenTypology.value = splittedMods[0];
             $("#typologyEmp").val(hiddenTypology.value);
-            new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value=splittedMods[1];
-            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value=splittedMods[2];
-            $("#componentFinalCost").val(Number(splittedMods[2])*Number($("#auxFare").val()));
-            new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value=Number($("#componentFinalCost").val()).formatMoney(2);
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value = splittedMods[1];
+            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = splittedMods[2];
+            $("#componentFinalCost").val(Number(splittedMods[2]) * Number($("#auxFare").val()));
+            new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value = Number($("#componentFinalCost").val()).formatMoney(2);
         } else {
             hiddenTypology.value = "";
             $("#typologyEmp").val(hiddenTypology.value);
-            new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value="";
-            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value="";
-            new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value = "";
+            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = "";
+            new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value = "";
         }
     });
 
@@ -340,82 +368,82 @@ function loadSelects() {
     $.ajax({
         async: false,
         url: "/api/typologies/types?componentModified=false"
-    }).done(function(json){
-        $.each(json.data, function(i, data) {
+    }).done(function (json) {
+        $.each(json.data, function (i, data) {
             $liElement = $("<li>");
-            $liElement.attr("class","mdc-list-item");
-            $liElement.attr("role","option");
-            $liElement.attr("id",data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours+"|"+data.typologyComponentModified);
+            $liElement.attr("class", "mdc-list-item");
+            $liElement.attr("role", "option");
+            $liElement.attr("id", data.typologyId + "|" + data.typologySeverity + "|" + data.typologySeverityHours + "|" + data.typologyComponentModified);
             $liElement.append(data.product.productName);
             $("#tipologia-news-js-select").find("ul:first").append($liElement);
             $("#tipologia-final-news-js-select").find("ul:first").append($liElement.clone());
         });
         mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-news-js-select'));
         mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-final-news-js-select'));
-    }).fail(function(xhr, status, error) {
+    }).fail(function (xhr, status, error) {
         console.log('¡Error al consultar combos!');
-        customHolder('error','¡Error al consultar combos!');
+        customHolder('error', '¡Error al consultar combos!');
         $('#typology').val("");
         showingError = true;
     });
     $.ajax({
         async: false,
         url: "/api/typologies/types?componentModified=true"
-    }).done(function(json){
-        $.each(json.data, function(i, data) {
+    }).done(function (json) {
+        $.each(json.data, function (i, data) {
             $liElement = $("<li>");
-            $liElement.attr("class","mdc-list-item");
-            $liElement.attr("role","option");
-            $liElement.attr("id",data.typologyId+"|"+data.typologySeverity+"|"+data.typologySeverityHours+"|"+data.typologyComponentModified);
+            $liElement.attr("class", "mdc-list-item");
+            $liElement.attr("role", "option");
+            $liElement.attr("id", data.typologyId + "|" + data.typologySeverity + "|" + data.typologySeverityHours + "|" + data.typologyComponentModified);
             $liElement.append(data.product.productName);
             $("#tipologia-mods-js-select").find("ul:first").append($liElement);
             $("#tipologia-final-mods-js-select").find("ul:first").append($liElement.clone());
         });
         mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-mods-js-select'));
         mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-final-mods-js-select'));
-    }).fail(function(xhr, status, error) {
+    }).fail(function (xhr, status, error) {
         console.log('¡Error al consultar combos!');
-        customHolder('error','¡Error al consultar combos!');
+        customHolder('error', '¡Error al consultar combos!');
         showingError = true;
         $("#typology-final").val("");
     });
     $.ajax({
         async: false,
         url: "/api/status-types/3/status"
-    }).done(function(json){
-        $.each(json.data, function(i, data) {
+    }).done(function (json) {
+        $.each(json.data, function (i, data) {
             $liElement = $("<li>");
-            $liElement.attr("class","mdc-list-item");
-            $liElement.attr("role","option");
-            $liElement.attr("id",data.statusId);
+            $liElement.attr("class", "mdc-list-item");
+            $liElement.attr("role", "option");
+            $liElement.attr("id", data.statusId);
             $liElement.append(data.statusName);
             $("#estatus-tipificacion-js-select").find("ul:first").append($liElement);
         });
         mdc.select.MDCSelect.attachTo(document.getElementById('estatus-tipificacion-js-select'));
-    }).fail(function(xhr, status, error) {
+    }).fail(function (xhr, status, error) {
         console.log('¡Error al consultar combos!');
         new mdc.select.MDCSelect(document.getElementById('estatus-tipificacion-js-select')).disabled = true;
-        customHolder('error','¡Error al consultar combos!');
+        customHolder('error', '¡Error al consultar combos!');
         showingError = true;
         $('#statusTypology').val("");
     });
     $.ajax({
         async: false,
         url: "/api/status-types/8/status"
-    }).done(function(json){
-        $.each(json.data, function(i, data) {
+    }).done(function (json) {
+        $.each(json.data, function (i, data) {
             $liElement = $("<li>");
-            $liElement.attr("class","mdc-list-item");
-            $liElement.attr("role","option");
-            $liElement.attr("id",data.statusId);
+            $liElement.attr("class", "mdc-list-item");
+            $liElement.attr("role", "option");
+            $liElement.attr("id", data.statusId);
             $liElement.append(data.statusName);
             $("#estatus-componente-js-select").find("ul:first").append($liElement);
         });
         mdc.select.MDCSelect.attachTo(document.getElementById('estatus-componente-js-select'));
-    }).fail(function(xhr, status, error) {
+    }).fail(function (xhr, status, error) {
         console.log('¡Error al consultar combos!');
         new mdc.select.MDCSelect(document.getElementById('estatus-componente-js-select')).disabled = true;
-        customHolder('error','¡Error al consultar combos!');
+        customHolder('error', '¡Error al consultar combos!');
         showingError = true;
         $('#status').val("");
     });
@@ -438,9 +466,9 @@ function addHiddenEvents() {
     addTextSyncMdcToHtml("componentTypoComment", "descripcion-mdc-text");
     //$("#requirement").val($("#requirementHidden").val());
     //addSelectSyncMdcToHtml("subdireccion","subdireccion-js-select");
-    addSelectSyncMdcToHtml("statusTypology","estatus-tipificacion-js-select");
-    addSelectSyncMdcToHtml("componentForBill","facturado-js-select");
-    addSelectSyncMdcToHtml("status","estatus-componente-js-select");
+    addSelectSyncMdcToHtml("statusTypology", "estatus-tipificacion-js-select");
+    addSelectSyncMdcToHtml("componentForBill", "facturado-js-select");
+    addSelectSyncMdcToHtml("status", "estatus-componente-js-select");
 }
 
 function addTextSyncMdcToHtml(htmlField, mdcField) {
@@ -460,8 +488,8 @@ function addTextSyncMdcToHtml(htmlField, mdcField) {
     });
 }
 
-function addSelectSyncMdcToHtml(htmlField,mdcSelect){
-    var $hiddenInput = $("#"+htmlField);
+function addSelectSyncMdcToHtml(htmlField, mdcSelect) {
+    var $hiddenInput = $("#" + htmlField);
     var rootSelect = document.getElementById(mdcSelect);
     var selectObj = new mdc.select.MDCSelect(rootSelect);
 
@@ -474,7 +502,7 @@ function showH() {
     document.getElementById('EstadoLinea').style.display = 'inline';
 }
 
-function addCalendars(){
+function addCalendars() {
     $('#FecRealCFG').datepicker({
         dateFormat: "dd/mm/yy"
     });
@@ -492,7 +520,7 @@ function addCalendars(){
     });
 }
 
-function holder(msg){
+function holder(msg) {
     HoldOn.open({
         theme: "sk-cube",
         content: '',
@@ -509,7 +537,7 @@ function pad(n, width, z) {
     return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
 
-Number.prototype.formatMoney = function(c, d, t){
+Number.prototype.formatMoney = function (c, d, t) {
     var n = this,
         c = isNaN(c = Math.abs(c)) ? 2 : c,
         d = d == undefined ? "." : d,

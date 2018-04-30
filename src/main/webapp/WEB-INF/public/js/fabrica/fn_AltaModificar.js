@@ -20,7 +20,7 @@ function crearCombos() {
     mdc.select.MDCSelect.attachTo(document.getElementById('origen-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('modvuelo-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('moddyd-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
+    //mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
 }
 
 function asignarCombos (){
@@ -86,6 +86,9 @@ function addMissing() {
     $("#hidden-status").val($("#hidden-modificationStatus").val());
 
     $("#hidden-userre").val("XMY3080");
+
+    $("#responsabletxt").val("XMY3080");
+    $("#hidden-responsable").val("XMY3080");
 
 
 }

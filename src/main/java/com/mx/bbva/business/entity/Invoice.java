@@ -5,11 +5,13 @@
  */
 package com.mx.bbva.business.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Guevara Manuel
@@ -80,12 +82,12 @@ public class Invoice implements Serializable {
     @JoinColumn(name = "CD_PEP_REQ", referencedColumnName = "CD_PEP_REQ", nullable = false)
     @ManyToOne(optional = false)
     private BudgetRequirement budgetRequirement;
-    @JoinColumn(name = "CD_SEG_PAGO", referencedColumnName = "CD_SEG_PAGO")
-    @ManyToOne
-    private Payment payment;
     @JoinColumn(name = "CD_CTA_OPER", referencedColumnName = "CD_CTA_OPER")
     @ManyToOne
     private OperatingAccount operatingAccount;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "invoice")
+    private List<Payment> payments;
 
     public Invoice() {
     }
@@ -284,12 +286,12 @@ public class Invoice implements Serializable {
         this.budgetRequirement = budgetRequirement;
     }
 
-    public Payment getPayment() {
-        return payment;
+    public List<Payment> getPayments() {
+        return payments;
     }
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
     }
 
     public OperatingAccount getOperatingAccount() {

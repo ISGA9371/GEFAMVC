@@ -34,7 +34,7 @@
         <input type="hidden" th:field="*{requirementCanBilled}">
 
         <input type="hidden" th:field="*{level.levelSuperior.levelId}">
-        <input type="hidden" th:field="*{level.levelId}">
+
         <input type="hidden" th:field="*{user.userInternalId}">
         <input type="hidden" th:field="*{area.areaId}">
         <input type="hidden" th:field="*{userManager.userInternalId}">
@@ -82,6 +82,8 @@
             </td>
             <td class="col-md-4" align="center">
 
+                <input type="text" th:field="*{level.levelId}" required tabindex="-1"
+                       style="margin-top: 16px; margin-left: 4px; position: absolute;" >
                 <div id="subprincipal" class="mdc-select" role="listbox" >
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                         <div class="mdc-select__label mdc-select__label--float-above">Subdirección</div>
@@ -175,8 +177,8 @@
                     <div class="mdc-menu mdc-select__menu col-md-3" >
                         <ul class="mdc-list mdc-menu__items">
                             <li th:each="methodology : ${methodologies}" class="mdc-list-item" role="option"
-                                th:attrappend="aria-selected=(${methodology.methodologyId} ==
-                                *{project.methodology.methodologyId}) ? 'true'"
+                                th:attrappend="aria-selected=(${methodology.methodologyId}
+                                == *{project.methodology.methodologyId}) ? 'true'"
                                 th:value="${methodology.methodologyId}" th:text="${methodology.methodologyName}"></li>
                         </ul>
                     </div>
@@ -290,8 +292,8 @@
         <tr>
             <td class="col-md-4" align="center">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                    <input type="number" maxlength="8" min="0" max="999999.99" step="0.01"
-                           th:field="*{requirementHour}" class="mdc-text-field__input" > -->
+                    <input type="number" maxlength="9" min="0" max="999999" step="0.01"
+                           th:field="*{requirementHour}" class="mdc-text-field__input">
 
                     <label class="mdc-text-field__label">Horas</label>
                 </div>
@@ -321,7 +323,7 @@
                     <label class="mdc-text-field__label">PEP</label>
                 </div>
                 <a th:href="@{/budgets/assign/filters?requirementId=} + ${requirement.requirementId}"
-                   class="btn btn-primary" style="vertical-align: text-bottom;" onclick="showHoldOn();">Asociar PEP</a>
+                   class="btn btn-primary" style="vertical-align: text-bottom;" onclick="showHoldOn('Procesando...');">Asociar PEP</a>
             </td>
         </tr>
             <tr>
@@ -348,13 +350,13 @@
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" class="mdc-text-field__input " id="datetimepicker1" />
+                        <input type="text" class="mdc-text-field__input " id="datepicker1" />
                         <label class="mdc-text-field__label mdc-text-field__label--float-above">Fecha Prop. Inicial</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" class="mdc-text-field__input " id="datetimepicker2" />
+                        <input type="text" class="mdc-text-field__input " id="datepicker2" />
                         <label class="mdc-text-field__label mdc-text-field__label--float-above">Fecha Prop. Final</label>
                     </div>
                 </td>
