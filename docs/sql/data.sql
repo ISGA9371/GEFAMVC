@@ -596,8 +596,17 @@ VALUES
 
 INSERT INTO `thge011_usuario`
 VALUES
-('XMY3070',1,1),
-('XMY3080',1,2);
+('XMY3010',1,1),
+('XMY3020',2,1),
+('XMY3030',3,1),
+('XMY3040',4,1),
+('XMY3050',5,1),
+('XMY3060',6,1),
+('XMY3070',7,1),
+('XMY3080',8,1),
+('XMY3090',9,1),
+('XMY3100',10,1),
+('XMY3110',11,1);
 
 -- TABLA 010 NIVELES
 INSERT INTO gestion_factoria.thge010_nivel 
