@@ -110,7 +110,9 @@ public class ComponentController {
     @RequestMapping(value = "/{componentId}", method = RequestMethod.DELETE)
     public String deleteComponent(Model model, @PathVariable(value = "componentId") Integer componentId) {
         Component component = componentService.findComponent(componentId);
-        if (component.getComponentForBill()) {
+
+        // Component has doubts, issues or modifications
+        if (component.getComponentForBill() || componentService.notRemovable(componentId)) {
             LOG.fine("Error #0000 Component committed, can't be deleted.");
             throw new ConflictException("Error #0000 Componente comprometido, no puede ser eliminado");
         }

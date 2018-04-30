@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DoubtRepository extends JpaRepository<Doubt, Integer> {
 
+    boolean existsByComponent_ComponentId(Integer componentId);
 }
