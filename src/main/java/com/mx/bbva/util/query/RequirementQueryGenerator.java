@@ -21,7 +21,7 @@ public class RequirementQueryGenerator {
 
         if (searchDTO.containsKey("budgetId") && !searchDTO.get("budgetId").isEmpty()) {
             firstOne = false;
-            stringBuffer.append(" JOIN x.budgetRequirementsList AS brs WHERE brs.budget.budgetName LIKE '%")
+            stringBuffer.append(" JOIN x.budgetRequirementsList AS brs WHERE brs.budget.budgetId LIKE '%")
                     .append(searchDTO.get("budgetId")).append("%' ");
         }
         searchDTO.forEach(this::newFilter);
