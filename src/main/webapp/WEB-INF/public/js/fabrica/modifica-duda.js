@@ -33,12 +33,6 @@ function init() {
 
 
 }
-/*
-function loadSelects() {
-    mdc.select.MDCSelect.attachTo(document.getElementById('Prioridad-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('Duda-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
-}*/
 
 function addCalendars() {
     $('#FecRealCFG').datetimepicker({
@@ -87,7 +81,7 @@ function rojelia(){
     }
     var today = 'v' + yyyy + mm + dd;
 
-    $('#desfijo').val(descri + " - inicial - " + descrip + " - "+ dd+"/"+mm+"/"+yyyy);
+    $('#desfijo').val(descri + " | " + descrip + " - "+ dd+"/"+mm+"/"+yyyy);
 }
 
 function camp() {
@@ -103,4 +97,6 @@ function camp() {
     new mdc.textField.MDCTextField(document.getElementById("peticionario-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("tioDuda-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = true;
 }

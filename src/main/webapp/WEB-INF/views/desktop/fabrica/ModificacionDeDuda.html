@@ -128,15 +128,17 @@
                         </td>
                         <td class="col-md-4" align="center">
                             <div class="dog1">
-                                <div class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input id="hidden-Fecha" type="text" value="" required  th:field="*{doubtDateResolution}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                                <div id="Fecha-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                                     <input disabled="disabled" type='text' class="mdc-text-field__input mdc-text-field--disabled" th:field="*{doubtDateResolution}" row="2" id='dateresolucion' />
                                     <label for="demo-input" class="mdc-text-field__label">Fecha de Resolución</label>
                                 </div>
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
-                            <div id="tipologia-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input disabled="disabled" th:field="*{doubtWrongResponse}"  type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tipologia">
+                            <input id="hidden-Resoluciones" type="text" value="" required th:field="*{doubtWrongResponse}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <div id="Resoluciones-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input th:field="*{doubtWrongResponse}"  type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tipologia">
                                 <label for="demo-input" class="mdc-text-field__label">Número de Resoluciones Incorrectas</label>
                             </div>
                         </td>
