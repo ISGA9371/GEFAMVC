@@ -6,9 +6,11 @@
 package com.mx.bbva.business.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,8 +31,14 @@ public class Typology implements Serializable {
     private Character typologySeverity;
     @Column(name = "NU_HM_DIFICULTAD", precision = 12)
     private Float typologySeverityHours;
-    @Column(name = "NU_ANO", nullable = false)
-    private int typologyYear;
+    @Column(name = "FH_INIC_VIGENCIA")
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date typologyStartDate;
+    @Column(name = "FH_FIN_VIGENCIA")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date typologyFinalDate;
     @JoinColumn(name = "CD_PRODUCTO", referencedColumnName = "CD_PRODUCTO", nullable = false)
     @ManyToOne
     private Product product;
@@ -55,11 +63,6 @@ public class Typology implements Serializable {
 
     public Typology(Integer typologyId) {
         this.typologyId = typologyId;
-    }
-
-    public Typology(Integer typologyId, int typologyYear) {
-        this.typologyId = typologyId;
-        this.typologyYear = typologyYear;
     }
 
     public Integer getTypologyId() {
@@ -94,12 +97,20 @@ public class Typology implements Serializable {
         this.typologySeverityHours = typologySeverityHours;
     }
 
-    public int getTypologyYear() {
-        return typologyYear;
+    public Date getTypologyStartDate() {
+        return typologyStartDate;
     }
 
-    public void setTypologyYear(int typologyYear) {
-        this.typologyYear = typologyYear;
+    public void setTypologyStartDate(Date typologyStartDate) {
+        this.typologyStartDate = typologyStartDate;
+    }
+
+    public Date getTypologyFinalDate() {
+        return typologyFinalDate;
+    }
+
+    public void setTypologyFinalDate(Date typologyFinalDate) {
+        this.typologyFinalDate = typologyFinalDate;
     }
 
     public Status getStatus() {

@@ -5,13 +5,11 @@
  */
 package com.mx.bbva.business.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author Guevara Manuel
@@ -40,9 +38,13 @@ public class Payment implements Serializable {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date paymentReceptionDate;
-    @JsonIgnore
-    @OneToMany(mappedBy = "payment")
-    private List<Invoice> invoices;
+    @Column(name = "FH_AVISO_PROV")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date paymentAlertDate;
+    @JoinColumn(name = "CD_FACTURA", referencedColumnName = "CD_FACTURA", nullable = false)
+    @ManyToOne(optional = false)
+    private Invoice invoice;
 
     public Payment() {
     }
@@ -107,12 +109,20 @@ public class Payment implements Serializable {
         this.paymentReceptionDate = paymentReceptionDate;
     }
 
-    public List<Invoice> getInvoices() {
-        return invoices;
+    public Date getPaymentAlertDate() {
+        return paymentAlertDate;
     }
 
-    public void setInvoices(List<Invoice> invoices) {
-        this.invoices = invoices;
+    public void setPaymentAlertDate(Date paymentAlertDate) {
+        this.paymentAlertDate = paymentAlertDate;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 
     @Override
