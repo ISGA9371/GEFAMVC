@@ -26,8 +26,8 @@ public class DoubtServiceImpl implements DoubtService {
     public void saveDoubt(Doubt doubt) {
         if (doubt.getDoubtId() == null) {
             // TODO Use enums
-            doubt.setUserSender(new User("XMY3070"));
-            doubt.setStatus(new Status(11));
+            //doubt.setUserSender(new User("XMY3070"));
+            //doubt.setStatus(new Status(11));
         }
         doubtRepository.save(doubt);
     }

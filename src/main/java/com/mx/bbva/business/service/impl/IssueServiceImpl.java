@@ -19,8 +19,8 @@ public class IssueServiceImpl implements IssueService {
     public void saveIssue(Issue issue) {
         if (issue.getIssueId() == null) {
             // TODO Use enums
-            issue.setUserSender(new User("XMY3070"));
-            issue.setStatus(new Status(16));
+            //issue.setUserSender(new User("XMY3070"));
+            //issue.setStatus(new Status(16));
             issue.setIssueUploadDate(new DateUtils().getCurrentDate());
         }
         issueRepository.save(issue);
