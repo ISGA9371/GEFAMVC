@@ -31,11 +31,11 @@ public class Requirement implements Serializable {
     @Column(name = "NU_HORA_REQ", precision = 22)
     private Double requirementHour;
     @Column(name = "NU_HRS_TOT")
-    private Integer requirementTotalHours;
+    private Double requirementTotalHours;
     @Column(name = "NU_HRS_FACT")
-    private Integer requirementBilledHours;
+    private Double requirementBilledHours;
     @Column(name = "NU_HRS_SIN_FACT")
-    private Integer requirementNoBilledHours;
+    private Double requirementNoBilledHours;
     @Column(name = "ST_FACTURADO")
     private Boolean requirementBilled;
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss.S")
@@ -150,27 +150,27 @@ public class Requirement implements Serializable {
         this.requirementHour = requirementHour;
     }
 
-    public Integer getRequirementTotalHours() {
+    public Double getRequirementTotalHours() {
         return requirementTotalHours;
     }
 
-    public void setRequirementTotalHours(Integer requirementTotalHours) {
+    public void setRequirementTotalHours(Double requirementTotalHours) {
         this.requirementTotalHours = requirementTotalHours;
     }
 
-    public Integer getRequirementBilledHours() {
+    public Double getRequirementBilledHours() {
         return requirementBilledHours;
     }
 
-    public void setRequirementBilledHours(Integer requirementBilledHours) {
+    public void setRequirementBilledHours(Double requirementBilledHours) {
         this.requirementBilledHours = requirementBilledHours;
     }
 
-    public Integer getRequirementNoBilledHours() {
+    public Double getRequirementNoBilledHours() {
         return requirementNoBilledHours;
     }
 
-    public void setRequirementNoBilledHours(Integer requirementNoBilledHours) {
+    public void setRequirementNoBilledHours(Double requirementNoBilledHours) {
         this.requirementNoBilledHours = requirementNoBilledHours;
     }
 
