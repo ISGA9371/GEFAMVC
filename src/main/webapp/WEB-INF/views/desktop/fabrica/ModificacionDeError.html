@@ -119,7 +119,7 @@
                         <td class="col-md-4" align="center">
                             <input id="fix" type="text"  required value="" th:field="*{issueFixByDyD}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;" />
                             <div id="Incidencia" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input th:value="{issueFixByDyD}" type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tecnologia">
+                                <input th:value="*{issueFixByDyD}" type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tecnologia">
                                 <label for="demo-input" class="mdc-text-field__label">Incidencia ya Resuelta por DyD:</label>
                             </div>
                         </td>
