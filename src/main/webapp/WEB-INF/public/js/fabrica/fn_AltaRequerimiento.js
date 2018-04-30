@@ -27,8 +27,23 @@ function calendar(){
     $('#fecPropInic').datepicker({dateFormat: "dd/mm/yy"});
     $('#fecPropFin').datepicker({dateFormat: "dd/mm/yy"});
 
-}
+    $("#fecPropInic").change(function () {
+        if ("" != fecPropInic.value) {
+            $("#mdc-group-fecPropInic > label").addClass("mdc-text-field__label--float-above");
+        } else {
+            $("#mdc-group-fecPropInic > label").removeClass("mdc-text-field__label--float-above");
+        }
+    });
 
+    $("#fecPropFin").change(function () {
+        if ("" != fecPropFin.value) {
+            $("#mdc-group-fecPropFin > label").addClass("mdc-text-field__label--float-above");
+        } else {
+            $("#mdc-group-fecPropFin > label").removeClass("mdc-text-field__label--float-above");
+        }
+    });
+
+}
 
 function asignarCombos(){
 
