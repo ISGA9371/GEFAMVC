@@ -320,7 +320,7 @@ $(function () {
     let index10 = parseInt("0");
     app.listen('MDCSelect:change', () => {
         if (index10++ === 0) return; else index10 = 0;
-        let id = empresas.selectedOptions[0].value;
+        let id = app.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         console.log("APPID " +id);
         $("#applicationId").val(id);
@@ -332,7 +332,7 @@ $(function () {
     let index11 = parseInt("0");
     canal.listen('MDCSelect:change', () => {
         if (index11++ === 0) return; else index11 = 0;
-        let id = empresas.selectedOptions[0].value;
+        let id = canal.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         console.log("CANALID " +id);
         $("#channelId").val(id);
