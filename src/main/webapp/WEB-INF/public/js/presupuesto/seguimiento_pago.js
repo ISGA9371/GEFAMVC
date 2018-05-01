@@ -75,7 +75,7 @@ $(document).ready(function(){
 
   mdc_text_solicitud = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_solicitud'));
   mdc_text_aceptacion = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_aceptacion'));
-  mdc_select_orden_compra = new mdc.select.MDCSelect(document.querySelector('#mdc_select_orden_compra'));
+  mdc_text_orden_compra = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_orden_compra'));
   mdc_text_fecha_envio = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_envio'));
   mdc_text_hoja_entrada = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_hoja_entrada'));
   mdc_select_estado = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado'));
@@ -125,7 +125,7 @@ $(document).ready(function(){
   $("#btn_clear").click(function(){
     mdc_text_solicitud.value = "";
     mdc_text_aceptacion.value = "";
-    mdc_select_orden_compra.value = "";
+    mdc_text_orden_compra.value = "";
     mdc_text_fecha_envio.value = "";
     mdc_text_hoja_entrada.value = "";
     mdc_select_estado.value = "";
@@ -135,12 +135,10 @@ $(document).ready(function(){
     mdc_select_tecnologia.value = "";
     mdc_text_area_atencion.value = "";
 
-    mdc_select_orden_compra.selectedIndex = -1;
     mdc_select_estado.selectedIndex = -1;
     mdc_select_empresa.selectedIndex = -1;
     mdc_select_tecnologia.selectedIndex = -1;
 
-    $("#mdc_select_orden_compra > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
     $("#mdc_select_estado > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
     $("#mdc_select_empresa > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
     $("#mdc_select_tecnologia > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
@@ -155,7 +153,7 @@ $(document).ready(function(){
     var params = {
       solicitud: mdc_text_solicitud.value,
       aceptacion: mdc_text_aceptacion.value,
-      orden_compra: mdc_select_orden_compra.value,
+      orden_compra: mdc_text_orden_compra.value,
       fecha_envio: mdc_text_fecha_envio.value,
       hoja_entrada: mdc_text_hoja_entrada.value,
       estado: mdc_select_estado.value,
