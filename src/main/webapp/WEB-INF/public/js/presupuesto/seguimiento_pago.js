@@ -83,7 +83,7 @@ $(document).ready(function(){
   mdc_text_fecha_hasta = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_hasta'));
   mdc_select_empresa = new mdc.select.MDCSelect(document.querySelector('#mdc_select_empresa'));
   mdc_select_tecnologia = new mdc.select.MDCSelect(document.querySelector('#mdc_select_tecnologia'));
-  mdc_text_area_atencion = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_area_atencion'));
+  mdc_select_area_atencion = new mdc.select.MDCSelect(document.querySelector('#mdc_select_area_atencion'));
 
 
 
@@ -133,15 +133,17 @@ $(document).ready(function(){
     mdc_text_fecha_hasta.value = "";
     mdc_select_empresa.value = "";
     mdc_select_tecnologia.value = "";
-    mdc_text_area_atencion.value = "";
+    mdc_select_area_atencion.value = "";
 
     mdc_select_estado.selectedIndex = -1;
     mdc_select_empresa.selectedIndex = -1;
     mdc_select_tecnologia.selectedIndex = -1;
+    mdc_select_area_atencion.selectedIndex = -1;
 
     $("#mdc_select_estado > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
     $("#mdc_select_empresa > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
     $("#mdc_select_tecnologia > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
+    $("#mdc_select_area_atencion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
 
     $("#fecha_hasta").datepicker("option", "minDate", null);
     $("#fecha_desde").datepicker("option", "maxDate", null);
@@ -161,7 +163,7 @@ $(document).ready(function(){
       fecha_hasta: mdc_text_fecha_hasta.value,
       empresa: mdc_select_empresa.value,
       tecnologia: mdc_select_tecnologia.value,
-      area_atencion: mdc_text_area_atencion.value,
+      area_atencion: mdc_select_area_atencion.value,
     };
 
     console.log( params );
