@@ -78,7 +78,7 @@ $(document).ready(function(){
   mdc_text_orden_compra = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_orden_compra'));
   mdc_text_fecha_envio = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_envio'));
   mdc_text_hoja_entrada = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_hoja_entrada'));
-  mdc_select_estado = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado'));
+  mdc_select_estado_pago = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado_pago'));
   mdc_text_fecha_desde = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_desde'));
   mdc_text_fecha_hasta = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_hasta'));
   mdc_select_empresa = new mdc.select.MDCSelect(document.querySelector('#mdc_select_empresa'));
@@ -128,19 +128,19 @@ $(document).ready(function(){
     mdc_text_orden_compra.value = "";
     mdc_text_fecha_envio.value = "";
     mdc_text_hoja_entrada.value = "";
-    mdc_select_estado.value = "";
+    mdc_select_estado_pago.value = "";
     mdc_text_fecha_desde.value = "";
     mdc_text_fecha_hasta.value = "";
     mdc_select_empresa.value = "";
     mdc_select_tecnologia.value = "";
     mdc_select_area_atencion.value = "";
 
-    mdc_select_estado.selectedIndex = -1;
+    mdc_select_estado_pago.selectedIndex = -1;
     mdc_select_empresa.selectedIndex = -1;
     mdc_select_tecnologia.selectedIndex = -1;
     mdc_select_area_atencion.selectedIndex = -1;
 
-    $("#mdc_select_estado > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
+    $("#mdc_select_estado_pago > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
     $("#mdc_select_empresa > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
     $("#mdc_select_tecnologia > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
     $("#mdc_select_area_atencion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
@@ -158,7 +158,7 @@ $(document).ready(function(){
       orden_compra: mdc_text_orden_compra.value,
       fecha_envio: mdc_text_fecha_envio.value,
       hoja_entrada: mdc_text_hoja_entrada.value,
-      estado: mdc_select_estado.value,
+      estado: mdc_select_estado_pago.value,
       fecha_desde: mdc_text_fecha_desde.value,
       fecha_hasta: mdc_text_fecha_hasta.value,
       empresa: mdc_select_empresa.value,
