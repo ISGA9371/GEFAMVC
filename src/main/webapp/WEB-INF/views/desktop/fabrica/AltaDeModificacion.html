@@ -17,7 +17,6 @@
 <form style="" action="#" th:object="${modification}" th:action="@{/modifications}" method="post" onsubmit="holder('Registrando Modificacion')">
 
     <div class="container">
-        <br>
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -116,7 +115,7 @@
             <table class="col-md-12" >
                 <tr>
                     <td class="col-md-4" align="center">
-                        <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <div id="tipmodificacion-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                             <input type="text" th:value="${componentData.startTypology.product.productName}" disabled  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="tipo_modificacion">
                             <label for="demo-input" class="mdc-text-field__label">Tipologia de la Modificación</label>
                         </div>
@@ -152,7 +151,7 @@
                 <tr>
                     <td class="col-md-4" align="center">
                         <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input type="text"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="costo">
+                            <input type="number" min="0.00" max="999999.00"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="costo">
                             <label for="demo-input" class="mdc-text-field__label">Costo</label>
                         </div>
                     </td>
@@ -187,7 +186,7 @@
                       </td>
                       <td class="col-md-4" align="center">
                           <input id="hidden-responsable" type="text"   value="" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{userSender.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                          <div id="tipologia-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                          <div id="usuario-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                               <input disabled="disabled" type="text" value=" " class="mdc-text-field__input mdc-text-field--disabled" id="responsabletxt">
                               <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
                           </div>
