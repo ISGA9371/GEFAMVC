@@ -121,4 +121,6 @@ function camp() {
     new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("dificultad-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("estado-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("tipmodificacion-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("usuario-js-text")).disabled = true;
 }

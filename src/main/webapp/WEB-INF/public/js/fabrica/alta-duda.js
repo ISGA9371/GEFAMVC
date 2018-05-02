@@ -1,7 +1,7 @@
 function init() {
 
     camp();
-    loadSelects();
+    loadSelects2();
     addButtonEvents();
 
     $("#hidden-status").val("11");
@@ -34,22 +34,6 @@ function init() {
 
 }
 
-function loadSelects() {
-    mdc.select.MDCSelect.attachTo(document.getElementById('Prioridad-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('Duda-js-select'));
-    //mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
-}
-
-/*function addCalendars() {
-    $('#FecRealCFG').datetimepicker({
-        format: 'DD/MM/YYYY',
-        widgetPositioning: {
-            horizontal: 'auto',
-            vertical: 'top'
-        }
-    });
-}*/
-
 function addButtonEvents() {
     var btnCancel = document.getElementById('cancelar-btn');
     btnCancel.addEventListener("click", function () {
@@ -72,7 +56,7 @@ function holder(msg){
 
 
 demoReady(function() {
-    var rootEst = document.getElementById('Prioridad-js-select');
+    var rootEst = document.getElementById('prioridad');
     var hiddenEst = document.getElementById('hidden-prioridad');
     var selectEst = new mdc.select.MDCSelect(rootEst);
 
@@ -80,16 +64,6 @@ demoReady(function() {
         hiddenEst.value = selectEst.value;
     });
 });
-
-/*demoReady(function() {
-    var rootEst = document.getElementById('responsable-js-select');
-    var hiddenEst = document.getElementById('hidden-responsable');
-    var selectEst = new mdc.select.MDCSelect(rootEst);
-
-    rootEst.addEventListener('MDCSelect:change', function() {
-        hiddenEst.value = selectEst.value;
-    });
-});*/
 
 demoReady(function() {
     var rootEst = document.getElementById('Duda-js-select');
@@ -111,4 +85,44 @@ function camp() {
     new mdc.textField.MDCTextField(document.getElementById("tecnologia-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Peticionario-js-text")).disabled = true;
+}
+
+
+function loadSelects2() {
+    const prioridad = new mdc.select.MDCSelect(document.querySelector('#prioridad'));
+    $.ajax({
+        url: "/api/prioritys"
+    }).done(function(data) {
+        let subs = data.data;
+        $("#prioridad-sel-text").html("");
+        prioridad.selectedIndex = -1;
+        prioridad.value = "";
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#prioridad-select").html("");
+            $.each(subs, function( index, value ) {
+                $("#prioridad-select").append(
+                    "<li class='mdc-list-item' role='option' tabindex='0' " +
+                    "id='"+value.priorityId+"' value='"+value.priorityId+"'>"+value.priorityName+"</li>");
+            });
+        }else $("#prioridad-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+    });
+
+    const DudaType = new mdc.select.MDCSelect(document.querySelector('#Duda-js-select'));
+    $.ajax({
+        url: "/api/doubt-types"
+    }).done(function(data) {
+        let subs = data.data;
+        $("#Duda-sel-text").html("");
+        DudaType.selectedIndex = -1;
+        DudaType.value = "";
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#Duda-select").html("");
+            $.each(subs, function( index, value ) {
+                $("#Duda-select").append(
+                    "<li class='mdc-list-item' role='option' tabindex='0' " +
+                    "id='"+value.doubtTypeId+"' value='"+value.doubtTypeId+"'>"+value.doubtTypeName+"</li>");
+            });
+        }else $("#Duda-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+    });
 }

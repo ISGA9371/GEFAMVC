@@ -94,4 +94,5 @@ function camp() {
     new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Peticionario-js-text")).disabled = true;
 }

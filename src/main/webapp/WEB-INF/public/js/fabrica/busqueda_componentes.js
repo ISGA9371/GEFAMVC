@@ -370,7 +370,7 @@ $(function () {
           }
 
           $("#tab-componentes > table > tbody").append(
-            "<tr><td></td>" +
+            "<tr>" +
             "<td>" + value.componentName + "</td>" +
             "<td>" + value.requirement.requirementName + "</td>" +
             "<td>" + value.componentVersion + "</td>" +
@@ -469,17 +469,14 @@ $(function () {
         $('#date2').datepicker({dateFormat: "dd/mm/yy"});
         $('#date3').datepicker({dateFormat: "dd/mm/yy"});
         $('#date4').datepicker({dateFormat: "dd/mm/yy"});
-      } else {
-        new jBox('Notice', {
-          content: 'Tu búsqueda no devolvió resultados',
-          animation: 'pulse',
-          color: 'red'
-        });
-      }
 
+        HoldOn.close();
+      } else {
+        customHolder("info", "Tu búsqueda no devolvió resultados.");
+      }
+    }).fail(function (xhr, status, error) {
       HoldOn.close();
-    }).fail(function (fail) {
-      HoldOn.close();
+      customHolder("error", xhr.responseJSON.message)
     });
   });
 
@@ -590,6 +587,7 @@ $(function () {
     $("#slct_estado_tipificado").removeClass("mdc-select--upgraded");
 
     $("#tabs").tabs("option", "active", 0);
+    $("#update-all-dates").attr("disabled", "disabled");
     
   });
 
@@ -617,7 +615,7 @@ $(function () {
         HoldOn.open({
           theme: "sk-cube",
           content: '',
-          message: 'Actualizando Información',
+          message: 'Actualizando Información.',
           backgroundColor: "#0c71ca",
           textColor: "white",
         });
@@ -634,18 +632,10 @@ $(function () {
       });
 
       HoldOn.close();
-      new jBox('Notice', {
-        content: 'Información actualizada exitosamente',
-        animation: 'pulse',
-        color: 'green'
-      });
-    }).fail(function ( error ) {
+      customHolder("info", "Información actualizada exitosamente.");
+    }).fail(function (xhr, status, error) {
       HoldOn.close();
-      new jBox('Notice', {
-        content: 'Hubo un error al guardar, intenta de nuevo.',
-        animation: 'pulse',
-        color: 'red'
-      });
+      customHolder("error", xhr.responseJSON.message)
     });
   });
   
@@ -685,18 +675,10 @@ $(function () {
       }
     }).done(function (data) {
       HoldOn.close();
-      new jBox('Notice', {
-        content: 'Información actualizada exitosamente',
-        animation: 'pulse',
-        color: 'green'
-      });
-    }).fail(function (error) {
+      customHolder("info", "Información actualizada exitosamente.");
+    }).fail(function (xhr, status, error) {
       HoldOn.close();
-      new jBox('Notice', {
-        content: 'Hubo un error al guardar, intenta de nuevo.',
-        animation: 'pulse',
-        color: 'red'
-      });
+      customHolder("error", xhr.responseJSON.message);
     });
   });
   
@@ -741,18 +723,10 @@ $(function () {
       }
     }).done(function (data) {
       HoldOn.close();
-      new jBox('Notice', {
-        content: 'Información actualizada exitosamente',
-        animation: 'pulse',
-        color: 'green'
-      });
-    }).fail(function (error) {
+      customHolder("info", "Información actualizada exitosamente.");
+    }).fail(function (xhr, status, error) {
       HoldOn.close();
-      new jBox('Notice', {
-        content: 'Hubo un error al guardar, intenta de nuevo.',
-        animation: 'pulse',
-        color: 'red'
-      });
+      customHolder("error", xhr.responseJSON.message);
     });
   });
 });

@@ -75,9 +75,11 @@ function asignarCombos(){
             $("#dir-select").html("");
             $.each(subs, function( index, value ) {
 
-                  $("#dir-select").append(
-                      "<li class='mdc-list-item' role='option' tabindex='0' " +
+                if(value.levelType.levelTypeId==1){
+                    $("#dir-select").append(
+                        "<li class='mdc-list-item' role='option' tabindex='0' " +
                         "id='"+value.levelId+"' value='"+value.levelId+"'>"+value.levelName+"</li>");
+                }
 
             });
         }else $("#dir-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");

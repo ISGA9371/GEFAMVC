@@ -32,7 +32,7 @@ function rojelia(){
     }
     var today = 'v' + yyyy + mm + dd;
 
-    $('#desfijo').val(descri + " - inicial - " + descrip + " - "+ dd+"/"+mm+"/"+yyyy);
+    $('#desfijo').val(descri + " | " + descrip + " - "+ dd+"/"+mm+"/"+yyyy);
 }
 
 $(function () {
@@ -116,4 +116,5 @@ function camp() {
     new mdc.textField.MDCTextField(document.getElementById("Incidencia")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
 }

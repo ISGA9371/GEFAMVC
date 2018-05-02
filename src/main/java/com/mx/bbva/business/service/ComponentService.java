@@ -20,4 +20,6 @@ public interface ComponentService {
     void updateDates(List<ComponentUpdateDatesDTO> components);
 
     void updateClosureComponent(List<ComponentClosureDTO> components);
+
+    boolean notRemovable(Integer componentId);
 }

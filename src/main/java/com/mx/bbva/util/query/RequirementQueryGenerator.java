@@ -54,8 +54,8 @@ public class RequirementQueryGenerator {
 
     private void fillValues() {
         items.put("requirementName", Arrays.asList("x.requirementName", LIKE));
-        items.put("requirementStartDate", Arrays.asList("x.requirementStartDate", LIKE));
-        items.put("requirementEndDate", Arrays.asList("x.requirementEndDate", LIKE));
+        items.put("requirementStartDate", Arrays.asList("x.requirementStartDate", EQUALS));
+        items.put("requirementEndDate", Arrays.asList("x.requirementEndDate", EQUALS));
         items.put("subPrincipalId", Arrays.asList("x.level.levelId", EQUALS));
         items.put("companyId", Arrays.asList("x.company.companyId", EQUALS));
         items.put("technologyId", Arrays.asList("x.technology.technologyId", EQUALS));

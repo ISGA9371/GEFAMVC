@@ -1,25 +1,14 @@
 $(document).ready(function(){
 
   $("#fecha_envio").datepicker({
-     dateFormat: "dd-mm-yy",
+     dateFormat: "dd/mm/yy"
   });
   
-  $("#fecha_desde").datepicker({
-     dateFormat: "dd-mm-yy",
-  }).on("change", function () {
-    $("#fecha_hasta").datepicker("option", "minDate", getDate(this));
-  });
-
-  $("#fecha_hasta").datepicker({
-     dateFormat: "dd-mm-yy",
-  }).on("change", function () {
-    $("#fecha_desde").datepicker("option", "maxDate", getDate(this));
-  });
 
   function getDate(element) {
     var date;
     try {
-      date = $.datepicker.parseDate("dd-mm-yy", element.value);
+      date = $.datepicker.parseDate("dd/mm/yy", element.value);
     } catch (error) {
       date = null;
     }
@@ -86,15 +75,15 @@ $(document).ready(function(){
 
   mdc_text_solicitud = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_solicitud'));
   mdc_text_aceptacion = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_aceptacion'));
-  mdc_select_orden_compra = new mdc.select.MDCSelect(document.querySelector('#mdc_select_orden_compra'));
+  mdc_text_orden_compra = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_orden_compra'));
   mdc_text_fecha_envio = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_envio'));
   mdc_text_hoja_entrada = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_hoja_entrada'));
-  mdc_select_estado = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado'));
+  mdc_select_estado_pago = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado_pago'));
   mdc_text_fecha_desde = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_desde'));
   mdc_text_fecha_hasta = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_hasta'));
   mdc_select_empresa = new mdc.select.MDCSelect(document.querySelector('#mdc_select_empresa'));
   mdc_select_tecnologia = new mdc.select.MDCSelect(document.querySelector('#mdc_select_tecnologia'));
-  mdc_text_area_atencion = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_area_atencion'));
+  mdc_select_area_atencion = new mdc.select.MDCSelect(document.querySelector('#mdc_select_area_atencion'));
 
 
 
@@ -107,8 +96,12 @@ $(document).ready(function(){
   });
 
 
-  $("#fecha_desde").change(function () {
-    if ( "" != mdc_text_fecha_desde.value ) {
+  $("#fecha_desde").datepicker({
+    dateFormat: "dd/mm/yy"
+  }).on("change", function () {
+    $("#fecha_hasta").datepicker("option", "minDate", getDate(this));
+
+    if ("" != mdc_text_fecha_desde.value) {
       $("#mdc_text_fecha_desde > label").addClass("mdc-text-field__label--float-above");
     } else {
       $("#mdc_text_fecha_desde > label").removeClass("mdc-text-field__label--float-above");
@@ -116,8 +109,12 @@ $(document).ready(function(){
   });
 
 
-  $("#fecha_hasta").change(function () {
-    if ( "" != mdc_text_fecha_hasta.value ) {
+  $("#fecha_hasta").datepicker({
+    dateFormat: "dd/mm/yy"
+  }).on("change", function () {
+    $("#fecha_desde").datepicker("option", "maxDate", getDate(this));
+
+    if ("" != mdc_text_fecha_hasta.value) {
       $("#mdc_text_fecha_hasta > label").addClass("mdc-text-field__label--float-above");
     } else {
       $("#mdc_text_fecha_hasta > label").removeClass("mdc-text-field__label--float-above");
@@ -128,25 +125,25 @@ $(document).ready(function(){
   $("#btn_clear").click(function(){
     mdc_text_solicitud.value = "";
     mdc_text_aceptacion.value = "";
-    mdc_select_orden_compra.value = "";
+    mdc_text_orden_compra.value = "";
     mdc_text_fecha_envio.value = "";
     mdc_text_hoja_entrada.value = "";
-    mdc_select_estado.value = "";
+    mdc_select_estado_pago.value = "";
     mdc_text_fecha_desde.value = "";
     mdc_text_fecha_hasta.value = "";
     mdc_select_empresa.value = "";
     mdc_select_tecnologia.value = "";
-    mdc_text_area_atencion.value = "";
+    mdc_select_area_atencion.value = "";
 
-    mdc_select_orden_compra.selectedIndex = -1;
-    mdc_select_estado.selectedIndex = -1;
+    mdc_select_estado_pago.selectedIndex = -1;
     mdc_select_empresa.selectedIndex = -1;
     mdc_select_tecnologia.selectedIndex = -1;
+    mdc_select_area_atencion.selectedIndex = -1;
 
-    $("#mdc_select_orden_compra > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
-    $("#mdc_select_estado > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
+    $("#mdc_select_estado_pago > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
     $("#mdc_select_empresa > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
     $("#mdc_select_tecnologia > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
+    $("#mdc_select_area_atencion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above"); 
 
     $("#fecha_hasta").datepicker("option", "minDate", null);
     $("#fecha_desde").datepicker("option", "maxDate", null);
@@ -158,38 +155,43 @@ $(document).ready(function(){
     var params = {
       solicitud: mdc_text_solicitud.value,
       aceptacion: mdc_text_aceptacion.value,
-      fecha_envio: mdc_select_orden_compra.value,
-      hoja_entrada: mdc_text_fecha_envio.value,
-      estado: mdc_text_hoja_entrada.value,
-      fecha_desde: mdc_select_estado.value,
-      fecha_hasta: mdc_text_fecha_desde.value,
-      empresa: mdc_text_fecha_hasta.value,
-      tecnologia: mdc_select_empresa.value,
-      area_atencion: mdc_select_tecnologia.value,
-      orden_compra: mdc_text_area_atencion.value,
+      orden_compra: mdc_text_orden_compra.value,
+      fecha_envio: mdc_text_fecha_envio.value,
+      hoja_entrada: mdc_text_hoja_entrada.value,
+      estado: mdc_select_estado_pago.value,
+      fecha_desde: mdc_text_fecha_desde.value,
+      fecha_hasta: mdc_text_fecha_hasta.value,
+      empresa: mdc_select_empresa.value,
+      tecnologia: mdc_select_tecnologia.value,
+      area_atencion: mdc_select_area_atencion.value,
     };
 
     console.log( params );
 
-    // $.ajax({
-    //   url: "/components/search",
-    //   method: "GET",
-    //   data: $.param(params),
-    //   dataType: "json",
-    //   beforeSend: function (xhr) {
-    //     HoldOn.open({
-    //       theme: "sk-cube",
-    //       content: '',
-    //       message: 'Consultado Información',
-    //       backgroundColor: "#0c71ca",
-    //       textColor: "white",
-    //     });
-    //   }
-    // }).done(function ( data ) {
-
-    // }).fail(function( error ){
-
-    // });
+    $.ajax({
+      url: "/budgets/payments/search",
+      method: "GET",
+      data: $.param(params),
+      dataType: "json",
+      beforeSend: function (xhr) {
+        HoldOn.open({
+          theme: "sk-cube",
+          content: '',
+          message: 'Consultado Información',
+          backgroundColor: "#0c71ca",
+          textColor: "white",
+        });
+      }
+    }).done(function ( data ) {
+      if (1 <= data.length) {
+        HoldOn.close();  
+      } else {
+        customHolder("info", "Tu búsqueda no devolvió resultados.");
+      }
+    }).fail(function (xhr, status, error) {
+      HoldOn.close();
+      customHolder("error", xhr.responseJSON.message)
+    });
   });
 
 
