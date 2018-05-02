@@ -27,7 +27,7 @@ function fillFields() {
     new mdc.textField.MDCTextField(document.getElementById('version-mdc-text')).value = $('#componentVersion').val();
     new mdc.textField.MDCTextField(document.getElementById('descripcion-mdc-text')).value = $('#componentTypoComment').val()
 
-
+    var auxHour = $('#componentHours').val();
     var $elementTypologiaInicio = $("#typology").parent().find("li[id^='" + $('#typology').val() + "|']");
     if ($elementTypologiaInicio.length > 0) {
         var idTypologiaInicio = $elementTypologiaInicio.attr('id');
@@ -39,23 +39,28 @@ function fillFields() {
             splittedTypologiaInicio[3] = 1;
         }
         if (splittedTypologiaInicio[3] === 0 || splittedTypologiaInicio[3] === 1) {
+            var comboId = "";
             if (splittedTypologiaInicio[3] == 0) {
                 new mdc.textField.MDCTextField(document.getElementById("nuemod-mdc-text")).value = "Nuevo";
                 $('#tipologia-empty-js-select').hide();
                 $('#tipologia-news-js-select').show();
                 $('#tipologia-mods-js-select').hide();
-                $("#tipologia-news-js-select").find("div").eq(0).click();
+                comboId = "tipologia-news-js-select";
             }
             if (splittedTypologiaInicio[3] == 1) {
                 new mdc.textField.MDCTextField(document.getElementById("nuemod-mdc-text")).value = "Modificado";
                 $('#tipologia-empty-js-select').hide();
                 $('#tipologia-news-js-select').hide();
                 $('#tipologia-mods-js-select').show();
-                $("#tipologia-mods-js-select").find("div").eq(0).click();
+                comboId = "tipologia-mods-js-select";
             }
-            $elementTypologiaInicio.click();
+            selectByValue(comboId,$elementTypologiaInicio.attr("id"));
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = splittedTypologiaInicio[1];
-            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = splittedTypologiaInicio[2];
+            if(splittedTypologiaInicio[1] == "F"){
+                new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = auxHour;
+            } else {
+                new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = splittedTypologiaInicio[2];
+            }
         } else {
             $('#tipologia-empty-js-select').show();
             new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).selectedIndex = -1;
@@ -92,16 +97,22 @@ function fillFields() {
                 $('#tipologia-final-empty-js-select').hide();
                 $('#tipologia-final-news-js-select').show();
                 $('#tipologia-final-mods-js-select').hide();
-                $("#tipologia-final-news-js-select").find("div").eq(0).click();
+                comboId = "tipologia-final-news-js-select";
             }
             if (splittedTypologiaFinal[3] == 1) {
                 new mdc.textField.MDCTextField(document.getElementById("nuemod-mdc-text")).value = "Modifcado";
                 $('#tipologia-final-empty-js-select').hide();
                 $('#tipologia-final-news-js-select').hide();
                 $('#tipologia-final-mods-js-select').show();
-                $("#tipologia-final-mods-js-select").find("div").eq(0).click();
+                comboId = "tipologia-final-mods-js-select";
             }
-            $elementTypologiaFinal.click();
+            selectByValue(comboId,$elementTypologiaFinal.attr("id"));
+            setTimeout(function () {if(splittedTypologiaFinal[1] == "F"){
+                $('#componentHours').val(auxHour);
+                new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = auxHour;
+                $('#componentHours').val(auxHour);
+                changeHours();
+            }}, 100);
         } else {
             $('#tipologia-final-empty-js-select').show();
             new mdc.select.MDCSelect(document.getElementById('tipologia-final-news-js-select')).selectedIndex = -1;
@@ -121,13 +132,11 @@ function fillFields() {
     new mdc.textField.MDCTextField(document.getElementById('final-cost-mdc-text')).value = Number($('#componentFinalCost').val()).formatMoney(2);
     var $statusTypology = $("#statusTypology").parent().find("li[id^='" + $('#statusTypology').val() + "']");
     if ($statusTypology.length > 0) {
-        $("#estatus-tipificacion-js-select").find("div").eq(0).click();
-        $statusTypology.click();
+        selectByValue("estatus-tipificacion-js-select",$statusTypology.attr("id"));
     }
     var $status = $("#status").parent().find("li[id^='" + $('#status').val() + "']");
     if ($status.length > 0) {
-        $("#estatus-componente-js-select").find("div").eq(0).click();
-        $status.click()
+        selectByValue("estatus-componente-js-select",$status.attr("id"));
     }
     var $componentForBill = "";
     $componentForBill = $('#componentForBill').val();
@@ -137,10 +146,8 @@ function fillFields() {
     if ($componentForBill == "true") {
         $componentForBill = 1;
     }
-    $('#componentForBill').val($componentForBill);
     if ($componentForBill === 0 || $componentForBill === 1) {
-        $("#facturado-js-select").find("div").eq(0).click();
-        clickSelectOption("componentForBill");
+        selectByValue("facturado-js-select",$componentForBill);
     }
     $('#componentForBill').val($componentForBill);
     /*var d = new Date($('#componentDesignRealDeliverDate').val());
@@ -179,6 +186,13 @@ function clickSelectOption(idHolder) {
     $holder = $("#" + idHolder);
     $holder.parent().find("li[id^='" + $holder.val() + "']").click();
 
+}
+
+function selectByValue(mdcSelectId, value){
+    $select = new mdc.select.MDCSelect(document.getElementById(mdcSelectId));
+    $option = $("#"+mdcSelectId).parent().find("li[id='" + value + "']");
+    $select.item($option.parent().find("li").index($option)).click();
+    $($select.label_).addClass("mdc-select__label--float-above");
 }
 
 function addComponentValidation() {
@@ -224,8 +238,8 @@ function addDifficultyValidation() {
 
 function addHoursValidation() {
     //var goodHours = /^((0?)|([1-9]{1}\d{0,3}))$/
-    var goodHours = /^((0?)|([1-9]{1}\d{0,2}))(\.?|(\.[1-9]{1,2})?)$/
-    $('#hours-mdc-text :input')
+    var goodHours = /^((0?)|([1-9]{1}\d{0,5}))(\.?|(\.[0-9]{1,2})?)$/
+    $('#hours-final-mdc-text :input')
         .data("oldValue", '')
         .bind('input propertychange', function () {
             var $this = $(this);
@@ -310,7 +324,13 @@ function addCustomSelectEvents() {
             hiddenTypology.value = splittedNews[0];
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value = splittedNews[1];
-            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = splittedNews[2];
+            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value=splittedNews[2];
+            if(splittedNews[1] == "F"){
+                new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).disabled = false;
+            } else {
+                new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).disabled = true;
+            }
+            $("#componentHours").val(splittedNews[2]);
             $("#componentFinalCost").val(Number(splittedNews[2]) * Number($("#auxFare").val()));
             new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value = Number($("#componentFinalCost").val()).formatMoney(2);
         } else {
@@ -331,7 +351,13 @@ function addCustomSelectEvents() {
             hiddenTypology.value = splittedMods[0];
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value = splittedMods[1];
-            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = splittedMods[2];
+            new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value=splittedMods[2];
+            if(splittedMods[1] == "F"){
+                new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).disabled = false;
+            } else {
+                new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).disabled = true;
+            }
+            $("#componentHours").val(splittedMods[2]);
             $("#componentFinalCost").val(Number(splittedMods[2]) * Number($("#auxFare").val()));
             new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value = Number($("#componentFinalCost").val()).formatMoney(2);
         } else {
@@ -459,11 +485,12 @@ function defaultTypologies() {
 function addHiddenEvents() {
     addTextSyncMdcToHtml("componentName", "component-mdc-text");
     addTextSyncMdcToHtml("componentVersion", "version-mdc-text");
-    addTextSyncMdcToHtml("componentDesignRealDeliverDate", "FecRealCFG-mdc-text");
-    addTextSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text");
-    addTextSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-text");
-    addTextSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text");
     addTextSyncMdcToHtml("componentTypoComment", "descripcion-mdc-text");
+    addHoursSyncMdcToHtml("componentHours", "hours-final-mdc-text");
+    addDateSyncMdcToHtml("componentDesignRealDeliverDate", "FecRealCFG-mdc-text");
+    addDateSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text");
+    addDateSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-text");
+    addDateSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text")
     //$("#requirement").val($("#requirementHidden").val());
     //addSelectSyncMdcToHtml("subdireccion","subdireccion-js-select");
     addSelectSyncMdcToHtml("statusTypology", "estatus-tipificacion-js-select");
@@ -485,6 +512,42 @@ function addTextSyncMdcToHtml(htmlField, mdcField) {
     });
     inputName.addEventListener('blur', function () {
         hiddenName.value = textName.value;
+    });
+}
+
+function addHoursSyncMdcToHtml(htmlField, mdcField) {
+    var rootName = document.getElementById(mdcField);
+    var inputName = rootName.querySelector('input');
+    var hiddenName = document.getElementById(htmlField);
+    var textName = new mdc.textField.MDCTextField(rootName);
+    textName.value = textName.value;
+
+    inputName.addEventListener('keyup', function () {
+        hiddenName.value = textName.value;
+        changeHours();
+    });
+    inputName.addEventListener('change', function () {
+        hiddenName.value = textName.value;
+        changeHours();
+    });
+    inputName.addEventListener('blur', function () {
+        hiddenName.value = textName.value;
+        changeHours();
+    });
+}
+
+function addDateSyncMdcToHtml(htmlField, mdcField) {
+    var rootName = document.querySelector('#'+mdcField);
+    var inputName = rootName.querySelector('input');
+    var hiddenName = document.getElementById(htmlField);
+    var textName = new mdc.textField.MDCTextField(rootName);
+    $(inputName).change(function () {
+        hiddenName.value = textName.value;
+        if ("" != textName.value) {
+            $("#"+mdcField+" > label").addClass("mdc-text-field__label--float-above");
+        } else {
+            $("#"+mdcField+" > label").removeClass("mdc-text-field__label--float-above");
+        }
     });
 }
 
@@ -548,5 +611,9 @@ Number.prototype.formatMoney = function (c, d, t) {
     return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 };
 
+var changeHours = function(){
+    $("#componentFinalCost").val(Number($("#componentHours").val())*Number($("#auxFare").val()));
+    new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value=Number($("#componentFinalCost").val()).formatMoney(2);
+}
 
 var showingError = false;
