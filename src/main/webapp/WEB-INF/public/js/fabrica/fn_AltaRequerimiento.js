@@ -24,25 +24,62 @@ function assigMiss(){
 
 function calendar(){
 
-    $('#fecPropInic').datepicker({dateFormat: "dd/mm/yy"});
-    $('#fecPropFin').datepicker({dateFormat: "dd/mm/yy"});
+    mdc_text_fecPropInic = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecPropInic'));
+    mdc_text_fecha_hasta = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_hasta'));
+    // $('#fecPropInic').datepicker({dateFormat: "dd/mm/yy"});
+    // $('#fecPropFin').datepicker({dateFormat: "dd/mm/yy"});
+    //
+    // $("#fecPropInic").change(function () {
+    //     if ("" != fecPropInic.value) {
+    //         $("#mdc-group-fecPropInic > label").addClass("mdc-text-field__label--float-above");
+    //     } else {
+    //         $("#mdc-group-fecPropInic > label").removeClass("mdc-text-field__label--float-above");
+    //     }
+    // });
+    //
+    // $("#fecPropFin").change(function () {
+    //     if ("" != fecPropFin.value) {
+    //         $("#mdc-group-fecPropFin > label").addClass("mdc-text-field__label--float-above");
+    //     } else {
+    //         $("#mdc-group-fecPropFin > label").removeClass("mdc-text-field__label--float-above");
+    //     }
+    // });
 
-    $("#fecPropInic").change(function () {
-        if ("" != fecPropInic.value) {
-            $("#mdc-group-fecPropInic > label").addClass("mdc-text-field__label--float-above");
+    $("#fecPropInic").datepicker({
+        dateFormat: "dd/mm/yy"
+    }).on("change", function () {
+        $("#fecPropFin").datepicker("option", "minDate", getDate(this));
+
+        if ("" != mdc_text_fecPropInic.value) {
+            $("#mdc_text_fecPropInic > label").addClass("mdc-text-field__label--float-above");
         } else {
-            $("#mdc-group-fecPropInic > label").removeClass("mdc-text-field__label--float-above");
+            $("#mdc_text_fecPropInic > label").removeClass("mdc-text-field__label--float-above");
         }
     });
 
-    $("#fecPropFin").change(function () {
-        if ("" != fecPropFin.value) {
-            $("#mdc-group-fecPropFin > label").addClass("mdc-text-field__label--float-above");
+
+    $("#fecPropFin").datepicker({
+        dateFormat: "dd/mm/yy"
+    }).on("change", function () {
+        $("#fecPropInic").datepicker("option", "maxDate", getDate(this));
+
+        if ("" != mdc_text_fecha_hasta.value) {
+            $("#mdc_text_fecha_hasta > label").addClass("mdc-text-field__label--float-above");
         } else {
-            $("#mdc-group-fecPropFin > label").removeClass("mdc-text-field__label--float-above");
+            $("#mdc_text_fecha_hasta > label").removeClass("mdc-text-field__label--float-above");
         }
     });
 
+}
+
+function getDate(element) {
+    var date;
+    try {
+        date = $.datepicker.parseDate("dd/mm/yy", element.value);
+    } catch (error) {
+        date = null;
+    }
+    return date;
 }
 
 function asignarCombos(){
