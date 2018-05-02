@@ -15,8 +15,8 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping(value = "/api/projects")
-public class ProjectController {
-    private static final Logger LOG = Logger.getLogger(ProjectController.class.getName());
+public class ProjectsController {
+    private static final Logger LOG = Logger.getLogger(ProjectsController.class.getName());
 
     private ProjectService projectService;
 
