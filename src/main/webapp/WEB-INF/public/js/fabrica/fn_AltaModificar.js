@@ -171,6 +171,17 @@ function addButtonEvents() {
     })
 }
 
+function holder(msg){
+    HoldOn.open({
+        theme: "sk-cube",
+        content: '',
+        message: msg,
+        // backgroundColor: "#004582",
+        backgroundColor: "#0c71ca",
+        textColor: "white",
+    });
+}
+
 function ajaxGuardar() {
     var $form = $("form");
     var url = $form.attr("action");
