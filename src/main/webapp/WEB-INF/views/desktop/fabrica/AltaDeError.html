@@ -91,19 +91,18 @@
                     <tr style="height:72px">
                         <td class="col-md-4" align="center" style="height:72px">
                             <input id="hidden-prioridad" type="text" value="" required th:field="*{priority.priorityId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                            <div id="Prioridad-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                            <div id="prioridad" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                                     <div class="mdc-select__label">Prioridad*</div>
-                                    <div class="mdc-select__selected-text"></div>
+                                    <div class="mdc-select__selected-text" id="prioridad-sel-text"></div>
                                     <div class="mdc-select__bottom-line"></div>
                                 </div>
-                                <div class="mdc-menu mdc-select__menu col-md-3" >
-                                    <ul class="mdc-list mdc-menu__items">
-                                        <li th:each="priorities:${priorities}" class="mdc-list-item" th:id="${priorities.priorityId}" role="option" th:text="${priorities.priorityName}"></li>
+                                <div class="mdc-menu mdc-select__menu col-md-3">
+                                    <ul class="mdc-list mdc-menu__items" id="prioridad-select">
+                                        <li class="mdc-list-item" role="option" tabindex="0"></li>
                                     </ul>
                                 </div>
                             </div>
-
                         </td>
                         <td class="col-md-4" align="center">
                             <input id="hidden-responsable" type="text"   value="" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{userSender.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
@@ -122,17 +121,15 @@
                             <div id="Origen-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                                     <div class="mdc-select__label">Origen*</div>
-                                    <div class="mdc-select__selected-text"></div>
+                                    <div id="Origen-sel-text" class="mdc-select__selected-text"></div>
                                     <div class="mdc-select__bottom-line"></div>
                                 </div>
                                 <div class="mdc-menu mdc-select__menu col-md-3" >
-                                    <ul class="mdc-list mdc-menu__items">
-                                        <li th:each="origins:${origins}" class="mdc-list-item" th:id="${origins.originId}"  role="option" th:text="${origins.originName}"></li>
+                                    <ul class="mdc-list mdc-menu__items" id="Origen-select">
+                                        <li class="mdc-list-item" role="option" tabindex="0"></li>
                                     </ul>
                                 </div>
                             </div>
-
-
                         </td>
                     </tr>
                     <tr style="height:72px">
@@ -167,7 +164,7 @@
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
                             <div  id="descripcion-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
-                                <input type="text" maxlength="200" th:value="${issue.issueInitialDescription}" name="issueInitialDescription" class="mdc-text-field__input" id="descrptor">
+                                <input type="text" required maxlength="200" th:value="${issue.issueInitialDescription}" name="issueInitialDescription" class="mdc-text-field__input" id="descrptor">
                                 <label for="demo-input" class="mdc-text-field__label">Descripción</label>
                             </div>
                         </td>

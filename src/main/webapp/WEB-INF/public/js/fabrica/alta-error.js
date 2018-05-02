@@ -1,5 +1,6 @@
 function init() {
     loadSelects();
+    loadSelects2();
     addButtonEvents();
     camp();
 
@@ -32,10 +33,7 @@ function addButtonEvents() {
 }
 
 function loadSelects() {
-    mdc.select.MDCSelect.attachTo(document.getElementById('Prioridad-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('Origen-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('Estado-js-select'));
-    //mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
 }
 
 function holder(msg){
@@ -95,4 +93,44 @@ function camp() {
     new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("Peticionario-js-text")).disabled = true;
+}
+
+
+function loadSelects2() {
+    const prioridad = new mdc.select.MDCSelect(document.querySelector('#prioridad'));
+    $.ajax({
+        url: "/api/prioritys"
+    }).done(function(data) {
+        let subs = data.data;
+        $("#prioridad-sel-text").html("");
+        prioridad.selectedIndex = -1;
+        prioridad.value = "";
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#prioridad-select").html("");
+            $.each(subs, function( index, value ) {
+                $("#prioridad-select").append(
+                    "<li class='mdc-list-item' role='option' tabindex='0' " +
+                    "id='"+value.priorityId+"' value='"+value.priorityId+"'>"+value.priorityName+"</li>");
+            });
+        }else $("#prioridad-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+    });
+
+    const origen = new mdc.select.MDCSelect(document.querySelector('#Origen-js-select'));
+    $.ajax({
+        url: "/api/origins"
+    }).done(function(data) {
+        let subs = data.data;
+        $("#Origen-sel-text").html("");
+        origen.selectedIndex = -1;
+        origen.value = "";
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#Origen-select").html("");
+            $.each(subs, function( index, value ) {
+                $("#Origen-select").append(
+                    "<li class='mdc-list-item' role='option' tabindex='0' " +
+                    "id='"+value.originId+"' value='"+value.originId+"'>"+value.originName+"</li>");
+            });
+        }else $("#Origen-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+    });
+
 }
