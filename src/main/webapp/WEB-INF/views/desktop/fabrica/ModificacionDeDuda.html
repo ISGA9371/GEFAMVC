@@ -83,7 +83,7 @@
             </tr>
         </table>
 
-        <form style="display:block" action="#" th:action="@{/doubts/}" onsubmit="holder('Registrando Duda')" th:object="${doubt}" method="post">
+        <form th:action="@{/doubts}" th:object="${doubt}" method="post">
             <input id="hidden-status" type="hidden" required th:field="*{status.statusId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
             <input id="hidden-componente" type="hidden"  th:value="${doubt.component.componentId}">
             <input id="hidden-envcomponente" type="hidden" required th:field="*{component.componentId}" >

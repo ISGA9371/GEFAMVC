@@ -9,7 +9,6 @@ function init() {
     $("#hidden-envcomponente").val($("#hidden-componente").val());
     //$("#descripcion").val($("#hidden-descri").val());
 
-
     var fecha=$("#datetimepicker").val();
     var dia = fecha.substring(8,10);
     var mes = fecha.substring(5,7);
@@ -42,14 +41,6 @@ function addCalendars() {
             vertical: 'top'
         }
     });
-}
-
-function addButtonEvents() {
-    var btnCancel = document.getElementById('cancelar-btn');
-    btnCancel.addEventListener("click", function () {
-        holder("Cargando...");
-        window.location.href = "/components/filters";
-    })
 }
 
 function holder(msg){
@@ -99,4 +90,75 @@ function camp() {
     new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = true;
+}
+
+
+function addButtonEvents() {
+    //Actions for save requirements
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+        HoldOn.open({
+            theme: "sk-cube",
+            content: '',
+            message: 'Registrando Duda',
+            // backgroundColor: "#004582",
+            backgroundColor: "#0c71ca",
+            textColor: "white"
+        });
+        setTimeout("ajaxGuardar();", 500)
+    });
+
+    //Actions for cancel requirements
+    var btnCancel = document.getElementById('cancelar-btn');
+    btnCancel.addEventListener("click", function () {
+        holder("Cargando...");
+        window.location.href = "/components/filters";
+    })
+}
+
+function ajaxGuardar() {
+    var $form = $("form");
+    var url = $form.attr("action");
+    var formData = $($form).serializeArray();
+
+    $.ajax({
+        async: false,
+        url: url,
+        type: 'post',
+        data: formData
+    }).done(function (data) {
+        customHolder("info", "Duda Registrada Exitosamente.","window.location.href =  '/doubts/" + $(data).find("#doubtId").val() + "'; holder('Cargando...')");
+        //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
+    }).fail(function (xhr, status, error) {
+        console.log("fail");
+        customHolder("error", xhr.responseJSON.message)
+    });
+}
+
+function customHolder(type, msg, fctn) {
+    var options = null;
+    fctn = fctn == undefined ? "" : fctn;
+    switch(type){
+        case "Error":
+        case "ERROR":
+        case "error":
+            options = msgAssets.error;
+            break;
+        case "Aviso":
+        case "AVISO":
+        case "aviso":
+            options = msgAssets.warn;
+            break;
+        default:
+            options = msgAssets.info;
+    }
+    msg = msg == undefined ? options.defaultMsg : msg;
+    HoldOn.open({
+        theme: "custom",
+        // If theme == "custom" , the content option will be available to customize the logo
+        content: '<img style="height: 57px; margin-left: -5px;" src="data:image/png;base64,' + options.icon + '" >',
+        message: "<br>" + msg +'<br><br><input type="button" value="Aceptar" class="btn btn-default" onclick="HoldOn.close();'+fctn+'">',
+        backgroundColor: "#0c71ca",
+        textColor: "white"
+    });
 }

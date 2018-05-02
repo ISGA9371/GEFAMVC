@@ -82,7 +82,7 @@
     <div class="row">
         <div class="col-md-12 subtitle-content">Datos de Incidencia</div>
     </div>
-                <form style="display:block" action="#" th:action="@{/issues/}" onsubmit="holder('Registrando Incidecia')" th:object="${issue}" method="post">
+                <form th:action="@{/issues}" th:object="${issue}" method="post">
 
                     <input id="compon" type="hidden"  th:value="${issue.component.componentId}">
                     <input id="hidden-componente" type="hidden"  th:value="${issue.component.componentId}">

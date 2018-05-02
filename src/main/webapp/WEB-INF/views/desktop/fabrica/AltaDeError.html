@@ -82,7 +82,7 @@
         <br>
         <div class="col-md-12 subtitle-content">Datos de Incidencia</div>
     </div>
-                <form style="display:block" action="#" th:action="@{/issues}" onsubmit="holder('Registrando Incidencia')" th:object="${issue}" method="post">
+                <form th:object="${issue}" th:action="@{/issues}" method="post">
 
                     <input id="hidden-componente" type="hidden"  th:value="${componentData.componentId}">
                     <input id="hidden-envcomponente" type="hidden" required th:field="*{component.componentId}" >
@@ -134,7 +134,6 @@
                     </tr>
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
-
                             <input id="hidden-estado" type="text" th:field="*{issueFixByDyD}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                             <div id="Estado-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
