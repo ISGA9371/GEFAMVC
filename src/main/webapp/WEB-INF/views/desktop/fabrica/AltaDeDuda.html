@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div >
+    <div>
         <div class="row">
             <div class="col-md-12 subtitle-content">Datos Componente</div>
         </div>
@@ -83,6 +83,10 @@
             </tr>
         </table>
 <br>
+        <div class="row">
+            <div class="col-md-12 subtitle-content">Datos Duda</div>
+        </div>
+
         <form th:object="${doubt}" th:action="@{/doubts}"  method="post">
             <input id="hidden-status" type="hidden" required th:field="*{status.statusId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
             <input id="hidden-componente" type="hidden"  th:value="${componentData.componentId}">
@@ -90,9 +94,6 @@
             <input id="doubtVersion" type="hidden" required th:field="*{doubtVersion}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
 
             <div class="row">
-                <div class="row">
-                    <div class="col-md-12 subtitle-content">Datos Duda</div>
-                </div>
 
                 <table class="col-md-12">
                     <tr style="height:72px">
