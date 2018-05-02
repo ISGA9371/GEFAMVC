@@ -5,7 +5,6 @@ import com.mx.bbva.business.dto.ResponseDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import com.mx.bbva.util.query.BudgetQueryGenerator;
-import com.mx.bbva.util.query.QueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -111,9 +110,9 @@ public class BudgetController {
     @RequestMapping(value = "/billing/search", method = RequestMethod.GET)
     public String searchForBillings(@ModelAttribute("billingSearchDTO") BudgetSearchDTO budgetSearchDTO, Model model) {
         // TODO Work in progress
-        String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
-        List<Budget> budgets = budgetService.findByCustomQuery(query);
-        model.addAttribute("budgets", budgets);
+        /* String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
+        List<Budget> budgets = budgetService.findByCustomQuery(query); */
+        model.addAttribute("invoices", invoiceService.findAllInvoices());
         return URL_BUDGET + BILLING_CUT;
     }
 
@@ -128,7 +127,7 @@ public class BudgetController {
         // TODO Work in progress
         /*String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
         List<Budget> budgets = budgetService.findByCustomQuery(query);*/
-        model.addAttribute("invoices", invoiceService.findAllInvoices());
+        model.addAttribute("payments", paymentService.findAllPayments());
         return URL_BUDGET + STATUS_PAYMENT;
     }
 
