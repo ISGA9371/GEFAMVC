@@ -143,7 +143,7 @@
                     </td>
                     <td class="col-md-4" align="center">
                         <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input type="number" min="0" max="999999"  onchange="asignHours();" class="mdc-text-field__input" id="hours">
+                            <input type="number" min="0" step="0.01" max="999999"  onchange="asignHours();" class="mdc-text-field__input" id="hours">
                             <label for="demo-input" class="mdc-text-field__label">Horas</label>
                         </div>
                     </td>
@@ -151,7 +151,7 @@
                 <tr>
                     <td class="col-md-4" align="center">
                         <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input type="number" min="0.00" max="999999.00"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="costo">
+                            <input type="number" min="0.00" step="0.01" max="999999.00"  class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="costo">
                             <label for="demo-input" class="mdc-text-field__label">Costo</label>
                         </div>
                     </td>
@@ -174,11 +174,11 @@
                           <div id="prioridad-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                               <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                                   <div class="mdc-select__label">Prioridad*</div>
-                                  <div class="mdc-select__selected-text"></div>
+                                  <div class="mdc-select__selected-text" id="prioridad-sel-text"></div>
                                   <div class="mdc-select__bottom-line"></div>
                               </div>
                               <div class="mdc-menu mdc-select__menu col-md-3" >
-                                  <ul class="mdc-list mdc-menu__items">
+                                  <ul class="mdc-list mdc-menu__items" id="prioridad-select">
                                       <li th:each="priorities:${priorities}" class="mdc-list-item" th:id="${priorities.priorityId}" role="option" th:text="${priorities.priorityName}"></li>
                                   </ul>
                               </div>
@@ -197,11 +197,11 @@
                         <div id="origen-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                                 <div class="mdc-select__label">Origen*</div>
-                                <div class="mdc-select__selected-text"></div>
+                                <div class="mdc-select__selected-text" id="origen-sel-text"></div>
                                 <div class="mdc-select__bottom-line"></div>
                             </div>
                             <div class="mdc-menu mdc-select__menu col-md-3" >
-                                <ul class="mdc-list mdc-menu__items">
+                                <ul class="mdc-list mdc-menu__items" id="origen-select">
                                     <li th:each="origins:${origins}" class="mdc-list-item" th:id="${origins.originId}"  role="option" th:text="${origins.originName}"></li>
                                 </ul>
                             </div>
