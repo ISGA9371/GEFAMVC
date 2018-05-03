@@ -67,6 +67,7 @@ public class IssueController {
         return URL_FACTORY + EDIT_ISSUE;
     }
 
+    @ResponseBody
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ResponseEntity<?> searchForIssues(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
