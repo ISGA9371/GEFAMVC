@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import static com.mx.bbva.util.ViewsURLs.*;
@@ -59,13 +60,12 @@ public class DoubtController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String searchForDoubts(Model model) {
+    public ResponseEntity<?> searchForDoubts(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
         /*String query = new QueryGenerator().generate(doubtSearchDTO, "Doubt");
         List<Doubt> doubts = new ArrayList<>();
         doubts = doubtService.findByCustomQuery(query); */
-        model.addAttribute("doubts", this.doubtService.findAllDoubts());
-        return URL_FACTORY + SEARCH_DOUBTS;
+        return new ResponseEntity<Object>(new ResponseListDTO(this.doubtService.findAllDoubts()), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/types", method = RequestMethod.GET, produces = "application/json")
