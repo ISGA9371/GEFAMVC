@@ -176,7 +176,7 @@
                         <td class="col-md-4" align="center">
                             <div class="mdc-text-field" id="hours-mdc-text" data-mdc-auto-init="MDCTextField"
                                  style="background-color:#F4F4F4; width:90%">
-                                <input type="text" readonly="readonly" class="mdc-text-field__input" id="horas-inicio">
+                                <input type="text" th:value="${component.componentHours}" class="mdc-text-field__input" id="horas-inicio">
                                 <label for="demo-input" class="mdc-text-field__label">Horas Iniciales</label>
                             </div>
                         </td>
@@ -248,9 +248,11 @@
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
+                            <input id="componentHours" type="text" required value="" class="hiddenField"
+                                   th:field="*{componentHours}">
                             <div class="mdc-text-field" id="hours-final-mdc-text" data-mdc-auto-init="MDCTextField"
                                  style="background-color:#F4F4F4; width:90%">
-                                <input type="text" readonly="readonly" class="mdc-text-field__input" id="horas-inicio">
+                                <input type="text" th:value="${component.componentHours}" class="mdc-text-field__input" id="horas-inicio">
                                 <label for="demo-input" class="mdc-text-field__label">Horas Finales</label>
                             </div>
                         </td>

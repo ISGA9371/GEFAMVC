@@ -82,7 +82,7 @@
     <div class="row">
         <div class="col-md-12 subtitle-content">Datos de Incidencia</div>
     </div>
-                <form style="display:block" action="#" th:action="@{/issues/}" onsubmit="holder('Registrando Incidecia')" th:object="${issue}" method="post">
+                <form th:action="@{/issues}" th:object="${issue}" method="post">
 
                     <input id="compon" type="hidden"  th:value="${issue.component.componentId}">
                     <input id="hidden-componente" type="hidden"  th:value="${issue.component.componentId}">
@@ -147,7 +147,7 @@
                         <tr style="height:72px">
                             <td class="col-md-4" align="center">
                                 <div  id="descripcion-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
-                                    <input type="text" maxlength="200" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" onchange="rojelia()" class="mdc-text-field__input" id="descripcion2">
+                                    <input type="text" required maxlength="200" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" onchange="rojelia()" class="mdc-text-field__input" id="descripcion2">
                                     <label for="demo-input" class="mdc-text-field__label" >Descripción agregar user</label>
                                 </div>
                             </td>

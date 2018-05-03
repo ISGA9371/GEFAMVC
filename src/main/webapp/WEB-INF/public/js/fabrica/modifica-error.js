@@ -9,9 +9,6 @@ function init() {
     var mes = fecha.substring(5,7);
     var anio = fecha.substring(0,4);
     $("#datetimepickerformat").val(dia+"/"+mes+"/"+anio);
-
-
-
 }
 
 function rojelia(){
@@ -41,21 +38,6 @@ $(function () {
     });
 });
 
-function addButtonEvents() {
-    var btnCancel = document.getElementById('cancelar-btn');
-    btnCancel.addEventListener("click", function () {
-        holder("Cargando...");
-        window.location.href = "/components/filters";
-    })
-}
-
-/*function loadSelects() {
-    mdc.select.MDCSelect.attachTo(document.getElementById('Prioridad-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('Origen-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('Estado-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
-}*/
-
 function holder(msg){
     HoldOn.open({
         theme: "sk-cube",
@@ -66,43 +48,6 @@ function holder(msg){
         textColor: "white",
     });
 }
-
-/*demoReady(function() {
-    var rootEst = document.getElementById('Prioridad-js-select');
-    var hiddenEst = document.getElementById('hidden-prioridad');
-    var selectEst = new mdc.select.MDCSelect(rootEst);
-
-    rootEst.addEventListener('MDCSelect:change', function() {
-        hiddenEst.value = selectEst.value;
-    });
-});
-demoReady(function() {
-    var rootEst = document.getElementById('Estado-js-select');
-    var hiddenEst = document.getElementById('hidden-estado');
-    var selectEst = new mdc.select.MDCSelect(rootEst);
-
-    rootEst.addEventListener('MDCSelect:change', function() {
-        hiddenEst.value = selectEst.value;
-    });
-});
-demoReady(function() {
-    var rootEst = document.getElementById('Origen-js-select');
-    var hiddenEst = document.getElementById('Origen-js-select2');
-    var selectEst = new mdc.select.MDCSelect(rootEst);
-
-    rootEst.addEventListener('MDCSelect:change', function() {
-        hiddenEst.value = selectEst.value;
-    });
-});
-demoReady(function() {
-    var rootEst = document.getElementById('responsable-js-select');
-    var hiddenEst = document.getElementById('hidden-responsable');
-    var selectEst = new mdc.select.MDCSelect(rootEst);
-
-    rootEst.addEventListener('MDCSelect:change', function() {
-        hiddenEst.value = selectEst.value;
-    });
-});*/
 
 function camp() {
     new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
@@ -117,4 +62,74 @@ function camp() {
     new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
+}
+
+function addButtonEvents() {
+    //Actions for save requirements
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+        HoldOn.open({
+            theme: "sk-cube",
+            content: '',
+            message: 'Registrando Incidencia',
+            // backgroundColor: "#004582",
+            backgroundColor: "#0c71ca",
+            textColor: "white"
+        });
+        setTimeout("ajaxGuardar();", 500)
+    });
+
+    //Actions for cancel requirements
+    var btnCancel = document.getElementById('cancelar-btn');
+    btnCancel.addEventListener("click", function () {
+        holder("Cargando...");
+        window.location.href = "/components/filters";
+    })
+}
+
+function ajaxGuardar() {
+    var $form = $("form");
+    var url = $form.attr("action");
+    var formData = $($form).serializeArray();
+
+    $.ajax({
+        async: false,
+        url: url,
+        type: 'post',
+        data: formData
+    }).done(function (data) {
+        customHolder("info", "Duda Registrada Exitosamente.","window.location.href =  '/issues/" + $(data).find("#issueId").val() + "'; holder('Cargando...')");
+        //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
+    }).fail(function (xhr, status, error) {
+        console.log("fail");
+        customHolder("error", xhr.responseJSON.message)
+    });
+}
+
+function customHolder(type, msg, fctn) {
+    var options = null;
+    fctn = fctn == undefined ? "" : fctn;
+    switch(type){
+        case "Error":
+        case "ERROR":
+        case "error":
+            options = msgAssets.error;
+            break;
+        case "Aviso":
+        case "AVISO":
+        case "aviso":
+            options = msgAssets.warn;
+            break;
+        default:
+            options = msgAssets.info;
+    }
+    msg = msg == undefined ? options.defaultMsg : msg;
+    HoldOn.open({
+        theme: "custom",
+        // If theme == "custom" , the content option will be available to customize the logo
+        content: '<img style="height: 57px; margin-left: -5px;" src="data:image/png;base64,' + options.icon + '" >',
+        message: "<br>" + msg +'<br><br><input type="button" value="Aceptar" class="btn btn-default" onclick="HoldOn.close();'+fctn+'">',
+        backgroundColor: "#0c71ca",
+        textColor: "white"
+    });
 }

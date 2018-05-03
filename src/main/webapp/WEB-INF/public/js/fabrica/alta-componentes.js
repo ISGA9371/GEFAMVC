@@ -86,7 +86,7 @@ function addDifficultyValidation() {
 
 function addHoursValidation() {
     //var goodHours = /^((0?)|([1-9]{1}\d{0,3}))$/
-    var goodHours = /^((0?)|([1-9]{1}\d{0,2}))(\.?|(\.[1-9]{1,2})?)$/
+    var goodHours = /^((0?)|([1-9]{1}\d{0,5}))(\.?|(\.[0-9]{1,2})?)$/
     $('#hours-mdc-text :input')
         .data("oldValue", '')
         .bind('input propertychange', function () {
@@ -172,6 +172,12 @@ function addSelectEvents() {
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedNews[1];
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedNews[2];
+            if(splittedNews[1] == "F"){
+                new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).disabled = false;
+            } else {
+                new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).disabled = true;
+            }
+            $("#componentHours").val(splittedNews[2]);
             $("#componentStartCost").val(Number(splittedNews[2])*Number($("#auxFare").val()));
             $("#componentFinalCost").val($("#componentStartCost").val());
             new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value=Number($("#componentStartCost").val()).formatMoney(2);
@@ -180,7 +186,9 @@ function addSelectEvents() {
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
+            $("#componentHours").val("");
             new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).disabled = true;
         }
     });
 
@@ -194,6 +202,12 @@ function addSelectEvents() {
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedMods[1];
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedMods[2];
+            if(splittedMods[1] == "F"){
+                new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).disabled = false;
+            } else {
+                new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).disabled = true;
+            }
+            $("#componentHours").val(splittedMods[2]);
             $("#componentStartCost").val(Number(splittedMods[2])*Number($("#auxFare").val()));
             $("#componentFinalCost").val($("#componentStartCost").val());
             new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value=Number($("#componentStartCost").val()).formatMoney(2);
@@ -202,7 +216,9 @@ function addSelectEvents() {
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
+            $("#componentHours").val("");
             new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).disabled = true;
         }
     });
 }
@@ -268,6 +284,7 @@ function setDefaults() {
 function addHiddenEvents() {
     addTextSyncMdcToHtml("componentName", "component-mdc-text");
     addTextSyncMdcToHtml("componentVersion", "version-mdc-text");
+    addHoursSyncMdcToHtml("componentHours", "hours-mdc-text");
     addDateSyncMdcToHtml("componentDesignRealDeliverDate", "FecRealCFG-mdc-text");
     addDateSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text");
     addDateSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-text");
@@ -290,6 +307,27 @@ function addTextSyncMdcToHtml(htmlField, mdcField) {
     });
     inputName.addEventListener('blur', function () {
         hiddenName.value = textName.value;
+    });
+}
+
+function addHoursSyncMdcToHtml(htmlField, mdcField) {
+    var rootName = document.getElementById(mdcField);
+    var inputName = rootName.querySelector('input');
+    var hiddenName = document.getElementById(htmlField);
+    var textName = new mdc.textField.MDCTextField(rootName);
+    textName.value = textName.value;
+
+    inputName.addEventListener('keyup', function () {
+        hiddenName.value = textName.value;
+        changeHours();
+    });
+    inputName.addEventListener('change', function () {
+        hiddenName.value = textName.value;
+        changeHours();
+    });
+    inputName.addEventListener('blur', function () {
+        hiddenName.value = textName.value;
+        changeHours();
     });
 }
 
@@ -354,3 +392,9 @@ Number.prototype.formatMoney = function(c, d, t){
 
 var showingError = false;
 var okData = null;
+
+var changeHours = function(){
+    $("#componentStartCost").val(Number($("#componentHours").val())*Number($("#auxFare").val()));
+    $("#componentFinalCost").val($("#componentStartCost").val());
+    new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value=Number($("#componentStartCost").val()).formatMoney(2);
+}

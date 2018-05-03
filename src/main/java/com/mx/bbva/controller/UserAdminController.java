@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.logging.Logger;
 
-import static com.mx.bbva.util.ViewsURLs.ADMIN_USERS;
-import static com.mx.bbva.util.ViewsURLs.REDIRECT;
-import static com.mx.bbva.util.ViewsURLs.URL_FACTORY;
+import static com.mx.bbva.util.ViewsURLs.*;
 
 @Controller
 @RequestMapping(value = "/users")
@@ -29,7 +27,7 @@ public class UserAdminController {
         LOG.info("Creating new user");
         model.addAttribute("user", new User());
         //TODO Add catalogs
-        return URL_FACTORY + ADMIN_USERS;
+        return URL_ADMIN + ADMIN_USERS;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -50,20 +48,20 @@ public class UserAdminController {
         } else {
             model.addAttribute("user", new User());
         }
-        return URL_FACTORY + ADMIN_USERS;
+        return URL_ADMIN + ADMIN_USERS;
     }
 
     @RequestMapping(value = "/filters", method = RequestMethod.GET)
     public String filtersForUsers(Model model) {
 
-        return URL_FACTORY + ADMIN_USERS;
+        return URL_ADMIN + ADMIN_USERS;
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String searchForUsers(Model model) {
         // TODO Work in progress
         model.addAttribute("users", this.userService.findAllUsers());
-        return URL_FACTORY + ADMIN_USERS;
+        return URL_ADMIN + ADMIN_USERS;
     }
 
     @Autowired

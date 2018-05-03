@@ -24,25 +24,62 @@ function assigMiss(){
 
 function calendar(){
 
-    $('#fecPropInic').datepicker({dateFormat: "dd/mm/yy"});
-    $('#fecPropFin').datepicker({dateFormat: "dd/mm/yy"});
+    mdc_text_fecPropInic = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecPropInic'));
+    mdc_text_fecha_hasta = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_hasta'));
+    // $('#fecPropInic').datepicker({dateFormat: "dd/mm/yy"});
+    // $('#fecPropFin').datepicker({dateFormat: "dd/mm/yy"});
+    //
+    // $("#fecPropInic").change(function () {
+    //     if ("" != fecPropInic.value) {
+    //         $("#mdc-group-fecPropInic > label").addClass("mdc-text-field__label--float-above");
+    //     } else {
+    //         $("#mdc-group-fecPropInic > label").removeClass("mdc-text-field__label--float-above");
+    //     }
+    // });
+    //
+    // $("#fecPropFin").change(function () {
+    //     if ("" != fecPropFin.value) {
+    //         $("#mdc-group-fecPropFin > label").addClass("mdc-text-field__label--float-above");
+    //     } else {
+    //         $("#mdc-group-fecPropFin > label").removeClass("mdc-text-field__label--float-above");
+    //     }
+    // });
 
-    $("#fecPropInic").change(function () {
-        if ("" != fecPropInic.value) {
-            $("#mdc-group-fecPropInic > label").addClass("mdc-text-field__label--float-above");
+    $("#fecPropInic").datepicker({
+        dateFormat: "dd/mm/yy"
+    }).on("change", function () {
+        $("#fecPropFin").datepicker("option", "minDate", getDate(this));
+
+        if ("" != mdc_text_fecPropInic.value) {
+            $("#mdc_text_fecPropInic > label").addClass("mdc-text-field__label--float-above");
         } else {
-            $("#mdc-group-fecPropInic > label").removeClass("mdc-text-field__label--float-above");
+            $("#mdc_text_fecPropInic > label").removeClass("mdc-text-field__label--float-above");
         }
     });
 
-    $("#fecPropFin").change(function () {
-        if ("" != fecPropFin.value) {
-            $("#mdc-group-fecPropFin > label").addClass("mdc-text-field__label--float-above");
+
+    $("#fecPropFin").datepicker({
+        dateFormat: "dd/mm/yy"
+    }).on("change", function () {
+        $("#fecPropInic").datepicker("option", "maxDate", getDate(this));
+
+        if ("" != mdc_text_fecha_hasta.value) {
+            $("#mdc_text_fecha_hasta > label").addClass("mdc-text-field__label--float-above");
         } else {
-            $("#mdc-group-fecPropFin > label").removeClass("mdc-text-field__label--float-above");
+            $("#mdc_text_fecha_hasta > label").removeClass("mdc-text-field__label--float-above");
         }
     });
 
+}
+
+function getDate(element) {
+    var date;
+    try {
+        date = $.datepicker.parseDate("dd/mm/yy", element.value);
+    } catch (error) {
+        date = null;
+    }
+    return date;
 }
 
 function asignarCombos(){
@@ -174,7 +211,7 @@ function asignarCombos(){
     $("#hidden-direccion").val(id);
     //clean subdir
     $("#hidden-subdireccion").val("");
-    console.log("seleccion "+ id);
+    //console.log("seleccion "+ id);
     //console.log("hidden"+ $("#hidden-direccion").val());
 
     new mdc.select.MDCSelect(document.getElementById('subdirs')).disabled = false;
@@ -207,7 +244,7 @@ function asignarCombos(){
     var selectObj = new mdc.select.MDCSelect(rootSelect);
 
     rootSelect.addEventListener('MDCSelect:change', function () {
-        new mdc.textField.MDCTextField(document.getElementById('subDirDiv')).disabled = true;
+
         $("#subDir").val(selectObj.value.split("|")[1]);
         $("#hidden-subdireccion").val(selectObj.value.split("|")[0]);
         $("#subDir").focus();
@@ -246,6 +283,8 @@ function asignarCombos(){
     //select userinternalarea
     const areaG = new mdc.select.MDCSelect(document.querySelector('#area-js-select'));
     const userG = new mdc.select.MDCSelect(document.querySelector('#gestor-js-select'));
+    const servT = new mdc.select.MDCSelect(document.querySelector('#servicio-js-select'));
+
     let cosoS = 0;
     areaG.listen('MDCSelect:change', () => {
         if (cosoS!= 0) return; else cosoS = 1;
@@ -259,30 +298,174 @@ function asignarCombos(){
 
     new mdc.select.MDCSelect(document.getElementById('gestor-js-select')).disabled = false;
 
+        $.ajax({
+            url: "/api/users/"
+        }).done(function(data) {
+            //let subdirs = JSON.parse(data);
+            let subs = data.data;
+            //console.log(subs.length);
+            $("#subdir-usersG-text").html("");
+            userG.selectedIndex = -1;
+            userG.value = "";
+            if (typeof subs !== 'undefined' && subs.length > 0) {
+                $("#usersG-select").html("");
+                $.each(subs, function( index, value ) {
+
+                    if(value.profileType.profileTypeId==id){
+                        $("#usersG-select").append(
+                            "<li class='mdc-list-item' role='option' tabindex='0' " +
+                            "id='"+value.userInternalId+"' value='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
+                    }
+
+                });
+            }else $("#usersG-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+            //Only one
+            //cosoS=0;
+        });
+
+    new mdc.select.MDCSelect(document.getElementById('servicio-js-select')).disabled = false;
+
+        //Second cmb
+        $.ajax({
+            url: "/api/service-types"
+        }).done(function(data) {
+            //let subdirs = JSON.parse(data);
+            let subs = data.data;
+            //console.log(subs.length);
+            $("#ts-ts-text").html("");
+            servT.selectedIndex = -1;
+            servT.value = "";
+            if (typeof subs !== 'undefined' && subs.length > 0) {
+                $("#ts-select").html("");
+                $.each(subs, function( index, value ) {
+
+                    if(value.area.areaId==id){
+                        $("#ts-select").append(
+                            "<li class='mdc-list-item' role='option' tabindex='0' " +
+                            "id='"+value.serviceTypeId+"' value='"+value.serviceTypeId+"'>"+value.serviceTypeName+"</li>");
+                    }
+
+                });
+            }else $("#ts-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+            cosoS=0;
+        });
+
+    });
+
+    //cmb Company
+    const companyCmb = new mdc.select.MDCSelect(document.querySelector('#empresa-js-select'));
+
     $.ajax({
-        url: "/api/users/"
+        url: "/api/companies"
     }).done(function(data) {
-        //let subdirs = JSON.parse(data);
+
         let subs = data.data;
-        //console.log(subs.length);
-        $("#subdir-usersG-text").html("");
-        userG.selectedIndex = -1;
-        userG.value = "";
+
+        $("#em-em-text").html("");
+        companyCmb.selectedIndex = -1;
+        companyCmb.value = "";
         if (typeof subs !== 'undefined' && subs.length > 0) {
-            $("#usersG-select").html("");
+            $("#em-select").html("");
             $.each(subs, function( index, value ) {
 
-                if(value.profileType.profileTypeId==id){
-                    $("#usersG-select").append(
-                        "<li class='mdc-list-item' role='option' tabindex='0' " +
-                        "id='"+value.userInternalId+"' value='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
-                }
+                $("#em-select").append(
+                    "<li class='mdc-list-item' role='option' tabindex='0' " +
+                    "id='"+value.companyId+"' value='"+value.companyId+"'>"+value.companyName+"</li>");
 
             });
-        }else $("#usersG-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
-        cosoS=0;
+        }else $("#em-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+
     });
+
+
+    //cmb PI
+    const piCmb = new mdc.select.MDCSelect(document.querySelector('#pi-js-select'));
+
+    $.ajax({
+        url: "/api/programIncrements"
+    }).done(function(data) {
+
+        let subs = data.data;
+
+        $("#pi-pi-text").html("");
+        piCmb.selectedIndex = -1;
+        piCmb.value = "";
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#pi-select").html("");
+            $.each(subs, function( index, value ) {
+
+                $("#pi-select").append(
+                    "<li class='mdc-list-item' role='option' tabindex='0' " +
+                    "id='"+value.programIncrementId+"' value='"+value.programIncrementId+"'>"+value.programIncrementName+"</li>");
+
+            });
+        }else $("#pi-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+
     });
+
+    //select PI-Project
+    const piSel = new mdc.select.MDCSelect(document.querySelector('#pi-js-select'));
+    const proyG = new mdc.select.MDCSelect(document.querySelector('#proy-js-select'));
+    let cosoP = 0;
+    piSel.listen('MDCSelect:change', () => {
+        if (cosoP!= 0) return; else cosoP = 1;
+    let id = piSel.selectedOptions[0].value;
+    //SET HIDDEN FIELD VALUE
+    $("#hidden-pi").val(id);
+    //clean proy
+    $("#hidden-proy").val("");
+
+    //new mdc.select.MDCSelect(document.getElementById('proy-js-select')).disabled = false;
+
+    $.ajax({
+        url: "/api/projects"
+    }).done(function(data) {
+
+        let subs = data.data;
+        entra=0;
+
+        $("#nP-nP-text").html("");
+        proyG.selectedIndex = -1;
+        proyG.value = "";
+
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#nP-select").html("");
+            $.each(subs, function( index, value ) {
+
+
+                if(value.programIncrement.programIncrementId==id){
+
+                    $("#nP-select").append(
+                        "<li class='mdc-list-item' role='option' tabindex='0' " +
+                        "id='"+value.projectId+"|"+value.methodology.methodologyName+"' value='"+value.projectId+"'>"+value.projectId+"</li>");
+                    entra=1;
+                }
+
+
+            });
+        }else $("#nP-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+
+        if(entra==0){
+            new mdc.select.MDCSelect(document.getElementById('proy-js-select')).disabled = true;
+        }else{
+            new mdc.select.MDCSelect(document.getElementById('proy-js-select')).disabled = false;
+        }
+        cosoP=0;
+    });
+});
+
+
+    var rootSL = document.getElementById("proy-js-select");
+    var selectOb = new mdc.select.MDCSelect(rootSL);
+
+    rootSL.addEventListener('MDCSelect:change', function () {
+
+        $("#tipProyText").val(selectOb.value.split("|")[1]);
+        $("#hidden-proy").val(selectOb.value.split("|")[0]);
+        $("#tipProyText").focus();
+        new mdc.textField.MDCTextField(document.getElementById('tipProyDiv')).disabled = true;
+    });
+
 
 
 
@@ -293,6 +476,9 @@ function desHabilitarDep(){
     new mdc.select.MDCSelect(document.getElementById('subdirs')).disabled = true;
     new mdc.select.MDCSelect(document.getElementById('gestor-js-select')).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById('subDirDiv')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('tipProyDiv')).disabled = true;
+    new mdc.select.MDCSelect(document.getElementById('proy-js-select')).disabled = true;
+    new mdc.select.MDCSelect(document.getElementById('servicio-js-select')).disabled = true;
 
 }
 
@@ -350,7 +536,7 @@ function ajaxGuardar() {
         customHolder("info", "Requerimiento Dado de Alta Exitosamente.","window.location.href = '/requirements/" + $(data).find("#requirementId").val() + "'; holder('Cargando...')");
         //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
     }).fail(function (xhr, status, error) {
-        console.log("fail");
+        //console.log("fail");
         customHolder("error", xhr.responseJSON.message)
     });
 }
