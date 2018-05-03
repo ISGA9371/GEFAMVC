@@ -415,30 +415,41 @@ function asignarCombos(){
     //clean proy
     $("#hidden-proy").val("");
 
-    new mdc.select.MDCSelect(document.getElementById('proy-js-select')).disabled = false;
+    //new mdc.select.MDCSelect(document.getElementById('proy-js-select')).disabled = false;
 
     $.ajax({
         url: "/api/projects"
     }).done(function(data) {
 
         let subs = data.data;
+        entra=0;
 
         $("#nP-nP-text").html("");
         proyG.selectedIndex = -1;
         proyG.value = "";
+
         if (typeof subs !== 'undefined' && subs.length > 0) {
             $("#nP-select").html("");
             $.each(subs, function( index, value ) {
+
 
                 if(value.programIncrement.programIncrementId==id){
 
                     $("#nP-select").append(
                         "<li class='mdc-list-item' role='option' tabindex='0' " +
                         "id='"+value.projectId+"|"+value.methodology.methodologyName+"' value='"+value.projectId+"'>"+value.projectId+"</li>");
+                    entra=1;
                 }
+
 
             });
         }else $("#nP-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+
+        if(entra==0){
+            new mdc.select.MDCSelect(document.getElementById('proy-js-select')).disabled = true;
+        }else{
+            new mdc.select.MDCSelect(document.getElementById('proy-js-select')).disabled = false;
+        }
         cosoP=0;
     });
 });
