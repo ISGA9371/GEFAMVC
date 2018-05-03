@@ -71,9 +71,10 @@ $(function () {
         mdc.select.MDCSelect.attachTo(document.getElementById('subdirs'));
     }
 
-    let coso = parseInt("0");
+    //let coso = parseInt("0");
     direc.listen('MDCSelect:change', () => {
-        if (coso++ === 0) return; else coso = 0;
+        console.log("DIREC");
+      //  if (coso++ === 0) return; else coso = 0;
         let id = direc.selectedOptions[0].value;
         //SET HIDDEN FIELD VALUE
         $("#principalId").val(id);
@@ -374,6 +375,7 @@ $(function () {
 
         direc.selectedIndex = -1;
         direc.value = "";
+
         subdirs.selectedIndex = -1;
         subdirs.value = "";
         responsables.selectedIndex = -1;
@@ -399,6 +401,7 @@ $(function () {
 
         $(".mdc-select__label").removeClass("mdc-select__label--float-above");
         $(".mdc-text-field__label").removeClass("mdc-text-field__label--float-above");
+        $("#subdirs").addClass("mdc-select--disabled");
 
         $("input[type=hidden]").val("");
 

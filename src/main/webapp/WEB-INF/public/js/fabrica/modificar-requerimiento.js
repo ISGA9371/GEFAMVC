@@ -14,6 +14,7 @@ $(function () {
         console.log("CAMBIO FECHA 1");
         if (datepicker1.val() !== "") {
             datepicker1.parent().find("label").addClass("mdc-text-field__label--float-above");
+            datepicker2.datepicker("option", "minDate", getDate(datepicker1.val()));
             $("input[id=requirementStartDate]").val(datepicker1.val());
         } else {
             datepicker1.parent().find("label").removeClass("mdc-text-field__label--float-above");
@@ -25,6 +26,7 @@ $(function () {
         if (datepicker2.val() !== "") {
             datepicker2.parent().find("label").addClass("mdc-text-field__label--float-above");
             $("input[id=requirementEndDate]").val(datepicker2.val());
+            datepicker1.datepicker("option", "maxDate", getDate(datepicker2.val()));
         } else {
             datepicker2.parent().find("label").removeClass("mdc-text-field__label--float-above");
         }
@@ -198,7 +200,7 @@ $(function () {
         console.log("TECHIDSEl "+tech.selectedOptions.length+" " + id);
         $("#technology\\.technologyId").val(id);
     });
-
+/*
     const meth = new mdc.select.MDCSelect(document.querySelector('#meth'));
     var methId = $("#project\\.methodology\\.methodologyId").val();
     console.log("METH ID "+methId);
@@ -209,7 +211,7 @@ $(function () {
         $("#project\\.methodology\\.methodologyId").val(id);
         console.log("METH ID CH"+id);
     });
-
+*/
     const app = new mdc.select.MDCSelect(document.querySelector('#app'));
     var appId = $("#application\\.applicationId").val();
     console.log("app ID "+appId);
@@ -294,14 +296,15 @@ $(function () {
         var compD1 = $("#requirementStartDate").val().split('/');
         var startD = new Date(compD1[2],compD1[1]-1,compD1[0]);
         var date1 = startD.getDate() < 10 ? '0'+ startD.getDate() : startD.getDate();
-        var menth1 = startD.getDate() < 9 ? '0'+ (startD.getMonth()+1) : (startD.getMonth()+1);
+        var menth1 = startD.getMonth() < 9 ? '0'+ (startD.getMonth()+1) : (startD.getMonth()+1);
+        console.log("COSITO "+date1+"/"+menth1+"/"+startD.getFullYear());
         datepicker1.val(date1+"/"+menth1+"/"+startD.getFullYear());
     }
     if($("#requirementEndDate").val()){
         var compD2 = $("#requirementEndDate").val().split('/');
         var endD = new Date(compD2[2],compD2[1]-1,compD2[0]);
-        var date2 = startD.getDate() < 10 ? '0'+ startD.getDate() : startD.getDate();
-        var menth2 = startD.getDate() < 9 ? '0'+ (startD.getMonth()+1) : (startD.getMonth()+1);
+        var date2 = endD.getDate() < 10 ? '0'+ endD.getDate() : endD.getDate();
+        var menth2 = endD.getMonth() < 9 ? '0'+ (endD.getMonth()+1) : (endD.getMonth()+1);
         datepicker2.val(date2+"/"+menth2+"/"+endD.getFullYear());
     }
     $("#form").submit(function (e) {
@@ -330,6 +333,16 @@ $(function () {
         //this.value = parseFloat(this.value).toFixed(2);
     });
 });
+
+function getDate(element) {
+    var date;
+    try {
+        date = $.datepicker.parseDate("dd/mm/yy", element);
+    } catch (error) {
+        date = null;
+    }
+    return date;
+}
 
 function showHoldOn(message) {
     HoldOn.open({
