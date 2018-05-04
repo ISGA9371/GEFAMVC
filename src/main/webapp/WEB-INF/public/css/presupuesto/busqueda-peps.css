@@ -1,0 +1,27 @@
+#table-peps *{
+    font-size: 12px;
+    text-align: center;
+}
+#table-peps thead tr{
+    background-color:#F4F4F4;
+    color:#005EB8;
+}
+
+.table > thead > tr > th {
+    border-bottom: 1.2px solid #005EB8 !important;
+}
+#table-peps thead th{
+    padding: 12px 0;
+    font-weight: normal;
+}
+
+.table-buttons{
+    padding:10px 15px 10px 15px
+}
+
+.second-subtitle-content {
+    text-align: right;
+    padding: 10px 10px 10px 15px;
+    background-color: #7B6AC6;
+    font-weight: bold;
+}
