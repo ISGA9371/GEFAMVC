@@ -224,7 +224,7 @@ function showHoldOn() {
     HoldOn.open({
         theme: "sk-cube",
         content: '',
-        message: 'Procesando...',
+        message: 'Cargando...',
         backgroundColor: "#0c71ca",
         textColor: "white",
     });

@@ -15,9 +15,13 @@ $(document).ready(function(){
     return date;
   }
 
+  /** 
+   * Technologies ajax call
+   */
   $.ajax({
     url: "/api/technologies",
     method: "GET",
+    dataType: "json",
     beforeSend: function () {
       $("#mdc_select_tecnologia").addClass("mdc-select--disabled");
       $("#mdc_select_tecnologia > .mdc-select__surface > .mdc-select__selected-text").html("");
@@ -25,7 +29,7 @@ $(document).ready(function(){
     }
   }).done(function (data) {
     lis = "";
-    if ('undefined' !== typeof data.data && 0 < data.data.length) {
+    if ('undefined' !== typeof data.data && 0 < data.data.length && null !== data.data) {
       $.each(data.data, function (index, value) {
         lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.technologyId + "'>" + value.technologyName + "</li>";
       });
@@ -42,11 +46,16 @@ $(document).ready(function(){
     $("#mdc_select_tecnologia > .mdc-menu > ul").append(lis);
     $("#mdc_select_tecnologia").addClass("mdc-select--disabled");
   });
+  /************************ */
 
 
+  /** 
+   * Companies ajax call
+   */
   $.ajax({
     url: "/api/companies",
     method: "GET",
+    dataType: "json",
     beforeSend: function () {
       $("#mdc_select_empresa").addClass("mdc-select--disabled");
       $("#mdc_select_empresa > .mdc-select__surface > .mdc-select__selected-text").html("");
@@ -54,7 +63,7 @@ $(document).ready(function(){
     }
   }).done(function (data) {
     lis = "";
-    if ('undefined' !== typeof data.data && 0 < data.data.length) {
+    if ('undefined' !== typeof data.data && 0 < data.data.length && null !== data.data) {
       $.each(data.data, function (index, value) {
         lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.companyId + "'>" + value.companyName + "</li>";
       });
@@ -71,6 +80,75 @@ $(document).ready(function(){
     $("#mdc_select_empresa > .mdc-menu > ul").append(lis);
     $("#mdc_select_empresa").addClass("mdc-select--disabled");
   });
+  /************************ */
+
+
+  /** 
+   * Area Attention ajax call
+   */
+  $.ajax({
+    url: "/api/areas",
+    method: "GET",
+    dataType: "json",
+    beforeSend: function () {
+      $("#mdc_select_area_atencion").addClass("mdc-select--disabled");
+      $("#mdc_select_area_atencion > .mdc-select__surface > .mdc-select__selected-text").html("");
+      $("#mdc_select_area_atencion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    }
+  }).done(function (data) {
+    lis = "";
+    if ('undefined' !== typeof data.data && 0 < data.data.length && null !== data.data) {
+      $.each(data.data, function (index, value) {
+        lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.areaId + "'>" + value.areaName + "</li>";
+      });
+
+      $("#mdc_select_area_atencion > .mdc-menu > ul").append(lis);
+      $("#mdc_select_area_atencion").removeClass("mdc-select--disabled");
+    } else {
+      lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+      $("#mdc_select_area_atencion > .mdc-menu > ul").append(lis);
+      $("#mdc_select_area_atencion").addClass("mdc-select--disabled");
+    }
+  }).fail(function () {
+    lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+    $("#mdc_select_area_atencion > .mdc-menu > ul").append(lis);
+    $("#mdc_select_area_atencion").addClass("mdc-select--disabled");
+  });
+  /************************ */
+
+
+  /** 
+   * Payment Status ajax call ( id = 18, EDO_PAGO ) 
+   */
+  $.ajax({
+    url: "/api/status-types/18/status",
+    method: "GET",
+    dataType: "json",
+    beforeSend: function () {
+      $("#mdc_select_estado_pago").addClass("mdc-select--disabled");
+      $("#mdc_select_estado_pago > .mdc-select__surface > .mdc-select__selected-text").html("");
+      $("#mdc_select_estado_pago > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    }
+  }).done(function (data) {
+    lis = "";
+    if ('undefined' !== typeof data.data && 0 < data.data.length && null !== data.data ) {
+      $.each(data.data, function (index, value) {
+        lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.statusId + "'>" + value.statusName + "</li>";
+      });
+
+      $("#mdc_select_estado_pago > .mdc-menu > ul").append(lis);
+      $("#mdc_select_estado_pago").removeClass("mdc-select--disabled");
+    } else {
+      lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+      $("#mdc_select_estado_pago > .mdc-menu > ul").append(lis);
+      $("#mdc_select_estado_pago").addClass("mdc-select--disabled");
+    }
+  }).fail(function () {
+    lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+    $("#mdc_select_estado_pago > .mdc-menu > ul").append(lis);
+    $("#mdc_select_estado_pago").addClass("mdc-select--disabled");
+  });
+  /************************ */
 
 
   mdc_text_solicitud = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_solicitud'));
@@ -156,11 +234,11 @@ $(document).ready(function(){
       solicitud: mdc_text_solicitud.value,
       aceptacion: mdc_text_aceptacion.value,
       orden_compra: mdc_text_orden_compra.value,
-      fecha_envio: mdc_text_fecha_envio.value,
+      fecha_envio: changeFormatDate(mdc_text_fecha_envio.value),
       hoja_entrada: mdc_text_hoja_entrada.value,
       estado: mdc_select_estado_pago.value,
-      fecha_desde: mdc_text_fecha_desde.value,
-      fecha_hasta: mdc_text_fecha_hasta.value,
+      fecha_desde: changeFormatDate(mdc_text_fecha_desde.value),
+      fecha_hasta: changeFormatDate(mdc_text_fecha_hasta.value),
       empresa: mdc_select_empresa.value,
       tecnologia: mdc_select_tecnologia.value,
       area_atencion: mdc_select_area_atencion.value,
@@ -199,5 +277,15 @@ $(document).ready(function(){
 
 
   $("#btn_excel").click(function(){});
+
+
+  function changeFormatDate(date) {
+    if ('undefined' !== typeof date && 0 < date.length) {
+      split = date.split("/");
+      return split[2] + "-" + split[1] + "-" + split[0];
+    } else {
+      return "";
+    }
+  }
 
 });

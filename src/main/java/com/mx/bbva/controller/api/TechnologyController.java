@@ -2,8 +2,10 @@ package com.mx.bbva.controller.api;
 
 import com.mx.bbva.business.dto.ResponseListDTO;
 import com.mx.bbva.business.entity.Application;
+import com.mx.bbva.business.entity.Product;
 import com.mx.bbva.business.entity.Technology;
 import com.mx.bbva.business.service.ApplicationService;
+import com.mx.bbva.business.service.ProductService;
 import com.mx.bbva.business.service.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,7 @@ public class TechnologyController {
 
     private TechnologyService technologyService;
     private ApplicationService applicationService;
+    private ProductService productService;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> getAllTechnologiess() {
@@ -38,6 +41,13 @@ public class TechnologyController {
         return new ResponseEntity<Object>(new ResponseListDTO(applications), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/{technologyId}/products", method = RequestMethod.GET, produces = "product/json")
+    public ResponseEntity<?> getAllProductsByTech(@PathVariable("technologyId") Integer technologyId) {
+        LOGGER.info("find apps by tech..." + technologyId);
+        List<Product> products = productService.findAllByTech(technologyId);
+        return new ResponseEntity<Object>(new ResponseListDTO(products), HttpStatus.OK);
+    }
+
     @Autowired
     public void setTechnologyService(TechnologyService technologyService) {
         this.technologyService = technologyService;
@@ -46,5 +56,10 @@ public class TechnologyController {
     @Autowired
     public void setApplicationService(ApplicationService applicationService) {
         this.applicationService = applicationService;
+    }
+
+    @Autowired
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
     }
 }

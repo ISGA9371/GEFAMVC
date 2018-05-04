@@ -1,7 +1,9 @@
 package com.mx.bbva.business.service.impl;
 
 
+import com.mx.bbva.business.entity.Budget;
 import com.mx.bbva.business.entity.Transfer;
+import com.mx.bbva.business.repository.BudgetRepository;
 import com.mx.bbva.business.repository.TransferRepository;
 import com.mx.bbva.business.service.TransferService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import java.util.List;
 public class TransferServiceImpl implements TransferService {
 
     private TransferRepository transferRepository;
+    private BudgetRepository budgetRepository;
 
     @Override
     public void saveTransfer(Transfer transfer) {
@@ -26,7 +29,13 @@ public class TransferServiceImpl implements TransferService {
 
     @Override
     public List<Transfer> findAllTransfers() {
-        return transferRepository.findAll();
+        List<Transfer> transfers = transferRepository.findAll();
+        for (Transfer transfer : transfers) {
+            Budget budgetDb = transfer.getBudgetDb();
+            budgetDb.setTransfers(null);
+            transfer.setBudget(budgetDb);
+        }
+        return transfers;
     }
 
     @Autowired
