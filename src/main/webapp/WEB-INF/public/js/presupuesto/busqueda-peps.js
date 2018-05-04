@@ -5,7 +5,7 @@ function init() {
     loadSelects();
     addHiddenEvents();
     addButtonEvents();
-    if(!showingError){
+    if (!showingError) {
         HoldOn.close();
     }
 }
@@ -79,7 +79,37 @@ function addButtonEvents() {
     var btnLimpiar = document.getElementById('btn-limpiar');
     btnLimpiar.addEventListener("click", function () {
         //limpiar
-    })
+    });
+    var btnCancel = document.getElementById('btn-modificar');
+    btnCancel.addEventListener("click", function () {
+        if ($('input[name=pepsIds]:checked').attr("id") !== undefined) {
+            holder("Cargando...");
+            window.location.href = "/budgets/" + $('input[name=pepsIds]:checked').attr("id");
+        } else {
+            customHolder("warn", "Debe seleccionar un Traspaso.")
+        }
+    });
+    var btnCancel = document.getElementById('btn-eliminar');
+    btnCancel.addEventListener("click", function () {
+        /*holder("Cargando...");
+        window.location.href = "/components/filters";*/
+        alert("No se han acordados las condiciones para eliminar, se espera aclaracion para asignar funcionalidad.");
+    });
+    var btnCancel = document.getElementById('btn-traspaso');
+    btnCancel.addEventListener("click", function () {
+        //holder("Cargando...");
+        //window.location.href = "/components/filters";
+        alert("Se envio duda, se espera respuesta para asignar funcionalidad.");
+    });
+    var btnCancel = document.getElementById('btn-dispersion');
+    btnCancel.addEventListener("click", function () {
+        if ($('input[name=pepsIds]:checked').attr("id") !== undefined) {
+            holder("Cargando...");
+            window.location.href = "/ayuda/add?componentId=";
+        } else {
+            customHolder("warn", "Debe seleccionar un Traspaso.")
+        }
+    });
 }
 
 function addSelectEvents() {
@@ -103,29 +133,29 @@ function addSelectEvents() {
         }
         hiddenTypology.value = new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).value;
         $("#typologyEmp").val(hiddenTypology.value);
-        new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
-        new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
+        new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = "";
+        new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = "";
     });
 
     var rootNews = document.getElementById('tipologia-news-js-select');
     var selectNews = new mdc.select.MDCSelect(rootNews);
 
     rootNews.addEventListener('MDCSelect:change', function () {
-        if (selectNews.value !="") {
+        if (selectNews.value != "") {
             var splittedNews = selectNews.value.split('|');
             hiddenTypology.value = splittedNews[0];
             $("#typologyEmp").val(hiddenTypology.value);
-            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedNews[1];
-            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedNews[2];
-            $("#componentStartCost").val(Number(splittedNews[2])*Number($("#auxFare").val()));
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = splittedNews[1];
+            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = splittedNews[2];
+            $("#componentStartCost").val(Number(splittedNews[2]) * Number($("#auxFare").val()));
             $("#componentFinalCost").val($("#componentStartCost").val());
-            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value=Number($("#componentStartCost").val()).formatMoney(2);
+            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value = Number($("#componentStartCost").val()).formatMoney(2);
         } else {
             hiddenTypology.value = "";
             $("#typologyEmp").val(hiddenTypology.value);
-            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
-            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
-            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = "";
+            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = "";
+            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value = "";
         }
     });
 
@@ -133,21 +163,21 @@ function addSelectEvents() {
     var selectMods = new mdc.select.MDCSelect(rootMods);
 
     rootMods.addEventListener('MDCSelect:change', function () {
-        if (selectMods.value !="") {
+        if (selectMods.value != "") {
             var splittedMods = selectMods.value.split('|');
             hiddenTypology.value = splittedMods[0];
             $("#typologyEmp").val(hiddenTypology.value);
-            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value=splittedMods[1];
-            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value=splittedMods[2];
-            $("#componentStartCost").val(Number(splittedMods[2])*Number($("#auxFare").val()));
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = splittedMods[1];
+            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = splittedMods[2];
+            $("#componentStartCost").val(Number(splittedMods[2]) * Number($("#auxFare").val()));
             $("#componentFinalCost").val($("#componentStartCost").val());
-            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value=Number($("#componentStartCost").val()).formatMoney(2);
+            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value = Number($("#componentStartCost").val()).formatMoney(2);
         } else {
             hiddenTypology.value = "";
             $("#typologyEmp").val(hiddenTypology.value);
-            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
-            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
-            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value="";
+            new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = "";
+            new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = "";
+            new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value = "";
         }
     });
 }
@@ -211,7 +241,7 @@ function loadSelects() {
         $('#typology').val("");
         showingError = true;
     });
-    if(usersProfileType1 === undefined){
+    if (usersProfileType1 === undefined) {
         return;
     }
     $.ajax({
@@ -225,7 +255,7 @@ function loadSelects() {
         $('#typology').val("");
         showingError = true;
     });
-    if(usersProfileType2 === undefined){
+    if (usersProfileType2 === undefined) {
         return;
     }
     $.each(usersProfileType1, function (i, data) {
@@ -254,23 +284,23 @@ function setDefaults() {
     new mdc.select.MDCSelect(document.getElementById('tipologia-empty-js-select')).disabled = true;
     $('#tipologia-news-js-select').hide();
     $('#tipologia-mods-js-select').hide();
-    new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value="";
-    new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value="";
-    new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value="";
-    new mdc.textField.MDCTextField(document.getElementById("requieriment-mdc-text")).value=new mdc.textField.MDCTextField(document.getElementById("requieriment-mdc-text")).value;
+    new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = "";
+    new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = "";
+    new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value = "";
+    new mdc.textField.MDCTextField(document.getElementById("requieriment-mdc-text")).value = new mdc.textField.MDCTextField(document.getElementById("requieriment-mdc-text")).value;
 }
 
 function addHiddenEvents() {
     addTextSyncMdcToHtml("budgetId", "pep-mdc-text");
     addTextSyncMdcToHtml("budgetName", "pep-name-mdc-text");
     addTextSyncMdcToHtml("budgetCostCenter", "cr-mdc-text");
-    addSelectSyncMdcToHtml("budgetYear","year-js-select");
-    addSelectSyncMdcToHtml("areaId","area-js-select");
-    addSelectSyncMdcToHtml("bankingId","banking-js-select");
-    addSelectSyncMdcToHtml("userReceiverId","receiver-js-select");
-    addSelectSyncMdcToHtml("userSenderId","sender-js-select");
-    addSelectSyncMdcToHtml("corporationId","corporation-js-select");
-    addSelectSyncMdcToHtml("natureId","nature-js-select");
+    addSelectSyncMdcToHtml("budgetYear", "year-js-select");
+    addSelectSyncMdcToHtml("areaId", "area-js-select");
+    addSelectSyncMdcToHtml("bankingId", "banking-js-select");
+    addSelectSyncMdcToHtml("userReceiverId", "receiver-js-select");
+    addSelectSyncMdcToHtml("userSenderId", "sender-js-select");
+    addSelectSyncMdcToHtml("corporationId", "corporation-js-select");
+    addSelectSyncMdcToHtml("natureId", "nature-js-select");
 }
 
 function addTextSyncMdcToHtml(htmlField, mdcField) {
@@ -291,8 +321,8 @@ function addTextSyncMdcToHtml(htmlField, mdcField) {
 }
 
 
-function addSelectSyncMdcToHtml(htmlField,mdcSelect){
-    var $hiddenInput = $("#"+htmlField);
+function addSelectSyncMdcToHtml(htmlField, mdcSelect) {
+    var $hiddenInput = $("#" + htmlField);
     var rootSelect = document.getElementById(mdcSelect);
     var selectObj = new mdc.select.MDCSelect(rootSelect);
 
@@ -300,42 +330,43 @@ function addSelectSyncMdcToHtml(htmlField,mdcSelect){
         $hiddenInput.val(selectObj.value);
     });
 }
-function pagePeps(numPage){
+
+function pagePeps(numPage) {
     $("#table-peps > tbody").empty();
-    var limiter = (10*(numPage-1));
-    $.each(currentPeps.slice(0+limiter,10+limiter), function(i, data){
+    var limiter = (10 * (numPage - 1));
+    $.each(currentPeps.slice(0 + limiter, 10 + limiter), function (i, data) {
         $("#table-peps > tbody").append(
-            "<tr href='#row-detail-wrapper-1' data-tggle='collapse' class='clickable' aria-controls='row-detail-wrapper-1'>"+
-            "<td>"+
-            "<div class='mdc-radio color-custom'>"+
-            "<input class='mdc-radio__native-control' type='radio' id='"+data.transferId+"' name='pepsIds'>"+
-            "<div class='mdc-radio__background'>"+
-            "<div class='mdc-radio__outer-circle'></div>"+
-            "<div class='mdc-radio__inner-circle'></div>"+
-            "</div>"+
-            "</div>"+
-            "</td>"+
-            "<td>"+data.budget.budgetId+"</td>"+
-            "<td>"+data.budget.userReceiver.userInternalId+"</td>"+
-            "<td>"+seniority(new Date(data.transferDate), new Date())+"</td>"+
-            "<td>$"+Number(data.budget.budgetAmount).formatMoney(2)+"</td>"+
-            "<td>$"+(Number(data.budget.budgetAmount)-Number(data.transferWithdrawalValue)).formatMoney(2)+"</td>"+
-            "<td>$"+Number(data.budget.budgetIncurredTestFactory).formatMoney(2)+"</td>"+
-            "<td>$"+Number(data.budget.budgetIncurredSoftwareFactory).formatMoney(2)+"</td>"+
-            "<td>$"+(Number(data.budget.budgetIncurredTestFactory)+Number(data.budget.budgetIncurredSoftwareFactory)).formatMoney(2)+"</td>"+
+            "<tr href='#row-detail-wrapper-1' data-tggle='collapse' class='clickable' aria-controls='row-detail-wrapper-1'>" +
+            "<td>" +
+            "<div class='mdc-radio color-custom'>" +
+            "<input class='mdc-radio__native-control' type='radio' id='" + data.transferId + "' name='pepsIds'>" +
+            "<div class='mdc-radio__background'>" +
+            "<div class='mdc-radio__outer-circle'></div>" +
+            "<div class='mdc-radio__inner-circle'></div>" +
+            "</div>" +
+            "</div>" +
+            "</td>" +
+            "<td>" + data.budget.budgetId + "</td>" +
+            "<td>" + data.budget.userReceiver.userInternalId + "</td>" +
+            "<td>" + seniority(new Date(data.transferDate), new Date()) + "</td>" +
+            "<td>$" + Number(data.budget.budgetAmount).formatMoney(2) + "</td>" +
+            "<td>$" + (Number(data.budget.budgetAmount) - Number(data.transferWithdrawalValue)).formatMoney(2) + "</td>" +
+            "<td>$" + Number(data.budget.budgetIncurredTestFactory).formatMoney(2) + "</td>" +
+            "<td>$" + Number(data.budget.budgetIncurredSoftwareFactory).formatMoney(2) + "</td>" +
+            "<td>$" + (Number(data.budget.budgetIncurredTestFactory) + Number(data.budget.budgetIncurredSoftwareFactory)).formatMoney(2) + "</td>" +
             "</tr>"
         );
     });
-    for( var j = 10; $('#table-peps tbody tr').length < j;){
+    for (var j = 10; $('#table-peps tbody tr').length < j;) {
         $("#table-peps > tbody").append(
-            "<tr href='#row-detail-wrapper-1' data-tggle='collapse' class='clickable' aria-controls='row-detail-wrapper-1'>"+
-            "<td colspan='9'><div class='mdc-radio color-custom'></div></td>"+
+            "<tr href='#row-detail-wrapper-1' data-tggle='collapse' class='clickable' aria-controls='row-detail-wrapper-1'>" +
+            "<td colspan='9'><div class='mdc-radio color-custom'></div></td>" +
             "</tr>"
         );
     }
 }
 
-function addCalendars(){
+function addCalendars() {
     $('#FecRealCFG').datetimepicker({
         format: 'DD/MM/YYYY',
         widgetPositioning: {
@@ -369,7 +400,7 @@ function addCalendars(){
     });
 }
 
-function holder(msg){
+function holder(msg) {
     HoldOn.open({
         theme: "sk-cube",
         content: '',
@@ -380,7 +411,7 @@ function holder(msg){
     });
 }
 
-Number.prototype.formatMoney = function(c, d, t){
+Number.prototype.formatMoney = function (c, d, t) {
     var n = this,
         c = isNaN(c = Math.abs(c)) ? 2 : c,
         d = d == undefined ? "." : d,
@@ -395,7 +426,7 @@ function seniority(d1, d2) {
     var diff = 0;
     if (d1 && d2) {
 
-        diff = Math.round(Math.abs((d2.getTime() - d1.getTime())/(24*60*60*1000)));
+        diff = Math.round(Math.abs((d2.getTime() - d1.getTime()) / (24 * 60 * 60 * 1000)));
     }
     return diff;
 }
