@@ -107,13 +107,14 @@ public class BudgetController {
         return URL_BUDGET + BILLING_CUT;
     }
 
+    @ResponseBody
     @RequestMapping(value = "/billing/search", method = RequestMethod.GET)
-    public String searchForBillings(@ModelAttribute("billingSearchDTO") BudgetSearchDTO budgetSearchDTO, Model model) {
+    public List<Invoice> searchForBillings(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
         /* String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
         List<Budget> budgets = budgetService.findByCustomQuery(query); */
-        model.addAttribute("invoices", invoiceService.findAllInvoices());
-        return URL_BUDGET + BILLING_CUT;
+
+        return invoiceService.findAllInvoices();
     }
 
     @RequestMapping(value = "/payments/filters", method = RequestMethod.GET)
@@ -122,13 +123,14 @@ public class BudgetController {
         return URL_BUDGET + STATUS_PAYMENT;
     }
 
+    @ResponseBody
     @RequestMapping(value = "/payments/search", method = RequestMethod.GET)
-    public String searchForPayments(@ModelAttribute("payment") Payment payment, Model model) {
+    public List<Payment> searchForPayments(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
         /*String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
         List<Budget> budgets = budgetService.findByCustomQuery(query);*/
-        model.addAttribute("payments", paymentService.findAllPayments());
-        return URL_BUDGET + STATUS_PAYMENT;
+
+        return paymentService.findAllPayments();
     }
 
     @RequestMapping(value = "/assign", method = RequestMethod.PUT)
