@@ -25,6 +25,9 @@ $(function () {
   var numberMonths = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
 
 
+  /**
+   * Technologies ajax call
+   */
   $.ajax({
     url: "/api/technologies",
     method: "GET",
@@ -52,8 +55,12 @@ $(function () {
     $("#slct_tecnologia > .mdc-menu > ul").append(lis);
     $("#slct_tecnologia").addClass("mdc-select--disabled");
   });
+  /******************* */
 
 
+  /**
+   * Typologies [ modified=true ] ajax call
+   */
   var typologiesModified = [];
   var optionsModified = "";
   $.ajax({
@@ -72,7 +79,12 @@ $(function () {
     });
   }).fail(function () {
   });
+  /******************* */
 
+
+  /**
+   * Typologies [ modified=false ] ajax call
+   */
   var typologiesNew = [];
   var optionsNew = "";
   $.ajax({
@@ -91,8 +103,12 @@ $(function () {
     });
   }).fail(function () {
   });
+  /******************* */
 
 
+  /**
+   * Status ajax call
+   */
   var optionsTipif = "<option value=''></option>";
   $.ajax({
     url: "/api/status-types/3/status",
@@ -103,6 +119,7 @@ $(function () {
     });
   }).fail(function () {
   });
+  /******************* */
 
 
   $("#tabs").tabs();
@@ -311,7 +328,7 @@ $(function () {
       subPrincipalId: $("#subPrincipalId").val(),
       companyId: $("#companyId").val(),
       technologyId: $("#technologyId").val(),
-      typologyNewComponent: newMod,
+      typologyComponentModified: newMod,
       statusId: $("#statusId").val(),
       startProductId: $("#startProductId").val(),
       finalProductId: $("#finalProductId").val(),
@@ -319,10 +336,12 @@ $(function () {
       componentName: $("#componentName").val(),
       requirementName: $("#requirementName").val(),
       componentVersion: $("#componentVersion").val(),
-      componentDesignRealDeliverDate: $("#componentDesignRealDeliverDate").val(),
-      componentPreviewDeliverDate: $("#componentPreviewDeliverDate").val(),
-      componentPossibleDeliverDate: $("#componentPossibleDeliverDate").val(),
-      componentRealDeliverDate: $("#componentRealDeliverDate").val(),
+      
+      componentDesignRealDeliverDate: changeFormatDate($("#componentDesignRealDeliverDate").val()),
+      componentPreviewDeliverDate: changeFormatDate($("#componentPreviewDeliverDate").val()),
+      componentPossibleDeliverDate: changeFormatDate($("#componentPossibleDeliverDate").val()),
+      componentRealDeliverDate: changeFormatDate($("#componentRealDeliverDate").val()),
+      
       typologyStartSeverity: $("#typologyStartSeverity").val(),
       typologyStartSeverityHours: $("#typologyStartSeverityHours").val(),
       typologyFinalSeverity: $("#typologyFinalSeverity").val(),
@@ -592,10 +611,10 @@ $(function () {
   });
 
   $("#update-all-dates").click(function(){
-    var updateDate1 = $("#date1").val();
-    var updateDate2 = $("#date2").val();
-    var updateDate3 = $("#date3").val();
-    var updateDate4 = $("#date4").val();
+    var updateDate1 = changeFormatDate($("#date1").val());
+    var updateDate2 = changeFormatDate($("#date2").val());
+    var updateDate3 = changeFormatDate($("#date3").val());
+    var updateDate4 = changeFormatDate($("#date4").val());
 
     data = [{
       'componentDesignRealDeliverDate': updateDate1,
@@ -651,10 +670,10 @@ $(function () {
       var id = value.id.substring(6, value.id.length);
       data.push({
         'componentId': parseInt(id),
-        'componentDesignRealDeliverDate': value.value,
-        'componentPossibleDeliverDate': date2[index].value,
-        'componentPreviewDeliverDate': date3[index].value,
-        'componentRealDeliverDate': date4[index].value,
+        'componentDesignRealDeliverDate': changeFormatDate(value.value),
+        'componentPossibleDeliverDate': changeFormatDate(date2[index].value),
+        'componentPreviewDeliverDate': changeFormatDate(date3[index].value),
+        'componentRealDeliverDate': changeFormatDate(date4[index].value),
       });
     });
 
@@ -729,4 +748,14 @@ $(function () {
       customHolder("error", xhr.responseJSON.message);
     });
   });
+
 });
+
+function changeFormatDate(date) {
+  if ('undefined' !== typeof date && 0 < date.length) {
+    split = date.split("/");
+    return split[2] + "-" + split[1] + "-" + split[0];
+  } else {
+    return "";
+  }
+}

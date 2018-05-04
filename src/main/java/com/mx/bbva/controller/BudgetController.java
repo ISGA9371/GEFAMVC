@@ -92,13 +92,13 @@ public class BudgetController {
         return URL_BUDGET + SEARCH_BUDGETS;
     }
 
+    @ResponseBody
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String searchForBudgets(@ModelAttribute("budgetSearchDTO") BudgetSearchDTO budgetSearchDTO, Model model) {
+    public List<Transfer> searchForBudgets(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
         /*String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
         List<Budget> budgets = budgetService.findByCustomQuery(query); */
-        model.addAttribute("transfers", transferService.findAllTransfers());
-        return URL_FACTORY + SEARCH_REQUIREMENTS;
+        return this.transferService.findAllTransfers();
     }
 
     @RequestMapping(value = "/billing/filters", method = RequestMethod.GET)

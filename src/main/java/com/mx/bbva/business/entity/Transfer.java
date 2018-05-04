@@ -5,6 +5,7 @@
  */
 package com.mx.bbva.business.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -37,8 +38,11 @@ public class Transfer implements Serializable {
     private Double transferWithdrawalValue;
     @Column(name = "TX_COMENTARIO", length = 200)
     private String transferComment;
+    @JsonIgnore
     @JoinColumn(name = "CD_PEP", referencedColumnName = "CD_PEP")
     @ManyToOne
+    private Budget budgetDb;
+    @Transient
     private Budget budget;
     @JoinColumn(name = "CD_NIVEL_SUBDIR", referencedColumnName = "CD_NIVEL")
     @ManyToOne
@@ -129,6 +133,14 @@ public class Transfer implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Budget getBudgetDb() {
+        return budgetDb;
+    }
+
+    public void setBudgetDb(Budget budgetDb) {
+        this.budgetDb = budgetDb;
     }
 
     @Override
