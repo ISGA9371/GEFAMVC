@@ -1,6 +1,8 @@
 package com.mx.bbva.business.service.impl;
 
 import com.mx.bbva.business.entity.Modification;
+import com.mx.bbva.business.entity.Status;
+import com.mx.bbva.business.entity.User;
 import com.mx.bbva.business.repository.ModificationRepository;
 import com.mx.bbva.business.service.ModificationService;
 import com.mx.bbva.util.DateUtils;
@@ -15,7 +17,12 @@ public class ModificationServiceImpl implements ModificationService {
 
     @Override
     public void saveModification(Modification modification) {
-        modification.setModificationSendDate(new DateUtils().getCurrentDate());
+        if (modification.getModificationId() == null) {
+            // TODO Use enums
+            modification.setUserSender(new User("XMY3070"));
+            modification.setStatus(new Status(5));
+            modification.setModificationSendDate(new DateUtils().getCurrentDate());
+        }
         modificationRepository.save(modification);
     }
 

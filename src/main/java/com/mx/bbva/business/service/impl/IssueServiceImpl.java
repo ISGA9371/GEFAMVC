@@ -1,6 +1,8 @@
 package com.mx.bbva.business.service.impl;
 
 import com.mx.bbva.business.entity.Issue;
+import com.mx.bbva.business.entity.Status;
+import com.mx.bbva.business.entity.User;
 import com.mx.bbva.business.repository.IssueRepository;
 import com.mx.bbva.business.service.IssueService;
 import com.mx.bbva.util.DateUtils;
@@ -15,7 +17,12 @@ public class IssueServiceImpl implements IssueService {
 
     @Override
     public void saveIssue(Issue issue) {
-        issue.setIssueUploadDate(new DateUtils().getCurrentDate());
+        if (issue.getIssueId() == null) {
+            // TODO Use enums
+            //issue.setUserSender(new User("XMY3070"));
+            //issue.setStatus(new Status(16));
+            issue.setIssueUploadDate(new DateUtils().getCurrentDate());
+        }
         issueRepository.save(issue);
     }
 

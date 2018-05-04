@@ -21,61 +21,61 @@
         <table class="col-md-12" >
             <tr>
                 <td class="col-md-4" align="center">
-                    <div id="nombre-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input disabled="disabled" th:value="${doubt.component.componentName}"  type="text"  required class="mdc-text-field__input"  id="demo-input">
+                    <div id="nombre-js-text" class="mdc-select-disabled"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input  th:value="${doubt.component.componentName}"  type="text" class="mdc-text-field__input mdc-text-field--disabled" id="demo-input">
                         <label for="demo-input" class="mdc-text-field__label">Nombre</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <div id="direccion-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                    <input type="text" class="mdc-text-field__input"
+                    <div id="direccion-js-text" class="mdc-select-disabled"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                    <input type="text" class="mdc-text-field__input mdc-text-field--disabled"
                            style="border-bottom-color:rgba(28, 59, 224, 0.5)" value="" readonly="readonly"
                            th:each="principals:${principals}"
                            th:object="${principals}"
                            th:if="${principals.levelId} == ${doubt.component.requirement.level.levelSuperior.levelId}"
                            th:value="${principals.levelName}">
-                        <label for="demo-input" class="mdc-text-field__label">Direccion</label>
+                        <label for="demo-input" class="mdc-text-field__label">Dirección</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <div id="subdireccion-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input disabled="disabled" th:value="${doubt.component.requirement.level.levelName}" type="text"  required class="mdc-text-field__input" id="demo-input">
-                        <label for="demo-input" class="mdc-text-field__label">Subdireccion</label>
+                    <div id="subdireccion-js-text" class="mdc-select-disabled"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input th:value="${doubt.component.requirement.level.levelName}" type="text" class="mdc-text-field__input mdc-text-field--disabled" id="demo-input">
+                        <label for="demo-input" class="mdc-text-field__label">Subdirección</label>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4" align="center">
-                    <div id="version-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input disabled="disabled" th:value="${doubt.component.componentVersion}" type="text"  class="mdc-text-field__input" id="version">
+                    <div id="version-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input th:value="${doubt.component.componentVersion}" type="text" class="mdc-text-field__input mdc-text-field--disabled" id="version">
                         <label for="demo-input" class="mdc-text-field__label">Versión</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <div id="requerimiento-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input disabled="disabled" th:value="${doubt.component.requirement.requirementName}" type="text"  class="mdc-text-field__input" id="requerimiento">
+                    <div id="requerimiento-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input th:value="${doubt.component.requirement.requirementName}" type="text" class="mdc-text-field__input mdc-text-field--disabled" id="requerimiento">
                         <label for="demo-input" class="mdc-text-field__label">Requerimiento</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <div id="tecnologia-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input disabled="disabled" th:value="${doubt.component.requirement.technology.technologyName}" type="text"  class="mdc-text-field__input" id="tecnologia">
+                    <div id="tecnologia-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input th:value="${doubt.component.requirement.technology.technologyName}" type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tecnologia">
                         <label for="demo-input" class="mdc-text-field__label">Tecnología</label>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4" align="center">
-                    <div id="tipologia-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input disabled="disabled" th:value="${doubt.component.typology.product.productName}"  type="text"  class="mdc-text-field__input" id="tipologia">
+                    <div id="tipologia-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input th:value="${doubt.component.startTypology.product.productName}"  type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tipologia">
                         <label for="demo-input" class="mdc-text-field__label">Tipología</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="dog1">
                     <input disabled="disabled" th:value="${doubt.component.componentUploadDate}" type='hidden' class="mdc-text-field__input"  row="2" id='datetimepicker' />
-                        <div id="fechaAlta-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                            <input disabled="disabled" th:value="${doubt.component.componentUploadDate}" type='text' class="mdc-text-field__input"  row="2" id='datetimepickerformat' />
+                        <div id="fechaAlta-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                            <input th:value="${doubt.component.componentUploadDate}" type='text' class="mdc-text-field__input mdc-text-field--disabled"  row="2" id='datetimepickerformat' />
                             <label for="demo-input" class="mdc-text-field__label">Fecha de Alta</label>
                         </div>
                     </div>
@@ -83,11 +83,13 @@
             </tr>
         </table>
 
-        <form style="display:block" action="#" th:action="@{/doubts/}" onsubmit="holder('Registrando Duda')" th:object="${doubt}" method="post">
+        <form th:action="@{/doubts}" th:object="${doubt}" method="post">
             <input id="hidden-status" type="hidden" required th:field="*{status.statusId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
             <input id="hidden-componente" type="hidden"  th:value="${doubt.component.componentId}">
             <input id="hidden-envcomponente" type="hidden" required th:field="*{component.componentId}" >
             <input id="doubtVersion" type="hidden" required th:field="*{doubtVersion}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+            <input id="doubtId" type="hidden" required th:field="*{doubtId}" >
+            <input id="doubtUploadDate" type="hidden" required th:field="*{doubtUploadDate}" >
 
             <div >
                 <div class="row">
@@ -98,22 +100,22 @@
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
                             <input id="hidden-prioridad" type="text" value="" required th:field="*{priority.priorityId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                            <div id="tipologia-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input disabled="disabled" th:field="*{priority.priorityName}"  type="text"  class="mdc-text-field__input" id="tipologia">
+                            <div id="prioridad-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input disabled="disabled" th:field="*{priority.priorityName}"  type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tipologia">
                                 <label for="demo-input" class="mdc-text-field__label">Prioridad</label>
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
                             <input id="hidden-responsable" type="text"   value="" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{userSender.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                            <div id="tipologia-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input disabled="disabled" th:field="*{userSender.userInternalId}"  type="text"  class="mdc-text-field__input" id="tipologia">
+                            <div id="peticionario-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input disabled="disabled" th:field="*{userSender.userInternalId}"  type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tipologia">
                                 <label for="demo-input" class="mdc-text-field__label">Usuario Peticionario</label>
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
                             <input id="hidden-dudaSelect" type="text" value="" required th:field="*{doubtType.doubtTypeId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                            <div id="tipologia-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input disabled="disabled" th:field="*{doubtType.doubtTypeName}"  type="text"  class="mdc-text-field__input" id="tipologia">
+                            <div id="tioDuda-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input disabled="disabled" th:field="*{doubtType.doubtTypeName}"  type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tipologia">
                                 <label for="demo-input" class="mdc-text-field__label">Tipo de Duda</label>
                             </div>
                         </td>
@@ -126,27 +128,30 @@
                         </td>
                         <td class="col-md-4" align="center">
                             <div class="dog1">
-                                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                    <input type='text' class="mdc-text-field__input"  row="2" id='datetimepicker4' />
-                                    <label for="demo-input" class="mdc-text-field__label">Fecha de Resolucion</label>
+                                <input id="hidden-Fecha" type="text" value="" th:field="*{doubtDateResolution}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                                <div id="Fecha-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                    <input disabled="disabled" type='text' class="mdc-text-field__input mdc-text-field--disabled" th:field="*{doubtDateResolution}" row="2" id='dateresolucion' />
+                                    <label for="demo-input" class="mdc-text-field__label">Fecha de Resolución</label>
                                 </div>
                             </div>
                         </td>
                         <td class="col-md-4" align="center">
-                            <input id="hidden-dudaSelect" type="text" value="" required th:field="*{doubtType.doubtTypeId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                            <div id="tipologia-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input disabled="disabled" th:field="*{doubtType.doubtTypeName}"  type="text"  class="mdc-text-field__input" id="tipologia">
-                                <label for="demo-input" class="mdc-text-field__label">Numero de Resoluciones incorrectas</label>
+                            <input id="hidden-Resoluciones" type="text" value="" th:field="*{doubtWrongResponse}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                            <div id="Resoluciones-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input th:field="*{doubtWrongResponse}"  type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tipologia">
+                                <label for="demo-input" class="mdc-text-field__label">Número de Resoluciones Incorrectas</label>
                             </div>
                         </td>
                     </tr>
                 </table>
 
+                <input id="desfijo" type="text" value="" required th:field="*{doubtDescription}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+
                 <table class="col-md-12" >
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
-                            <div  id="descripcion-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
-                                <input disabled="disabled" type="text" maxlength="220" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{doubtDescription}" class="mdc-text-field__input" id="usuario-peticionario">
+                            <div  id="descripcion-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
+                                <input disabled="disabled" type="text" th:value="*{doubtDescription}" class="mdc-text-field__input mdc-text-field--disabled" id="descripcion">
                                 <label for="demo-input" class="mdc-text-field__label">Descripción</label>
                             </div>
                         </td>
@@ -155,8 +160,8 @@
                 <table class="col-md-12" >
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
-                            <div  id="descripcion-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
-                                <input type="text" maxlength="220" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{doubtDescription}" class="mdc-text-field__input" id="usuario-peticionario">
+                            <div  id="descripcionedit-js-text" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
+                                <input type="text" maxlength="220" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required onchange="rojelia()" class="mdc-text-field__input" id="descripcion2">
                                 <label for="demo-input" class="mdc-text-field__label">Descripción agregar user</label>
                             </div>
                         </td>
@@ -170,7 +175,7 @@
                     <tr>
                         <td class="col-md-6" align="center">
                             <button type="submit" class="btn btn-primary">Guardar</button>
-                            <button type="button" id="cancelar-btn" onclick="addButtonEvents()" class="btn btn-primary">Cancelar</button>
+                            <button type="button" id="cancelar-btn" class="btn btn-primary">Cancelar</button>
                         </td>
                     </tr>
                 </table>
@@ -190,50 +195,6 @@
         border-bottom-color: rgba(15, 50, 242, 0.5);
     }
 </style>
-
-<script>
-    demoReady(function() {
-        var rootEst = document.getElementById('Prioridad-js-select');
-        var hiddenEst = document.getElementById('hidden-prioridad');
-        var selectEst = new mdc.select.MDCSelect(rootEst);
-
-        rootEst.addEventListener('MDCSelect:change', function() {
-            hiddenEst.value = selectEst.value;
-        });
-    });
-
-    demoReady(function() {
-        var rootEst = document.getElementById('responsable-js-select');
-        var hiddenEst = document.getElementById('hidden-responsable');
-        var selectEst = new mdc.select.MDCSelect(rootEst);
-
-        rootEst.addEventListener('MDCSelect:change', function() {
-            hiddenEst.value = selectEst.value;
-        });
-    });
-
-    demoReady(function() {
-        var rootEst = document.getElementById('Duda-js-select');
-        var hiddenEst = document.getElementById('hidden-dudaSelect');
-        var selectEst = new mdc.select.MDCSelect(rootEst);
-
-        rootEst.addEventListener('MDCSelect:change', function() {
-            hiddenEst.value = selectEst.value;
-        });
-    });
-
-    function holder(msg){
-        HoldOn.open({
-            theme: "sk-cube",
-            content: '',
-            message: msg,
-            // backgroundColor: "#004582",
-            backgroundColor: "#0c71ca",
-            textColor: "white",
-        });
-    }
-
-</script>
 
 <!--Footer que debe ir en todas las ventanas-->
 <div th:replace="layout/footer :: FooterPrincipal"></div>

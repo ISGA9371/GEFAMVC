@@ -20,7 +20,13 @@ public class RequirementServiceImpl implements RequirementService {
 
     @Override
     public List<Requirement> findByCustomQuery(String query) {
-        return requirementRepository.findByCustomQuery(query);
+        List<Requirement> requirements = requirementRepository.findByCustomQuery(query);
+        for (Requirement requirement : requirements) {
+            if (requirement.getBudgetRequirementsList() != null) {
+                requirement.setBudgetRequirements(requirement.getBudgetRequirementsList());
+            }
+        }
+        return requirements;
     }
 
     @Override

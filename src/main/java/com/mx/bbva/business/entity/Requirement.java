@@ -31,11 +31,11 @@ public class Requirement implements Serializable {
     @Column(name = "NU_HORA_REQ", precision = 22)
     private Double requirementHour;
     @Column(name = "NU_HRS_TOT")
-    private Integer requirementTotalHours;
+    private Double requirementTotalHours;
     @Column(name = "NU_HRS_FACT")
-    private Integer requirementBilledHours;
+    private Double requirementBilledHours;
     @Column(name = "NU_HRS_SIN_FACT")
-    private Integer requirementNoBilledHours;
+    private Double requirementNoBilledHours;
     @Column(name = "ST_FACTURADO")
     private Boolean requirementBilled;
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss.S")
@@ -91,8 +91,9 @@ public class Requirement implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<Invoice> invoices;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "requirement")
-    private List<BudgetRequirement> budgetRequirements;
+    private List<BudgetRequirement> budgetRequirementsList;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requirement")
     private List<T926> t926List;
@@ -108,6 +109,10 @@ public class Requirement implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "requirement")
     private List<ProjectControl> projectControls;
+    @Transient
+    private List<BudgetRequirement> budgetRequirements;
+    @Transient
+    private Double fareValue;
 
     public Requirement() {
     }
@@ -145,27 +150,27 @@ public class Requirement implements Serializable {
         this.requirementHour = requirementHour;
     }
 
-    public Integer getRequirementTotalHours() {
+    public Double getRequirementTotalHours() {
         return requirementTotalHours;
     }
 
-    public void setRequirementTotalHours(Integer requirementTotalHours) {
+    public void setRequirementTotalHours(Double requirementTotalHours) {
         this.requirementTotalHours = requirementTotalHours;
     }
 
-    public Integer getRequirementBilledHours() {
+    public Double getRequirementBilledHours() {
         return requirementBilledHours;
     }
 
-    public void setRequirementBilledHours(Integer requirementBilledHours) {
+    public void setRequirementBilledHours(Double requirementBilledHours) {
         this.requirementBilledHours = requirementBilledHours;
     }
 
-    public Integer getRequirementNoBilledHours() {
+    public Double getRequirementNoBilledHours() {
         return requirementNoBilledHours;
     }
 
-    public void setRequirementNoBilledHours(Integer requirementNoBilledHours) {
+    public void setRequirementNoBilledHours(Double requirementNoBilledHours) {
         this.requirementNoBilledHours = requirementNoBilledHours;
     }
 
@@ -313,6 +318,14 @@ public class Requirement implements Serializable {
         this.invoices = invoices;
     }
 
+    public List<BudgetRequirement> getBudgetRequirementsList() {
+        return budgetRequirementsList;
+    }
+
+    public void setBudgetRequirementsList(List<BudgetRequirement> budgetRequirementsList) {
+        this.budgetRequirementsList = budgetRequirementsList;
+    }
+
     public List<BudgetRequirement> getBudgetRequirements() {
         return budgetRequirements;
     }
@@ -359,6 +372,14 @@ public class Requirement implements Serializable {
 
     public void setProjectControls(List<ProjectControl> projectControls) {
         this.projectControls = projectControls;
+    }
+
+    public Double getFareValue() {
+        return fareValue;
+    }
+
+    public void setFareValue(Double fareValue) {
+        this.fareValue = fareValue;
     }
 
     @Override

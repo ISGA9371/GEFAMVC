@@ -17,9 +17,13 @@ public class RequirementQueryGenerator {
     public String generateQuery(Map<String, String> searchDTO) {
         LOG.info("Creating query for Requirement...");
         fillValues();
-        stringBuffer.append("FROM Requirement x ");
+        stringBuffer.append(" SELECT x FROM Requirement x ");
 
-        // TODO Check how to search the budget
+        if (searchDTO.containsKey("budgetId") && !searchDTO.get("budgetId").isEmpty()) {
+            firstOne = false;
+            stringBuffer.append(" JOIN x.budgetRequirementsList AS brs WHERE brs.budget.budgetId LIKE '%")
+                    .append(searchDTO.get("budgetId")).append("%' ");
+        }
         searchDTO.forEach(this::newFilter);
 
         return stringBuffer.toString();
@@ -50,18 +54,18 @@ public class RequirementQueryGenerator {
 
     private void fillValues() {
         items.put("requirementName", Arrays.asList("x.requirementName", LIKE));
-        items.put("requirementStartDate", Arrays.asList("x.requirementStartDate", LIKE));
-        items.put("requirementEndDate", Arrays.asList("x.requirementEndDate", LIKE));
+        items.put("requirementStartDate", Arrays.asList("x.requirementStartDate", EQUALS));
+        items.put("requirementEndDate", Arrays.asList("x.requirementEndDate", EQUALS));
         items.put("subPrincipalId", Arrays.asList("x.level.levelId", EQUALS));
         items.put("companyId", Arrays.asList("x.company.companyId", EQUALS));
         items.put("technologyId", Arrays.asList("x.technology.technologyId", EQUALS));
-        items.put("userInternalId", Arrays.asList("x.user.userInternalId", LIKE));
-        items.put("userManagerId", Arrays.asList("x.userManager.userInternalId", LIKE));
+        items.put("userInternalId", Arrays.asList("x.user.userInternalId", EQUALS));
+        items.put("userManagerId", Arrays.asList("x.userManager.userInternalId", EQUALS));
         items.put("areaId", Arrays.asList("x.area.areaId", EQUALS));
         items.put("programIncrementId", Arrays.asList("x.programIncrement.programIncrementId", EQUALS));
         items.put("channelId", Arrays.asList("x.channel.channelId", EQUALS));
         items.put("applicationId", Arrays.asList("x.application.applicationId", EQUALS));
-        items.put("projectTypeId", Arrays.asList("x.projectType.projectTypeId", EQUALS));
         items.put("serviceTypeId", Arrays.asList("x.serviceType.serviceTypeId", EQUALS));
+        items.put("methodologyId", Arrays.asList("x.project.methodology.methodologyId", EQUALS));
     }
 }

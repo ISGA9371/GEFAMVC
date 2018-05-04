@@ -1,14 +1,18 @@
 package com.mx.bbva.controller;
 
+import com.mx.bbva.business.dto.ResponseListDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import static com.mx.bbva.util.ViewsURLs.*;
@@ -36,7 +40,7 @@ public class IssueController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String saveIssue(@ModelAttribute("issuee") Issue issue) {
+    public String saveIssue(@ModelAttribute("issue") Issue issue) {
         issueService.saveIssue(issue);
         Issue issueSaved = issueService.findIssue(issue.getIssueId());
         return REDIRECT + "issues/" + issueSaved.getIssueId();
@@ -61,6 +65,15 @@ public class IssueController {
             model.addAttribute("issue", new Issue());
         }
         return URL_FACTORY + EDIT_ISSUE;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ResponseEntity<?> searchForIssues(@RequestParam Map<String, String> parameters) {
+        // TODO Work in progress
+        /*String query = new IssueQueryGenerator().generateQuery(issueSearchDTO);
+        List<Issue> issues = issueService.findByCustomQuery(query); */
+        return new ResponseEntity<Object>(new ResponseListDTO(this.issueService.findAll()), HttpStatus.OK);
     }
 
     @ModelAttribute("origins")

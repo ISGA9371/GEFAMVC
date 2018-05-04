@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,11 +28,12 @@ public class CompanyController {
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> findAllCompanies() {
         // TODO Validate user
-        //List<Company> companies = companyService.findAllCompanies();
-        return new ResponseEntity<Object>(new ResponseListDTO(null), HttpStatus.OK);
+        List<Company> companies = companyService.findAllCompanies(null);
+        return new ResponseEntity<Object>(new ResponseListDTO(companies), HttpStatus.OK);
     }
 
     // TODO TESTING ONLY
+    /*
     @RequestMapping(method = RequestMethod.GET, value = "/all")
     public ResponseEntity<?> search(@RequestParam(value = "search") String search) {
         CompanySpecificationsBuilder builder = new CompanySpecificationsBuilder();
@@ -43,7 +45,7 @@ public class CompanyController {
 
         Specification<Company> spec = builder.build();
         return new ResponseEntity<Object>(new ResponseListDTO(companyService.findAllCompanies(spec)), HttpStatus.OK);
-    }
+    }*/
 
     @Autowired
     public void setCompanyService(CompanyService companyService) {

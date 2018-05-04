@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+    <head th:replace="~{layout/mainHeader :: head ('Búsqueda MID')}"></head>
+    <body>
+        <header th:replace="~{layout/mainHeader :: header }"></header>
+        <div class="container">
+
+
+
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2 class="h2-title-content">MID</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 subtitle-content">Criterios de Búsqueda</div>
+            </div>
+            <div class="row">
+
+                <div class="row">
+
+                    <div class="col-xs-12">
+                        <form id="searchForm" name="searchForm" method="GET">
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div id="slct_tipo" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                            <div class="mdc-select__label">Tipo</div>
+                                            <div class="mdc-select__selected-text"></div>
+                                            <div class="mdc-select__bottom-line"></div>
+                                        </div>
+                                        <div class="mdc-menu mdc-select__menu">
+                                            <ul class="mdc-list mdc-menu__items">
+                                                <li class="mdc-list-item" role="option" tabindex="0" th:each="meth : ${methodologies}"
+                                                    th:attrappend="aria-selected=(${meth.methodologyId} == *{methodologyId}) ? 'true'"
+                                                    th:value="${meth.methodologyId}" th:text="${meth.methodologyName}">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc-group-projectName">
+                                        <input type="text" class="mdc-text-field__input" name="projectName" id="projectName" maxlength="30" /> <!-- id="componentName" -->
+                                        <label class="mdc-text-field__label">Proyecto</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="dog1">
+                                        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc-group-componentCurrentDate"> <!-- id="mdc-group-componentDesignRealDeliverDate" -->
+                                            <input type="text" class="mdc-text-field__input" name="componentCurrentDate" id="componentCurrentDate" style="z-index: 100000;" /> <!-- id="componentDesignRealDeliverDate" -->
+                                            <label class="mdc-text-field__label">Fecha</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div id="slct_empresa" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                            <div class="mdc-select__label">Empresa</div>
+                                            <div class="mdc-select__selected-text"></div>
+                                            <div class="mdc-select__bottom-line"></div>
+                                        </div>
+                                        <div class="mdc-menu mdc-select__menu">
+                                            <ul class="mdc-list mdc-menu__items">
+                                                <li class="mdc-list-item" role="option" tabindex="0"
+                                                    th:each="company : ${companies}" th:id="${company.companyId}" th:text="${company.companyName}">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div id="slct_direccion" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                            <div class="mdc-select__label">Dirección</div>
+                                            <div class="mdc-select__selected-text"></div>
+                                            <div class="mdc-select__bottom-line"></div>
+                                        </div>
+                                        <div class="mdc-menu mdc-select__menu">
+                                            <ul class="mdc-list mdc-menu__items">
+                                                <li class="mdc-list-item" role="option" tabindex="0"
+                                                    th:each="dir : ${principals}" th:id="${dir.levelId}" th:text="${dir.levelName}" >
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div id="slct_area" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                            <div class="mdc-select__label">Área</div>
+                                            <div class="mdc-select__selected-text"></div>
+                                            <div class="mdc-select__bottom-line"></div>
+                                        </div>
+                                        <div class="mdc-menu mdc-select__menu">
+                                            <ul class="mdc-list mdc-menu__items">
+                                                <li class="mdc-list-item" role="option" tabindex="0" th:each="area : ${areas}"
+                                                    th:attrappend="aria-selected=(${area.areaId} == *{areaId}) ? 'true'"
+                                                    th:value="${area.areaId}" th:text="${area.areaName}">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <!-- .// row -->
+
+                <div class="row buttons">
+                    <div class="col-xs-12 text-center">
+                        <button type="submit" class="btn btn-primary" form="searchForm" onclick="showHoldOn();">Buscar</button>
+                        <button id="clear-form" type="button" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+
+                <div class="row" id="row-title-results">
+                    <div class="col-md-12 subtitle-content">Resultados de Búsqueda</div>
+                </div>
+                <!-- .// row -->
+
+                <div class="row" id="row-content-results">
+                    <table id="results-table" class="col-md-12 table table-hover table-condensed">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <!-- RADIO -->
+                            <th>Tipo</th>
+                            <th>Proyecto</th>
+                            <th>Fecha</th>
+                            <th>Empresa</th>
+                            <th>Dirección</th>
+                            <th>Área</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:if="${requirements!= null && requirements.size() < 1}">
+                            <td colspan="12">
+                                <h2>No se encontraron resultados para tu búsqueda.</h2>
+                            </td>
+                        </tr>
+
+
+                        <th:block th:each="requirement, stat : ${requirements}">
+                            <tr th:href="${'#row-detail-wrapper-' + stat.count}" data-tggle="collapse" class="clickable"
+                                th:aria-controls="${'row-detail-wrapper-' + stat.count}">
+                                <td>
+                                    <input type="radio" name="requirements" th:id="${requirement.requirementId}" th:value="${requirement.requirementId}">
+                                </td>
+                                <td th:text="${requirement.requirementName}"></td>
+                                <td th:text="${requirement.budgetRequirementsList.size() > 0 ?
+                                    requirement.budgetRequirementsList[0].budget.budgetName : ''}"></td>
+                                <td th:text="${requirement.level.levelSuperior.levelName}"></td>
+                                <td th:text="${requirement.level.levelName}"></td>
+                                <td th:text="${requirement.user.userInternalId}"></td>
+                                <td th:text="${requirement.area.areaName}"></td>
+                                <td th:text="${requirement.serviceType.serviceTypeName}"></td>
+                                <td th:text="${requirement.technology.technologyName}"></td>
+                                <td th:text="${requirement.company.companyName}"></td>
+                                <td th:text="${#dates.format(requirement.requirementStartDate, 'dd/MM/yyyy')}"></td>
+
+                            </tr>
+                           <!-- <tr>
+                                <td colspan="11" class="detail-td">
+                                    <div th:id="${'row-detail-wrapper-' + stat.count}" class="collapse" >
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td class="detail-label">F. Prop. Fin</td>
+                                                <td th:text="${#dates.format(requirement.requirementEndDate, 'dd/MM/yyyy')}"></td>
+                                                <td class="detail-label">Horas Totales</td>
+                                                <td th:text="${requirement.requirementTotalHours}"></td>
+                                                <td class="detail-label">Monto</td>
+                                                <td>24000</td>
+                                                <td class="detail-label">Horas facturadas</td>
+                                                <td th:text="${requirement.requirementBilledHours}">100</td>
+                                                <td class="detail-label">Horas sin facturar</td>
+                                                <td th:text="${requirement.requirementNoBilledHours}">20</td>
+                                                <td class="detail-label">Facturar (S/N)</td>
+                                                <td th:text="${requirement.requirementBilled ? 'Si' : 'No'}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="detail-label" style="height: 60px;">PI</td>
+                                                <td th:text="${requirement.programIncrement.ProgramIncrementName}"></td>
+                                                <td class="detail-label">PEP
+                                                    <div th:unless="${requirement.budgetRequirementsList.size() < 1}" class="dropdown" style="display: inline-block;">
+                                                        <a class="dropdown-toggle" data-toggle="dropdown">
+                                                            <img th:src="@{/img/menu-pagina-icon.png}" height="12">
+                                                        </a>
+                                                        <ul class="dropdown-menu dropdown-menu-right">
+                                                            <li th:each="budgetRequirement : ${requirement.budgetRequirementsList}"
+                                                                th:text="${budgetRequirement.budget.budgetName}"></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                                <td></td>
+                                                <td>
+                                                </td>
+
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td class="detail-label" colspan="2">
+                                                    <a th:href="@{/budgets/assign/filters?requirementId=} + ${requirement.requirementId}"
+                                                       class="btn btn-primary" onclick="showHoldOn();">Asociar PEP</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr> -->
+                        </th:block>
+
+                        </tbody>
+                    </table>
+                </div> <!-- tabla-->
+
+                <div class="row buttons" id="row-buttons-results">
+                    <div class="col-xs-12 text-center">
+                        <a id="edit-requirement" class="btn btn-primary" disabled="disabled">Modificar</a>
+                        <!--
+                        <a id="add-component" class="btn btn-primary" disabled="disabled">Alta de Componente</a>
+                        -->
+                    </div>
+                </div>
+
+        </div>
+        <footer th:replace="~{layout/footer2 :: footer }"></footer>
+    </body>
+    <div th:replace="~{layout/footer2 :: scripts }"></div>
+    <script type="text/javascript" th:src="@{/js/fabrica/busqueda_mid.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fabrica/busqueda-requerimientos.css}">
+</html>

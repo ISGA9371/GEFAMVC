@@ -1,10 +1,16 @@
 package com.mx.bbva.controller;
 
+import com.mx.bbva.business.dto.ComponentClosureDTO;
 import com.mx.bbva.business.dto.ComponentSearchDTO;
+import com.mx.bbva.business.dto.ComponentUpdateDatesDTO;
+import com.mx.bbva.business.dto.ResponseDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
+import com.mx.bbva.config.exception.ConflictException;
 import com.mx.bbva.util.query.ComponentQueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -56,6 +62,20 @@ public class ComponentController {
         return REDIRECT + "components/" + savedComponent.getComponentId();
     }
 
+    @RequestMapping(value = "/update-dates", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateComponentDates(@RequestBody List<ComponentUpdateDatesDTO> components) {
+        // TODO Validate user
+        componentService.updateDates(components);
+        return new ResponseEntity<Object>(new ResponseDTO(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/closure", method = RequestMethod.PUT)
+    public ResponseEntity<?> closureComponent(@RequestBody List<ComponentClosureDTO> components) {
+        // TODO Validate user
+        componentService.updateClosureComponent(components);
+        return new ResponseEntity<Object>(new ResponseDTO(), HttpStatus.OK);
+    }
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String findAllComponents(Model model) {
         // TODO Validate user
@@ -87,6 +107,19 @@ public class ComponentController {
         return URL_FACTORY + EDIT_COMPONENT;
     }
 
+    @RequestMapping(value = "/{componentId}", method = RequestMethod.DELETE)
+    public String deleteComponent(Model model, @PathVariable(value = "componentId") Integer componentId) {
+        Component component = componentService.findComponent(componentId);
+
+        // Component has doubts, issues or modifications
+        if (component.getComponentForBill() || componentService.notRemovable(componentId)) {
+            LOG.fine("Error #0000 Component committed, can't be deleted.");
+            throw new ConflictException("Error #0000 Componente comprometido, no puede ser eliminado");
+        }
+        componentService.deleteComponent(componentId);
+        return URL_FACTORY + SEARCH_COMPONENTS;
+    }
+
     @RequestMapping(value = "/filters", method = RequestMethod.GET)
     public String filtersForComponents(Model model) {
         model.addAttribute("filters", new ComponentSearchDTO());
@@ -97,8 +130,18 @@ public class ComponentController {
     @RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
     public List<Component> searchForComponents(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
+
         String query = new ComponentQueryGenerator().generateQuery(parameters);
-        return componentService.findByCustomQuery(query);
+        List<Component> components = componentService.findByCustomQuery(query);
+        //List<Fare> fares = fareService.findAllFares();
+        for (Component component : components) {
+            Requirement requirement = component.getRequirement();
+            Double fareValue = fareService.findByRequirement(requirement);
+            requirement.setFareValue(fareValue);
+            component.setRequirement(requirement);
+        }
+
+        return components;
     }
 
     //TODO Use Enums

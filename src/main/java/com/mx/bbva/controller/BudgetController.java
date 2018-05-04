@@ -1,10 +1,13 @@
 package com.mx.bbva.controller;
 
 import com.mx.bbva.business.dto.BudgetSearchDTO;
+import com.mx.bbva.business.dto.ResponseDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
-import com.mx.bbva.util.query.QueryGenerator;
+import com.mx.bbva.util.query.BudgetQueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import static com.mx.bbva.util.ViewsURLs.*;
@@ -88,13 +92,13 @@ public class BudgetController {
         return URL_BUDGET + SEARCH_BUDGETS;
     }
 
+    @ResponseBody
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String searchForBudgets(@ModelAttribute("budgetSearchDTO") BudgetSearchDTO budgetSearchDTO, Model model) {
+    public List<Transfer> searchForBudgets(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
         /*String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
         List<Budget> budgets = budgetService.findByCustomQuery(query); */
-        model.addAttribute("budgets", budgetService.findAllBudgets());
-        return URL_FACTORY + SEARCH_REQUIREMENTS;
+        return this.transferService.findAllTransfers();
     }
 
     @RequestMapping(value = "/billing/filters", method = RequestMethod.GET)
@@ -106,9 +110,9 @@ public class BudgetController {
     @RequestMapping(value = "/billing/search", method = RequestMethod.GET)
     public String searchForBillings(@ModelAttribute("billingSearchDTO") BudgetSearchDTO budgetSearchDTO, Model model) {
         // TODO Work in progress
-        String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
-        List<Budget> budgets = budgetService.findByCustomQuery(query);
-        model.addAttribute("budgets", budgets);
+        /* String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
+        List<Budget> budgets = budgetService.findByCustomQuery(query); */
+        model.addAttribute("invoices", invoiceService.findAllInvoices());
         return URL_BUDGET + BILLING_CUT;
     }
 
@@ -123,30 +127,40 @@ public class BudgetController {
         // TODO Work in progress
         /*String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
         List<Budget> budgets = budgetService.findByCustomQuery(query);*/
-        model.addAttribute("invoices", invoiceService.findAllInvoices());
+        model.addAttribute("payments", paymentService.findAllPayments());
         return URL_BUDGET + STATUS_PAYMENT;
     }
 
     @RequestMapping(value = "/assign", method = RequestMethod.PUT)
-    public String assignBudget(Model model, @RequestParam("budgets") List<Budget> budgets) {
+    public ResponseEntity<?> assignBudget(Model model, @RequestBody List<BudgetRequirement> budgetRequirements) {
 
-        return URL_FACTORY + ASSIGN_BUDGET_REQUIREMENT;
+        budgetService.assignBudget(budgetRequirements);
+
+        return new ResponseEntity<Object>(new ResponseDTO(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/assign/filters", method = RequestMethod.GET)
     public String filtersForBudgetAssign(@RequestParam("requirementId") Integer requirementId, Model model) {
+
         Requirement requirement = requirementService.findOneRequirement(requirementId);
         model.addAttribute("requirementData", requirement);
         model.addAttribute("budgetSearchDTO", new BudgetSearchDTO());
+
         return URL_FACTORY + ASSIGN_BUDGET_REQUIREMENT;
     }
 
     @RequestMapping(value = "/assign/search", method = RequestMethod.GET)
-    public String searchForBudgetAssing(@ModelAttribute("budgetSearchDTO") BudgetSearchDTO budgetSearchDTO, Model model) {
+    public String searchForBudgetAssing(@ModelAttribute("budgetSearchDTO") BudgetSearchDTO budgetSearchDTO,
+                                        @ModelAttribute("requirementData") Requirement requirement,
+                                        @RequestParam Map<String, String> parameters, Model model) {
         // TODO Work in progress
-        /*String query =
-        List<Budget> budgets = budgetService.findByCustomQuery(query);*/
-        model.addAttribute("budgets", budgetService.findAllBudgets());
+        String query = new BudgetQueryGenerator().generateQuery(parameters);
+        List<Budget> budgets = budgetService.findByCustomQuery(query);
+
+        model.addAttribute("budgetSearchDTO", budgetSearchDTO);
+        model.addAttribute("requirementData", requirementService.findOneRequirement(requirement.getRequirementId()));
+        model.addAttribute("budgets", budgets);
+
         return URL_FACTORY + ASSIGN_BUDGET_REQUIREMENT;
     }
 

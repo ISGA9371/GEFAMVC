@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
 
-<head th:replace="~{layout/mainHeader :: head ('Búsqueda de Requerimientos')}"></head>
+    <head th:replace="~{layout/mainHeader :: head ('Búsqueda de Requerimientos')}"></head>
 
-<script type="text/javascript" th:src="@{/js/fabrica/busqueda-requerimientos.js}" defer></script>
-<link rel="stylesheet" type="text/css" th:href="@{/css/fabrica/busqueda-requerimientos.css}">
+    <script type="text/javascript" th:src="@{/js/fabrica/busqueda-requerimientos.js}" defer></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fabrica/busqueda-requerimientos.css}">
 
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var requirementsSize = /*[[${requirements == null} ? '-1' : ${requirements.size()}]]*/ '-1';
+        /*]]>*/
+    </script>
+
+</head>
 <body>
 
 <header th:replace="~{layout/mainHeader :: header }"></header>
@@ -19,7 +27,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-12 subtitle-content">Criterios De Búsqueda</div>
+      <div class="col-md-12 subtitle-content">Criterios de Búsqueda</div>
     </div>
 
     <div class="row">
@@ -32,7 +40,10 @@
           <input th:field="*{userInternalId}" type="hidden" />
           <input th:field="*{userManagerId}" type="hidden" />
           <input th:field="*{areaId}" type="hidden" />
+          <!--
           <input th:field="*{projectTypeId}" type="hidden" />
+          -->
+          <input th:field="*{methodologyId}" type="hidden" />
           <input th:field="*{technologyId}" type="hidden" />
           <input th:field="*{companyId}" type="hidden" />
           <input th:field="*{serviceTypeId}" type="hidden" />
@@ -41,16 +52,16 @@
           <input th:field="*{requirementStartDate}" type="hidden" />
           <input th:field="*{requirementEndDate}" type="hidden" />
           <input th:field="*{programIncrementId}" type="hidden" />
-          <table class="col-md-12">
+          <table class="col-md-12" style="z-index: 999 !important;">
             <tr>
               <td class="col-md-4" align="center">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
                   <input type="text" maxlength="100" th:field="*{requirementName}" class="mdc-text-field__input">
-                  <label class="mdc-text-field__label">Nombre De Requerimiento</label>
+                  <label class="mdc-text-field__label">Nombre de Requerimiento</label>
                 </div>
               </td>
               <td class="col-md-4" align="center">
-                <div id="dirs" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="dirs" class="mdc-select" role="listbox" >
                   <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                     <div class="mdc-select__label">Dirección</div>
                     <div class="mdc-select__selected-text"></div>
@@ -58,15 +69,15 @@
                   </div>
                   <div class="mdc-menu mdc-select__menu col-md-3">
                     <ul class="mdc-list mdc-menu__items">
-                      <li class="mdc-list-item" role="option" tabindex="0" th:each="dir : ${principals}"
-                          th:value="${dir.levelId}" th:text="${dir.levelName}">
-                      </li>
+                      <li th:each="principal : ${principals}" class="mdc-list-item"
+                          th:attrappend="aria-selected=(${principal.levelId} == *{principalId}) ? 'true'"
+                          th:value="${principal.levelId}" role="option" th:text="${principal.levelName}"></li>
                     </ul>
                   </div>
                 </div>
               </td>
               <td class="col-md-4" align="center">
-                <div id="subdirs" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="subdirs" class="mdc-select mdc-select--disabled" role="listbox">
                   <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                     <div class="mdc-select__label">Subdirección</div>
                     <div class="mdc-select__selected-text" id="subdir-sel-text"></div>
@@ -82,33 +93,37 @@
             </tr>
             <tr>
               <td class="col-md-4" align="center">
-                <div id="responsables" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="responsables" class="mdc-select" role="listbox">
                   <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                     <div class="mdc-select__label">Responsable</div>
                     <div class="mdc-select__selected-text"></div>
                     <div class="mdc-select__bottom-line"></div>
                   </div>
                   <div class="mdc-menu mdc-select__menu col-md-3">
-                    <ul class="mdc-list mdc-menu__items">
+                    <ul class="mdc-list mdc-menu__items" id="responsables-ul">
+                      <!-- THANKS OBAMA
                       <li class="mdc-list-item" role="option" tabindex="0" th:each="user : ${users}"
                           th:id="${user.userInternalId}" th:text="${user.userInternalId}">
                       </li>
+                      -->
                     </ul>
                   </div>
                 </div>
               </td>
               <td class="col-md-4" align="center">
-                <div id="gestores" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                <div id="gestores" class="mdc-select" role="listbox">
                   <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                     <div class="mdc-select__label">Gestor</div>
                     <div class="mdc-select__selected-text"></div>
                     <div class="mdc-select__bottom-line"></div>
                   </div>
                   <div class="mdc-menu mdc-select__menu col-md-3">
-                    <ul class="mdc-list mdc-menu__items">
+                    <ul class="mdc-list mdc-menu__items" id="gestores-ul">
+                      <!-- THANKS OBAMA
                       <li class="mdc-list-item" role="option" tabindex="0" th:each="user : ${users}"
                           th:id="${user.userInternalId}" th:text="${user.userInternalId}">
                       </li>
+                      -->
                     </ul>
                   </div>
                 </div>
@@ -116,13 +131,14 @@
               <td class="col-md-4" align="center">
                 <div id="areas" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                   <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                    <div class="mdc-select__label">Area de Atencion</div>
+                    <div class="mdc-select__label">Área de Atención</div>
                     <div class="mdc-select__selected-text"></div>
                     <div class="mdc-select__bottom-line"></div>
                   </div>
                   <div class="mdc-menu mdc-select__menu col-md-3">
                     <ul class="mdc-list mdc-menu__items">
                       <li class="mdc-list-item" role="option" tabindex="0" th:each="area : ${areas}"
+                          th:attrappend="aria-selected=(${area.areaId} == *{areaId}) ? 'true'"
                           th:value="${area.areaId}" th:text="${area.areaName}">
                       </li>
                     </ul>
@@ -134,13 +150,14 @@
               <td class="col-md-4" align="center">
                 <div id="tipos-proy" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                   <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                    <div class="mdc-select__label">Tipo De Proyecto</div>
+                    <div class="mdc-select__label">Tipo de Proyecto</div>
                     <div class="mdc-select__selected-text"></div>
                     <div class="mdc-select__bottom-line"></div>
                   </div>
                   <div class="mdc-menu mdc-select__menu">
                     <ul class="mdc-list mdc-menu__items">
                       <li class="mdc-list-item" role="option" tabindex="0" th:each="meth : ${methodologies}"
+                          th:attrappend="aria-selected=(${meth.methodologyId} == *{methodologyId}) ? 'true'"
                           th:value="${meth.methodologyId}" th:text="${meth.methodologyName}">
                       </li>
                     </ul>
@@ -157,6 +174,7 @@
                   <div class="mdc-menu mdc-select__menu ">
                     <ul class="mdc-list mdc-menu__items">
                       <li class="mdc-list-item" role="option" tabindex="0" th:each="tecnologia : ${technologies}"
+                          th:attrappend="aria-selected=(${tecnologia.technologyId} == *{technologyId}) ? 'true'"
                           th:value="${tecnologia.technologyId}" th:text="${tecnologia.technologyName}">
                       </li>
         
@@ -174,6 +192,7 @@
                   <div class="mdc-menu mdc-select__menu ">
                     <ul class="mdc-list mdc-menu__items">
                       <li class="mdc-list-item" role="option" tabindex="0" th:each="company : ${companies}"
+                          th:attrappend="aria-selected=(${company.companyId} == *{companyId}) ? 'true'"
                           th:value="${company.companyId}" th:text="${company.companyName}">
                       </li>
                     </ul>
@@ -185,13 +204,16 @@
               <td class="col-md-4" align="center">
                 <div id="tipos-serv" class="mdc-select" data-mdc-auto-init="MDCSelect" role="listbox">
                   <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                    <div class="mdc-select__label">Tipo De Servicio</div>
+                    <div class="mdc-select__label">Tipo de Servicio</div>
                     <div class="mdc-select__selected-text" id="service-type-sel-text"></div>
                     <div class="mdc-select__bottom-line"></div>
                   </div>
                   <div class="mdc-menu mdc-select__menu ">
                     <ul class="mdc-list mdc-menu__items" id="service-type-select">
-                      <li class="mdc-list-item" role="option" tabindex="0"></li>
+                      <li class="mdc-list-item" role="option" tabindex="0" th:each="serviceType : ${serviceTypes}"
+                          th:attrappend="aria-selected=(${serviceType.serviceTypeId} == *{serviceTypeId}) ? 'true'"
+                          th:value="${serviceType.serviceTypeId}" th:text="${serviceType.serviceTypeName}">
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -207,6 +229,7 @@
                   <div class="mdc-menu mdc-select__menu ">
                     <ul class="mdc-list mdc-menu__items" id="aplicacion-select">
                       <li th:each="app : ${applications}" class="mdc-list-item" role="option"
+                          th:attrappend="aria-selected=(${app.applicationId} == *{applicationId}) ? 'true'"
                           th:value="${app.applicationId}" th:text="${app.applicationName}"></li>
                     </ul>
                   </div>
@@ -222,6 +245,7 @@
                   <div class="mdc-menu mdc-select__menu ">
                     <ul class="mdc-list mdc-menu__items" id="canal-select">
                       <li th:each="channel : ${channels}" class="mdc-list-item" role="option"
+                          th:attrappend="aria-selected=(${channel.channelId} == *{channelId}) ? 'true'"
                           th:value="${channel.channelId}" th:text="${channel.channelName}"></li>
                     </ul>
                   </div>
@@ -232,20 +256,20 @@
             <tr>
               <td class="col-md-4" align="center">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                  <input type="text" class="mdc-text-field__input" th:field="*{budgetId}">
+                  <input type="text" class="mdc-text-field__input" th:field="*{budgetId}" maxlength="30">
                   <label class="mdc-text-field__label">PEP</label>
                 </div>
               </td>
               <td class="col-md-4" align="center">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                  <input type="text" class="mdc-text-field__input" id="datetimepicker4" />
-                    <label class="mdc-text-field__label">Fecha Prop.Inicial</label>
+                  <input type="text" class="mdc-text-field__input" id="datepicker1" />
+                    <label class="mdc-text-field__label">Fecha Prop. Inicial</label>
                 </div>
               </td>
               <td class="col-md-4" align="center">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                  <input type='text' class="mdc-text-field__input" row="2" id='datetimepicker5' />
-                  <label class="mdc-text-field__label">Fecha Prop.Final</label>
+                  <input type='text' class="mdc-text-field__input" id='datepicker2' />
+                  <label class="mdc-text-field__label">Fecha Prop. Final</label>
                 </div>
               </td>
             </tr>
@@ -259,13 +283,14 @@
               <td class="col-md-4" align="center" style="height:72px">
                 <div id="pi" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                   <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                    <div class="mdc-select__label mdc-select__label--float-above">PI</div>
+                    <div class="mdc-select__label">PI</div>
                     <div class="mdc-select__selected-text"></div>
                     <div class="mdc-select__bottom-line"></div>
                   </div>
                   <div class="mdc-menu mdc-select__menu col-md-3" >
                     <ul class="mdc-list mdc-menu__items">
                       <li th:each="pi : ${programIncrements}" class="mdc-list-item" role="option"
+                          th:attrappend="aria-selected=(${pi.programIncrementId} == *{programIncrementId}) ? 'true'"
                           th:value="${pi.programIncrementId}" th:text="${pi.ProgramIncrementName}"></li>
                     </ul>
                   </div>
@@ -288,7 +313,7 @@
     <!-- .// row -->
 
     <div class="row" id="row-title-results">
-      <div class="col-md-12 subtitle-content">Resultados De Búsqueda</div>
+      <div class="col-md-12 subtitle-content">Resultados de Búsqueda</div>
     </div>
     <!-- .// row -->
 
@@ -311,22 +336,24 @@
           </tr>
         </thead>
         <tbody>
+        <!--
         <tr th:if="${requirements!= null && requirements.size() < 1}">
           <td colspan="12">
             <h2>No se encontraron resultados para tu búsqueda.</h2>
           </td>
         </tr>
+        -->
 
 
           <th:block th:each="requirement, stat : ${requirements}">
-            <tr th:href="${'#row-detail-wrapper-' + stat.count}" data-toggle="collapse" class="clickable"
+            <tr th:href="${'#row-detail-wrapper-' + stat.count}" data-tggle="collapse" class="clickable"
                 th:aria-controls="${'row-detail-wrapper-' + stat.count}">
               <td>
                 <input type="radio" name="requirements" th:id="${requirement.requirementId}" th:value="${requirement.requirementId}">
               </td>
               <td th:text="${requirement.requirementName}"></td>
-              <td th:text="${requirement.budgetRequirements.size() > 0 ?
-              requirement.budgetRequirements[0].budget.budgetName : ''}"></td>
+              <td th:text="${requirement.budgetRequirementsList.size() > 0 ?
+              requirement.budgetRequirementsList[0].budget.budgetName : ''}"></td>
               <td th:text="${requirement.level.levelSuperior.levelName}"></td>
               <td th:text="${requirement.level.levelName}"></td>
               <td th:text="${requirement.user.userInternalId}"></td>
@@ -359,12 +386,12 @@
                       <td class="detail-label" style="height: 60px;">PI</td>
                       <td th:text="${requirement.programIncrement.ProgramIncrementName}"></td>
                       <td class="detail-label">PEP
-                        <div th:unless="${requirement.budgetRequirements.size() < 1}" class="dropdown" style="display: inline-block;">
+                        <div th:unless="${requirement.budgetRequirementsList.size() < 1}" class="dropdown" style="display: inline-block;">
                           <a class="dropdown-toggle" data-toggle="dropdown">
                             <img th:src="@{/img/menu-pagina-icon.png}" height="12">
                           </a>
                           <ul class="dropdown-menu dropdown-menu-right">
-                            <li th:each="budgetRequirement : ${requirement.budgetRequirements}"
+                            <li th:each="budgetRequirement : ${requirement.budgetRequirementsList}"
                                 th:text="${budgetRequirement.budget.budgetName}"></li>
                           </ul>
                         </div>
@@ -396,8 +423,10 @@
 
     <div class="row buttons" id="row-buttons-results">
       <div class="col-xs-12 text-center">
-        <a id="edit-requirement" class="btn btn-primary" onclick="showHoldOn();">Modificar</a>
-        <a id="add-component" class="btn btn-primary" onclick="showHoldOn();">Alta de Componente</a>
+        <a id="edit-requirement" class="btn btn-primary" disabled="disabled">Modificar</a>
+        <!--
+        <a id="add-component" class="btn btn-primary" disabled="disabled">Alta de Componente</a>
+        -->
       </div>
     </div>
     <!-- .// row -->

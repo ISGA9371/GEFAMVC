@@ -5,6 +5,7 @@ public class ViewsURLs {
     public static final String REDIRECT = "redirect:/";
     public static final String FORWARD = "forward:/";
 
+    public static final String URL_ADMIN = "administracion/";
     public static final String URL_FACTORY = "fabrica/";
     public static final String URL_BUDGET = "presupuestos/";
 
@@ -47,5 +48,7 @@ public class ViewsURLs {
     public static final String NEW_TRANSFER = "AltaDeTraspaso";
     public static final String STATUS_PAYMENT = "SeguimientoDePago";
     public static final String BILLING_CUT = "SeguimientoCorteDeFacturacion";
+
+    public static final String ADMIN_USERS = "AdministracionDeUsuarios";
 
 }

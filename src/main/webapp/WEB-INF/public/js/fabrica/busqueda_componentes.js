@@ -7,22 +7,27 @@ $(function () {
    * dateFormat: "dd-mm-yy"
   */
   $('#componentDesignRealDeliverDate').datepicker({
-    format: 'DD/MM/YYYY'
+    dateFormat: "dd/mm/yy"
   });
 
   $('#componentPreviewDeliverDate').datepicker({
-    format: 'DD/MM/YYYY'
+    dateFormat: "dd/mm/yy"
   });
 
   $('#componentPossibleDeliverDate').datepicker({
-    format: 'DD/MM/YYYY'
+    dateFormat: "dd/mm/yy"
   });
 
   $('#componentRealDeliverDate').datepicker({
-    format: 'DD/MM/YYYY'
+    dateFormat: "dd/mm/yy"
   });
 
+  var numberMonths = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
 
+
+  /**
+   * Technologies ajax call
+   */
   $.ajax({
     url: "/api/technologies",
     method: "GET",
@@ -50,8 +55,12 @@ $(function () {
     $("#slct_tecnologia > .mdc-menu > ul").append(lis);
     $("#slct_tecnologia").addClass("mdc-select--disabled");
   });
+  /******************* */
 
 
+  /**
+   * Typologies [ modified=true ] ajax call
+   */
   var typologiesModified = [];
   var optionsModified = "";
   $.ajax({
@@ -70,7 +79,12 @@ $(function () {
     });
   }).fail(function () {
   });
+  /******************* */
 
+
+  /**
+   * Typologies [ modified=false ] ajax call
+   */
   var typologiesNew = [];
   var optionsNew = "";
   $.ajax({
@@ -89,8 +103,12 @@ $(function () {
     });
   }).fail(function () {
   });
+  /******************* */
 
 
+  /**
+   * Status ajax call
+   */
   var optionsTipif = "<option value=''></option>";
   $.ajax({
     url: "/api/status-types/3/status",
@@ -101,6 +119,7 @@ $(function () {
     });
   }).fail(function () {
   });
+  /******************* */
 
 
   $("#tabs").tabs();
@@ -162,6 +181,58 @@ $(function () {
       backgroundColor: "#0c71ca",
       textColor: "white",
     });
+  });
+
+  $("body").on("change", "select.component-modified", function (event) {
+    var idElement = $(this).attr("id").substring(7, $(this).attr("id").length);
+    var optionElement = $("#tipFin-" + idElement).find("option[value=" + $(this).val() + "]");
+    $("#difFin-" + idElement).val(optionElement.data("severity"));
+    $("#horFin-" + idElement).val(optionElement.data("hours"));
+
+    theFare = $("#costFin-" + idElement).data("costo");
+    newFare = parseInt(theFare) * parseInt(optionElement.data("hours"));
+    $("#costFin-" + idElement).val(newFare);
+  });
+
+  $("body").on("change", "select.component-new", function (event) {
+    var idElement = $(this).attr("id").substring(7, $(this).attr("id").length);
+    var optionElement = $("#tipFin-" + idElement).find("option[value=" + $(this).val() + "]");
+    $("#difFin-" + idElement).val(optionElement.data("severity"));
+    $("#horFin-" + idElement).val(optionElement.data("hours"));
+
+    theFare = $("#costFin-" + idElement).data("costo");
+    newFare = parseInt(theFare) * parseInt(optionElement.data("hours"));
+    $("#costFin-" + idElement).val(newFare);
+  });
+
+
+  $("body").on("change", "#date1", function (event) {
+    if ( $(this).val() != "" && $("#date2").val() != "" && $("#date3").val() != "" && $("#date4").val() != "" ) {
+      $("#update-all-dates").removeAttr("disabled");
+    } else {
+      $("#update-all-dates").attr("disabled", "disabled");
+    }
+  });
+  $("body").on("change", "#date2", function (event) {
+    if ( $(this).val() != "" && $("#date1").val() != "" && $("#date3").val() != "" && $("#date4").val() != "" ) {
+      $("#update-all-dates").removeAttr("disabled");
+    } else {
+      $("#update-all-dates").attr("disabled", "disabled");
+    }
+  });
+  $("body").on("change", "#date3", function (event) {
+    if ( $(this).val() != "" && $("#date2").val() != "" && $("#date1").val() != "" && $("#date4").val() != "" ) {
+      $("#update-all-dates").removeAttr("disabled");
+    } else {
+      $("#update-all-dates").attr("disabled", "disabled");
+    }
+  });
+  $("body").on("change", "#date4", function (event) {
+    if ( $(this).val() != "" && $("#date2").val() != "" && $("#date3").val() != "" && $("#date1").val() != "" ) {
+      $("#update-all-dates").removeAttr("disabled");
+    } else {
+      $("#update-all-dates").attr("disabled", "disabled");
+    }
   });
   
 
@@ -225,6 +296,15 @@ $(function () {
 
   $("#btn-submit").click(function () {
 
+    /** Results section */
+    $("#tab-componentes > table > tbody").html("");
+    $("#tab-fecha > table > tbody").html("");
+    $("#tab-cierre > table > tbody").html("");
+    $("#row-title-results").hide();
+    $("#row-content-results").hide();
+    $("#row-buttons-results").hide();
+    $("#tabs").tabs("option", "active", 0);
+
     $("#principalId").val(direccion.value);
     $("#subPrincipalId").val(subidreccion.value);
     $("#companyId").val(empresa.value);
@@ -235,12 +315,20 @@ $(function () {
     $("#finalProductId").val(tipologia_final.value);
     $("#statusTypologyId").val(estado_tipificado.value);
 
+    if ($("#typologyNewComponent").val() == "1") {
+      var newMod = true;
+    } else if ($("#typologyNewComponent").val() == "0") {
+      var newMod = false;
+    } else {
+      var newMod = "";
+    }
+
     var params = {
       principalId: $("#principalId").val(),
       subPrincipalId: $("#subPrincipalId").val(),
       companyId: $("#companyId").val(),
       technologyId: $("#technologyId").val(),
-      typologyNewComponent: $("#typologyNewComponent").val(),
+      typologyComponentModified: newMod,
       statusId: $("#statusId").val(),
       startProductId: $("#startProductId").val(),
       finalProductId: $("#finalProductId").val(),
@@ -248,10 +336,12 @@ $(function () {
       componentName: $("#componentName").val(),
       requirementName: $("#requirementName").val(),
       componentVersion: $("#componentVersion").val(),
-      componentDesignRealDeliverDate: $("#componentDesignRealDeliverDate").val(),
-      componentPreviewDeliverDate: $("#componentPreviewDeliverDate").val(),
-      componentPossibleDeliverDate: $("#componentPossibleDeliverDate").val(),
-      componentRealDeliverDate: $("#componentRealDeliverDate").val(),
+      
+      componentDesignRealDeliverDate: changeFormatDate($("#componentDesignRealDeliverDate").val()),
+      componentPreviewDeliverDate: changeFormatDate($("#componentPreviewDeliverDate").val()),
+      componentPossibleDeliverDate: changeFormatDate($("#componentPossibleDeliverDate").val()),
+      componentRealDeliverDate: changeFormatDate($("#componentRealDeliverDate").val()),
+      
       typologyStartSeverity: $("#typologyStartSeverity").val(),
       typologyStartSeverityHours: $("#typologyStartSeverityHours").val(),
       typologyFinalSeverity: $("#typologyFinalSeverity").val(),
@@ -299,7 +389,7 @@ $(function () {
           }
 
           $("#tab-componentes > table > tbody").append(
-            "<tr><td></td>" +
+            "<tr>" +
             "<td>" + value.componentName + "</td>" +
             "<td>" + value.requirement.requirementName + "</td>" +
             "<td>" + value.componentVersion + "</td>" +
@@ -308,24 +398,40 @@ $(function () {
             "<td>" + value.requirement.company.companyName + "</td>" +
             "<td>" + value.requirement.application.technology.technologyName + "</td>" +
             "<td>" + newModified + "</td>" +
-            "<td><a class='btn btn-primary btn-xs changeWindow' style='color:white;' href='/modifications/add?componentId=" + value.componentId + 
-              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></td>" + 
-            "<td><a class='btn btn-primary btn-xs changeWindow' style='color:white;' href='/doubts/add?componentId=" + value.componentId + 
-              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></td>" + 
-            "<td><a class='btn btn-primary btn-xs changeWindow' style='color:white;' href='/issues/add?componentId=" + value.componentId + 
-              "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> +</a></td>" + 
+            "<td><a class='changeWindow' style='color:white;' href='/modifications/add?componentId=" + value.componentId + 
+              "'><img src='/img/edit_icon.png' style='width: 30px;'></a></td>" +
+            "<td><a class='changeWindow' style='color:white;' href='/doubts/add?componentId=" + value.componentId + 
+              "'><img src='/img/question_icon.png' style='width: 30px;'></a></td>" + 
+            "<td><a class='changeWindow' style='color:white;' href='/issues/add?componentId=" + value.componentId + 
+              "'><img src='/img/cancel_icon.png' style='width: 30px;'></a></td>" + 
             "<td><a class='btn btn-primary btn-xs changeWindow' style='color:white;' href='/components/" + value.componentId + 
               "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> Editar</a></td></tr>"
           );
 
+          date1 = "";
           designRealDeliverDate = new Date(value.componentDesignRealDeliverDate);
-          date1 = designRealDeliverDate.getDate() + "/" + designRealDeliverDate.getMonth() + "/" + designRealDeliverDate.getFullYear();
+          if ( parseInt(designRealDeliverDate.getDate()) < 10 ) { date1 += "0" + designRealDeliverDate.getDate(); } 
+          else { date1 += designRealDeliverDate.getDate(); }
+          date1 += "/" + numberMonths[designRealDeliverDate.getMonth()] + "/" + designRealDeliverDate.getFullYear();
+          
+          date2 = "";
           possibleDeliverDate = new Date(value.componentPossibleDeliverDate);
-          date2 = possibleDeliverDate.getDate() + "/" + possibleDeliverDate.getMonth() + "/" + possibleDeliverDate.getFullYear();
+          if ( parseInt(possibleDeliverDate.getDate()) < 10 ) { date2 += "0" + possibleDeliverDate.getDate(); } 
+          else { date2 += possibleDeliverDate.getDate(); }
+          date2 += "/" + numberMonths[possibleDeliverDate.getMonth()] + "/" + possibleDeliverDate.getFullYear();
+          
+          date3 = "";
           previewDeliverDate = new Date(value.componentPreviewDeliverDate);
-          date3 = previewDeliverDate.getDate() + "/" + previewDeliverDate.getMonth() + "/" + previewDeliverDate.getFullYear();
+          if ( parseInt(previewDeliverDate.getDate()) < 10 ) { date3 += "0" + previewDeliverDate.getDate(); } 
+          else { date3 += previewDeliverDate.getDate(); }
+          date3 += "/" + numberMonths[previewDeliverDate.getMonth()] + "/" + previewDeliverDate.getFullYear();
+          
+          date4 = "";
           realDeliverDate = new Date(value.componentRealDeliverDate);
-          date4 = realDeliverDate.getDate() + "/" + realDeliverDate.getMonth() + "/" + realDeliverDate.getFullYear();
+          if ( parseInt(realDeliverDate.getDate()) < 10 ) { date4 += "0" + realDeliverDate.getDate(); } 
+          else { date4 += realDeliverDate.getDate(); }
+          date4 += "/" + numberMonths[realDeliverDate.getMonth()] + "/" + realDeliverDate.getFullYear();
+
 
           $("#tab-fecha > table > tbody").append(
             "<tr><td>" + value.componentName + "</td>" +
@@ -336,42 +442,36 @@ $(function () {
             "<td><input type='text' id='date4-" + value.componentId + "' value='" + date4 + "' class='form-control date4Text'></td>" +
             "<td>"+ value.status.statusName +"</td></tr>"
           );
-          $("#date1-" + value.componentId).datepicker({ format: 'DD/MM/YYYY' });
-          $("#date2-" + value.componentId).datepicker({ format: 'DD/MM/YYYY' });
-          $("#date3-" + value.componentId).datepicker({ format: 'DD/MM/YYYY' });
-          $("#date4-" + value.componentId).datepicker({ format: 'DD/MM/YYYY' });
+          $("#date1-" + value.componentId).datepicker({ dateFormat: "dd/mm/yy" });
+          $("#date2-" + value.componentId).datepicker({ dateFormat: "dd/mm/yy" });
+          $("#date3-" + value.componentId).datepicker({ dateFormat: "dd/mm/yy" });
+          $("#date4-" + value.componentId).datepicker({ dateFormat: "dd/mm/yy" });
 
           $("#tab-cierre > table > tbody").append(
             "<tr><td>" + value.componentName + "</td>" +
             "<td>" + value.requirement.requirementName + "</td>" +
             "<td><select class='form-control "+classIdentifier+"' id='tipFin-" + value.componentId + "'>"+options+"</select></td>" +
             "<td><input type='text' id='difFin-" + value.componentId + "' value='' class='form-control text-center' readonly></td>" +
-            "<td><input type='text' id='costFin-" + value.componentId + "' value='' class='form-control text-center' readonly></td>" +
+            "<td><input type='text' id='costFin-" + value.componentId + "' value='' class='form-control text-center' readonly data-costo='"+value.requirement.fareValue+"'></td>" +
             "<td><input type='text' id='horFin-" + value.componentId + "' value='' class='form-control text-center' readonly></td>" +
             "<td><input type='text' id='comments-" + value.componentId + "' value='" + value.componentTypoComment + "' class='form-control'></td>" +
             "<td><select class='form-control' id='estatusTip-" + value.componentId + "'>" + optionsTipif+"</select></td>" +
             "<td><select class='form-control' id='facturar-" + value.componentId + "'><option value='1'>SI</option><option value='0'>NO</option></select></td></tr>"
           );
 
+          fare = parseInt(value.requirement.fareValue) * parseInt(value.finalTypology.typologySeverityHours);
           $("#tipFin-" + value.componentId).val(value.finalTypology.typologyId);
           $("#difFin-" + value.componentId).val(value.finalTypology.typologySeverity);
+          $("#costFin-" + value.componentId).val(fare);
           $("#horFin-" + value.componentId).val(value.finalTypology.typologySeverityHours);
           $("#estatusTip-" + value.componentId).val(value.statusTypology.statusId);
+          if ( value.componentForBill ) {
+            $("#facturar-" + value.componentId).val("1");
+          } else {
+            $("#facturar-" + value.componentId).val("0");
+          }
 
-          idsSearch.push(value.componentId);
-        });
-        $(".component-modified").change(function () {
-          var idElement = $(this).attr("id").substring(7, $(this).attr("id").length);
-          var optionElement = $("#tipFin-" + idElement).find("option[value=" + $(this).val() + "]");
-          $("#difFin-" + idElement).val( optionElement.data("severity") );
-          $("#horFin-" + idElement).val( optionElement.data("hours") );
-        });
-
-        $(".component-new ").change(function () {
-          var idElement = $(this).attr("id").substring(7, $(this).attr("id").length);
-          var optionElement = $("#tipFin-" + idElement).find("option[value=" + $(this).val() + "]");
-          $("#difFin-" + idElement).val(optionElement.data("severity"));
-          $("#horFin-" + idElement).val(optionElement.data("hours"));
+          idsSearch.push(parseInt(value.componentId));
         });
 
         $("#tab-fecha > table > tbody").append(
@@ -384,21 +484,18 @@ $(function () {
           "<td></td></tr>"
         );
 
-        $('#date1').datetimepicker({format: 'DD/MM/YYYY'});
-        $('#date2').datetimepicker({format: 'DD/MM/YYYY'});
-        $('#date3').datetimepicker({format: 'DD/MM/YYYY'});
-        $('#date4').datetimepicker({format: 'DD/MM/YYYY'});
-      } else {
-        new jBox('Notice', {
-          content: 'Tu búsqueda no devolvió resultados',
-          animation: 'pulse',
-          color: 'red'
-        });
-      }
+        $('#date1').datepicker({dateFormat: "dd/mm/yy"});
+        $('#date2').datepicker({dateFormat: "dd/mm/yy"});
+        $('#date3').datepicker({dateFormat: "dd/mm/yy"});
+        $('#date4').datepicker({dateFormat: "dd/mm/yy"});
 
+        HoldOn.close();
+      } else {
+        customHolder("info", "Tu búsqueda no devolvió resultados.");
+      }
+    }).fail(function (xhr, status, error) {
       HoldOn.close();
-    }).fail(function (fail) {
-      HoldOn.close();
+      customHolder("error", xhr.responseJSON.message)
     });
   });
 
@@ -407,13 +504,22 @@ $(function () {
     
     $("#slct_subidreccion").addClass("mdc-select--disabled");
 
+    direccion.value = "";
+    subidreccion.value = "";
+    empresa.value = "";
+    tecnologia.value = "";
+    nuevo_modificado.value = "";
+    estado.value = "";
+    tipologia_inicial.value = "";
+    tipologia_final.value = "";
+    estado_tipificado.value = "";
     componentDesignRealDeliverDate.value = "";
     componentPreviewDeliverDate.value = "";
     componentPossibleDeliverDate.value = "";
     componentRealDeliverDate.value = "";
 
     direccion.selectedIndex = -1;
-    // subidreccion.selectedIndex = -1;
+    subidreccion.selectedIndex = -1;
     empresa.selectedIndex = -1;
     tecnologia.selectedIndex = -1;
     nuevo_modificado.selectedIndex = -1;
@@ -498,19 +604,58 @@ $(function () {
     $("#slct_tipologia_inicial").removeClass("mdc-select--upgraded");
     $("#slct_tipologia_final").removeClass("mdc-select--upgraded");
     $("#slct_estado_tipificado").removeClass("mdc-select--upgraded");
+
+    $("#tabs").tabs("option", "active", 0);
+    $("#update-all-dates").attr("disabled", "disabled");
     
   });
 
   $("#update-all-dates").click(function(){
-    data = {
-      'designRealDeliverDate': date1,
-      'possibleDeliverDate': date2,
-      'previewDeliverDate': date3,
-      'realDeliverDate': date4,
-      'ids': idsSearch,
-    };
-    console.log(data);
+    var updateDate1 = changeFormatDate($("#date1").val());
+    var updateDate2 = changeFormatDate($("#date2").val());
+    var updateDate3 = changeFormatDate($("#date3").val());
+    var updateDate4 = changeFormatDate($("#date4").val());
 
+    data = [{
+      'componentDesignRealDeliverDate': updateDate1,
+      'componentPossibleDeliverDate': updateDate2,
+      'componentPreviewDeliverDate': updateDate3,
+      'componentRealDeliverDate': updateDate4,
+      'componentIds': idsSearch,
+    }];
+
+    $.ajax({
+      url: "/components/update-dates",
+      method: "PUT",
+      data: JSON.stringify(data),
+      dataType: "json",
+      contentType: 'application/json',
+      beforeSend: function () {
+        HoldOn.open({
+          theme: "sk-cube",
+          content: '',
+          message: 'Actualizando Información.',
+          backgroundColor: "#0c71ca",
+          textColor: "white",
+        });
+      }
+    }).done(function (data ) {
+      var date1 = $(".date1Text");
+
+      $.each(date1, function (index, value) {
+        var id = value.id.substring(6, value.id.length);
+        $("#date1-" + id).val(updateDate1);
+        $("#date2-" + id).val(updateDate2);
+        $("#date3-" + id).val(updateDate3);
+        $("#date4-" + id).val(updateDate4);
+      });
+
+      HoldOn.close();
+      customHolder("info", "Información actualizada exitosamente.");
+    }).fail(function (xhr, status, error) {
+      HoldOn.close();
+      customHolder("error", xhr.responseJSON.message)
+    });
   });
   
   $("#update-dates").click(function(){
@@ -522,15 +667,38 @@ $(function () {
     var date4 = $(".date4Text");
 
     $.each(date1, function(index, value){
+      var id = value.id.substring(6, value.id.length);
       data.push({
-        'id': value.id,
-        'designRealDeliverDate': value.value,
-        'possibleDeliverDate': date2[index].value,
-        'previewDeliverDate': date3[index].value,
-        'realDeliverDate': date4[index].value,
+        'componentId': parseInt(id),
+        'componentDesignRealDeliverDate': changeFormatDate(value.value),
+        'componentPossibleDeliverDate': changeFormatDate(date2[index].value),
+        'componentPreviewDeliverDate': changeFormatDate(date3[index].value),
+        'componentRealDeliverDate': changeFormatDate(date4[index].value),
       });
     });
-    console.log(data);
+
+    $.ajax({
+      url: "/components/update-dates",
+      method: "PUT",
+      data: JSON.stringify(data),
+      dataType: "json",
+      contentType: 'application/json',
+      beforeSend: function () {
+        HoldOn.open({
+          theme: "sk-cube",
+          content: '',
+          message: 'Actualizando Información',
+          backgroundColor: "#0c71ca",
+          textColor: "white",
+        });
+      }
+    }).done(function (data) {
+      HoldOn.close();
+      customHolder("info", "Información actualizada exitosamente.");
+    }).fail(function (xhr, status, error) {
+      HoldOn.close();
+      customHolder("error", xhr.responseJSON.message);
+    });
   });
   
   $("#update-closure").click(function(){
@@ -538,22 +706,56 @@ $(function () {
 
     var tr = $("#tab-cierre > table > tbody").children();
     $.each(tr, function(index, value){
-      tds = $(value).children();;
+      tds = $(value).children();
       id = $(tds[2]).children().attr("id").substring(7, $(tds[2]).children().attr("id").length);
 
+      if ($(tds[8]).children().val() == "1" ) {
+        bill = true;
+      } else {
+        bill = false;
+      }
+
       data.push({
-        'tipFinal': $(tds[2]).children().val(),
-        'difFinal': $(tds[3]).children().val(),
-        'cosFinal': $(tds[4]).children().val(),
-        'horsFinal': $(tds[5]).children().val(),
-        'comments': $(tds[6]).children().val(),
-        'statusTipif': $(tds[7]).children().val(),
-        'facturar': $(tds[8]).children().val(),
-        'id': id,
+        'finalTypologyId': $(tds[2]).children().val(),
+        'componentTypoComment': $(tds[6]).children().val(),
+        'statusTypologyId': $(tds[7]).children().val(),
+        'componentForBill': bill,
+        'componentId': parseInt(id),
       });
 
     });
 
-    console.log(data);
+    $.ajax({
+      url: "/components/closure",
+      method: "PUT",
+      data: JSON.stringify(data),
+      dataType: "json",
+      contentType: 'application/json',
+      beforeSend: function () {
+        HoldOn.open({
+          theme: "sk-cube",
+          content: '',
+          message: 'Actualizando Información',
+          backgroundColor: "#0c71ca",
+          textColor: "white",
+        });
+      }
+    }).done(function (data) {
+      HoldOn.close();
+      customHolder("info", "Información actualizada exitosamente.");
+    }).fail(function (xhr, status, error) {
+      HoldOn.close();
+      customHolder("error", xhr.responseJSON.message);
+    });
   });
+
 });
+
+function changeFormatDate(date) {
+  if ('undefined' !== typeof date && 0 < date.length) {
+    split = date.split("/");
+    return split[2] + "-" + split[1] + "-" + split[0];
+  } else {
+    return "";
+  }
+}

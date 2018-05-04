@@ -38,15 +38,32 @@ function addCalendars() {
 
     type="text/javascript">
 
-        $('#datetimepicker4').datetimepicker({
-            format: 'DD/MM/YYYY'
+        $("#datetimepicker4").datepicker({
+            dateFormat: "dd-mm-yy",
+        }).on("change", function () {
+            $("#datetimepicker5").datepicker("option", "minDate", getDate(this));
         });
 
-    $('#datetimepicker5').datetimepicker({
-        format: 'DD/MM/YYYY'
+
+    $("#datetimepicker5").datepicker({
+        dateFormat: "dd-mm-yy",
+    }).on("change", function () {
+        $("#datetimepicker6").datepicker("option", "minDate", getDate(this));
     });
 
     $('#datetimepicker6').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+
+    $('#datetimepicker7').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+
+    $('#datetimepicker8').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+
+    $('#datetimepicker9').datetimepicker({
         format: 'DD/MM/YYYY'
     });
 

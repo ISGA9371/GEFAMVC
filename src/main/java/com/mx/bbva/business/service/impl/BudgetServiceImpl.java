@@ -1,7 +1,9 @@
 package com.mx.bbva.business.service.impl;
 
 import com.mx.bbva.business.entity.Budget;
+import com.mx.bbva.business.entity.BudgetRequirement;
 import com.mx.bbva.business.repository.BudgetRepository;
+import com.mx.bbva.business.repository.BudgetRequirementRepository;
 import com.mx.bbva.business.service.BudgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import java.util.List;
 public class BudgetServiceImpl implements BudgetService {
 
     private BudgetRepository budgetRepository;
+    private BudgetRequirementRepository budgetRequirementRepository;
 
     @Override
     public void saveBudget(Budget budget) {
@@ -38,8 +41,18 @@ public class BudgetServiceImpl implements BudgetService {
         return budgetRepository.findBudgetYear();
     }
 
+    @Override
+    public void assignBudget(List<BudgetRequirement> budgetRequirements) {
+        budgetRequirementRepository.saveAll(budgetRequirements);
+    }
+
     @Autowired
     public void setBudgetRepository(BudgetRepository budgetRepository) {
         this.budgetRepository = budgetRepository;
+    }
+
+    @Autowired
+    public void setBudgetRequirementRepository(BudgetRequirementRepository budgetRequirementRepository) {
+        this.budgetRequirementRepository = budgetRequirementRepository;
     }
 }

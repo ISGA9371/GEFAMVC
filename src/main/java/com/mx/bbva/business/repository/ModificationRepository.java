@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ModificationRepository extends JpaRepository<Modification, Integer> {
 
+    boolean existsByComponent_ComponentId(Integer componentId);
 }

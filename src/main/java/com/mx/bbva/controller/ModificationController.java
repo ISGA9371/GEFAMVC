@@ -1,17 +1,19 @@
 package com.mx.bbva.controller;
 
 import com.mx.bbva.business.dto.ModificationSearchDTO;
-import com.mx.bbva.business.entity.Component;
-import com.mx.bbva.business.entity.Modification;
-import com.mx.bbva.business.entity.Origin;
-import com.mx.bbva.business.entity.Priority;
+import com.mx.bbva.business.dto.ResponseListDTO;
+import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import static com.mx.bbva.util.ViewsURLs.*;
@@ -26,6 +28,7 @@ public class ModificationController {
     private ComponentService componentService;
     private OriginService originService;
     private PriorityService priorityService;
+    private UserService userService;
 
     /**
      * TODO: EVERY CONTROLLER NEEDS TO HAVE A CUSTOM SEARCH METHOD
@@ -46,7 +49,7 @@ public class ModificationController {
     public String saveModification(@ModelAttribute("modificatione") Modification modification) {
         // TODO Validate user
         modificationService.saveModification(modification);
-        return URL_FACTORY + EDIT_MODIFICATION;
+        return REDIRECT + "modifications/" + modification.getModificationId();
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -80,13 +83,24 @@ public class ModificationController {
         return URL_FACTORY + SEARCH_MODIFICATIONS;
     }
 
+    @ResponseBody
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String searchForModifications(@ModelAttribute("modificationSearchDTO") ModificationSearchDTO modificationSearchDTO, Model model) {
+    public ResponseEntity<?> searchForModifications(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
         /*String query = new ModificationQueryGenerator().generateQuery(modificationSearchDTO);
         List<Modification> modifications = modificationService.findByCustomQuery(query); */
-        model.addAttribute("modifications", modificationService.findAllModifications());
-        return URL_FACTORY + SEARCH_MODIFICATIONS;
+        return new ResponseEntity<Object>(new ResponseListDTO(this.modificationService.findAllModifications()), HttpStatus.OK);
+    }
+
+    @ModelAttribute("users")
+    public List<User> populateUsers() {
+        List<User> users = new ArrayList<>();
+        // TODO Use Enum's
+        // 1 - Gestoria FSW
+        users.addAll(this.userService.findUsersByType(1));
+        // 2 - Gestoria PBAS
+        users.addAll(this.userService.findUsersByType(2));
+        return users;
     }
 
     @ModelAttribute("priorities")
@@ -122,5 +136,10 @@ public class ModificationController {
     @Autowired
     public void setPriorityService(PriorityService priorityService) {
         this.priorityService = priorityService;
+    }
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }

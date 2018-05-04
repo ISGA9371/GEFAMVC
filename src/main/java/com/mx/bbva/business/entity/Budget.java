@@ -25,7 +25,7 @@ public class Budget implements Serializable {
     @Column(name = "NB_DENOMINAC_PEP", length = 50)
     private String budgetName;
     @Column(name = "NU_EJERCICIO", nullable = false)
-    private int budgetYear;
+    private Integer budgetYear;
     @Column(name = "TX_CENTRO_CTO", nullable = false, length = 10)
     private String budgetCostCenter;
     @Column(name = "IM_PRESUPUESTO", precision = 22)
@@ -74,8 +74,7 @@ public class Budget implements Serializable {
     @JoinColumn(name = "CD_NATURALEZA", referencedColumnName = "CD_NATURALEZA", nullable = false)
     @ManyToOne(optional = false)
     private Nature nature;
-    @JsonIgnore
-    @OneToMany(mappedBy = "budget")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "budgetDb")
     private List<Transfer> transfers;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "budget")
@@ -104,11 +103,11 @@ public class Budget implements Serializable {
         this.budgetName = budgetName;
     }
 
-    public int getBudgetYear() {
+    public Integer getBudgetYear() {
         return budgetYear;
     }
 
-    public void setBudgetYear(int budgetYear) {
+    public void setBudgetYear(Integer budgetYear) {
         this.budgetYear = budgetYear;
     }
 
