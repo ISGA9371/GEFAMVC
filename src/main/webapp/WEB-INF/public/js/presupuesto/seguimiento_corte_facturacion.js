@@ -20,6 +20,9 @@ $(document).ready(function(){
     return date;
   }
 
+  /** 
+   * LEVELS ajax call 
+   */
   $.ajax({
     url: "/api/level-types/1/levels",
     method: "GET",
@@ -30,7 +33,7 @@ $(document).ready(function(){
     }
   }).done(function (data) {
     lis = "";
-    if ('undefined' !== typeof data.data && 0 < data.data.length) {
+    if ('undefined' !== typeof data.data && 0 < data.data.length && null !== data.data) {
       $.each(data.data, function (index, value) {
         lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.levelId + "'>" + value.levelName + "</li>";
       });
@@ -47,9 +50,12 @@ $(document).ready(function(){
     $("#mdc_select_direccion > .mdc-menu > ul").append(lis);
     $("#mdc_select_direccion").addClass("mdc-select--disabled");
   });
+  /************************ */
 
 
-  /** EDO PEP FACT */
+  /** 
+   * EDO PEP FACT 
+   */
   $.ajax({
     url: "/api/status-types/13/status",
     method: "GET",
@@ -60,7 +66,7 @@ $(document).ready(function(){
     }
   }).done(function (data) {
     lis = "";
-    if ('undefined' !== typeof data.data && 0 < data.data.length) {
+    if ('undefined' !== typeof data.data && 0 < data.data.length && null !== data.data) {
       $.each(data.data, function (index, value) {
         lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.statusId + "'>" + value.statusName + "</li>";
       });
@@ -76,6 +82,41 @@ $(document).ready(function(){
     $("#mdc_select_estado_pep_factura > .mdc-menu > ul").append(lis);
     $("#mdc_select_estado_pep_factura").addClass("mdc-select--disabled");
   });
+  /************************ */
+
+
+  /** 
+   * PAYMENT STATUS ajax call ( id = 18, EDO_PAGO ) 
+   */
+  $.ajax({
+    url: "/api/status-types/18/status",
+    method: "GET",
+    dataType: "json",
+    beforeSend: function () {
+      $("#mdc_select_estado_pago").addClass("mdc-select--disabled");
+      $("#mdc_select_estado_pago > .mdc-select__surface > .mdc-select__selected-text").html("");
+      $("#mdc_select_estado_pago > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    }
+  }).done(function (data) {
+    lis = "";
+    if ('undefined' !== typeof data.data && 0 < data.data.length && null !== data.data) {
+      $.each(data.data, function (index, value) {
+        lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.statusId + "'>" + value.statusName + "</li>";
+      });
+
+      $("#mdc_select_estado_pago > .mdc-menu > ul").append(lis);
+      $("#mdc_select_estado_pago").removeClass("mdc-select--disabled");
+    } else {
+      lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+      $("#mdc_select_estado_pago > .mdc-menu > ul").append(lis);
+      $("#mdc_select_estado_pago").addClass("mdc-select--disabled");
+    }
+  }).fail(function () {
+    lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+    $("#mdc_select_estado_pago > .mdc-menu > ul").append(lis);
+    $("#mdc_select_estado_pago").addClass("mdc-select--disabled");
+  });
+  /************************ */
 
 
   mdc_text_fecha_corte = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_corte'));
@@ -155,7 +196,7 @@ $(document).ready(function(){
       }).done(function (data) {
         $("#mdc_select_subdireccion > .mdc-menu > ul").html("");
         lis = "";
-        if ('undefined' !== typeof data.data && 0 < data.data.length) {
+        if ('undefined' !== typeof data.data && 0 < data.data.length && null !== data.data) {
           $.each(data.data, function (index, value) {
             lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.levelId + "'>" + value.levelName + "</li>";
           });
@@ -210,17 +251,17 @@ $(document).ready(function(){
   $("#btn_search").click(function(){
 
     var params = {
-      fecha_corte: mdc_text_fecha_corte.value,
+      fecha_corte: changeFormatDate(mdc_text_fecha_corte.value),
       pep: mdc_text_pep.value,
       requerimiento: mdc_text_requerimiento.value,
       direccion: mdc_select_direccion.value,
       subdireccion: mdc_select_subdireccion.value,
       estado_pep_factura: mdc_select_estado_pep_factura.value,
       estado_pago: mdc_select_estado_pago.value,
-      fecha_desde: mdc_text_fecha_desde.value,
-      fecha_hasta: mdc_text_fecha_hasta.value,
+      fecha_desde: changeFormatDate(mdc_text_fecha_desde.value),
+      fecha_hasta: changeFormatDate(mdc_text_fecha_hasta.value),
       solicitante: mdc_select_solicitante.value,
-      fecha_envio_implant: mdc_text_fecha_envio_implant.value,
+      fecha_envio_implant: changeFormatDate(mdc_text_fecha_envio_implant.value),
     };
 
     console.log(params);
@@ -260,5 +301,14 @@ $(document).ready(function(){
 
   $("#btn_save").click(function(){});
 
+
+  function changeFormatDate(date) {
+    if ('undefined' !== typeof date && 0 < date.length) {
+      split = date.split("/");
+      return split[2] + "-" + split[1] + "-" + split[0];
+    } else {
+      return "";
+    }
+  }
 
 });
