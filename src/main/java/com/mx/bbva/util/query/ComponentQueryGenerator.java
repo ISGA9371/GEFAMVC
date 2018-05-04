@@ -10,8 +10,9 @@ public class ComponentQueryGenerator {
     private static final Logger LOG = Logger.getLogger(ComponentQueryGenerator.class.getName());
     private StringBuffer stringBuffer = new StringBuffer();
     private boolean firstOne = true;
-    private final String EQUALS = " = ";
-    private final String LIKE = " LIKE ";
+    private final String EQUALS = " = '";
+    private final String BOOLEAN = " = ";
+    private final String LIKE = " LIKE '%";
     private Map<String, List<String>> items = new HashMap<>();
 
     public String generateQuery(Map<String, String> componentSearchDTO) {
@@ -41,10 +42,16 @@ public class ComponentQueryGenerator {
         }
         stringBuffer.append(filter).append(operator);
 
-        if (operator.equals(LIKE)) {
-            stringBuffer.append("'%").append(value).append("%'");
-        } else if (operator.equals(EQUALS)) {
-            stringBuffer.append("'").append(value).append("'");
+        switch (operator) {
+            case LIKE:
+                stringBuffer.append(value).append("%'");
+                break;
+            case EQUALS:
+                stringBuffer.append(value).append("'");
+                break;
+            case BOOLEAN:
+                stringBuffer.append(value);
+                break;
         }
     }
 
@@ -59,7 +66,7 @@ public class ComponentQueryGenerator {
         items.put("subPrincipalId", Arrays.asList("x.requirement.level.levelId", EQUALS));
         items.put("companyId", Arrays.asList("x.requirement.company.companyId", EQUALS));
         items.put("technologyId", Arrays.asList("x.requirement.technology.technologyId", EQUALS));
-        items.put("typologyComponentModified", Arrays.asList("x.typology.typologyComponentModified", EQUALS));
+        items.put("typologyComponentModified", Arrays.asList("x.finalTypology.typologyComponentModified", BOOLEAN));
         items.put("statusId", Arrays.asList("x.status.statusId", EQUALS));
         items.put("startProductId", Arrays.asList("x.startTypology.product.productId", LIKE));
         items.put("typologyStartSeverity", Arrays.asList("x.startTypology.typologySeverity", EQUALS));
