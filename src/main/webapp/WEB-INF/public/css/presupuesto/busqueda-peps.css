@@ -7,16 +7,26 @@
     color:#005EB8;
 }
 
+#resulst table tbody tr td button{
+    width: 137px;
+}
+
 .table > thead > tr > th {
     border-bottom: 1.2px solid #005EB8 !important;
 }
-#table-peps thead th{
+
+#table-peps thead th {
+    padding: 12px 0;
+}
+
+#table-peps tbody td{
     padding: 12px 0;
     font-weight: normal;
+    vertical-align: middle;
 }
 
 .table-buttons{
-    padding:10px 15px 10px 15px
+    margin: 10px 15px 10px 15px;
 }
 
 .second-subtitle-content {
@@ -24,4 +34,31 @@
     padding: 10px 10px 10px 15px;
     background-color: #7B6AC6;
     font-weight: bold;
+    color: #FFFFFF;
+}
+
+.mdc-radio input[type=radio] {
+    margin-left: -4px;
+    margin-top: 1pt;
+}
+.mdc-radio .mdc-radio__native-control:enabled:checked + .mdc-radio__background .mdc-radio__outer-circle {
+    border-color: #2e6da4;
+}
+
+.mdc-radio.color-custom .mdc-radio__native-control:enabled + .mdc-radio__background .mdc-radio__inner-circle {
+    background-color: #337ab7;
+}
+
+.mdc-radio::before, .mdc-radio::after {
+    background-color: #00822600;
+}
+
+.mdc-radio .mdc-radio__background::before {
+    background-color: #00822600;
+}
+
+.mdc-radio {
+    width: 30px;
+    height: 30px;
+    margin: -10px;
 }

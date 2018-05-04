@@ -34,13 +34,11 @@ public class JPAPersistenceConfig {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        //dataSource.setDriverClassName("com.mysql.jdbc.GoogleDriver");
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        //dataSource.setUrl("jdbc:google:mysql://gefa-app-196823:us-central1:gefa-app-db/gestion_factoria");
-        dataSource.setUrl("jdbc:mysql://23.251.150.233:3306/gestion_factoria?serverTimezone=America/Mexico_City&" +
-               "useSSL=false&zeroDateTimeBehavior=convertToNull");
-        dataSource.setUsername("gefaapp");
-        dataSource.setPassword("g3f4dbapp");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/gestion_factoria?serverTimezone=America/Mexico_City&" +
+                "useSSL=false&zeroDateTimeBehavior=convertToNull");
+        dataSource.setUsername("root");
+        dataSource.setPassword("");
         return dataSource;
     }
 
