@@ -17,6 +17,11 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll();
     }
 
+    @Override
+    public List<Product> findAllByTech(Integer technologyId) {
+        return productRepository.findByTechnology_TechnologyId(technologyId);
+    }
+
     @Autowired
     public void setProductRepository(ProductRepository productRepository) {
         this.productRepository = productRepository;
