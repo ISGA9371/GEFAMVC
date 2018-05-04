@@ -25,6 +25,9 @@ $(function () {
   var numberMonths = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
 
 
+  /**
+   * Technologies ajax call
+   */
   $.ajax({
     url: "/api/technologies",
     method: "GET",
@@ -52,8 +55,12 @@ $(function () {
     $("#slct_tecnologia > .mdc-menu > ul").append(lis);
     $("#slct_tecnologia").addClass("mdc-select--disabled");
   });
+  /******************* */
 
 
+  /**
+   * Typologies [ modified=true ] ajax call
+   */
   var typologiesModified = [];
   var optionsModified = "";
   $.ajax({
@@ -72,7 +79,12 @@ $(function () {
     });
   }).fail(function () {
   });
+  /******************* */
 
+
+  /**
+   * Typologies [ modified=false ] ajax call
+   */
   var typologiesNew = [];
   var optionsNew = "";
   $.ajax({
@@ -91,8 +103,12 @@ $(function () {
     });
   }).fail(function () {
   });
+  /******************* */
 
 
+  /**
+   * Status ajax call
+   */
   var optionsTipif = "<option value=''></option>";
   $.ajax({
     url: "/api/status-types/3/status",
@@ -103,6 +119,7 @@ $(function () {
     });
   }).fail(function () {
   });
+  /******************* */
 
 
   $("#tabs").tabs();
@@ -311,7 +328,7 @@ $(function () {
       subPrincipalId: $("#subPrincipalId").val(),
       companyId: $("#companyId").val(),
       technologyId: $("#technologyId").val(),
-      typologyNewComponent: newMod,
+      typologyComponentModified: newMod,
       statusId: $("#statusId").val(),
       startProductId: $("#startProductId").val(),
       finalProductId: $("#finalProductId").val(),

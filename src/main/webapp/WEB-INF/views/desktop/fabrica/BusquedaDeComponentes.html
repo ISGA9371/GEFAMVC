@@ -167,7 +167,7 @@
                 <div class="mdc-menu mdc-select__menu">
                   <ul class="mdc-list mdc-menu__items">
                     <li class="mdc-list-item" role="option" tabindex="0" 
-                      th:each="estatus : ${componentStatus}" th:value="${estatus.statusId}" th:text="${estatus.statusName}">
+                      th:each="estatus : ${componentStatus}" th:id="${estatus.statusId}" th:text="${estatus.statusName}">
                     </li>
                   </ul>
                 </div>
