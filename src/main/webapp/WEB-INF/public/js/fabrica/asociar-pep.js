@@ -10,7 +10,9 @@ $(function () {
         console.log("REQUREMENTFARE "+data.data);
     });
 
-    $("#cancel-search").attr("href","/requirements/"+requirementId);
+    $("#cancel-search").click(function () {
+        window.history.back();
+    });
 
     const areas = new mdc.select.MDCSelect(document.querySelector('#areas'));
     let index = parseInt("0");
@@ -53,7 +55,7 @@ $(function () {
     });
 
     let addBudget = $("#add-budget");
-    let cancelBudget = $("#cancel-results");
+    let cancelBudget = $("#clear-search");
 
     $(document).on("click",'#results-table tbody tr.clickable', function () {
         var radioButton = $(this).find('input[type=radio]');
@@ -65,7 +67,7 @@ $(function () {
     });
 
     cancelBudget.click(function() {
-        /*$("#find")[0].reset();
+        $("#find")[0].reset();
         $("input[type=text]").val("");
 
         areas.selectedIndex = -1;
@@ -82,7 +84,7 @@ $(function () {
 
         $("input[type=hidden]").val("");
 
-        $("#results-table tbody").html("");*/s
+        $("#results-table tbody").html("");
     });
 
     /*SELECCIONAR PEPE*/
@@ -164,7 +166,32 @@ $(function () {
     });
 
     $("#search-form").submit(function (e) {
+        e.preventDefault();
         showHoldOn();
+
+        var datas= $( this ).serialize();
+
+        $.ajax({
+            type: "GET",
+            url:   "/budgets/assign/search",
+            data:  datas
+        }).done(function(data){
+            HoldOn.close();
+            var tbodyResults = $("#results-table tbody");
+            tbodyResults.html("");
+            tbodyResults.append(data);
+
+            $("#results-table tr").each(function (index, value) {
+                console.log("HOLA " + $(this).find("#saldo-mxn").html());
+                var saldoHoras = parseFloat($(this).find("#saldo-mxn").html()) / parseFloat(companyFare);
+                $(this).find("#saldo-hrs").html(saldoHoras);
+            });
+
+            //customHolder("info","El Requerimiento se actualizó correctamente.");
+        }).fail(function () {
+            HoldOn.close();
+            customHolder("error","Ocurrio un error en la búsqueda.");
+        });
     });
 
 

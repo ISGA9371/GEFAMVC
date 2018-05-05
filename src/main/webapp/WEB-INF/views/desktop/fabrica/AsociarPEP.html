@@ -30,42 +30,44 @@
     <div class="row">
         <div class="col-md-12 subtitle-content" th:text="${requirementData.requirementName}">ODT1 Servicios Nacar</div>
     </div>
-    <div class="row" id="req-data-row">
-        <div class="col-md-2">
+    <div class="row" id="req-data-row-removeme">
+        <div class="col-md-4">
             <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField">
                 <input th:value="${requirementData.level.levelSuperior.levelName}"
                        class="mdc-text-field__input">
                 <label class="mdc-text-field__label">Dirección</label>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
             <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField">
                 <input th:value="${requirementData.level.levelName}"
                        class="mdc-text-field__input mdc-text-field--disabled">
                 <label class="mdc-text-field__label">Subdirección</label>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
             <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField">
                 <input class="mdc-text-field__input mdc-text-field--disabled">
                 <label class="mdc-text-field__label">Subdirector</label>
             </div>
         </div>
-        <div class="col-md-2">
+    </div>
+    <div class="row">
+        <div class="col-md-4">
             <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField">
                 <input th:value="${requirementData.user.userInternalId}"
                        class="mdc-text-field__input mdc-text-field--disabled">
                 <label class="mdc-text-field__label">Responsable</label>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
             <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField">
                 <input th:value="${requirementData.area.areaName}"
                        class="mdc-text-field__input mdc-text-field--disabled">
                 <label class="mdc-text-field__label">Área</label>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
             <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField">
                 <input th:value="${requirementData.requirementTotalHours}"
                        class="mdc-text-field__input mdc-text-field--disabled">
@@ -194,7 +196,7 @@
     <div class="row" style="margin-top: 48px; margin-bottom: 60px;">
         <div class="col-xs-12 text-center">
             <button type="submit" class="btn btn-primary">Buscar</button>
-            <a class="btn btn-primary" id="cancel-search" onclick="showHoldOn();">Cancelar</a>
+            <button type="button" class="btn btn-primary" id="cancel-search" onclick="showHoldOn();">Cancelar</button>
         </div>
     </div>
 
@@ -226,11 +228,14 @@
             </thead>
             <tbody>
 
+            <!--
             <tr th:if="${budgets!= null && budgets.size() < 1}">
                 <td colspan="12">
                     <h2>No se encontraron resultados para tu búsqueda.</h2>
                 </td>
             </tr>
+            -->
+            <!--
             <th:block th:each="budget, stat : ${budgets}">
                 <tr th:href="${'#row-detail-wrapper-' + stat.count}" th:data-id="${budget.budgetId}" class="clickable"
                     th:aria-controls="${'row-detail-wrapper-' + stat.count}">
@@ -253,6 +258,7 @@
                     <td>0</td>
                     <td>0</td>
                 </tr>
+                -->
 
                 <!--
                 <tr>
@@ -267,9 +273,9 @@
                         </div>
                     </td>
                 </tr>
-                -->
 
             </th:block>
+            -->
             </tbody>
         </table>
     </div>
@@ -277,7 +283,7 @@
     <div class="row buttons" id="row-buttons-results">
         <div class="col-xs-12 text-center">
             <a id="add-budget" class="btn btn-primary" disabled="">Agregar</a>
-            <a id="cancel-results" class="btn btn-primary" disabled="">Cancelar</a>
+            <a id="clear-search" class="btn btn-primary" disabled="">Limpiar</a>
         </div>
     </div>
 
@@ -306,7 +312,7 @@
             <th>Incurrido horas</th>
             </thead>
             <tbody>
-            <tr th:each="budgetRequirement : ${requirementData.budgetRequirements}">
+            <tr th:each="budgetRequirement : ${requirementData.budgetRequirements}" >
                 <td id="botecito" class="clickable" data-budget-id="">
                     <img th:if="${!budgetRequirement.budgetRequirementBilled}" th:src="@{/img/trash_icon.png}" height="16">
                 </td>
