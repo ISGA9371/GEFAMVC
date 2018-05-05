@@ -611,16 +611,16 @@ $(function () {
   });
 
   $("#update-all-dates").click(function(){
-    var updateDate1 = changeFormatDate($("#date1").val());
-    var updateDate2 = changeFormatDate($("#date2").val());
-    var updateDate3 = changeFormatDate($("#date3").val());
-    var updateDate4 = changeFormatDate($("#date4").val());
+    var updateDate1 = $("#date1").val();
+    var updateDate2 = $("#date2").val();
+    var updateDate3 = $("#date3").val();
+    var updateDate4 = $("#date4").val();
 
     data = [{
-      'componentDesignRealDeliverDate': updateDate1,
-      'componentPossibleDeliverDate': updateDate2,
-      'componentPreviewDeliverDate': updateDate3,
-      'componentRealDeliverDate': updateDate4,
+      'componentDesignRealDeliverDate': changeFormatDate(updateDate1),
+      'componentPossibleDeliverDate': changeFormatDate(updateDate2),
+      'componentPreviewDeliverDate': changeFormatDate(updateDate3),
+      'componentRealDeliverDate': changeFormatDate(updateDate4),
       'componentIds': idsSearch,
     }];
 

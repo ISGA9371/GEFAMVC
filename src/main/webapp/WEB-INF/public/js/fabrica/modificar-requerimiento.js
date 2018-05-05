@@ -324,7 +324,7 @@ $(function () {
         }).fail(function () {
             HoldOn.close();
             console.log("FALLE");
-            customHolder("error","Ocurrio un error al actualizar el Requerimiento :-( .");
+            customHolder("error","Ocurrio un error al actualizar el Requerimiento.");
         });
     });
 
