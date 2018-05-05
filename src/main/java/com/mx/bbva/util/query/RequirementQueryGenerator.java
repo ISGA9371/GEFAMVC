@@ -26,6 +26,7 @@ public class RequirementQueryGenerator {
         }
         searchDTO.forEach(this::newFilter);
 
+        LOG.info("Query made: " + stringBuffer.toString());
         return stringBuffer.toString();
     }
 

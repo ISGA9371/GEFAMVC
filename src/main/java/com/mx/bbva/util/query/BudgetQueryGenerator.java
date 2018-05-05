@@ -19,9 +19,11 @@ public class BudgetQueryGenerator {
         LOG.info("Creating query for Budget...");
         fillValues();
         stringBuffer.append("FROM Budget x ");
-        // TODO Check how to search the budget
+
+        // TODO transfer date between two dates
         searchDTO.forEach(this::newFilter);
 
+        LOG.info("Query made: " + stringBuffer.toString());
         return stringBuffer.toString();
     }
 
