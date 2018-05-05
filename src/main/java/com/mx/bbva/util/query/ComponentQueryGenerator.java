@@ -38,7 +38,7 @@ public class ComponentQueryGenerator {
             stringBuffer.append(" WHERE ");
             firstOne = false;
         } else {
-            stringBuffer.append(" OR ");
+            stringBuffer.append(" AND ");
         }
         stringBuffer.append(filter).append(operator);
 
