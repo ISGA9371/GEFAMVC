@@ -120,9 +120,19 @@ public class BudgetController {
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public List<Transfer> searchForBudgets(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
-        /*String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
-        List<Budget> budgets = budgetService.findByCustomQuery(query); */
-        return this.transferService.findAllTransfers();
+        String query = new BudgetQueryGenerator().generateQuery(parameters);
+        List<Budget> budgets = budgetService.findByCustomQuery(query);
+
+        List<Transfer> transfers = new ArrayList<>();
+        for (Budget budget : budgets) {
+            transfers.addAll(transferService.findTransfersByBudget(budget));
+        }
+        for (Transfer transfer : transfers) {
+            Budget budgetDb = transfer.getBudgetDb();
+            budgetDb.setTransfers(null);
+            transfer.setBudget(budgetDb);
+        }
+        return transfers;
     }
 
     @RequestMapping(value = "/billing/filters", method = RequestMethod.GET)
