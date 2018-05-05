@@ -231,17 +231,17 @@ $(document).ready(function(){
   $("#btn_submit").click(function(){
 
     var params = {
-      solicitud: mdc_text_solicitud.value,
-      aceptacion: mdc_text_aceptacion.value,
-      orden_compra: mdc_text_orden_compra.value,
-      fecha_envio: changeFormatDate(mdc_text_fecha_envio.value),
-      hoja_entrada: mdc_text_hoja_entrada.value,
-      estado: mdc_select_estado_pago.value,
-      fecha_desde: changeFormatDate(mdc_text_fecha_desde.value),
-      fecha_hasta: changeFormatDate(mdc_text_fecha_hasta.value),
-      empresa: mdc_select_empresa.value,
-      tecnologia: mdc_select_tecnologia.value,
-      area_atencion: mdc_select_area_atencion.value,
+      paymentId: mdc_text_solicitud.value,
+      paymentReception: mdc_text_aceptacion.value,
+      paymentOrder: mdc_text_orden_compra.value,
+      modificationSendDate: changeFormatDate(mdc_text_fecha_envio.value),
+      paymentInPaper: mdc_text_hoja_entrada.value,
+      statusId: mdc_select_estado_pago.value,
+      invoiceCutDateStart: changeFormatDate(mdc_text_fecha_desde.value),
+      invoiceCutDateEnd: changeFormatDate(mdc_text_fecha_hasta.value),
+      companyName: mdc_select_empresa.value,
+      technologyName: mdc_select_tecnologia.value,
+      areaName: mdc_select_area_atencion.value,
     };
 
     console.log( params );
