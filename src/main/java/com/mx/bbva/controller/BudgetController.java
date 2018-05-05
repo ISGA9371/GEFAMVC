@@ -48,6 +48,30 @@ public class BudgetController {
         return URL_BUDGET + NEW_BUDGET;
     }
 
+    @RequestMapping(value = "/{budgetId}/transfers/add", method = RequestMethod.GET)
+    public String createTransfer(Model model, @PathVariable("budgetId") String budgetId) {
+        // TODO Validate user
+
+        Budget budget = budgetService.findBudget(budgetId);
+        LOG.info("Creating new budget");
+        model.addAttribute("budget", budget);
+        model.addAttribute("transfer", new Transfer());
+        //TODO Add catalogs
+        return URL_BUDGET + NEW_TRANSFER;
+    }
+
+    @RequestMapping(value = "/{budgetId}/dispersions/add", method = RequestMethod.GET)
+    public String createDispersion(Model model, @PathVariable("budgetId") String budgetId) {
+        // TODO Validate user
+
+        Budget budget = budgetService.findBudget(budgetId);
+        LOG.info("Creating new budget");
+        model.addAttribute("budget", budget);
+        model.addAttribute("transfer", new Transfer());
+        //TODO Add catalogs
+        return URL_BUDGET + NEW_DISPERSION;
+    }
+
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveBudget(@ModelAttribute("budget") Budget budget, @ModelAttribute("transfer") Transfer transfer) {
         // TODO Validate user
