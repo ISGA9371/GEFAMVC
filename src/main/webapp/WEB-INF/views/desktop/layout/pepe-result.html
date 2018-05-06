@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="es-mx">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+
+    <th:block th:each="budget, stat : ${budgets}" th:fragment="coso">
+        <tr th:each="transfer, stat2 : ${budget.transfers}"
+                th:href="${'#row-detail-wrapper-' + stat.count}" th:data-id="${budget.budgetId}" class="clickable"
+            th:aria-controls="${'row-detail-wrapper-' + stat.count}"
+            th:with="saldoMXN=${((budget.transfers[0].transferValue == null) ? 0 : budget.transfers[0].transferValue)
+            -
+            ((budget.transfers[0].transferWithdrawalValue == null) ? 0 : budget.transfers[0].transferWithdrawalValue)
+            -
+            ((budget.budgetIncurredTestFactory == null) ? 0 : budget.budgetIncurredTestFactory)
+            -
+            ((budget.budgetIncurredSoftwareFactory == null) ? 0 : budget.budgetIncurredSoftwareFactory)
+            -
+            ((budget.budgetCommittedSoftwareFactory == null) ? 0 : budget.transfers[0].budgetCommittedSoftwareFactory)
+            -
+            ((budget.budgetCommittedTestFactory == null) ? 0 : budget.budgetCommittedTestFactory)}">
+            <td>
+                <!--
+                <input type="radio" name="budgets" th:id="${budget.budgetId}" th:value="${budget.budgetId}">
+                -->
+                <div class="mdc-radio mdc-ripple-upgraded mdc-ripple-upgraded--unbounded" data-mdc-auto-init="MDCRadio">
+                    <input class="mdc-radio__native-control" type="radio"
+                           name="budgets" th:id="${budget.budgetId}" th:value="${budget.budgetId}">
+                    <div class="mdc-radio__background">
+                        <div class="mdc-radio__outer-circle"></div>
+                        <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                </div>
+            </td>
+            <td data-budget-id data-select th:text="${budget.budgetId}"></td>
+            <td data-select th:text="${budget.budgetName}"></td>
+            <td th:text="${budget.transfers[0].level.levelSuperior.levelName}"></td>
+            <td data-select th:text="${budget.transfers[0].level.levelName}"></td>
+            <td th:text="${budget.transfers[0].user.userInternalId}"></td>
+            <td th:text="${budget.transfers[0].transferWithdrawalValue}"></td>
+            <td th:text="${((budget.transfers[0].transferValue == null) ? 0 : budget.transfers[0].transferValue)
+                    -
+                    ((budget.transfers[0].transferWithdrawalValue == null) ? 0 : budget.transfers[0].transferWithdrawalValue)
+                    }"></td>
+            <td th:text="${budget.budgetIncurredTestFactory}"></td>
+            <td th:text="${budget.budgetIncurredSoftwareFactory}"></td>
+
+            <td id="saldo-mxn" th:text="${saldoMXN}"></td>
+            <td id="saldo-hrs"></td>
+        </tr>
+        <!--
+        Saldo MXN = (IM_TRASPASOx - IM_RETIROx -IM_INCURRIDO_PBASx - IM_INCURRIDO_FSWx - IM_COMP_FSW - IM_COMP_PBAS)
+        Saldo HRS = Saldo MXN / Tarifa de la Empresa  (truncado a dos decimales)
+        -->
+
+        <!--
+        <tr>
+            <td colspan="11" class="detail-td">
+                <div th:id="${'row-detail-wrapper-' + stat.count}" class="collapse" >
+                    <table style="width: 100%;">
+                        <tr>
+                            <td class="detail-label">F. Prop. Fin</td>
+                            <td th:text="${#dates.format(requirementData.requirementEndDate, 'dd/MM/yyyy')}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        -->
+
+    </th:block>
+
+</table>
+
+</body>
+
+</body>
+</html>
