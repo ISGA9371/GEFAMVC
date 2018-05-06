@@ -20,7 +20,10 @@ public class AppController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String init(@ModelAttribute("user") User user) {
-        // TODO something here
+        /*
+        TODO something here... here we will receive a google token, get the email maybe and check if exist in our
+        database... generate a log and create a token maybe... save the user in the session
+         */
         user.setUserInternalId("XMY0000");
         user.setProfileType(new ProfileType(4));
         return "indexGefa";
