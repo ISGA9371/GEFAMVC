@@ -25,8 +25,8 @@ $(function () {
         console.log("CAMBIO FECHA 2");
         if (datepicker2.val() !== "") {
             datepicker2.parent().find("label").addClass("mdc-text-field__label--float-above");
-            $("input[id=requirementEndDate]").val(datepicker2.val());
             datepicker1.datepicker("option", "maxDate", getDate(datepicker2.val()));
+            $("input[id=requirementEndDate]").val(datepicker2.val());
         } else {
             datepicker2.parent().find("label").removeClass("mdc-text-field__label--float-above");
         }
