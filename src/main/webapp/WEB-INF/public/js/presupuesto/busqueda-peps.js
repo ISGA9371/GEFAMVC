@@ -99,7 +99,7 @@ function addButtonEvents() {
     btnTaspaso.addEventListener("click", function () {
         if ($('input[name=pepsIds]:checked').attr("id") !== undefined) {
             holder("Cargando...");
-            window.location.href = "/budgets/" + $('input[name=pepsIds]:checked').attr("id")+"/add";
+            window.location.href = "/budgets/" + $('input[name=pepsIds]:checked').attr("id")+"/transfers/add";
         } else {
             customHolder("warn", "Debe seleccionar un Traspaso.")
         }
