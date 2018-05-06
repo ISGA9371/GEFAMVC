@@ -22,7 +22,9 @@ public class AreaController {
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> findAllAreas() {
+        LOG.info("Searching list... Areas");
         List<Area> areas = areaService.findAllAreas();
+
         return new ResponseEntity<Object>(new ResponseListDTO(areas), HttpStatus.OK);
     }
 

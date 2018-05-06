@@ -25,7 +25,6 @@ public class ResourceSubClassification implements Serializable {
     private Integer resourceSubClassificationId;
     @Column(name = "NB_SBCLAS_REC", nullable = false, length = 45)
     private String resourceSubClassificationName;
-    @JsonIgnore
     @JoinColumn(name = "CD_CLASIF_REC", referencedColumnName = "CD_CLASIF_REC", nullable = false)
     @ManyToOne(optional = false)
     private ResourceClassification resourceClassification;
