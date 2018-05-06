@@ -297,7 +297,6 @@ $(function () {
         var startD = new Date(compD1[2],compD1[1]-1,compD1[0]);
         var date1 = startD.getDate() < 10 ? '0'+ startD.getDate() : startD.getDate();
         var menth1 = startD.getMonth() < 9 ? '0'+ (startD.getMonth()+1) : (startD.getMonth()+1);
-        console.log("COSITO "+date1+"/"+menth1+"/"+startD.getFullYear());
         datepicker1.val(date1+"/"+menth1+"/"+startD.getFullYear());
     }
     if($("#requirementEndDate").val()){
@@ -331,6 +330,21 @@ $(function () {
     //HACK HOURS
     $(document).on("input","#requirementHour",function () {
         //this.value = parseFloat(this.value).toFixed(2);
+    });
+
+    datepicker1.keydown(function(e) {
+        if(e.keyCode === 8){
+            datepicker1.val("");
+            $("#requirementStartDate").val("");
+            datepicker1.datepicker("hide");
+        }
+    });
+    datepicker2.keydown(function(e) {
+        if(e.keyCode === 8){
+            datepicker2.val("");
+            $("#requirementEndDate").val("");
+            datepicker2.datepicker("hide");
+        }
     });
 });
 

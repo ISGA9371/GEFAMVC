@@ -11,20 +11,27 @@ $(function () {
     });
 
     datepicker1.change(function () {
-        console.log("CAMBIO FECHA 1");
         if (datepicker1.val() !== "") {
             datepicker1.parent().find("label").addClass("mdc-text-field__label--float-above");
-            $("input[id=requirementStartDate]").val(datepicker1.val());
+
+            var newDate = datepicker1.val().split('/');
+            var date = new Date(newDate[2],newDate[1]-1,newDate[0]);
+            var date1 = date.getDate() < 10 ? '0'+ date.getDate() : date.getDate();
+            var menth1 = date.getMonth() < 9 ? '0'+ (date.getMonth()+1) : (date.getMonth()+1);
+            $("input[id=requirementStartDate]").val(date.getFullYear()+"-"+menth1+"-"+date1);
         } else {
             datepicker1.parent().find("label").removeClass("mdc-text-field__label--float-above");
         }
     });
 
     datepicker2.change(function () {
-        console.log("CAMBIO FECHA 2");
         if (datepicker2.val() !== "") {
             datepicker2.parent().find("label").addClass("mdc-text-field__label--float-above");
-            $("input[id=requirementEndDate]").val(datepicker2.val());
+            var newDate = datepicker2.val().split('/');
+            var date = new Date(newDate[2],newDate[1]-1,newDate[0]);
+            var date1 = date.getDate() < 10 ? '0'+ date.getDate() : date.getDate();
+            var menth1 = date.getMonth() < 9 ? '0'+ (date.getMonth()+1) : (date.getMonth()+1);
+            $("input[id=requirementEndDate]").val(date.getFullYear()+"-"+menth1+"-"+date1);
         } else {
             datepicker2.parent().find("label").removeClass("mdc-text-field__label--float-above");
         }
@@ -357,7 +364,7 @@ $(function () {
         var startD = new Date(compD1[2],compD1[1]-1,compD1[0]);
         datepicker1.parent().find("label").addClass("mdc-text-field__label--float-above");
         var date1 = startD.getDate() < 10 ? '0'+ startD.getDate() : startD.getDate();
-        var menth1 = startD.getDate() < 9 ? '0'+ (startD.getMonth()+1) : (startD.getMonth()+1);
+        var menth1 = startD.getMonth() < 9 ? '0'+ (startD.getMonth()+1) : (startD.getMonth()+1);
         datepicker1.val(date1+"/"+menth1+"/"+startD.getFullYear());
     }
     if($("#requirementEndDate").val()){
@@ -365,7 +372,7 @@ $(function () {
         var endD = new Date(compD2[2],compD2[1]-1,compD2[0]);
         datepicker2.parent().find("label").addClass("mdc-text-field__label--float-above");
         var date2 = startD.getDate() < 10 ? '0'+ startD.getDate() : startD.getDate();
-        var menth2 = startD.getDate() < 9 ? '0'+ (startD.getMonth()+1) : (startD.getMonth()+1);
+        var menth2 = startD.getMonth() < 9 ? '0'+ (startD.getMonth()+1) : (startD.getMonth()+1);
         datepicker2.val(date2+"/"+menth2+"/"+endD.getFullYear());
     }
 
@@ -459,6 +466,21 @@ $(function () {
     if(reSize === 0){
         customHolder("info","No se encontraron resultados para tu búsqueda.");
     }
+
+    datepicker1.keydown(function(e) {
+        if(e.keyCode === 8){
+            datepicker1.val("");
+            $("#requirementStartDate").val("");
+            datepicker1.datepicker("hide");
+        }
+    });
+    datepicker2.keydown(function(e) {
+        if(e.keyCode === 8){
+            datepicker2.val("");
+            $("#requirementEndDate").val("");
+            datepicker2.datepicker("hide");
+        }
+    });
 });
 
 function showHoldOn() {
