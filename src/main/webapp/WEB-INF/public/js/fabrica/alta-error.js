@@ -66,15 +66,15 @@ demoReady(function() {
         hiddenEst.value = selectEst.value;
     });
 });
-demoReady(function() {
-    var rootEst = document.getElementById('responsable-js-select');
+/*demoReady(function() {
+    var rootEst = document.getElementById('Peticionario-js-select');
     var hiddenEst = document.getElementById('hidden-responsable');
     var selectEst = new mdc.select.MDCSelect(rootEst);
 
     rootEst.addEventListener('MDCSelect:change', function() {
         hiddenEst.value = selectEst.value;
     });
-});
+});*/
 
 function camp() {
     new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
@@ -155,6 +155,7 @@ function ajaxGuardar() {
     var url = $form.attr("action");
     var formData = $($form).serializeArray();
 
+    //var data= new FormData (this);
     $.ajax({
         async: false,
         url: url,
