@@ -19,7 +19,7 @@
         <div class="col-md-12 subtitle-content">Datos Generales</div>
     </div>
 
-    <form th:action="@{/budgets}" method="post" >
+    <form th:action="@{/budgets}" >
 
         <!--Valores que no estan en ventana-->
         <!--input type="hidden" id="hdStatus" value="" th:field="*{budget.budgetStatus.statusId}">
@@ -27,7 +27,8 @@
         <input type="hidden" id="hdYear" value="" th:field="*{budget.budgetYear}"-->
 
         <input type="hidden" id="hdAmount" value="" th:field="*{budget.budgetAmount}">
-        <input type="hidden" id="transferId" value="" th:field="*{transfer.budgetDb.budgetId}">
+        <input type="hidden" id="budgetId" value="" th:field="*{budget.budgetId}">
+        <input type="hidden" id="tranfer-budgetId" value="" th:field="*{transfer.budgetDb.budgetId}">
 
         <table class="col-md-12">
             <tr>
@@ -36,10 +37,6 @@
                         <input type="text" class="mdc-text-field__input" th:field="*{budget.budgetId}" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="pepId">
                         <label for="demo-input" class="mdc-text-field__label">PEP</label>
                     </div>
-                    <!--div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text" maxlength="15" th:field="*{budget.budgetId}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="pepId">
-                        <label for="demo-input" class="mdc-text-field__label">PEP</label>
-                    </div-->
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%" id="nomPepDiv">
@@ -60,62 +57,18 @@
                         <input type="text" maxlength="50" th:field="*{budget.area.areaName}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="areaAtencionPEP">
                         <label for="demo-input" class="mdc-text-field__label">Área de Atención</label>
                     </div>
-
-                    <!--input id="hidden-area" type="text" required value="" th:field="*{budget.area.areaId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                    <div id="area-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                            <div class="mdc-select__label">Área de Atención*</div>
-                            <div class="mdc-select__selected-text" id="area-area-text"></div>
-                            <div class="mdc-select__bottom-line"></div>
-                        </div>
-                        <div class="mdc-menu mdc-select__menu col-md-3" >
-                            <ul class="mdc-list mdc-menu__items" id="area-select">
-                                <li class="mdc-list-item" role="option" tabindex="0"></li>
-
-                            </ul>
-                        </div>
-                    </div-->
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%" id="bancaPEPDiv">
                         <input type="text" maxlength="50" th:field="*{budget.banking.bankingName}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="bancaPEP">
                         <label for="demo-input" class="mdc-text-field__label">Banca</label>
                     </div>
-
-                    <!--input id="hidden-banca" type="text" required value="" th:field="*{budget.banking.bankingId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                    <div id="banca-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                            <div class="mdc-select__label">Banca*</div>
-                            <div class="mdc-select__selected-text" id="bc-bc-text"></div>
-                            <div class="mdc-select__bottom-line"></div>
-                        </div>
-                        <div class="mdc-menu mdc-select__menu col-md-3" >
-                            <ul class="mdc-list mdc-menu__items" id="bc-select">
-                                <li class="mdc-list-item" role="option" tabindex="0"></li>
-
-                            </ul>
-                        </div>
-                    </div-->
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%" id="respDotPepDiv">
                         <input type="text" maxlength="50" th:field="*{budget.userReceiver.userInternalId}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="respDotPep">
                         <label for="demo-input" class="mdc-text-field__label">Responsable Dotación</label>
                     </div>
-
-                    <!--input id="hidden-responsableDot" type="text" value="" th:field="*{budget.userReceiver.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                    <div id="responsableDot-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                            <div class="mdc-select__label">Responsable Dotación</div>
-                            <div class="mdc-select__selected-text"></div>
-                            <div class="mdc-select__bottom-line"></div>
-                        </div>
-                        <div class="mdc-menu mdc-select__menu col-md-3" >
-                            <ul class="mdc-list mdc-menu__items">
-                                <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
-                            </ul>
-                        </div>
-                    </div-->
                 </td>
             </tr>
             <tr height="72px">
@@ -124,62 +77,18 @@
                         <input type="text" maxlength="50" th:field="*{budget.userSender.userInternalId}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="solicPEP">
                         <label for="demo-input" class="mdc-text-field__label">Solicitante</label>
                     </div>
-
-                    <!--input id="hidden-solicitante" type="text" required value="" th:field="*{budget.userSender.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                    <div id="solicitante-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                            <div class="mdc-select__label">Solicitante*</div>
-                            <div class="mdc-select__selected-text"></div>
-                            <div class="mdc-select__bottom-line"></div>
-                        </div>
-                        <div class="mdc-menu mdc-select__menu col-md-3" >
-                            <ul class="mdc-list mdc-menu__items">
-                                <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
-                            </ul>
-                        </div>
-                    </div-->
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%" id="entiPEPDiv">
                         <input type="text" maxlength="50" th:field="*{budget.corporation.corporationName}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="entiPEP">
                         <label for="demo-input" class="mdc-text-field__label">Entidad</label>
                     </div>
-
-                    <!--input id="hidden-estado" type="text" required value="" th:field="*{budget.corporation.corporationId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                    <div id="estado-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                            <div class="mdc-select__label">Entidad*</div>
-                            <div class="mdc-select__selected-text" id="en-en-text"></div>
-                            <div class="mdc-select__bottom-line"></div>
-                        </div>
-                        <div class="mdc-menu mdc-select__menu col-md-3" >
-                            <ul class="mdc-list mdc-menu__items" id="en-select">
-                                <li class="mdc-list-item" role="option" tabindex="0"></li>
-
-                            </ul>
-                        </div>
-                    </div-->
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%" id="iGPepDiv">
                         <input type="text" maxlength="50" th:field="*{budget.nature.natureName}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="iGPep">
                         <label for="demo-input" class="mdc-text-field__label">I/G</label>
                     </div>
-
-                    <!--input id="hidden-ig" type="text" required value="" th:field="*{budget.nature.natureId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                    <div id="ig-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
-                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                            <div class="mdc-select__label">I/G*</div>
-                            <div class="mdc-select__selected-text" id="nt-nt-text" onchange="alert()"></div>
-                            <div class="mdc-select__bottom-line"></div>
-                        </div>
-                        <div class="mdc-menu mdc-select__menu col-md-3" >
-                            <ul class="mdc-list mdc-menu__items" id="nt-select">
-                                <li class="mdc-list-item" role="option" tabindex="0"></li>
-
-                            </ul>
-                        </div>
-                    </div-->
                 </td>
             </tr>
             <tr style="height:72px">

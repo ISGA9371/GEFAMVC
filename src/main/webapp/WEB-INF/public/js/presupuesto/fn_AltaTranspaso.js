@@ -216,7 +216,7 @@ function addButtonEvents() {
         HoldOn.open({
             theme: "sk-cube",
             content: '',
-            message: 'Registrando PEP',
+            message: 'Registrando Traspaso',
             // backgroundColor: "#004582",
             backgroundColor: "#0c71ca",
             textColor: "white"
@@ -234,16 +234,18 @@ function addButtonEvents() {
 
 function ajaxGuardar() {
     var $form = $("form");
-    var url = $form.attr("action");
+    var url = "/budgets/" + $("#budgetId").val() + "/transfers"
+    $("#tranfer-budgetId").val($("#budgetId").val());
     var formData = $($form).serializeArray();
 
     $.ajax({
         async: false,
         url: url,
-        type: 'post',
+        type: 'put',
         data: formData
     }).done(function (data) {
-        customHolder("info", "PEP Dado de Alta Exitosamente.","window.location.href = '/budgets/" + $(data).find("#transferId").val() + "'; holder('Cargando...')");
+        //console.log("window.location.href = '/budgets/" + $("#budgetId").val() + '/transfers');
+        customHolder("info", "Traspaso Dado de Alta Exitosamente.","window.location.href = '/budgets/filters'; holder('Cargando...')");
         //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
     }).fail(function (xhr, status, error) {
         //console.log("fail");

@@ -2,11 +2,11 @@ function init() {
     //showH();
     initGlobal();
     holder("Cargando");
-    addCalendars();
+    //addCalendars();
     loadSelects();
     fillFields();
     addHiddenEvents();
-    defaultTypologies();
+    setDefaults();
     addCustomSelectEvents();
     addComponentValidation();
     //addRequirementValidation();
@@ -28,6 +28,10 @@ function fillFields() {
 
     var initHour = $('#componentStartHours').val();
     var auxHour = $('#componentFinalHours').val();
+    var auxComponentDesignRealDeliverDate = $("#componentDesignRealDeliverDate").val();
+    var auxComponentPreviewDeliverDate = $("#componentPreviewDeliverDate").val();
+    var auxComponentPossibleDeliverDate = $("#componentPossibleDeliverDate").val();
+    var auxComponentRealDeliverDate = $("#componentRealDeliverDate").val();
     var $elementTypologiaInicio = $("#typology").parent().find("li[id^='" + $('#typology').val() + "|']");
     if ($elementTypologiaInicio.length > 0) {
         var idTypologiaInicio = $elementTypologiaInicio.attr('id');
@@ -107,12 +111,21 @@ function fillFields() {
                 comboId = "tipologia-final-mods-js-select";
             }
             selectByValue(comboId,$elementTypologiaFinal.attr("id"));
-            setTimeout(function () {if(splittedTypologiaFinal[1] == "F"){
-                $('#componentFinalHours').val(auxHour);
-                new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = auxHour;
-                $('#componentFinalHours').val(auxHour);
-                changeHours();
-            }}, 100);
+            setTimeout(function () {$("#componentDesignRealDeliverDate").val(auxComponentDesignRealDeliverDate);
+                $("#componentPreviewDeliverDate").val(auxComponentPreviewDeliverDate);
+                $("#componentPossibleDeliverDate").val(auxComponentPossibleDeliverDate);
+                $("#componentRealDeliverDate").val(auxComponentRealDeliverDate);
+                new mdc.textField.MDCTextField(document.getElementById("FecRealCFG-mdc-text")).value = auxComponentDesignRealDeliverDate;
+                new mdc.textField.MDCTextField(document.getElementById("FecPreFac-mdc-text")).value = auxComponentPreviewDeliverDate;
+                new mdc.textField.MDCTextField(document.getElementById("FecNegFac-mdc-text")).value = auxComponentPossibleDeliverDate;
+                new mdc.textField.MDCTextField(document.getElementById("FecRealFac-mdc-text")).value = auxComponentRealDeliverDate;
+                if(splittedTypologiaFinal[1] == "F") {
+                    $('#componentFinalHours').val(auxHour);
+                    new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = auxHour;
+                    $('#componentFinalHours').val(auxHour);
+                    changeHours();
+                }
+            }, 100);
         } else {
             $('#tipologia-final-empty-js-select').show();
             new mdc.select.MDCSelect(document.getElementById('tipologia-final-news-js-select')).selectedIndex = -1;
@@ -330,12 +343,14 @@ function addCustomSelectEvents() {
             } else {
                 new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).disabled = true;
             }
+            addCalendars(splittedNews[4],splittedNews[5]);
             $("#componentFinalHours").val(splittedNews[2]);
             $("#componentFinalCost").val(Number(splittedNews[2]) * Number($("#auxFare").val()));
             new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value = Number($("#componentFinalCost").val()).formatMoney(2);
         } else {
             hiddenTypology.value = "";
             $("#typologyEmp").val(hiddenTypology.value);
+            resetCalendars();
             new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value = "";
             new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = "";
             new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value = "";
@@ -357,11 +372,13 @@ function addCustomSelectEvents() {
             } else {
                 new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).disabled = true;
             }
+            addCalendars(splittedMods[4],splittedMods[5]);
             $("#componentFinalHours").val(splittedMods[2]);
             $("#componentFinalCost").val(Number(splittedMods[2]) * Number($("#auxFare").val()));
             new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value = Number($("#componentFinalCost").val()).formatMoney(2);
         } else {
             hiddenTypology.value = "";
+            resetCalendars();
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-final-mdc-text")).value = "";
             new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = "";
@@ -399,7 +416,7 @@ function loadSelects() {
             $liElement = $("<li>");
             $liElement.attr("class", "mdc-list-item");
             $liElement.attr("role", "option");
-            $liElement.attr("id", data.typologyId + "|" + data.typologySeverity + "|" + data.typologySeverityHours + "|" + data.typologyComponentModified);
+            $liElement.attr("id", data.typologyId + "|" + data.typologySeverity + "|" + data.typologySeverityHours + "|" + data.typologyComponentModified + "|" + data.typologyStartDate + "|" + data.typologyFinalDate);
             $liElement.append(data.product.productName);
             $("#tipologia-news-js-select").find("ul:first").append($liElement);
             $("#tipologia-final-news-js-select").find("ul:first").append($liElement.clone());
@@ -420,7 +437,7 @@ function loadSelects() {
             $liElement = $("<li>");
             $liElement.attr("class", "mdc-list-item");
             $liElement.attr("role", "option");
-            $liElement.attr("id", data.typologyId + "|" + data.typologySeverity + "|" + data.typologySeverityHours + "|" + data.typologyComponentModified);
+            $liElement.attr("id", data.typologyId + "|" + data.typologySeverity + "|" + data.typologySeverityHours + "|" + data.typologyComponentModified + "|" + data.typologyStartDate + "|" + data.typologyFinalDate);
             $liElement.append(data.product.productName);
             $("#tipologia-mods-js-select").find("ul:first").append($liElement);
             $("#tipologia-final-mods-js-select").find("ul:first").append($liElement.clone());
@@ -475,7 +492,7 @@ function loadSelects() {
     });
 }
 
-function defaultTypologies() {
+function setDefaults() {
     new mdc.select.MDCSelect(document.getElementById('tipologia-empty-js-select')).disabled = true;
     new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).disabled = true;
     new mdc.select.MDCSelect(document.getElementById('tipologia-mods-js-select')).disabled = true;
@@ -565,22 +582,73 @@ function showH() {
     document.getElementById('EstadoLinea').style.display = 'inline';
 }
 
-function addCalendars() {
+function addCalendars(min, max) {
+    if(min === null || min === "null"){
+        min = null;
+    } else {
+        min = new Date(Number(min));
+    }
+    if(max === null || max === "null"){
+        max = null;
+    } else {
+        max = new Date(Number(max));
+    }
+    resetCalendars();
+    new mdc.textField.MDCTextField(document.getElementById("FecRealCFG-mdc-text")).disabled = false;
+    new mdc.textField.MDCTextField(document.getElementById("FecPreFac-mdc-text")).disabled = false;
+    new mdc.textField.MDCTextField(document.getElementById("FecNegFac-mdc-text")).disabled = false;
+    new mdc.textField.MDCTextField(document.getElementById("FecRealFac-mdc-text")).disabled = false;
+
     $('#FecRealCFG').datepicker({
-        dateFormat: "dd/mm/yy"
+        dateFormat: "dd/mm/yy",
+        minDate: min,
+        maxDate: max
     });
 
     $('#FecPreFac').datepicker({
-        dateFormat: "dd/mm/yy"
+        dateFormat: "dd/mm/yy",
+        minDate: min,
+        maxDate: max
     });
 
     $('#FecNegFac').datepicker({
-        dateFormat: "dd/mm/yy"
+        dateFormat: "dd/mm/yy",
+        minDate: min,
+        maxDate: max
     });
 
     $('#FecRealFac').datepicker({
-        dateFormat: "dd/mm/yy"
+        dateFormat: "dd/mm/yy",
+        minDate: min,
+        maxDate: max
     });
+}
+
+function resetCalendars() {
+    var mdcFecRealCFG = new mdc.textField.MDCTextField(document.getElementById("FecRealCFG-mdc-text"));
+    mdcFecRealCFG.value = "";
+    $("#componentDesignRealDeliverDate").val("");
+    mdcFecRealCFG.disabled = true;
+    var mdcFecPreFac = new mdc.textField.MDCTextField(document.getElementById("FecPreFac-mdc-text"));
+    mdcFecPreFac.value = "";
+    $("#componentPreviewDeliverDate").val("");
+    mdcFecPreFac.disabled = true;
+    var mdcFecNegFac = new mdc.textField.MDCTextField(document.getElementById("FecNegFac-mdc-text"));
+    mdcFecNegFac.value = "";
+    $("#componentPossibleDeliverDate").val("");
+    mdcFecNegFac.disabled = true;
+    var mdcFecRealFac = new mdc.textField.MDCTextField(document.getElementById("FecRealFac-mdc-text"));
+    mdcFecRealFac.value = "";
+    $("#componentRealDeliverDate").val("");
+    mdcFecRealFac.disabled = true;
+
+    $('#FecRealCFG').datepicker("destroy");
+
+    $('#FecPreFac').datepicker("destroy");
+
+    $('#FecNegFac').datepicker("destroy");
+
+    $('#FecRealFac').datepicker("destroy");
 }
 
 function holder(msg) {

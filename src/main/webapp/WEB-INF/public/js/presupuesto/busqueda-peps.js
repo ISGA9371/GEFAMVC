@@ -69,6 +69,26 @@ function addButtonEvents() {
         }).done(function (data) {
             currentPeps = data;
             pagePeps(1);
+            $('#pagination-div').bootpag({
+                total: Math.ceil(currentPeps.length/10),
+                page: 1,
+                maxVisible: 10,
+                leaps: true,
+                firstLastUse: true,
+                prev: '‹',
+                next: '›',
+                first: '«',
+                last: '»',
+                wrapClass: 'pagination',
+                activeClass: 'active',
+                disabledClass: 'disabled',
+                nextClass: 'next',
+                prevClass: 'prev',
+                lastClass: 'last',
+                firstClass: 'first'
+            }).on("page", function(event, num){
+                pagePeps(num);
+            });
             $("#results").css("display", "block");
             HoldOn.close();
         }).fail(function (xhr, status, error) {
@@ -84,7 +104,7 @@ function addButtonEvents() {
     btnModificar.addEventListener("click", function () {
         if ($('input[name=pepsIds]:checked').attr("id") !== undefined) {
             holder("Cargando...");
-            window.location.href = "/budgets/" + $('input[name=pepsIds]:checked').closest("td").next().html();
+            window.location.href = "/budgets/" + $('input[name=pepsIds]:checked').attr("id");
         } else {
             customHolder("warn", "Debe seleccionar un Traspaso.")
         }
@@ -99,7 +119,7 @@ function addButtonEvents() {
     btnTaspaso.addEventListener("click", function () {
         if ($('input[name=pepsIds]:checked').attr("id") !== undefined) {
             holder("Cargando...");
-            window.location.href = "/budgets/" + $('input[name=pepsIds]:checked').attr("id")+"/transfers/add";
+            window.location.href = "/budgets/" + $('input[name=pepsIds]:checked').closest("td").next().html()+"/transfers/add";
         } else {
             customHolder("warn", "Debe seleccionar un Traspaso.")
         }
