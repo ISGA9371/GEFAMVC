@@ -38,6 +38,11 @@ public class TransferServiceImpl implements TransferService {
         return transfers;
     }
 
+    @Override
+    public List<Transfer> findTransfersByBudget(Budget budget) {
+        return transferRepository.findByBudgetDb(budget);
+    }
+
     @Autowired
     public void setTransferRepository(TransferRepository transferRepository) {
         this.transferRepository = transferRepository;

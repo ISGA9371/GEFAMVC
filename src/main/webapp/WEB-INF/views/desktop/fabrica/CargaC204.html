@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head th:replace="~{layout/mainHeader :: head ('Carga arhivo')}"></head>
+
+<body>
+
+<header th:replace="~{layout/mainHeader :: header }"></header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2 class="h2-title-content">Carga arhivo c204 - prueba </h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 subtitle-content">cargar archivo</div>
+    </div>
+
+        <form id="fileUploadForm" th:action="@{/c204}" method="get" enctype="multipart/form-data">
+
+    <table class="col-md-12" >
+        <tr style="height:72px">
+            <td class="col-md-4" align="center">
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                    <input type="file" class="input-xlarge" rel="tooltip" data-placement="top" data-original-title="Subir archivo de ecualización" name="fileData" id="fileData"/>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <table class="col-md-12" >
+        <tr style="height:72px">
+            <td class="col-md-6" align="center">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </td>
+        </tr>
+    </table>
+
+
+    </form>
+
+</div>
+
+</body>
+
+<div th:replace="~{layout/footer2 :: scripts }"></div>
+
+
+<style rel="stylesheet">
+    .mdc-text-field__input {
+        border-bottom-color: rgba(15, 50, 242, 0.5);
+    }
+</style>
+<!--Footer que debe ir en todas las ventanas
+<div th:replace="layout/footer :: FooterPrincipal"></div>
+<script type="text/javascript" th:src="@{../js/fabrica/CargaC204.js}"></script>
+<script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
+
+<script>mdc.autoInit()</script>
+<script>
+    demoReady(function () {
+        init();
+        initGlobal();
+    });
+
+</script>-->
+</html>

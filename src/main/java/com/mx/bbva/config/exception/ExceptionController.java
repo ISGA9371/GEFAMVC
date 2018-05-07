@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.thymeleaf.exceptions.TemplateProcessingException;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -70,6 +71,19 @@ public class ExceptionController {
         Map<String, String> exception = new HashMap<>();
         exception.put("code", "400");
         exception.put("message", e.getMessage());
+
+        return exception;
+    }
+
+    // TemplateProcessingException
+    @ExceptionHandler(TemplateProcessingException.class)
+    @ResponseBody
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    Map<String, String> templateException(Exception e) {
+        Map<String, String> exception = new HashMap<>();
+        LOG.warning("Exception occurred: " + e.getMessage());
+        exception.put("code", "500");
+        exception.put("message", "Error procesando el template, revisar log.");
 
         return exception;
     }

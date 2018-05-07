@@ -14,7 +14,6 @@ function init() {
     addHoursValidation();
     addButtonEvents();
 
-
     setTimeout("window.scrollTo(0, 0)", 50);
     setTimeout("$(\".container\").click();", 50);
     if (!showingError) {
@@ -27,7 +26,8 @@ function fillFields() {
     new mdc.textField.MDCTextField(document.getElementById('version-mdc-text')).value = $('#componentVersion').val();
     new mdc.textField.MDCTextField(document.getElementById('descripcion-mdc-text')).value = $('#componentTypoComment').val()
 
-    var auxHour = $('#componentHours').val();
+    var initHour = $('#componentStartHours').val();
+    var auxHour = $('#componentFinalHours').val();
     var $elementTypologiaInicio = $("#typology").parent().find("li[id^='" + $('#typology').val() + "|']");
     if ($elementTypologiaInicio.length > 0) {
         var idTypologiaInicio = $elementTypologiaInicio.attr('id');
@@ -57,7 +57,7 @@ function fillFields() {
             selectByValue(comboId,$elementTypologiaInicio.attr("id"));
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = splittedTypologiaInicio[1];
             if(splittedTypologiaInicio[1] == "F"){
-                new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = auxHour;
+                new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = initHour;
             } else {
                 new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = splittedTypologiaInicio[2];
             }
@@ -108,9 +108,9 @@ function fillFields() {
             }
             selectByValue(comboId,$elementTypologiaFinal.attr("id"));
             setTimeout(function () {if(splittedTypologiaFinal[1] == "F"){
-                $('#componentHours').val(auxHour);
+                $('#componentFinalHours').val(auxHour);
                 new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).value = auxHour;
-                $('#componentHours').val(auxHour);
+                $('#componentFinalHours').val(auxHour);
                 changeHours();
             }}, 100);
         } else {
@@ -330,7 +330,7 @@ function addCustomSelectEvents() {
             } else {
                 new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).disabled = true;
             }
-            $("#componentHours").val(splittedNews[2]);
+            $("#componentFinalHours").val(splittedNews[2]);
             $("#componentFinalCost").val(Number(splittedNews[2]) * Number($("#auxFare").val()));
             new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value = Number($("#componentFinalCost").val()).formatMoney(2);
         } else {
@@ -357,7 +357,7 @@ function addCustomSelectEvents() {
             } else {
                 new mdc.textField.MDCTextField(document.getElementById("hours-final-mdc-text")).disabled = true;
             }
-            $("#componentHours").val(splittedMods[2]);
+            $("#componentFinalHours").val(splittedMods[2]);
             $("#componentFinalCost").val(Number(splittedMods[2]) * Number($("#auxFare").val()));
             new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value = Number($("#componentFinalCost").val()).formatMoney(2);
         } else {
@@ -486,7 +486,7 @@ function addHiddenEvents() {
     addTextSyncMdcToHtml("componentName", "component-mdc-text");
     addTextSyncMdcToHtml("componentVersion", "version-mdc-text");
     addTextSyncMdcToHtml("componentTypoComment", "descripcion-mdc-text");
-    addHoursSyncMdcToHtml("componentHours", "hours-final-mdc-text");
+    addHoursSyncMdcToHtml("componentFinalHours", "hours-final-mdc-text");
     addDateSyncMdcToHtml("componentDesignRealDeliverDate", "FecRealCFG-mdc-text");
     addDateSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text");
     addDateSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-text");
@@ -612,7 +612,7 @@ Number.prototype.formatMoney = function (c, d, t) {
 };
 
 var changeHours = function(){
-    $("#componentFinalCost").val(Number($("#componentHours").val())*Number($("#auxFare").val()));
+    $("#componentFinalCost").val(Number($("#componentFinalHours").val())*Number($("#auxFare").val()));
     new mdc.textField.MDCTextField(document.getElementById("final-cost-mdc-text")).value=Number($("#componentFinalCost").val()).formatMoney(2);
 }
 

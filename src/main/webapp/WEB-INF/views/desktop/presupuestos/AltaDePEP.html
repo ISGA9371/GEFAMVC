@@ -19,29 +19,35 @@
         <div class="col-md-12 subtitle-content">Datos Generales</div>
     </div>
 
-    <form th:action="@{/budgets}" method="post" onsubmit="holder('Registrando PEP')">
+    <form th:action="@{/budgets}" method="post" >
 
         <!--Valores que no estan en ventana-->
         <input type="hidden" id="hdStatus" value="" th:field="*{budget.budgetStatus.statusId}">
         <input type="hidden" id="hdStatusDyd" value="" th:field="*{budget.statusDyd.statusId}">
         <input type="hidden" id="hdAmount" value="" th:field="*{budget.budgetAmount}">
+        <input type="hidden" id="hdYear" value="" th:field="*{budget.budgetYear}">
+        <input type="hidden" id="transferId" value="" th:field="*{transfer.budgetDb.budgetId}">
 
         <table class="col-md-12">
             <tr>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text" maxlength="15" required pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{budget.budgetId}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="pep">
+                        <input type="text" maxlength="15" required th:field="*{budget.budgetId}" onchange="asociarTransfer(this.value);" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="pep">
                         <label for="demo-input" class="mdc-text-field__label">PEP</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text" maxlength="20" required pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{budget.budgetName}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="nombre-pep">
+                        <input type="text" maxlength="50" required pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{budget.budgetName}" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="nombre-pep">
                         <label for="demo-input" class="mdc-text-field__label">Nombre PEP</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <input id="hidden-anio" type="text" value="" required th:field="*{budget.budgetYear}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%" id="divAnioPep">
+                        <input type="text" class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="anioPep">
+                        <label for="demo-input" class="mdc-text-field__label">Año</label>
+                    </div>
+                    <!--input id="hidden-anio" type="text" value="" required th:field="*{budget.budgetYear}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                     <div id="anio-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                             <div class="mdc-select__label">Año*</div>
@@ -53,12 +59,12 @@
                                 <li th:each="budgetYears:${budgetYears}" class="mdc-list-item" th:id="${budgetYears}" role="option" th:text="${budgetYears}"></li>
                             </ul>
                         </div>
-                    </div>
+                    </div-->
                 </td>
             </tr>
             <tr height="72px">
                 <td class="col-md-4" align="center">
-                    <input id="hidden-area" type="text" value="" required th:field="*{budget.area.areaId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <!--input id="hidden-area" type="text" value="" required th:field="*{budget.area.areaId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                     <div id="area-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                             <div class="mdc-select__label">Area*</div>
@@ -70,10 +76,25 @@
                                 <li th:each="areas:${areas}" class="mdc-list-item" th:id="${areas.areaId}" role="option" th:text="${areas.areaName}"></li>
                             </ul>
                         </div>
+                    </div-->
+
+                    <input id="hidden-area" type="text" required value="" th:field="*{budget.area.areaId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <div id="area-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                            <div class="mdc-select__label">Área de Atención*</div>
+                            <div class="mdc-select__selected-text" id="area-area-text"></div>
+                            <div class="mdc-select__bottom-line"></div>
+                        </div>
+                        <div class="mdc-menu mdc-select__menu col-md-3" >
+                            <ul class="mdc-list mdc-menu__items" id="area-select">
+                                <li class="mdc-list-item" role="option" tabindex="0"></li>
+                                <!--li th:each="areas:${areas}" class="mdc-list-item" th:id="${areas.areaId}" role="option" th:text="${areas.areaName}"></li-->
+                            </ul>
+                        </div>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <input id="hidden-banca" type="text" required value="" th:field="*{budget.banking.bankingId}"  style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <!--input id="hidden-banca" type="text" required value="" th:field="*{budget.banking.bankingId}"  style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                     <div id="banca-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                             <div class="mdc-select__label">Banca*</div>
@@ -83,6 +104,21 @@
                         <div class="mdc-menu mdc-select__menu col-md-3" >
                             <ul class="mdc-list mdc-menu__items">
                                 <li th:each="bankingList:${bankingList}" class="mdc-list-item" th:id="${bankingList.bankingId}" role="option" th:text="${bankingList.bankingName}"></li>
+                            </ul>
+                        </div>
+                    </div-->
+
+                    <input id="hidden-banca" type="text" required value="" th:field="*{budget.banking.bankingId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <div id="banca-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                            <div class="mdc-select__label">Banca*</div>
+                            <div class="mdc-select__selected-text" id="bc-bc-text"></div>
+                            <div class="mdc-select__bottom-line"></div>
+                        </div>
+                        <div class="mdc-menu mdc-select__menu col-md-3" >
+                            <ul class="mdc-list mdc-menu__items" id="bc-select">
+                                <li class="mdc-list-item" role="option" tabindex="0"></li>
+                                <!--li th:each="areas:${areas}" class="mdc-list-item" th:id="${areas.areaId}" role="option" th:text="${areas.areaName}"></li-->
                             </ul>
                         </div>
                     </div>
@@ -120,7 +156,7 @@
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <input id="hidden-estado" type="text" required value="" th:field="*{budget.corporation.corporationId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <!--input id="hidden-estado" type="text" required value="" th:field="*{budget.corporation.corporationId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                     <div id="estado-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                             <div class="mdc-select__label">Entidad*</div>
@@ -132,10 +168,25 @@
                                 <li th:each="corporations:${corporations}" class="mdc-list-item" th:id="${corporations.corporationId}" role="option" th:text="${corporations.corporationName}"></li>
                             </ul>
                         </div>
+                    </div-->
+
+                    <input id="hidden-estado" type="text" required value="" th:field="*{budget.corporation.corporationId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <div id="estado-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                            <div class="mdc-select__label">Entidad*</div>
+                            <div class="mdc-select__selected-text" id="en-en-text"></div>
+                            <div class="mdc-select__bottom-line"></div>
+                        </div>
+                        <div class="mdc-menu mdc-select__menu col-md-3" >
+                            <ul class="mdc-list mdc-menu__items" id="en-select">
+                                <li class="mdc-list-item" role="option" tabindex="0"></li>
+                                <!--li th:each="areas:${areas}" class="mdc-list-item" th:id="${areas.areaId}" role="option" th:text="${areas.areaName}"></li-->
+                            </ul>
+                        </div>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <input id="hidden-ig" type="text" value="" required th:field="*{budget.nature.natureId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <!--input id="hidden-ig" type="text" value="" required th:field="*{budget.nature.natureId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                     <div id="ig-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                             <div class="mdc-select__label">I/G*</div>
@@ -147,6 +198,21 @@
                                 <li th:each="natures:${natures}" class="mdc-list-item" th:id="${natures.natureId}" role="option" th:text="${natures.natureName}"></li>
                             </ul>
                         </div>
+                    </div-->
+
+                    <input id="hidden-ig" type="text" required value="" th:field="*{budget.nature.natureId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <div id="ig-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                            <div class="mdc-select__label">I/G*</div>
+                            <div class="mdc-select__selected-text" id="nt-nt-text" onchange="alert()"></div>
+                            <div class="mdc-select__bottom-line"></div>
+                        </div>
+                        <div class="mdc-menu mdc-select__menu col-md-3" >
+                            <ul class="mdc-list mdc-menu__items" id="nt-select">
+                                <li class="mdc-list-item" role="option" tabindex="0"></li>
+                                <!--li th:each="areas:${areas}" class="mdc-list-item" th:id="${areas.areaId}" role="option" th:text="${areas.areaName}"></li-->
+                            </ul>
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -156,6 +222,7 @@
                         <input type="text" required maxlength="10" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{budget.budgetCostCenter}" class="mdc-text-field__input" id="cr">
                         <label for="demo-input" class="mdc-text-field__label">CR</label>
                     </div>
+
                 </td>
                 <td class="col-md-4" align="center">
                 </td>
@@ -176,11 +243,16 @@
 
                 <td class="col-md-4" align="center">
 
-                    <div class="dog1">
+                    <!--div class="dog1">
                         <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                             <input type='text' class="mdc-text-field__input" required th:field="*{transfer.transferDate}" value=""  row="2" id='fechaTranspaso' />
                             <label for="demo-input" class="mdc-text-field__label">Fecha de Traspaso</label>
                         </div>
+
+                    </div-->
+                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc-group-componentDesignRealDeliverDate">
+                        <input type="text" class="mdc-text-field__input" name="fechaTranspaso" id="componentDesignRealDeliverDate" th:field="*{transfer.transferDate}" />
+                        <label class="mdc-text-field__label">Fecha de Traspaso</label>
                     </div>
 
                 </td>
@@ -193,7 +265,7 @@
             </tr>
             <tr style="height:72px">
                 <td class="col-md-4" align="center">
-                    <input id="hidden-direccion" type="text" value="" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <!--input id="hidden-direccion" type="text" value="" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                     <div id="direccion-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                             <div class="mdc-select__label">Direccion</div>
@@ -205,10 +277,27 @@
                                 <li th:each="principals:${principals}" class="mdc-list-item" th:id="${principals.levelId}" role="option" th:text="${principals.levelName}"></li>
                             </ul>
                         </div>
+                    </div-->
+
+                    <input id="hidden-direccion" type="text" required value="" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <div id="dirs" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                            <div class="mdc-select__label">Dirección*</div>
+                            <div class="mdc-select__selected-text" id="dir-dir-text"></div>
+                            <div class="mdc-select__bottom-line"></div>
+                        </div>
+                        <div class="mdc-menu mdc-select__menu col-md-3">
+                            <ul class="mdc-list mdc-menu__items" id="dir-select">
+                                <li class="mdc-list-item" role="option" tabindex="0"></li>
+                                <!--li class="mdc-list-item" role="option" tabindex="0" th:each="dir : ${principals}"
+                                    th:value="${dir.levelId}" th:text="${dir.levelName}">
+                                </li-->
+                            </ul>
+                        </div>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <input id="hidden-director" type="text" value="" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <!--input id="hidden-director" type="text" value="" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                     <div id="director-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                             <div class="mdc-select__label">Director</div>
@@ -220,10 +309,15 @@
                                 <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
                             </ul>
                         </div>
+                    </div-->
+
+                    <div id="dirDiv" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type="text" required maxlength="10" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" th:field="*{budget.budgetCostCenter}" class="mdc-text-field__input" id="dirPep">
+                        <label for="demo-input" class="mdc-text-field__label">Director</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <input id="hidden-grupo" type="text" required th:field="*{transfer.level.levelId}"  value="" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <!--input id="hidden-grupo" type="text" required th:field="*{transfer.level.levelId}"  value="" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                     <div id="grupo-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                             <div class="mdc-select__label">Grupo*</div>
@@ -235,12 +329,26 @@
                                 <li th:each="areas:${areas}" class="mdc-list-item" th:id="${areas.areaId}" role="option" th:text="${areas.areaName}"></li>
                             </ul>
                         </div>
+                    </div-->
+
+                    <input id="hidden-subdireccion" type="text" required value="" th:field="*{transfer.level.levelId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <div id="subdirs" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                            <div class="mdc-select__label">Grupo*</div>
+                            <div class="mdc-select__selected-text" id="subdir-sel-text"></div>
+                            <div class="mdc-select__bottom-line"></div>
+                        </div>
+                        <div class="mdc-menu mdc-select__menu col-md-3">
+                            <ul class="mdc-list mdc-menu__items" id="subdir-select">
+                                <li class="mdc-list-item" role="option" tabindex="0"></li>
+                            </ul>
+                        </div>
                     </div>
                 </td>
             </tr>
             <tr style="height:72px">
                 <td class="col-md-4" align="center">
-                    <input id="hidden-respArea" type="text" value=""  style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <!--input id="hidden-respArea" type="text" value=""  style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                     <div id="respArea-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                             <div class="mdc-select__label">Resp. de Área</div>
@@ -252,10 +360,15 @@
                                 <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
                             </ul>
                         </div>
+                    </div-->
+
+                    <div id="respAreaDiv" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                        <input type="text" class="mdc-text-field__input" id="respArea">
+                        <label for="demo-input" class="mdc-text-field__label">Resp. de Área</label>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
-                    <input id="hidden-respDyd" type="text" value="" required th:field="*{transfer.user.userInternalId}"  style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <!--input id="hidden-respDyd" type="text" value="" required th:field="*{transfer.user.userInternalId}"  style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                     <div id="respDyD-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                             <div class="mdc-select__label">Resp. DyD*</div>
@@ -267,11 +380,27 @@
                                 <li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li>
                             </ul>
                         </div>
+                    </div-->
+
+                    <input id="hidden-respDyd" type="text" required th:field="*{transfer.user.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+                    <div id="respDyD-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
+                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
+                            <div class="mdc-select__label">Resp. DyD*</div>
+                            <div class="mdc-select__selected-text" id="respDyd-respDyd-text"></div>
+                            <div class="mdc-select__bottom-line"></div>
+                        </div>
+                        <div class="mdc-menu mdc-select__menu col-md-3" >
+                            <ul class="mdc-list mdc-menu__items" id="respDyd-select">
+                                <li class="mdc-list-item" role="option" tabindex="0"></li>
+                                <!--li th:each="users:${users}" class="mdc-list-item" th:id="${users.userInternalId}" role="option" th:text="${users.userInternalId}"></li-->
+                            </ul>
+                        </div>
                     </div>
                 </td>
                 <td class="col-md-4" align="center">
+                    <input type="hidden"  th:field="*{transfer.transferValue}" id="valorEnviar">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text" th:field="*{transfer.transferValue}" pattern="[0-9]+" maxlength="10" required onchange="asignMount(this.value);" value="" class="mdc-text-field__input" id="">
+                        <input type="text"  maxlength="10" required value="" class="mdc-text-field__input" id="valorPEP">
                         <label for="demo-input" class="mdc-text-field__label" >Presupuestado MXN</label>
                     </div>
                 </td>
@@ -293,18 +422,12 @@
             </tr>
         </table>
 
-        <table class="col-md-12" align="center" style="height:72px" >
-            <tr>
-                <td class="col-md-4" align="center">
-                </td>
-                <td class="col-md-4" align="center">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                    <button type="button" class="btn btn-primary" onclick="funcionCancelar()">Cancelar</button>
-                </td>
-                <td class="col-md-4" align="center">
-                </td>
-            </tr>
-        </table>
+        <div class="row buttons">
+            <div class="col-xs-12 text-center">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn btn-primary" id="cancelar-btn">Cancelar</button>
+            </div>
+        </div>
     </form>
 
 </div>
@@ -315,7 +438,7 @@
 
 <div th:replace="~{layout/footer2 :: scripts }"></div>
 <script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
-<script type="text/javascript" th:src="@{/js/fabrica/fn_AltaPep.js}"></script>
+<script type="text/javascript" th:src="@{/js/presupuesto/fn_AltaPep.js}"></script>
 
 <script>
     mdc.autoInit();

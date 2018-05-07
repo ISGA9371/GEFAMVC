@@ -3,6 +3,8 @@
 function init() {
 
     initGlobal();
+
+    camposBloqueadosF();
     crearCombos();
     asignarCombos();
     addCalendars();
@@ -10,13 +12,13 @@ function init() {
     addButtonEvents();
     camp();
     loadSelects2();
-
+    //addCustomSelectEvents();
 
 }
 
 function crearCombos() {
 
-    mdc.select.MDCSelect.attachTo(document.getElementById('DifMod-js-select'));
+    //mdc.select.MDCSelect.attachTo(document.getElementById('DifMod-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('prioridad-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('origen-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('modvuelo-js-select'));
@@ -94,7 +96,6 @@ function addMissing() {
 
 }
 
-
 function camp() {
     new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
@@ -107,6 +108,8 @@ function camp() {
     new mdc.textField.MDCTextField(document.getElementById("estado-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("tipmodificacion-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("usuario-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("difmodificacion-js-text")).disabled = true;
+
 }
 
 function loadSelects2() {
@@ -182,6 +185,8 @@ function holder(msg){
     });
 }
 
+
+
 function ajaxGuardar() {
     var $form = $("form");
     var url = $form.attr("action");
@@ -227,4 +232,15 @@ function customHolder(type, msg, fctn) {
         backgroundColor: "#0c71ca",
         textColor: "white"
     });
+}
+
+
+function camposBloqueadosF() {
+    var aux = $("#dificultad-modificacion").val();
+    if (aux === "F"){
+    } else {
+        new mdc.textField.MDCTextField(document.getElementById("hours-div")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("costo-div")).disabled = true;
+    }
+
 }
