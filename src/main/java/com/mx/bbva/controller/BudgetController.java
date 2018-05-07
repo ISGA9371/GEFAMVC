@@ -53,7 +53,7 @@ public class BudgetController {
         // TODO Validate user
 
         Budget budget = budgetService.findBudget(budgetId);
-        LOG.info("Creating new budget");
+        LOG.info("Creating new transfer" + "budgetID= "+budget.getBudgetId());
         model.addAttribute("budget", budget);
         model.addAttribute("transfer", new Transfer());
         //TODO Add catalogs
