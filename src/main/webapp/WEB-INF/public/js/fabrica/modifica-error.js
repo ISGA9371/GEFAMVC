@@ -100,6 +100,36 @@ function rojeliatama() {
 
 }
 
+function rojeliafabrica(){
+    var descrip = $('#descripcion2fabrica').val();
+    var descri = $('#descripcionfabrica').val();
+    var des = $('#desfijofabrica').val();
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    var today = 'v' + yyyy + mm + dd;
+
+    $('#desfijofabrica').val(descri + " | " + descrip + " - "+ dd+"/"+mm+"/"+yyyy);
+}
+
+function rojeliatamafabrica() {
+    var textoArea = document.getElementById("desfijofabrica").value;
+    var tama = textoArea.length;
+    if(tama > 600){
+        alert("exedes el tamaño maximo de caracteres ");
+    }
+
+}
+
 $(function () {
     $('#datetimepicker4').datetimepicker({
         format: 'DD/MM/YYYY'
@@ -201,11 +231,22 @@ function dyd() {
         new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("incidencia-estado-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = false;
         //document.getElementById("")
-        $('#boton-cerrar').show();
+
+        if ($('#estado-incident').val() === "16" ){
+            $('#boton-cerrar').show();
+            $('#boton-abrir-duda').hide();
+
+        }else {
+            $('#boton-cerrar').hide();
+            $('#guardar-btn').hide();
+            $('#boton-abrir-duda').show();
+        }
+
 
         //incidencia
         $('#incidencia-js-select').hide(); //combo incidecnia
@@ -221,6 +262,11 @@ function dyd() {
         //prioridad
     $('#prioridad').hide(); //combo prioridad
     $('#Prioridad-text').show(); //input prioridad
+
+
+
+    $('#tablefabrica').hide();
+    $('#tableUser').show();
     //$('#Prioridad-input').val($('#prioridad-sel-text').val());
 }
 
@@ -237,11 +283,20 @@ function fabrica() {
         new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("incidencia-estado-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = false;
         //new mdc.textField.MDCTextField(document.getElementById("boton-cerrar")).disabled = true;
         $('#boton-cerrar').hide();
+        $('#boton-abrir-duda').hide();
+
+    if ($('#estado-incident').val() === "16" ){
+        $('#guardar-btn').show();
+    }else {
+        $('#guardar-btn').hide();
+    }
+
     $('#incidencia-js-select').hide(); //combo incidecnia
     $('#incidencia-estado-js-text').show(); //input incidencia
     $('#incidencia-estado-js-text').val($('#hidden-estado').val());
@@ -255,6 +310,11 @@ function fabrica() {
     //prioridad
     $('#prioridad').hide(); //combo prioridad
     $('#Prioridad-text').show(); //input prioridad
+
+
+
+    $('#tablefabrica').show();
+    $('#tableUser').hide();
     //$('#Prioridad-input').val($('#hidden-prioridad').val());
 }
 
@@ -271,11 +331,15 @@ function gestor() {
         new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("incidencia-estado-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = true;
         //new mdc.textField.MDCTextField(document.getElementById("boton-cerrar")).disabled = true;
-        $('#boton-cerrar').hide();
+    $('#boton-cerrar').hide();
+    $('#boton-abrir-duda').hide();
+    $('#guardar-btn').hide();
+
     $('#incidencia-js-select').hide(); //combo incidecnia
     $('#incidencia-estado-js-text').show(); //input incidencia
     //$('#incidencia-estado-js-text').val($('#hidden-estado').val());
@@ -289,6 +353,9 @@ function gestor() {
     //prioridad
     $('#prioridad').hide(); //combo prioridad
     $('#Prioridad-text').show(); //input prioridad
+
+    $('#tablefabrica').hide();
+    $('#tableUser').hide();
     //$('#Prioridad-input').val($('#prioridad').val());
 }
 
@@ -305,11 +372,23 @@ function adminin() {
         new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = false;
         new mdc.select.MDCSelect(document.getElementById("incidencia-js-select")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = false;
         //new mdc.textField.MDCTextField(document.getElementById("boton-cerrar")).disabled = true;
+
+    if ($('#estado-incident').val() === "16" ){//abierto
         $('#boton-cerrar').show();
+        $('#boton-abrir-duda').hide();
+        $('#guardar-btn').show();
+
+    }else { //cerrado
+        $('#boton-cerrar').hide();
+
+        $('#boton-abrir-duda').show();
+    }
+
     $('#incidencia-js-select').show(); //combo incidecnia
     $('#incidencia-estado-js-text').show(); //input incidencia
 
@@ -321,6 +400,9 @@ function adminin() {
     //prioridad
     $('#prioridad').show(); //combo prioridad
     $('#Prioridad-text').show(); //input prioridad
+
+    $('#tablefabrica').show();
+    $('#tableUser').show();
 }
 
 function addButtonEvents() {
@@ -430,4 +512,38 @@ function loadSelects2() {
         }else $("#Origen-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
     });
 
+}
+
+function addButtonCerrar() {
+    //Actions for save requirements
+    $("#estado-incident").val(18);
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+        HoldOn.open({
+            theme: "sk-cube",
+            content: '',
+            message: 'Cerrando Incidencia',
+            // backgroundColor: "#004582",
+            backgroundColor: "#0c71ca",
+            textColor: "white"
+        });
+        setTimeout("ajaxGuardar();", 500)
+    });
+}
+
+function addButtonAbrir() {
+    //Actions for save requirements
+    $("#estado-incident").val(16);
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+        HoldOn.open({
+            theme: "sk-cube",
+            content: '',
+            message: 'Abriendo Incidencia',
+            // backgroundColor: "#004582",
+            backgroundColor: "#0c71ca",
+            textColor: "white"
+        });
+        setTimeout("ajaxGuardar();", 500)
+    });
 }

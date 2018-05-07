@@ -9,6 +9,7 @@ function init() {
     //$("#hidden-responsable").val($("#responsabletxt").val());
     $("#responsabletxt").val("XMY3080");
     $("#hidden-responsable").val("XMY3080");
+    $("#estado-incident").val(16);
 
     var fecha=$("#datetimepicker").val();
     var dia = fecha.substring(8,10);

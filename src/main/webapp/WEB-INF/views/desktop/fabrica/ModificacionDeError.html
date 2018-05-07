@@ -89,6 +89,7 @@
                     <input id="hidden-envcomponente" type="hidden" required th:field="*{component.componentId}" >
                     <input id="issueId" type="hidden" required th:field="*{issueId}" >
                     <input id="datecreati" type="hidden" required th:field="*{issueUploadDate}" >
+                    <input id="estado-incident" type="hidden" required th:field="*{status.statusId}" >
 
                     <table class="col-md-12">
                     <tr style="height:72px">
@@ -182,26 +183,51 @@
                             <td class="col-md-4" align="center">
                                 <div  id="descripcion-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
                                     <input type="text" th:value="*{issueInitialDescription}" class="mdc-text-field__input mdc-text-field--disabled" id="descripcion">
-                                    <label for="demo-input" class="mdc-text-field__label">Descripción</label>
+                                    <label for="demo-input" class="mdc-text-field__label">Descripción DyD</label>
                                 </div>
                             </td>
                         </tr>
                     </table>
+
+                    <input id="desfijofabrica" type="hidden" required th:field="*{issueInitialFixDescription}" >
                     <table class="col-md-12" >
                         <tr style="height:72px">
                             <td class="col-md-4" align="center">
+                                <div  id="descripcion-fabrica-js-text" align="right"  class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%; text-align:right;">
+                                    <input type="text" align="right" th:value="*{issueInitialFixDescription}" class="mdc-text-field__input mdc-text-field--disabled" id="descripcionfabrica" style="text-align:right;">
+                                    <label for="demo-input" align="right" class="mdc-text-field__label">Descripción fabria</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="col-md-12" id="tableUser">
+                        <tr style="height:72px">
+                            <td class="col-md-4" align="center" >
                                 <div  id="descripcion-js-textuser" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
-                                    <input type="text" required maxlength="200" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" onchange="rojelia(); rojeliatama()" class="mdc-text-field__input" id="descripcion2">
+                                    <input type="text" maxlength="200" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" onchange="rojelia(); rojeliatama()" class="mdc-text-field__input" id="descripcion2">
                                     <label for="demo-input" class="mdc-text-field__label" >Descripción agregar user</label>
                                 </div>
                             </td>
                         </tr>
                     </table>
+
+                    <table class="col-md-12" id="tablefabrica">
+                        <tr style="height:72px">
+                            <td class="col-md-4" align="center">
+                                <div  id="descripcion-js-textfabrica" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
+                                    <input type="text" maxlength="200" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" onchange="rojeliafabrica(); rojeliatamafabrica()" class="mdc-text-field__input" id="descripcion2fabrica">
+                                    <label for="demo-input" class="mdc-text-field__label" >Descripción agregar fabrica</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
                 <table class="col-md-12" >
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
                             <button class="btn btn-primary">descargar archivo</button>
-                            <button class="btn btn-primary">abrir duda</button>
+
                         </td>
                         <td class="col-md-4" align="center">
                             <h6 onclick="dyd()" >dyd</h6> <h6 onclick="fabrica()" >fabrica</h6>
@@ -214,13 +240,18 @@
 
                 <table class="col-md-12" >
                     <tr>
-                        <td class="col-md-6" align="center">
-                           <button type="submit" class="btn btn-primary">Guardar</button>
+                        <td class="col-md-4" align="center">
+                           <button type="submit" id="guardar-btn" class="btn btn-primary">Guardar</button>
                            <button type="button" id="cancelar-btn" class="btn btn-primary">Cancelar</button>
                         </td>
-                        <td class="col-md-6" align="center">
+                        <td class="col-md-4" align="center">
                             <div  id="boton-cerrar">
-                                <button id="cerrar-init" class="btn btn-primary"> cerrar incidencia</button>
+                                <button id="cerrar-init" onclick="addButtonCerrar()" class="btn btn-primary"> Cerrar Incidencia</button>
+                            </div>
+                        </td>
+                        <td class="col-md-4" align="center">
+                            <div id="boton-abrir-duda">
+                                <button onclick="addButtonAbrir()" class="btn btn-primary">Abrir Incidencia</button>
                             </div>
                         </td>
                     </tr>
