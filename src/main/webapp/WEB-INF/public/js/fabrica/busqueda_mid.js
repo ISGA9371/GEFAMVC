@@ -848,3 +848,84 @@ function showHoldOn() {
         textColor: "white",
     });
 }
+
+setTimeout(function searchComponent() {
+    selecMdc = new mdc.select.MDCSelect($("#slct_componente")[0]);
+    var endPoint = "";
+  //var selecMdc = document.getElementById("slct_componente");
+  //var valueSelectCombo = componenteCombo.options[componenteCombo.selectedIndex].text;
+  if((selecMdc.value) ==" Modificado ") {
+      endPoint = '/modifications/search';
+  }else if((selecMdc.value) ==" Dudas ") {
+      endPoint = '/doubts/search';
+  }else if((selecMdc.value) ==" Incidencia ") {
+      endPoint = '/issues/search';
+  }
+
+    $.ajax({
+        async: false,
+        url: endPoint
+    }).done(function (json) {
+        $.each(json.data, function(i, data){
+            $("#results-table").find("tbody").append(
+                //"<th:block th:each='requirement, stat : ${requirements}'>"
+                "<tr th:href='${'#row-detail-wrapper-' + stat.count}' data-tggle='collapse' class='clickable' th:aria-controls='${'row-detail-wrapper-' + stat.count}'>"
+                  +"<td>"
+                  //+//"<input type='radio' name='requirements' th:id='${requirement.requirementId}' th:value='${requirement.requirementId}'>"
+                  +"</td>"
+                  +"<td>"+data.component.requirement.project.methodology.methodologyName
+                  +"</td>"
+                  +"<td>"+data.component.requirement.project.projectName
+                  +"</td>"
+                  +"<td>"+""
+                  +"</td>"
+                  +"<td>"+data.component.requirement.company.companyName
+                  +"</td>"
+                  +"<td>"+data.component.requirement.level.levelSuperior.levelName
+                  +"</td>"
+                  +"<td>"+data.component.requirement.area.areaName
+                  +"</td>"
+                +"</tr>"
+                +"<tr>"
+                  +"<td colspan='11' class='detail-td'>"
+                    +"<div th:id='${'row-detail-wrapper-' + stat.count}' class='collapse'>"
+                      +"<table style='width: 100%;'>"
+                        +"<tr>"
+                          +"<td class='detail-label'>Componente"
+                          +"</td>"
+                          +"<td>"
+                          +"</td>"
+                          +"<td class='detail-label'>Fecha"
+                          +"</td>"
+                          +"<td th:text='${#dates.format(requirement.requirementEndDate, 'dd/MM/yyyy')}'>"
+                          +"</td>"
+                        +"</tr>"
+                      +"</table>"
+                    +"</div>"
+                  +"</td>"
+                +"</tr>"
+                //+"</th:block>"
+            );
+        });
+    }).fail(function (xhr, status, error) {
+        console.log('¡Error al consultar datos!');
+    });
+}, 100);
+
+$("#btn-clear").click(function () {
+    tipo.value = "";
+    tipo.selectedIndex = -1;
+    areas.value = "";
+    areas.selectedIndex = -1;
+    direccion.value = "";
+    direccion.selectedIndex = -1;
+    empresa.value = "";
+    empresa.selectedIndex = -1;
+    componentCurrentDate.value = "";
+    componentCurrentDate.value.selectedIndex = -1;
+
+    $(".mdc-text-field__input").removeClass("mdc-text-field__label--float-above");
+
+    $("#results-table tbody").html("");
+});
+
