@@ -251,7 +251,7 @@
 
                     </div-->
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc-group-componentDesignRealDeliverDate">
-                        <input type="text" class="mdc-text-field__input" name="fechaTranspaso" id="componentDesignRealDeliverDate" th:field="*{transfer.transferDate}" />
+                        <input type="text" class="mdc-text-field__input" readonly name="fechaTranspaso" id="componentDesignRealDeliverDate" th:field="*{transfer.transferDate}" />
                         <label class="mdc-text-field__label">Fecha de Traspaso</label>
                     </div>
 
@@ -400,7 +400,7 @@
                 <td class="col-md-4" align="center">
                     <input type="hidden"  th:field="*{transfer.transferValue}" id="valorEnviar">
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                        <input type="text"  maxlength="10" required value="" class="mdc-text-field__input" id="valorPEP">
+                        <input type="text"  maxlength="12" required value="" class="mdc-text-field__input" id="valorPEP">
                         <label for="demo-input" class="mdc-text-field__label" >Presupuestado MXN</label>
                     </div>
                 </td>
