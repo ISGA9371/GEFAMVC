@@ -53,10 +53,22 @@ public class BudgetController {
         // TODO Validate user
 
         Budget budget = budgetService.findBudget(budgetId);
-        LOG.info("Creating new transfer" + "budgetID= "+budget.getBudgetId());
+        LOG.info("Creating new transfer... budgetID = " + budget.getBudgetId());
         model.addAttribute("budget", budget);
         model.addAttribute("transfer", new Transfer());
         //TODO Add catalogs
+        return URL_BUDGET + NEW_TRANSFER;
+    }
+
+    @RequestMapping(value = "/{budgetId}/transfers", method = RequestMethod.PUT)
+    public String saveTransfer(Model model, @PathVariable("budgetId") String budgetId,
+                               @ModelAttribute("transfer") Transfer transfer) {
+        // TODO Validate user
+
+        transferService.saveTransfer(transfer);
+        Budget budget = budgetService.findBudget(budgetId);
+        // TODO Update budget values
+
         return URL_BUDGET + NEW_TRANSFER;
     }
 
@@ -197,7 +209,7 @@ public class BudgetController {
         model.addAttribute("requirementData", requirementService.findOneRequirement(requirement.getRequirementId()));
         model.addAttribute("budgets", budgets);
 
-        return URL_FACTORY + ASSIGN_BUDGET_REQUIREMENT;
+        return "/layout/pepe-result :: coso";
     }
 
     // CATALOGS
