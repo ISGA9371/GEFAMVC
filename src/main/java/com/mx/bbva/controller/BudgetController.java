@@ -69,7 +69,7 @@ public class BudgetController {
         Budget budget = budgetService.findBudget(budgetId);
         // TODO Update budget values
 
-        return URL_BUDGET + NEW_TRANSFER;
+        return URL_BUDGET + SEARCH_BUDGETS;
     }
 
     @RequestMapping(value = "/{budgetId}/dispersions/add", method = RequestMethod.GET)
