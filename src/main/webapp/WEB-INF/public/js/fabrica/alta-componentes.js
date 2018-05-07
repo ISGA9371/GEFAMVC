@@ -4,7 +4,7 @@ function init() {
     $("#statusTypology").val(8);
     $("#status").val(31);
     holder("Cargando");
-    addCalendars();
+    //addCalendars();
     loadSelects();
     getVersion();
     addHiddenEvents();
@@ -158,6 +158,7 @@ function addSelectEvents() {
         }
         hiddenTypology.value = new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).value;
         $("#typologyEmp").val(hiddenTypology.value);
+        resetCalendars();
         new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = "";
         new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = "";
     });
@@ -177,6 +178,7 @@ function addSelectEvents() {
             } else {
                 new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).disabled = true;
             }
+            addCalendars(splittedNews[3],splittedNews[4]);
             $("#componentStartHours").val(splittedNews[2]);
             $("#componentFinalHours").val(splittedNews[2]);
             $("#componentStartCost").val(Number(splittedNews[2]) * Number($("#auxFare").val()));
@@ -187,6 +189,7 @@ function addSelectEvents() {
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = "";
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = "";
+            resetCalendars();
             $("#componentStartHours").val("");
             $("#componentFinalHours").val("");
             new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value = "";
@@ -209,6 +212,7 @@ function addSelectEvents() {
             } else {
                 new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).disabled = true;
             }
+            addCalendars(splittedMods[3],splittedMods[4]);
             $("#componentStartHours").val(splittedMods[2]);
             $("#componentFinalHours").val(splittedMods[2]);
             $("#componentStartCost").val(Number(splittedMods[2]) * Number($("#auxFare").val()));
@@ -219,6 +223,7 @@ function addSelectEvents() {
             $("#typologyEmp").val(hiddenTypology.value);
             new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = "";
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = "";
+            resetCalendars();
             $("#componentStartHours").val("");
             $("#componentFinalHours").val("");
             new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value = "";
@@ -283,10 +288,10 @@ function setDefaults() {
     new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("requieriment-mdc-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("FecRealCFG")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("FecPreFac")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("FecNegFac")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("FecRealFac")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("FecRealCFG-mdc-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("FecPreFac-mdc-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("FecNegFac-mdc-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("FecRealFac-mdc-text")).disabled = true;
 }
 
 function addHiddenEvents() {
@@ -360,37 +365,72 @@ function showH() {
 }
 
 function addCalendars(min, max) {
-    new mdc.textField.MDCTextField(document.getElementById("FecRealCFG")).disabled = false;
-    new mdc.textField.MDCTextField(document.getElementById("FecPreFac")).disabled = false;
-    new mdc.textField.MDCTextField(document.getElementById("FecNegFac")).disabled = false;
-    new mdc.textField.MDCTextField(document.getElementById("FecRealFac")).disabled = false;
-    $('#FecRealCFG').datepicker("destroy");
+    if(min === null || min === "null"){
+        min = null;
+    } else {
+        min = new Date(Number(min));
+    }
+    if(max === null || max === "null"){
+        max = null;
+    } else {
+        max = new Date(Number(max));
+    }
+    resetCalendars();
+    new mdc.textField.MDCTextField(document.getElementById("FecRealCFG-mdc-text")).disabled = false;
+    new mdc.textField.MDCTextField(document.getElementById("FecPreFac-mdc-text")).disabled = false;
+    new mdc.textField.MDCTextField(document.getElementById("FecNegFac-mdc-text")).disabled = false;
+    new mdc.textField.MDCTextField(document.getElementById("FecRealFac-mdc-text")).disabled = false;
+
     $('#FecRealCFG').datepicker({
         dateFormat: "dd/mm/yy",
         minDate: min,
         maxDate: max
     });
 
-    $('#FecPreFac').datepicker("destroy");
     $('#FecPreFac').datepicker({
         dateFormat: "dd/mm/yy",
         minDate: min,
         maxDate: max
     });
 
-    $('#FecNegFac').datepicker("destroy");
     $('#FecNegFac').datepicker({
         dateFormat: "dd/mm/yy",
         minDate: min,
         maxDate: max
     });
 
-    $('#FecRealFac').datepicker("destroy");
     $('#FecRealFac').datepicker({
         dateFormat: "dd/mm/yy",
         minDate: min,
         maxDate: max
     });
+}
+
+function resetCalendars() {
+    var mdcFecRealCFG = new mdc.textField.MDCTextField(document.getElementById("FecRealCFG-mdc-text"));
+    mdcFecRealCFG.value = "";
+    $("#componentDesignRealDeliverDate").val("");
+    mdcFecRealCFG.disabled = true;
+    var mdcFecPreFac = new mdc.textField.MDCTextField(document.getElementById("FecPreFac-mdc-text"));
+    mdcFecPreFac.value = "";
+    $("#componentPreviewDeliverDate").val("");
+    mdcFecPreFac.disabled = true;
+    var mdcFecNegFac = new mdc.textField.MDCTextField(document.getElementById("FecNegFac-mdc-text"));
+    mdcFecNegFac.value = "";
+    $("#componentPossibleDeliverDate").val("");
+    mdcFecNegFac.disabled = true;
+    var mdcFecRealFac = new mdc.textField.MDCTextField(document.getElementById("FecRealFac-mdc-text"));
+    mdcFecRealFac.value = "";
+    $("#componentRealDeliverDate").val("");
+    mdcFecRealFac.disabled = true;
+
+    $('#FecRealCFG').datepicker("destroy");
+
+    $('#FecPreFac').datepicker("destroy");
+
+    $('#FecNegFac').datepicker("destroy");
+
+    $('#FecRealFac').datepicker("destroy");
 }
 
 function holder(msg) {
