@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es-mx" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<html>
 
 <head>
   <meta charset="utf-8">
@@ -7,8 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
+  <meta name="google-signin-client_id" content="239115538167-ceimm036u1v112noonmhcut9p98gl0pr.apps.googleusercontent.com">
 
-  <title>GEFA :: Login</title>
+  <title>GEFA</title>
 
   <!-- Main Styles -->
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
@@ -16,32 +18,6 @@
   <link rel="stylesheet" type="text/css" href="/css/material-components-web.css">
   <link rel="stylesheet" type="text/css" href="/css/select.css">
   <link rel="stylesheet" type="text/css" href="/css/jquery-ui-base-theme-1.12.1.css">
-  <link rel="stylesheet" type="text/css" href="/css/bootstrap-datetimepicker.css">
-  <link rel="stylesheet" type="text/css" href="/css/HoldOn.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/jBox.0.4.9.css">
-  <link rel="stylesheet" type="text/css" href="/css/jBox.Notice.0.4.9.css">
-
-  <link rel="stylesheet" type="text/css" href="/css/login.css">
-
-  <!--===============================================================================================-->
-  <!-- <link rel="stylesheet" type="text/css" href="/js/vendor/bootstrap/css/bootstrap.min.css"> -->
-  <!--===============================================================================================-->
-  <!-- <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"> -->
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/js/vendor/animate/animate.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/js/vendor/css-hamburgers/hamburgers.min.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/js/vendor/animsition/css/animsition.min.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/js/vendor/select2/select2.min.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/js/vendor/daterangepicker/daterangepicker.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="/css/util.css">
-  <!-- <link rel="stylesheet" type="text/css" href="css/main.css"> -->
-  <!--===============================================================================================-->
-
 
 </head>
 
@@ -51,45 +27,26 @@
       <div class="col-md-8">
         <p id="brand">
           <img src="/img/bbva-bancomer.svg" width="246">
-          <span>I</span>
-          Nueva Herramienta Gestora
         </p>
       </div>
-    </div>
-  </header>
-
-
-  <div class="container">
-    <div class="row">
-      <div class="container-login100">
-        <div class="wrap-login100">
-          <form class="login100-form validate-form p-l-55 p-r-55 p-t-170">
-            <span class="login100-form-title">
-              Nueva Herramienta Gestora
-            </span>
-
-            <div class="wrap-input100 validate-input m-b-16" data-validate="Introduzca su usuario">
-              <input class="input100" type="text" name="username" placeholder="Usuario">
-              <span class="focus-input100"></span>
-            </div>
-    
-            <div class="wrap-input100 validate-input" data-validate="Introduzca su contraseña">
-              <input class="input100" type="password" name="pass" placeholder="Contraseña">
-              <span class="focus-input100"></span>
-            </div>
-    
-            <div class="container-login100-form-btn p-b-40 p-t-40">
-              <button class="login100-form-btn">
-                Entrar
-              </button>
-            </div>
-          </form>
-        </div>
+      <div class="col-md-4 text-right" id="top-bar-user-info">
       </div>
     </div>
-    <!-- .// div.row -->
+    <div class="row" id="top-bar-menu"></div>
+    <div class="row" id="top-bar-submenu"></div>
+  </header>
+  <!-- fragment:: menu -->
+  <div>
+    <div class="col-md-12 col-xs-12 text-center"  style="margin:80px 0">
+      <img src="/img/secrecy-icon.png">
+      <h2> Bienvenido.</h2>
+      <!-- <button >Entrar</button> -->
+      <div id="my-signin2" style="width:240px;margin:0 auto;" data-onsuccess="onSignIn"></div>
+    </div>
   </div>
-  <!-- .// div.container -->
+  <!-- <div>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  </div> -->
 
   <footer class="footer">
     <img src="/img/bbva-bancomer.svg" height="16" class="pull-left">
@@ -97,37 +54,52 @@
   </footer>
 </body>
 
-<div>
-  <!--Script generales-->
-  <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/js/jquery-ui-1.12.1.js"></script>
-  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/js/material-components-web.js"></script>
-  <script type="text/javascript" src="/js/moment-with-locales.js"></script>
-  <script type="text/javascript" src="/js/bootstrap-datetimepicker.js"></script>
-  <script type="text/javascript" src="/js/HoldOn.min.js"></script>
-  <script type="text/javascript" src="/js/jBox.0.4.9.min.js"></script>
-  <script type="text/javascript" src="/js/jBox.Notice.0.4.9.min.js"></script>
-  <script type="text/javascript" src="/js/ready.js"></script>
 
-  <!--===============================================================================================-->
-  <script src="/js/vendor/jquery/jquery-3.2.1.min.js"></script>
-  <!--===============================================================================================-->
-  <script src="/js/vendor/animsition/js/animsition.min.js"></script>
-  <!--===============================================================================================-->
-  <script src="/js/vendor/bootstrap/js/popper.js"></script>
-  <script src="/js/vendor/bootstrap/js/bootstrap.min.js"></script>
-  <!--===============================================================================================-->
-  <script src="/js/vendor/select2/select2.min.js"></script>
-  <!--===============================================================================================-->
-  <script src="/js/vendor/daterangepicker/moment.min.js"></script>
-  <script src="/js/vendor/daterangepicker/daterangepicker.js"></script>
-  <!--===============================================================================================-->
-  <script src="/js/vendor/countdowntime/countdowntime.js"></script>
-  <!--===============================================================================================-->
-  <script src="/js/login.js"></script>
-</div>
-<!-- <script type="text/javascript" src="/js/login.js"></script> -->
-<script>mdc.autoInit()</script>
+<script>
+  function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+  }
+
+  function onFailure(error) {
+      console.log(error);
+    }
+
+  function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        // 'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        // 'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+</script>
+
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
 </html>
+
+<!--
+{
+  "web":{
+    "client_id":"905195143131-3irmr6alrev49l9878vc8a810tchphjr.apps.googleusercontent.com",
+    "project_id":"gefatest-1525741710390",
+    "auth_uri":"https://accounts.google.com/o/oauth2/auth",
+    "token_uri":"https://accounts.google.com/o/oauth2/token",
+    "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+    "client_secret":"uWi6oLgwUevicRJw7MWhxz73"
+  }
+}
+
+239115538167-ceimm036u1v112noonmhcut9p98gl0pr.apps.googleusercontent.com
+
+SzS8VElPvqXSx_NFj3ZQBSa6
+
+-->
