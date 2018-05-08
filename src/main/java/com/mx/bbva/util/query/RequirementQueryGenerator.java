@@ -26,6 +26,7 @@ public class RequirementQueryGenerator {
         }
         searchDTO.forEach(this::newFilter);
 
+        LOG.info("Query made: " + stringBuffer.toString());
         return stringBuffer.toString();
     }
 
@@ -41,7 +42,7 @@ public class RequirementQueryGenerator {
             stringBuffer.append(" WHERE ");
             firstOne = false;
         } else {
-            stringBuffer.append(" OR ");
+            stringBuffer.append(" AND ");
         }
         stringBuffer.append(filter).append(operator);
 

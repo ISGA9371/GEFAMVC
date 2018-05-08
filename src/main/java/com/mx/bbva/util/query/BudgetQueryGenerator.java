@@ -19,9 +19,11 @@ public class BudgetQueryGenerator {
         LOG.info("Creating query for Budget...");
         fillValues();
         stringBuffer.append("FROM Budget x ");
-        // TODO Check how to search the budget
+
+        // TODO transfer date between two dates
         searchDTO.forEach(this::newFilter);
 
+        LOG.info("Query made: " + stringBuffer.toString());
         return stringBuffer.toString();
     }
 
@@ -37,7 +39,7 @@ public class BudgetQueryGenerator {
             stringBuffer.append(" WHERE ");
             firstOne = false;
         } else {
-            stringBuffer.append(" OR ");
+            stringBuffer.append(" AND ");
         }
         stringBuffer.append(filter).append(operator);
 

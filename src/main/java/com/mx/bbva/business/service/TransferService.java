@@ -1,7 +1,9 @@
 package com.mx.bbva.business.service;
 
+import com.mx.bbva.business.entity.Budget;
 import com.mx.bbva.business.entity.Transfer;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface TransferService {
@@ -10,4 +12,6 @@ public interface TransferService {
     Transfer findTransfer(Integer transferId);
 
     List<Transfer> findAllTransfers();
+
+    List<Transfer> findTransfersByBudget(Budget budget);
 }

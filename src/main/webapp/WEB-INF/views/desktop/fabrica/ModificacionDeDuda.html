@@ -100,10 +100,25 @@
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
                             <input id="hidden-prioridad" type="text" value="" required th:field="*{priority.priorityId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+
                             <div id="prioridad-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                                 <input disabled="disabled" th:field="*{priority.priorityName}"  type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tipologia">
                                 <label for="demo-input" class="mdc-text-field__label">Prioridad</label>
                             </div>
+
+                            <div id="prioridad" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                    <div class="mdc-select__label">Prioridad*</div>
+                                    <div class="mdc-select__selected-text" id="prioridad-sel-text"></div>
+                                    <div class="mdc-select__bottom-line"></div>
+                                </div>
+                                <div class="mdc-menu mdc-select__menu col-md-3">
+                                    <ul class="mdc-list mdc-menu__items" id="prioridad-select">
+                                        <li class="mdc-list-item" role="option" tabindex="0"></li>
+                                    </ul>
+                                </div>
+                            </div>
+
                         </td>
                         <td class="col-md-4" align="center">
                             <input id="hidden-responsable" type="text"   value="" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" required th:field="*{userSender.userInternalId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
@@ -114,10 +129,25 @@
                         </td>
                         <td class="col-md-4" align="center">
                             <input id="hidden-dudaSelect" type="text" value="" required th:field="*{doubtType.doubtTypeId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+
                             <div id="tioDuda-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                                 <input disabled="disabled" th:field="*{doubtType.doubtTypeName}"  type="text" class="mdc-text-field__input mdc-text-field--disabled" id="tipologia">
                                 <label for="demo-input" class="mdc-text-field__label">Tipo de Duda</label>
                             </div>
+
+                            <div id="Duda-js-select" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                    <div class="mdc-select__label">Tipo de Duda*</div>
+                                    <div class="mdc-select__selected-text" id="Duda-sel-text"></div>
+                                    <div class="mdc-select__bottom-line"></div>
+                                </div>
+                                <div class="mdc-menu mdc-select__menu col-md-3">
+                                    <ul class="mdc-list mdc-menu__items" id="Duda-select">
+                                        <li class="mdc-list-item" role="option" tabindex="0"></li>
+                                    </ul>
+                                </div>
+                            </div>
+
                         </td>
                     </tr>
                     <tr style="height:72px">
@@ -157,6 +187,19 @@
                         </td>
                     </tr>
                 </table>
+
+                <input id="desfijofabrica" type="hidden" required th:field="*{doubtDescriptionResponse}" >
+                <table class="col-md-12" >
+                    <tr style="height:72px">
+                        <td class="col-md-4" align="center">
+                            <div  id="descripcion-fabrica-js-text" align="right"  class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%; text-align:right;">
+                                <input type="text" align="right" th:value="*{doubtDescriptionResponse}" class="mdc-text-field__input mdc-text-field--disabled" id="descripcionfabrica" style="text-align:right;">
+                                <label for="demo-input" align="right" class="mdc-text-field__label">Descripción fabria</label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
                 <table class="col-md-12" >
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
@@ -167,6 +210,32 @@
                         </td>
                     </tr>
                 </table>
+
+                <table class="col-md-12" id="tablefabrica">
+                    <tr style="height:72px">
+                        <td class="col-md-4" align="center">
+                            <div  id="descripcion-js-textfabrica" class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
+                                <input type="text" maxlength="200" pattern="[A-Za-z 0-9áéíóúñÁÉÍÓÚÑ]+" onchange="rojeliafabrica(); rojeliatamafabrica()" class="mdc-text-field__input" id="descripcion2fabrica">
+                                <label for="demo-input" class="mdc-text-field__label" >Descripción agregar fabrica</label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="col-md-12" >
+                    <tr style="height:72px">
+                        <td class="col-md-4" align="center">
+                            <button class="btn btn-primary">descargar archivo</button>
+                        </td>
+                        <td class="col-md-4" align="center">
+                            <h6 onclick="dyd()" >fabrica</h6> <h6 onclick="fabrica()" >dyd</h6>
+                        </td>
+                        <td class="col-md-4" align="center">
+                            <h6 onclick="gestor()" >gestor</h6> <h6 onclick="adminin()" >admini</h6>
+                        </td>
+                    </tr>
+                </table>
+
             </div>
             <br>
             <div class="row">
@@ -176,6 +245,16 @@
                         <td class="col-md-6" align="center">
                             <button type="submit" class="btn btn-primary">Guardar</button>
                             <button type="button" id="cancelar-btn" class="btn btn-primary">Cancelar</button>
+                        </td>
+                        <td class="col-md-4" align="center">
+                            <div  id="boton-cerrar">
+                                <button id="cerrar-init" onclick="addButtonCerrar()" class="btn btn-primary"> Cerrar Duda</button>
+                            </div>
+                        </td>
+                        <td class="col-md-4" align="center">
+                            <div id="boton-abrir-duda">
+                                <button onclick="addButtonAbrir()" class="btn btn-primary">Abrir Duda</button>
+                            </div>
                         </td>
                     </tr>
                 </table>

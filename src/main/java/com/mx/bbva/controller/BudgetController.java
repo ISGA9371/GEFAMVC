@@ -48,6 +48,42 @@ public class BudgetController {
         return URL_BUDGET + NEW_BUDGET;
     }
 
+    @RequestMapping(value = "/{budgetId}/transfers/add", method = RequestMethod.GET)
+    public String createTransfer(Model model, @PathVariable("budgetId") String budgetId) {
+        // TODO Validate user
+
+        Budget budget = budgetService.findBudget(budgetId);
+        LOG.info("Creating new transfer... budgetID = " + budget.getBudgetId());
+        model.addAttribute("budget", budget);
+        model.addAttribute("transfer", new Transfer());
+        //TODO Add catalogs
+        return URL_BUDGET + NEW_TRANSFER;
+    }
+
+    @RequestMapping(value = "/{budgetId}/transfers", method = RequestMethod.PUT)
+    public String saveTransfer(Model model, @PathVariable("budgetId") String budgetId,
+                               @ModelAttribute("transfer") Transfer transfer) {
+        // TODO Validate user
+
+        transferService.saveTransfer(transfer);
+        Budget budget = budgetService.findBudget(budgetId);
+        // TODO Update budget values
+
+        return URL_BUDGET + SEARCH_BUDGETS;
+    }
+
+    @RequestMapping(value = "/{budgetId}/dispersions/add", method = RequestMethod.GET)
+    public String createDispersion(Model model, @PathVariable("budgetId") String budgetId) {
+        // TODO Validate user
+
+        Budget budget = budgetService.findBudget(budgetId);
+        LOG.info("Creating new budget");
+        model.addAttribute("budget", budget);
+        model.addAttribute("transfer", new Transfer());
+        //TODO Add catalogs
+        return URL_BUDGET + NEW_DISPERSION;
+    }
+
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveBudget(@ModelAttribute("budget") Budget budget, @ModelAttribute("transfer") Transfer transfer) {
         // TODO Validate user
@@ -96,9 +132,19 @@ public class BudgetController {
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public List<Transfer> searchForBudgets(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
-        /*String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
-        List<Budget> budgets = budgetService.findByCustomQuery(query); */
-        return this.transferService.findAllTransfers();
+        String query = new BudgetQueryGenerator().generateQuery(parameters);
+        List<Budget> budgets = budgetService.findByCustomQuery(query);
+
+        List<Transfer> transfers = new ArrayList<>();
+        for (Budget budget : budgets) {
+            transfers.addAll(transferService.findTransfersByBudget(budget));
+        }
+        for (Transfer transfer : transfers) {
+            Budget budgetDb = transfer.getBudgetDb();
+            budgetDb.setTransfers(null);
+            transfer.setBudget(budgetDb);
+        }
+        return transfers;
     }
 
     @RequestMapping(value = "/billing/filters", method = RequestMethod.GET)
@@ -107,13 +153,14 @@ public class BudgetController {
         return URL_BUDGET + BILLING_CUT;
     }
 
+    @ResponseBody
     @RequestMapping(value = "/billing/search", method = RequestMethod.GET)
-    public String searchForBillings(@ModelAttribute("billingSearchDTO") BudgetSearchDTO budgetSearchDTO, Model model) {
+    public List<Invoice> searchForBillings(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
         /* String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
         List<Budget> budgets = budgetService.findByCustomQuery(query); */
-        model.addAttribute("invoices", invoiceService.findAllInvoices());
-        return URL_BUDGET + BILLING_CUT;
+
+        return invoiceService.findAllInvoices();
     }
 
     @RequestMapping(value = "/payments/filters", method = RequestMethod.GET)
@@ -122,13 +169,14 @@ public class BudgetController {
         return URL_BUDGET + STATUS_PAYMENT;
     }
 
+    @ResponseBody
     @RequestMapping(value = "/payments/search", method = RequestMethod.GET)
-    public String searchForPayments(@ModelAttribute("payment") Payment payment, Model model) {
+    public List<Payment> searchForPayments(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
         /*String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
         List<Budget> budgets = budgetService.findByCustomQuery(query);*/
-        model.addAttribute("payments", paymentService.findAllPayments());
-        return URL_BUDGET + STATUS_PAYMENT;
+
+        return paymentService.findAllPayments();
     }
 
     @RequestMapping(value = "/assign", method = RequestMethod.PUT)
@@ -161,7 +209,7 @@ public class BudgetController {
         model.addAttribute("requirementData", requirementService.findOneRequirement(requirement.getRequirementId()));
         model.addAttribute("budgets", budgets);
 
-        return URL_FACTORY + ASSIGN_BUDGET_REQUIREMENT;
+        return "/layout/pepe-result :: coso";
     }
 
     // CATALOGS

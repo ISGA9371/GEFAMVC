@@ -1,8 +1,7 @@
 package com.mx.bbva.business.service.impl;
 
-import com.mx.bbva.business.entity.Modification;
-import com.mx.bbva.business.entity.Status;
-import com.mx.bbva.business.entity.User;
+import com.mx.bbva.business.entity.*;
+import com.mx.bbva.business.repository.FareRepository;
 import com.mx.bbva.business.repository.ModificationRepository;
 import com.mx.bbva.business.service.ModificationService;
 import com.mx.bbva.util.DateUtils;
@@ -14,6 +13,7 @@ import java.util.List;
 @Service
 public class ModificationServiceImpl implements ModificationService {
     private ModificationRepository modificationRepository;
+    private FareRepository fareRepository;
 
     @Override
     public void saveModification(Modification modification) {
@@ -28,7 +28,17 @@ public class ModificationServiceImpl implements ModificationService {
 
     @Override
     public Modification findModification(Integer modificationId) {
-        return modificationRepository.findById(modificationId).orElse(null);
+        Modification modification = modificationRepository.findById(modificationId).orElse(null);
+        if (modification != null) {
+            Component component = modification.getComponent();
+            Requirement requirement = component.getRequirement();
+
+            Fare fare = fareRepository.findFareValueByCompanyAndTechnologyAndAreaAndStatus(
+                    requirement.getCompany(), requirement.getTechnology(), requirement.getArea(), new Status(55));
+
+            requirement.setFareValue(fare != null ? fare.getFareValue() : new Double(0.0));
+        }
+        return modification;
     }
 
     @Override
@@ -39,5 +49,10 @@ public class ModificationServiceImpl implements ModificationService {
     @Autowired
     public void setModificationRepository(ModificationRepository modificationRepository) {
         this.modificationRepository = modificationRepository;
+    }
+
+    @Autowired
+    public void setFareRepository(FareRepository fareRepository) {
+        this.fareRepository = fareRepository;
     }
 }

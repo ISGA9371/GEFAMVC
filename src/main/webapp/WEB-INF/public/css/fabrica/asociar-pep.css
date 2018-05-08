@@ -9,13 +9,6 @@ input.mdc-text-field__input{
     border-bottom-color:rgba(28, 59, 224, 0.5)
 }
 
-#req-data-row div.col-md-2{
-    padding-left: 0;
-    padding-right: 0;
-}
-#req-data-row div.col-md-2 div.mdc-text-field{
-    width: 99%;
-}
 .pep-title{
     background: #8F7AE5;
     font-size: 20px;

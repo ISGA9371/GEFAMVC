@@ -27,7 +27,8 @@ VALUES
 (14,'EDO_FACT_HRS_PROY'),
 (15,'EDO_SEG_REQ'),
 (16,'EDO_TARIFA'),
-(17,'EDO_RECURSO');
+(17,'EDO_RECURSO'),
+(18, 'EDO_PAGO');
 
 INSERT INTO `thge013_pi`
 VALUES
@@ -229,7 +230,18 @@ VALUES
 (55,'VIGENTE',16),
 (56,'VENCIDA',16),
 (57,'ACTIVO',1),
-(58,'INACTIVO',1);
+(58,'INACTIVO',1),
+(59, 'SIN PARTIDA', 18),
+(60, 'POR ENVIAR A IMPLANT', 18),
+(61, 'EN CAPTURA POR IMPLANT', 18),
+(62, 'PENDIENTE DE AUTORIZACIÓN', 18),
+(63, 'EN FINANZAS', 18),
+(64, 'EN COMPRAS', 18),
+(65, 'PENDIENTE DE HEA', 18),
+(66, 'PENDIENTE DE ACEPTACIÓN', 18),
+(67, 'PAGADO GPS', 18),
+(68, 'FACTURA INGRESADA', 18),
+(69, 'DEPÓSITO A PROVEEDOR', 18);
 
 -- PRODUCTO
 INSERT INTO `gestion_factoria`.`thge018_producto`
@@ -800,3 +812,104 @@ VALUES
 (14,8,2,430,'2018',28),
 (15,12,1,440,'2018',28),
 (16,12,1,450,'2018',28);
+
+INSERT INTO `gestion_factoria`.`thge055_cta_oper`
+VALUES
+(1, '00001'),
+(2, '00002');
+
+INSERT INTO `gestion_factoria`.`thge020_clasif_rec`
+VALUES
+(1, 'Rec Clasif 1'),
+(2, 'Rec Clasif 2');
+
+INSERT INTO `gestion_factoria`.`thge021_sbclas_rec`
+VALUES
+(1, 'Sub Rec Clasif 1', 1),
+(2, 'Sub Rec Clasif 2', 2);
+
+INSERT INTO `gestion_factoria`.`thge046_cat_caso`
+VALUES
+(1, 'Categoria Caso 1'),
+(2, 'Categoria Caso 2'),
+(3, 'Categoria Caso 3');
+
+INSERT INTO `gestion_factoria`.`thge047_result_obt` 
+VALUES 
+(1, 'Resultado Obtenido 1'),
+(2, 'Resultado Obtenido 2'),
+(3, 'Resultado Obtenido 3');
+
+INSERT INTO `gestion_factoria`.`thge049_entorno` 
+VALUES 
+(1, 'Entorno 1'),
+(2, 'Entorno 2'),
+(3, 'Entorno 3');
+
+INSERT INTO `gestion_factoria`.`thge023_programa` 
+VALUES 
+(1, 'Programa 1'),
+(2, 'Programa 2'),
+(3, 'Programa 3');
+
+INSERT INTO `gestion_factoria`.`thge025_sede` 
+VALUES 
+(1, 'Sede 1'),
+(2, 'Sede 2'),
+(3, 'Sede 3');
+
+INSERT INTO `gestion_factoria`.`thge032_tipo_cont`  
+VALUES 
+(1, 'Tipo Contrato 1'),
+(2, 'Tipo Contrato 2'),
+(3, 'Tipo Contrato 3');
+
+INSERT INTO `gestion_factoria`.`thge033_tipo_asig`  
+VALUES 
+(1, 'Tipo Asignacion 1'),
+(2, 'Tipo Asignacion 2'),
+(3, 'Tipo Asignacion 3');
+
+INSERT INTO `gestion_factoria`.`thge043_criticidad` 
+VALUES 
+(1, 'C01'),
+(2, 'C02'),
+(3, 'C03');
+
+INSERT INTO `gestion_factoria`.`thge045_prioridad_cp` 
+VALUES 
+(1, 'Prioridad Caso Prueba 1'),
+(2, 'Prioridad Caso Prueba 2'),
+(3, 'Prioridad Caso Prueba 3');
+
+INSERT INTO `gestion_factoria`.`thge050_severidad` 
+VALUES 
+(1, 'Severidad 1'),
+(2, 'Severidad 2'),
+(3, 'Severidad 3');
+
+INSERT INTO `gestion_factoria`.`thge051_ac_res_cor` 
+VALUES 
+(1, 'Area Resp 1'),
+(2, 'Area Resp 2'),
+(3, 'Area Resp 3');
+
+INSERT INTO `gestion_factoria`.`thge052_causa_rech` 
+VALUES 
+(1, 'Causa Rechazo 1'),
+(2, 'Causa Rechazo 2'),
+(3, 'Causa Rechazo 3');
+
+INSERT INTO `gestion_factoria`.`thge053_causa_cier` 
+VALUES 
+(1, 'Causa Cierre 1'),
+(2, 'Causa Cierre 2'),
+(3, 'Causa Cierre 3');
+
+INSERT INTO `gestion_factoria`.`thge054_res_verif` 
+VALUES 
+(1, 'Resultado 1'),
+(2, 'Resultado 2'),
+(3, 'Resultado 3');
+
+

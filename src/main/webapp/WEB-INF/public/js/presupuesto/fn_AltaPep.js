@@ -4,13 +4,14 @@
 function init(){
 
     initGlobal();
-    crearCombos();
     asignarCombos();
     addCalendars();
     //add default values
     addMissing();
     addDefaultValues();
     disableFields();
+    formatMoney();
+    addButtonEvents();
 
 }
 
@@ -29,29 +30,12 @@ function addDefaultValues(){
     var fecha = new Date();
     var ano = fecha.getFullYear();
     $("#anioPep").val(ano);
+    $("#hdYear").val(ano);
     $("#anioPep").focus();
 
 
 }
 
-
-function crearCombos(){
-
-    // mdc.select.MDCSelect.attachTo(document.getElementById('anio-js-select'));
-    // mdc.select.MDCSelect.attachTo(document.getElementById('area-js-select'));
-    // mdc.select.MDCSelect.attachTo(document.getElementById('banca-js-select'));
-    // mdc.select.MDCSelect.attachTo(document.getElementById('responsableDot-js-select'));
-    // mdc.select.MDCSelect.attachTo(document.getElementById('solicitante-js-select'));
-    // mdc.select.MDCSelect.attachTo(document.getElementById('estado-js-select'));
-    // mdc.select.MDCSelect.attachTo(document.getElementById('ig-js-select'));
-    // mdc.select.MDCSelect.attachTo(document.getElementById('direccion-js-select'));
-    // mdc.select.MDCSelect.attachTo(document.getElementById('director-js-select'));
-    // mdc.select.MDCSelect.attachTo(document.getElementById('grupo-js-select'));
-    // mdc.select.MDCSelect.attachTo(document.getElementById('respArea-js-select'));
-    // mdc.select.MDCSelect.attachTo(document.getElementById('respDyD-js-select'));
-
-
-}
 
 function asignarCombos(){
 
@@ -68,13 +52,13 @@ function asignarCombos(){
     });
 
     //cmb area
-    const areas = new mdc.select.MDCSelect(document.querySelector('#area-js-select'));
+    areas = new mdc.select.MDCSelect(document.querySelector('#area-js-select'));
 
     $.ajax({
         url: "/api/areas"
     }).done(function(data) {
 
-        let subs = data.data;
+        subs = data.data;
 
         $("#area-area-text").html("");
         areas.selectedIndex = -1;
@@ -94,13 +78,13 @@ function asignarCombos(){
 
 
     //cmb banking
-    const bnk = new mdc.select.MDCSelect(document.querySelector('#banca-js-select'));
+    bnk = new mdc.select.MDCSelect(document.querySelector('#banca-js-select'));
 
     $.ajax({
         url: "/api/bankings"
     }).done(function(data) {
 
-        let subs = data.data;
+        subs = data.data;
 
         $("#bc-bc-text").html("");
         bnk.selectedIndex = -1;
@@ -119,13 +103,13 @@ function asignarCombos(){
     });
 
     //cmb corporation
-    const coorp = new mdc.select.MDCSelect(document.querySelector('#estado-js-select'));
+    coorp = new mdc.select.MDCSelect(document.querySelector('#estado-js-select'));
 
     $.ajax({
         url: "/api/corporations"
     }).done(function(data) {
 
-        let subs = data.data;
+        subs = data.data;
 
         $("#en-en-text").html("");
         coorp.selectedIndex = -1;
@@ -144,13 +128,13 @@ function asignarCombos(){
     });
 
     //cmb nature
-    const natu = new mdc.select.MDCSelect(document.querySelector('#ig-js-select'));
+    natu = new mdc.select.MDCSelect(document.querySelector('#ig-js-select'));
 
     $.ajax({
         url: "/api/natures"
     }).done(function(data) {
 
-        let subs = data.data;
+        subs = data.data;
 
         $("#nt-nt-text").html("");
         natu.selectedIndex = -1;
@@ -169,11 +153,11 @@ function asignarCombos(){
     });
 
     //Asign CR
-    const select = new mdc.select.MDCSelect(document.querySelector('#ig-js-select'));
-    let inter = 0;
+    select = new mdc.select.MDCSelect(document.querySelector('#ig-js-select'));
+    inter = 0;
     select.listen('MDCSelect:change', () => {
 
-        let id = select.selectedOptions[0].value;
+        id = select.selectedOptions[0].value;
 
         if(id==1){
 
@@ -189,12 +173,12 @@ function asignarCombos(){
     });
 
     //cmb direction
-    const directions = new mdc.select.MDCSelect(document.querySelector('#dirs'));
+    directions = new mdc.select.MDCSelect(document.querySelector('#dirs'));
     $.ajax({
         url: "/api/levels"
     }).done(function(data) {
 
-        let subs = data.data;
+        subs = data.data;
 
         $("#dir-dir-text").html("");
         directions.selectedIndex = -1;
@@ -229,11 +213,11 @@ function asignarCombos(){
 
 
     //function direction and groups
-    const subdirs = new mdc.select.MDCSelect(document.querySelector('#subdirs'));
-    let coso = 0;
+    subdirs = new mdc.select.MDCSelect(document.querySelector('#subdirs'));
+    coso = 0;
     directions.listen('MDCSelect:change', () => {
         if (coso!= 0) return; else coso = 1;
-    let id = directions.selectedOptions[0].value;
+    id = directions.selectedOptions[0].value;
     //SET HIDDEN FIELD VALUE
     $("#hidden-direccion").val(id);
     //clean subdir
@@ -247,7 +231,7 @@ function asignarCombos(){
         url: "/api/levels/"+id+"/sub-levels"
     }).done(function(data) {
         //let subdirs = JSON.parse(data);
-        let subs = data.data;
+        subs = data.data;
         //console.log(subs.length);
         $("#subdir-sel-text").html("");
         subdirs.selectedIndex = -1;
@@ -279,13 +263,31 @@ function asignarCombos(){
         new mdc.textField.MDCTextField(document.getElementById('respAreaDiv')).disabled = true;
     });
 
+    userG = new mdc.select.MDCSelect(document.querySelector('#respDyD-js-select'));
+    $.ajax({
+        url: "/api/users/"
+    }).done(function(data) {
+        //let subdirs = JSON.parse(data);
+        subs = data.data;
+        //console.log(subs.length);
+        $("#respDyd-respDyd-text").html("");
+        userG.selectedIndex = -1;
+        userG.value = "";
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#respDyd-select").html("");
+            $.each(subs, function( index, value ) {
 
+                if(value.profileType.profileTypeId=="7"){
+                    $("#respDyd-select").append(
+                        "<li class='mdc-list-item' role='option' tabindex='0' " +
+                        "id='"+value.userInternalId+"' value='"+value.userInternalId+"'>"+value.userInternalId+"</li>");
+                }
 
-}
-
-function asignMount(value){
-
-    $('#hdAmount').val(value);
+            });
+        }else $("#respDyd-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+        //Only one
+        //cosoS=0;
+    });
 
 }
 
@@ -298,8 +300,6 @@ function funcionCancelar(){
 
 function addCalendars(){
 
-    //mdc_text_fechaTranspaso = new mdc.textField.MDCTextField(document.querySelector('#fechaTranspaso'));
-
     $('#componentDesignRealDeliverDate').datepicker({
         dateFormat: "dd/mm/yy"
     });
@@ -311,13 +311,7 @@ function addCalendars(){
             $("#mdc-group-componentDesignRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
         }
     });
-    // $('#fechaTranspaso').datetimepicker({
-    //     format: 'DD/MM/YYYY',
-    //     widgetPositioning: {
-    //         horizontal: 'auto',
-    //         vertical: 'top'
-    //     }
-    // });
+
 
 }
 
@@ -325,6 +319,99 @@ function addMissing(){
 
     $('#hdStatus').val(41);
     $('#hdStatusDyd').val(42);
+
+}
+
+function formatMoney(){
+
+    $("#valorPEP").on({
+        "focus": function(event) {
+            $(event.target).select();
+        },
+        "keyup": function(event) {
+            $(event.target).val(function(index, value) {
+                $("#valorEnviar").val(value.replace(/\D/g, "").replace(/([0-9])([0-9]{2})$/, '$1.$2'));
+                $("#hdAmount").val(value.replace(/\D/g, "").replace(/([0-9])([0-9]{2})$/, '$1.$2'));
+                return value.replace(/\D/g, "").replace(/([0-9])([0-9]{2})$/, '$1.$2').replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+            });
+        }
+    });
+
+}
+
+function addButtonEvents() {
+    //Actions for save requirements
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+        HoldOn.open({
+            theme: "sk-cube",
+            content: '',
+            message: 'Registrando PEP',
+            // backgroundColor: "#004582",
+            backgroundColor: "#0c71ca",
+            textColor: "white"
+        });
+        setTimeout("ajaxGuardar();", 500)
+    });
+
+    //Actions for cancel requirements
+    var btnCancel = document.getElementById('cancelar-btn');
+    btnCancel.addEventListener("click", function () {
+        holder("Cargando...");
+        window.location.href = "/budgets/filters";
+    })
+}
+
+function ajaxGuardar() {
+    var $form = $("form");
+    var url = $form.attr("action");
+    var formData = $($form).serializeArray();
+
+    $.ajax({
+        async: false,
+        url: url,
+        type: 'post',
+        data: formData
+    }).done(function (data) {
+        customHolder("info", "PEP Dado de Alta Exitosamente.","window.location.href = '/budgets/" + $(data).find("#transferId").val() + "'; holder('Cargando...')");
+        //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
+    }).fail(function (xhr, status, error) {
+        //console.log("fail");
+        customHolder("error", xhr.responseJSON.message)
+    });
+}
+
+function customHolder(type, msg, fctn) {
+    var options = null;
+    fctn = fctn == undefined ? "" : fctn;
+    switch(type){
+        case "Error":
+        case "ERROR":
+        case "error":
+            options = msgAssets.error;
+            break;
+        case "Aviso":
+        case "AVISO":
+        case "aviso":
+            options = msgAssets.warn;
+            break;
+        default:
+            options = msgAssets.info;
+    }
+    msg = msg == undefined ? options.defaultMsg : msg;
+    HoldOn.open({
+        theme: "custom",
+        // If theme == "custom" , the content option will be available to customize the logo
+        content: '<img style="height: 57px; margin-left: -5px;" src="data:image/png;base64,' + options.icon + '" >',
+        message: "<br>" + msg +'<br><br><input type="button" value="Aceptar" class="btn btn-default" onclick="HoldOn.close();'+fctn+'">',
+        backgroundColor: "#0c71ca",
+        textColor: "white"
+    });
+}
+
+function asociarTransfer(valor){
+
+    $("#transferId").val(valor);
 
 }
 
