@@ -26,7 +26,7 @@ public class AppController {
          */
         user.setUserInternalId("XMY0000");
         user.setProfileType(new ProfileType(4));
-        return "indexGefa";
+        return "login";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
