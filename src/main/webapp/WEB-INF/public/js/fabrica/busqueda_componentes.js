@@ -436,10 +436,10 @@ $(function () {
           $("#tab-fecha > table > tbody").append(
             "<tr><td>" + value.componentName + "</td>" +
             "<td>" + value.requirement.requirementName + "</td>" +
-            "<td><input type='text' id='date1-" + value.componentId + "' value='" + date1 +"' class='form-control date1Text'></td>" +
-            "<td><input type='text' id='date2-" + value.componentId + "' value='" + date2 + "' class='form-control date2Text'></td>" +
-            "<td><input type='text' id='date3-" + value.componentId + "' value='" + date3 + "' class='form-control date3Text'></td>" +
-            "<td><input type='text' id='date4-" + value.componentId + "' value='" + date4 + "' class='form-control date4Text'></td>" +
+            "<td><input type='text' id='date1-" + value.componentId + "' value='" + date1 + "' class='form-control date1Text' readonly='readonly'></td>" +
+            "<td><input type='text' id='date2-" + value.componentId + "' value='" + date2 + "' class='form-control date2Text' readonly='readonly'></td>" +
+            "<td><input type='text' id='date3-" + value.componentId + "' value='" + date3 + "' class='form-control date3Text' readonly='readonly'></td>" +
+            "<td><input type='text' id='date4-" + value.componentId + "' value='" + date4 + "' class='form-control date4Text' readonly='readonly'></td>" +
             "<td>"+ value.status.statusName +"</td></tr>"
           );
           $("#date1-" + value.componentId).datepicker({ dateFormat: "dd/mm/yy" });
@@ -477,10 +477,10 @@ $(function () {
         $("#tab-fecha > table > tbody").append(
           "<tr style='background-color:#004582;'><td></td>" +
           "<td></td>" +
-          "<td><input type='text' id='date1' value='' class='form-control'></td>" +
-          "<td><input type='text' id='date2' value='' class='form-control'></td>" +
-          "<td><input type='text' id='date3' value='' class='form-control'></td>" +
-          "<td><input type='text' id='date4' value='' class='form-control'></td>" +
+          "<td><input type='text' id='date1' value='' class='form-control' readonly='readonly'></td>" +
+          "<td><input type='text' id='date2' value='' class='form-control' readonly='readonly'></td>" +
+          "<td><input type='text' id='date3' value='' class='form-control' readonly='readonly'></td>" +
+          "<td><input type='text' id='date4' value='' class='form-control' readonly='readonly'></td>" +
           "<td></td></tr>"
         );
 
