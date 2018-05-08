@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head th:replace="~{layout/mainHeader :: head ('Alta de Componente')}"></head>
+
+<body>
+<header th:replace="~{layout/mainHeader :: header }"></header>
+
+<div class="container">
+    <form style="display:block" action="#">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2 class="h2-title-content">Usuarios</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 subtitle-content">Usuarios</div>
+            </div>
+
+            <div class="col-xs-12"></div>
+            <div class="row" id="row-content-results">
+                <table id="results-table" class="col-md-12 table table-hover table-condensed" style="color:#005EB8; text-align:center; font-weight: bold;">
+                    <thead>
+                    <tr>
+                        <td class="col-md-4">Usuarios</td>
+                        <td class="col-md-3">Perfil</td>
+                        <td class="col-md-3">Estatus</td>
+                        <td class="col-md-2">Ácción</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id="noUsers">
+                        <td colspan="12">
+                            <h2>No se encontraron resultados para tu búsqueda.</h2>
+                        </td>
+                    </tr>
+
+
+                    <th:block display="display:none;" id="container-users">
+                        <tr id="base" data-tggle="collapse" class="clickable">
+                            <td id="user" class="col-md-4">Admin1</td>
+                            <td id="profile"class="col-md-3">Administrador</td>
+                            <td id="status" class="col-md-3">activo</td>
+                            <td class="col-md-2" align="center">
+                                <img src="/img/cerrar.png" style="width:25px;">
+                                <img src="/img/editar a.png" id="botonEditar" href="#row-detail-wrapper-1" onclick="$(this).closest('tr').next().find('#dos').attr('class','collapse-in');" style="width:25px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="12" id="dos" class="collapse">
+                                <div id="row-detail-wrapper-1">
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td class="col-md-4" align="center">
+                                                <div class="mdc-text-field mdc-text-field--upgraded">
+                                                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc-group-componentNameEdit">
+                                                        <input type="text" class="mdc-text-field__input" name="componentUserEdit" id="componentUserEdit" maxlength="30" />
+                                                        <label class="mdc-text-field__label">Usuario</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-3" align="center">
+                                                <div id="slct_perfilEdit" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                                        <div class="mdc-select__label">Perfil</div>
+                                                        <div class="mdc-select__selected-text"></div>
+                                                        <div class="mdc-select__bottom-line"></div>
+                                                    </div>
+                                                    <div class="mdc-menu mdc-select__menu">
+                                                        <ul class="mdc-list mdc-menu__items">
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="col-md-3" align="center">
+                                                <div id="slct_estadoEdit" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                                        <div class="mdc-select__label">Estado</div>
+                                                        <div class="mdc-select__selected-text"></div>
+                                                        <div class="mdc-select__bottom-line"></div>
+                                                    </div>
+                                                    <div class="mdc-menu mdc-select__menu">
+                                                        <ul class="mdc-list mdc-menu__items">
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-2" align="center">
+                                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </th:block>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- .// row -->
+            <div class="row">
+                <div class="col-md-12 subtitle-content">Agregar Usuario</div>
+            </div>
+            <div class="col-xs-12"></div>
+            <div class="row">
+                <table id="table-data" class="col-md-12" style="z-index: 999 !important;">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-4" align="center">
+                                <div class="mdc-text-field mdc-text-field--upgraded">
+                                    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc-group-componentName">
+                                        <input type="text" class="mdc-text-field__input" name="componentUser" id="componentUser" maxlength="30" />
+                                        <label class="mdc-text-field__label">Usuario</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="col-md-4" align="center">
+                                    <div id="slct_perfil" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                            <div class="mdc-select__label">Perfil</div>
+                                            <div class="mdc-select__selected-text"></div>
+                                            <div class="mdc-select__bottom-line"></div>
+                                        </div>
+                                        <div class="mdc-menu mdc-select__menu">
+                                            <ul class="mdc-list mdc-menu__items">
+                                                 </ul>
+                                        </div>
+                                    </div>
+                            </td>
+                            <td class="col-md-4" align="center">
+                                    <div id="slct_estado" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                            <div class="mdc-select__label">Estado</div>
+                                            <div class="mdc-select__selected-text"></div>
+                                            <div class="mdc-select__bottom-line"></div>
+                                        </div>
+                                        <div class="mdc-menu mdc-select__menu">
+                                            <ul class="mdc-list mdc-menu__items">
+                                            </ul>
+                                        </div>
+                                    </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row buttons" id="row-buttons-results">
+                <div class="col-xs-12 text-center">
+                    <a id="cancel-user" class="btn btn-primary">Cancelar</a>
+
+                    <a id="add-user" class="btn btn-primary">Guardar</a>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<footer th:replace="~{layout/footer2 :: footer }"></footer>
+</body>
+
+<div th:replace="~{layout/footer2 :: scripts }"></div>
+<script>
+
+    var editReq = $("#dos");
+    //var addComp = $("#add-component");
+
+    $('tr.clickable').click(function() {
+        editReq.attr("class","collapse-in");
+        let target = $(this).attr("aria-controls");
+
+        $("#"+target).collapse('toggle');
+        //addComp.removeAttr("disabled");
+    });
+
+    editReq.click(function () {
+        if($(this).attr("href")) {
+            showHoldOn();
+            $("#table-data tbody").html("");
+        }
+    });
+
+
+    $.ajax({
+        async: false,
+        url: "/api/users"
+    }).done(function(json){
+        $.each(json.data, function(i, data) {
+
+        });
+        mdc.select.MDCSelect.attachTo(document.getElementById('slct_estado'));
+    }).fail(function(xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        new mdc.select.MDCSelect(document.getElementById('slct_estado')).disabled = true;
+        customHolder('error','¡Error al consultar combos!');
+        showingError = true;
+        //$('#slct_estado').val("");
+    });
+
+
+
+    $.ajax({
+        async: false,
+        url: "/api/status-types/1/status"
+    }).done(function(json){
+        $.each(json.data, function(i, data) {
+            $liElement = $("<li>");
+            $liElement.attr("class","mdc-list-item");
+            $liElement.attr("role","option");
+            $liElement.attr("id",data.statusId);
+            $liElement.append(data.statusName);
+            $("#slct_estado").find("ul:first").append($liElement);
+        });
+        mdc.select.MDCSelect.attachTo(document.getElementById('slct_estado'));
+    }).fail(function(xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        new mdc.select.MDCSelect(document.getElementById('slct_estado')).disabled = true;
+        customHolder('error','¡Error al consultar combos!');
+        showingError = true;
+        //$('#slct_estado').val("");
+    });
+
+    $.ajax({
+        async: false,
+        url: "/api/profile-types"
+    }).done(function(json){
+        $.each(json.data, function(i, data) {
+            $liElement = $("<li>");
+            $liElement.attr("class","mdc-list-item");
+            $liElement.attr("role","option");
+            $liElement.attr("id",data.profileTypeId);
+            $liElement.append(data.profileTypeName);
+            $("#slct_perfil").find("ul:first").append($liElement);
+        });
+        mdc.select.MDCSelect.attachTo(document.getElementById('slct_perfil'));
+    }).fail(function(xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        new mdc.select.MDCSelect(document.getElementById('slct_perfil')).disabled = true;
+        customHolder('error','¡Error al consultar combos!');
+        showingError = true;
+        //$('#slct_perfil').val("");
+    });
+    $.ajax({
+        async: false,
+        url: "/api/users"
+    }).done(function(json){
+        $.each(json.data, function(i, data) {
+            console.log(data.userInternalId);
+            cloned = $("#base").clone();
+            cloned.find("#user").html(data.userInternalId);
+            cloned.find("#status").html(data.status.statusName);
+            cloned.find("#profile").html(data.profileType.profileTypeName);
+            $("#base").parent().append(cloned);
+            $("#base").parent().append($("#base").next().clone());
+            document.getElementById("noUsers").style.display="none";
+        });
+
+    }).fail(function(xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        new mdc.select.MDCSelect(document.getElementById('slct_estado')).disabled = true;
+        customHolder('error','¡Error al consultar combos!');
+        showingError = true;
+        //$('#slct_estado').val("");
+    });
+    $($.find("#base")).eq(0).css("display", "none");
+    mdc.autoInit();
+</script>
+</html>
