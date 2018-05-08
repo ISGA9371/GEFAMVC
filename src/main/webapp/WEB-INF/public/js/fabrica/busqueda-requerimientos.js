@@ -363,16 +363,16 @@ $(function () {
 
     //SETDATES
     if($("#requirementStartDate").val()){
-        var compD1 = $("#requirementStartDate").val().split('/');
-        var startD = new Date(compD1[2],compD1[1]-1,compD1[0]);
+        var compD1 = $("#requirementStartDate").val().split('-');
+        var startD = new Date(compD1[0],compD1[1]-1,compD1[2]);
         datepicker1.parent().find("label").addClass("mdc-text-field__label--float-above");
         var date1 = startD.getDate() < 10 ? '0'+ startD.getDate() : startD.getDate();
         var menth1 = startD.getMonth() < 9 ? '0'+ (startD.getMonth()+1) : (startD.getMonth()+1);
         datepicker1.val(date1+"/"+menth1+"/"+startD.getFullYear());
     }
     if($("#requirementEndDate").val()){
-        var compD2 = $("#requirementEndDate").val().split('/');
-        var endD = new Date(compD2[2],compD2[1]-1,compD2[0]);
+        var compD2 = $("#requirementEndDate").val().split('-');
+        var endD = new Date(compD2[0],compD2[1]-1,compD2[2]);
         datepicker2.parent().find("label").addClass("mdc-text-field__label--float-above");
         var date2 = startD.getDate() < 10 ? '0'+ startD.getDate() : startD.getDate();
         var menth2 = startD.getMonth() < 9 ? '0'+ (startD.getMonth()+1) : (startD.getMonth()+1);
