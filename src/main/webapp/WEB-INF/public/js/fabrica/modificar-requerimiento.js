@@ -260,6 +260,36 @@ $(function () {
         if (index10++ === 0) return; else index10 = 0;
         let id = pi.selectedOptions[0].value;
         $("#programIncrement\\.programIncrementId").val(id);
+        let carga = 0;
+
+        //LIMPIAR LA SUBDIRECCIÓN!
+        $("#level\\.levelId").val("");
+
+
+        $.ajax({
+            url: "/api/projects"
+        }).done(function(data) {
+            let proys = data.data;
+
+            if (typeof proys !== 'undefined' && proys.length > 0) {
+                project.selectedIndex = -1;
+                project.value = "";
+                $("#ul-proyects").html("");
+                $.each(proys, function( index, value ) {
+                    if(value.programIncrement.programIncrementId === id){
+                        var coso = "<li class='mdc-list-item' role='option' id='"+value.projectId+"' "+
+                        "data-meth='"+value.methodology.methodologyName+"' aria-selected='true'>"+value.projectName+"</li>";
+                        $("#ul-proyects").append(coso);
+                        carga = 1;
+                    }
+                });
+                if(carga === 0) $("#ul-proyects").html("<li class='mdc-list-item' role='option'></li>");
+            }else $("#ul-proyects").html("<li class='mdc-list-item' role='option'></li>");
+
+
+
+        });
+
     });
 
     var projectId = $("#project\\.projectId").val();

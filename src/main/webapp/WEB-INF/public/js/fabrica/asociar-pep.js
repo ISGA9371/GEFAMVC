@@ -55,7 +55,7 @@ $(function () {
     });
 
     let addBudget = $("#add-budget");
-    let cancelBudget = $("#clear-search");
+    let clearSearch = $("#clear-search");
 
     $(document).on("click",'#results-table tbody tr.clickable', function () {
         var radioButton = $(this).find('input[type=radio]');
@@ -63,12 +63,11 @@ $(function () {
         dataId = $(this).closest('tr').data("id");
 
         addBudget.removeAttr("disabled");
-        //cancelBudget.removeAttr("disabled");
     });
 
-    cancelBudget.click(function() {
-        $("#find")[0].reset();
-        $("input[type=text]").val("");
+    clearSearch.click(function() {
+        $("#search-form")[0].reset();
+        $("#search-form input[type=text]").val("");
 
         areas.selectedIndex = -1;
         areas.value = "";
@@ -82,9 +81,12 @@ $(function () {
         $(".mdc-select__label").removeClass("mdc-select__label--float-above");
         $(".mdc-text-field__label").removeClass("mdc-text-field__label--float-above");
 
-        $("input[type=hidden]").val("");
+        $("#search-form input[type=hidden]").val("");
 
         $("#results-table tbody").html("");
+
+        clearSearch.attr("disabled","disabled");
+        addBudget.attr("disabled","disabled");
     });
 
     /*SELECCIONAR PEPE*/
@@ -187,7 +189,7 @@ $(function () {
                 $(this).find("#saldo-hrs").html(saldoHoras);
             });
 
-            //customHolder("info","El Requerimiento se actualizó correctamente.");
+            clearSearch.removeAttr("disabled");
         }).fail(function () {
             HoldOn.close();
             customHolder("error","Ocurrio un error en la búsqueda.");
@@ -239,9 +241,9 @@ $(function () {
             //data:  requirementObj,
             contentType:'application/json'
         }).done(function(data){
-            console.log("hola")
+            console.log("hola");
         }).fail(function () {
-            console.log("fail")
+            console.log("fail");
         });
     });
 
