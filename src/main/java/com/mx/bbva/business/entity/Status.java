@@ -94,6 +94,9 @@ public class Status implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private List<RequirementTracking> requirementTrackingList;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    private List<CatalogControl> catalogControls;
 
     public Status() {
     }
@@ -305,6 +308,14 @@ public class Status implements Serializable {
 
     public void setStatusType(StatusType statusType) {
         this.statusType = statusType;
+    }
+
+    public List<CatalogControl> getCatalogControls() {
+        return catalogControls;
+    }
+
+    public void setCatalogControls(List<CatalogControl> catalogControls) {
+        this.catalogControls = catalogControls;
     }
 
     @Override

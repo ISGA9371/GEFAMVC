@@ -2,6 +2,7 @@ package com.mx.bbva.controller;
 
 import com.mx.bbva.business.dto.BudgetSearchDTO;
 import com.mx.bbva.business.dto.ResponseDTO;
+import com.mx.bbva.business.dto.ResponseListDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import com.mx.bbva.util.query.BudgetQueryGenerator;
@@ -12,10 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 import static com.mx.bbva.util.ViewsURLs.*;
@@ -161,6 +159,22 @@ public class BudgetController {
         List<Budget> budgets = budgetService.findByCustomQuery(query); */
 
         return invoiceService.findAllInvoices();
+    }
+
+    @RequestMapping(value = "/invoices/implantation-dates", method = RequestMethod.GET)
+    public ResponseEntity<?> invoiceImplantationDates() {
+
+        List<Date> invoiceSendDates = invoiceService.findAllInvoiceSendDates();
+
+        return new ResponseEntity<Object>(new ResponseListDTO(invoiceSendDates), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/invoices/cut-dates", method = RequestMethod.GET)
+    public ResponseEntity<?> invoiceCutDates() {
+
+        List<Date> invoiceCutDates = invoiceService.findAllInvoiceCutDates();
+
+        return new ResponseEntity<Object>(new ResponseListDTO(invoiceCutDates), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/payments/filters", method = RequestMethod.GET)
