@@ -99,7 +99,7 @@ public class Status implements Serializable {
     private List<CatalogControl> catalogControls;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
-    private List<BudgetApplicant> budgetApplicants;
+    private List<BudgetsApplicant> budgetsApplicants;
 
     public Status() {
     }
@@ -321,12 +321,12 @@ public class Status implements Serializable {
         this.catalogControls = catalogControls;
     }
 
-    public List<BudgetApplicant> getBudgetApplicants() {
-        return budgetApplicants;
+    public List<BudgetsApplicant> getBudgetsApplicants() {
+        return budgetsApplicants;
     }
 
-    public void setBudgetApplicants(List<BudgetApplicant> budgetApplicants) {
-        this.budgetApplicants = budgetApplicants;
+    public void setBudgetsApplicants(List<BudgetsApplicant> budgetsApplicants) {
+        this.budgetsApplicants = budgetsApplicants;
     }
 
     @Override
