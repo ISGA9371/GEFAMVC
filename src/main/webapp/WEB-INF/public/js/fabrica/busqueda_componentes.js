@@ -408,38 +408,13 @@ $(function () {
               "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> Editar</a></td></tr>"
           );
 
-          date1 = "";
-          designRealDeliverDate = new Date(value.componentDesignRealDeliverDate);
-          if ( parseInt(designRealDeliverDate.getDate()) < 10 ) { date1 += "0" + designRealDeliverDate.getDate(); } 
-          else { date1 += designRealDeliverDate.getDate(); }
-          date1 += "/" + numberMonths[designRealDeliverDate.getMonth()] + "/" + designRealDeliverDate.getFullYear();
-          
-          date2 = "";
-          possibleDeliverDate = new Date(value.componentPossibleDeliverDate);
-          if ( parseInt(possibleDeliverDate.getDate()) < 10 ) { date2 += "0" + possibleDeliverDate.getDate(); } 
-          else { date2 += possibleDeliverDate.getDate(); }
-          date2 += "/" + numberMonths[possibleDeliverDate.getMonth()] + "/" + possibleDeliverDate.getFullYear();
-          
-          date3 = "";
-          previewDeliverDate = new Date(value.componentPreviewDeliverDate);
-          if ( parseInt(previewDeliverDate.getDate()) < 10 ) { date3 += "0" + previewDeliverDate.getDate(); } 
-          else { date3 += previewDeliverDate.getDate(); }
-          date3 += "/" + numberMonths[previewDeliverDate.getMonth()] + "/" + previewDeliverDate.getFullYear();
-          
-          date4 = "";
-          realDeliverDate = new Date(value.componentRealDeliverDate);
-          if ( parseInt(realDeliverDate.getDate()) < 10 ) { date4 += "0" + realDeliverDate.getDate(); } 
-          else { date4 += realDeliverDate.getDate(); }
-          date4 += "/" + numberMonths[realDeliverDate.getMonth()] + "/" + realDeliverDate.getFullYear();
-
-
           $("#tab-fecha > table > tbody").append(
             "<tr><td>" + value.componentName + "</td>" +
             "<td>" + value.requirement.requirementName + "</td>" +
-            "<td><input type='text' id='date1-" + value.componentId + "' value='" + date1 + "' class='form-control date1Text' readonly='readonly'></td>" +
-            "<td><input type='text' id='date2-" + value.componentId + "' value='" + date2 + "' class='form-control date2Text' readonly='readonly'></td>" +
-            "<td><input type='text' id='date3-" + value.componentId + "' value='" + date3 + "' class='form-control date3Text' readonly='readonly'></td>" +
-            "<td><input type='text' id='date4-" + value.componentId + "' value='" + date4 + "' class='form-control date4Text' readonly='readonly'></td>" +
+            "<td><input type='text' id='date1-" + value.componentId + "' value='" + value.componentDesignRealDeliverDate + "' class='form-control date1Text' readonly='readonly'></td>" +
+            "<td><input type='text' id='date2-" + value.componentId + "' value='" + value.componentPossibleDeliverDate + "' class='form-control date2Text' readonly='readonly'></td>" +
+            "<td><input type='text' id='date3-" + value.componentId + "' value='" + value.componentPreviewDeliverDate + "' class='form-control date3Text' readonly='readonly'></td>" +
+            "<td><input type='text' id='date4-" + value.componentId + "' value='" + value.componentRealDeliverDate + "' class='form-control date4Text' readonly='readonly'></td>" +
             "<td>"+ value.status.statusName +"</td></tr>"
           );
           $("#date1-" + value.componentId).datepicker({ dateFormat: "dd/mm/yy" });
