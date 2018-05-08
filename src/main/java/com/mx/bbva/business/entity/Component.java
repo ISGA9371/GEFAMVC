@@ -5,6 +5,7 @@
  */
 package com.mx.bbva.business.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -38,22 +39,27 @@ public class Component implements Serializable {
     @Column(name = "FH_NEG_EMP_CGF_SW", nullable = false)
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date componentPossibleDeliverDate;
     @Column(name = "FH_PRV_EMP_CGF_SW", nullable = false)
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date componentPreviewDeliverDate;
     @Column(name = "FH_R_CGF_EMP_DIS", nullable = false)
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date componentDesignRealDeliverDate;
     @Column(name = "FH_R_EMP_CGF_SW")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date componentRealDeliverDate;
     @Column(name = "TM_ALTA_COMP")
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date componentUploadDate;
     @Column(name = "NU_FACTURABLE")
     private Boolean componentForBill;
