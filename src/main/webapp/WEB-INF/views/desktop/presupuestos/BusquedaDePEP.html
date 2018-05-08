@@ -23,8 +23,8 @@
             <input id="natureId" type="hidden"/>
 
             <input id="budgetCostCenter" type="hidden"/>
-            <input id="seniorityFrom" type="hidden"/>
-            <input id="seniorityTo" type="hidden"/>
+            <input id="transferDateFrom" type="hidden"/>
+            <input id="transferDateTo" type="hidden"/>
 
 
             <div class="col-md-12 text-center">
@@ -223,8 +223,8 @@
             <table id="table-peps" class="col-md-12 table table-hover table-condensed">
                 <thead>
                 <tr>
-                    <th></th>
-                    <th>PEP</th>
+                    <th style="width:30px;"></th>
+                    <th style="width:12%;">PEP</th>
                     <th>Responsable</th>
                     <th>Antiguedad</th>
                     <th>Presupuesto MXN</th>
@@ -238,6 +238,7 @@
                 </tbody>
             </table>
         </div>
+        <div id="pagination-div"></div>
         <table class="col-md-12 table-buttons" align="center">
             <tr>
                 <td class="col-md-1" align="center">
@@ -262,7 +263,7 @@
 </body>
 
 <div th:replace="~{layout/footer2 :: scripts }"></div>
-<script type="text/javascript" th:src="@{../js/ready.js}"></script>
+<script type="text/javascript" th:src="@{../js/jquery.bootpag.min.js}"></script>
 <script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
 <script type="text/javascript" th:src="@{../js/presupuesto/busqueda-peps.js}"></script>
 

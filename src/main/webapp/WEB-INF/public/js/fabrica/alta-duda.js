@@ -188,3 +188,5 @@ function customHolder(type, msg, fctn) {
         textColor: "white"
     });
 }
+
+

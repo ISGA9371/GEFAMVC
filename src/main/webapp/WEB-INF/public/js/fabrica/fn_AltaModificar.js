@@ -185,6 +185,8 @@ function holder(msg){
     });
 }
 
+
+
 function ajaxGuardar() {
     var $form = $("form");
     var url = $form.attr("action");

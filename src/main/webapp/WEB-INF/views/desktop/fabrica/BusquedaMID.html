@@ -110,6 +110,25 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div id="slct_componente" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                            <div class="mdc-select__label">Componente</div>
+                                            <div class="mdc-select__selected-text"></div>
+                                            <div class="mdc-select__bottom-line"></div>
+                                        </div>
+                                        <div class="mdc-menu mdc-select__menu">
+                                            <ul class="mdc-list mdc-menu__items" id="ulComponent">
+                                                <li class="mdc-list-item" role="option" tabindex="0"> Modificado </li>
+                                                <li class="mdc-list-item" role="option" tabindex="0"> Dudas </li>
+                                                <li class="mdc-list-item" role="option" tabindex="0"> Incidencia </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </form>
                     </div>
                 </div>
@@ -117,7 +136,7 @@
 
                 <div class="row buttons">
                     <div class="col-xs-12 text-center">
-                        <button type="submit" class="btn btn-primary" form="searchForm" onclick="showHoldOn();">Buscar</button>
+                        <button type="submit" class="btn btn-primary" form="searchForm" onclick="showHoldOn();searchComponent()">Buscar</button>
                         <button id="clear-form" type="button" class="btn btn-primary">Limpiar</button>
                     </div>
                 </div>
@@ -130,96 +149,35 @@
                 <div class="row" id="row-content-results">
                     <table id="results-table" class="col-md-12 table table-hover table-condensed">
                         <thead>
-                        <tr>
-                            <th></th>
-                            <!-- RADIO -->
-                            <th>Tipo</th>
-                            <th>Proyecto</th>
-                            <th>Fecha</th>
-                            <th>Empresa</th>
-                            <th>Dirección</th>
-                            <th>Área</th>
-                        </tr>
+                            <tr>
+                                <th></th>
+                                <th>Tipo</th>
+                                <th>Proyecto</th>
+                                <th>Fecha</th>
+                                <th>Empresa</th>
+                                <th>Dirección</th>
+                                <th>Área</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr th:if="${requirements!= null && requirements.size() < 1}">
-                            <td colspan="12">
-                                <h2>No se encontraron resultados para tu búsqueda.</h2>
-                            </td>
-                        </tr>
+                            <th:block th:each="data.component.requirement, stat : ${requirements}">
+                                <!-- Table content -->
+                                <tr>
+                                    <td colspan="11" class="detail-td">
+                                        <div th:id="${'row-detail-wrapper-' + stat.count}" class="collapse">
+                                            <table style="width: 100%;">
+                                                <tr>
+                                                    <td class="detail-label"> Componente </td>
+                                                    <td> </td>
+                                                    <td class="detail-label">Fecha</td>
+                                                    <td th:text="${#dates.format(data.component.requirement.requirementEndDate, 'dd/MM/yyyy')}"> </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
 
-
-                        <th:block th:each="requirement, stat : ${requirements}">
-                            <tr th:href="${'#row-detail-wrapper-' + stat.count}" data-tggle="collapse" class="clickable"
-                                th:aria-controls="${'row-detail-wrapper-' + stat.count}">
-                                <td>
-                                    <input type="radio" name="requirements" th:id="${requirement.requirementId}" th:value="${requirement.requirementId}">
-                                </td>
-                                <td th:text="${requirement.requirementName}"></td>
-                                <td th:text="${requirement.budgetRequirementsList.size() > 0 ?
-                                    requirement.budgetRequirementsList[0].budget.budgetName : ''}"></td>
-                                <td th:text="${requirement.level.levelSuperior.levelName}"></td>
-                                <td th:text="${requirement.level.levelName}"></td>
-                                <td th:text="${requirement.user.userInternalId}"></td>
-                                <td th:text="${requirement.area.areaName}"></td>
-                                <td th:text="${requirement.serviceType.serviceTypeName}"></td>
-                                <td th:text="${requirement.technology.technologyName}"></td>
-                                <td th:text="${requirement.company.companyName}"></td>
-                                <td th:text="${#dates.format(requirement.requirementStartDate, 'dd/MM/yyyy')}"></td>
-
-                            </tr>
-                           <!-- <tr>
-                                <td colspan="11" class="detail-td">
-                                    <div th:id="${'row-detail-wrapper-' + stat.count}" class="collapse" >
-                                        <table style="width: 100%;">
-                                            <tr>
-                                                <td class="detail-label">F. Prop. Fin</td>
-                                                <td th:text="${#dates.format(requirement.requirementEndDate, 'dd/MM/yyyy')}"></td>
-                                                <td class="detail-label">Horas Totales</td>
-                                                <td th:text="${requirement.requirementTotalHours}"></td>
-                                                <td class="detail-label">Monto</td>
-                                                <td>24000</td>
-                                                <td class="detail-label">Horas facturadas</td>
-                                                <td th:text="${requirement.requirementBilledHours}">100</td>
-                                                <td class="detail-label">Horas sin facturar</td>
-                                                <td th:text="${requirement.requirementNoBilledHours}">20</td>
-                                                <td class="detail-label">Facturar (S/N)</td>
-                                                <td th:text="${requirement.requirementBilled ? 'Si' : 'No'}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="detail-label" style="height: 60px;">PI</td>
-                                                <td th:text="${requirement.programIncrement.ProgramIncrementName}"></td>
-                                                <td class="detail-label">PEP
-                                                    <div th:unless="${requirement.budgetRequirementsList.size() < 1}" class="dropdown" style="display: inline-block;">
-                                                        <a class="dropdown-toggle" data-toggle="dropdown">
-                                                            <img th:src="@{/img/menu-pagina-icon.png}" height="12">
-                                                        </a>
-                                                        <ul class="dropdown-menu dropdown-menu-right">
-                                                            <li th:each="budgetRequirement : ${requirement.budgetRequirementsList}"
-                                                                th:text="${budgetRequirement.budget.budgetName}"></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                                <td></td>
-                                                <td>
-                                                </td>
-
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td class="detail-label" colspan="2">
-                                                    <a th:href="@{/budgets/assign/filters?requirementId=} + ${requirement.requirementId}"
-                                                       class="btn btn-primary" onclick="showHoldOn();">Asociar PEP</a>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </td>
-                            </tr> -->
-                        </th:block>
-
+                            </th:block>
                         </tbody>
                     </table>
                 </div> <!-- tabla-->
@@ -227,11 +185,11 @@
                 <div class="row buttons" id="row-buttons-results">
                     <div class="col-xs-12 text-center">
                         <a id="edit-requirement" class="btn btn-primary" disabled="disabled">Modificar</a>
-                        <!--
-                        <a id="add-component" class="btn btn-primary" disabled="disabled">Alta de Componente</a>
-                        -->
                     </div>
                 </div>
+
+
+
 
         </div>
         <footer th:replace="~{layout/footer2 :: footer }"></footer>

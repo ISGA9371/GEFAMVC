@@ -1,5 +1,3 @@
-//Funcion inicial
-//Variables globales
 
 function init(){
 
@@ -8,34 +6,11 @@ function init(){
     addCalendars();
     //add default values
     addMissing();
-    addDefaultValues();
     disableFields();
     formatMoney();
     addButtonEvents();
 
 }
-
-function disableFields(){
-
-    new mdc.textField.MDCTextField(document.getElementById('divAnioPep')).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById('dirDiv')).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById('respAreaDiv')).disabled = true;
-    new mdc.select.MDCSelect(document.getElementById('subdirs')).disabled = true;
-
-}
-
-function addDefaultValues(){
-
-    //Asign year
-    var fecha = new Date();
-    var ano = fecha.getFullYear();
-    $("#anioPep").val(ano);
-    $("#hdYear").val(ano);
-    $("#anioPep").focus();
-
-
-}
-
 
 function asignarCombos(){
 
@@ -49,127 +24,6 @@ function asignarCombos(){
         rootSelect.addEventListener('MDCSelect:change', function () {
             $hiddenInput.val(selectObj.value);
         });
-    });
-
-    //cmb area
-    areas = new mdc.select.MDCSelect(document.querySelector('#area-js-select'));
-
-    $.ajax({
-        url: "/api/areas"
-    }).done(function(data) {
-
-        subs = data.data;
-
-        $("#area-area-text").html("");
-        areas.selectedIndex = -1;
-        areas.value = "";
-        if (typeof subs !== 'undefined' && subs.length > 0) {
-            $("#area-select").html("");
-            $.each(subs, function( index, value ) {
-
-                $("#area-select").append(
-                    "<li class='mdc-list-item' role='option' tabindex='0' " +
-                    "id='"+value.areaId+"' value='"+value.areaId+"'>"+value.areaName+"</li>");
-
-            });
-        }else $("#area-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
-
-    });
-
-
-    //cmb banking
-    bnk = new mdc.select.MDCSelect(document.querySelector('#banca-js-select'));
-
-    $.ajax({
-        url: "/api/bankings"
-    }).done(function(data) {
-
-        subs = data.data;
-
-        $("#bc-bc-text").html("");
-        bnk.selectedIndex = -1;
-        bnk.value = "";
-        if (typeof subs !== 'undefined' && subs.length > 0) {
-            $("#bc-select").html("");
-            $.each(subs, function( index, value ) {
-
-                $("#bc-select").append(
-                    "<li class='mdc-list-item' role='option' tabindex='0' " +
-                    "id='"+value.bankingId+"' value='"+value.bankingId+"'>"+value.bankingName+"</li>");
-
-            });
-        }else $("#bc-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
-
-    });
-
-    //cmb corporation
-    coorp = new mdc.select.MDCSelect(document.querySelector('#estado-js-select'));
-
-    $.ajax({
-        url: "/api/corporations"
-    }).done(function(data) {
-
-        subs = data.data;
-
-        $("#en-en-text").html("");
-        coorp.selectedIndex = -1;
-        coorp.value = "";
-        if (typeof subs !== 'undefined' && subs.length > 0) {
-            $("#en-select").html("");
-            $.each(subs, function( index, value ) {
-
-                $("#en-select").append(
-                    "<li class='mdc-list-item' role='option' tabindex='0' " +
-                    "id='"+value.corporationId+"' value='"+value.corporationId+"'>"+value.corporationName+"</li>");
-
-            });
-        }else $("#en-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
-
-    });
-
-    //cmb nature
-    natu = new mdc.select.MDCSelect(document.querySelector('#ig-js-select'));
-
-    $.ajax({
-        url: "/api/natures"
-    }).done(function(data) {
-
-        subs = data.data;
-
-        $("#nt-nt-text").html("");
-        natu.selectedIndex = -1;
-        natu.value = "";
-        if (typeof subs !== 'undefined' && subs.length > 0) {
-            $("#nt-select").html("");
-            $.each(subs, function( index, value ) {
-
-                $("#nt-select").append(
-                    "<li class='mdc-list-item' role='option' tabindex='0' " +
-                    "id='"+value.natureId+"' value='"+value.natureId+"'>"+value.natureName+"</li>");
-
-            });
-        }else $("#nt-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
-
-    });
-
-    //Asign CR
-    select = new mdc.select.MDCSelect(document.querySelector('#ig-js-select'));
-    inter = 0;
-    select.listen('MDCSelect:change', () => {
-
-        id = select.selectedOptions[0].value;
-
-        if(id==1){
-
-            $("#cr").val("MX11");
-            $("#cr").focus();
-
-        }else{
-
-            $("#cr").val("MX23");
-            $("#cr").focus();
-        }
-
     });
 
     //cmb direction
@@ -289,12 +143,6 @@ function asignarCombos(){
         //cosoS=0;
     });
 
-}
-
-function funcionCancelar(){
-
-    //Lleva a la ventana principal
-    window.location="../../../..";
 
 }
 
@@ -317,8 +165,30 @@ function addCalendars(){
 
 function addMissing(){
 
-    $('#hdStatus').val(41);
-    $('#hdStatusDyd').val(42);
+   //Sumar nuevo monto al monto del pep
+    //Asignar el id del pep al transpaso
+
+
+}
+
+function disableFields(){
+
+    //Cabecera principal
+    new mdc.textField.MDCTextField(document.getElementById('pepIdDiv')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('nomPepDiv')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('areaAtencionPEPDiv')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('bancaPEPDiv')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('respDotPepDiv')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('solicPEPDiv')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('entiPEPDiv')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('iGPepDiv')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('crPEPDiv')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('divAnioPep')).disabled = true;
+
+
+    new mdc.textField.MDCTextField(document.getElementById('dirDiv')).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById('respAreaDiv')).disabled = true;
+    new mdc.select.MDCSelect(document.getElementById('subdirs')).disabled = true;
 
 }
 
@@ -346,7 +216,7 @@ function addButtonEvents() {
         HoldOn.open({
             theme: "sk-cube",
             content: '',
-            message: 'Registrando PEP',
+            message: 'Registrando Traspaso',
             // backgroundColor: "#004582",
             backgroundColor: "#0c71ca",
             textColor: "white"
@@ -364,16 +234,18 @@ function addButtonEvents() {
 
 function ajaxGuardar() {
     var $form = $("form");
-    var url = $form.attr("action");
+    var url = "/budgets/" + $("#budgetId").val() + "/transfers"
+    $("#tranfer-budgetId").val($("#budgetId").val());
     var formData = $($form).serializeArray();
 
     $.ajax({
         async: false,
         url: url,
-        type: 'post',
+        type: 'put',
         data: formData
     }).done(function (data) {
-        customHolder("info", "PEP Dado de Alta Exitosamente.","window.location.href = '/budgets/" + $(data).find("#transferId").val() + "'; holder('Cargando...')");
+        //console.log("window.location.href = '/budgets/" + $("#budgetId").val() + '/transfers');
+        customHolder("info", "Traspaso Dado de Alta Exitosamente.","window.location.href = '/budgets/filters'; holder('Cargando...')");
         //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
     }).fail(function (xhr, status, error) {
         //console.log("fail");
@@ -407,12 +279,6 @@ function customHolder(type, msg, fctn) {
         backgroundColor: "#0c71ca",
         textColor: "white"
     });
-}
-
-function asociarTransfer(valor){
-
-    $("#transferId").val(valor);
-
 }
 
 function holder(msg){

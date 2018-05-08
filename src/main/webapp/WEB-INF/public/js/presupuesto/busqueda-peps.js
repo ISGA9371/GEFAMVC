@@ -49,8 +49,8 @@ function addButtonEvents() {
             corporationId: $("#corporationId").val(),
             natureId: $("#natureId").val(),
             budgetCostCenter: $("#budgetCostCenter").val(),
-            seniorityFrom: $("#seniorityFrom").val(),
-            seniorityTo: $("#seniorityTo").val()
+            transferDateFrom: $("#transferDateFrom").val().split("/").reverse().join("-"),
+            transferDateTo: $("#transferDateTo").val().split("/").reverse().join("-")
         };
         $.ajax({
             url: "/budgets/search",
@@ -69,6 +69,26 @@ function addButtonEvents() {
         }).done(function (data) {
             currentPeps = data;
             pagePeps(1);
+            $('#pagination-div').bootpag({
+                total: Math.ceil(currentPeps.length/10),
+                page: 1,
+                maxVisible: 10,
+                leaps: true,
+                firstLastUse: true,
+                prev: '‹',
+                next: '›',
+                first: '«',
+                last: '»',
+                wrapClass: 'pagination',
+                activeClass: 'active',
+                disabledClass: 'disabled',
+                nextClass: 'next',
+                prevClass: 'prev',
+                lastClass: 'last',
+                firstClass: 'first'
+            }).on("page", function(event, num){
+                pagePeps(num);
+            });
             $("#results").css("display", "block");
             HoldOn.close();
         }).fail(function (xhr, status, error) {
@@ -80,8 +100,8 @@ function addButtonEvents() {
     btnLimpiar.addEventListener("click", function () {
         //limpiar
     });
-    var btnCancel = document.getElementById('btn-modificar');
-    btnCancel.addEventListener("click", function () {
+    var btnModificar = document.getElementById('btn-modificar');
+    btnModificar.addEventListener("click", function () {
         if ($('input[name=pepsIds]:checked').attr("id") !== undefined) {
             holder("Cargando...");
             window.location.href = "/budgets/" + $('input[name=pepsIds]:checked').attr("id");
@@ -89,20 +109,23 @@ function addButtonEvents() {
             customHolder("warn", "Debe seleccionar un Traspaso.")
         }
     });
-    var btnCancel = document.getElementById('btn-eliminar');
-    btnCancel.addEventListener("click", function () {
+    var btnEliminar = document.getElementById('btn-eliminar');
+    btnEliminar.addEventListener("click", function () {
         /*holder("Cargando...");
         window.location.href = "/components/filters";*/
         alert("No se han acordados las condiciones para eliminar, se espera aclaracion para asignar funcionalidad.");
     });
-    var btnCancel = document.getElementById('btn-traspaso');
-    btnCancel.addEventListener("click", function () {
-        //holder("Cargando...");
-        //window.location.href = "/components/filters";
-        alert("Se envio duda, se espera respuesta para asignar funcionalidad.");
+    var btnTaspaso = document.getElementById('btn-traspaso');
+    btnTaspaso.addEventListener("click", function () {
+        if ($('input[name=pepsIds]:checked').attr("id") !== undefined) {
+            holder("Cargando...");
+            window.location.href = "/budgets/" + $('input[name=pepsIds]:checked').closest("td").next().html()+"/transfers/add";
+        } else {
+            customHolder("warn", "Debe seleccionar un Traspaso.")
+        }
     });
-    var btnCancel = document.getElementById('btn-dispersion');
-    btnCancel.addEventListener("click", function () {
+    var btnDispersion = document.getElementById('btn-dispersion');
+    btnDispersion.addEventListener("click", function () {
         if ($('input[name=pepsIds]:checked').attr("id") !== undefined) {
             holder("Cargando...");
             window.location.href = "/ayuda/add?componentId=";
@@ -423,6 +446,8 @@ Number.prototype.formatMoney = function (c, d, t) {
 };
 
 function seniority(d1, d2) {
+    d1 = new Date(d1.setHours(0,0,0,0));
+    d2 = new Date(d2.setHours(0,0,0,0));
     var diff = 0;
     if (d1 && d2) {
 

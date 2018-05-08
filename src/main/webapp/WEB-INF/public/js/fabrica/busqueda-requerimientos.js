@@ -13,6 +13,7 @@ $(function () {
     datepicker1.change(function () {
         if (datepicker1.val() !== "") {
             datepicker1.parent().find("label").addClass("mdc-text-field__label--float-above");
+            datepicker2.datepicker("option", "minDate", getDate(datepicker1.val()));
 
             var newDate = datepicker1.val().split('/');
             var date = new Date(newDate[2],newDate[1]-1,newDate[0]);
@@ -27,6 +28,8 @@ $(function () {
     datepicker2.change(function () {
         if (datepicker2.val() !== "") {
             datepicker2.parent().find("label").addClass("mdc-text-field__label--float-above");
+            datepicker1.datepicker("option", "maxDate", getDate(datepicker2.val()));
+
             var newDate = datepicker2.val().split('/');
             var date = new Date(newDate[2],newDate[1]-1,newDate[0]);
             var date1 = date.getDate() < 10 ? '0'+ date.getDate() : date.getDate();
@@ -482,6 +485,16 @@ $(function () {
         }
     });
 });
+
+function getDate(element) {
+    var date;
+    try {
+        date = $.datepicker.parseDate("dd/mm/yy", element);
+    } catch (error) {
+        date = null;
+    }
+    return date;
+}
 
 function showHoldOn() {
     HoldOn.open({
