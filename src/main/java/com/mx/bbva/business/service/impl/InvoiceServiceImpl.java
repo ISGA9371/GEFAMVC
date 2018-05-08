@@ -6,6 +6,7 @@ import com.mx.bbva.business.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -15,6 +16,16 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public List<Invoice> findAllInvoices() {
         return invoiceRepository.findAll();
+    }
+
+    @Override
+    public List<Date> findAllInvoiceSendDates() {
+        return invoiceRepository.findInvoiceSendDate();
+    }
+
+    @Override
+    public List<Date> findAllInvoiceCutDates() {
+        return invoiceRepository.findInvoiceCutDate();
     }
 
     @Autowired

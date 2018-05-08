@@ -5,6 +5,7 @@
  */
 package com.mx.bbva.business.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,6 +29,7 @@ public class Invoice implements Serializable {
     @Column(name = "FH_CORTE", nullable = false)
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss",timezone = "GMT-5")
     private Date invoiceCutDate;
     @Column(name = "IM_TARIFA", nullable = false)
     private double invoiceRate;
@@ -40,6 +42,7 @@ public class Invoice implements Serializable {
     @Column(name = "FH_ENVIO_IMPLANT")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss",timezone = "GMT-5")
     private Date invoiceSendDate;
     @Column(name = "NB_GLG", length = 23)
     private String invoiceNameGlg;
