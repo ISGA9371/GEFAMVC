@@ -119,7 +119,7 @@ $(document).ready(function(){
   /************************ */
 
 
-  mdc_text_fecha_corte = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_corte'));
+  mdc_select_fecha_corte = new mdc.select.MDCSelect(document.querySelector('#mdc_select_fecha_corte'));
   mdc_text_pep = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_pep'));
   mdc_text_requerimiento = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_requerimiento'));
   mdc_select_direccion = new mdc.select.MDCSelect(document.querySelector('#mdc_select_direccion'));
@@ -129,16 +129,7 @@ $(document).ready(function(){
   mdc_text_fecha_desde = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_desde'));
   mdc_text_fecha_hasta = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_hasta'));
   mdc_select_solicitante = new mdc.select.MDCSelect(document.querySelector('#mdc_select_solicitante'));
-  mdc_text_fecha_envio_implant = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_envio_implant'));
-  
-
-  $("#fecha_corte").change(function(){
-    if ( "" != mdc_text_fecha_corte.value ) {
-      $("#mdc_text_fecha_corte > label").addClass("mdc-text-field__label--float-above");
-    } else {
-      $("#mdc_text_fecha_corte > label").removeClass("mdc-text-field__label--float-above");
-    }
-  });
+  mdc_select_fecha_envio_implant = new mdc.select.MDCSelect(document.querySelector('#mdc_select_fecha_envio_implant'));
 
 
   $("#fecha_desde").datepicker({
@@ -163,15 +154,6 @@ $(document).ready(function(){
       $("#mdc_text_fecha_hasta > label").addClass("mdc-text-field__label--float-above");
     } else {
       $("#mdc_text_fecha_hasta > label").removeClass("mdc-text-field__label--float-above");
-    }
-  });
-
-
-  $("#fecha_envio_implant").change(function () {
-    if ("" != mdc_text_fecha_envio_implant.value) {
-      $("#mdc_text_fecha_envio_implant > label").addClass("mdc-text-field__label--float-above");
-    } else {
-      $("#mdc_text_fecha_envio_implant > label").removeClass("mdc-text-field__label--float-above");
     }
   });
 
@@ -219,7 +201,7 @@ $(document).ready(function(){
 
   $("#btn_clear").click(function(){
     $("#mdc_select_subdireccion").addClass("mdc-select--disabled");
-    mdc_text_fecha_corte.value = "";
+    mdc_select_fecha_corte.value = "";
     mdc_text_pep.value = "";
     mdc_text_requerimiento.value = "";
     mdc_select_direccion.value = "";
@@ -229,19 +211,23 @@ $(document).ready(function(){
     mdc_text_fecha_desde.value = "";
     mdc_text_fecha_hasta.value = "";
     mdc_select_solicitante.value = "";
-    mdc_text_fecha_envio_implant.value = "";
+    mdc_select_fecha_envio_implant.value = "";
 
     mdc_select_direccion.selectedIndex = -1;
     mdc_select_subdireccion.selectedIndex = -1;
     mdc_select_estado_pep_factura.selectedIndex = -1;
     mdc_select_estado_pago.selectedIndex = -1;
     mdc_select_solicitante.selectedIndex = -1;
+    mdc_select_fecha_corte.selectedIndex = -1;
+    mdc_select_fecha_envio_implant.selectedIndex = -1;
 
     $("#mdc_select_direccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
     $("#mdc_select_subdireccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
     $("#mdc_select_estado_pep_factura > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
     $("#mdc_select_estado_pago > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
     $("#mdc_select_solicitante > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#mdc_select_fecha_corte > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#mdc_select_fecha_envio_implant > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
 
     $("#fecha_hasta").datepicker("option", "minDate", null);
     $("#fecha_desde").datepicker("option", "maxDate", null);
@@ -251,7 +237,7 @@ $(document).ready(function(){
   $("#btn_search").click(function(){
 
     var params = {
-      fecha_corte: changeFormatDate(mdc_text_fecha_corte.value),
+      fecha_corte: changeFormatDate(mdc_select_fecha_corte.value),
       pep: mdc_text_pep.value,
       requerimiento: mdc_text_requerimiento.value,
       direccion: mdc_select_direccion.value,
@@ -261,7 +247,7 @@ $(document).ready(function(){
       fecha_desde: changeFormatDate(mdc_text_fecha_desde.value),
       fecha_hasta: changeFormatDate(mdc_text_fecha_hasta.value),
       solicitante: mdc_select_solicitante.value,
-      fecha_envio_implant: changeFormatDate(mdc_text_fecha_envio_implant.value),
+      fecha_envio_implant: changeFormatDate(mdc_select_fecha_envio_implant.value),
     };
 
     console.log(params);
