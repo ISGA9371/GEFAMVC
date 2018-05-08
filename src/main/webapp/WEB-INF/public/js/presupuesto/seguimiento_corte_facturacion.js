@@ -119,6 +119,109 @@ $(document).ready(function(){
   /************************ */
 
 
+  /** 
+   * FECHA CORTE ajax call 
+   */
+  $.ajax({
+    url: "/budgets/invoices/cut-dates",
+    method: "GET",
+    dataType: "json",
+    beforeSend: function () {
+      $("#mdc_select_fecha_corte").addClass("mdc-select--disabled");
+      $("#mdc_select_fecha_corte > .mdc-select__surface > .mdc-select__selected-text").html("");
+      $("#mdc_select_fecha_corte > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    }
+  }).done(function (data) {
+    lis = "";
+    if ('undefined' !== typeof data.data && 0 < data.data.length && null !== data.data) {
+      $.each(data.data, function (index, value) {
+        lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.statusId + "'>" + value.statusName + "</li>";
+      });
+
+      $("#mdc_select_fecha_corte > .mdc-menu > ul").append(lis);
+      $("#mdc_select_fecha_corte").removeClass("mdc-select--disabled");
+    } else {
+      lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+      $("#mdc_select_fecha_corte > .mdc-menu > ul").append(lis);
+      $("#mdc_select_fecha_corte").addClass("mdc-select--disabled");
+    }
+  }).fail(function () {
+    lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+    $("#mdc_select_fecha_corte > .mdc-menu > ul").append(lis);
+    $("#mdc_select_fecha_corte").addClass("mdc-select--disabled");
+  });
+  /************************ */
+
+
+  /** 
+   * FECHA ENVIO A IMPLANT ajax call 
+   */
+  $.ajax({
+    url: "/budgets/invoices/implantation-dates",
+    method: "GET",
+    dataType: "json",
+    beforeSend: function () {
+      $("#mdc_select_fecha_envio_implant").addClass("mdc-select--disabled");
+      $("#mdc_select_fecha_envio_implant > .mdc-select__surface > .mdc-select__selected-text").html("");
+      $("#mdc_select_fecha_envio_implant > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    }
+  }).done(function (data) {
+    lis = "";
+    if ('undefined' !== typeof data.data && 0 < data.data.length && null !== data.data) {
+      $.each(data.data, function (index, value) {
+        lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.statusId + "'>" + value.statusName + "</li>";
+      });
+
+      $("#mdc_select_fecha_envio_implant > .mdc-menu > ul").append(lis);
+      $("#mdc_select_fecha_envio_implant").removeClass("mdc-select--disabled");
+    } else {
+      lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+      $("#mdc_select_fecha_envio_implant > .mdc-menu > ul").append(lis);
+      $("#mdc_select_fecha_envio_implant").addClass("mdc-select--disabled");
+    }
+  }).fail(function () {
+    lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+    $("#mdc_select_fecha_envio_implant > .mdc-menu > ul").append(lis);
+    $("#mdc_select_fecha_envio_implant").addClass("mdc-select--disabled");
+  });
+  /************************ */
+
+
+  /** 
+   * SOLICITANTE ajax call 
+   */
+  /*$.ajax({
+    url: "",
+    method: "GET",
+    dataType: "json",
+    beforeSend: function () {
+      $("#mdc_select_solicitante").addClass("mdc-select--disabled");
+      $("#mdc_select_solicitante > .mdc-select__surface > .mdc-select__selected-text").html("");
+      $("#mdc_select_solicitante > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    }
+  }).done(function (data) {
+    lis = "";
+    if ('undefined' !== typeof data.data && 0 < data.data.length && null !== data.data) {
+      $.each(data.data, function (index, value) {
+        lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.statusId + "'>" + value.statusName + "</li>";
+      });
+
+      $("#mdc_select_solicitante > .mdc-menu > ul").append(lis);
+      $("#mdc_select_solicitante").removeClass("mdc-select--disabled");
+    } else {
+      lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+      $("#mdc_select_solicitante > .mdc-menu > ul").append(lis);
+      $("#mdc_select_solicitante").addClass("mdc-select--disabled");
+    }
+  }).fail(function () {
+    lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+    $("#mdc_select_solicitante > .mdc-menu > ul").append(lis);
+    $("#mdc_select_solicitante").addClass("mdc-select--disabled");
+  });
+  */
+  /************************ */
+
+
   mdc_select_fecha_corte = new mdc.select.MDCSelect(document.querySelector('#mdc_select_fecha_corte'));
   mdc_text_pep = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_pep'));
   mdc_text_requerimiento = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_requerimiento'));
