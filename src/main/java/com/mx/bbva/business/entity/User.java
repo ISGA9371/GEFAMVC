@@ -22,6 +22,8 @@ public class User implements Serializable {
     @Id
     @Column(name = "CD_USUARIO_CORP", nullable = false)
     private String userInternalId;
+    @Column(name = "CD_CONTRASENA", length = 9)
+    private String userPassword;
     @JoinColumn(name = "ST_USUARIO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
