@@ -11,7 +11,7 @@
 
     <th:block th:each="budget, stat : ${budgets}" th:fragment="coso">
         <tr th:each="transfer, stat2 : ${budget.transfers}"
-                th:href="${'#row-detail-wrapper-' + stat.count}" th:data-id="${budget.budgetId}" class="clickable"
+                th:href="${'#row-detail-wrapper-' + stat.count}" th:data-id="${budget.budgetId + stat2.count}" class="clickable"
             th:aria-controls="${'row-detail-wrapper-' + stat.count}"
             th:with="saldoMXN=${((budget.transfers[0].transferValue == null) ? 0 : budget.transfers[0].transferValue)
             -
