@@ -105,7 +105,7 @@ function addButtonEvents() {
     btnModificar.addEventListener("click", function () {
         if ($('input[name=pepsIds]:checked').attr("id") !== undefined) {
             holder("Cargando...");
-            window.location.href = "/budgets/transfers" + $('input[name=pepsIds]:checked').attr("id");
+            window.location.href = "/budgets/transfers/" + $('input[name=pepsIds]:checked').attr("id");
         } else {
             customHolder("warn", "Debe seleccionar un Traspaso.")
         }
@@ -129,7 +129,7 @@ function addButtonEvents() {
     btnDispersion.addEventListener("click", function () {
         if ($('input[name=pepsIds]:checked').attr("id") !== undefined) {
             holder("Cargando...");
-            window.location.href = "/ayuda/add?componentId=";
+            window.location.href = "/budgets/"+$('input[name=pepsIds]:checked').closest("td").next().html()+"/dispersions/add?transferId="+$('input[name=pepsIds]:checked').attr("id");
         } else {
             customHolder("warn", "Debe seleccionar un Traspaso.")
         }
