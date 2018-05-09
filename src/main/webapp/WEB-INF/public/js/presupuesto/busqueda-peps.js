@@ -49,13 +49,13 @@ function addButtonEvents() {
             corporationId: $("#corporationId").val(),
             natureId: $("#natureId").val(),
             budgetCostCenter: $("#budgetCostCenter").val(),
-            transferDateFrom: $("#transferDateFrom").val().split("/").reverse().join("-"),
-            transferDateTo: $("#transferDateTo").val().split("/").reverse().join("-")
+            //transferDateFrom: $("#transferDateFrom").val().split("/").reverse().join("-"),
+            //transferDateTo: $("#transferDateTo").val().split("/").reverse().join("-")
         };
         $.ajax({
             url: "/budgets/search",
             method: "GET",
-            //data: $.param( params ),
+            data: $.param( params ),
             dataType: "json",
             beforeSend: function (xhr) {
                 HoldOn.open({
@@ -67,7 +67,8 @@ function addButtonEvents() {
                 });
             }
         }).done(function (data) {
-            currentPeps = data;
+            currentTransfers = data;
+            currentPeps = currentTransfers;
             pagePeps(1);
             $('#pagination-div').bootpag({
                 total: Math.ceil(currentPeps.length/10),
@@ -104,7 +105,7 @@ function addButtonEvents() {
     btnModificar.addEventListener("click", function () {
         if ($('input[name=pepsIds]:checked').attr("id") !== undefined) {
             holder("Cargando...");
-            window.location.href = "/budgets/" + $('input[name=pepsIds]:checked').attr("id");
+            window.location.href = "/budgets/transfers" + $('input[name=pepsIds]:checked').attr("id");
         } else {
             customHolder("warn", "Debe seleccionar un Traspaso.")
         }
@@ -458,3 +459,4 @@ function seniority(d1, d2) {
 
 var showingError = false;
 var currentPeps = null;
+var currentTransfers = null;
