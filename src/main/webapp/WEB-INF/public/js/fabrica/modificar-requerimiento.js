@@ -265,7 +265,6 @@ $(function () {
         //LIMPIAR LA SUBDIRECCIÓN!
         $("#level\\.levelId").val("");
 
-
         $.ajax({
             url: "/api/projects"
         }).done(function(data) {
@@ -285,8 +284,6 @@ $(function () {
                 });
                 if(carga === 0) $("#ul-proyects").html("<li class='mdc-list-item' role='option'></li>");
             }else $("#ul-proyects").html("<li class='mdc-list-item' role='option'></li>");
-
-
 
         });
 

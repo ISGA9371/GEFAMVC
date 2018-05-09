@@ -321,7 +321,8 @@
                 <td data-select th:text="${budget.transfers[0].level.levelName}"></td>
                 <td id="incurrido"><span></span> MXN</td>
                 <td id="incurrido-hrs">
-                    <input class="incurrido-horas form-control" type="number" min="0" max="999999" maxlength="6" required>
+                    <input class="incurrido-horas form-control" type="number" min="0" max="999999" maxlength="6"
+                           step="0.01"required>
                 </td>
             </tr>
 
@@ -347,7 +348,7 @@
         <td id="botecito" class="clickable" data-budget-id=""><img th:src="@{/img/trash_icon.png}" height="16"></td>
         <td id="incurrido"><span></span> MXN</td>
         <td id="incurrido-hrs">
-            <input class="incurrido-horas form-control" type="number" min="0" max="999999" maxlength="6" required>
+            <input class="incurrido-horas form-control" type="number" min="0" max="999999" maxlength="6" step="0.01" required>
         </td>
     </tr>
 </table>
