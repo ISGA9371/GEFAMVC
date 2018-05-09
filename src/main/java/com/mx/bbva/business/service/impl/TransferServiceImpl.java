@@ -18,8 +18,8 @@ public class TransferServiceImpl implements TransferService {
     private BudgetRepository budgetRepository;
 
     @Override
-    public void saveTransfer(Transfer transfer) {
-        transferRepository.save(transfer);
+    public Transfer saveTransfer(Transfer transfer) {
+        return transferRepository.saveAndFlush(transfer);
     }
 
     @Override
