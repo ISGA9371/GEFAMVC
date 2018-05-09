@@ -215,9 +215,15 @@ public class BudgetController {
     @RequestMapping(value = "/assign", method = RequestMethod.PUT)
     public ResponseEntity<?> assignBudget(Model model, @RequestBody List<BudgetRequirement> budgetRequirements) {
 
+        for (BudgetRequirement budgetRequirement : budgetRequirements) {
+            if (budgetService.notAvailableForAssignment(budgetRequirement)) {
+                //SEND ERROR MESSAGE MAYBE
+                budgetRequirements.remove(budgetRequirement);
+            }
+        }
         budgetService.assignBudget(budgetRequirements);
 
-        return new ResponseEntity<Object>(new ResponseDTO(), HttpStatus.OK);
+        return new ResponseEntity<Object>(new ResponseDTO("success"), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/assign/filters", method = RequestMethod.GET)
