@@ -9,6 +9,7 @@ public class ViewsURLs {
     public static final String URL_FACTORY = "fabrica/";
     public static final String URL_BUDGET = "presupuestos/";
 
+
     public static final String INDEX = "indexGefa";
 
     public static final String NEW_REQUIREMENT = "AltaDeRequerimiento";
@@ -53,4 +54,5 @@ public class ViewsURLs {
 
     public static final String ADMIN_USERS = "AdministracionDeUsuarios";
 
+    public static final String NEW_COMBO = "Combos";
 }
