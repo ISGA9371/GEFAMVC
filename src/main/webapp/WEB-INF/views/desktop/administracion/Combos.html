@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head th:replace="~{layout/mainHeader :: head ('Alta de Incidencia')}"></head>
+
+<body>
+
+<header th:replace="~{layout/mainHeader :: header }"></header>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12 text-center">
+            <h2 class="h2-title-content">Combos</h2>
+        </div>
+    </div>
+
+     <div class="row">
+
+         <div class="col-md-12 subtitle-content">Combos Excistentes</div>
+
+     </div>
+    <div class="row" id="row-content-results">
+        <table id="results-table" class="col-md-12 table table-hover table-condensed">
+            <thead style="color:#005EB8;font-weight:bold"  bgcolor="#F5F5F5">
+            <tr >
+                <td align="center"></td>
+                    <td align="center">Combo</td>
+                    <td align="center">Tabla</td>
+                    <td align="center">Estado</td>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="col-md-3" align="center">
+                    <input type="radio" >
+                </td>
+                <td class="col-md-3" align="center">
+                    Área
+                </td>
+                <td class="col-md-3" align="center">
+                    THGE030_AREA
+                </td>
+                <td class="col-md-3" align="center">
+                    Estatus Estatus
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-3" align="center">
+                    <input type="radio" >
+                </td>
+                <td class="col-md-3" align="center">
+                    Tecnología
+                </td>
+                <td class="col-md-3" align="center">
+                    THGE002_TECNOLOGIA
+                </td>
+                <td class="col-md-3" align="center">
+                    Estatus Estatus
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-3" align="center">
+                    <input type="radio" >
+                </td>
+                <td class="col-md-3" align="center">
+                    Banca
+                </td>
+                <td class="col-md-3" align="center">
+                    THGE034_BANCA
+                </td>
+                <td class="col-md-3" align="center">
+                    Estatus Estatus
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12 subtitle-content">Editar Combo</div>
+
+    </div>
+    <div class="row" id="row-content-results1">
+        <table id="results-table1" class="col-md-12 table table-hover table-condensed">
+            <thead style="color:#005EB8;font-weight:bold"  bgcolor="#F5F5F5"  >
+            <tr >
+                <td align="center">Área</td>
+                <td align="center">Acción</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="col-md-6" align="center">
+                    FABRICA DE PRUEBAS
+                </td>
+                <td class="col-md-6" align="center">
+                    <img src="/img/cerrar.png" style="width: 30px;">
+                    <img src="/img/editar a.png" style="width: 30px;">
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-6" align="center">
+                    FABRICA DE SOFTWARE
+                </td>
+                <td class="col-md-6" align="center">
+                    <img src="/img/cerrar.png" style="width: 30px;">
+                    <img src="/img/editar a.png" style="width: 30px;">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row buttons">
+
+        <div class="col-md-12 text-center">
+                    <button type="button" class="btn btn-primary" id="btn_nue">Nuevo</button>
+                    <button type="button" class="btn btn-primary" id="btn_cance">Cancelar</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 subtitle-content">Editar/Nueva Opción</div>
+    </div>
+    <table>
+        <td class="col-md-6">
+            <div class="mdc-text-field mdc-text-field--upgraded" data-mdc-auto-init="MDCTextField">
+                <input maxlength="20" class="mdc-text-field__input" id="requirementDes" name="requirementDes" value="" type="text">
+                <label class="mdc-text-field__label">Descripción</label>
+                <button type="button" class="btn btn-primary" id="btn_guar">Guardar</button>
+            </div>
+        </td>
+    </table>
+
+</div>
+
+
+
+
+</body>
+
+<div th:replace="~{layout/footer2 :: scripts }"></div>
+<script>mdc.autoInit()</script>
+<style rel="stylesheet">
+    .mdc-text-field__input {
+        border-bottom-color: rgba(15, 50, 242, 0.5);
+    }
+</style>
+
+<!--Footer que debe ir en todas las ventanas-->
+<div th:replace="layout/footer :: FooterPrincipal"></div>
+
+<script type="text/javascript" th:src="@{../js/fabrica/alta-error.js}"></script>
+<script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
+
+<script>mdc.autoInit()</script>
+<script>
+    demoReady(function () {
+        init();
+        initGlobal();
+    });
+
+</script>
+</html>
