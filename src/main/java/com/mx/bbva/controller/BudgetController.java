@@ -59,7 +59,7 @@ public class BudgetController {
         if (transfer != null) {
             transfer.setBudget(budget);
             transferService.saveTransfer(transfer);
-            return REDIRECT + "budgets/" + transfer.getTransferId();
+            return REDIRECT + "budgets/transfers/" + transfer.getTransferId();
         }
 
         return URL_BUDGET + SEARCH_BUDGETS;
@@ -115,7 +115,7 @@ public class BudgetController {
 
     // This method will fit the view's info, adding the selected transfer
     @RequestMapping(value = "/{budgetId}/dispersions/add", method = RequestMethod.GET)
-    public String createDispersion(Model model, @PathVariable("budgetId") Integer budgetId,
+    public String createDispersion(Model model, @PathVariable("budgetId") String budgetId,
                                    @RequestParam("transferId") Integer transferId) {
         // TODO Validate user
         // TODO budgetId ill have tu use that

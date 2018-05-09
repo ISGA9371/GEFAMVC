@@ -373,7 +373,7 @@ function ajaxGuardar() {
         type: 'post',
         data: formData
     }).done(function (data) {
-        customHolder("info", "PEP Dado de Alta Exitosamente.","window.location.href = '/budgets/" + $(data).find("#transferId").val() + "'; holder('Cargando...')");
+        customHolder("info", "PEP Dado de Alta Exitosamente.","window.location.href = '/budgets/transfers/" + $(data).find("#transferId").val() + "'; holder('Cargando...')");
         //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
     }).fail(function (xhr, status, error) {
         //console.log("fail");
