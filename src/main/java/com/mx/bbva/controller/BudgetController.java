@@ -55,10 +55,26 @@ public class BudgetController {
         //TODO Validate if the budget already exist
 
         budgetService.saveBudget(budget);
-        transfer.setBudget(budget);
-        transferService.saveTransfer(transfer);
 
-        return REDIRECT + "budgets/" + transfer.getTransferId();
+        if (transfer != null) {
+            transfer.setBudget(budget);
+            transferService.saveTransfer(transfer);
+            return REDIRECT + "budgets/" + transfer.getTransferId();
+        }
+
+        return URL_BUDGET + SEARCH_BUDGETS;
+    }
+
+    @RequestMapping(path = "/{budgetId}", method = RequestMethod.GET)
+    public String editBudget(Model model, @PathVariable(value = "budgetId") String budgetId) {
+        // TODO Validate user
+        if (null != budgetId) {
+            Budget budget = budgetService.findBudget(budgetId);
+            model.addAttribute("budget", budget);
+        } else {
+            model.addAttribute("budget", new Budget());
+        }
+        return URL_BUDGET + EDIT_BUDGET;
     }
 
     @RequestMapping(path = "/transfers/{transferId}", method = RequestMethod.GET)
