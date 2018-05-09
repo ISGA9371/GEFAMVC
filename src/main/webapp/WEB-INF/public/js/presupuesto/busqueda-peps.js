@@ -131,7 +131,7 @@ function addButtonEvents() {
             holder("Cargando...");
             window.location.href = "/budgets/"+$('input[name=pepsIds]:checked').closest("td").next().html()+"/dispersions/add?transferId="+$('input[name=pepsIds]:checked').attr("id");
         } else {
-            customHolder("warn", "Debe seleccionar un Traspaso.")
+            customHolder("warn", "Debe seleccionar un Traspaso.");
         }
     });
 }
