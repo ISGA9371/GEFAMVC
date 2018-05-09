@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import static com.mx.bbva.util.ViewsURLs.*;
 
 @Controller
-@RequestMapping(value = "/comobo")
+@RequestMapping(value = "/combo")
 public class ComboController {
 
     private static final Logger LOG = Logger.getLogger(IssueController.class.getName());
