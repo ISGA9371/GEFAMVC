@@ -368,7 +368,7 @@
   
 
 
-
+<!-- 
 
 <form style="" action="#" th:object="${modification}" th:action="@{/modifications}" method="post" onsubmit="holder">
 
@@ -487,12 +487,12 @@
 
             <input id="hidden-startTyp" type="hidden"  th:field="*{startTypology.typologyId}" >
             <input id="hidden-finalTyp" type="hidden"  th:field="*{finalTypology.typologyId}" >
-            <!--Campos Faltantes-->
+            <!--Campos Faltantes--
             <input id="hidden-modificationStatus" type="hidden"  th:field="*{modificationStatus.statusId}">
             <input id="hidden-status" type="hidden"  th:field="*{status.statusId}">
-            <!--<input id="hidden-endDate" type="text"  >-->
+            <!--<input id="hidden-endDate" type="text"  >--
             <input id="hidden-userre" type="hidden"  th:field="*{userReceiver.userInternalId}">
-            <!--<input id="hidden-senddate" type="text"  th:field="*{modificationSendDate}">-->
+            <!--<input id="hidden-senddate" type="text"  th:field="*{modificationSendDate}">--
             <input id="hidden-fact" type="hidden"  th:value="S" th:field="*{modificationInvoiced}">
 
             <div class="row">
@@ -540,7 +540,7 @@
                         <td class="col-md-4" align="center">
 
                             <input id="hidden-origen" type="text" value="" required th:field="*{origin.originId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
-                            <!-- <input id="Origen-js-select2" type="text"  required value="" th:field="*{origins}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;" />-->
+                            <!-- <input id="Origen-js-select2" type="text"  required value="" th:field="*{origins}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;" />--
                             <div id="origen-js-select"  class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                                     <div class="mdc-select__label">Origen*</div>
@@ -667,7 +667,7 @@
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <!--<input id="componentStartCost" type="text" required value="" class="hiddenField" th:field="*{componentStartCost}">-->
+                        <!--<input id="componentStartCost" type="text" required value="" class="hiddenField" th:field="*{componentStartCost}">--
                         <div class="mdc-text-field" id="initial-cost-mdc-text" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
                             <input type="text" readonly="readonly" class="mdc-text-field__input" id="costo">
@@ -709,7 +709,7 @@
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <!--<input id="componentStartCost" type="text" required value="" class="hiddenField" th:field="*{componentStartCost}">-->
+                        <!--<input id="componentStartCost" type="text" required value="" class="hiddenField" th:field="*{componentStartCost}">--
                         <div class="mdc-text-field" id="initial-cost-mdc-text" data-mdc-auto-init="MDCTextField"
                              style="background-color:#F4F4F4; width:90%">
                             <input type="text" readonly="readonly" class="mdc-text-field__input" id="costo">
@@ -770,7 +770,7 @@
                             <button type="button" class="btn btn-primary" onclick="funcionCancelar()">Cancelar</button>
                         </div>
                     </div>
-                    <!-- .// row -->
+                    <!-- .// row --
                 </tr>
             </table>
         </div>
@@ -778,7 +778,7 @@
 </form>
 <br>
 <br>
-
+-->
 <footer th:replace="~{layout/footer2 :: footer }"></footer>
 </body>
 <div th:replace="~{layout/footer2 :: scripts }"></div>
