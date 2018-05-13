@@ -309,3 +309,36 @@ footer {
 .row.buttons {
   margin: 25px 0px;
 }
+
+
+/** TABLE RESULTS **/
+.results-table * {
+  font-size: 12px;
+  text-align: center;
+}
+
+.results-table thead tr {
+  background-color: #F4F4F4;
+  color: #005EB8;
+}
+
+.results-table thead tr th {
+  padding: 12px 0;
+  font-weight: normal;
+  border-bottom: 1.2px solid #005EB8 !important;
+}
+
+.table-striped > tbody > tr:nth-child(odd) {
+  background-color: #F6F7FB;
+}
+
+.table-striped > tbody > tr:nth-child(even) {
+  background-color: #D9E8FF;
+}
+
+.tabs-gefa ul li {
+  border-radius: 15px 15px 3px 3px;
+  -moz-border-radius: 15px 15px 3px 3px;
+  -webkit-border-radius: 15px 15px 3px 3px;
+  border: 0px solid #000000;
+}
