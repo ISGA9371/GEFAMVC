@@ -1,3 +1,15 @@
+var mdc_text_solicitud = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_solicitud'));
+var mdc_text_aceptacion = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_aceptacion'));
+var mdc_text_orden_compra = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_orden_compra'));
+var mdc_text_fecha_envio = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_envio'));
+var mdc_text_hoja_entrada = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_hoja_entrada'));
+var mdc_select_estado_pago = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado_pago'));
+var mdc_text_fecha_desde = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_desde'));
+var mdc_text_fecha_hasta = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_hasta'));
+var mdc_select_empresa = new mdc.select.MDCSelect(document.querySelector('#mdc_select_empresa'));
+var mdc_select_tecnologia = new mdc.select.MDCSelect(document.querySelector('#mdc_select_tecnologia'));
+var mdc_select_area_atencion = new mdc.select.MDCSelect(document.querySelector('#mdc_select_area_atencion'));
+
 $(document).ready(function(){
 
   $("#fecha_envio").datepicker({
@@ -151,19 +163,6 @@ $(document).ready(function(){
   /************************ */
 
 
-  mdc_text_solicitud = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_solicitud'));
-  mdc_text_aceptacion = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_aceptacion'));
-  mdc_text_orden_compra = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_orden_compra'));
-  mdc_text_fecha_envio = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_envio'));
-  mdc_text_hoja_entrada = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_hoja_entrada'));
-  mdc_select_estado_pago = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado_pago'));
-  mdc_text_fecha_desde = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_desde'));
-  mdc_text_fecha_hasta = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_hasta'));
-  mdc_select_empresa = new mdc.select.MDCSelect(document.querySelector('#mdc_select_empresa'));
-  mdc_select_tecnologia = new mdc.select.MDCSelect(document.querySelector('#mdc_select_tecnologia'));
-  mdc_select_area_atencion = new mdc.select.MDCSelect(document.querySelector('#mdc_select_area_atencion'));
-
-
 
   $("#fecha_envio").change(function(){
     if ( "" != mdc_text_fecha_envio.value ) {
@@ -237,11 +236,11 @@ $(document).ready(function(){
       modificationSendDate: changeFormatDate(mdc_text_fecha_envio.value),
       paymentInPaper: mdc_text_hoja_entrada.value,
       statusId: mdc_select_estado_pago.value,
-      invoiceCutDateStart: changeFormatDate(mdc_text_fecha_desde.value),
-      invoiceCutDateEnd: changeFormatDate(mdc_text_fecha_hasta.value),
-      companyName: mdc_select_empresa.value,
-      technologyName: mdc_select_tecnologia.value,
-      areaName: mdc_select_area_atencion.value,
+      invoiceCutDateFrom: changeFormatDate(mdc_text_fecha_desde.value),
+      invoiceCutDateTo: changeFormatDate(mdc_text_fecha_hasta.value),
+      companyId: mdc_select_empresa.value,
+      technologyId: mdc_select_tecnologia.value,
+      areaId: mdc_select_area_atencion.value,
     };
 
     console.log( params );
@@ -289,3 +288,5 @@ $(document).ready(function(){
   }
 
 });
+
+// mdc.autoInit();
