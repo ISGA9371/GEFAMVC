@@ -29,9 +29,9 @@ public class Doubt implements Serializable {
     private Date doubtUploadDate;
     @Column(name = "TX_VENTREGA", nullable = false, length = 9)
     private String doubtVersion;
-    @Column(name = "NB_DESC_DUDA_HIST", nullable = false, length = 600)
+    @Column(name = "NB_DESC_DUDA_HIST", nullable = false, length = 1200)
     private String doubtDescription;
-    @Column(name = "NB_DESC_RES_HIST", length = 600)
+    @Column(name = "NB_DESC_RES_HIST", length = 1200)
     private String doubtDescriptionResponse;
     @Lob
     @Column(name = "TX_DOC_DUDA")
