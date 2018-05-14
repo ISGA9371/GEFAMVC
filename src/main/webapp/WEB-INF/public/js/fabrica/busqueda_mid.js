@@ -868,23 +868,23 @@ function searchComponent() {
             $("#results-table tbody").append(
                 //"<th:block th:each='requirement, stat : ${requirements}'>"
                 "<tr th:href='${'#row-detail-wrapper-' + stat.count}' data-tggle='collapse' class='clickable' th:aria-controls='${'row-detail-wrapper-' + stat.count}'>"
-                +"<td>"
-                //+//"<input type='radio' name='requirements' th:id='${requirement.requirementId}' th:value='${requirement.requirementId}'>"
-                +"</td>"
-                +"<td>"+data.component.requirement.project.methodology.methodologyName
-                +"</td>"
-                +"<td>"+data.component.requirement.project.projectName
-                +"</td>"
-                +"<td>"+""
-                +"</td>"
-                +"<td>"+data.component.requirement.company.companyName
-                +"</td>"
-                +"<td>"+data.component.requirement.level.levelSuperior.levelName
-                +"</td>"
-                +"<td>"+data.component.requirement.area.areaName
-                +"</td>"
+                  +"<td>"
+                  //+//"<input type='radio' name='requirements' th:id='${requirement.requirementId}' th:value='${requirement.requirementId}'>"
+                  +"</td>"
+                  +"<td>"+data.component.requirement.project.methodology.methodologyName
+                  +"</td>"
+                  +"<td>"+data.component.requirement.project.projectName
+                  +"</td>"
+                  +"<td>"+""
+                  +"</td>"
+                  +"<td>"+data.component.requirement.company.companyName
+                  +"</td>"
+                  +"<td>"+data.component.requirement.level.levelSuperior.levelName
+                  +"</td>"
+                  +"<td>"+data.component.requirement.area.areaName
+                  +"</td>"
                 +"</tr>"
-                +"<tr>"
+                /*+"<tr>"
                 +"<td colspan='11' class='detail-td'>"
                 +"<div th:id='${'row-detail-wrapper-' + stat.count}' class='collapse'>"
                 +"<table style='width: 100%;'>"
@@ -897,7 +897,7 @@ function searchComponent() {
                 +"</td>"
                 +"<td th:text='${#dates.format(requirement.requirementEndDate, 'dd/MM/yyyy')}'>"
                 +"</td>"
-                +"</tr>"
+                +"</tr>"*/
                 +"</table>"
                 +"</div>"
                 +"</td>"
@@ -912,31 +912,34 @@ function searchComponent() {
     });
 }
 
-$("#btn-clear").click(function () {
-    tipo.value = "";
-    tipo.selectedIndex = -1;
-    areas.value = "";
-    areas.selectedIndex = -1;
-    direccion.value = "";
-    direccion.selectedIndex = -1;
-    empresa.value = "";
+function limpiarCampos(){
+    var componente = new mdc.select.MDCSelect($("#slct_componente")[0])
+    var area = new mdc.select.MDCSelect($("#slct_area")[0])
+    var dir = new mdc.select.MDCSelect($("#slct_direccion")[0])
+    var empresa = new mdc.select.MDCSelect($("#slct_empresa")[0])
+    var tipo = new mdc.select.MDCSelect($("#slct_tipo")[0])
+    var fechaAlta = document.getElementById("componentCurrentDate")
+    var proyecto = document.getElementById("projectName")
+
+    componente.selectedIndex = -1;
+    area.selectedIndex = -1;
+    dir.selectedIndex = -1;
     empresa.selectedIndex = -1;
-    componentCurrentDate.value = "";
-    componentCurrentDate.value.selectedIndex = -1;
-
-    $(".mdc-text-field__input").removeClass("mdc-text-field__label--float-above");
-
-    $("#results-table tbody").html("");
-});
-
-function validaCampos() {
-    if ($("#demo").text() == "" || $("#demo").text() == null){
-        customHolder("aviso",'¡Favor de seleccionar componente!');
-    }
+    tipo.selectedIndex = -1;
+    fechaAlta.style.display="none";
+    proyecto.style.display="none";
 }
 
 function controlSearch(){
-    //showHoldOn();
-    validaCampos();
-    //setTimeout("searchComponent()",200);
+    showHoldOn();
+    validaComponente();
+}
+
+function validaComponente() {
+    var componente = new mdc.select.MDCSelect($("#slct_componente")[0]).value;
+    if (componente == "") {
+        customHolder("info", 'Selecciona un componente.') ;
+    } else{
+        setTimeout("searchComponent()",200);
+    }
 }
