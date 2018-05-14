@@ -59,6 +59,7 @@ public class DoubtController {
         return URL_FACTORY + SEARCH_DOUBTS;
     }
 
+    @ResponseBody
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ResponseEntity<?> searchForDoubts(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
