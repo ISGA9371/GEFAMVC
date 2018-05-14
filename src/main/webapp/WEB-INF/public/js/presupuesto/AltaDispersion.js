@@ -16,6 +16,20 @@ function init() {
 
 }
 
+function agregar() {
+
+    var dataForms = [];
+    var counter = 0;
+    var transferobjet = new Object();
+    data = $( "#trasfer" ).serialize();
+    //dataForms[counter++] = data;
+
+    transferobjet.componentDesignRealDeliverDate=data[1];
+
+    dataForms[counter++] = transferobjet;
+
+}
+
 function addCalendars() {
 
     $('#fechaNeg').datepicker({dateFormat: "dd/mm/yy"});

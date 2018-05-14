@@ -3,12 +3,13 @@ function init() {
     loadSelects2();
     addButtonEvents();
     camp();
+    userLog();
 
     $("#hidden-envcomponente").val($("#hidden-componente").val());
 
     //$("#hidden-responsable").val($("#responsabletxt").val());
-    $("#responsabletxt").val("XMY3080");
-    $("#hidden-responsable").val("XMY3080");
+    //$("#responsabletxt").val("XMY3080");
+    //$("#hidden-responsable").val("XMY3080");
     $("#estado-incident").val(16);
 
     var fecha=$("#datetimepicker").val();
@@ -17,6 +18,18 @@ function init() {
     var anio = fecha.substring(0,4);
     $("#datetimepickerformat").val(dia+"/"+mes+"/"+anio);
 
+}
+
+function userLog() {
+
+    $.ajax({
+        url: "/users/info"
+    }).done(function(data) {
+        let subs = data.data;
+        $("#responsabletxt").val(subs.userInternalId);
+        $("#hidden-responsable").val(subs.userInternalId);
+        alert(subs.profileType.profileTypeId);
+    });
 }
 
 $(function () {

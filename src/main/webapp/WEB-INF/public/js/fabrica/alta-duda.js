@@ -3,13 +3,14 @@ function init() {
     camp();
     loadSelects2();
     addButtonEvents();
+    userLog();
 
     $("#hidden-status").val("11");
     $("#hidden-doubtType").val("13");
     $("#hidden-envcomponente").val($("#hidden-componente").val());
     //$("#hidden-responsable").val($("#responsabletxt").val());
-    $("#responsabletxt").val("XMY3080");
-    $("#hidden-responsable").val("XMY3080");
+    //$("#responsabletxt").val("XMY3080");
+    //$("#hidden-responsable").val("XMY3080");
 
     var fecha=$("#datetimepicker").val();
     var dia = fecha.substring(8,10);
@@ -147,11 +148,27 @@ function ajaxGuardar() {
     var url = $form.attr("action");
     var formData = $($form).serializeArray();
 
+    var data = new FormData();
+    jQuery.each($('input[type=file]')[0].files, function(i, file) {
+        //data.append('file-'+i, file);
+        data.append('DoubtFile', file);
+    });
+    var other_data = $('form').serializeArray();
+    $.each(other_data,function(key,input){
+        data.append(input.name,input.value);
+    });
+
     $.ajax({
-        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
         url: url,
         type: 'post',
-        data: formData
+        //data: formData
+        data: data,
+        success: function(data){
+            alert(data);
+        }
     }).done(function (data) {
         customHolder("info", "Duda Registrada Exitosamente.","window.location.href = '/components/filters'; holder('Cargando...')");
         //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
@@ -190,3 +207,14 @@ function customHolder(type, msg, fctn) {
 }
 
 
+function userLog() {
+
+    $.ajax({
+        url: "/users/info"
+    }).done(function(data) {
+        let subs = data.data;
+        $("#responsabletxt").val(subs.userInternalId);
+        $("#hidden-responsable").val(subs.userInternalId);
+        alert(subs.profileType.profileTypeId);
+    });
+}
