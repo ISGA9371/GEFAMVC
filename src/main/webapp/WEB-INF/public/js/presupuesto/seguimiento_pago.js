@@ -288,5 +288,3 @@ $(document).ready(function(){
   }
 
 });
-
-// mdc.autoInit();
