@@ -224,6 +224,12 @@ $(document).ready(function(){
 
     $("#fecha_hasta").datepicker("option", "minDate", null);
     $("#fecha_desde").datepicker("option", "maxDate", null);
+
+    $("#row-title-results").hide();
+    $("#row-content-results").hide();
+    $("#row-buttons-results").hide();
+    
+    $("#table-results > tbody").html("");
   });
 
 
@@ -260,8 +266,89 @@ $(document).ready(function(){
         });
       }
     }).done(function ( data ) {
+      data = [
+        {
+          id: "1",
+          fecha_corte: "10/11/1987",
+          requerimiento: "Requer Uno",
+          direccion: "direccion",
+          subdireccion: "subdireccion",
+          responsable: "responsa 1",
+          empresa: "empresa1",
+          monto: "100.00",
+          alerta: "",
+          estado: "",
+          solicitud_pedido: "pendiente",
+          horas: "20",
+          pep: "dfdsfer4324324",
+        },
+        {
+          id: "2",
+          fecha_corte: "10/11/1990",
+          requerimiento: "Requer Dos",
+          direccion: "direccion",
+          subdireccion: "subdireccion",
+          responsable: "responsa DOS",
+          empresa: "empresa dos",
+          monto: "87,634.00",
+          alerta: "",
+          estado: "",
+          solicitud_pedido: "pendiente",
+          horas: "216",
+          pep: "qwerty6543",
+        },
+      ];
+
+      console.log(data);
       if (1 <= data.length) {
-        HoldOn.close();  
+        $("#row-title-results").show();
+        $("#row-content-results").show();
+        $("#row-buttons-results").show();
+
+        $("#table-results > tbody").html("");
+          // <tr>
+          //   <td>dato 1</td>
+          //   <td>dato 1</td>
+          //   <td>dato 1</td>
+          //   <td>dato 1</td>
+          //   <td>dato 1</td>
+          //   <td>dato 1</td>
+          //   <td>dato 1</td>
+          //   <td>dato 1</td>
+          //   <td><select class="form-control"><option>Estado 1</option><option>Estado 2</option><option>Estado 3</option></select></td>
+          //   <td></td>
+          // </tr>
+
+
+
+
+          $.each(data, function (index, value) {
+            $("#table-results > tbody").append(
+              "<tr data-toggle='collapse' data-target='#target-"+value.id+"' class='clickable'>" + 
+                "<td>" + value.fecha_corte + "</td>" +
+                "<td>" + value.requerimiento + "</td>" +
+                "<td>" + value.direccion + "</td>" +
+                "<td>" + value.subdireccion + "</td>" +
+                "<td>" + value.responsable + "</td>" +
+                "<td>" + value.empresa + "</td>" +
+                "<td>" + value.monto + "</td>" +
+                "<td>" + value.alerta + "</td>" +
+                "<td>" + value.estado + "</td>" +
+              "</tr>" +
+              "<tr></tr>" +
+              "<tr> <td colspan='9' class='detail-td'>" +
+                "<div id='target-"+value.id+"' class='collapse'>" +
+                  "<table class='table' style='margin-bottom:0;'><tr>" + 
+                    "<td>" + value.solicitud_pedido + "</td>" +
+                    "<td>" + value.horas + "</td>" +
+                    "<td>" + value.pep + "</td>" +
+                  "</tr></table>" +
+                "</div>" +
+              "</td></tr>"
+            );
+          });
+
+        HoldOn.close();
       } else {
         customHolder("info", "Tu búsqueda no devolvió resultados.");
       }
@@ -276,6 +363,30 @@ $(document).ready(function(){
 
 
   $("#btn_excel").click(function(){});
+
+  $("body").on("click", "tr.clickable", function (event) {
+    // var radioButton = $(this).find('input[type=radio]');
+    // console.log("hola"+ radioButton.length);
+    // radioButton.prop('checked', true);
+
+    // editReq.attr("href","/requirements/"+radioButton.val());
+    // editReq.removeAttr("disabled");
+
+    var prevExpanded = $("tr.clickable[aria-expanded='true']");
+    console.log(prevExpanded);
+    // prevExpanded.removeAttr("aria-expanded");
+    
+    prevExpanded.collapse('toggle');
+    // prevExpanded.css("background-color",prevExpanded.attr("data-prev-bg"));
+
+    // $(this).attr("aria-expanded","true");
+
+    // $(this).attr("data-prev-bg", $(this).css("background-color"));
+    // $(this).css("background-color","#f4f8fb");
+
+    // let target = $(this).attr("aria-controls");
+    // $("#"+target).collapse('toggle');
+  });
 
 
   function changeFormatDate(date) {
