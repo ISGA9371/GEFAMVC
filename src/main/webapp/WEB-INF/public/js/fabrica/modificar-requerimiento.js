@@ -149,11 +149,34 @@ $(function () {
     const area = new mdc.select.MDCSelect(document.querySelector('#area'));
     var areaId = $("#area\\.areaId").val();
     console.log("Area ID "+areaId);
+
     let index2 = parseInt("0");
     area.listen('MDCSelect:change', () => {
-        if (index2++ === 2) return; else index2 = 0;
+        if (index2++ === 0) return; else index2 = 0;
         let id = area.selectedOptions[0].value;
         $("#area\\.areaId").val(id);
+
+        $.ajax({
+            url: "/api/service-types"
+        }).done(function(data) {
+            let services = data.data;
+            $("#service-type-sel-text").html("");
+            serviceType.selectedIndex = -1;
+            serviceType.value = "";
+
+            if (typeof services !== 'undefined' && services.length > 0) {
+
+                $("#service-type-select").html("");
+                $.each(services, function( index, value ) {
+                    if(value.area.areaId == id) {
+                        $("#service-type-select").append(
+                            "<li class='mdc-list-item' role='option' tabindex='0' " +
+                            "value='" + value.serviceTypeId + "'>" + value.serviceTypeName + "</li>");
+                    }
+
+                });
+            }else $("#service-type-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+        });
     });
 
     const managers = new mdc.select.MDCSelect(document.querySelector('#manager'));
@@ -243,14 +266,46 @@ $(function () {
     });
 
     const serviceType = new mdc.select.MDCSelect(document.querySelector('#service-type'));
+    let index9 = 0;
     var serviceTypeId = $("#serviceType\\.serviceTypeId").val();
     console.log("serviceType ID "+serviceTypeId);
-    let index9 = parseInt("0");
+
     serviceType.listen('MDCSelect:change', () => {
         if (index9++ === 0) return; else index9 = 0;
         let id = serviceType.selectedOptions[0].value;
         $("#serviceType\\.serviceTypeId").val(id);
+        console.log("SELECTEserviceType ID "+id);
     });
+
+
+    $.ajax({
+        url: "/api/service-types"
+    }).done(function(data) {
+        let services = data.data;
+        $("#service-type-sel-text").html("");
+
+        if (typeof services !== 'undefined' && services.length > 0) {
+            $("#service-type-select").html("");
+            var serviceTypeEL = $("#service-type");
+            var serviceTypeId = $("#serviceType\\.serviceTypeId").val();
+
+            $.each(services, function( index, value ) {
+                if(value.area.areaId == areaId) {
+                    let aria = value.serviceTypeId == serviceTypeId ? ' aria-selected ' : '';
+                    $("#service-type-select").append(
+                        "<li class='mdc-list-item' role='option' tabindex='0' " + aria +
+                        "value='" + value.serviceTypeId + "'>" + value.serviceTypeName + "</li>");
+                }
+            });
+
+            mdc.select.MDCSelect.attachTo(document.getElementById('service-type'));
+            serviceType.selectedIndex = serviceTypeEL.find("ul li[value="+ serviceTypeId +"]").index();
+            serviceType.value = serviceTypeEL.find("ul li[value="+serviceTypeId+"]").html();
+
+        }else $("#service-type-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
+    });
+
+
 
     const pi = new mdc.select.MDCSelect(document.querySelector('#pi'));
     var piId = $("#programIncrement\\.programIncrementId").val();

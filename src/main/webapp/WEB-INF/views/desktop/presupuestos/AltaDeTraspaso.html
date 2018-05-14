@@ -119,8 +119,8 @@
                 <td class="col-md-4" align="center">
 
                     <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc-group-componentDesignRealDeliverDate">
-                        <input type="text" class="mdc-text-field__input" name="fechaTranspaso" id="componentDesignRealDeliverDate" th:field="*{transfer.transferDate}" />
-                        <label class="mdc-text-field__label">Fecha de Traspaso</label>
+                        <input type="text" class="mdc-text-field__input" readonly required name="fechaTranspaso" id="componentDesignRealDeliverDate" th:field="*{transfer.transferDate}" />
+                        <label class="mdc-text-field__label">Fecha de Traspaso*</label>
                     </div>
 
                 </td>
@@ -232,7 +232,7 @@
 
 <div th:replace="~{layout/footer2 :: scripts }"></div>
 <script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
-<script type="text/javascript" th:src="@{/js/presupuesto/fn_AltaTranspaso.js}"></script>
+<script type="text/javascript" th:src="@{/js/presupuesto/fn_AltaTraspaso.js}"></script>
 
 <script>
     mdc.autoInit();

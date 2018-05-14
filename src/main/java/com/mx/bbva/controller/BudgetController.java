@@ -35,6 +35,10 @@ public class BudgetController {
     private InvoiceService invoiceService;
     private RequirementService requirementService;
 
+    //Cmb Years
+    Calendar cal= Calendar.getInstance();
+    int year= cal.get(Calendar.YEAR);
+
     // This method will fit the info for the view
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String createBudget(Model model) {
@@ -259,9 +263,10 @@ public class BudgetController {
     }
 
     //FALTA COMBO AÑO TABLAS BUDGETS
+
     @ModelAttribute("budgetYears")
     public List<Integer> populateBubgetYears() {
-        return Arrays.asList(2017, 2018, 2019);
+        return Arrays.asList((year-1), year, (year+1));
     }
 
     //FALTA COMBO BANCAS TABLAS 34

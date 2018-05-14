@@ -8,7 +8,7 @@ function init(){
     addCalendars();
     //add default values
     addMissing();
-    addDefaultValues();
+    //addDefaultValues();
     disableFields();
     formatMoney();
     addButtonEvents();
@@ -17,22 +17,24 @@ function init(){
 
 function disableFields(){
 
-    new mdc.textField.MDCTextField(document.getElementById('divAnioPep')).disabled = true;
+    //new mdc.textField.MDCTextField(document.getElementById('divAnioPep')).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById('dirDiv')).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById('respAreaDiv')).disabled = true;
     new mdc.select.MDCSelect(document.getElementById('subdirs')).disabled = true;
 
 }
 
-function addDefaultValues(){
+function validateYear(){
 
     //Asign year
     var fecha = new Date();
     var ano = fecha.getFullYear();
-    $("#anioPep").val(ano);
-    $("#hdYear").val(ano);
-    $("#anioPep").focus();
 
+    if($("#hidden-anio").val()==(ano-1)){
+        $("#tpDeslizado").val(1);
+    }else{
+        $("#tpDeslizado").val(0);
+    }
 
 }
 
@@ -161,12 +163,12 @@ function asignarCombos(){
 
         if(id==1){
 
-            $("#cr").val("MX11");
+            $("#cr").val("MX23");
             $("#cr").focus();
 
         }else{
 
-            $("#cr").val("MX23");
+            $("#cr").val("MX11");
             $("#cr").focus();
         }
 
@@ -289,6 +291,57 @@ function asignarCombos(){
         //cosoS=0;
     });
 
+
+    //cmb ResponsiblePEP
+    responsible = new mdc.select.MDCSelect(document.querySelector('#responsableDot-js-select'));
+
+    $.ajax({
+        url: "/api/budgets-responsible"
+    }).done(function(data) {
+
+        subs = data.data;
+
+        $("#rp-rp-text").html("");
+        responsible.selectedIndex = -1;
+        responsible.value = "";
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#rp-select").html("");
+            $.each(subs, function( index, value ) {
+
+                $("#rp-select").append(
+                    "<li class='mdc-list-item' role='option' tabindex='0' " +
+                    "id='"+value.budgetsResponsibleId+"' value='"+value.budgetsResponsibleId+"'>"+value.budgetsResponsibleName+"</li>");
+
+            });
+        }else $("#rp-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+
+    });
+
+    //cmb BudgetsApplicant
+    solicPep = new mdc.select.MDCSelect(document.querySelector('#solicitante-js-select'));
+
+    $.ajax({
+        url: "/api/budgets-applicants"
+    }).done(function(data) {
+
+        subs = data.data;
+
+        $("#sl-sl-text").html("");
+        solicPep.selectedIndex = -1;
+        solicPep.value = "";
+        if (typeof subs !== 'undefined' && subs.length > 0) {
+            $("#sl-select").html("");
+            $.each(subs, function( index, value ) {
+
+                $("#sl-select").append(
+                    "<li class='mdc-list-item' role='option' tabindex='0' " +
+                    "id='"+value.budgetsApplicantId+"' value='"+value.budgetsApplicantId+"'>"+value.budgetsApplicantName+"</li>");
+
+            });
+        }else $("#sl-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+
+    });
+
 }
 
 function funcionCancelar(){
@@ -330,9 +383,17 @@ function formatMoney(){
         },
         "keyup": function(event) {
             $(event.target).val(function(index, value) {
-                $("#valorEnviar").val(value.replace(/\D/g, "").replace(/([0-9])([0-9]{2})$/, '$1.$2'));
-                $("#hdAmount").val(value.replace(/\D/g, "").replace(/([0-9])([0-9]{2})$/, '$1.$2'));
-                return value.replace(/\D/g, "").replace(/([0-9])([0-9]{2})$/, '$1.$2').replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+                valor=value.replace(/\D/g, "").replace(/([0-9])([0-9]{2})$/, '$1.$2').replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+                if(valor.length<15){
+                    $("#hdAmountDisp").val(value.replace(/\D/g, "").replace(/([0-9])([0-9]{2})$/, '$1.$2'));
+                    $("#valorEnviar").val(value.replace(/\D/g, "").replace(/([0-9])([0-9]{2})$/, '$1.$2'));
+                    $("#hdAmount").val(value.replace(/\D/g, "").replace(/([0-9])([0-9]{2})$/, '$1.$2'));
+                    valor="$"+valor;
+                    return valor;
+                }else{
+                    return "";
+                }
+
             });
         }
     });
@@ -351,6 +412,9 @@ function addButtonEvents() {
             backgroundColor: "#0c71ca",
             textColor: "white"
         });
+
+        //Validate year
+        validateYear();
         setTimeout("ajaxGuardar();", 500)
     });
 
