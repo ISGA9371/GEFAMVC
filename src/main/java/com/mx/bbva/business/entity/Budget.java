@@ -56,12 +56,6 @@ public class Budget implements Serializable {
     @JoinColumn(name = "ST_DYD", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status statusDyd;
-    @JoinColumn(name = "CD_USUARIO_SOLIC", referencedColumnName = "CD_USUARIO_CORP")
-    @ManyToOne
-    private User userSender;
-    @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP")
-    @ManyToOne
-    private User userReceiver;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
     private Area area;
@@ -205,22 +199,6 @@ public class Budget implements Serializable {
 
     public void setStatusDyd(Status statusDyd) {
         this.statusDyd = statusDyd;
-    }
-
-    public User getUserSender() {
-        return userSender;
-    }
-
-    public void setUserSender(User userSender) {
-        this.userSender = userSender;
-    }
-
-    public User getUserReceiver() {
-        return userReceiver;
-    }
-
-    public void setUserReceiver(User userReceiver) {
-        this.userReceiver = userReceiver;
     }
 
     public Area getArea() {

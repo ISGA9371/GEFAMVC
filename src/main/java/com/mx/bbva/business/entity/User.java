@@ -31,12 +31,6 @@ public class User implements Serializable {
     @ManyToOne(optional = false)
     private ProfileType profileType;
     @JsonIgnore
-    @OneToMany(mappedBy = "userSender")
-    private List<Budget> budgets;
-    @JsonIgnore
-    @OneToMany(mappedBy = "userReceiver")
-    private List<Budget> budgetList;
-    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Transfer> transfers;
     @JsonIgnore
@@ -86,22 +80,6 @@ public class User implements Serializable {
 
     public void setUserInternalId(String userInternalId) {
         this.userInternalId = userInternalId;
-    }
-
-    public List<Budget> getBudgets() {
-        return budgets;
-    }
-
-    public void setBudgets(List<Budget> budgets) {
-        this.budgets = budgets;
-    }
-
-    public List<Budget> getBudgetList() {
-        return budgetList;
-    }
-
-    public void setBudgetList(List<Budget> budgetList) {
-        this.budgetList = budgetList;
     }
 
     public List<Transfer> getTransfers() {
