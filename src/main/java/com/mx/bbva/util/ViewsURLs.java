@@ -54,5 +54,5 @@ public class ViewsURLs {
 
     public static final String ADMIN_USERS = "AdministracionDeUsuarios";
 
-    public static final String NEW_COMBO = "Combos";
+    public static final String ADMIN_CATALOGS = "Combos";
 }
