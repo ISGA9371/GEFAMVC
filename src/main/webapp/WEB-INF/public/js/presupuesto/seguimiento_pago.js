@@ -338,7 +338,7 @@ $(document).ready(function(){
               "<tr></tr>" +
               "<tr> <td colspan='9' class='detail-td'>" +
                 "<div id='target-"+value.id+"' class='collapse'>" +
-                  "<table class='table' style='margin-bottom:0;'><tr>" + 
+                  "<table class='table' style='margin-bottom:0;background-color: #f4f8fb;'><tr>" + 
                     "<td>" + value.solicitud_pedido + "</td>" +
                     "<td>" + value.horas + "</td>" +
                     "<td>" + value.pep + "</td>" +
@@ -365,27 +365,11 @@ $(document).ready(function(){
   $("#btn_excel").click(function(){});
 
   $("body").on("click", "tr.clickable", function (event) {
-    // var radioButton = $(this).find('input[type=radio]');
-    // console.log("hola"+ radioButton.length);
-    // radioButton.prop('checked', true);
-
-    // editReq.attr("href","/requirements/"+radioButton.val());
-    // editReq.removeAttr("disabled");
-
     var prevExpanded = $("tr.clickable[aria-expanded='true']");
-    console.log(prevExpanded);
-    // prevExpanded.removeAttr("aria-expanded");
-    
-    prevExpanded.collapse('toggle');
-    // prevExpanded.css("background-color",prevExpanded.attr("data-prev-bg"));
-
-    // $(this).attr("aria-expanded","true");
-
-    // $(this).attr("data-prev-bg", $(this).css("background-color"));
-    // $(this).css("background-color","#f4f8fb");
-
-    // let target = $(this).attr("aria-controls");
-    // $("#"+target).collapse('toggle');
+    target = prevExpanded.data("target");
+    if ( "undefined" !== typeof target ) {
+      $(target).collapse('toggle');
+    }
   });
 
 
