@@ -68,7 +68,7 @@ public class ModificationController {
         if (null != modificationId) {
             Modification modification = modificationService.findModification(modificationId);
             model.addAttribute("modification", modification);
-            model.addAttribute("componentData", modification.getComponent());
+            model.addAttribute("componentData", modification);
         } else {
             model.addAttribute("modification", new Modification());
             model.addAttribute("componentData", new Component() {
