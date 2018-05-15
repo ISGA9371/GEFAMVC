@@ -6,6 +6,7 @@ import com.mx.bbva.business.dto.ResponseListDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import com.mx.bbva.util.query.BudgetQueryGenerator;
+import com.mx.bbva.util.query.InvoiceQueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,8 +37,8 @@ public class BudgetController {
     private RequirementService requirementService;
 
     //Cmb Years
-    Calendar cal= Calendar.getInstance();
-    int year= cal.get(Calendar.YEAR);
+    Calendar cal = Calendar.getInstance();
+    int year = cal.get(Calendar.YEAR);
 
     // This method will fit the info for the view
     @RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -193,10 +194,9 @@ public class BudgetController {
     @RequestMapping(value = "/billing/search", method = RequestMethod.GET)
     public List<Invoice> searchForBillings(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
-        /* String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
-        List<Budget> budgets = budgetService.findByCustomQuery(query); */
+        String query = new InvoiceQueryGenerator().generateQuery(parameters);
 
-        return invoiceService.findAllInvoices();
+        return invoiceService.findByCustomQuery(query);
     }
 
     @RequestMapping(value = "/payments/filters", method = RequestMethod.GET)
@@ -266,7 +266,7 @@ public class BudgetController {
 
     @ModelAttribute("budgetYears")
     public List<Integer> populateBubgetYears() {
-        return Arrays.asList((year-1), year, (year+1));
+        return Arrays.asList((year - 1), year, (year + 1));
     }
 
     //FALTA COMBO BANCAS TABLAS 34

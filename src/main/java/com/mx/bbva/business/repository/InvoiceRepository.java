@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface InvoiceRepository extends JpaRepository<Invoice, Integer> {
+public interface InvoiceRepository extends JpaRepository<Invoice, Integer>, InvoiceRepositoryCustom {
 
     @Query(value = "SELECT i.invoiceCutDate FROM Invoice i")
     List<Date> findInvoiceCutDate();

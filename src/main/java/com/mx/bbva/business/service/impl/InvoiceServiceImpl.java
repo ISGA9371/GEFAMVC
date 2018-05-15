@@ -28,6 +28,11 @@ public class InvoiceServiceImpl implements InvoiceService {
         return invoiceRepository.findInvoiceCutDate();
     }
 
+    @Override
+    public List<Invoice> findByCustomQuery(String query) {
+        return invoiceRepository.findByCustomQuery(query);
+    }
+
     @Autowired
     public void setInvoiceRepository(InvoiceRepository invoiceRepository) {
         this.invoiceRepository = invoiceRepository;

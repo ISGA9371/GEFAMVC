@@ -51,6 +51,11 @@ public class ModificationServiceImpl implements ModificationService {
         return modificationRepository.saveAndFlush(modification);
     }
 
+    @Override
+    public boolean notExist(Integer modificationId) {
+        return !modificationRepository.existsById(modificationId);
+    }
+
     @Autowired
     public void setModificationRepository(ModificationRepository modificationRepository) {
         this.modificationRepository = modificationRepository;

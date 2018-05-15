@@ -12,4 +12,6 @@ public interface ModificationService {
     List<Modification> findAllModifications();
 
     Modification updateModification(Modification modification);
+
+    boolean notExist(Integer modificationId);
 }
