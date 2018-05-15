@@ -2,9 +2,11 @@ package com.mx.bbva.controller;
 
 import com.mx.bbva.business.dto.BudgetSearchDTO;
 import com.mx.bbva.business.dto.ResponseDTO;
+import com.mx.bbva.business.dto.ResponseListDTO;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import com.mx.bbva.util.query.BudgetQueryGenerator;
+import com.mx.bbva.util.query.InvoiceQueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 import static com.mx.bbva.util.ViewsURLs.*;
@@ -37,6 +36,11 @@ public class BudgetController {
     private InvoiceService invoiceService;
     private RequirementService requirementService;
 
+    //Cmb Years
+    Calendar cal = Calendar.getInstance();
+    int year = cal.get(Calendar.YEAR);
+
+    // This method will fit the info for the view
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String createBudget(Model model) {
         // TODO Validate user
@@ -48,6 +52,60 @@ public class BudgetController {
         return URL_BUDGET + NEW_BUDGET;
     }
 
+    // save the budget and generate the transfer, return to edit the saved transfer
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public String saveBudget(@ModelAttribute("budget") Budget budget, @ModelAttribute("transfer") Transfer transfer) {
+        // TODO Validate user
+
+        //TODO Validate if the budget already exist
+
+        budgetService.saveBudget(budget);
+
+        if (transfer != null) {
+            transfer.setBudget(budget);
+            transferService.saveTransfer(transfer);
+            return REDIRECT + "budgets/transfers/" + transfer.getTransferId();
+        }
+
+        return URL_BUDGET + SEARCH_BUDGETS;
+    }
+
+    @RequestMapping(path = "/{budgetId}", method = RequestMethod.GET)
+    public String editBudget(Model model, @PathVariable(value = "budgetId") String budgetId) {
+        // TODO Validate user
+        if (null != budgetId) {
+            Budget budget = budgetService.findBudget(budgetId);
+            model.addAttribute("budget", budget);
+        } else {
+            model.addAttribute("budget", new Budget());
+        }
+        return URL_BUDGET + EDIT_BUDGET;
+    }
+
+    @RequestMapping(path = "/transfers/{transferId}", method = RequestMethod.GET)
+    public String editTransfer(Model model, @PathVariable(value = "transferId") Integer transferId) {
+        // TODO Validate user
+        LOG.info("Updating transfer, ID: " + transferId);
+        if (null != transferId) {
+            Transfer transfer = transferService.findTransfer(transferId);
+            model.addAttribute("transfer", transfer);
+        } else {
+            model.addAttribute("transfer", new Transfer());
+        }
+        return URL_BUDGET + EDIT_BUDGET;
+    }
+
+    // Update a transfer
+    @RequestMapping(value = "/transfers", method = RequestMethod.PUT)
+    public String saveTransfer(@ModelAttribute("transfer") Transfer transfer) {
+        // TODO Validate user
+
+        Transfer transferSaved = transferService.saveTransfer(transfer);
+
+        return REDIRECT + "budgets/" + transferSaved.getTransferId();
+    }
+
+    // This method will fit the info to generate a new budget-transfer
     @RequestMapping(value = "/{budgetId}/transfers/add", method = RequestMethod.GET)
     public String createTransfer(Model model, @PathVariable("budgetId") String budgetId) {
         // TODO Validate user
@@ -60,66 +118,28 @@ public class BudgetController {
         return URL_BUDGET + NEW_TRANSFER;
     }
 
-    @RequestMapping(value = "/{budgetId}/transfers", method = RequestMethod.PUT)
-    public String saveTransfer(Model model, @PathVariable("budgetId") String budgetId,
-                               @ModelAttribute("transfer") Transfer transfer) {
-        // TODO Validate user
-
-        transferService.saveTransfer(transfer);
-        Budget budget = budgetService.findBudget(budgetId);
-        // TODO Update budget values
-
-        return URL_BUDGET + SEARCH_BUDGETS;
-    }
-
+    // This method will fit the view's info, adding the selected transfer
     @RequestMapping(value = "/{budgetId}/dispersions/add", method = RequestMethod.GET)
-    public String createDispersion(Model model, @PathVariable("budgetId") String budgetId) {
+    public String createDispersion(Model model, @PathVariable("budgetId") String budgetId,
+                                   @RequestParam("transferId") Integer transferId) {
         // TODO Validate user
-
-        Budget budget = budgetService.findBudget(budgetId);
-        LOG.info("Creating new budget");
-        model.addAttribute("budget", budget);
-        model.addAttribute("transfer", new Transfer());
+        // TODO budgetId ill have tu use that
+        Transfer transfer = transferService.findTransfer(transferId);
+        model.addAttribute("transfer", transfer);
         //TODO Add catalogs
         return URL_BUDGET + NEW_DISPERSION;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public String saveBudget(@ModelAttribute("budget") Budget budget, @ModelAttribute("transfer") Transfer transfer) {
+    // This method will fit the view's info, adding the selected transfer
+    @RequestMapping(value = "/{budgetId}/dispersions", method = RequestMethod.PUT)
+    public String addDispersion(@PathVariable("budgetId") Integer budgetId,
+                                @RequestBody List<Transfer> transfers) {
         // TODO Validate user
 
-        // LOG.info("Saving new budget... " + budget.getBudgetName());
-        budgetService.saveBudget(budget);
-        transfer.setBudget(budget);
-        transferService.saveTransfer(transfer);
+        // TODO do something here
 
-        return REDIRECT + "budgets/" + transfer.getTransferId();
-    }
-
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public String findAllBudgets(Model model) {
-        // TODO Validate user
-
-        List<Budget> budgets = budgetService.findAllBudgets();
-        model.addAttribute("budgets", budgets);
-
+        //TODO Add catalogs
         return URL_BUDGET + SEARCH_BUDGETS;
-    }
-
-    @RequestMapping(path = "/{transferId}", method = RequestMethod.GET)
-    public String editBudget(Model model, @PathVariable(value = "transferId") Integer transferId) {
-        // TODO Validate user
-        LOG.info("Updating transfer, ID: " + transferId);
-        if (null != transferId) {
-            //Budget budget = budgetService.findBudget(budgetId);
-            Transfer transfer = transferService.findTransfer(transferId);
-            LOG.info("Selected transfer: " + transfer);
-            LOG.info("Selected transferId: " + transfer.getTransferId());
-            model.addAttribute("transfer", transfer);
-        } else {
-            model.addAttribute("transfer", new Transfer());
-        }
-        return URL_BUDGET + EDIT_BUDGET;
     }
 
     @RequestMapping(value = "/filters", method = RequestMethod.GET)
@@ -147,20 +167,36 @@ public class BudgetController {
         return transfers;
     }
 
+    @RequestMapping(value = "/invoices/implantation-dates", method = RequestMethod.GET)
+    public ResponseEntity<?> invoiceImplantationDates() {
+
+        List<Date> invoiceSendDates = invoiceService.findAllInvoiceSendDates();
+
+        return new ResponseEntity<Object>(new ResponseListDTO(invoiceSendDates), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/invoices/cut-dates", method = RequestMethod.GET)
+    public ResponseEntity<?> invoiceCutDates() {
+
+        List<Date> invoiceCutDates = invoiceService.findAllInvoiceCutDates();
+
+        return new ResponseEntity<Object>(new ResponseListDTO(invoiceCutDates), HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/billing/filters", method = RequestMethod.GET)
     public String filtersForBilling(Model model) {
-        model.addAttribute("filters", new Budget());
+        model.addAttribute("invoice", new Invoice());
         return URL_BUDGET + BILLING_CUT;
     }
+
 
     @ResponseBody
     @RequestMapping(value = "/billing/search", method = RequestMethod.GET)
     public List<Invoice> searchForBillings(@RequestParam Map<String, String> parameters) {
         // TODO Work in progress
-        /* String query = new QueryGenerator().generate(budgetSearchDTO, "Budget");
-        List<Budget> budgets = budgetService.findByCustomQuery(query); */
+        String query = new InvoiceQueryGenerator().generateQuery(parameters);
 
-        return invoiceService.findAllInvoices();
+        return invoiceService.findByCustomQuery(query);
     }
 
     @RequestMapping(value = "/payments/filters", method = RequestMethod.GET)
@@ -168,6 +204,7 @@ public class BudgetController {
         model.addAttribute("payment", new Payment());
         return URL_BUDGET + STATUS_PAYMENT;
     }
+
 
     @ResponseBody
     @RequestMapping(value = "/payments/search", method = RequestMethod.GET)
@@ -182,9 +219,15 @@ public class BudgetController {
     @RequestMapping(value = "/assign", method = RequestMethod.PUT)
     public ResponseEntity<?> assignBudget(Model model, @RequestBody List<BudgetRequirement> budgetRequirements) {
 
+        for (BudgetRequirement budgetRequirement : budgetRequirements) {
+            if (budgetService.notAvailableForAssignment(budgetRequirement)) {
+                //SEND ERROR MESSAGE MAYBE
+                budgetRequirements.remove(budgetRequirement);
+            }
+        }
         budgetService.assignBudget(budgetRequirements);
 
-        return new ResponseEntity<Object>(new ResponseDTO(), HttpStatus.OK);
+        return new ResponseEntity<Object>(new ResponseDTO("success"), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/assign/filters", method = RequestMethod.GET)
@@ -220,9 +263,10 @@ public class BudgetController {
     }
 
     //FALTA COMBO AÑO TABLAS BUDGETS
+
     @ModelAttribute("budgetYears")
     public List<Integer> populateBubgetYears() {
-        return Arrays.asList(2017, 2018, 2019);
+        return Arrays.asList((year - 1), year, (year + 1));
     }
 
     //FALTA COMBO BANCAS TABLAS 34

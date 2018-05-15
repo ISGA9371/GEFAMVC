@@ -23,57 +23,22 @@
     <div class="row">
     
       <div class="col-xs-12">
-        <form id="searchForm" name="searchForm" method="GET">
-          <!-- 
-            text : componentName
-            text : requirementName
-            text : componentVersion
-            select : principalId
-            select : subPrincipalId
-            select : companyId
-            select : technologyId
-            select : typologyNewComponent
-            select : statusId
-            text : componentDesignRealDeliverDate
-            text : componentPreviewDeliverDate
-            select : startProductId
-            text : componentPossibleDeliverDate
-            text : componentRealDeliverDate
-            select : finalProductId
-            select : typologyStartSeverity
-            text : typologyStartSeverityHours
-            select : statusTypologyId
-            select : typologyFinalSeverity
-            text : typologyFinalSeverityHours
-          -->
-        
-          <input type="hidden" name="principalId" id="principalId" value="" />
-          <input type="hidden" name="subPrincipalId" id="subPrincipalId" value="" />
-          <input type="hidden" name="companyId" id="companyId" value="" />
-          <input type="hidden" name="technologyId" id="technologyId" value="" />
-          <input type="hidden" name="typologyNewComponent" id="typologyNewComponent" value="" />
-          <input type="hidden" name="statusId" id="statusId" value="" />
-          <input type="hidden" name="startProductId" id="startProductId" value="" />
-          <input type="hidden" name="finalProductId" id="finalProductId" value="" />
-          <!-- <input type="hidden" name="typologyStartSeverity" id="typologyStartSeverity" value="" /> -->
-          <input type="hidden" name="statusTypologyId" id="statusTypologyId" value="" />
-          <!-- <input type="hidden" name="typologyFinalSeverity" id="typologyFinalSeverity" value="" /> -->
-          
+        <form id="searchForm" name="searchForm" method="GET">          
           <div class="row">
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc-group-componentName">
+              <div class="mdc-text-field" id="mdc_text_componentName">
                 <input type="text" class="mdc-text-field__input" name="componentName" id="componentName" maxlength="30" />
                 <label class="mdc-text-field__label">Componente</label>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc-group-requirementName">
+              <div class="mdc-text-field" id="mdc_text_requirementName">
                 <input type="text" class="mdc-text-field__input" name="requirementName" id="requirementName" maxlength="30" />
                 <label class="mdc-text-field__label">Requerimiento</label>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc-group-componentVersion">
+              <div class="mdc-text-field" id="mdc_text_componentVersion">
                 <input type="text" class="mdc-text-field__input" name="componentVersion" id="componentVersion" maxlength="9" />
                 <label class="mdc-text-field__label">Versión</label>
               </div>
@@ -82,7 +47,7 @@
           
           <div class="row">
             <div class="col-md-4">
-              <div id="slct_direccion" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+              <div class="mdc-select" role="listbox" id="mdc_select_direccion">
                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                   <div class="mdc-select__label">Dirección</div>
                   <div class="mdc-select__selected-text"></div>
@@ -98,7 +63,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div id="slct_subidreccion" class="mdc-select mdc-select--disabled" role="listbox" data-mdc-auto-init="MDCSelect">
+              <div class="mdc-select mdc-select--disabled" role="listbox" id="mdc_select_subdireccion">
                 <div class="mdc-select__surface" tabindex="0">
                   <div class="mdc-select__label">Subdirección</div>
                   <div class="mdc-select__selected-text"></div>
@@ -111,7 +76,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div id="slct_empresa" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+              <div class="mdc-select" role="listbox" id="mdc_select_empresa">
                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                   <div class="mdc-select__label">Empresa</div>
                   <div class="mdc-select__selected-text"></div>
@@ -130,7 +95,7 @@
 
           <div class="row">
             <div class="col-md-4">
-              <div id="slct_tecnologia" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+              <div class="mdc-select" role="listbox" id="mdc_select_tecnologia">
                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                   <div class="mdc-select__label">Tecnología</div>
                   <div class="mdc-select__selected-text"></div>
@@ -143,7 +108,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div id="slct_nuevo_modificado" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+              <div class="mdc-select" role="listbox" id="mdc_select_nuevo_modificado">
                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                   <div class="mdc-select__label">Nuevo/Modificado</div>
                   <div class="mdc-select__selected-text"></div>
@@ -158,7 +123,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div id="slct_estado" class="mdc-select" role="listbox">
+              <div class="mdc-select" role="listbox" id="mdc_select_estado">
                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                   <div class="mdc-select__label">Estado</div>
                   <div class="mdc-select__selected-text"></div>
@@ -178,22 +143,22 @@
           <div class="row">
             <div class="col-md-4">
               <div class="dog1">
-                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc-group-componentDesignRealDeliverDate">
-                  <input type="text" class="mdc-text-field__input" name="componentDesignRealDeliverDate" id="componentDesignRealDeliverDate" style="z-index: 100000;" />
+                <div class="mdc-text-field" id="mdc_text_componentDesignRealDeliverDate">
+                  <input type="text" class="mdc-text-field__input" name="componentDesignRealDeliverDate" id="componentDesignRealDeliverDate" readonly="readonly" />
                   <label class="mdc-text-field__label">F. Real CGF > Fact. Diseño</label>
                 </div>
               </div>
             </div>
             <div class="col-md-4">
               <div class="dog1">
-                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc-group-componentPreviewDeliverDate">
-                  <input type="text" class="mdc-text-field__input" name="componentPreviewDeliverDate" id="componentPreviewDeliverDate" />
+                <div class="mdc-text-field" id="mdc_text_componentPreviewDeliverDate">
+                  <input type="text" class="mdc-text-field__input" name="componentPreviewDeliverDate" id="componentPreviewDeliverDate" readonly="readonly" />
                   <label class="mdc-text-field__label">F. Prevista Fact. > CGF Software</label>
                 </div>
               </div>
             </div>
             <div class="col-md-4">
-              <div id="slct_tipologia_inicial" class="mdc-select" role="listbox">
+              <div class="mdc-select" role="listbox" id="mdc_select_tipologia_inicial">
                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                   <div class="mdc-select__label">Tipología Inicial</div>
                   <div class="mdc-select__selected-text"></div>
@@ -214,22 +179,22 @@
           <div class="row">
             <div class="col-md-4">
               <div class="dog1">
-                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc-group-componentPossibleDeliverDate">
-                  <input type="text" class="mdc-text-field__input" name="componentPossibleDeliverDate" id="componentPossibleDeliverDate" />
+                <div class="mdc-text-field" id="mdc_text_componentPossibleDeliverDate">
+                  <input type="text" class="mdc-text-field__input" name="componentPossibleDeliverDate" id="componentPossibleDeliverDate" readonly="readonly" />
                   <label class="mdc-text-field__label">F. Negociada Fact. > CGF Software</label>
                 </div>
               </div>
             </div>
             <div class="col-md-4">
               <div class="dog1">
-                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" id="mdc-group-componentRealDeliverDate">
-                  <input type="text" class="mdc-text-field__input" name="componentRealDeliverDate" id="componentRealDeliverDate" />
+                <div class="mdc-text-field" id="mdc_text_componentRealDeliverDate">
+                  <input type="text" class="mdc-text-field__input" name="componentRealDeliverDate" id="componentRealDeliverDate" readonly="readonly" />
                   <label class="mdc-text-field__label">F. Real Fact. > CGF Software</label>
                 </div>
               </div>
             </div>
             <div class="col-md-4">
-              <div id="slct_tipologia_final" class="mdc-select" role="listbox">
+              <div class="mdc-select" role="listbox" id="mdc_select_tipologia_final">
                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                   <div class="mdc-select__label">Tipología Final</div>
                   <div class="mdc-select__selected-text"></div>
@@ -249,19 +214,19 @@
 
           <div class="row">
             <div class="col-md-4">
-              <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField" id="mdc-group-typologyStartSeverity">
+              <div class="mdc-text-field mdc-text-field--disabled" id="mdc_text_typologyStartSeverity">
                 <input type="text" class="mdc-text-field__input" name="typologyStartSeverity" id="typologyStartSeverity" readonly value="">
                 <label class="mdc-text-field__label">Dificultad Inicial</label>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField" id="mdc-group-typologyStartSeverityHours">
+              <div class="mdc-text-field mdc-text-field--disabled" id="mdc_text_typologyStartSeverityHours">
                 <input type="text" class="mdc-text-field__input" name="typologyStartSeverityHours" id="typologyStartSeverityHours" readonly value="" />
                 <label class="mdc-text-field__label">Horas Inciales</label>
               </div>
             </div>
             <div class="col-md-4">
-              <div id="slct_estado_tipificado" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+              <div class="mdc-select" role="listbox" id="mdc_select_estado_tipificado">
                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                   <div class="mdc-select__label">Estado Tipif.</div>
                   <div class="mdc-select__selected-text"></div>
@@ -279,13 +244,13 @@
           </div>
           <div class="row">
             <div class="col-md-4">
-              <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField" id="mdc-group-typologyFinalSeverity">
+              <div class="mdc-text-field mdc-text-field--disabled" id="mdc_text_typologyFinalSeverity">
                 <input type="text" class="mdc-text-field__input" name="typologyFinalSeverity" id="typologyFinalSeverity" readonly value="" />
                 <label class="mdc-text-field__label">Dificultad Final</label>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField" id="mdc-group-typologyFinalSeverityHours">
+              <div class="mdc-text-field mdc-text-field--disabled" id="mdc_text_typologyFinalSeverityHours">
                 <input type="text" class="mdc-text-field__input" name="typologyFinalSeverityHours" id="typologyFinalSeverityHours" readonly value="" />
                 <label class="mdc-text-field__label">Horas Finales</label>
               </div>
@@ -308,7 +273,7 @@
     </div> <!-- .// row -->
 
     <div class="row" id="row-content-results" style="display:none;" >
-      <div id="tabs">
+      <div id="tabs" class="tabs-gefa">
         <ul>
           <li>
             <a href="#tab-componentes">Componentes</a>
@@ -321,9 +286,9 @@
           </li>
         </ul>
         <div id="tab-componentes">
-          <table class="table table-hover" style="font-size:12px;">
+          <table class="table table-hover table-condensed table-striped results-table">
             <thead>
-              <tr style="background-color:#999; color:#fcfbfb">
+              <tr>
                 <th>Componente</th>
                 <th>Requerimiento</th>
                 <th>Versión</th>
@@ -343,9 +308,9 @@
           </table>
         </div>
         <div id="tab-fecha">
-          <table class="table table-hover" style="font-size:12px;">
+          <table class="table table-hover table-condensed table-striped results-table">
             <thead>
-              <tr style="background-color:#999; color:#fcfbfb">
+              <tr>
                 <th>Componente</th>
                 <th>Requerimiento</th>
                 <th>F. Real CGF ><br />Fact. Diseño</th>
@@ -364,9 +329,9 @@
           </div>
         </div>
         <div id="tab-cierre">
-          <table class="table table-hover" style="font-size:12px;">
+          <table class="table table-hover table-condensed table-striped results-table">
             <thead>
-              <tr style="background-color:#999; color:#fcfbfb">
+              <tr>
                 <th>Componente</th>
                 <th>Requerimiento</th>
                 <th style='width:90px'>Tip. Final</th>

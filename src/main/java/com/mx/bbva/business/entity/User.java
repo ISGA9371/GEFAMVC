@@ -22,18 +22,14 @@ public class User implements Serializable {
     @Id
     @Column(name = "CD_USUARIO_CORP", nullable = false)
     private String userInternalId;
+    @Column(name = "CD_CONTRASENA", length = 9)
+    private String userPassword;
     @JoinColumn(name = "ST_USUARIO", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
     @JoinColumn(name = "CD_PERF_USU", referencedColumnName = "CD_TIPO_PERFIL", nullable = false)
     @ManyToOne(optional = false)
     private ProfileType profileType;
-    @JsonIgnore
-    @OneToMany(mappedBy = "userSender")
-    private List<Budget> budgets;
-    @JsonIgnore
-    @OneToMany(mappedBy = "userReceiver")
-    private List<Budget> budgetList;
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Transfer> transfers;
@@ -84,22 +80,6 @@ public class User implements Serializable {
 
     public void setUserInternalId(String userInternalId) {
         this.userInternalId = userInternalId;
-    }
-
-    public List<Budget> getBudgets() {
-        return budgets;
-    }
-
-    public void setBudgets(List<Budget> budgets) {
-        this.budgets = budgets;
-    }
-
-    public List<Budget> getBudgetList() {
-        return budgetList;
-    }
-
-    public void setBudgetList(List<Budget> budgetList) {
-        this.budgetList = budgetList;
     }
 
     public List<Transfer> getTransfers() {

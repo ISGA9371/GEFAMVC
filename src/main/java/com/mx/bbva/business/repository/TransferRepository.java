@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface TransferRepository extends JpaRepository<Transfer, Integer> {
-    List<Transfer> findByBudgetDb(Budget budget);
+    List<Transfer> findByBudgetDbAndBudgetDb_StatusDyd_StatusIdIn(Budget budget, List<Long> budgetDydStatusId);
 }

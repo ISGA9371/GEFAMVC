@@ -17,6 +17,7 @@
     <input id="typologyEmp" style="display: none;" type="number" required value="0" class="hiddenField"
            th:field="*{finalTypology.typologyId}"/>
     <input id="auxFare" style="display: none;" type="hidden" value="0" th:value="${fareValue}"/>
+    <input id="auxTechnology" style="display: none;" type="hidden" th:value="${requirementData.technology.technologyId}"/>
 
     <!--input type="submit" value="Guardar"-->
     <div class="container">
@@ -89,12 +90,10 @@
                         </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <input id="typology" type="text" required value="" class="hiddenField"
-                               th:field="*{startTypology.typologyId}">
-                        <div id="tipologia-empty-js-select" class="mdc-select" role="listbox"
+                        <div id="producto-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                                <div class="mdc-select__label">Tipolog&iacute;a Inicial*</div>
+                                <div class="mdc-select__label">Tipologia Inicial*</div>
                                 <div class="mdc-select__selected-text"></div>
                                 <div class="mdc-select__bottom-line"></div>
                             </div>
@@ -104,46 +103,21 @@
                             </div>
                         </div>
 
-                        <div id="tipologia-news-js-select" class="mdc-select" role="listbox"
-                             style="background-color:#F4F4F4; width:90%">
-                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                                <div class="mdc-select__label">Tipolog&iacute;a Inicial*</div>
-                                <div class="mdc-select__selected-text"></div>
-                                <div class="mdc-select__bottom-line"></div>
-                            </div>
-                            <div class="mdc-menu mdc-select__menu col-md-3">
-                                <ul class="mdc-list mdc-menu__items">
-                                    <!--li th:each="tipologiaNewCmb:${tipologiaNewCmb}" class="mdc-list-item"
-                                        th:id="${tipologiaNewCmb.getTypologyId()}+'|'+${tipologiaNewCmb.typologySeverity}+'|'+${tipologiaNewCmb.typologySeverityHours}"
-                                        role="option"
-                                        th:text="${tipologiaNewCmb.product.productId}"></li-->
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div id="tipologia-mods-js-select" class="mdc-select" role="listbox"
-                             style="background-color:#F4F4F4; width:90%">
-                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                                <div class="mdc-select__label">Tipolog&iacute;a Inicial*</div>
-                                <div class="mdc-select__selected-text"></div>
-                                <div class="mdc-select__bottom-line"></div>
-                            </div>
-                            <div class="mdc-menu mdc-select__menu col-md-3">
-                                <ul class="mdc-list mdc-menu__items">
-                                    <!--li th:each="tipologiaModCmb:${tipologiaModCmb}" class="mdc-list-item"
-                                        th:id="${tipologiaModCmb.typologyId}+'|'+${tipologiaModCmb.typologySeverity}+'|'+${tipologiaModCmb.typologySeverityHours}"
-                                        role="option"
-                                        th:text="${tipologiaModCmb.product.productId}"></li-->
-                                </ul>
-                            </div>
-                        </div>
                     </td>
                     <td class="col-md-4" align="center">
-                        <div class="mdc-text-field" id="difficulty-mdc-text" data-mdc-auto-init="MDCTextField"
+                        <input id="typology" type="text" required value="" class="hiddenField"
+                               th:field="*{startTypology.typologyId}">
+                        <div id="tipologia-js-select" class="mdc-select" role="listbox"
                              style="background-color:#F4F4F4; width:90%">
-                            <input type="text" readonly="readonly" class="mdc-text-field__input"
-                                   style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="dificultad">
-                            <label for="demo-input" class="mdc-text-field__label">Dificultad Inicial</label>
+                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
+                                <div class="mdc-select__label">Dificultad Inicial*</div>
+                                <div class="mdc-select__selected-text"></div>
+                                <div class="mdc-select__bottom-line"></div>
+                            </div>
+                            <div class="mdc-menu mdc-select__menu col-md-3">
+                                <ul class="mdc-list mdc-menu__items">
+                                </ul>
+                            </div>
                         </div>
                     </td>
                 </tr>

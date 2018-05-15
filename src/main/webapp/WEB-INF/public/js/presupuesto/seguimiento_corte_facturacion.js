@@ -1,4 +1,14 @@
-mdc.autoInit()
+var mdc_select_fecha_corte = new mdc.select.MDCSelect(document.querySelector('#mdc_select_fecha_corte'));
+var mdc_text_pep = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_pep'));
+var mdc_text_requerimiento = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_requerimiento'));
+var mdc_select_direccion = new mdc.select.MDCSelect(document.querySelector('#mdc_select_direccion'));
+var mdc_select_subdireccion = new mdc.select.MDCSelect(document.querySelector('#mdc_select_subdireccion'));
+var mdc_select_estado_pep_factura = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado_pep_factura'));
+var mdc_select_estado_pago = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado_pago'));
+var mdc_text_fecha_desde = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_desde'));
+var mdc_text_fecha_hasta = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_hasta'));
+var mdc_select_solicitante = new mdc.select.MDCSelect(document.querySelector('#mdc_select_solicitante'));
+var mdc_select_fecha_envio_implant = new mdc.select.MDCSelect(document.querySelector('#mdc_select_fecha_envio_implant'));
 
 $(document).ready(function(){
 
@@ -119,26 +129,107 @@ $(document).ready(function(){
   /************************ */
 
 
-  mdc_text_fecha_corte = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_corte'));
-  mdc_text_pep = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_pep'));
-  mdc_text_requerimiento = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_requerimiento'));
-  mdc_select_direccion = new mdc.select.MDCSelect(document.querySelector('#mdc_select_direccion'));
-  mdc_select_subdireccion = new mdc.select.MDCSelect(document.querySelector('#mdc_select_subdireccion'));
-  mdc_select_estado_pep_factura = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado_pep_factura'));
-  mdc_select_estado_pago = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado_pago'));
-  mdc_text_fecha_desde = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_desde'));
-  mdc_text_fecha_hasta = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_hasta'));
-  mdc_select_solicitante = new mdc.select.MDCSelect(document.querySelector('#mdc_select_solicitante'));
-  mdc_text_fecha_envio_implant = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_envio_implant'));
-  
-
-  $("#fecha_corte").change(function(){
-    if ( "" != mdc_text_fecha_corte.value ) {
-      $("#mdc_text_fecha_corte > label").addClass("mdc-text-field__label--float-above");
-    } else {
-      $("#mdc_text_fecha_corte > label").removeClass("mdc-text-field__label--float-above");
+  /** 
+   * FECHA CORTE ajax call 
+   */
+  $.ajax({
+    url: "/budgets/invoices/cut-dates",
+    method: "GET",
+    dataType: "json",
+    beforeSend: function () {
+      $("#mdc_select_fecha_corte").addClass("mdc-select--disabled");
+      $("#mdc_select_fecha_corte > .mdc-select__surface > .mdc-select__selected-text").html("");
+      $("#mdc_select_fecha_corte > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
     }
+  }).done(function (data) {
+    lis = "";
+    if ('undefined' !== typeof data.data && 0 < data.data.length && null !== data.data) {
+      $.each(data.data, function (index, value) {
+        lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.statusId + "'>" + value.statusName + "</li>";
+      });
+
+      $("#mdc_select_fecha_corte > .mdc-menu > ul").append(lis);
+      $("#mdc_select_fecha_corte").removeClass("mdc-select--disabled");
+    } else {
+      lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+      $("#mdc_select_fecha_corte > .mdc-menu > ul").append(lis);
+      $("#mdc_select_fecha_corte").addClass("mdc-select--disabled");
+    }
+  }).fail(function () {
+    lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+    $("#mdc_select_fecha_corte > .mdc-menu > ul").append(lis);
+    $("#mdc_select_fecha_corte").addClass("mdc-select--disabled");
   });
+  /************************ */
+
+
+  /** 
+   * FECHA ENVIO A IMPLANT ajax call 
+   */
+  $.ajax({
+    url: "/budgets/invoices/implantation-dates",
+    method: "GET",
+    dataType: "json",
+    beforeSend: function () {
+      $("#mdc_select_fecha_envio_implant").addClass("mdc-select--disabled");
+      $("#mdc_select_fecha_envio_implant > .mdc-select__surface > .mdc-select__selected-text").html("");
+      $("#mdc_select_fecha_envio_implant > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    }
+  }).done(function (data) {
+    lis = "";
+    if ('undefined' !== typeof data.data && 0 < data.data.length && null !== data.data) {
+      $.each(data.data, function (index, value) {
+        lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.statusId + "'>" + value.statusName + "</li>";
+      });
+
+      $("#mdc_select_fecha_envio_implant > .mdc-menu > ul").append(lis);
+      $("#mdc_select_fecha_envio_implant").removeClass("mdc-select--disabled");
+    } else {
+      lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+      $("#mdc_select_fecha_envio_implant > .mdc-menu > ul").append(lis);
+      $("#mdc_select_fecha_envio_implant").addClass("mdc-select--disabled");
+    }
+  }).fail(function () {
+    lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+    $("#mdc_select_fecha_envio_implant > .mdc-menu > ul").append(lis);
+    $("#mdc_select_fecha_envio_implant").addClass("mdc-select--disabled");
+  });
+  /************************ */
+
+
+  /** 
+   * SOLICITANTE ajax call 
+   */
+  /*$.ajax({
+    url: "",
+    method: "GET",
+    dataType: "json",
+    beforeSend: function () {
+      $("#mdc_select_solicitante").addClass("mdc-select--disabled");
+      $("#mdc_select_solicitante > .mdc-select__surface > .mdc-select__selected-text").html("");
+      $("#mdc_select_solicitante > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    }
+  }).done(function (data) {
+    lis = "";
+    if ('undefined' !== typeof data.data && 0 < data.data.length && null !== data.data) {
+      $.each(data.data, function (index, value) {
+        lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.statusId + "'>" + value.statusName + "</li>";
+      });
+
+      $("#mdc_select_solicitante > .mdc-menu > ul").append(lis);
+      $("#mdc_select_solicitante").removeClass("mdc-select--disabled");
+    } else {
+      lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+      $("#mdc_select_solicitante > .mdc-menu > ul").append(lis);
+      $("#mdc_select_solicitante").addClass("mdc-select--disabled");
+    }
+  }).fail(function () {
+    lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
+    $("#mdc_select_solicitante > .mdc-menu > ul").append(lis);
+    $("#mdc_select_solicitante").addClass("mdc-select--disabled");
+  });
+  */
+  /************************ */
 
 
   $("#fecha_desde").datepicker({
@@ -163,15 +254,6 @@ $(document).ready(function(){
       $("#mdc_text_fecha_hasta > label").addClass("mdc-text-field__label--float-above");
     } else {
       $("#mdc_text_fecha_hasta > label").removeClass("mdc-text-field__label--float-above");
-    }
-  });
-
-
-  $("#fecha_envio_implant").change(function () {
-    if ("" != mdc_text_fecha_envio_implant.value) {
-      $("#mdc_text_fecha_envio_implant > label").addClass("mdc-text-field__label--float-above");
-    } else {
-      $("#mdc_text_fecha_envio_implant > label").removeClass("mdc-text-field__label--float-above");
     }
   });
 
@@ -219,7 +301,7 @@ $(document).ready(function(){
 
   $("#btn_clear").click(function(){
     $("#mdc_select_subdireccion").addClass("mdc-select--disabled");
-    mdc_text_fecha_corte.value = "";
+    mdc_select_fecha_corte.value = "";
     mdc_text_pep.value = "";
     mdc_text_requerimiento.value = "";
     mdc_select_direccion.value = "";
@@ -229,19 +311,23 @@ $(document).ready(function(){
     mdc_text_fecha_desde.value = "";
     mdc_text_fecha_hasta.value = "";
     mdc_select_solicitante.value = "";
-    mdc_text_fecha_envio_implant.value = "";
+    mdc_select_fecha_envio_implant.value = "";
 
     mdc_select_direccion.selectedIndex = -1;
     mdc_select_subdireccion.selectedIndex = -1;
     mdc_select_estado_pep_factura.selectedIndex = -1;
     mdc_select_estado_pago.selectedIndex = -1;
     mdc_select_solicitante.selectedIndex = -1;
+    mdc_select_fecha_corte.selectedIndex = -1;
+    mdc_select_fecha_envio_implant.selectedIndex = -1;
 
     $("#mdc_select_direccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
     $("#mdc_select_subdireccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
     $("#mdc_select_estado_pep_factura > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
     $("#mdc_select_estado_pago > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
     $("#mdc_select_solicitante > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#mdc_select_fecha_corte > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#mdc_select_fecha_envio_implant > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
 
     $("#fecha_hasta").datepicker("option", "minDate", null);
     $("#fecha_desde").datepicker("option", "maxDate", null);
@@ -251,17 +337,17 @@ $(document).ready(function(){
   $("#btn_search").click(function(){
 
     var params = {
-      fecha_corte: changeFormatDate(mdc_text_fecha_corte.value),
-      pep: mdc_text_pep.value,
-      requerimiento: mdc_text_requerimiento.value,
-      direccion: mdc_select_direccion.value,
-      subdireccion: mdc_select_subdireccion.value,
-      estado_pep_factura: mdc_select_estado_pep_factura.value,
-      estado_pago: mdc_select_estado_pago.value,
-      fecha_desde: changeFormatDate(mdc_text_fecha_desde.value),
-      fecha_hasta: changeFormatDate(mdc_text_fecha_hasta.value),
-      solicitante: mdc_select_solicitante.value,
-      fecha_envio_implant: changeFormatDate(mdc_text_fecha_envio_implant.value),
+      invoiceCutDate: changeFormatDate(mdc_select_fecha_corte.value),
+      budgetId: mdc_text_pep.value,
+      requirementName: mdc_text_requerimiento.value,
+      levelId: mdc_select_direccion.value,
+      /*subLevelId subdireccion: mdc_select_subdireccion.value,*/
+      budgetStatusId: mdc_select_estado_pep_factura.value,
+      statusId: mdc_select_estado_pago.value,
+      invoiceCutDateFrom: changeFormatDate(mdc_text_fecha_desde.value),
+      invoiceCutDateTo: changeFormatDate(mdc_text_fecha_hasta.value),
+      budgetsApplicantName: mdc_select_solicitante.value,
+      invoiceSendDate: changeFormatDate(mdc_select_fecha_envio_implant.value),
     };
 
     console.log(params);

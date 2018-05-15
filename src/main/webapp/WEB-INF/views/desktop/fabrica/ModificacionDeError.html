@@ -101,7 +101,7 @@
                                 <label for="demo-input" class="mdc-text-field__label">Prioridad</label>
                             </div>
 
-                            <div id="prioridad" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                            <div id="prioridad" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                                     <div class="mdc-select__label">Prioridad*</div>
                                     <div class="mdc-select__selected-text" id="prioridad-sel-text"></div>
@@ -149,7 +149,7 @@
                         <td class="col-md-4" align="center">
                             <input id="hidden-estado" type="text" th:field="*{issueFixByDyD}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
 
-                            <div  id="incidencia-estado-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:97%">
+                            <div  id="incidencia-estado-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                                 <input type="text" value="" class="mdc-text-field__input mdc-text-field--disabled" id="incidencia-estado-js-text2">
                                 <label for="demo-input" class="mdc-text-field__label">Incidencia ya Resuelta por DyD:</label>
                             </div>
@@ -227,14 +227,9 @@
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
                             <button class="btn btn-primary">descargar archivo</button>
+                            <button class="btn btn-primary">sube archivo</button>
+                        </td>
 
-                        </td>
-                        <td class="col-md-4" align="center">
-                            <h6 onclick="dyd()" >dyd</h6> <h6 onclick="fabrica()" >fabrica</h6>
-                        </td>
-                        <td class="col-md-4" align="center">
-                            <h6 onclick="gestor()" >gestor</h6> <h6 onclick="adminin()" >admini</h6>
-                        </td>
                     </tr>
                 </table>
 
@@ -243,16 +238,6 @@
                         <td class="col-md-4" align="center">
                            <button type="submit" id="guardar-btn" class="btn btn-primary">Guardar</button>
                            <button type="button" id="cancelar-btn" class="btn btn-primary">Cancelar</button>
-                        </td>
-                        <td class="col-md-4" align="center">
-                            <div  id="boton-cerrar">
-                                <button id="cerrar-init" onclick="addButtonCerrar()" class="btn btn-primary"> Cerrar Incidencia</button>
-                            </div>
-                        </td>
-                        <td class="col-md-4" align="center">
-                            <div id="boton-abrir-duda">
-                                <button onclick="addButtonAbrir()" class="btn btn-primary">Abrir Incidencia</button>
-                            </div>
                         </td>
                     </tr>
                 </table>

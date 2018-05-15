@@ -25,7 +25,7 @@ public class ProgramIncrement implements Serializable {
     @Column(name = "CD_PI", nullable = false)
     private Integer programIncrementId;
     @Column(name = "NB_PI", nullable = false, length = 25)
-    private String ProgramIncrementName;
+    private String programIncrementName;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "programIncrement")
     private List<Project> projects;
@@ -40,9 +40,9 @@ public class ProgramIncrement implements Serializable {
         this.programIncrementId = programIncrementId;
     }
 
-    public ProgramIncrement(Integer programIncrementId, String ProgramIncrementName) {
+    public ProgramIncrement(Integer programIncrementId, String programIncrementName) {
         this.programIncrementId = programIncrementId;
-        this.ProgramIncrementName = ProgramIncrementName;
+        this.programIncrementName = programIncrementName;
     }
 
     public Integer getProgramIncrementId() {
@@ -54,11 +54,11 @@ public class ProgramIncrement implements Serializable {
     }
 
     public String getProgramIncrementName() {
-        return ProgramIncrementName;
+        return programIncrementName;
     }
 
     public void setProgramIncrementName(String programIncrementName) {
-        this.ProgramIncrementName = programIncrementName;
+        this.programIncrementName = programIncrementName;
     }
 
     public List<Project> getProjects() {

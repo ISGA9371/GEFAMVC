@@ -1,11 +1,30 @@
-mdc.autoInit()
+const mdc_text_componentName = new mdc.textField.MDCTextField(document.querySelector("#mdc_text_componentName"));
+const mdc_text_requirementName = new mdc.textField.MDCTextField(document.querySelector("#mdc_text_requirementName"));
+const mdc_text_componentVersion = new mdc.textField.MDCTextField(document.querySelector("#mdc_text_componentVersion"));
+const mdc_select_direccion = new mdc.select.MDCSelect(document.querySelector("#mdc_select_direccion"));
+const mdc_select_subdireccion = new mdc.select.MDCSelect(document.querySelector("#mdc_select_subdireccion"));
+const mdc_select_empresa = new mdc.select.MDCSelect(document.querySelector("#mdc_select_empresa"));
+const mdc_select_tecnologia = new mdc.select.MDCSelect(document.querySelector("#mdc_select_tecnologia"));
+const mdc_select_nuevo_modificado = new mdc.select.MDCSelect(document.querySelector("#mdc_select_nuevo_modificado"));
+const mdc_select_estado = new mdc.select.MDCSelect(document.querySelector("#mdc_select_estado"));
+const mdc_text_componentDesignRealDeliverDate = new mdc.textField.MDCTextField(document.querySelector("#mdc_text_componentDesignRealDeliverDate"));
+const mdc_text_componentPreviewDeliverDate = new mdc.textField.MDCTextField(document.querySelector("#mdc_text_componentPreviewDeliverDate"));
+const mdc_select_tipologia_inicial = new mdc.select.MDCSelect(document.querySelector("#mdc_select_tipologia_inicial"));
+const mdc_text_componentPossibleDeliverDate = new mdc.textField.MDCTextField(document.querySelector("#mdc_text_componentPossibleDeliverDate"));
+const mdc_text_componentRealDeliverDate = new mdc.textField.MDCTextField(document.querySelector("#mdc_text_componentRealDeliverDate"));
+const mdc_select_tipologia_final = new mdc.select.MDCSelect(document.querySelector("#mdc_select_tipologia_final"));
+const mdc_text_typologyStartSeverity = new mdc.textField.MDCTextField(document.querySelector("#mdc_text_typologyStartSeverity"));
+const mdc_text_typologyStartSeverityHours = new mdc.textField.MDCTextField(document.querySelector("#mdc_text_typologyStartSeverityHours"));
+const mdc_select_estado_tipificado = new mdc.select.MDCSelect(document.querySelector("#mdc_select_estado_tipificado"));
+const mdc_text_typologyFinalSeverity = new mdc.textField.MDCTextField(document.querySelector("#mdc_text_typologyFinalSeverity"));
+const mdc_text_typologyFinalSeverityHours = new mdc.textField.MDCTextField(document.querySelector("#mdc_text_typologyFinalSeverityHours"));
 
-$(function () {
+$(document).ready(function () {
 
   /** 
    * datepicker
    * dateFormat: "dd-mm-yy"
-  */
+  */  
   $('#componentDesignRealDeliverDate').datepicker({
     dateFormat: "dd/mm/yy"
   });
@@ -32,9 +51,9 @@ $(function () {
     url: "/api/technologies",
     method: "GET",
     beforeSend: function () {
-      $("#slct_tecnologia").addClass("mdc-select--disabled");
-      $("#slct_tecnologia > .mdc-select__surface > .mdc-select__selected-text").html("");
-      $("#slct_tecnologia > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+      $("#mdc_select_tecnologia").addClass("mdc-select--disabled");
+      $("#mdc_select_tecnologia > .mdc-select__surface > .mdc-select__selected-text").html("");
+      $("#mdc_select_tecnologia > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
     }
   }).done(function (data) {
     lis = "";
@@ -43,17 +62,17 @@ $(function () {
         lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.technologyId + "'>" + value.technologyName + "</li>";
       });
 
-      $("#slct_tecnologia > .mdc-menu > ul").append(lis);
-      $("#slct_tecnologia").removeClass("mdc-select--disabled");
+      $("#mdc_select_tecnologia > .mdc-menu > ul").append(lis);
+      $("#mdc_select_tecnologia").removeClass("mdc-select--disabled");
     } else {
       lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
-      $("#slct_tecnologia > .mdc-menu > ul").append(lis);
-      $("#slct_tecnologia").addClass("mdc-select--disabled");
+      $("#mdc_select_tecnologia > .mdc-menu > ul").append(lis);
+      $("#mdc_select_tecnologia").addClass("mdc-select--disabled");
     }
   }).fail(function () {
     lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
-    $("#slct_tecnologia > .mdc-menu > ul").append(lis);
-    $("#slct_tecnologia").addClass("mdc-select--disabled");
+    $("#mdc_select_tecnologia > .mdc-menu > ul").append(lis);
+    $("#mdc_select_tecnologia").addClass("mdc-select--disabled");
   });
   /******************* */
 
@@ -125,50 +144,35 @@ $(function () {
   $("#tabs").tabs();
 
 
-  const direccion = new mdc.select.MDCSelect(document.querySelector('#slct_direccion'));
-  const subidreccion = new mdc.select.MDCSelect(document.querySelector('#slct_subidreccion'));
-  const empresa = new mdc.select.MDCSelect(document.querySelector('#slct_empresa'));
-  const tecnologia = new mdc.select.MDCSelect(document.querySelector('#slct_tecnologia'));
-  const nuevo_modificado = new mdc.select.MDCSelect(document.querySelector('#slct_nuevo_modificado'));
-  const estado = new mdc.select.MDCSelect(document.querySelector('#slct_estado'));
-  const tipologia_inicial = new mdc.select.MDCSelect(document.querySelector('#slct_tipologia_inicial'));
-  const tipologia_final = new mdc.select.MDCSelect(document.querySelector('#slct_tipologia_final'));
-  const estado_tipificado = new mdc.select.MDCSelect(document.querySelector('#slct_estado_tipificado'));
-
-  componentDesignRealDeliverDate = new mdc.textField.MDCTextField(document.querySelector('#mdc-group-componentDesignRealDeliverDate'));
-  componentPreviewDeliverDate = new mdc.textField.MDCTextField(document.querySelector('#mdc-group-componentPreviewDeliverDate'));
-  componentPossibleDeliverDate = new mdc.textField.MDCTextField(document.querySelector('#mdc-group-componentPossibleDeliverDate'));
-  componentRealDeliverDate = new mdc.textField.MDCTextField(document.querySelector('#mdc-group-componentRealDeliverDate'));
-
   $("#componentDesignRealDeliverDate").change(function () {
-    if ("" != componentDesignRealDeliverDate.value) {
-      $("#mdc-group-componentDesignRealDeliverDate > label").addClass("mdc-text-field__label--float-above");
+    if ("" != mdc_text_componentDesignRealDeliverDate.value) {
+      $("#mdc_text_componentDesignRealDeliverDate > label").addClass("mdc-text-field__label--float-above");
     } else {
-      $("#mdc-group-componentDesignRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+      $("#mdc_text_componentDesignRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
     }
   });
 
   $("#componentPreviewDeliverDate").change(function () {
-    if ("" != componentPreviewDeliverDate.value) {
-      $("#mdc-group-componentPreviewDeliverDate > label").addClass("mdc-text-field__label--float-above");
+    if ("" != mdc_text_componentPreviewDeliverDate.value) {
+      $("#mdc_text_componentPreviewDeliverDate > label").addClass("mdc-text-field__label--float-above");
     } else {
-      $("#mdc-group-componentPreviewDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+      $("#mdc_text_componentPreviewDeliverDate > label").removeClass("mdc-text-field__label--float-above");
     }
   });
 
   $("#componentPossibleDeliverDate").change(function () {
-    if ("" != componentPossibleDeliverDate.value) {
-      $("#mdc-group-componentPossibleDeliverDate > label").addClass("mdc-text-field__label--float-above");
+    if ("" != mdc_text_componentPossibleDeliverDate.value) {
+      $("#mdc_text_componentPossibleDeliverDate > label").addClass("mdc-text-field__label--float-above");
     } else {
-      $("#mdc-group-componentPossibleDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+      $("#mdc_text_componentPossibleDeliverDate > label").removeClass("mdc-text-field__label--float-above");
     }
   });
 
   $("#componentRealDeliverDate").change(function () {
-    if ("" != componentRealDeliverDate.value) {
-      $("#mdc-group-componentRealDeliverDate > label").addClass("mdc-text-field__label--float-above");
+    if ("" != mdc_text_componentRealDeliverDate.value) {
+      $("#mdc_text_componentRealDeliverDate > label").addClass("mdc-text-field__label--float-above");
     } else {
-      $("#mdc-group-componentRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+      $("#mdc_text_componentRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
     }
   });
 
@@ -236,61 +240,61 @@ $(function () {
   });
   
 
-  direccion.listen('MDCSelect:change', () => {
-    idSuperior = direccion.value;
+  mdc_select_direccion.listen('MDCSelect:change', () => {
+    idSuperior = mdc_select_direccion.value;
 
-    subidreccion.selectedIndex = -1;
-    subidreccion.value = "";
+    mdc_select_subdireccion.selectedIndex = -1;
+    mdc_select_subdireccion.value = "";
 
     $.ajax({
       url: "/api/levels/" + idSuperior + "/sub-levels",
       method: "GET",
       beforeSend: function() {
-        $("#slct_subidreccion").addClass("mdc-select--disabled");
-        $("#slct_subidreccion > .mdc-select__surface > .mdc-select__selected-text").html("");
-        $("#slct_subidreccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+        $("#mdc_select_subdireccion").addClass("mdc-select--disabled");
+        $("#mdc_select_subdireccion > .mdc-select__surface > .mdc-select__selected-text").html("");
+        $("#mdc_select_subdireccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
       }
     }).done(function (data) {
-      $("#slct_subidreccion > .mdc-menu > ul").html("");
+      $("#mdc_select_subdireccion > .mdc-menu > ul").html("");
       lis = "";
       if ( 'undefined' !== typeof data.data && 0 < data.data.length) {
         $.each(data.data, function (index, value) {
           lis += "<li class='mdc-list-item' role='option' tabindex='0' id='" + value.levelId + "'>" + value.levelName + "</li>";  
         });
         
-        $("#slct_subidreccion > .mdc-menu > ul").append(lis);
-        $("#slct_subidreccion").removeClass("mdc-select--disabled");
+        $("#mdc_select_subdireccion > .mdc-menu > ul").append(lis);
+        $("#mdc_select_subdireccion").removeClass("mdc-select--disabled");
       } else {
         lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
-        $("#slct_subidreccion > .mdc-menu > ul").append(lis);
-        $("#slct_subidreccion").addClass("mdc-select--disabled");
+        $("#mdc_select_subdireccion > .mdc-menu > ul").append(lis);
+        $("#mdc_select_subdireccion").addClass("mdc-select--disabled");
       }
     }).fail(function(){
       lis = "<li class='mdc-list-item' role='option' tabindex='0'></li>";
-      $("#slct_subidreccion > .mdc-menu > ul").append(lis);
-      $("#slct_subidreccion").addClass("mdc-select--disabled");
+      $("#mdc_select_subdireccion > .mdc-menu > ul").append(lis);
+      $("#mdc_select_subdireccion").addClass("mdc-select--disabled");
     });
   });
 
 
-  tipologia_inicial.listen('MDCSelect:change', () => {
-    $("#typologyStartSeverity").val( $(tipologia_inicial.selectedOptions[0]).data("severity") );
-    $("#mdc-group-typologyStartSeverity").addClass("mdc-text-field--upgraded");
-    $("#mdc-group-typologyStartSeverity > label").addClass("mdc-text-field__label--float-above");
+  mdc_select_tipologia_inicial.listen('MDCSelect:change', () => {
+    $("#typologyStartSeverity").val( $(mdc_select_tipologia_inicial.selectedOptions[0]).data("severity") );
+    $("#mdc_text_typologyStartSeverity").addClass("mdc-text-field--upgraded");
+    $("#mdc_text_typologyStartSeverity > label").addClass("mdc-text-field__label--float-above");
 
-    $("#typologyStartSeverityHours").val( $(tipologia_inicial.selectedOptions[0]).data("hours") );
-    $("#mdc-group-typologyStartSeverityHours").addClass("mdc-text-field--upgraded");
-    $("#mdc-group-typologyStartSeverityHours > label").addClass("mdc-text-field__label--float-above");
+    $("#typologyStartSeverityHours").val( $(mdc_select_tipologia_inicial.selectedOptions[0]).data("hours") );
+    $("#mdc_text_typologyStartSeverityHours").addClass("mdc-text-field--upgraded");
+    $("#mdc_text_typologyStartSeverityHours > label").addClass("mdc-text-field__label--float-above");
   });
 
-  tipologia_final.listen('MDCSelect:change', () => {
-    $("#typologyFinalSeverity").val($(tipologia_final.selectedOptions[0]).data("severity"));
-    $("#mdc-group-typologyFinalSeverity").addClass("mdc-text-field--upgraded");
-    $("#mdc-group-typologyFinalSeverity > label").addClass("mdc-text-field__label--float-above");
+  mdc_select_tipologia_final.listen('MDCSelect:change', () => {
+    $("#typologyFinalSeverity").val($(mdc_select_tipologia_final.selectedOptions[0]).data("severity"));
+    $("#mdc_text_typologyFinalSeverity").addClass("mdc-text-field--upgraded");
+    $("#mdc_text_typologyFinalSeverity > label").addClass("mdc-text-field__label--float-above");
 
-    $("#typologyFinalSeverityHours").val($(tipologia_final.selectedOptions[0]).data("hours"));
-    $("#mdc-group-typologyFinalSeverityHours").addClass("mdc-text-field--upgraded");
-    $("#mdc-group-typologyFinalSeverityHours > label").addClass("mdc-text-field__label--float-above");
+    $("#typologyFinalSeverityHours").val($(mdc_select_tipologia_final.selectedOptions[0]).data("hours"));
+    $("#mdc_text_typologyFinalSeverityHours").addClass("mdc-text-field--upgraded");
+    $("#mdc_text_typologyFinalSeverityHours > label").addClass("mdc-text-field__label--float-above");
   });
 
 
@@ -305,47 +309,37 @@ $(function () {
     $("#row-buttons-results").hide();
     $("#tabs").tabs("option", "active", 0);
 
-    $("#principalId").val(direccion.value);
-    $("#subPrincipalId").val(subidreccion.value);
-    $("#companyId").val(empresa.value);
-    $("#technologyId").val(tecnologia.value);
-    $("#typologyNewComponent").val(nuevo_modificado.value);
-    $("#statusId").val(estado.value);
-    $("#startProductId").val(tipologia_inicial.value);
-    $("#finalProductId").val(tipologia_final.value);
-    $("#statusTypologyId").val(estado_tipificado.value);
-
-    if ($("#typologyNewComponent").val() == "1") {
+    if ( "1" == mdc_select_nuevo_modificado.value ) {
       var newMod = true;
-    } else if ($("#typologyNewComponent").val() == "0") {
+    } else if ( "0" == mdc_select_nuevo_modificado.value ) {
       var newMod = false;
     } else {
       var newMod = "";
     }
 
     var params = {
-      principalId: $("#principalId").val(),
-      subPrincipalId: $("#subPrincipalId").val(),
-      companyId: $("#companyId").val(),
-      technologyId: $("#technologyId").val(),
+      principalId: mdc_select_direccion.value,
+      subPrincipalId: mdc_select_subdireccion.value,
+      companyId: mdc_select_empresa.value,
+      technologyId: mdc_select_tecnologia.value,
       typologyComponentModified: newMod,
-      statusId: $("#statusId").val(),
-      startProductId: $("#startProductId").val(),
-      finalProductId: $("#finalProductId").val(),
-      statusTypologyId: $("#statusTypologyId").val(),
-      componentName: $("#componentName").val(),
-      requirementName: $("#requirementName").val(),
-      componentVersion: $("#componentVersion").val(),
+      statusId: mdc_select_estado.value,
+      startProductId: mdc_select_tipologia_inicial.value,
+      finalProductId: mdc_select_tipologia_final.value,
+      statusTypologyId: mdc_select_estado_tipificado.value,
+      componentName: mdc_text_componentName.value,
+      requirementName: mdc_text_requirementName.value,
+      componentVersion: mdc_text_componentVersion.value,
       
-      componentDesignRealDeliverDate: changeFormatDate($("#componentDesignRealDeliverDate").val()),
-      componentPreviewDeliverDate: changeFormatDate($("#componentPreviewDeliverDate").val()),
-      componentPossibleDeliverDate: changeFormatDate($("#componentPossibleDeliverDate").val()),
-      componentRealDeliverDate: changeFormatDate($("#componentRealDeliverDate").val()),
+      componentDesignRealDeliverDate: changeFormatDate(mdc_text_componentDesignRealDeliverDate.value),
+      componentPreviewDeliverDate: changeFormatDate(mdc_text_componentPreviewDeliverDate.value),
+      componentPossibleDeliverDate: changeFormatDate(mdc_text_componentPossibleDeliverDate.value),
+      componentRealDeliverDate: changeFormatDate(mdc_text_componentRealDeliverDate.value),
       
-      typologyStartSeverity: $("#typologyStartSeverity").val(),
-      typologyStartSeverityHours: $("#typologyStartSeverityHours").val(),
-      typologyFinalSeverity: $("#typologyFinalSeverity").val(),
-      typologyFinalSeverityHours: $("#typologyFinalSeverityHours").val(),
+      typologyStartSeverity: mdc_text_typologyStartSeverity.value,
+      typologyStartSeverityHours: mdc_text_typologyStartSeverityHours.value,
+      typologyFinalSeverity: mdc_text_typologyFinalSeverity.value,
+      typologyFinalSeverityHours: mdc_text_typologyFinalSeverityHours.value,
     };
 
     $.ajax({
@@ -408,38 +402,13 @@ $(function () {
               "'><span class='glyphicons glyphicons-edit' aria-hidden='true'></span> Editar</a></td></tr>"
           );
 
-          date1 = "";
-          designRealDeliverDate = new Date(value.componentDesignRealDeliverDate);
-          if ( parseInt(designRealDeliverDate.getDate()) < 10 ) { date1 += "0" + designRealDeliverDate.getDate(); } 
-          else { date1 += designRealDeliverDate.getDate(); }
-          date1 += "/" + numberMonths[designRealDeliverDate.getMonth()] + "/" + designRealDeliverDate.getFullYear();
-          
-          date2 = "";
-          possibleDeliverDate = new Date(value.componentPossibleDeliverDate);
-          if ( parseInt(possibleDeliverDate.getDate()) < 10 ) { date2 += "0" + possibleDeliverDate.getDate(); } 
-          else { date2 += possibleDeliverDate.getDate(); }
-          date2 += "/" + numberMonths[possibleDeliverDate.getMonth()] + "/" + possibleDeliverDate.getFullYear();
-          
-          date3 = "";
-          previewDeliverDate = new Date(value.componentPreviewDeliverDate);
-          if ( parseInt(previewDeliverDate.getDate()) < 10 ) { date3 += "0" + previewDeliverDate.getDate(); } 
-          else { date3 += previewDeliverDate.getDate(); }
-          date3 += "/" + numberMonths[previewDeliverDate.getMonth()] + "/" + previewDeliverDate.getFullYear();
-          
-          date4 = "";
-          realDeliverDate = new Date(value.componentRealDeliverDate);
-          if ( parseInt(realDeliverDate.getDate()) < 10 ) { date4 += "0" + realDeliverDate.getDate(); } 
-          else { date4 += realDeliverDate.getDate(); }
-          date4 += "/" + numberMonths[realDeliverDate.getMonth()] + "/" + realDeliverDate.getFullYear();
-
-
           $("#tab-fecha > table > tbody").append(
             "<tr><td>" + value.componentName + "</td>" +
             "<td>" + value.requirement.requirementName + "</td>" +
-            "<td><input type='text' id='date1-" + value.componentId + "' value='" + date1 +"' class='form-control date1Text'></td>" +
-            "<td><input type='text' id='date2-" + value.componentId + "' value='" + date2 + "' class='form-control date2Text'></td>" +
-            "<td><input type='text' id='date3-" + value.componentId + "' value='" + date3 + "' class='form-control date3Text'></td>" +
-            "<td><input type='text' id='date4-" + value.componentId + "' value='" + date4 + "' class='form-control date4Text'></td>" +
+            "<td><input type='text' id='date1-" + value.componentId + "' value='" + value.componentDesignRealDeliverDate + "' class='form-control date1Text' readonly='readonly'></td>" +
+            "<td><input type='text' id='date2-" + value.componentId + "' value='" + value.componentPossibleDeliverDate + "' class='form-control date2Text' readonly='readonly'></td>" +
+            "<td><input type='text' id='date3-" + value.componentId + "' value='" + value.componentPreviewDeliverDate + "' class='form-control date3Text' readonly='readonly'></td>" +
+            "<td><input type='text' id='date4-" + value.componentId + "' value='" + value.componentRealDeliverDate + "' class='form-control date4Text' readonly='readonly'></td>" +
             "<td>"+ value.status.statusName +"</td></tr>"
           );
           $("#date1-" + value.componentId).datepicker({ dateFormat: "dd/mm/yy" });
@@ -477,10 +446,10 @@ $(function () {
         $("#tab-fecha > table > tbody").append(
           "<tr style='background-color:#004582;'><td></td>" +
           "<td></td>" +
-          "<td><input type='text' id='date1' value='' class='form-control'></td>" +
-          "<td><input type='text' id='date2' value='' class='form-control'></td>" +
-          "<td><input type='text' id='date3' value='' class='form-control'></td>" +
-          "<td><input type='text' id='date4' value='' class='form-control'></td>" +
+          "<td><input type='text' id='date1' value='' class='form-control' readonly='readonly'></td>" +
+          "<td><input type='text' id='date2' value='' class='form-control' readonly='readonly'></td>" +
+          "<td><input type='text' id='date3' value='' class='form-control' readonly='readonly'></td>" +
+          "<td><input type='text' id='date4' value='' class='form-control' readonly='readonly'></td>" +
           "<td></td></tr>"
         );
 
@@ -504,67 +473,48 @@ $(function () {
     
     $("#slct_subidreccion").addClass("mdc-select--disabled");
 
-    direccion.value = "";
-    subidreccion.value = "";
-    empresa.value = "";
-    tecnologia.value = "";
-    nuevo_modificado.value = "";
-    estado.value = "";
-    tipologia_inicial.value = "";
-    tipologia_final.value = "";
-    estado_tipificado.value = "";
-    componentDesignRealDeliverDate.value = "";
-    componentPreviewDeliverDate.value = "";
-    componentPossibleDeliverDate.value = "";
-    componentRealDeliverDate.value = "";
+    mdc_text_componentName.value = "";
+    mdc_text_requirementName.value = "";
+    mdc_text_componentVersion.value = "";
+    mdc_select_direccion.value = "";
+    mdc_select_subdireccion.value = "";
+    mdc_select_empresa.value = "";
+    mdc_select_tecnologia.value = "";
+    mdc_select_nuevo_modificado.value = "";
+    mdc_select_estado.value = "";
+    mdc_text_componentDesignRealDeliverDate.value = "";
+    mdc_text_componentPreviewDeliverDate.value = "";
+    mdc_select_tipologia_inicial.value = "";
+    mdc_text_componentPossibleDeliverDate.value = "";
+    mdc_text_componentRealDeliverDate.value = "";
+    mdc_select_tipologia_final.value = "";
+    mdc_text_typologyStartSeverity.value = "";
+    mdc_text_typologyStartSeverityHours.value = "";
+    mdc_select_estado_tipificado.value = "";
+    mdc_text_typologyFinalSeverity.value = "";
+    mdc_text_typologyFinalSeverityHours.value = "";
 
-    direccion.selectedIndex = -1;
-    subidreccion.selectedIndex = -1;
-    empresa.selectedIndex = -1;
-    tecnologia.selectedIndex = -1;
-    nuevo_modificado.selectedIndex = -1;
-    estado.selectedIndex = -1;
-    tipologia_inicial.selectedIndex = -1;
-    tipologia_final.selectedIndex = -1;
-    estado_tipificado.selectedIndex = -1;
+    mdc_select_direccion.selectedIndex = -1;
+    mdc_select_subdireccion.selectedIndex = -1;
+    mdc_select_empresa.selectedIndex = -1;
+    mdc_select_tecnologia.selectedIndex = -1;
+    mdc_select_nuevo_modificado.selectedIndex = -1;
+    mdc_select_estado.selectedIndex = -1;
+    mdc_select_tipologia_inicial.selectedIndex = -1;
+    mdc_select_tipologia_final.selectedIndex = -1;
+    mdc_select_estado_tipificado.selectedIndex = -1;
 
-    /** for hidden values related to MDC Select */
-    $("#principalId").val("");
-    $("#subPrincipalId").val("");
-    $("#companyId").val("");
-    $("#technologyId").val("");
-    $("#typologyNewComponent").val("");
-    $("#statusId").val("");
-    $("#startProductId").val("");
-    $("#finalProductId").val("");
-    $("#typologyStartSeverity").val("");
-    $("#statusTypologyId").val("");
-    $("#typologyFinalSeverity").val("");
-
-    /** mdc TEXT field */
-    $("#componentName").val("");
-    $("#requirementName").val("");
-    $("#componentVersion").val("");
-    $("#componentDesignRealDeliverDate").val("");
-    $("#componentPreviewDeliverDate").val("");
-    $("#componentPossibleDeliverDate").val("");
-    $("#componentRealDeliverDate").val("");
-    $("#typologyStartSeverity").val("");
-    $("#typologyStartSeverityHours").val("");
-    $("#typologyFinalSeverity").val("");
-    $("#typologyFinalSeverityHours").val("");
-
-    $("#mdc-group-componentName > label").removeClass("mdc-text-field__label--float-above");
-    $("#mdc-group-requirementName > label").removeClass("mdc-text-field__label--float-above");
-    $("#mdc-group-componentVersion > label").removeClass("mdc-text-field__label--float-above");
-    $("#mdc-group-componentDesignRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
-    $("#mdc-group-componentPreviewDeliverDate > label").removeClass("mdc-text-field__label--float-above");
-    $("#mdc-group-componentPossibleDeliverDate > label").removeClass("mdc-text-field__label--float-above");
-    $("#mdc-group-componentRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
-    $("#mdc-group-typologyStartSeverity > label").removeClass("mdc-text-field__label--float-above");
-    $("#mdc-group-typologyStartSeverityHours > label").removeClass("mdc-text-field__label--float-above");
-    $("#mdc-group-typologyFinalSeverity > label").removeClass("mdc-text-field__label--float-above");
-    $("#mdc-group-typologyFinalSeverityHours > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc_text_componentName > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc_text_requirementName > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc_text_componentVersion > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc_text_componentDesignRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc_text_componentPreviewDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc_text_componentPossibleDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc_text_componentRealDeliverDate > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc_text_typologyStartSeverity > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc_text_typologyStartSeverityHours > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc_text_typologyFinalSeverity > label").removeClass("mdc-text-field__label--float-above");
+    $("#mdc_text_typologyFinalSeverityHours > label").removeClass("mdc-text-field__label--float-above");
 
     /** Results section */
     $("#tab-componentes > table > tbody").html("");
@@ -575,35 +525,25 @@ $(function () {
     $("#row-buttons-results").hide();
 
     /** MDC SELECT */
-    $("#slct_direccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
-    $("#slct_subidreccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
-    $("#slct_empresa > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
-    $("#slct_tecnologia > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
-    $("#slct_nuevo_modificado > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
-    $("#slct_estado > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
-    $("#slct_tipologia_inicial > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
-    $("#slct_tipologia_final > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
-    $("#slct_estado_tipificado > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#mdc_select_direccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#mdc_select_subdireccion > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#mdc_select_empresa > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#mdc_select_tecnologia > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#mdc_select_nuevo_modificado > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#mdc_select_estado > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#mdc_select_tipologia_inicial > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#mdc_select_tipologia_final > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
+    $("#mdc_select_estado_tipificado > .mdc-select__surface > .mdc-select__label").removeClass("mdc-select__label--float-above");
 
-    $("#slct_direccion > .mdc-select__surface > .mdc-select__selected-text").html("");
-    $("#slct_subidreccion > .mdc-select__surface > .mdc-select__selected-text").html("");
-    $("#slct_empresa > .mdc-select__surface > .mdc-select__selected-text").html("");
-    $("#slct_tecnologia > .mdc-select__surface > .mdc-select__selected-text").html("");
-    $("#slct_nuevo_modificado > .mdc-select__surface > .mdc-select__selected-text").html("");
-    $("#slct_estado > .mdc-select__surface > .mdc-select__selected-text").html("");
-    $("#slct_tipologia_inicial > .mdc-select__surface > .mdc-select__selected-text").html("");
-    $("#slct_tipologia_final > .mdc-select__surface > .mdc-select__selected-text").html("");
-    $("#slct_estado_tipificado > .mdc-select__surface > .mdc-select__selected-text").html("");
-
-    $("#slct_direccion").removeClass("mdc-select--upgraded");
-    $("#slct_subidreccion").removeClass("mdc-select--upgraded");
-    $("#slct_empresa").removeClass("mdc-select--upgraded");
-    $("#slct_tecnologia").removeClass("mdc-select--upgraded");
-    $("#slct_nuevo_modificado").removeClass("mdc-select--upgraded");
-    $("#slct_estado").removeClass("mdc-select--upgraded");
-    $("#slct_tipologia_inicial").removeClass("mdc-select--upgraded");
-    $("#slct_tipologia_final").removeClass("mdc-select--upgraded");
-    $("#slct_estado_tipificado").removeClass("mdc-select--upgraded");
+    $("#mdc_select_direccion").removeClass("mdc-select--upgraded");
+    $("#mdc_select_subdireccion").removeClass("mdc-select--upgraded");
+    $("#mdc_select_empresa").removeClass("mdc-select--upgraded");
+    $("#mdc_select_tecnologia").removeClass("mdc-select--upgraded");
+    $("#mdc_select_nuevo_modificado").removeClass("mdc-select--upgraded");
+    $("#mdc_select_estado").removeClass("mdc-select--upgraded");
+    $("#mdc_select_tipologia_inicial").removeClass("mdc-select--upgraded");
+    $("#mdc_select_tipologia_final").removeClass("mdc-select--upgraded");
+    $("#mdc_select_estado_tipificado").removeClass("mdc-select--upgraded");
 
     $("#tabs").tabs("option", "active", 0);
     $("#update-all-dates").attr("disabled", "disabled");
@@ -759,3 +699,5 @@ function changeFormatDate(date) {
     return "";
   }
 }
+
+mdc.autoInit();

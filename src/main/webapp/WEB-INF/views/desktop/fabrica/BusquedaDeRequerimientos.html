@@ -257,7 +257,7 @@
               <td class="col-md-4" align="center">
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
                   <input type="text" class="mdc-text-field__input" th:field="*{budgetId}" maxlength="30">
-                  <label class="mdc-text-field__label">PEP</label>
+                  <label class="mdc-text-field__label">Id de PEP</label>
                 </div>
               </td>
               <td class="col-md-4" align="center">
@@ -291,7 +291,7 @@
                     <ul class="mdc-list mdc-menu__items">
                       <li th:each="pi : ${programIncrements}" class="mdc-list-item" role="option"
                           th:attrappend="aria-selected=(${pi.programIncrementId} == *{programIncrementId}) ? 'true'"
-                          th:value="${pi.programIncrementId}" th:text="${pi.ProgramIncrementName}"></li>
+                          th:value="${pi.programIncrementId}" th:text="${pi.programIncrementName}"></li>
                     </ul>
                   </div>
                 </div>
@@ -318,7 +318,7 @@
     <!-- .// row -->
 
     <div class="row" id="row-content-results">
-      <table id="results-table" class="col-md-12 table table-hover table-condensed">
+      <table id="results-table" class="col-md-12 table table-hover table-condensed table-striped">
         <thead>
           <tr>
             <th></th>
@@ -336,14 +336,8 @@
           </tr>
         </thead>
         <tbody>
-        <!--
-        <tr th:if="${requirements!= null && requirements.size() < 1}">
-          <td colspan="12">
-            <h2>No se encontraron resultados para tu búsqueda.</h2>
-          </td>
-        </tr>
-        -->
 
+        <tr></tr>
 
           <th:block th:each="requirement, stat : ${requirements}">
             <tr th:href="${'#row-detail-wrapper-' + stat.count}" data-tggle="collapse" class="clickable"
@@ -362,8 +356,8 @@
               <td th:text="${requirement.technology.technologyName}"></td>
               <td th:text="${requirement.company.companyName}"></td>
               <td th:text="${#dates.format(requirement.requirementStartDate, 'dd/MM/yyyy')}"></td>
-      
             </tr>
+            <tr></tr><!-- PARA COLOR-->
             <tr>
               <td colspan="11" class="detail-td">
                 <div th:id="${'row-detail-wrapper-' + stat.count}" class="collapse" >
@@ -384,7 +378,7 @@
                     </tr>
                     <tr>
                       <td class="detail-label" style="height: 60px;">PI</td>
-                      <td th:text="${requirement.programIncrement.ProgramIncrementName}"></td>
+                      <td th:text="${requirement.programIncrement.programIncrementName}"></td>
                       <td class="detail-label">PEP
                         <div th:unless="${requirement.budgetRequirementsList.size() < 1}" class="dropdown" style="display: inline-block;">
                           <a class="dropdown-toggle" data-toggle="dropdown">
@@ -445,7 +439,10 @@
 </body>
 
 <div th:replace="~{layout/footer2 :: scripts }"></div>
-<script>mdc.autoInit()</script>
+<script>
+    mdc.autoInit();
+    initGlobal();
+</script>
 <script defer>
 
 </script>

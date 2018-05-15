@@ -3,6 +3,8 @@ function init() {
     addButtonEvents();
     loadSelects();
     loadSelects2();
+    //user();
+    userLog();
 
     $("#hidden-envcomponente").val($("#hidden-componente").val());
 
@@ -34,6 +36,180 @@ function init() {
 
     //$('#incidencia-js-select').val($('#hidden-estado').val());
 }
+
+function userLog() {
+    var user=0;
+    $.ajax({
+        url: "/users/info"
+    }).done(function(data) {
+        //let subs = ;
+        //$("#responsabletxt").val(subs.userInternalId);
+        //$("#hidden-responsable").val(subs.userInternalId);
+        user=data.data.profileType.profileTypeId;
+        alert(user);
+
+
+        //perfilado inicial
+
+        //admin=4
+        if(user === 7){
+            alert("entro en dyd");
+            new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Subdireccion-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Version-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Prioridad-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("incidencia-estado-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = false;
+            if ($('#estado-incident').val() === "16" ){
+                $('#boton-cerrar').show();
+                $('#boton-abrir-duda').hide();
+            }else {
+                $('#boton-cerrar').hide();
+                $('#guardar-btn').hide();
+                $('#boton-abrir-duda').show();
+            }
+
+            //incidencia
+            $('#incidencia-js-select').hide(); //combo incidecnia
+            $('#incidencia-estado-js-text').show(); //input incidencia
+            $('#incidencia-estado-js-text2').val($('#hidden-estado').val());
+
+            //origen
+            $('#Origen-js-select').hide(); //combo origen
+            $('#Origen').show(); //input origen
+
+            //prioridad
+            $('#prioridad').hide(); //combo prioridad
+            $('#Prioridad-text').show(); //input prioridad
+
+            $('#tablefabrica').hide();
+            $('#tableUser').show();
+        }else if(user === 8){
+            alert("fabrica");
+            new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Subdireccion-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Version-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Prioridad-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("incidencia-estado-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = false;
+            //new mdc.textField.MDCTextField(document.getElementById("boton-cerrar")).disabled = true;
+            $('#boton-cerrar').hide();
+            $('#boton-abrir-duda').hide();
+
+            if ($('#estado-incident').val() === "16" ){
+                $('#guardar-btn').show();
+            }else {
+                $('#guardar-btn').hide();
+            }
+
+            $('#incidencia-js-select').hide(); //combo incidecnia
+            $('#incidencia-estado-js-text').show(); //input incidencia
+            $('#incidencia-estado-js-text').val($('#hidden-estado').val());
+
+            //origen
+            $('#Origen-js-select').hide(); //combo origen
+            $('#Origen').show(); //input origen
+
+            //prioridad
+            $('#prioridad').hide(); //combo prioridad
+            $('#Prioridad-text').show(); //input prioridad
+
+            $('#tablefabrica').show();
+            $('#tableUser').hide();
+        }else if(user === 1){
+            alert("gestor");
+            new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Subdireccion-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Version-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Prioridad-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("incidencia-estado-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = true;
+            //new mdc.textField.MDCTextField(document.getElementById("boton-cerrar")).disabled = true;
+            $('#boton-cerrar').hide();
+            $('#boton-abrir-duda').hide();
+            $('#guardar-btn').hide();
+
+            $('#incidencia-js-select').hide(); //combo incidecnia
+            $('#incidencia-estado-js-text').show(); //input incidencia
+
+            //origen
+            $('#Origen-js-select').hide(); //combo origen
+            $('#Origen').show(); //input origen
+
+            //prioridad
+            $('#prioridad').hide(); //combo prioridad
+            $('#Prioridad-text').show(); //input prioridad
+
+            $('#tablefabrica').hide();
+            $('#tableUser').hide();
+        }else if(user === 4){
+            alert("administrador");
+            new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Subdireccion-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Version-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Prioridad-text")).disabled = false;
+            new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = false;
+            new mdc.select.MDCSelect(document.getElementById("incidencia-js-select")).disabled = false;
+            new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
+            new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = false;
+            if ($('#estado-incident').val() === "16" ){//abierto
+                $('#boton-cerrar').show();
+                $('#boton-abrir-duda').hide();
+                $('#guardar-btn').show();
+
+            }else { //cerrado
+                $('#boton-cerrar').hide();
+                $('#boton-abrir-duda').show();
+            }
+
+            $('#incidencia-js-select').show(); //combo incidecnia
+            $('#incidencia-estado-js-text').show(); //input incidencia
+            //origen
+            $('#Origen-js-select').show(); //combo origen
+            $('#Origen').show(); //input origen
+            //prioridad
+            $('#prioridad').show(); //combo prioridad
+            $('#Prioridad-text').show(); //input prioridad
+
+            $('#tablefabrica').show();
+            $('#tableUser').show();
+        }else {
+            holder("Cargando...usuario sin acceso");
+            window.location.href = "/";
+        }
+    });
+}
+
 
 function loadSelects() {
     //mdc.select.MDCSelect.attachTo(document.getElementById('usuario-js-select'));
@@ -218,6 +394,318 @@ function holder(msg){
     }
 }*/
 
+/*function user() {
+
+    if ($('#usuario').val() === "1" ){
+        new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Subdireccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Version-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Prioridad-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("incidencia-estado-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = false;
+
+        if ($('#estado-incident').val() === "16" ){
+            $('#boton-cerrar').show();
+            $('#boton-abrir-duda').hide();
+        }else {
+            $('#boton-cerrar').hide();
+            $('#guardar-btn').hide();
+            $('#boton-abrir-duda').show();
+        }
+
+        //incidencia
+        $('#incidencia-js-select').hide(); //combo incidecnia
+        $('#incidencia-estado-js-text').show(); //input incidencia
+        $('#incidencia-estado-js-text2').val($('#hidden-estado').val());
+
+        //origen
+        $('#Origen-js-select').hide(); //combo origen
+        $('#Origen').show(); //input origen
+
+        //prioridad
+        $('#prioridad').hide(); //combo prioridad
+        $('#Prioridad-text').show(); //input prioridad
+
+        $('#tablefabrica').hide();
+        $('#tableUser').show();
+    }else if ($('#usuario').val() === "2" ){
+
+        new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Subdireccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Version-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Prioridad-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("incidencia-estado-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = false;
+        $('#boton-cerrar').hide();
+        $('#boton-abrir-duda').hide();
+
+        if ($('#estado-incident').val() === "16" ){
+            $('#guardar-btn').show();
+        }else {
+            $('#guardar-btn').hide();
+        }
+
+        $('#incidencia-js-select').hide(); //combo incidecnia
+        $('#incidencia-estado-js-text').show(); //input incidencia
+        $('#incidencia-estado-js-text').val($('#hidden-estado').val());
+
+        //origen
+        $('#Origen-js-select').hide(); //combo origen
+        $('#Origen').show(); //input origen
+
+        //prioridad
+        $('#prioridad').hide(); //combo prioridad
+        $('#Prioridad-text').show(); //input prioridad
+
+        $('#tablefabrica').show();
+        $('#tableUser').hide();
+
+    }else if ($('#usuario').val() === "3" ){
+
+        new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Subdireccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Version-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Prioridad-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("incidencia-estado-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = true;
+        $('#boton-cerrar').hide();
+        $('#boton-abrir-duda').hide();
+        $('#guardar-btn').hide();
+
+        $('#incidencia-js-select').hide(); //combo incidecnia
+        $('#incidencia-estado-js-text').show(); //input incidencia
+
+        //origen
+        $('#Origen-js-select').hide(); //combo origen
+        $('#Origen').show(); //input origen
+
+        //prioridad
+        $('#prioridad').hide(); //combo prioridad
+        $('#Prioridad-text').show(); //input prioridad
+
+        $('#tablefabrica').hide();
+        $('#tableUser').hide();
+
+    }else {
+        new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Subdireccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Version-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Prioridad-text")).disabled = false;
+        new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = false;
+        new mdc.select.MDCSelect(document.getElementById("incidencia-js-select")).disabled = false;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = false;
+
+        if ($('#estado-incident').val() === "16" ){//abierto
+            $('#boton-cerrar').show();
+            $('#boton-abrir-duda').hide();
+            $('#guardar-btn').show();
+
+        }else { //cerrado
+            $('#boton-cerrar').hide();
+            $('#boton-abrir-duda').show();
+        }
+
+        $('#incidencia-js-select').show(); //combo incidecnia
+        $('#incidencia-estado-js-text').show(); //input incidencia
+        //origen
+        $('#Origen-js-select').show(); //combo origen
+        $('#Origen').show(); //input origen
+        //prioridad
+        $('#prioridad').show(); //combo prioridad
+        $('#Prioridad-text').show(); //input prioridad
+
+        $('#tablefabrica').show();
+        $('#tableUser').show();
+    }
+
+}
+
+function user2() {
+    if ($('#usuario').val() === "1" ){
+        new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Subdireccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Version-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Prioridad-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("incidencia-estado-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = false;
+
+        if ($('#estado-incident').val() === "16" ){
+            $('#boton-cerrar').show();
+            $('#boton-abrir-duda').hide();
+        }else {
+            $('#boton-cerrar').hide();
+            $('#guardar-btn').hide();
+            $('#boton-abrir-duda').show();
+        }
+
+        //incidencia
+        $('#incidencia-js-select').hide(); //combo incidecnia
+        $('#incidencia-estado-js-text').show(); //input incidencia
+        $('#incidencia-estado-js-text2').val($('#hidden-estado').val());
+
+        //origen
+        $('#Origen-js-select').hide(); //combo origen
+        $('#Origen').show(); //input origen
+
+        //prioridad
+        $('#prioridad').hide(); //combo prioridad
+        $('#Prioridad-text').show(); //input prioridad
+
+        $('#tablefabrica').hide();
+        $('#tableUser').show();
+    }else if ($('#usuario').val() === "2" ){
+        new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Subdireccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Version-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Prioridad-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("incidencia-estado-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = false;
+        $('#boton-cerrar').hide();
+        $('#boton-abrir-duda').hide();
+
+        if ($('#estado-incident').val() === "16" ){
+            $('#guardar-btn').show();
+        }else {
+            $('#guardar-btn').hide();
+        }
+
+        $('#incidencia-js-select').hide(); //combo incidecnia
+        $('#incidencia-estado-js-text').show(); //input incidencia
+        $('#incidencia-estado-js-text').val($('#hidden-estado').val());
+
+        //origen
+        $('#Origen-js-select').hide(); //combo origen
+        $('#Origen').show(); //input origen
+
+        //prioridad
+        $('#prioridad').hide(); //combo prioridad
+        $('#Prioridad-text').show(); //input prioridad
+
+        $('#tablefabrica').show();
+        $('#tableUser').hide();
+
+    }else if ($('#usuario').val() === "3" ){
+        new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Subdireccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Version-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Prioridad-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("incidencia-estado-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = true;
+        $('#boton-cerrar').hide();
+        $('#boton-abrir-duda').hide();
+        $('#guardar-btn').hide();
+
+        $('#incidencia-js-select').hide(); //combo incidecnia
+        $('#incidencia-estado-js-text').show(); //input incidencia
+
+        //origen
+        $('#Origen-js-select').hide(); //combo origen
+        $('#Origen').show(); //input origen
+
+        //prioridad
+        $('#prioridad').hide(); //combo prioridad
+        $('#Prioridad-text').show(); //input prioridad
+
+        $('#tablefabrica').hide();
+        $('#tableUser').hide();
+
+    }else {
+        new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Subdireccion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Version-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Requerimiento")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Tecnologia")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Prioridad-text")).disabled = false;
+        new mdc.textField.MDCTextField(document.getElementById("Origen")).disabled = false;
+        new mdc.select.MDCSelect(document.getElementById("incidencia-js-select")).disabled = false;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Peticionario")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textuser")).disabled = false;
+
+        if ($('#estado-incident').val() === "16" ){//abierto
+            $('#boton-cerrar').show();
+            $('#boton-abrir-duda').hide();
+            $('#guardar-btn').show();
+
+        }else { //cerrado
+            $('#boton-cerrar').hide();
+            $('#boton-abrir-duda').show();
+        }
+
+        $('#incidencia-js-select').show(); //combo incidecnia
+        $('#incidencia-estado-js-text').show(); //input incidencia
+        //origen
+        $('#Origen-js-select').show(); //combo origen
+        $('#Origen').show(); //input origen
+        //prioridad
+        $('#prioridad').show(); //combo prioridad
+        $('#Prioridad-text').show(); //input prioridad
+
+        $('#tablefabrica').show();
+        $('#tableUser').show();
+    }
+
+}*/
+
+/*
 function dyd() {
 
         alert("entro en dyd");
@@ -404,7 +892,7 @@ function adminin() {
     $('#tablefabrica').show();
     $('#tableUser').show();
 }
-
+*/
 function addButtonEvents() {
     //Actions for save requirements
     $('form').on('submit', function (e) {

@@ -101,4 +101,8 @@ $(function () {
             textColor: "white",
         });
     });
+
+    $("#header-profiles").change(function(){
+      alert("perfil: " + $(this).val() );
+    });
 });

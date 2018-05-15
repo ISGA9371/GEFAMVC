@@ -64,6 +64,14 @@ public class UserAdminController {
         return URL_ADMIN + ADMIN_USERS;
     }
 
+    @RequestMapping(path = "/{userId}", method = RequestMethod.DELETE)
+    public String deleteUser(Model model, @PathVariable(value = "userId") String userId) {
+        // TODO Validate user
+
+        userService.deleteUser(userId);
+        return URL_ADMIN + ADMIN_USERS;
+    }
+
     @RequestMapping(value = "/filters", method = RequestMethod.GET)
     public String filtersForUsers(Model model) {
 

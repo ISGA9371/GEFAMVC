@@ -58,7 +58,7 @@ public class BudgetQueryGenerator {
         items.put("areaId", Arrays.asList("x.area.areaId", EQUALS));
         items.put("bankingId", Arrays.asList("x.banking.bankingId", EQUALS));
         items.put("corporationId", Arrays.asList("x.corporation.corporationId", EQUALS));
-        items.put("userReceiverId", Arrays.asList("x.userReceiver.userInternalId", LIKE));
+        items.put("budgetsResponsibleId", Arrays.asList("x.budgetsResponsible.budgetsResponsibleId", LIKE));
         items.put("natureId", Arrays.asList("x.nature.natureId", EQUALS));
     }
 }

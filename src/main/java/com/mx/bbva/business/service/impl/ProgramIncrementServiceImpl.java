@@ -6,6 +6,7 @@ import com.mx.bbva.business.repository.ProgramIncrementRepository;
 import com.mx.bbva.business.repository.ProjectRepository;
 import com.mx.bbva.business.service.ProgramIncrementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class ProgramIncrementServiceImpl implements ProgramIncrementService {
 
     @Override
     public List<ProgramIncrement> findAll() {
-        return repository.findAll();
+        return repository.findAll(new Sort(Sort.Direction.DESC, "programIncrementId"));
     }
 
     @Override

@@ -1,3 +1,15 @@
+var mdc_text_solicitud = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_solicitud'));
+var mdc_text_aceptacion = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_aceptacion'));
+var mdc_text_orden_compra = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_orden_compra'));
+var mdc_text_fecha_envio = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_envio'));
+var mdc_text_hoja_entrada = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_hoja_entrada'));
+var mdc_select_estado_pago = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado_pago'));
+var mdc_text_fecha_desde = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_desde'));
+var mdc_text_fecha_hasta = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_hasta'));
+var mdc_select_empresa = new mdc.select.MDCSelect(document.querySelector('#mdc_select_empresa'));
+var mdc_select_tecnologia = new mdc.select.MDCSelect(document.querySelector('#mdc_select_tecnologia'));
+var mdc_select_area_atencion = new mdc.select.MDCSelect(document.querySelector('#mdc_select_area_atencion'));
+
 $(document).ready(function(){
 
   $("#fecha_envio").datepicker({
@@ -151,19 +163,6 @@ $(document).ready(function(){
   /************************ */
 
 
-  mdc_text_solicitud = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_solicitud'));
-  mdc_text_aceptacion = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_aceptacion'));
-  mdc_text_orden_compra = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_orden_compra'));
-  mdc_text_fecha_envio = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_envio'));
-  mdc_text_hoja_entrada = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_hoja_entrada'));
-  mdc_select_estado_pago = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado_pago'));
-  mdc_text_fecha_desde = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_desde'));
-  mdc_text_fecha_hasta = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_hasta'));
-  mdc_select_empresa = new mdc.select.MDCSelect(document.querySelector('#mdc_select_empresa'));
-  mdc_select_tecnologia = new mdc.select.MDCSelect(document.querySelector('#mdc_select_tecnologia'));
-  mdc_select_area_atencion = new mdc.select.MDCSelect(document.querySelector('#mdc_select_area_atencion'));
-
-
 
   $("#fecha_envio").change(function(){
     if ( "" != mdc_text_fecha_envio.value ) {
@@ -225,6 +224,12 @@ $(document).ready(function(){
 
     $("#fecha_hasta").datepicker("option", "minDate", null);
     $("#fecha_desde").datepicker("option", "maxDate", null);
+
+    $("#row-title-results").hide();
+    $("#row-content-results").hide();
+    $("#row-buttons-results").hide();
+    
+    $("#table-results > tbody").html("");
   });
 
 
@@ -237,11 +242,11 @@ $(document).ready(function(){
       modificationSendDate: changeFormatDate(mdc_text_fecha_envio.value),
       paymentInPaper: mdc_text_hoja_entrada.value,
       statusId: mdc_select_estado_pago.value,
-      invoiceCutDateStart: changeFormatDate(mdc_text_fecha_desde.value),
-      invoiceCutDateEnd: changeFormatDate(mdc_text_fecha_hasta.value),
-      companyName: mdc_select_empresa.value,
-      technologyName: mdc_select_tecnologia.value,
-      areaName: mdc_select_area_atencion.value,
+      invoiceCutDateFrom: changeFormatDate(mdc_text_fecha_desde.value),
+      invoiceCutDateTo: changeFormatDate(mdc_text_fecha_hasta.value),
+      companyId: mdc_select_empresa.value,
+      technologyId: mdc_select_tecnologia.value,
+      areaId: mdc_select_area_atencion.value,
     };
 
     console.log( params );
@@ -261,8 +266,89 @@ $(document).ready(function(){
         });
       }
     }).done(function ( data ) {
+      data = [
+        {
+          id: "1",
+          fecha_corte: "10/11/1987",
+          requerimiento: "Requer Uno",
+          direccion: "direccion",
+          subdireccion: "subdireccion",
+          responsable: "responsa 1",
+          empresa: "empresa1",
+          monto: "100.00",
+          alerta: "",
+          estado: "",
+          solicitud_pedido: "pendiente",
+          horas: "20",
+          pep: "dfdsfer4324324",
+        },
+        {
+          id: "2",
+          fecha_corte: "10/11/1990",
+          requerimiento: "Requer Dos",
+          direccion: "direccion",
+          subdireccion: "subdireccion",
+          responsable: "responsa DOS",
+          empresa: "empresa dos",
+          monto: "87,634.00",
+          alerta: "",
+          estado: "",
+          solicitud_pedido: "pendiente",
+          horas: "216",
+          pep: "qwerty6543",
+        },
+      ];
+
+      console.log(data);
       if (1 <= data.length) {
-        HoldOn.close();  
+        $("#row-title-results").show();
+        $("#row-content-results").show();
+        $("#row-buttons-results").show();
+
+        $("#table-results > tbody").html("");
+          // <tr>
+          //   <td>dato 1</td>
+          //   <td>dato 1</td>
+          //   <td>dato 1</td>
+          //   <td>dato 1</td>
+          //   <td>dato 1</td>
+          //   <td>dato 1</td>
+          //   <td>dato 1</td>
+          //   <td>dato 1</td>
+          //   <td><select class="form-control"><option>Estado 1</option><option>Estado 2</option><option>Estado 3</option></select></td>
+          //   <td></td>
+          // </tr>
+
+
+
+
+          $.each(data, function (index, value) {
+            $("#table-results > tbody").append(
+              "<tr data-toggle='collapse' data-target='#target-"+value.id+"' class='clickable'>" + 
+                "<td>" + value.fecha_corte + "</td>" +
+                "<td>" + value.requerimiento + "</td>" +
+                "<td>" + value.direccion + "</td>" +
+                "<td>" + value.subdireccion + "</td>" +
+                "<td>" + value.responsable + "</td>" +
+                "<td>" + value.empresa + "</td>" +
+                "<td>" + value.monto + "</td>" +
+                "<td>" + value.alerta + "</td>" +
+                "<td>" + value.estado + "</td>" +
+              "</tr>" +
+              "<tr></tr>" +
+              "<tr> <td colspan='9' class='detail-td'>" +
+                "<div id='target-"+value.id+"' class='collapse'>" +
+                  "<table class='table' style='margin-bottom:0;background-color: #f4f8fb;'><tr>" + 
+                    "<td>" + value.solicitud_pedido + "</td>" +
+                    "<td>" + value.horas + "</td>" +
+                    "<td>" + value.pep + "</td>" +
+                  "</tr></table>" +
+                "</div>" +
+              "</td></tr>"
+            );
+          });
+
+        HoldOn.close();
       } else {
         customHolder("info", "Tu búsqueda no devolvió resultados.");
       }
@@ -277,6 +363,14 @@ $(document).ready(function(){
 
 
   $("#btn_excel").click(function(){});
+
+  $("body").on("click", "tr.clickable", function (event) {
+    var prevExpanded = $("tr.clickable[aria-expanded='true']");
+    target = prevExpanded.data("target");
+    if ( "undefined" !== typeof target ) {
+      $(target).collapse('toggle');
+    }
+  });
 
 
   function changeFormatDate(date) {
