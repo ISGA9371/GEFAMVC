@@ -291,7 +291,7 @@
                     <ul class="mdc-list mdc-menu__items">
                       <li th:each="pi : ${programIncrements}" class="mdc-list-item" role="option"
                           th:attrappend="aria-selected=(${pi.programIncrementId} == *{programIncrementId}) ? 'true'"
-                          th:value="${pi.programIncrementId}" th:text="${pi.ProgramIncrementName}"></li>
+                          th:value="${pi.programIncrementId}" th:text="${pi.programIncrementName}"></li>
                     </ul>
                   </div>
                 </div>
@@ -378,7 +378,7 @@
                     </tr>
                     <tr>
                       <td class="detail-label" style="height: 60px;">PI</td>
-                      <td th:text="${requirement.programIncrement.ProgramIncrementName}"></td>
+                      <td th:text="${requirement.programIncrement.programIncrementName}"></td>
                       <td class="detail-label">PEP
                         <div th:unless="${requirement.budgetRequirementsList.size() < 1}" class="dropdown" style="display: inline-block;">
                           <a class="dropdown-toggle" data-toggle="dropdown">
