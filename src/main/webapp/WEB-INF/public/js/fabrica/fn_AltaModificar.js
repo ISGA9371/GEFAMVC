@@ -10,6 +10,7 @@ function init() {
     camp();
     loadSelects2();
     cargarTipologias();
+    userLog();
 
     var fecha=$("#datetimepicker").val();
     //var dia = fecha.substring(8,10);
@@ -31,6 +32,18 @@ function init() {
     var today =dd + '/' + mm + '/' + yyyy;
     $("#datetimepicker").val(today);
 
+}
+
+function userLog() {
+console.log("llego");
+    var user=0;
+    $.ajax({
+        url: "/users/info"
+    }).done(function(data) {
+        user=data.userInternalId;
+        alert(user);
+
+    });
 }
 
 function crearCombos() {
@@ -95,10 +108,10 @@ function addMissing() {
 
     $("#hidden-status").val($("#hidden-modificationStatus").val());
 
-    $("#hidden-userre").val("XMY3080");
+    //$("#hidden-userre").val("XMY3080");
 
-    $("#responsabletxt").val("XMY3080");
-    $("#hidden-responsable").val("XMY3080");
+    //$("#responsabletxt").val("XMY3080");
+    //$("#hidden-responsable").val("XMY3080");
 
 
 
@@ -115,13 +128,13 @@ function camp() {
     new mdc.textField.MDCTextField(document.getElementById("dificultad-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("estado-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("tipmodificacion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("usuario-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("difmodificacion-js-text")).disabled = true;
+    //new mdc.textField.MDCTextField(document.getElementById("usuario-js-text")).disabled = true;
+    //new mdc.textField.MDCTextField(document.getElementById("difmodificacion-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("fechaEnvio-js-text")).disabled = true;
 }
 
 function loadSelects2() {
-    const prioridad = new mdc.select.MDCSelect(document.querySelector('#prioridad'));
+    const prioridad = new mdc.select.MDCSelect(document.querySelector('#prioridad-js-select'));
     $.ajax({
         url: "/api/prioritys"
     }).done(function (data) {
@@ -139,7 +152,7 @@ function loadSelects2() {
         } else $("#prioridad-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
     });
 
-    const origen = new mdc.select.MDCSelect(document.querySelector('#origen'));
+    const origen = new mdc.select.MDCSelect(document.querySelector('#origen-js-select'));
     $.ajax({
         url: "/api/origins"
     }).done(function(data) {
@@ -283,3 +296,4 @@ function camposBloqueadosF() {
     }
 
 }
+
