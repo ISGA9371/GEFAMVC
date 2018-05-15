@@ -1,9 +1,6 @@
-
-
 function init() {
 
     initGlobal();
-
     camposBloqueadosF();
     crearCombos();
     asignarCombos();
@@ -12,8 +9,41 @@ function init() {
     addButtonEvents();
     camp();
     loadSelects2();
-    //addCustomSelectEvents();
+    cargarTipologias();
+    userLog();
 
+    var fecha=$("#datetimepicker").val();
+    //var dia = fecha.substring(8,10);
+    //var mes = fecha.substring(5,7);
+    //var anio = fecha.substring(0,4);
+    //$("#datetimepickerformat").val(dia+"/"+mes+"/"+anio);
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    var today =dd + '/' + mm + '/' + yyyy;
+    $("#datetimepicker").val(today);
+
+}
+
+function userLog() {
+console.log("llego");
+    var user=0;
+    $.ajax({
+        url: "/users/info"
+    }).done(function(data) {
+        user=data.userInternalId;
+        alert(user);
+
+    });
 }
 
 function crearCombos() {
@@ -21,7 +51,6 @@ function crearCombos() {
     //mdc.select.MDCSelect.attachTo(document.getElementById('DifMod-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('prioridad-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('origen-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('modvuelo-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('moddyd-js-select'));
     //mdc.select.MDCSelect.attachTo(document.getElementById('responsable-js-select'));
 }
@@ -44,10 +73,8 @@ function addCalendars() {
 
     $('#fechaNeg').datepicker({dateFormat: "dd/mm/yy"});
     $('#fechaReal').datepicker({dateFormat: "dd/mm/yy"});
-    $('#fechaEnvio').datepicker({dateFormat: "dd/mm/yy"});
     var fechaNeg = new mdc.textField.MDCTextField(document.querySelector('#mdc-fechaNeg'));
     var fechaReal = new mdc.textField.MDCTextField(document.querySelector('#mdc-fechaReal'));
-    var fechaEnvio = new mdc.textField.MDCTextField(document.querySelector('#mdc-fechaEnvio'));
 
     $("#fechaNeg").change(function () {
         if ("" != fechaNeg.value) {
@@ -64,13 +91,6 @@ function addCalendars() {
         }
     });
 
-    $("#fechaEnvio").change(function () {
-        if ("" != fechaEnvio.value) {
-            $("#mdc-fechaEnvio > label").addClass("mdc-text-field__label--float-above");
-        } else {
-            $("#mdc-fechaEnvio > label").removeClass("mdc-text-field__label--float-above");
-        }
-    });
 
 }
 
@@ -88,10 +108,11 @@ function addMissing() {
 
     $("#hidden-status").val($("#hidden-modificationStatus").val());
 
-    $("#hidden-userre").val("XMY3080");
+    //$("#hidden-userre").val("XMY3080");
 
-    $("#responsabletxt").val("XMY3080");
-    $("#hidden-responsable").val("XMY3080");
+    //$("#responsabletxt").val("XMY3080");
+    //$("#hidden-responsable").val("XMY3080");
+
 
 
 }
@@ -107,13 +128,13 @@ function camp() {
     new mdc.textField.MDCTextField(document.getElementById("dificultad-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("estado-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("tipmodificacion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("usuario-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("difmodificacion-js-text")).disabled = true;
-
+    //new mdc.textField.MDCTextField(document.getElementById("usuario-js-text")).disabled = true;
+    //new mdc.textField.MDCTextField(document.getElementById("difmodificacion-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("fechaEnvio-js-text")).disabled = true;
 }
 
 function loadSelects2() {
-    const prioridad = new mdc.select.MDCSelect(document.querySelector('#prioridad'));
+    const prioridad = new mdc.select.MDCSelect(document.querySelector('#prioridad-js-select'));
     $.ajax({
         url: "/api/prioritys"
     }).done(function (data) {
@@ -131,7 +152,7 @@ function loadSelects2() {
         } else $("#prioridad-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
     });
 
-    const origen = new mdc.select.MDCSelect(document.querySelector('#origen'));
+    const origen = new mdc.select.MDCSelect(document.querySelector('#origen-js-select'));
     $.ajax({
         url: "/api/origins"
     }).done(function(data) {
@@ -149,6 +170,37 @@ function loadSelects2() {
         }else $("#origen-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
     });
 
+}
+
+function cargarTipologias() {
+    $("#dificultad-js-select").find("ul:first").empty();
+    $.ajax({
+        async: false,
+        url: "/api/typologies/types?componentModified=" + Boolean(Number(mdcSelectNewMod.value))
+    }).done(function (json) {
+        $.each(json.data, function (i, data) {
+            if (data.product.productId == mdcSelectProduct.value) {
+                $liElement = $("<li>");
+                $liElement.attr("class", "mdc-list-item");
+                $liElement.attr("role", "option");
+                $liElement.attr("id", data.typologyId + "|" + data.typologySeverity + "|" + data.typologySeverityHours + "|" + data.typologyStartDate + "|" + data.typologyFinalDate);
+                $liElement.append(data.typologySeverity);
+                $("#dificultad-js-select").find("ul:first").append($liElement);
+            }
+        });
+        mdcSelectTipology.disabled = false;
+        setTimeout(HoldOn.close(), 3000);
+        controllerTypologies = false;
+    }).fail(function (xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        mdcSelectTipology.disabled = true;
+        showingError = true;
+        customHolder('error', '¡Error al consultar combos!');
+        controllerTypologies = false;
+    });
+    mdcSelectTipology.selectedIndex = -1;
+    resetCalendars();
+    mdcTextHours.value = "";
 }
 
 function addButtonEvents() {
@@ -244,3 +296,4 @@ function camposBloqueadosF() {
     }
 
 }
+

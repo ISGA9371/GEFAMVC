@@ -170,7 +170,7 @@ function ajaxGuardar() {
             alert(data);
         }
     }).done(function (data) {
-        customHolder("info", "Duda Registrada Exitosamente.","window.location.href = '/components/filters'; holder('Cargando...')");
+        customHolder("info", "Modificacion Registrada Exitosamente.","window.location.href = '/components/filters'; holder('Cargando...')");
         //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
     }).fail(function (xhr, status, error) {
         console.log("fail");
