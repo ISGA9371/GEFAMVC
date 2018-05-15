@@ -10,77 +10,49 @@
 <div class="container">
 
     <div class="row">
-
         <div class="col-md-12 text-center">
             <h2 class="h2-title-content">Combos</h2>
         </div>
     </div>
 
-     <div class="row">
-
-         <div class="col-md-12 subtitle-content">Combos Excistentes</div>
-
-     </div>
-    <div class="row" id="row-content-results">
-        <table id="results-table" class="col-md-12 table table-hover table-condensed">
-            <thead style="color:#005EB8;font-weight:bold"  bgcolor="#F5F5F5">
-            <tr >
-                <td align="center"></td>
-                    <td align="center">Combo</td>
-                    <td align="center">Tabla</td>
-                    <td align="center">Estado</td>
-                </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td class="col-md-3" align="center">
-                    <input type="radio" >
-                </td>
-                <td class="col-md-3" align="center">
-                    Área
-                </td>
-                <td class="col-md-3" align="center">
-                    THGE030_AREA
-                </td>
-                <td class="col-md-3" align="center">
-                    Estatus Estatus
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-3" align="center">
-                    <input type="radio" >
-                </td>
-                <td class="col-md-3" align="center">
-                    Tecnología
-                </td>
-                <td class="col-md-3" align="center">
-                    THGE002_TECNOLOGIA
-                </td>
-                <td class="col-md-3" align="center">
-                    Estatus Estatus
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-3" align="center">
-                    <input type="radio" >
-                </td>
-                <td class="col-md-3" align="center">
-                    Banca
-                </td>
-                <td class="col-md-3" align="center">
-                    THGE034_BANCA
-                </td>
-                <td class="col-md-3" align="center">
-                    Estatus Estatus
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
     <div class="row">
+      <div class="col-md-12 subtitle-content">Combos Excistentes</div>
+    </div>
 
-        <div class="col-md-12 subtitle-content">Editar Combo</div>
+    <div class="col-md-4" align="center">
+        <div class="mdc-select" role="listbox" id="mdc_select_combo">
+            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" style="width: 122px; --mdc-ripple-fg-size:216px; --mdc-ripple-fg-scale:1.7277125130098026; --mdc-ripple-fg-translate-start:227.5px, -72.06666564941406px; --mdc-ripple-fg-translate-end:72px, -84px;">
+                <div class="mdc-select__label">Combos</div>
+                <div class="mdc-select__selected-text"></div>
+                <div class="mdc-select__bottom-line"></div>
+            </div>
+            <div class="mdc-menu mdc-select__menu" style="left: 771.5px; top: 212.067px; transform-origin: center 0px 0px;">
+                <ul class="mdc-list mdc-menu__items">
+                    <li class="mdc-list-item" role="option" tabindex="0" id="0">TIPO DE SERVICIO</li>
+                    <li class="mdc-list-item" role="option" tabindex="1" id="1">TECNOLOGIA</li>
+                    <li class="mdc-list-item" role="option" tabindex="2" id="">EMPRESA</li>
+                    <li class="mdc-list-item" role="option" tabindex="3" id="3">TIPO DE NIVEL</li>
+                    <li class="mdc-list-item" role="option" tabindex="4" id="4">ESTADO</li>
+                    <li class="mdc-list-item" role="option" tabindex="5" id="5">TIPO DE ESTADO</li>
+                    <li class="mdc-list-item" role="option" tabindex="6" id="6">USUARIOS</li>
+                    <li class="mdc-list-item" role="option" tabindex="7" id="7">PI</li>
+                    <li class="mdc-list-item" role="option" tabindex="8" id="8">PRIORIDAD</li>
+                    <li class="mdc-list-item" role="option" tabindex="9" id="9">PERFIL</li>
+                    <li class="mdc-list-item" role="option" tabindex="10" id="10">REQUERIMIENTO</li>
+                    <li class="mdc-list-item" role="option" tabindex="11" id="11">ORIGEN</li>
+                    <li class="mdc-list-item" role="option" tabindex="12" id="12">PROYECTO</li>
+                    <li class="mdc-list-item" role="option" tabindex="13" id="13">AREA</li>
+                    <li class="mdc-list-item" role="option" tabindex="14" id="14">BANCA</li>
+                    <li class="mdc-list-item" role="option" tabindex="15" id="15">CANAL</li>
+                    <li class="mdc-list-item" role="option" tabindex="16" id="16">APLICACION</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
+
+    <div class="row">
+         <div class="col-md-12 subtitle-content">Editar Combo</div>
     </div>
     <div class="row" id="row-content-results1">
         <table id="results-table1" class="col-md-12 table table-hover table-condensed">
@@ -96,8 +68,8 @@
                     FABRICA DE PRUEBAS
                 </td>
                 <td class="col-md-6" align="center">
-                    <img src="/img/cerrar.png" style="width: 30px;">
-                    <img src="/img/editar a.png" style="width: 30px;">
+                    <img src="/img/cerrar.png" style="width: 30px;" TITLE="Eliminar">
+                    <img src="/img/editar a.png" style="width: 30px;" TITLE="Editar">
                 </td>
             </tr>
             <tr>
@@ -105,8 +77,8 @@
                     FABRICA DE SOFTWARE
                 </td>
                 <td class="col-md-6" align="center">
-                    <img src="/img/cerrar.png" style="width: 30px;">
-                    <img src="/img/editar a.png" style="width: 30px;">
+                    <img src="/img/cerrar.png" style="width: 30px;" TITLE="Eliminar">
+                    <img src="/img/editar a.png" style="width: 30px;" TITLE="Editar">
                 </td>
             </tr>
             </tbody>
@@ -153,11 +125,13 @@
 <script type="text/javascript" th:src="@{../js/fabrica/alta-error.js}"></script>
 <script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
 
-<script>mdc.autoInit()</script>
+
 <script>
+    mdc.select.MDCSelect.attachTo(document.getElementById('mdc_select_combo'));
     demoReady(function () {
-        init();
         initGlobal();
+        init();
+
     });
 
 </script>
