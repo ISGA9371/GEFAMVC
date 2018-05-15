@@ -22,13 +22,19 @@ function init() {
 
 function userLog() {
 
+    var user=0;
     $.ajax({
         url: "/users/info"
     }).done(function(data) {
-        let subs = data.data;
-        $("#responsabletxt").val(subs.userInternalId);
-        $("#hidden-responsable").val(subs.userInternalId);
-        alert(subs.profileType.profileTypeId);
+        //let subs = data.data;
+        user=data.data.profileType.profileTypeId;
+        if(user === 4 || user === 5 || user === 7){
+            $("#responsabletxt").val(data.data.userInternalId);
+            $("#hidden-responsable").val(data.data.userInternalId);
+        }else{
+            holder("Cargando...usuario sin acceso");
+            window.location.href = "/";
+        }
     });
 }
 
