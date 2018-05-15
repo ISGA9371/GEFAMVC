@@ -5,8 +5,11 @@
  */
 package com.mx.bbva.business.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Guevara Manuel
@@ -26,6 +29,9 @@ public class BudgetsApplicant implements Serializable {
     @JoinColumn(name = "ST_SOLIC_PEP", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status status;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "budgetsApplicant")
+    private List<Budget> budgets;
 
     public BudgetsApplicant() {
     }
@@ -67,6 +73,14 @@ public class BudgetsApplicant implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public List<Budget> getBudgets() {
+        return budgets;
+    }
+
+    public void setBudgets(List<Budget> budgets) {
+        this.budgets = budgets;
     }
 
     @Override

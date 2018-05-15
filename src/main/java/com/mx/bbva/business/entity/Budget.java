@@ -50,6 +50,12 @@ public class Budget implements Serializable {
     private Double budgetIncurredSoftwareFactory;
     @Column(name = "TP_DESLIZADO")
     private byte[] budgetForNextYear;
+    @JoinColumn(name = "CD_SOLIC_PEP", referencedColumnName = "CD_SOLIC_PEP")
+    @ManyToOne
+    private BudgetsApplicant budgetsApplicant;
+    @JoinColumn(name = "CD_RESP_PEP", referencedColumnName = "CD_RESP_PEP")
+    @ManyToOne
+    private BudgetsResponsible budgetsResponsible;
     @JoinColumn(name = "ST_PEP", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status budgetStatus;
@@ -183,6 +189,22 @@ public class Budget implements Serializable {
 
     public void setBudgetForNextYear(byte[] budgetForNextYear) {
         this.budgetForNextYear = budgetForNextYear;
+    }
+
+    public BudgetsApplicant getBudgetsApplicant() {
+        return budgetsApplicant;
+    }
+
+    public void setBudgetsApplicant(BudgetsApplicant budgetsApplicant) {
+        this.budgetsApplicant = budgetsApplicant;
+    }
+
+    public BudgetsResponsible getBudgetsResponsible() {
+        return budgetsResponsible;
+    }
+
+    public void setBudgetsResponsible(BudgetsResponsible budgetsResponsible) {
+        this.budgetsResponsible = budgetsResponsible;
     }
 
     public Status getBudgetStatus() {
