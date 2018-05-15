@@ -258,6 +258,7 @@ function addSelectEvents() {
 }
 
 function cargarTipologias() {
+    mdcSelectTipology.selectedIndex = -1;
     $("#tipologia-js-select").find("ul:first").empty();
     $.ajax({
         async: false,
@@ -273,6 +274,15 @@ function cargarTipologias() {
                 $("#tipologia-js-select").find("ul:first").append($liElement);
             }
         });
+        $("#componentStartHours").val("");
+        $("#componentFinalHours").val("");
+        $("#componentStartCost").val("");
+        $("#componentFinalCost").val("");
+        $("#typology").val("");
+        mdcTextHours.value = "";
+        mdcTextCost.value = "";
+        mdcTextHours.disabled = true;
+        mdcTextCost.disabled = true;
         mdcSelectTipology.disabled = false;
         setTimeout(HoldOn.close(), 3000);
         controllerTypologies = false;
@@ -283,7 +293,6 @@ function cargarTipologias() {
         customHolder('error', '¡Error al consultar combos!');
         controllerTypologies = false;
     });
-    mdcSelectTipology.selectedIndex = -1;
     resetCalendars();
     mdcTextHours.value = "";
 }
@@ -373,7 +382,7 @@ function addHiddenEvents() {
     addDateSyncMdcToHtml("componentDesignRealDeliverDate", "FecRealCFG-mdc-text", mdcTextFecRealCFG);
     addDateSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text", mdcTextFecPreFac);
     addDateSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-text", mdcTextFecNegFac);
-    addDateSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text", mdcTextFecRealFac)
+    addDateSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text", mdcTextFecRealFac);
     $("#requirement").val($("#requirementHidden").val());
 }
 
@@ -492,11 +501,8 @@ function resetCalendars() {
     mdcTextFecRealFac.disabled = true;
 
     $('#FecRealCFG').datepicker("destroy");
-
     $('#FecPreFac').datepicker("destroy");
-
     $('#FecNegFac').datepicker("destroy");
-
     $('#FecRealFac').datepicker("destroy");
 }
 
