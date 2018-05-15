@@ -10,7 +10,8 @@
 <table>
 
     <th:block th:each="budget, stat : ${budgets}" th:fragment="coso">
-        <tr th:each="transfer, stat2 : ${budget.transfers}"
+        <tr th:each="transfer, stat2 : ${budget.transfers}" th:data-transfer-id="${transfer.transferId}"
+            th:data-budget-id="${budget.budgetId}" th:data-budget-available="${budget.budgetAvailable}"
                 th:href="${'#row-detail-wrapper-' + stat.count}" th:data-id="${budget.budgetId + stat2.count}" class="clickable"
             th:aria-controls="${'row-detail-wrapper-' + stat.count}"
             th:with="saldoMXN=${((budget.transfers[0].transferValue == null) ? 0 : budget.transfers[0].transferValue)
@@ -51,6 +52,9 @@
             <td th:text="${budget.budgetIncurredSoftwareFactory}"></td>
 
             <td id="saldo-mxn" th:text="${saldoMXN}"></td>
+            <!--
+            <td id="saldo-mxn" th:text="${#numbers.formatDecimal(saldoMXN, 0, 'COMMA', 2, 'POINT')}"></td>
+            -->
             <td id="saldo-hrs"></td>
         </tr>
         <!--
