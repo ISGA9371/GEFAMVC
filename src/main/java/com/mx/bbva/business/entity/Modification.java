@@ -26,7 +26,7 @@ public class Modification implements Serializable {
     private String modificationOnTrack;
     @Column(name = "TX_MOD_RZDA_DYD", nullable = false, length = 2)
     private String modificationDoneDyd;
-    @Column(name = "NB_DESC_MODIF", length = 1000)
+    @Column(name = "NB_DESC_MODIF", length = 1200)
     private String modificationDescription;
     @Column(name = "FH_ENVIO", nullable = false)
     @Temporal(TemporalType.DATE)

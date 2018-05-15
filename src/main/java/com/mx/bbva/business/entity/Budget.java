@@ -50,18 +50,18 @@ public class Budget implements Serializable {
     private Double budgetIncurredSoftwareFactory;
     @Column(name = "TP_DESLIZADO")
     private byte[] budgetForNextYear;
+    @JoinColumn(name = "CD_SOLIC_PEP", referencedColumnName = "CD_SOLIC_PEP")
+    @ManyToOne
+    private BudgetsApplicant budgetsApplicant;
+    @JoinColumn(name = "CD_RESP_PEP", referencedColumnName = "CD_RESP_PEP")
+    @ManyToOne
+    private BudgetsResponsible budgetsResponsible;
     @JoinColumn(name = "ST_PEP", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status budgetStatus;
     @JoinColumn(name = "ST_DYD", referencedColumnName = "CD_ESTADO", nullable = false)
     @ManyToOne(optional = false)
     private Status statusDyd;
-    @JoinColumn(name = "CD_USUARIO_SOLIC", referencedColumnName = "CD_USUARIO_CORP")
-    @ManyToOne
-    private User userSender;
-    @JoinColumn(name = "CD_USUARIO_RESP", referencedColumnName = "CD_USUARIO_CORP")
-    @ManyToOne
-    private User userReceiver;
     @JoinColumn(name = "CD_AREA", referencedColumnName = "CD_AREA", nullable = false)
     @ManyToOne(optional = false)
     private Area area;
@@ -191,6 +191,22 @@ public class Budget implements Serializable {
         this.budgetForNextYear = budgetForNextYear;
     }
 
+    public BudgetsApplicant getBudgetsApplicant() {
+        return budgetsApplicant;
+    }
+
+    public void setBudgetsApplicant(BudgetsApplicant budgetsApplicant) {
+        this.budgetsApplicant = budgetsApplicant;
+    }
+
+    public BudgetsResponsible getBudgetsResponsible() {
+        return budgetsResponsible;
+    }
+
+    public void setBudgetsResponsible(BudgetsResponsible budgetsResponsible) {
+        this.budgetsResponsible = budgetsResponsible;
+    }
+
     public Status getBudgetStatus() {
         return budgetStatus;
     }
@@ -205,22 +221,6 @@ public class Budget implements Serializable {
 
     public void setStatusDyd(Status statusDyd) {
         this.statusDyd = statusDyd;
-    }
-
-    public User getUserSender() {
-        return userSender;
-    }
-
-    public void setUserSender(User userSender) {
-        this.userSender = userSender;
-    }
-
-    public User getUserReceiver() {
-        return userReceiver;
-    }
-
-    public void setUserReceiver(User userReceiver) {
-        this.userReceiver = userReceiver;
     }
 
     public Area getArea() {

@@ -11,4 +11,6 @@ public interface InvoiceService {
     List<Date> findAllInvoiceSendDates();
 
     List<Date> findAllInvoiceCutDates();
+
+    List<Invoice> findByCustomQuery(String query);
 }

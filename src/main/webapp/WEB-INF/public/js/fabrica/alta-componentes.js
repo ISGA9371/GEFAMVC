@@ -3,8 +3,9 @@ function init() {
     initGlobal();
     $("#statusTypology").val(8);
     $("#status").val(31);
+    $("#typologyEmp").val(0);
     holder("Cargando");
-    //addCalendars();
+    addCalendars();
     loadSelects();
     getVersion();
     addHiddenEvents();
@@ -12,7 +13,7 @@ function init() {
     addSelectEvents();
     addComponentValidation();
     //addRequirementValidation();
-    addDifficultyValidation();
+    //addDifficultyValidation();
     addHoursValidation();
     addButtonEvents();
 
@@ -22,8 +23,6 @@ function init() {
 }
 
 function getVersion() {
-    var rootVersion = document.getElementById('version-mdc-text');
-    var textVersion = new mdc.textField.MDCTextField(rootVersion);
 
     var today = new Date();
     var dd = today.getDate();
@@ -38,9 +37,9 @@ function getVersion() {
     }
     var today = 'v' + yyyy + mm + dd;
 
-    textVersion.value = today;
-    $('#componentVersion').val(textVersion.value);
-    textVersion.disabled = true;
+    mdcTextVersion.value = today;
+    $('#componentVersion').val(mdcTextVersion.value);
+    mdcTextVersion.disabled = true;
 }
 
 function addComponentValidation() {
@@ -71,7 +70,7 @@ function addComponentValidation() {
         });
 }*/
 
-function addDifficultyValidation() {
+/*function addDifficultyValidation() {
     var goodDifficulty = /^($|[0-4]{1}$)/
     $('#difficulty-mdc-text :input')
         .data("oldValue", '')
@@ -82,7 +81,7 @@ function addDifficultyValidation() {
                 return $this.val($this.data('oldValue'));
             return $this.data('oldValue', newValue)
         });
-}
+}*/
 
 function addHoursValidation() {
     //var goodHours = /^((0?)|([1-9]{1}\d{0,3}))$/
@@ -140,30 +139,56 @@ function ajaxGuardar() {
 function addSelectEvents() {
     var hiddenTypology = document.getElementById('typology');
     var rootType = document.getElementById('nuemod-js-select');
-    var selectType = new mdc.select.MDCSelect(rootType);
+    var selectType = mdcSelectNewMod;
 
     rootType.addEventListener('MDCSelect:change', function () {
         $("#componentNewMod").val(selectType.value);
         if (selectType.value == 0) {
-            $('#tipologia-empty-js-select').hide();
-            new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).selectedIndex = -1;
-            $('#tipologia-news-js-select').show();
-            $('#tipologia-mods-js-select').hide();
+            //$('#tipologia-empty-js-select').hide();
+            mdcSelectProduct.selectedIndex = -1;
+            //$('#tipologia-news-js-select').show();
+            //$('#tipologia-mods-js-select').hide();
         }
         if (selectType.value == 1) {
-            $('#tipologia-empty-js-select').hide();
-            new mdc.select.MDCSelect(document.getElementById('tipologia-mods-js-select')).selectedIndex = -1;
-            $('#tipologia-news-js-select').hide();
-            $('#tipologia-mods-js-select').show();
+            //$('#tipologia-empty-js-select').hide();
+            //$('#tipologia-news-js-select').hide();
+            //$('#tipologia-mods-js-select').show();
         }
-        hiddenTypology.value = new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).value;
-        $("#typologyEmp").val(hiddenTypology.value);
+        //hiddenTypology.value = new mdc.select.MDCSelect(document.getElementById('tipologia-news-js-select')).value;
+        //$("#typologyEmp").val(hiddenTypology.value);
+        mdcSelectProduct.selectedIndex = -1;
+        mdcSelectProduct.disabled = false;
+        mdcSelectTipology.selectedIndex = -1;
+        mdcSelectTipology.disabled = true;
         resetCalendars();
-        new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = "";
-        new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = "";
+        mdcTextHours.value = "";
     });
 
-    var rootNews = document.getElementById('tipologia-news-js-select');
+    rootType = document.getElementById('producto-js-select');
+    rootType.addEventListener('MDCSelect:change', function () {
+        holder("Cargando...");
+        setTimeout("cargarTipologias();", 100);
+    });
+
+    rootType = document.getElementById('tipologia-js-select');
+    rootType.addEventListener('MDCSelect:change', function () {
+        var typologyData = mdcSelectTipology.value.split('|');
+        hiddenTypology.value = typologyData[0];
+        $("#typologyEmp").val(hiddenTypology.value);
+        mdcTextHours.value = typologyData[2];
+        if (typologyData[1] == "F") {
+            mdcTextHours.disabled = false;
+        } else {
+            mdcTextHours.disabled = true;
+        }
+        addCalendars(typologyData[3],typologyData[4]);
+        $("#componentStartHours").val(typologyData[2]);
+        $("#componentFinalHours").val(typologyData[2]);
+        $("#componentStartCost").val(Number(typologyData[2]) * Number($("#auxFare").val()));
+        $("#componentFinalCost").val($("#componentStartCost").val());
+        mdcTextCost.value = Number($("#componentStartCost").val()).formatMoney(2);
+    });
+    /*var rootNews = document.getElementById('tipologia-news-js-select');
     var selectNews = new mdc.select.MDCSelect(rootNews);
 
     rootNews.addEventListener('MDCSelect:change', function () {
@@ -229,13 +254,51 @@ function addSelectEvents() {
             new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value = "";
             new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).disabled = true;
         }
+    });*/
+}
+
+function cargarTipologias() {
+    mdcSelectTipology.selectedIndex = -1;
+    $("#tipologia-js-select").find("ul:first").empty();
+    $.ajax({
+        async: false,
+        url: "/api/typologies/types?componentModified=" + Boolean(Number(mdcSelectNewMod.value))
+    }).done(function (json) {
+        $.each(json.data, function (i, data) {
+            if (data.product.productId == mdcSelectProduct.value) {
+                $liElement = $("<li>");
+                $liElement.attr("class", "mdc-list-item");
+                $liElement.attr("role", "option");
+                $liElement.attr("id", data.typologyId + "|" + data.typologySeverity + "|" + data.typologySeverityHours + "|" + data.typologyStartDate + "|" + data.typologyFinalDate);
+                $liElement.append(data.typologySeverity);
+                $("#tipologia-js-select").find("ul:first").append($liElement);
+            }
+        });
+        $("#componentStartHours").val("");
+        $("#componentFinalHours").val("");
+        $("#componentStartCost").val("");
+        $("#componentFinalCost").val("");
+        $("#typology").val("");
+        mdcTextHours.value = "";
+        mdcTextCost.value = "";
+        mdcTextHours.disabled = true;
+        mdcTextCost.disabled = true;
+        mdcSelectTipology.disabled = false;
+        setTimeout(HoldOn.close(), 3000);
+        controllerTypologies = false;
+    }).fail(function (xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        mdcSelectTipology.disabled = true;
+        showingError = true;
+        customHolder('error', '¡Error al consultar combos!');
+        controllerTypologies = false;
     });
+    resetCalendars();
+    mdcTextHours.value = "";
 }
 
 function loadSelects() {
-    mdc.select.MDCSelect.attachTo(document.getElementById('nuemod-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('tipologia-empty-js-select'));
-    $.ajax({
+    /*$.ajax({
         async: false,
         url: "/api/typologies/types?componentModified=false"
     }).done(function (json) {
@@ -272,45 +335,62 @@ function loadSelects() {
         new mdc.select.MDCSelect(document.getElementById('nuemod-js-select')).disabled = true;
         showingError = true;
         customHolder('error', '¡Error al consultar combos!');
+    });*/
+    $.ajax({
+        async: false,
+        url: "/api/products"
+    }).done(function (json) {
+        $.each(json.data, function (i, data) {
+            if(data.technology.technologyId == $("#auxTechnology").val()) {
+                $liElement = $("<li>");
+                $liElement.attr("class", "mdc-list-item");
+                $liElement.attr("role", "option");
+                $liElement.attr("id", data.productId);
+                $liElement.append(data.productName);
+                $("#producto-js-select").find("ul:first").append($liElement);
+            }
+        });
+        //mdc.select.MDCSelect.attachTo(document.getElementById('producto-js-select'));
+    }).fail(function (xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        mdcSelectProduct.disabled = true;
+        showingError = true;
+        customHolder('error', '¡Error al consultar combos!');
     });
 }
 
 function setDefaults() {
-    $('#tipologia-empty-js-select').show();
-    new mdc.select.MDCSelect(document.getElementById('tipologia-empty-js-select')).disabled = true;
-    $('#tipologia-news-js-select').hide();
-    $('#tipologia-mods-js-select').hide();
-    new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).value = "";
-    new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).value = "";
-    new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value = "";
-    new mdc.textField.MDCTextField(document.getElementById("requieriment-mdc-text")).value = new mdc.textField.MDCTextField(document.getElementById("requieriment-mdc-text")).value;
-    new mdc.textField.MDCTextField(document.getElementById("difficulty-mdc-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("hours-mdc-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("requieriment-mdc-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("FecRealCFG-mdc-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("FecPreFac-mdc-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("FecNegFac-mdc-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("FecRealFac-mdc-text")).disabled = true;
+    mdcTextHours.value = "";
+    mdcTextCost.value = "";
+    mdcTextRequirement.value = mdcTextRequirement.value;
+    mdcTextHours.disabled = true;
+    mdcTextCost.disabled = true;
+    mdcTextRequirement.disabled = true;
+    mdcTextFecRealCFG.disabled = true;
+    mdcTextFecPreFac.disabled = true;
+    mdcTextFecNegFac.disabled = true;
+    mdcTextFecRealFac.disabled = true;
+    mdcSelectTipology.disabled = true;
+    mdcSelectProduct.disabled = true;
 }
 
 function addHiddenEvents() {
-    addTextSyncMdcToHtml("componentName", "component-mdc-text");
-    addTextSyncMdcToHtml("componentVersion", "version-mdc-text");
-    addHoursSyncMdcToHtml("componentStartHours", "hours-mdc-text");
-    addHoursSyncMdcToHtml("componentFinalHours", "hours-mdc-text");
-    addDateSyncMdcToHtml("componentDesignRealDeliverDate", "FecRealCFG-mdc-text");
-    addDateSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text");
-    addDateSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-text");
-    addDateSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text")
+    addTextSyncMdcToHtml("componentName", "component-mdc-text", mdcTextComponent);
+    addTextSyncMdcToHtml("componentVersion", "version-mdc-text", mdcTextVersion);
+    addHoursSyncMdcToHtml("componentStartHours", "hours-mdc-text", mdcTextHours);
+    addHoursSyncMdcToHtml("componentFinalHours", "hours-mdc-text", mdcTextHours);
+    addDateSyncMdcToHtml("componentDesignRealDeliverDate", "FecRealCFG-mdc-text", mdcTextFecRealCFG);
+    addDateSyncMdcToHtml("componentPreviewDeliverDate", "FecPreFac-mdc-text", mdcTextFecPreFac);
+    addDateSyncMdcToHtml("componentPossibleDeliverDate", "FecNegFac-mdc-text", mdcTextFecNegFac);
+    addDateSyncMdcToHtml("componentRealDeliverDate", "FecRealFac-mdc-text", mdcTextFecRealFac);
     $("#requirement").val($("#requirementHidden").val());
 }
 
-function addTextSyncMdcToHtml(htmlField, mdcField) {
-    var rootName = document.getElementById(mdcField);
+function addTextSyncMdcToHtml(htmlField, mdcFieldName, mdcField) {
+    var rootName = document.getElementById(mdcFieldName);
     var inputName = rootName.querySelector('input');
     var hiddenName = document.getElementById(htmlField);
-    var textName = new mdc.textField.MDCTextField(rootName);
+    var textName = mdcField;
     textName.value = textName.value;
 
     inputName.addEventListener('keyup', function () {
@@ -324,11 +404,11 @@ function addTextSyncMdcToHtml(htmlField, mdcField) {
     });
 }
 
-function addHoursSyncMdcToHtml(htmlField, mdcField) {
-    var rootName = document.getElementById(mdcField);
+function addHoursSyncMdcToHtml(htmlField, mdcFieldName, mdcField) {
+    var rootName = document.getElementById(mdcFieldName);
     var inputName = rootName.querySelector('input');
     var hiddenName = document.getElementById(htmlField);
-    var textName = new mdc.textField.MDCTextField(rootName);
+    var textName = mdcField;
     textName.value = textName.value;
 
     inputName.addEventListener('keyup', function () {
@@ -345,17 +425,17 @@ function addHoursSyncMdcToHtml(htmlField, mdcField) {
     });
 }
 
-function addDateSyncMdcToHtml(htmlField, mdcField) {
-    var rootName = document.querySelector('#' + mdcField);
+function addDateSyncMdcToHtml(htmlField, mdcFieldName, mdcField) {
+    var rootName = document.getElementById(mdcFieldName);
     var inputName = rootName.querySelector('input');
     var hiddenName = document.getElementById(htmlField);
-    var textName = new mdc.textField.MDCTextField(rootName);
+    var textName = mdcField;
     $(inputName).change(function () {
         hiddenName.value = textName.value;
         if ("" != textName.value) {
-            $("#" + mdcField + " > label").addClass("mdc-text-field__label--float-above");
+            $("#" + mdcFieldName + " > label").addClass("mdc-text-field__label--float-above");
         } else {
-            $("#" + mdcField + " > label").removeClass("mdc-text-field__label--float-above");
+            $("#" + mdcFieldName + " > label").removeClass("mdc-text-field__label--float-above");
         }
     });
 }
@@ -376,10 +456,10 @@ function addCalendars(min, max) {
         max = new Date(Number(max));
     }
     resetCalendars();
-    new mdc.textField.MDCTextField(document.getElementById("FecRealCFG-mdc-text")).disabled = false;
-    new mdc.textField.MDCTextField(document.getElementById("FecPreFac-mdc-text")).disabled = false;
-    new mdc.textField.MDCTextField(document.getElementById("FecNegFac-mdc-text")).disabled = false;
-    new mdc.textField.MDCTextField(document.getElementById("FecRealFac-mdc-text")).disabled = false;
+    mdcTextFecRealCFG.disabled = false;
+    mdcTextFecPreFac.disabled = false;
+    mdcTextFecNegFac.disabled = false;
+    mdcTextFecRealFac.disabled = false;
 
     $('#FecRealCFG').datepicker({
         dateFormat: "dd/mm/yy",
@@ -407,29 +487,22 @@ function addCalendars(min, max) {
 }
 
 function resetCalendars() {
-    var mdcFecRealCFG = new mdc.textField.MDCTextField(document.getElementById("FecRealCFG-mdc-text"));
-    mdcFecRealCFG.value = "";
+    mdcTextFecRealCFG.value = "";
     $("#componentDesignRealDeliverDate").val("");
-    mdcFecRealCFG.disabled = true;
-    var mdcFecPreFac = new mdc.textField.MDCTextField(document.getElementById("FecPreFac-mdc-text"));
-    mdcFecPreFac.value = "";
+    mdcTextFecRealCFG.disabled = true;
+    mdcTextFecPreFac.value = "";
     $("#componentPreviewDeliverDate").val("");
-    mdcFecPreFac.disabled = true;
-    var mdcFecNegFac = new mdc.textField.MDCTextField(document.getElementById("FecNegFac-mdc-text"));
-    mdcFecNegFac.value = "";
+    mdcTextFecPreFac.disabled = true;
+    mdcTextFecNegFac.value = "";
     $("#componentPossibleDeliverDate").val("");
-    mdcFecNegFac.disabled = true;
-    var mdcFecRealFac = new mdc.textField.MDCTextField(document.getElementById("FecRealFac-mdc-text"));
-    mdcFecRealFac.value = "";
+    mdcTextFecNegFac.disabled = true;
+    mdcTextFecRealFac.value = "";
     $("#componentRealDeliverDate").val("");
-    mdcFecRealFac.disabled = true;
+    mdcTextFecRealFac.disabled = true;
 
     $('#FecRealCFG').datepicker("destroy");
-
     $('#FecPreFac').datepicker("destroy");
-
     $('#FecNegFac').datepicker("destroy");
-
     $('#FecRealFac').datepicker("destroy");
 }
 
@@ -461,5 +534,18 @@ var okData = null;
 var changeHours = function () {
     $("#componentStartCost").val(Number($("#componentStartHours").val()) * Number($("#auxFare").val()));
     $("#componentFinalCost").val($("#componentStartCost").val());
-    new mdc.textField.MDCTextField(document.getElementById("cost-mdc-text")).value = Number($("#componentStartCost").val()).formatMoney(2);
+    mdcTextCost.value = Number($("#componentStartCost").val()).formatMoney(2);
 }
+
+mdcTextComponent = new mdc.textField.MDCTextField($('#component-mdc-text')[0]);
+mdcTextVersion = new mdc.textField.MDCTextField($('#version-mdc-text')[0]);
+mdcTextRequirement = new mdc.textField.MDCTextField($('#requieriment-mdc-text')[0]);
+mdcTextHours = new mdc.textField.MDCTextField($('#hours-mdc-text')[0]);
+mdcTextCost = new mdc.textField.MDCTextField($('#cost-mdc-text')[0]);
+mdcTextFecRealCFG = new mdc.textField.MDCTextField($('#FecRealCFG-mdc-text')[0]);
+mdcTextFecPreFac = new mdc.textField.MDCTextField($('#FecPreFac-mdc-text')[0]);
+mdcTextFecNegFac = new mdc.textField.MDCTextField($('#FecNegFac-mdc-text')[0]);
+mdcTextFecRealFac = new mdc.textField.MDCTextField($('#FecRealFac-mdc-text')[0]);
+mdcSelectProduct = new mdc.select.MDCSelect($('#producto-js-select')[0]);
+mdcSelectNewMod = new mdc.select.MDCSelect($('#nuemod-js-select')[0]);
+mdcSelectTipology = new mdc.select.MDCSelect($('#tipologia-js-select')[0]);

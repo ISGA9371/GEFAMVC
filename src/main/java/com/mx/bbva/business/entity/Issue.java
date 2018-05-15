@@ -27,9 +27,9 @@ public class Issue implements Serializable {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date issueUploadDate;
-    @Column(name = "NB_DESC_INC_HIST", nullable = false, length = 600)
+    @Column(name = "NB_DESC_INC_HIST", nullable = false, length = 1200)
     private String issueInitialDescription;
-    @Column(name = "NB_DESC_RESOL_INC", length = 600)
+    @Column(name = "NB_DESC_RESOL_INC", length = 1200)
     private String issueInitialFixDescription;
     @Lob
     @Column(name = "TX_DOC_INCIDENCIA")

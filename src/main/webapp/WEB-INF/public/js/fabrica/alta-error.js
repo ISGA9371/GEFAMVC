@@ -3,12 +3,13 @@ function init() {
     loadSelects2();
     addButtonEvents();
     camp();
+    userLog();
 
     $("#hidden-envcomponente").val($("#hidden-componente").val());
 
     //$("#hidden-responsable").val($("#responsabletxt").val());
-    $("#responsabletxt").val("XMY3080");
-    $("#hidden-responsable").val("XMY3080");
+    //$("#responsabletxt").val("XMY3080");
+    //$("#hidden-responsable").val("XMY3080");
     $("#estado-incident").val(16);
 
     var fecha=$("#datetimepicker").val();
@@ -17,6 +18,24 @@ function init() {
     var anio = fecha.substring(0,4);
     $("#datetimepickerformat").val(dia+"/"+mes+"/"+anio);
 
+}
+
+function userLog() {
+
+    var user=0;
+    $.ajax({
+        url: "/users/info"
+    }).done(function(data) {
+        //let subs = data.data;
+        user=data.data.profileType.profileTypeId;
+        if(user === 4 || user === 5 || user === 7){
+            $("#responsabletxt").val(data.data.userInternalId);
+            $("#hidden-responsable").val(data.data.userInternalId);
+        }else{
+            holder("Cargando...usuario sin acceso");
+            window.location.href = "/";
+        }
+    });
 }
 
 $(function () {

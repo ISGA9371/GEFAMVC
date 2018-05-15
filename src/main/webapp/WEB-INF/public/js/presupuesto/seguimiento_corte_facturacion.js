@@ -1,4 +1,14 @@
-mdc.autoInit()
+var mdc_select_fecha_corte = new mdc.select.MDCSelect(document.querySelector('#mdc_select_fecha_corte'));
+var mdc_text_pep = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_pep'));
+var mdc_text_requerimiento = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_requerimiento'));
+var mdc_select_direccion = new mdc.select.MDCSelect(document.querySelector('#mdc_select_direccion'));
+var mdc_select_subdireccion = new mdc.select.MDCSelect(document.querySelector('#mdc_select_subdireccion'));
+var mdc_select_estado_pep_factura = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado_pep_factura'));
+var mdc_select_estado_pago = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado_pago'));
+var mdc_text_fecha_desde = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_desde'));
+var mdc_text_fecha_hasta = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_hasta'));
+var mdc_select_solicitante = new mdc.select.MDCSelect(document.querySelector('#mdc_select_solicitante'));
+var mdc_select_fecha_envio_implant = new mdc.select.MDCSelect(document.querySelector('#mdc_select_fecha_envio_implant'));
 
 $(document).ready(function(){
 
@@ -222,19 +232,6 @@ $(document).ready(function(){
   /************************ */
 
 
-  mdc_select_fecha_corte = new mdc.select.MDCSelect(document.querySelector('#mdc_select_fecha_corte'));
-  mdc_text_pep = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_pep'));
-  mdc_text_requerimiento = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_requerimiento'));
-  mdc_select_direccion = new mdc.select.MDCSelect(document.querySelector('#mdc_select_direccion'));
-  mdc_select_subdireccion = new mdc.select.MDCSelect(document.querySelector('#mdc_select_subdireccion'));
-  mdc_select_estado_pep_factura = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado_pep_factura'));
-  mdc_select_estado_pago = new mdc.select.MDCSelect(document.querySelector('#mdc_select_estado_pago'));
-  mdc_text_fecha_desde = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_desde'));
-  mdc_text_fecha_hasta = new mdc.textField.MDCTextField(document.querySelector('#mdc_text_fecha_hasta'));
-  mdc_select_solicitante = new mdc.select.MDCSelect(document.querySelector('#mdc_select_solicitante'));
-  mdc_select_fecha_envio_implant = new mdc.select.MDCSelect(document.querySelector('#mdc_select_fecha_envio_implant'));
-
-
   $("#fecha_desde").datepicker({
     dateFormat: "dd/mm/yy",
   }).on("change", function () {
@@ -340,17 +337,17 @@ $(document).ready(function(){
   $("#btn_search").click(function(){
 
     var params = {
-      fecha_corte: changeFormatDate(mdc_select_fecha_corte.value),
-      pep: mdc_text_pep.value,
-      requerimiento: mdc_text_requerimiento.value,
-      direccion: mdc_select_direccion.value,
-      subdireccion: mdc_select_subdireccion.value,
-      estado_pep_factura: mdc_select_estado_pep_factura.value,
-      estado_pago: mdc_select_estado_pago.value,
-      fecha_desde: changeFormatDate(mdc_text_fecha_desde.value),
-      fecha_hasta: changeFormatDate(mdc_text_fecha_hasta.value),
-      solicitante: mdc_select_solicitante.value,
-      fecha_envio_implant: changeFormatDate(mdc_select_fecha_envio_implant.value),
+      invoiceCutDate: changeFormatDate(mdc_select_fecha_corte.value),
+      budgetId: mdc_text_pep.value,
+      requirementName: mdc_text_requerimiento.value,
+      levelId: mdc_select_direccion.value,
+      /*subLevelId subdireccion: mdc_select_subdireccion.value,*/
+      budgetStatusId: mdc_select_estado_pep_factura.value,
+      statusId: mdc_select_estado_pago.value,
+      invoiceCutDateFrom: changeFormatDate(mdc_text_fecha_desde.value),
+      invoiceCutDateTo: changeFormatDate(mdc_text_fecha_hasta.value),
+      budgetsApplicantName: mdc_select_solicitante.value,
+      invoiceSendDate: changeFormatDate(mdc_select_fecha_envio_implant.value),
     };
 
     console.log(params);

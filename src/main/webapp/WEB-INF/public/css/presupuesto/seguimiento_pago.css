@@ -1,0 +1,9 @@
+.detail-td{
+    padding: 0 !important;
+    border-width: 0 !important;
+    background: #F4F4F4;
+}
+
+tr.clickable {
+    cursor: pointer;
+}

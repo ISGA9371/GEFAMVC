@@ -17,4 +17,6 @@ public interface BudgetService {
     List<Integer> findAllYears();
 
     void assignBudget(List<BudgetRequirement> budgetRequirements);
+
+    boolean notAvailableForAssignment(BudgetRequirement budgetRequirement);
 }

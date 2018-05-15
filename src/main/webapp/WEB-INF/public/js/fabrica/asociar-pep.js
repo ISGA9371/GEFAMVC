@@ -1,13 +1,17 @@
 let dataId;
 var selectedBudgetsIds = [];
 let companyFare;
+var horasIncurrir;
+var unique = 1;
 $(function () {
-
+    horasIncurrir = parseFloat($("#inc-hours").html());
     $.ajax({
         url: "/requirements/"+requirementId+"/fare"
     }).done(function(data) {
         companyFare = data.data;
-        console.log("REQUREMENTFARE "+data.data);
+        console.log("REQUREMENTFARE "+data.data +" x "+horasIncurrir);
+        if(companyFare == 0)
+            customHolder("error","No se encontró tarifa para la empresa.");
     });
 
     $("#cancel-search").click(function () {
@@ -100,10 +104,11 @@ $(function () {
             var botecito = $("#botecito").clone();
             botecito.attr("data-budget-id",dataId);
 
-
             row.prepend(botecito);
+            let incurrido = $("#incurrido-hrs").clone();
+            $(incurrido).find("input").attr("id","incurred-field-"+unique++);
+            row.append(incurrido);
             row.append($("#incurrido").clone());
-            row.append($("#incurrido-hrs").clone());
             row.removeClass("clickable");
 
             row.css("display","table-row");
@@ -125,6 +130,7 @@ $(function () {
 
     $(document).on("click","tr td#botecito",function () {
         console.log("BOTECITO");
+
         var row = $(this).closest("tr");
         row.hide('slow', function () {
             row.find("td").not("td[data-select='']").css("display","table-cell");
@@ -149,21 +155,57 @@ $(function () {
                 saveBudgets.attr("disabled","disabled");
                 cancelSave.attr("disabled","disabled");
             }
+
+            /*HORAS*/
+            var sumActual = parseFloat("0");
+            $("#selected-budgets tr td#incurrido-hrs input.incurrido-horas").each(function (index, value) {
+                let val = $(value).val() ? $(value).val() : "0";
+                sumActual += parseFloat(val);
+            });
+            $("#acum-hours").html(sumActual);
         });
     });
 
     $(document).on("input","input.incurrido-horas",function () {
         let amountSpan = $(this).closest("tr").find("td#incurrido span");
-        let mult = parseFloat($(this).val()) * parseFloat(companyFare);
+        let thisInput = $(this);
+        let thisId = $(this).attr("id");
+        let horasCapturadas = $(this).val();
+
+        if(!horasCapturadas){
+            amountSpan.attr("data-raw","");
+            amountSpan.html("");
+            return;
+        }
+
+        horasCapturadas = parseFloat(horasCapturadas);
+
+        let sumActual = parseFloat("0");
+        $("#selected-budgets tr td#incurrido-hrs input.incurrido-horas").not(document.getElementById(thisId))
+            .each(function (index, value) {
+                let val = $(value).val() ? $(value).val() : "0";
+                sumActual += parseFloat(val);
+        });
+
+        console.log("SUM ACTUAL OTRO "+sumActual+ " - "+horasCapturadas);
+
+
+        var sumaSim = sumActual + horasCapturadas;
+        if(sumaSim > horasIncurrir){
+            var falt = horasIncurrir - sumActual;
+            console.log("SUMAS "+sumaSim + " - "+falt);
+            $(thisInput).val(falt);
+            /**AJUSTar*/
+            horasCapturadas = falt;
+            sumaSim = horasIncurrir;
+        }
+
+        let mult = horasCapturadas * parseFloat(companyFare);
         let multStr = parseFloat(mult, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString();
         amountSpan.attr("data-raw",mult);
         amountSpan.html(multStr);
 
-        let sum = parseFloat("0");
-        $("#selected-budgets tr td#incurrido-hrs input.incurrido-horas").each(function (index, value) {
-            sum += parseFloat($(value).val());
-        });
-        $("#acum-hours").html(sum);
+        $("#acum-hours").html(sumaSim);
 
     });
 
@@ -171,7 +213,7 @@ $(function () {
         e.preventDefault();
         showHoldOn();
 
-        var datas= $( this ).serialize();
+        var datas = $( this ).serialize();
 
         $.ajax({
             type: "GET",
@@ -204,12 +246,90 @@ $(function () {
         delete requirementObj["requirementStartDate"];
         delete requirementObj["requirementEndDate"];
 
-        let budgetRequirementsList = [];
+        let budgetRequirementsList = []; // OBJETO FINAL
+        let budgetsA = {}; //
+
         $("#selected-budgets tbody tr").each(function (index, value) {
             let row = value;
-            let budgetId = $(row).find("td#botecito").attr("data-budget-id");
+            let budgetId = $(row).attr("data-budget-id");
+            let transferId = $(row).attr("data-transfer-id");
+            let budgetAvailable = $(row).attr("data-budget-available");
+
+            let reqValue = $(row).find("td#incurrido span").attr("data-raw");
+            let reqHours= $(row).find("td#incurrido-hrs input.incurrido-horas").val();
+
+            //console.log("BTR "+reqValue+"-"+reqHours);
+
+            let transferObj = {};
+            transferObj["id"] = transferId;
+            transferObj["value"] = reqValue;
+            transferObj["hours"] = reqHours;
+            transferObj["budgetAvailable"] = budgetAvailable;
+
+            if(budgetsA[budgetId] == null){
+                let transfers = [];
+                transfers.push(transferObj);
+                budgetsA[budgetId] = transfers;
+            }else{
+                budgetsA[budgetId].push(transferObj)
+            }
+        });
+
+        $.each( budgetsA, function( budgetId, transfers ) {
+            console.log( budgetId + ": " + transfers );
+
             let budget = {};
             budget["budgetId"] = budgetId;
+
+            let requirement = {};
+            requirement["requirementId"] = requirementId;
+            let transfersArray = [];
+            let acumHours = 0;
+            let acumMxn = 0;
+            $.each(transfers, function (key,value){
+                let transfer = value;
+                let nuevoTransfer = {};
+                nuevoTransfer["transferId"] = transfer["id"];
+
+                acumHours += parseInt(transfer["hours"]);
+                acumMxn += parseInt(transfer["value"]);
+
+                nuevoTransfer["transferId"] = "";
+
+                transfersArray.push(nuevoTransfer);
+            });
+            //budget["transfers"] = transfersArray;
+            let budgetAvailable = transfers[0].budgetAvailable - acumMxn;
+            budget["budgetAvailable"] = budgetAvailable;
+            if (areaName.toLowerCase().indexOf("software") >= 0){ //FABRICA SW
+                budget["budgetCommittedSoftwareFactory"] = acumMxn;
+
+            }else{ // FABRICA PRUEBAS
+                budget["budgetCommittedTestFactory"] = acumMxn;
+            }
+
+            let budgetRequirement = {};
+            budgetRequirement["requirement"] = requirement;
+            budgetRequirement["budgetRequirementValue"] = acumMxn; //INCURRIDO MXN
+            budgetRequirement["budgetRequirementHours"] = acumHours; //INCURRIDO HORAS
+            budgetRequirement["budgetRequirementBilled"] = "false";
+            budgetRequirement["budget"] = budget;
+
+            budgetRequirementsList.push(budgetRequirement);
+        });
+
+
+
+        /*
+        $("#selected-budgets tbody tr").each(function (index, value) {
+            let row = value;
+            //let budgetId = $(row).find("td#botecito").attr("data-budget-id");
+            let budgetId = $(row).attr("data-budget-id");
+            let transferId = $(row).attr("data-transfer-id");
+            let budget = {};
+            budget["budgetId"] = budgetId;
+
+            data-transfer-id
 
             let requirement = {};
             requirement["requirementId"] = requirementId;
@@ -224,25 +344,28 @@ $(function () {
             budgetRequirement["budget"] = budget;
 
             budgetRequirementsList.push(budgetRequirement);
-
-        });
+        });*/
 
         let budgets = {};
         budgets["budgets"] = budgetRequirementsList;
 
         //console.log(JSON.stringify(budgets));
-        console.log(JSON.stringify(budgetRequirementsList));
+        console.log("OJETOFIAL "+JSON.stringify(budgetRequirementsList));
 
 
+        showHoldOn();
         $.ajax({
             type: "PUT",
             url:   "/budgets/assign",
             data:  JSON.stringify(budgetRequirementsList),
             //data:  requirementObj,
-            contentType:'application/json'
         }).done(function(data){
+            HoldOn.close();
+            customHolder("info","Los PEPs seleccionados se asociaron correctamente al requerimiento.");
             console.log("hola");
         }).fail(function () {
+            HoldOn.close();
+            customHolder("error","Ocurrio un error al realizar la operación.");
             console.log("fail");
         });
     });
@@ -253,7 +376,7 @@ function showHoldOn() {
     HoldOn.open({
         theme: "sk-cube",
         content: '',
-        message: 'Cargando...',
+        message: 'Asociando PEPs...',
         backgroundColor: "#0c71ca",
         textColor: "white",
     });

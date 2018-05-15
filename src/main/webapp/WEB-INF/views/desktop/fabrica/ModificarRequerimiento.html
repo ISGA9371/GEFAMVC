@@ -42,10 +42,8 @@
         <input type="hidden" th:field="*{application.applicationId}">
         <input type="hidden" th:field="*{channel.channelId}">
         <input type="hidden" th:field="*{company.companyId}">
-        <input type="hidden" th:field="*{serviceType.serviceTypeId}">
         <input type="hidden" th:field="*{programIncrement.programIncrementId}">
 
-        <input type="hidden" th:field="*{project.projectId}">
         <input type="hidden" th:field="*{project.methodology.methodologyId}">
         <input type="hidden" th:field="*{project.programIncrement.programIncrementId}">
 
@@ -81,7 +79,6 @@
                 </div>
             </td>
             <td class="col-md-4" align="center">
-
                 <input type="text" th:field="*{level.levelId}" required tabindex="-1"
                        style="margin-top: 16px; margin-left: 4px; position: absolute;" >
                 <div id="subprincipal" class="mdc-select" role="listbox" >
@@ -168,32 +165,20 @@
                 </div>
             </td>
             <td class="col-md-4" align="center">
-                <!--
-                <div id="meth" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
-                -->
-                    <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField">
-                        <input type="text" class="mdc-text-field__input"
-                               th:value="*{project.methodology.methodologyName}">
-                        <label class="mdc-text-field__label mdc-text-field__label--float-above" id="subdir-label">Tipo de Proyecto</label>
-                    </div>
-                    <!--
+                <input type="hidden" th:field="*{serviceType.serviceTypeId}" required tabindex="-1"
+                       style="margin-top: 16px; margin-left: 4px; position: absolute;">
+                <div id="service-type" class="mdc-select" role="listbox">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label mdc-select__label--float-above">Tipo de Proyecto</div>
-                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__label mdc-select__label--float-above">Tipo de Servicio</div>
+                        <div class="mdc-select__selected-text" id="service-type-sel-text"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
                     <div class="mdc-menu mdc-select__menu col-md-3" >
-                        <ul class="mdc-list mdc-menu__items">
-                            <li th:each="methodology : ${methodologies}" class="mdc-list-item" role="option"
-                                th:attrappend="aria-selected=(${methodology.methodologyId}
-                                == *{project.methodology.methodologyId}) ? 'true'"
-                                th:value="${methodology.methodologyId}" th:text="${methodology.methodologyName}"></li>
+                        <ul class="mdc-list mdc-menu__items" id="service-type-select">
+                            <li class="mdc-list-item" role="option" tabindex="0"></li>
                         </ul>
                     </div>
-                    -->
-            <!--
                 </div>
-                -->
             </td>
         </tr>
         <tr style="height:72px">
@@ -248,24 +233,6 @@
         </tr>
         <tr style="height:72px">
             <td class="col-md-4" align="center">
-
-                <div id="service-type" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
-                    <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
-                        <div class="mdc-select__label mdc-select__label--float-above">Tipo de Servicio</div>
-                        <div class="mdc-select__selected-text"></div>
-                        <div class="mdc-select__bottom-line"></div>
-                    </div>
-                    <div class="mdc-menu mdc-select__menu col-md-3" >
-                        <ul class="mdc-list mdc-menu__items">
-                            <li th:each="serviceType : ${serviceTypes}" class="mdc-list-item" role="option"
-                                th:attrappend="aria-selected=(${serviceType.serviceTypeId} ==
-                                *{serviceType.serviceTypeId}) ? 'true'"
-                                th:value="${serviceType.serviceTypeId}" th:text="${serviceType.serviceTypeName}"></li>
-                        </ul>
-                    </div>
-                </div>
-            </td>
-            <td class="col-md-4" align="center">
                 <div id="pi" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                         <div class="mdc-select__label mdc-select__label--float-above">Código PI</div>
@@ -277,26 +244,33 @@
                             <li th:each="pi : ${programIncrements}" class="mdc-list-item" role="option"
                                 th:attrappend="aria-selected=(${pi.programIncrementId} ==
                                 *{programIncrement.programIncrementId}) ? 'true'"
-                                th:value="${pi.programIncrementId}" th:text="${pi.ProgramIncrementName}"></li>
+                                th:value="${pi.programIncrementId}" th:text="${pi.programIncrementName}"></li>
                         </ul>
                     </div>
                 </div>
             </td>
             <td class="col-md-4" align="center">
+                <input type="hidden" th:field="*{project.projectId}" required tabindex="-1"
+                       style="margin-top: 16px; margin-left: 4px; position: absolute;">
+
                 <div id="project" class="mdc-select" role="listbox" >
                     <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0" >
                         <div class="mdc-select__label mdc-select__label--float-above">Nombre del Proyecto</div>
-                        <div class="mdc-select__selected-text"></div>
+                        <div class="mdc-select__selected-text" id="proy-selected"></div>
                         <div class="mdc-select__bottom-line"></div>
                     </div>
-                    <div class="mdc-menu mdc-select__menu col-md-3" >
+                    <div class="mdc-menu mdc-select__menu col-md-3">
                         <ul class="mdc-list mdc-menu__items" id="ul-proyects">
-                            <li th:each="proj : ${projects}" class="mdc-list-item" role="option"
-                                th:id="${proj.projectId}"
-                                th:attrappend="aria-selected=(${proj.projectId} == *{project.projectId} )? 'true'"
-                                th:text="${ #strings.abbreviate(proj.projectId,35)}"></li>
+                            <li class="mdc-list-item" role="option" tabindex="0"></li>
                         </ul>
                     </div>
+                </div>
+            </td>
+            <td class="col-md-4" align="center">
+                <div class="mdc-text-field mdc-text-field--disabled" data-mdc-auto-init="MDCTextField">
+                    <input type="text" class="mdc-text-field__input" id="meth"
+                           th:value="*{project.methodology.methodologyName}">
+                    <label class="mdc-text-field__label mdc-text-field__label--float-above" id="tipo-proy-label">Tipo de Proyecto</label>
                 </div>
             </td>
         </tr>
@@ -333,8 +307,8 @@
                            class="mdc-text-field__input">
                     <label class="mdc-text-field__label">PEP</label>
                 </div>
-                <a th:href="@{/budgets/assign/filters?requirementId=} + ${requirement.requirementId}"
-                   class="btn btn-primary" style="vertical-align: text-bottom;" onclick="showHoldOn('Cargando...');">Asociar PEP</a>
+                <a href="javascript;" id="asociar-pep-btn"
+                   class="btn btn-primary" style="vertical-align: text-bottom;">Asociar PEP</a>
             </td>
         </tr>
             <tr>
@@ -377,11 +351,8 @@
 
         <div class="row" style="margin-top: 24px;">
             <div class="col-md-4 col-md-offset-4" style="text-align: center;">
-                <a th:href="@{/components/add?requirementId=} + ${requirementId}"
-                   class="btn btn-primary" onclick="showHoldOn('Cargando...');">Alta de Componente</a>
-                <!--
-                <a class="btn btn-primary" style="margin-left: 32px;">Carga masiva</a>
-                -->
+                <a href="javascript;" id="alta-comp-btn" class="btn btn-primary">Alta de Componente</a>
+                <a class="btn btn-primary" style="margin-left: 16px;">Carga masiva</a>
             </div>
         </div>
 
@@ -402,6 +373,9 @@
 
 <div th:replace="~{layout/footer2 :: scripts }"></div>
 
-<script>mdc.autoInit()</script>
+<script>
+    mdc.autoInit();
+    initGlobal();
+</script>
 
 </html>

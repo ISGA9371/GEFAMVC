@@ -231,30 +231,9 @@ $(function () {
             $("#tipos-serv").addClass("mdc-select--disabled");
             $("#service-type-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
         }*/
-        /*
-        $.ajax({
-            url: "/service-types/area/"+id
-        }).done(function(data) {
-            //let subdirs = JSON.parse(data);
-            let services = data;
-            console.log(services.length);
-            $("#service-type-sel-text").html("");
-            tiposServ.selectedIndex = -1;
-            tiposServ.value = "";
 
-            if (typeof services !== 'undefined' && services.length > 0) {
-                $("#service-type-select").html("");
-                $.each(services, function( index, value ) {
-                    console.log( index + ": " + value.serviceTypeName );
-                    $("#service-type-select").append(
-                        "<li class='mdc-list-item' role='option' tabindex='0' " +
-                        "value='"+value.serviceTypeId+"'>"+value.serviceTypeName+"</li>");
 
-                });
-            }else $("#service-type-select").html("<li class='mdc-list-item' role='option' tabindex='0'></li>");
 
-        });
-        */
     });
 
     const tiposProy = new mdc.select.MDCSelect(document.querySelector('#tipos-proy'));
@@ -420,11 +399,6 @@ $(function () {
         $("#results-table tbody").html("");
     });
 
-
-    $('tr.clickable').find('input[type=radio]').click(function (event) {
-        //
-    });
-
     var editReq = $("#edit-requirement");
     //var addComp = $("#add-component");
 
@@ -435,9 +409,19 @@ $(function () {
 
         editReq.attr("href","/requirements/"+radioButton.val());
         editReq.removeAttr("disabled");
-        let target = $(this).attr("aria-controls");
 
+        var prevExpanded = $("tr.clickable[aria-expanded='true']");
+        prevExpanded.removeAttr("aria-expanded");
+        prevExpanded.css("background-color",prevExpanded.attr("data-prev-bg"));
+
+        $(this).attr("aria-expanded","true");
+
+        $(this).attr("data-prev-bg", $(this).css("background-color"));
+        $(this).css("background-color","#f4f8fb");
+
+        let target = $(this).attr("aria-controls");
         $("#"+target).collapse('toggle');
+
         //addComp.attr("href","/components/add?requirementId="+radioButton.val());
         //addComp.removeAttr("disabled");
     });

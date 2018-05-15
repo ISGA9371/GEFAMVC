@@ -35,8 +35,7 @@ public class JPAPersistenceConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/gestion_factoria?serverTimezone=America/Mexico_City&" +
-                "useSSL=false&zeroDateTimeBehavior=convertToNull");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/gestion_factoria");
         dataSource.setUsername("root");
         dataSource.setPassword("");
         return dataSource;

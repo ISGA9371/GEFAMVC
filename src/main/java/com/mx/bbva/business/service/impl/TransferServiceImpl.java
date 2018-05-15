@@ -9,6 +9,8 @@ import com.mx.bbva.business.service.TransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -17,9 +19,11 @@ public class TransferServiceImpl implements TransferService {
     private TransferRepository transferRepository;
     private BudgetRepository budgetRepository;
 
+    private final List<Long> budgetDydStatusId = Collections.singletonList(42L);
+
     @Override
-    public void saveTransfer(Transfer transfer) {
-        transferRepository.save(transfer);
+    public Transfer saveTransfer(Transfer transfer) {
+        return transferRepository.saveAndFlush(transfer);
     }
 
     @Override
@@ -40,7 +44,7 @@ public class TransferServiceImpl implements TransferService {
 
     @Override
     public List<Transfer> findTransfersByBudget(Budget budget) {
-        return transferRepository.findByBudgetDb(budget);
+        return transferRepository.findByBudgetDbAndBudgetDb_StatusDyd_StatusIdIn(budget, budgetDydStatusId);
     }
 
     @Autowired

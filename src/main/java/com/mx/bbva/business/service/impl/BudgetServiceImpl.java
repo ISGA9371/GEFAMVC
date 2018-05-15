@@ -46,6 +46,12 @@ public class BudgetServiceImpl implements BudgetService {
         budgetRequirementRepository.saveAll(budgetRequirements);
     }
 
+    @Override
+    public boolean notAvailableForAssignment(BudgetRequirement budgetRequirement) {
+        return budgetRequirementRepository.existsByBudgetAndRequirement(
+                budgetRequirement.getBudget(), budgetRequirement.getRequirement());
+    }
+
     @Autowired
     public void setBudgetRepository(BudgetRepository budgetRepository) {
         this.budgetRepository = budgetRepository;

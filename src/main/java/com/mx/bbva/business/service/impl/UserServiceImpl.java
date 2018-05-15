@@ -42,6 +42,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUserInternalIdAndProfileType_profileTypeId(userInternalId, profileTypeId);
     }
 
+    @Override
+    public void deleteUser(String userId) {
+        userRepository.deleteById(userId);
+    }
+
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
