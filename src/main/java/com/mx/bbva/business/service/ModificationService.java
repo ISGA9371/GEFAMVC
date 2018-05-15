@@ -10,4 +10,6 @@ public interface ModificationService {
     Modification findModification(Integer modificationId);
 
     List<Modification> findAllModifications();
+
+    Modification updateModification(Modification modification);
 }

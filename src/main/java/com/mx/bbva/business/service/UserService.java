@@ -16,4 +16,6 @@ public interface UserService {
     List<User> findAllUsers();
 
     User findUserByIdAndType(String userInternalId, Integer profileTypeId);
+
+    void deleteUser(String userId);
 }
