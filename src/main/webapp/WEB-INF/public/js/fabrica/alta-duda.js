@@ -8,9 +8,6 @@ function init() {
     $("#hidden-status").val("11");
     $("#hidden-doubtType").val("13");
     $("#hidden-envcomponente").val($("#hidden-componente").val());
-    //$("#hidden-responsable").val($("#responsabletxt").val());
-    //$("#responsabletxt").val("XMY3080");
-    //$("#hidden-responsable").val("XMY3080");
 
     var fecha=$("#datetimepicker").val();
     var dia = fecha.substring(8,10);
@@ -143,12 +140,31 @@ function addButtonEvents() {
     })
 }
 
+function getBase64(file) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        //console.log(reader.result);
+    };
+    reader.onerror = function (error) {
+        //console.log('Error: ', error);
+    };
+}
+
 function ajaxGuardar() {
     var $form = $("form");
     var url = $form.attr("action");
     var formData = $($form).serializeArray();
 
-    var data = new FormData();
+    //var file = document.querySelector('#files > input[type="file"]').files[0];
+    var file = document.querySelector('input[type=file]').files[0];
+    var base = getBase64(file)
+    $("#fileData").val(base);
+
+
+    //console.log(base);
+
+    /*var data = new FormData();
     jQuery.each($('input[type=file]')[0].files, function(i, file) {
         //data.append('file-'+i, file);
         data.append('DoubtFile', file);
@@ -156,25 +172,27 @@ function ajaxGuardar() {
     var other_data = $('form').serializeArray();
     $.each(other_data,function(key,input){
         data.append(input.name,input.value);
-    });
+    });*/
+
+
 
     $.ajax({
         cache: false,
-        contentType: false,
-        processData: false,
+        //contentType: false,
+        //processData: false,
         url: url,
         type: 'post',
-        //data: formData
-        data: data,
-        success: function(data){
+        data: formData
+        //data: data,
+        /*success: function(data){
             alert(data);
-        }
+        }*/
     }).done(function (data) {
         customHolder("info", "Modificacion Registrada Exitosamente.","window.location.href = '/components/filters'; holder('Cargando...')");
         //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
     }).fail(function (xhr, status, error) {
         console.log("fail");
-        customHolder("error", xhr.responseJSON.message)
+        customHolder("error", xhr.responseJSON.message);
     });
 }
 
