@@ -18,6 +18,8 @@ function init() {
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth() + 1;
+    var ho = today.getHours();
+    var mi = today.getMinutes();
 
     var yyyy = today.getFullYear();
     if (dd < 10) {
@@ -26,9 +28,16 @@ function init() {
     if (mm < 10) {
         mm = '0' + mm;
     }
+    if (ho < 10) {
+        ho = '0' + ho;
+    }
+    if (mi < 10) {
+        mi = '0' + mi;
+    }
     var today = 'v' + yyyy + mm + dd;
 
     $('#doubtVersion').val(today);
+    $('#datetimepickerformat').val(dd+ '/' + mm + '/' + yyyy + ' ' + ho + ':' + mi);
 
 }
 

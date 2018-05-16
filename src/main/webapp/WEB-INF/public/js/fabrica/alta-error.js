@@ -12,11 +12,34 @@ function init() {
     //$("#hidden-responsable").val("XMY3080");
     $("#estado-incident").val(16);
 
-    var fecha=$("#datetimepicker").val();
+    /*var fecha=$("#datetimepicker").val();
     var dia = fecha.substring(8,10);
     var mes = fecha.substring(5,7);
     var anio = fecha.substring(0,4);
     $("#datetimepickerformat").val(dia+"/"+mes+"/"+anio);
+*/
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var ho = today.getHours();
+    var mi = today.getMinutes();
+
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    if (ho < 10) {
+        ho = '0' + ho;
+    }
+    if (mi < 10) {
+        mi = '0' + mi;
+    }
+    var today = dd+ '/' + mm + '/' + yyyy + ' ' + ho + ':' + mi;
+
+    $('#datetimepickerformat').val(today);
 
 }
 
@@ -170,10 +193,25 @@ function addButtonEvents() {
     })
 }
 
+function getBase64(file) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        //console.log(reader.result);
+    };
+    reader.onerror = function (error) {
+        //console.log('Error: ', error);
+    };
+}
+
 function ajaxGuardar() {
     var $form = $("form");
     var url = $form.attr("action");
     var formData = $($form).serializeArray();
+
+    var file = document.querySelector('input[type=file]').files[0];
+    var base = getBase64(file)
+    $("#fileData").val(base);
 
     //var data= new FormData (this);
     $.ajax({
@@ -186,7 +224,7 @@ function ajaxGuardar() {
         //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
     }).fail(function (xhr, status, error) {
         console.log("fail");
-        customHolder("error", xhr.responseJSON.message)
+        customHolder("error", xhr.responseJSON.message);
     });
 }
 
