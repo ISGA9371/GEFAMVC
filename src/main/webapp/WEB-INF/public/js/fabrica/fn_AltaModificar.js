@@ -9,40 +9,41 @@ function init() {
     addButtonEvents();
     camp();
     loadSelects2();
-    cargarTipologias();
     userLog();
-
-    var fecha=$("#datetimepicker").val();
-    //var dia = fecha.substring(8,10);
-    //var mes = fecha.substring(5,7);
-    //var anio = fecha.substring(0,4);
-    //$("#datetimepickerformat").val(dia+"/"+mes+"/"+anio);
+    //cargarTipologias();
 
     var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1;
+    var day = today.getDate();
+    var month = today.getMonth() + 1;
+    var hour = today.getHours();
+    var minute = today.getMinutes();
 
-    var yyyy = today.getFullYear();
-    if (dd < 10) {
-        dd = '0' + dd;
+    var year = today.getFullYear();
+    if (day < 10) {
+        day = '0' + day;
     }
-    if (mm < 10) {
-        mm = '0' + mm;
+    if (month < 10) {
+        month = '0' + month;
     }
-    var today =dd + '/' + mm + '/' + yyyy;
-    $("#datetimepicker").val(today);
+    if (hour < 10) {
+        hour = '0' + hour;
+    }
+    if (minute < 10) {
+        minute = '0' + minute;
+    }
+    var today = day+ '/' + month + '/' + year + ' ' + hour + ':' + minute;
+
+    $('#datetimepickerformat').val(today);
 
 }
 
 function userLog() {
-console.log("llego");
     var user=0;
     $.ajax({
         url: "/users/info"
     }).done(function(data) {
-        user=data.userInternalId;
-        alert(user);
-
+        user=data.data.userInternalId;
+        $('#responsable').val(user);
     });
 }
 
@@ -108,7 +109,8 @@ function addMissing() {
 
     $("#hidden-status").val($("#hidden-modificationStatus").val());
 
-    //$("#hidden-userre").val("XMY3080");
+    $("#hidden-userre").val("XMY3080");
+    //$("#hidden-userre").val ($("#hidden-userr").val());
 
     //$("#responsabletxt").val("XMY3080");
     //$("#hidden-responsable").val("XMY3080");
@@ -131,6 +133,9 @@ function camp() {
     //new mdc.textField.MDCTextField(document.getElementById("usuario-js-text")).disabled = true;
     //new mdc.textField.MDCTextField(document.getElementById("difmodificacion-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("fechaEnvio-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("usupet-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("vuelo-js-text")).disabled = true;
+
 }
 
 function loadSelects2() {
@@ -171,38 +176,6 @@ function loadSelects2() {
     });
 
 }
-
-function cargarTipologias() {
-    $("#dificultad-js-select").find("ul:first").empty();
-    $.ajax({
-        async: false,
-        url: "/api/typologies/types?componentModified=" + Boolean(Number(mdcSelectNewMod.value))
-    }).done(function (json) {
-        $.each(json.data, function (i, data) {
-            if (data.product.productId == mdcSelectProduct.value) {
-                $liElement = $("<li>");
-                $liElement.attr("class", "mdc-list-item");
-                $liElement.attr("role", "option");
-                $liElement.attr("id", data.typologyId + "|" + data.typologySeverity + "|" + data.typologySeverityHours + "|" + data.typologyStartDate + "|" + data.typologyFinalDate);
-                $liElement.append(data.typologySeverity);
-                $("#dificultad-js-select").find("ul:first").append($liElement);
-            }
-        });
-        mdcSelectTipology.disabled = false;
-        setTimeout(HoldOn.close(), 3000);
-        controllerTypologies = false;
-    }).fail(function (xhr, status, error) {
-        console.log('¡Error al consultar combos!');
-        mdcSelectTipology.disabled = true;
-        showingError = true;
-        customHolder('error', '¡Error al consultar combos!');
-        controllerTypologies = false;
-    });
-    mdcSelectTipology.selectedIndex = -1;
-    resetCalendars();
-    mdcTextHours.value = "";
-}
-
 function addButtonEvents() {
     //Actions for save requirements
     $('form').on('submit', function (e) {
@@ -245,15 +218,20 @@ function ajaxGuardar() {
     var formData = $($form).serializeArray();
 
     $.ajax({
-        async: false,
+        cache: false,
+        //contentType: false,
+        //processData: false,
         url: url,
         type: 'post',
         data: formData
+        /*data: data,
+        success: function(data){
+            alert(data);
+        }*/
     }).done(function (data) {
         customHolder("info", "Modificacion Registrada Exitosamente.","window.location.href = '/components/filters'; holder('Cargando...')");
         //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
     }).fail(function (xhr, status, error) {
-        console.log("fail");
         customHolder("error", xhr.responseJSON.message)
     });
 }

@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="es-mx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <head th:replace="~{layout/mainHeader :: head ('Alta de Usuario')}"></head>
+    <script type="text/javascript" th:src="@{/js/administracion/administracion-usuarios.js}" defer></script>
+</head>
 
-<head th:replace="~{layout/mainHeader :: head ('Alta de Componente')}"></head>
 
 <body>
 <header th:replace="~{layout/mainHeader :: header }"></header>
@@ -39,16 +42,16 @@
 
                     <th:block display="display:none;" id="container-users">
                         <tr id="base" data-tggle="collapse" class="clickable">
-                            <td id="user" class="col-md-4">Admin1</td>
-                            <td id="profile"class="col-md-3">Administrador</td>
-                            <td id="status" class="col-md-3">activo</td>
+                            <td id="user" class="col-md-4"></td>
+                            <td id="profile"class="col-md-3"></td>
+                            <td id="status" class="col-md-3"></td>
                             <td class="col-md-2" align="center">
                                 <img src="/img/cerrar.png" style="width:25px;">
-                                <img src="/img/editar a.png" id="botonEditar" href="#row-detail-wrapper-1" onclick="$(this).closest('tr').next().find('#dos').attr('class','collapse-in');" style="width:25px;">
+                                <img src="/img/editar a.png" id="botonEditar" href="#row-detail-wrapper-1" onclick="$(this).closest('tr').next().find('#container-user-edit').attr('class','collapse-in');" style="width:25px;">
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="12" id="dos" class="collapse">
+                            <td colspan="12" id="container-user-edit" class="collapse">
                                 <div id="row-detail-wrapper-1">
                                     <table style="width: 100%;">
                                         <tr>
@@ -99,6 +102,7 @@
 
                     </tbody>
                 </table>
+                <div id="pagination-div"></div>
             </div>
             <!-- .// row -->
             <div class="row">
@@ -131,9 +135,9 @@
                                     </div>
                             </td>
                             <td class="col-md-4" align="center">
-                                    <div id="slct_estado" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                                    <div id="slct_empresa" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
                                         <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
-                                            <div class="mdc-select__label">Estado</div>
+                                            <div class="mdc-select__label">Empresa</div>
                                             <div class="mdc-select__selected-text"></div>
                                             <div class="mdc-select__bottom-line"></div>
                                         </div>
@@ -166,108 +170,7 @@
 
 <div th:replace="~{layout/footer2 :: scripts }"></div>
 <script>
-
-    var editReq = $("#dos");
-    //var addComp = $("#add-component");
-
-    $('tr.clickable').click(function() {
-        editReq.attr("class","collapse-in");
-        let target = $(this).attr("aria-controls");
-
-        $("#"+target).collapse('toggle');
-        //addComp.removeAttr("disabled");
-    });
-
-    editReq.click(function () {
-        if($(this).attr("href")) {
-            showHoldOn();
-            $("#table-data tbody").html("");
-        }
-    });
-
-
-    $.ajax({
-        async: false,
-        url: "/api/users"
-    }).done(function(json){
-        $.each(json.data, function(i, data) {
-
-        });
-        mdc.select.MDCSelect.attachTo(document.getElementById('slct_estado'));
-    }).fail(function(xhr, status, error) {
-        console.log('¡Error al consultar combos!');
-        new mdc.select.MDCSelect(document.getElementById('slct_estado')).disabled = true;
-        customHolder('error','¡Error al consultar combos!');
-        showingError = true;
-        //$('#slct_estado').val("");
-    });
-
-
-
-    $.ajax({
-        async: false,
-        url: "/api/status-types/1/status"
-    }).done(function(json){
-        $.each(json.data, function(i, data) {
-            $liElement = $("<li>");
-            $liElement.attr("class","mdc-list-item");
-            $liElement.attr("role","option");
-            $liElement.attr("id",data.statusId);
-            $liElement.append(data.statusName);
-            $("#slct_estado").find("ul:first").append($liElement);
-        });
-        mdc.select.MDCSelect.attachTo(document.getElementById('slct_estado'));
-    }).fail(function(xhr, status, error) {
-        console.log('¡Error al consultar combos!');
-        new mdc.select.MDCSelect(document.getElementById('slct_estado')).disabled = true;
-        customHolder('error','¡Error al consultar combos!');
-        showingError = true;
-        //$('#slct_estado').val("");
-    });
-
-    $.ajax({
-        async: false,
-        url: "/api/profile-types"
-    }).done(function(json){
-        $.each(json.data, function(i, data) {
-            $liElement = $("<li>");
-            $liElement.attr("class","mdc-list-item");
-            $liElement.attr("role","option");
-            $liElement.attr("id",data.profileTypeId);
-            $liElement.append(data.profileTypeName);
-            $("#slct_perfil").find("ul:first").append($liElement);
-        });
-        mdc.select.MDCSelect.attachTo(document.getElementById('slct_perfil'));
-    }).fail(function(xhr, status, error) {
-        console.log('¡Error al consultar combos!');
-        new mdc.select.MDCSelect(document.getElementById('slct_perfil')).disabled = true;
-        customHolder('error','¡Error al consultar combos!');
-        showingError = true;
-        //$('#slct_perfil').val("");
-    });
-    $.ajax({
-        async: false,
-        url: "/api/users"
-    }).done(function(json){
-        $.each(json.data, function(i, data) {
-            console.log(data.userInternalId);
-            cloned = $("#base").clone();
-            cloned.find("#user").html(data.userInternalId);
-            cloned.find("#status").html(data.status.statusName);
-            cloned.find("#profile").html(data.profileType.profileTypeName);
-            $("#base").parent().append(cloned);
-            $("#base").parent().append($("#base").next().clone());
-            document.getElementById("noUsers").style.display="none";
-        });
-
-    }).fail(function(xhr, status, error) {
-        console.log('¡Error al consultar combos!');
-        new mdc.select.MDCSelect(document.getElementById('slct_estado')).disabled = true;
-        customHolder('error','¡Error al consultar combos!');
-        showingError = true;
-        //$('#slct_estado').val("");
-    });
-    $($.find("#base")).eq(0).css("display", "none");
     mdc.autoInit();
+
 </script>
 </html>
