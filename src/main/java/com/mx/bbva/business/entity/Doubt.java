@@ -60,6 +60,8 @@ public class Doubt implements Serializable {
     @JoinColumn(name = "CD_TIPO_DUDA", referencedColumnName = "CD_TIPO_DUDA", nullable = false)
     @ManyToOne(optional = false)
     private DoubtType doubtType;
+    @Transient
+    private String stringValue;
 
     public Doubt() {
     }
@@ -185,6 +187,14 @@ public class Doubt implements Serializable {
 
     public void setDoubtType(DoubtType doubtType) {
         this.doubtType = doubtType;
+    }
+
+    public String getStringValue() {
+        return stringValue;
+    }
+
+    public void setStringValue(String stringValue) {
+        this.stringValue = stringValue;
     }
 
     @Override

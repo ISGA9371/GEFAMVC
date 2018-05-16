@@ -49,6 +49,8 @@ public class TestCaseC204 implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "testCaseC204")
     private List<T955> t955List;
+    @Transient
+    private String stringValue;
 
     public TestCaseC204() {
     }
@@ -148,6 +150,14 @@ public class TestCaseC204 implements Serializable {
 
     public void setResult(Result result) {
         this.result = result;
+    }
+
+    public String getStringValue() {
+        return stringValue;
+    }
+
+    public void setStringValue(String stringValue) {
+        this.stringValue = stringValue;
     }
 
     @Override
