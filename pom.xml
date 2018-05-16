@@ -15,7 +15,7 @@
         <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
         <archiveClasses>true</archiveClasses>
         <appengine.target.version>1.9.63</appengine.target.version>
-        <spring.version>5.0.4.RELEASE</spring.version>
+        <spring.version>5.0.5.RELEASE</spring.version>
         <appengine.app.name>gefa-app-196823</appengine.app.name>
         <appengine.app.version>5-0-0</appengine.app.version>
     </properties>
@@ -87,6 +87,24 @@
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-core</artifactId>
             <version>2.0.2.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>4.2.5.RELEASE</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
