@@ -32,6 +32,7 @@ public class ViewsURLs {
     public static final String NEW_COMPONENT = "AltaDeComponente";
     public static final String EDIT_COMPONENT = "ModificarComponente";
     public static final String SEARCH_COMPONENTS = "BusquedaDeComponentes";
+    public static final String COMPONENT_OPERATIONS = "BusquedaMID";
 
     public static final String NEW_MODIFICATION = "AltaDeModificacion";
     public static final String EDIT_MODIFICATION = "EditarModificacion";

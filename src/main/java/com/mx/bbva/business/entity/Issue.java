@@ -57,6 +57,8 @@ public class Issue implements Serializable {
     @JoinColumn(name = "CD_ORIGEN", referencedColumnName = "CD_ORIGEN")
     @ManyToOne
     private Origin origin;
+    @Transient
+    private String stringValue;
 
     public Issue() {
     }
@@ -173,6 +175,14 @@ public class Issue implements Serializable {
 
     public void setOrigin(Origin origin) {
         this.origin = origin;
+    }
+
+    public String getStringValue() {
+        return stringValue;
+    }
+
+    public void setStringValue(String stringValue) {
+        this.stringValue = stringValue;
     }
 
     @Override

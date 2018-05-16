@@ -1,9 +1,6 @@
 package com.mx.bbva.controller;
 
-import com.mx.bbva.business.dto.ComponentClosureDTO;
-import com.mx.bbva.business.dto.ComponentSearchDTO;
-import com.mx.bbva.business.dto.ComponentUpdateDatesDTO;
-import com.mx.bbva.business.dto.ResponseDTO;
+import com.mx.bbva.business.dto.*;
 import com.mx.bbva.business.entity.*;
 import com.mx.bbva.business.service.*;
 import com.mx.bbva.config.exception.ConflictException;
@@ -33,6 +30,9 @@ public class ComponentController {
     private LevelService levelService;
     private StatusService statusService;
     private CompanyService companyService;
+    private DoubtService doubtService;
+    private IssueService issueService;
+    private ModificationService modificationService;
 
     /**
      * TODO: EVERY CONTROLLER NEEDS TO HAVE A CUSTOM SEARCH METHOD
@@ -142,6 +142,34 @@ public class ComponentController {
         }
 
         return components;
+    }
+
+    @RequestMapping(value = "/operations", method = RequestMethod.GET)
+    public String initOperationsSearh(Model model) {
+        // TODO Validate user
+        LOG.info("Creating new operation... doubt, modification or issue");
+        model.addAttribute("operation", new OperationsDTO());
+
+        return URL_FACTORY + COMPONENT_OPERATIONS;
+    }
+
+    @RequestMapping(value = "/operations/search", method = RequestMethod.GET)
+    public String operationsSearh(Model model, @ModelAttribute("operation") OperationsDTO operationsDTO) {
+        // TODO Validate user
+        LOG.info("Creating new operation... doubt, modification or issue");
+
+        switch (operationsDTO.getComponentSelected()) {
+            case "Modification" :
+                model.addAttribute("modifications", modificationService.findAllModifications());
+                break;
+            case "Doubt" :
+                model.addAttribute("doubts", doubtService.findAllDoubts());
+                break;
+            case "Issue" :
+                model.addAttribute("issue", issueService.findAll());
+                break;
+        }
+        return URL_FACTORY + COMPONENT_OPERATIONS;
     }
 
     //TODO Use Enums
