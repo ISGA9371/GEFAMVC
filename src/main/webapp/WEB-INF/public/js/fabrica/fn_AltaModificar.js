@@ -133,6 +133,9 @@ function camp() {
     //new mdc.textField.MDCTextField(document.getElementById("usuario-js-text")).disabled = true;
     //new mdc.textField.MDCTextField(document.getElementById("difmodificacion-js-text")).disabled = true;
     new mdc.textField.MDCTextField(document.getElementById("fechaEnvio-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("usupet-js-text")).disabled = true;
+    new mdc.textField.MDCTextField(document.getElementById("vuelo-js-text")).disabled = true;
+
 }
 
 function loadSelects2() {
