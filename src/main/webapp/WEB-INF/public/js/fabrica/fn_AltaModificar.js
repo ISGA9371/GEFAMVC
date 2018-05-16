@@ -9,39 +9,41 @@ function init() {
     addButtonEvents();
     camp();
     loadSelects2();
-    //cargarTipologias();
     userLog();
-
-    var fecha=$("#datetimepicker").val();
-    //var dia = fecha.substring(8,10);
-    //var mes = fecha.substring(5,7);
-    //var anio = fecha.substring(0,4);
-    //$("#datetimepickerformat").val(dia+"/"+mes+"/"+anio);
+    //cargarTipologias();
 
     var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1;
+    var day = today.getDate();
+    var month = today.getMonth() + 1;
+    var hour = today.getHours();
+    var minute = today.getMinutes();
 
-    var yyyy = today.getFullYear();
-    if (dd < 10) {
-        dd = '0' + dd;
+    var year = today.getFullYear();
+    if (day < 10) {
+        day = '0' + day;
     }
-    if (mm < 10) {
-        mm = '0' + mm;
+    if (month < 10) {
+        month = '0' + month;
     }
-    var today =dd + '/' + mm + '/' + yyyy;
-    $("#datetimepicker").val(today);
+    if (hour < 10) {
+        hour = '0' + hour;
+    }
+    if (minute < 10) {
+        minute = '0' + minute;
+    }
+    var today = day+ '/' + month + '/' + year + ' ' + hour + ':' + minute;
+
+    $('#datetimepickerformat').val(today);
 
 }
 
 function userLog() {
-console.log("llego");
     var user=0;
     $.ajax({
         url: "/users/info"
     }).done(function(data) {
-        user=data.userInternalId;
-
+        user=data.data.userInternalId;
+        $('#responsable').val(user);
     });
 }
 
