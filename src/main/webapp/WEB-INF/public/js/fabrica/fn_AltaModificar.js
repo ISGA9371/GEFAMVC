@@ -9,7 +9,7 @@ function init() {
     addButtonEvents();
     camp();
     loadSelects2();
-    cargarTipologias();
+    //cargarTipologias();
     userLog();
 
     var fecha=$("#datetimepicker").val();
@@ -41,7 +41,6 @@ console.log("llego");
         url: "/users/info"
     }).done(function(data) {
         user=data.userInternalId;
-        alert(user);
 
     });
 }
@@ -108,7 +107,8 @@ function addMissing() {
 
     $("#hidden-status").val($("#hidden-modificationStatus").val());
 
-    //$("#hidden-userre").val("XMY3080");
+    $("#hidden-userre").val("XMY3080");
+    //$("#hidden-userre").val ($("#hidden-userr").val());
 
     //$("#responsabletxt").val("XMY3080");
     //$("#hidden-responsable").val("XMY3080");
@@ -171,38 +171,6 @@ function loadSelects2() {
     });
 
 }
-
-function cargarTipologias() {
-    $("#dificultad-js-select").find("ul:first").empty();
-    $.ajax({
-        async: false,
-        url: "/api/typologies/types?componentModified=" + Boolean(Number(mdcSelectNewMod.value))
-    }).done(function (json) {
-        $.each(json.data, function (i, data) {
-            if (data.product.productId == mdcSelectProduct.value) {
-                $liElement = $("<li>");
-                $liElement.attr("class", "mdc-list-item");
-                $liElement.attr("role", "option");
-                $liElement.attr("id", data.typologyId + "|" + data.typologySeverity + "|" + data.typologySeverityHours + "|" + data.typologyStartDate + "|" + data.typologyFinalDate);
-                $liElement.append(data.typologySeverity);
-                $("#dificultad-js-select").find("ul:first").append($liElement);
-            }
-        });
-        mdcSelectTipology.disabled = false;
-        setTimeout(HoldOn.close(), 3000);
-        controllerTypologies = false;
-    }).fail(function (xhr, status, error) {
-        console.log('¡Error al consultar combos!');
-        mdcSelectTipology.disabled = true;
-        showingError = true;
-        customHolder('error', '¡Error al consultar combos!');
-        controllerTypologies = false;
-    });
-    mdcSelectTipology.selectedIndex = -1;
-    resetCalendars();
-    mdcTextHours.value = "";
-}
-
 function addButtonEvents() {
     //Actions for save requirements
     $('form').on('submit', function (e) {
@@ -245,15 +213,20 @@ function ajaxGuardar() {
     var formData = $($form).serializeArray();
 
     $.ajax({
-        async: false,
+        cache: false,
+        //contentType: false,
+        //processData: false,
         url: url,
         type: 'post',
         data: formData
+        /*data: data,
+        success: function(data){
+            alert(data);
+        }*/
     }).done(function (data) {
         customHolder("info", "Modificacion Registrada Exitosamente.","window.location.href = '/components/filters'; holder('Cargando...')");
         //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
     }).fail(function (xhr, status, error) {
-        console.log("fail");
         customHolder("error", xhr.responseJSON.message)
     });
 }
