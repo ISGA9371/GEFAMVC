@@ -1,6 +1,5 @@
 package com.mx.bbva.config;
 
-import com.mx.bbva.config.test.MyDBAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -15,17 +14,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
-    MyDBAuthenticationService myDBAauthenticationService;
+    DbAuthenticationService dbAuthenticationService;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-        // Users in memory.
-        auth.inMemoryAuthentication().withUser("user1").password("12345").roles("USER");
-        auth.inMemoryAuthentication().withUser("admin1").password("12345").roles("USER, ADMIN");
-
         // For User in database.
-        auth.userDetailsService(myDBAauthenticationService);
+        auth.userDetailsService(dbAuthenticationService);
 
     }
 
@@ -35,31 +30,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         // The pages does not require login
-        http.authorizeRequests().antMatchers("/", "/welcome", "/login", "/logout").permitAll();
+        http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
 
         // /userInfo page requires login as USER or ADMIN.
         // If no login, it will redirect to /login page.
-        http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/users")
+                .hasRole("ADMIN");
 
         // For ADMIN only.
-        http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/components")
+                .hasRole("ADMIN");
 
         // When the user has logged in as XX.
         // But access a page that requires role YY,
         // AccessDeniedException will throw.
-        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
+        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/error403");
 
         // Config for Login Form
         http.authorizeRequests().and().formLogin()//
                 // Submit URL of login page.
-                .loginProcessingUrl("/j_spring_security_check") // Submit URL
+                //.loginProcessingUrl("/j_spring_security_check") // Submit URL
                 .loginPage("/login")//
-                .defaultSuccessUrl("/userInfo")//
-                .failureUrl("/login?error=true")//
-                .usernameParameter("username")//
-                .passwordParameter("password")
+                .defaultSuccessUrl("/indexGefa")//
+                .failureUrl("/login")//
+                .usernameParameter("userInternalId")//
+                .passwordParameter("userPassword")
                 // Config for Logout Page
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful");
+                .and().logout().logoutUrl("/logout")
+                .invalidateHttpSession(true);
 
     }
 }

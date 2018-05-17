@@ -8,18 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
-
-import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping(value = "/")
-@SessionAttributes("user")
 public class AppController {
 
     private UserService userService;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String init(Model model) {
         /*
         TODO something here... here we will receive a google token, get the email maybe and check if exist in our
@@ -30,21 +26,15 @@ public class AppController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute("user") User user, Model model, HttpSession session) {
+    public String login(Model model) {
         // Implement your business logic
-
-        User finalUser = userService.findUserByInternalId(user.getUserInternalId());
-        session.setAttribute("user", finalUser);
-        session.setMaxInactiveInterval(10);
 
         return "indexGefa";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.DELETE)
-    public String logout(@ModelAttribute("user") User user, HttpSession session) {
+    public String logout() {
         // Implement your business logic
-        session.removeAttribute("user");
-        session.invalidate();
 
         return "logout";
     }
