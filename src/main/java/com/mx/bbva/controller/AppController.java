@@ -9,34 +9,44 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.security.Principal;
+
+import static com.mx.bbva.util.ViewsURLs.REDIRECT;
+
 @Controller
 @RequestMapping(value = "/")
 public class AppController {
 
     private UserService userService;
 
-    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public String init(Model model) {
         /*
         TODO something here... here we will receive a google token, get the email maybe and check if exist in our
         database... generate a log and create a token maybe... save the user in the session
          */
-
         return "login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(Model model) {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String login(Model model, Principal principal) {
+        if (principal == null) {
+            return REDIRECT + "login";
+        }
         // Implement your business logic
-
         return "indexGefa";
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout() {
         // Implement your business logic
-
         return "logout";
+    }
+
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    public String error403() {
+        // Implement your business logic
+        return "error403";
     }
 
     /*

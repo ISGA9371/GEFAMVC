@@ -18,10 +18,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
         // For User in database.
         auth.userDetailsService(dbAuthenticationService);
-
     }
 
     @Override
@@ -29,31 +27,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable();
 
+        http.sessionManagement().maximumSessions(2);
+
+        http.authorizeRequests().antMatchers("/").authenticated();
         // The pages does not require login
-        http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
+        http.authorizeRequests().antMatchers("/login", "/logout").permitAll();
 
         // /userInfo page requires login as USER or ADMIN.
         // If no login, it will redirect to /login page.
-        http.authorizeRequests().antMatchers("/users")
-                .hasRole("ADMIN");
+        /** TODO
+         http.authorizeRequests().antMatchers("/users", "/users/*")
+         .hasRole("ADMIN");
 
-        // For ADMIN only.
-        http.authorizeRequests().antMatchers("/components")
-                .hasRole("ADMIN");
-
+         // For ADMIN only.
+         http.authorizeRequests().antMatchers("/components", "/components/*")
+         .hasRole("ADMIN");
+         */
         // When the user has logged in as XX.
         // But access a page that requires role YY,
         // AccessDeniedException will throw.
-        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/error403");
+        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 
         // Config for Login Form
         http.authorizeRequests().and().formLogin()//
                 // Submit URL of login page.
-                //.loginProcessingUrl("/j_spring_security_check") // Submit URL
-                .loginPage("/login")//
-                .defaultSuccessUrl("/indexGefa")//
-                .failureUrl("/login")//
-                .usernameParameter("userInternalId")//
+                .loginProcessingUrl("/j_spring_security_check") // Submit URL
+                .loginPage("/login")
+                .defaultSuccessUrl("/index")
+                .failureUrl("/login?error=true")
+                .usernameParameter("userInternalId")
                 .passwordParameter("userPassword")
                 // Config for Logout Page
                 .and().logout().logoutUrl("/logout")
