@@ -123,7 +123,7 @@
                     </tr>
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
-                            <div id="prioridad" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                            <div id="prioridad" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                                     <div class="mdc-select__label">Prioridad*</div>
                                     <div class="mdc-select__selected-text" id="prioridad-sel-text"></div>
@@ -140,7 +140,7 @@
 
                         </td>
                         <td class="col-md-4" align="center">
-                            <div id="Duda-js-select" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect">
+                            <div id="Duda-js-select" class="mdc-select" role="listbox" data-mdc-auto-init="MDCSelect" style="background-color:#F4F4F4; width:90%">
                                 <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
                                     <div class="mdc-select__label">Tipo de Duda*</div>
                                     <div class="mdc-select__selected-text" id="Duda-sel-text"></div>
@@ -156,9 +156,13 @@
                     </tr>
                     <tr style="height:72px">
                         <td class="col-md-4" align="center">
-                            <!--<div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                <input type="file" name="fileData" class="btn btn-primary" required th:field="*{DoubtFile}" id="fileData" >
-                            </div>-->
+                            <input id="hidden-estado" type="text" th:field="*{status.statusId}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
+
+                            <div  id="incidencia-estado-js-text" class="mdc-select-disabled" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input type="text" th:value="*{status.statusName}" class="mdc-text-field__input mdc-text-field--disabled" id="incidencia-estado-js-text2">
+                                <label for="demo-input" class="mdc-text-field__label">Estado</label>
+                            </div>
+
                         </td>
                         <td class="col-md-4" align="center">
                             <div class="dog1">

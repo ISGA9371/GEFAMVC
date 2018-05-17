@@ -227,16 +227,22 @@ function userLog() {
     $.ajax({
         url: "/users/info"
     }).done(function(data) {
-        //let subs = data.data;
-        user=data.data.profileType.profileTypeId;
+        if(data.data.profileType.profileTypeId !== 'undefined') {
+            user = data.data.profileType.profileTypeId;
+        }else{
+            user=1000;
+        }
+
+        if(user !== 'undefined'){
         if(user === 4 || user === 5 || user === 8 ){
             $("#responsabletxt").val(data.data.userInternalId);
             $("#hidden-responsable").val(data.data.userInternalId);
         }else{
             holder("Cargando...usuario sin acceso");
             window.location.href = "/";
+        }}else{
+            holder("Cargando...usuario sin acceso");
+            window.location.href = "/";
         }
     });
 }
-
-var baseGlobal;

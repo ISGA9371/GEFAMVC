@@ -1,15 +1,14 @@
 function init() {
 
     addCalendars();
-    //camp();
     addButtonEvents();
     loadSelects2();
     userLog();
+    loadSelects();
 
     $("#hidden-status").val("11");
     $("#hidden-doubtType").val("13");
     $("#hidden-envcomponente").val($("#hidden-componente").val());
-    //$("#descripcion").val($("#hidden-descri").val());
 
     var fecha=$("#datetimepicker").val();
     var dia = fecha.substring(8,10);
@@ -35,19 +34,31 @@ function init() {
 
 }
 
+function status() {
+    var statu = $('#hidden-estado').val();
+    if(statu === 11){
+        $('#incidencia-estado-js-text2').val("ENVIADA A DYD");
+    }
+
+}
+
+/*demoReady(function() {
+    var rootEst = document.getElementById('incidencia-js-select');
+    var hiddenEst = document.getElementById('hidden-estado');
+    var selectEst = new mdc.select.MDCSelect(rootEst);
+
+    rootEst.addEventListener('MDCSelect:change', function() {
+        hiddenEst.value = selectEst.value;
+    });
+});*/
+
 function userLog() {
     var user=0;
     $.ajax({
         url: "/users/info"
     }).done(function(data) {
-        let subs = data.data;
-        //$("#responsabletxt").val(subs.userInternalId);
-        //$("#hidden-responsable").val(subs.userInternalId);
+        var subs = data.data;
         user=subs.profileType.profileTypeId;
-        //alert(subs.profileType.profileTypeId);
-
-
-    //perfilado inicial
 
     if(user === 7){
         //alert("entro en dyd");
@@ -67,6 +78,8 @@ function userLog() {
         new mdc.textField.MDCTextField(document.getElementById("descripcionedit-js-text")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = false;
+        new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = true;
         //document.getElementById("")
         $('#boton-cerrar').show();
 
@@ -96,9 +109,11 @@ function userLog() {
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("peticionario-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcionedit-js-text")).disabled = false;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = false;
-        //new mdc.textField.MDCTextField(document.getElementById("boton-cerrar")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = true;
         $('#boton-cerrar').hide();
         //tioDuda-js-text
 
@@ -130,8 +145,9 @@ function userLog() {
         new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textfabrica")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("descripcionedit-js-text")).disabled = false;
-        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = false;
-        //new mdc.textField.MDCTextField(document.getElementById("boton-cerrar")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = true;
         $('#boton-cerrar').hide();
         //tioDuda-js-text
 
@@ -162,8 +178,10 @@ function userLog() {
         new mdc.textField.MDCTextField(document.getElementById("peticionario-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcionedit-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = false;
-        new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = false;
-        //new mdc.textField.MDCTextField(document.getElementById("boton-cerrar")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = false;
+        new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = true;
         $('#boton-cerrar').hide();
         //tioDuda-js-text
 
@@ -185,15 +203,18 @@ function userLog() {
         new mdc.textField.MDCTextField(document.getElementById("tecnologia-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
-        new mdc.textField.MDCTextField(document.getElementById("prioridad-js-text")).disabled = false;
-        new mdc.textField.MDCTextField(document.getElementById("tioDuda-js-text")).disabled = false;
+        new mdc.textField.MDCTextField(document.getElementById("prioridad-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("tioDuda-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("peticionario-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcionedit-js-text")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = false;
-        //new mdc.textField.MDCTextField(document.getElementById("boton-cerrar")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = true;
+        new mdc.textField.MDCTextField(document.getElementById("incidencia-estado-js-text")).disabled = true;
         $('#boton-cerrar').show();
         //tioDuda-js-text
 
@@ -272,24 +293,6 @@ function rojelia(){
     $('#desfijo').val(descri + " | " + descrip + " - "+ dd+"/"+mm+"/"+yyyy);
 }
 
-/*function camp() {
-    new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("subdireccion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("version-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("requerimiento-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("tecnologia-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("prioridad-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("peticionario-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("tioDuda-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = true;
-}*/
-
-
 function addButtonEvents() {
     //Actions for save requirements
     $('form').on('submit', function (e) {
@@ -360,6 +363,10 @@ function customHolder(type, msg, fctn) {
     });
 }
 
+function loadSelects() {
+    //mdc.select.MDCSelect.attachTo(document.getElementById('usuario-js-select'));
+    mdc.select.MDCSelect.attachTo(document.getElementById('incidencia-js-select'));
+}
 
 function loadSelects2() {
     const prioridad = new mdc.select.MDCSelect(document.querySelector('#prioridad'));
@@ -398,134 +405,3 @@ function loadSelects2() {
         }else $("#Duda-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
     });
 }
-
-/*function dyd() {
-
-    alert("entro en dyd");
-    new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("subdireccion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("version-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("requerimiento-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("tecnologia-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("prioridad-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("tioDuda-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("peticionario-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("descripcionedit-js-text")).disabled = false;
-    new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = false;
-    new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = false;
-    //document.getElementById("")
-    $('#boton-cerrar').show();
-
-    //tioDuda-js-text
-
-    $('#Duda-js-select').hide(); //combo origen
-    $('#tioDuda-js-text').show(); //input origen
-    //$('#Origen-input').val($('#Origen-js-select2').val());
-
-    //prioridad
-    $('#prioridad').hide(); //combo prioridad
-    $('#prioridad-js-text').show(); //input prioridad
-    //$('#Prioridad-input').val($('#prioridad-sel-text').val());
-}
-
-function fabrica() {
-
-    alert("fabrica");
-    new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("subdireccion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("version-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("requerimiento-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("tecnologia-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("prioridad-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("tioDuda-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("peticionario-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("descripcionedit-js-text")).disabled = false;
-    new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = false;
-    new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = false;
-    //new mdc.textField.MDCTextField(document.getElementById("boton-cerrar")).disabled = true;
-    $('#boton-cerrar').hide();
-    //tioDuda-js-text
-
-    $('#Duda-js-select').hide(); //combo origen
-    $('#tioDuda-js-text').show(); //input origen
-    //$('#Origen-input').val($('#Origen-js-select2').val());
-
-    //prioridad
-    $('#prioridad').hide(); //combo prioridad
-    $('#prioridad-js-text').show(); //input prioridad
-    //$('#Prioridad-input').val($('#hidden-prioridad').val());
-}
-
-function gestor() {
-
-    alert("gestor");
-    new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("subdireccion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("version-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("requerimiento-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("tecnologia-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("prioridad-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("tioDuda-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("peticionario-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("descripcionedit-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = false;
-    new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = false;
-    //new mdc.textField.MDCTextField(document.getElementById("boton-cerrar")).disabled = true;
-    $('#boton-cerrar').hide();
-    //tioDuda-js-text
-
-    $('#Duda-js-select').hide(); //combo origen
-    $('#tioDuda-js-text').show(); //input origen
-    //$('#Origen-input').val($('#Origen-js-select2').val());
-
-    //prioridad
-    $('#prioridad').hide(); //combo prioridad
-    $('#prioridad-js-text').show(); //input prioridad
-    //$('#Prioridad-input').val($('#prioridad').val());
-}
-
-function adminin() {
-
-    alert("administrador");
-    new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("direccion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("subdireccion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("version-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("requerimiento-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("tecnologia-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("prioridad-js-text")).disabled = false;
-    new mdc.textField.MDCTextField(document.getElementById("tioDuda-js-text")).disabled = false;
-    new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("peticionario-js-text")).disabled = true;
-    new mdc.textField.MDCTextField(document.getElementById("descripcionedit-js-text")).disabled = false;
-    new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = false;
-    new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = false;
-    //new mdc.textField.MDCTextField(document.getElementById("boton-cerrar")).disabled = true;
-    $('#boton-cerrar').show();
-    //tioDuda-js-text
-
-    $('#Duda-js-select').show(); //combo origen
-    $('#tioDuda-js-text').show(); //input origen
-
-    //prioridad
-    $('#prioridad').show(); //combo prioridad
-    $('#prioridad-js-text').show(); //input prioridad
-}*/
