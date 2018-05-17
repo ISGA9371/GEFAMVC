@@ -256,10 +256,10 @@
                                 </ul>
                             </div>
                         </div>
-                      </td>
-                      <td class="col-md-4" align="center">
-                          <div style="width:90%">
-                              <input type="file" name="sendFile" class="btn btn-primary" required  id="sendFile" >
+                    </td>
+                      <!--<td class="col-md-4" align="center">
+                          <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                              <input type="file" name="sfile" class="btn btn-primary" required  id="sendFile" >
                           </div>
                       </td>
                   </tr>
@@ -307,10 +307,12 @@
 <script type="text/javascript" th:src="@{../js/fabrica/fn_AltaModificar.js}"></script>
 
 
-    <script>
-        mdc.autoInit();
-        init();
-    </script>
+<script>mdc.autoInit();
+demoReady(function () {
+    init();
+    initGlobal();
+});
+</script>
 
 
 </html>
