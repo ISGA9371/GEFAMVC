@@ -1,5 +1,6 @@
 package com.mx.bbva.controller;
 
+import com.mx.bbva.business.entity.ProfileType;
 import com.mx.bbva.business.entity.User;
 import com.mx.bbva.business.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,14 @@ public class AppController {
     private UserService userService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String init(Model model) {
+    public String init(Model model, @ModelAttribute("user") User user) {
         /*
         TODO something here... here we will receive a google token, get the email maybe and check if exist in our
         database... generate a log and create a token maybe... save the user in the session
          */
-
-        return "login";
+        user.setUserInternalId("XMY3453");
+        user.setProfileType(new ProfileType(4));
+        return "indexGefa";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
