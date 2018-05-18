@@ -1,7 +1,9 @@
 package com.mx.bbva.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -20,6 +22,10 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackages = {"com.mx.bbva.business.repository"})
 @EnableTransactionManagement
 public class JPAPersistenceConfig {
+
+    @Autowired
+    private Environment environment;
+
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();

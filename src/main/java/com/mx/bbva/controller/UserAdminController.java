@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.logging.Logger;
 
 import static com.mx.bbva.util.ViewsURLs.*;
@@ -26,11 +26,10 @@ public class UserAdminController {
     private UserService userService;
 
     @RequestMapping(value = "/info", method = RequestMethod.GET)
-    public ResponseEntity<?> userInfo(HttpSession session) {
-        User user = new User();
-        if (session.getAttribute("user") != null) {
-            user = (User) session.getAttribute("user");
-        }
+    public ResponseEntity<?> userInfo(Principal principal) {
+
+        User user = userService.findUser(principal.getName());
+
         return new ResponseEntity<Object>(new ResponseDTO(user), HttpStatus.OK);
     }
 
