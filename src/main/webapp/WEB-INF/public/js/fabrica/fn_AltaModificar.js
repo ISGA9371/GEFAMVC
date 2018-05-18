@@ -12,6 +12,7 @@ function init() {
     userLog();
     //cargarTipologias();
     //addSelectEvents();
+    //modifvuelo();
 
     var today = new Date();
     var day = today.getDate();
@@ -233,7 +234,8 @@ function ajaxGuardar() {
         customHolder("info", "Modificacion Registrada Exitosamente.","window.location.href = '/components/filters'; holder('Cargando...')");
         //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
     }).fail(function (xhr, status, error) {
-        customHolder("error", xhr.responseJSON.message)
+            xhr.responseJSON = undefined;
+            customHolder("error", xhr.responseJSON.message);
     });
 }
 
@@ -275,3 +277,4 @@ function camposBloqueadosF() {
     }
 
 }
+

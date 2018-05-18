@@ -58,7 +58,8 @@ public class ModificationController {
         List<Modification> modifications = modificationService.findAllModifications();
         model.addAttribute("modifications", modifications);
 
-        return URL_FACTORY + SEARCH_MODIFICATIONS;
+        //return URL_FACTORY + SEARCH_MODIFICATIONS;
+        return URL_FACTORY + SEARCH_COMPONENTS;
     }
 
     @RequestMapping(path = "/{modificationId}", method = RequestMethod.GET)
@@ -74,13 +75,15 @@ public class ModificationController {
             model.addAttribute("componentData", new Component() {
             });
         }
-        return URL_FACTORY + EDIT_MODIFICATION;
+        //return URL_FACTORY + EDIT_MODIFICATION;
+        return URL_FACTORY + SEARCH_COMPONENTS;
     }
 
     @RequestMapping(value = "/filters", method = RequestMethod.GET)
     public String filtersForModifications(Model model) {
         model.addAttribute("modificationSearchDTO", new ModificationSearchDTO());
-        return URL_FACTORY + SEARCH_MODIFICATIONS;
+        //return URL_FACTORY + SEARCH_MODIFICATIONS;
+        return URL_FACTORY + SEARCH_COMPONENTS;
     }
 
     @ResponseBody

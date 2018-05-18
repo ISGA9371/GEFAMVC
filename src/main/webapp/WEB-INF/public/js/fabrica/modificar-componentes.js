@@ -296,10 +296,10 @@ function loadSelects() {
             $liElement.append(data.statusName);
             $("#estatus-tipificacion-js-select").find("ul:first").append($liElement);
         });
-        mdc.select.MDCSelect.attachTo(document.getElementById('estatus-tipificacion-js-select'));
+        //mdc.select.MDCSelect.attachTo(document.getElementById('estatus-tipificacion-js-select'));
     }).fail(function (xhr, status, error) {
         console.log('¡Error al consultar combos!');
-        new mdc.select.MDCSelect(document.getElementById('estatus-tipificacion-js-select')).disabled = true;
+        mdcSelectStsTipology.disabled = true;
         customHolder('error', '¡Error al consultar combos!');
         showingError = true;
         $('#statusTypology').val("");
@@ -316,10 +316,10 @@ function loadSelects() {
             $liElement.append(data.statusName);
             $("#estatus-componente-js-select").find("ul:first").append($liElement);
         });
-        mdc.select.MDCSelect.attachTo(document.getElementById('estatus-componente-js-select'));
+        //mdc.select.MDCSelect.attachTo(document.getElementById('estatus-componente-js-select'));
     }).fail(function (xhr, status, error) {
         console.log('¡Error al consultar combos!');
-        new mdc.select.MDCSelect(document.getElementById('estatus-componente-js-select')).disabled = true;
+        mdcSelectStsComponent.disabled = true;
         customHolder('error', '¡Error al consultar combos!');
         showingError = true;
         $('#status').val("");
