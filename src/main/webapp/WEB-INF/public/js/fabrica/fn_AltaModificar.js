@@ -12,6 +12,7 @@ function init() {
     userLog();
     //cargarTipologias();
     //addSelectEvents();
+    //modifvuelo();
 
     var today = new Date();
     var day = today.getDate();
@@ -275,3 +276,4 @@ function camposBloqueadosF() {
     }
 
 }
+

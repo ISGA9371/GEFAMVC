@@ -257,43 +257,43 @@
                             </div>
                         </div>
                     </td>
-                      <!--<td class="col-md-4" align="center">
-                          <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                              <input type="file" name="sfile" class="btn btn-primary" required  id="sendFile" >
+                      <td class="col-md-4" align="center">
+                          <div style="width:90%">
+                              <input type="file" name="sendFile" class="btn btn-primary" id="sendFile" >
                           </div>
                       </td>
                   </tr>
-                  </table>
-                  <!--<table class="col-md-12" >
-                      <tr style="height:62px">
-                          <td class="col-md-3" align="center">
-                              <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                  <input type="file" name="sfile" class="btn btn-primary" required  id="sendFile" >
-                              </div>
-                          </td>
-                          <td>
+              </table>
+                <!--<table class="col-md-12" >
+                    <tr style="height:62px">
+                        <td class="col-md-3" align="center">
+                            <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                                <input type="file" name="sfile" class="btn btn-primary" required  id="sendFile" >
+                            </div>
+                        </td>
+                        <td>
 
-                          </td>
-                          <td>
+                        </td>
+                        <td>
 
-                          </td>
-                      </tr>
-                  </table>-->
+                        </td>
+                    </tr>
+                </table>-->
             </div>
-        <br>
-        <br>
-        <div class="row">
-            <table class="col-md-12" >
-                <tr>
-                    <div class="row buttons">
-                        <div class="col-xs-12 text-center">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                            <button type="button" id="cancelar-btn" class="btn btn-primary">Cancelar</button>
+            <br>
+            <br>
+            <div class="row">
+                <table class="col-md-12" >
+                    <tr>
+                        <div class="row buttons">
+                            <div class="col-xs-12 text-center">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button type="button" id="cancelar-btn" class="btn btn-primary">Cancelar</button>
+                            </div>
                         </div>
-                    </div>
-                </tr>
-            </table>
-        </div>
+                    </tr>
+                </table>
+            </div>
 
 </form>
 <br>
@@ -302,17 +302,15 @@
 <footer th:replace="~{layout/footer2 :: footer }"></footer>
 </body>
 
-<div th:replace="~{layout/footer2 :: scripts }"></div>
-<script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
-<script type="text/javascript" th:src="@{../js/fabrica/fn_AltaModificar.js}"></script>
+    <div th:replace="~{layout/footer2 :: scripts }"></div>
+    <script type="text/javascript" th:src="@{../js/fabrica/global.js}"></script>
+    <script type="text/javascript" th:src="@{../js/fabrica/fn_AltaModificar.js}"></script>
 
 
-<script>mdc.autoInit();
-demoReady(function () {
-    init();
-    initGlobal();
-});
-</script>
+    <script>
+        mdc.autoInit();
+        init();
+    </script>
 
 
 </html>
