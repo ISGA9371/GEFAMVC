@@ -8,22 +8,22 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema GESTION_FACTORIA
+-- Schema gestion_factoria
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `GESTION_FACTORIA` ;
+DROP SCHEMA IF EXISTS `gestion_factoria` ;
 
 -- -----------------------------------------------------
--- Schema GESTION_FACTORIA
+-- Schema gestion_factoria
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `GESTION_FACTORIA` DEFAULT CHARACTER SET utf8 ;
-USE `GESTION_FACTORIA` ;
+CREATE SCHEMA IF NOT EXISTS `gestion_factoria` DEFAULT CHARACTER SET utf8 ;
+USE `gestion_factoria` ;
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE030_AREA`
+-- Table `gestion_factoria`.`thge030_area`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE030_AREA` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge030_area` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE030_AREA` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge030_area` (
   `CD_AREA` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_AREA` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`CD_AREA`),
@@ -32,11 +32,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE001_TIPO_SERV`
+-- Table `gestion_factoria`.`thge001_tipo_serv`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE001_TIPO_SERV` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge001_tipo_serv` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE001_TIPO_SERV` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge001_tipo_serv` (
   `CD_TIPO_SERVICIO` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_TIPO_SERVICIO` VARCHAR(50) NOT NULL,
   `CD_AREA` INT(4) NOT NULL,
@@ -45,18 +45,18 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE001_TIPO_SERV` (
   INDEX `R0010301_idx` (`CD_AREA` ASC),
   CONSTRAINT `R0010301`
     FOREIGN KEY (`CD_AREA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE030_AREA` (`CD_AREA`)
+    REFERENCES `gestion_factoria`.`thge030_area` (`CD_AREA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE002_TECNOLOGIA`
+-- Table `gestion_factoria`.`thge002_tecnologia`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE002_TECNOLOGIA` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge002_tecnologia` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE002_TECNOLOGIA` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge002_tecnologia` (
   `CD_TECNOLOGIA` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_TECNOLOGIA` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_TECNOLOGIA`),
@@ -65,11 +65,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE008_TIPO_EDO`
+-- Table `gestion_factoria`.`thge008_tipo_edo`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE008_TIPO_EDO` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge008_tipo_edo` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE008_TIPO_EDO` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge008_tipo_edo` (
   `CD_TIPO_EDO` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_TIPO_EDO` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`CD_TIPO_EDO`),
@@ -78,11 +78,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE005_ESTADO`
+-- Table `gestion_factoria`.`thge005_estado`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE005_ESTADO` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge005_estado` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE005_ESTADO` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge005_estado` (
   `CD_ESTADO` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_ESTADO` VARCHAR(50) NOT NULL,
   `CD_TIPO_EDO` INT(4) NOT NULL,
@@ -90,18 +90,18 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE005_ESTADO` (
   INDEX `R0050081_idx` (`CD_TIPO_EDO` ASC),
   CONSTRAINT `R0050081`
     FOREIGN KEY (`CD_TIPO_EDO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE008_TIPO_EDO` (`CD_TIPO_EDO`)
+    REFERENCES `gestion_factoria`.`thge008_tipo_edo` (`CD_TIPO_EDO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE003_EMPRESA`
+-- Table `gestion_factoria`.`thge003_empresa`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE003_EMPRESA` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge003_empresa` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE003_EMPRESA` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge003_empresa` (
   `CD_EMPRESA` INT NOT NULL AUTO_INCREMENT,
   `NB_COMERC_EMPRESA` VARCHAR(45) NOT NULL,
   `NB_RAZON_SOC_EMP` VARCHAR(150) NOT NULL,
@@ -111,18 +111,18 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE003_EMPRESA` (
   INDEX `R0030051_idx` (`ST_EMPRESA` ASC),
   CONSTRAINT `R0030051`
     FOREIGN KEY (`ST_EMPRESA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE004_TIPO_NIVEL`
+-- Table `gestion_factoria`.`thge004_tipo_nivel`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE004_TIPO_NIVEL` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge004_tipo_nivel` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE004_TIPO_NIVEL` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge004_tipo_nivel` (
   `CD_TIPO_NIVEL` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_TIPO_NIVEL` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`CD_TIPO_NIVEL`),
@@ -131,11 +131,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE018_PRODUCTO`
+-- Table `gestion_factoria`.`thge018_producto`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE018_PRODUCTO` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge018_producto` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE018_PRODUCTO` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge018_producto` (
   `CD_PRODUCTO` CHAR(3) NOT NULL,
   `NB_PRODUCTO` VARCHAR(50) NOT NULL,
   `CD_TECNOLOGIA` INT(4) NOT NULL,
@@ -143,18 +143,18 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE018_PRODUCTO` (
   INDEX `R0180021_idx` (`CD_TECNOLOGIA` ASC),
   CONSTRAINT `R0180021`
     FOREIGN KEY (`CD_TECNOLOGIA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE002_TECNOLOGIA` (`CD_TECNOLOGIA`)
+    REFERENCES `gestion_factoria`.`thge002_tecnologia` (`CD_TECNOLOGIA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE006_TIPOLOGIA`
+-- Table `gestion_factoria`.`thge006_tipologia`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE006_TIPOLOGIA` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge006_tipologia` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE006_TIPOLOGIA` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge006_tipologia` (
   `CD_TIPOLOGIA` INT(4) NOT NULL AUTO_INCREMENT,
   `TP_COMPONENTE` TINYINT(1) NOT NULL,
   `NU_DIFICULTAD` CHAR(1) NOT NULL,
@@ -168,23 +168,23 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE006_TIPOLOGIA` (
   INDEX `R0060021_idx` (`CD_PRODUCTO` ASC),
   CONSTRAINT `R0060052`
     FOREIGN KEY (`ST_ESTADO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0060021`
     FOREIGN KEY (`CD_PRODUCTO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE018_PRODUCTO` (`CD_PRODUCTO`)
+    REFERENCES `gestion_factoria`.`thge018_producto` (`CD_PRODUCTO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE034_BANCA`
+-- Table `gestion_factoria`.`thge034_banca`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE034_BANCA` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge034_banca` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE034_BANCA` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge034_banca` (
   `CD_BANCA` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_BANCA` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`CD_BANCA`),
@@ -193,11 +193,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE037_ENTIDAD`
+-- Table `gestion_factoria`.`thge037_entidad`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE037_ENTIDAD` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge037_entidad` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE037_ENTIDAD` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge037_entidad` (
   `CD_ENTIDAD` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_ENTIDAD` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_ENTIDAD`),
@@ -206,11 +206,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE038_NATURALEZA`
+-- Table `gestion_factoria`.`thge038_naturaleza`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE038_NATURALEZA` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge038_naturaleza` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE038_NATURALEZA` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge038_naturaleza` (
   `CD_NATURALEZA` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_NATURALEZA` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_NATURALEZA`),
@@ -219,11 +219,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE023_SOLIC_PEP`
+-- Table `gestion_factoria`.`thge023_solic_pep`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE023_SOLIC_PEP` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge023_solic_pep` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE023_SOLIC_PEP` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge023_solic_pep` (
   `CD_SOLIC_PEP` INT(9) NOT NULL,
   `NB_SOLIC_PEP` VARCHAR(50) NOT NULL,
   `ST_SOLIC_PEP` INT(4) NOT NULL,
@@ -232,18 +232,18 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE023_SOLIC_PEP` (
   INDEX `R0230051_idx` (`ST_SOLIC_PEP` ASC),
   CONSTRAINT `R0230051`
     FOREIGN KEY (`ST_SOLIC_PEP`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE069_RESP_PEP`
+-- Table `gestion_factoria`.`thge069_resp_pep`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE069_RESP_PEP` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge069_resp_pep` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE069_RESP_PEP` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge069_resp_pep` (
   `CD_RESP_PEP` INT(9) NOT NULL,
   `NB_RESP_PEP` VARCHAR(50) NOT NULL,
   `ST_RESP_PEP` INT(4) NULL,
@@ -252,18 +252,18 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE069_RESP_PEP` (
   INDEX `R0690051_idx` (`ST_RESP_PEP` ASC),
   CONSTRAINT `R0690051`
     FOREIGN KEY (`ST_RESP_PEP`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE007_PEP`
+-- Table `gestion_factoria`.`thge007_pep`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE007_PEP` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge007_pep` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE007_PEP` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge007_pep` (
   `CD_PEP` CHAR(15) NOT NULL,
   `NB_DENOMINAC_PEP` VARCHAR(50) NOT NULL,
   `NU_EJERCICIO` INT(4) NOT NULL,
@@ -299,53 +299,53 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE007_PEP` (
   INDEX `R0070693_idx` (`CD_RESP_PEP` ASC),
   CONSTRAINT `R0070341`
     FOREIGN KEY (`CD_BANCA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE034_BANCA` (`CD_BANCA`)
+    REFERENCES `gestion_factoria`.`thge034_banca` (`CD_BANCA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0070374`
     FOREIGN KEY (`CD_ENTIDAD`)
-    REFERENCES `GESTION_FACTORIA`.`THGE037_ENTIDAD` (`CD_ENTIDAD`)
+    REFERENCES `gestion_factoria`.`thge037_entidad` (`CD_ENTIDAD`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0070385`
     FOREIGN KEY (`CD_NATURALEZA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE038_NATURALEZA` (`CD_NATURALEZA`)
+    REFERENCES `gestion_factoria`.`thge038_naturaleza` (`CD_NATURALEZA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0070306`
     FOREIGN KEY (`CD_AREA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE030_AREA` (`CD_AREA`)
+    REFERENCES `gestion_factoria`.`thge030_area` (`CD_AREA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0070057`
     FOREIGN KEY (`ST_PEP`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0070058`
     FOREIGN KEY (`ST_DYD`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0070232`
     FOREIGN KEY (`CD_SOLIC_PEP`)
-    REFERENCES `GESTION_FACTORIA`.`THGE023_SOLIC_PEP` (`CD_SOLIC_PEP`)
+    REFERENCES `gestion_factoria`.`thge023_solic_pep` (`CD_SOLIC_PEP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0070693`
     FOREIGN KEY (`CD_RESP_PEP`)
-    REFERENCES `GESTION_FACTORIA`.`THGE069_RESP_PEP` (`CD_RESP_PEP`)
+    REFERENCES `gestion_factoria`.`thge069_resp_pep` (`CD_RESP_PEP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE016_PERF_USU`
+-- Table `gestion_factoria`.`thge016_perf_usu`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE016_PERF_USU` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge016_perf_usu` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE016_PERF_USU` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge016_perf_usu` (
   `CD_TIPO_PERFIL` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_PERFIL` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_TIPO_PERFIL`),
@@ -354,11 +354,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE011_USUARIO`
+-- Table `gestion_factoria`.`thge011_usuario`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE011_USUARIO` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge011_usuario` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE011_USUARIO` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge011_usuario` (
   `CD_USUARIO_CORP` VARCHAR(10) NOT NULL,
   `CD_CONTRASENA` VARCHAR(9) NULL,
   `CD_PERF_USU` INT(4) NOT NULL,
@@ -369,23 +369,23 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE011_USUARIO` (
   INDEX `R0110161_idx` (`CD_PERF_USU` ASC),
   CONSTRAINT `R0110161`
     FOREIGN KEY (`CD_PERF_USU`)
-    REFERENCES `GESTION_FACTORIA`.`THGE016_PERF_USU` (`CD_TIPO_PERFIL`)
+    REFERENCES `gestion_factoria`.`thge016_perf_usu` (`CD_TIPO_PERFIL`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0110052`
     FOREIGN KEY (`ST_USUARIO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE010_NIVEL`
+-- Table `gestion_factoria`.`thge010_nivel`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE010_NIVEL` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge010_nivel` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE010_NIVEL` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge010_nivel` (
   `CD_NIVEL` INT(4) NOT NULL,
   `NB_NIVEL` VARCHAR(50) NOT NULL,
   `CD_TIPO_NIVEL` INT(4) NOT NULL,
@@ -398,28 +398,28 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE010_NIVEL` (
   INDEX `R0100103_idx` (`CD_NIVEL_SUPERIOR` ASC),
   CONSTRAINT `R0100041`
     FOREIGN KEY (`CD_TIPO_NIVEL`)
-    REFERENCES `GESTION_FACTORIA`.`THGE004_TIPO_NIVEL` (`CD_TIPO_NIVEL`)
+    REFERENCES `gestion_factoria`.`thge004_tipo_nivel` (`CD_TIPO_NIVEL`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0100112`
     FOREIGN KEY (`CD_USUARIO_RESP`)
-    REFERENCES `GESTION_FACTORIA`.`THGE011_USUARIO` (`CD_USUARIO_CORP`)
+    REFERENCES `gestion_factoria`.`thge011_usuario` (`CD_USUARIO_CORP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0100103`
     FOREIGN KEY (`CD_NIVEL_SUPERIOR`)
-    REFERENCES `GESTION_FACTORIA`.`THGE010_NIVEL` (`CD_NIVEL`)
+    REFERENCES `gestion_factoria`.`thge010_nivel` (`CD_NIVEL`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE057_APLICACION`
+-- Table `gestion_factoria`.`thge057_aplicacion`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE057_APLICACION` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge057_aplicacion` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE057_APLICACION` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge057_aplicacion` (
   `CD_APLICACION` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_APLICACION` VARCHAR(50) NOT NULL,
   `CD_TECNOLOGIA` INT(4) NOT NULL,
@@ -429,18 +429,18 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE057_APLICACION` (
   INDEX `R0570021_idx` (`CD_TECNOLOGIA` ASC),
   CONSTRAINT `R0570021`
     FOREIGN KEY (`CD_TECNOLOGIA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE002_TECNOLOGIA` (`CD_TECNOLOGIA`)
+    REFERENCES `gestion_factoria`.`thge002_tecnologia` (`CD_TECNOLOGIA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE056_CANAL`
+-- Table `gestion_factoria`.`thge056_canal`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE056_CANAL` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge056_canal` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE056_CANAL` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge056_canal` (
   `CD_CANAL` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_CANAL` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`CD_CANAL`),
@@ -450,11 +450,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE013_PI`
+-- Table `gestion_factoria`.`thge013_pi`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE013_PI` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge013_pi` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE013_PI` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge013_pi` (
   `CD_PI` INT(9) NOT NULL AUTO_INCREMENT,
   `NB_PI` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_PI`))
@@ -462,11 +462,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE035_METODOLOGIA`
+-- Table `gestion_factoria`.`thge035_metodologia`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE035_METODOLOGIA` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge035_metodologia` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE035_METODOLOGIA` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge035_metodologia` (
   `CD_METODOLOGIA` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_METODOLOGIA` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_METODOLOGIA`),
@@ -475,11 +475,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE022_PROYECTO`
+-- Table `gestion_factoria`.`thge022_proyecto`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE022_PROYECTO` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge022_proyecto` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE022_PROYECTO` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge022_proyecto` (
   `CD_SDA` VARCHAR(15) NOT NULL,
   `CD_PI` INT(9) NULL,
   `CD_METODOLOGIA` INT(4) NULL,
@@ -490,23 +490,23 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE022_PROYECTO` (
   INDEX `R0220352_idx` (`CD_METODOLOGIA` ASC),
   CONSTRAINT `R0220131`
     FOREIGN KEY (`CD_PI`)
-    REFERENCES `GESTION_FACTORIA`.`THGE013_PI` (`CD_PI`)
+    REFERENCES `gestion_factoria`.`thge013_pi` (`CD_PI`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0220352`
     FOREIGN KEY (`CD_METODOLOGIA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE035_METODOLOGIA` (`CD_METODOLOGIA`)
+    REFERENCES `gestion_factoria`.`thge035_metodologia` (`CD_METODOLOGIA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE017_REQUERIM`
+-- Table `gestion_factoria`.`thge017_requerim`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE017_REQUERIM` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge017_requerim` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE017_REQUERIM` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge017_requerim` (
   `CD_REQUERIMIENTO` INT(9) NOT NULL AUTO_INCREMENT,
   `NB_REQUERIMIENTO` VARCHAR(120) NOT NULL,
   `NU_HORA_REQ` DECIMAL(6,2) NULL,
@@ -545,73 +545,73 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE017_REQUERIM` (
   INDEX `R0170229_idx1` (`CD_SDA` ASC),
   CONSTRAINT `R0170101`
     FOREIGN KEY (`CD_NIVEL`)
-    REFERENCES `GESTION_FACTORIA`.`THGE010_NIVEL` (`CD_NIVEL`)
+    REFERENCES `gestion_factoria`.`thge010_nivel` (`CD_NIVEL`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0170022`
     FOREIGN KEY (`CD_TECNOLOGIA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE002_TECNOLOGIA` (`CD_TECNOLOGIA`)
+    REFERENCES `gestion_factoria`.`thge002_tecnologia` (`CD_TECNOLOGIA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0170033`
     FOREIGN KEY (`CD_EMPRESA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE003_EMPRESA` (`CD_EMPRESA`)
+    REFERENCES `gestion_factoria`.`thge003_empresa` (`CD_EMPRESA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0170304`
     FOREIGN KEY (`CD_AREA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE030_AREA` (`CD_AREA`)
+    REFERENCES `gestion_factoria`.`thge030_area` (`CD_AREA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0170015`
     FOREIGN KEY (`CD_TIPO_SERVICIO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE001_TIPO_SERV` (`CD_TIPO_SERVICIO`)
+    REFERENCES `gestion_factoria`.`thge001_tipo_serv` (`CD_TIPO_SERVICIO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0170576`
     FOREIGN KEY (`CD_APLICACION`)
-    REFERENCES `GESTION_FACTORIA`.`THGE057_APLICACION` (`CD_APLICACION`)
+    REFERENCES `gestion_factoria`.`thge057_aplicacion` (`CD_APLICACION`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0170567`
     FOREIGN KEY (`CD_CANAL`)
-    REFERENCES `GESTION_FACTORIA`.`THGE056_CANAL` (`CD_CANAL`)
+    REFERENCES `gestion_factoria`.`thge056_canal` (`CD_CANAL`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0170138`
     FOREIGN KEY (`CD_PI`)
-    REFERENCES `GESTION_FACTORIA`.`THGE013_PI` (`CD_PI`)
+    REFERENCES `gestion_factoria`.`thge013_pi` (`CD_PI`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R01701110`
     FOREIGN KEY (`CD_USUARIO_RESP`)
-    REFERENCES `GESTION_FACTORIA`.`THGE011_USUARIO` (`CD_USUARIO_CORP`)
+    REFERENCES `gestion_factoria`.`thge011_usuario` (`CD_USUARIO_CORP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R01701111`
     FOREIGN KEY (`CD_USUARIO_GESTOR`)
-    REFERENCES `GESTION_FACTORIA`.`THGE011_USUARIO` (`CD_USUARIO_CORP`)
+    REFERENCES `gestion_factoria`.`thge011_usuario` (`CD_USUARIO_CORP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R01700512`
     FOREIGN KEY (`ST_REQUERIMIENTO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0170229`
     FOREIGN KEY (`CD_SDA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE022_PROYECTO` (`CD_SDA`)
+    REFERENCES `gestion_factoria`.`thge022_proyecto` (`CD_SDA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE009_COMPONENTE`
+-- Table `gestion_factoria`.`thge009_componente`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE009_COMPONENTE` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge009_componente` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE009_COMPONENTE` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge009_componente` (
   `CD_COMPONENTE` INT(12) NOT NULL AUTO_INCREMENT,
   `NB_COMPONENTE` VARCHAR(45) NOT NULL,
   `TX_VENTREGA` CHAR(9) NOT NULL,
@@ -639,38 +639,38 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE009_COMPONENTE` (
   INDEX `R0090055_idx` (`ST_COMPONENTE` ASC),
   CONSTRAINT `R0090171`
     FOREIGN KEY (`CD_REQUERIMIENTO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE017_REQUERIM` (`CD_REQUERIMIENTO`)
+    REFERENCES `gestion_factoria`.`thge017_requerim` (`CD_REQUERIMIENTO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0090062`
     FOREIGN KEY (`CD_TIPOLOGIA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE006_TIPOLOGIA` (`CD_TIPOLOGIA`)
+    REFERENCES `gestion_factoria`.`thge006_tipologia` (`CD_TIPOLOGIA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0090063`
     FOREIGN KEY (`CD_TIPOLOGIA_EMP`)
-    REFERENCES `GESTION_FACTORIA`.`THGE006_TIPOLOGIA` (`CD_TIPOLOGIA`)
+    REFERENCES `gestion_factoria`.`thge006_tipologia` (`CD_TIPOLOGIA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0090054`
     FOREIGN KEY (`ST_TIPIFICACION`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0090055`
     FOREIGN KEY (`ST_COMPONENTE`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE012_TRASPASO`
+-- Table `gestion_factoria`.`thge012_traspaso`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE012_TRASPASO` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge012_traspaso` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE012_TRASPASO` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge012_traspaso` (
   `CD_TRASPASO` INT(12) NOT NULL AUTO_INCREMENT,
   `FH_TRASPASO` DATE NOT NULL,
   `FH_RETIRO` DATE NULL,
@@ -686,28 +686,28 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE012_TRASPASO` (
   INDEX `R0120113_idx` (`CD_USU_RESP_DYD` ASC),
   CONSTRAINT `R0120071`
     FOREIGN KEY (`CD_PEP`)
-    REFERENCES `GESTION_FACTORIA`.`THGE007_PEP` (`CD_PEP`)
+    REFERENCES `gestion_factoria`.`thge007_pep` (`CD_PEP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0120102`
     FOREIGN KEY (`CD_NIVEL_SUBDIR`)
-    REFERENCES `GESTION_FACTORIA`.`THGE010_NIVEL` (`CD_NIVEL`)
+    REFERENCES `gestion_factoria`.`thge010_nivel` (`CD_NIVEL`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0120113`
     FOREIGN KEY (`CD_USU_RESP_DYD`)
-    REFERENCES `GESTION_FACTORIA`.`THGE011_USUARIO` (`CD_USUARIO_CORP`)
+    REFERENCES `gestion_factoria`.`thge011_usuario` (`CD_USUARIO_CORP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE014_PAIS`
+-- Table `gestion_factoria`.`thge014_pais`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE014_PAIS` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge014_pais` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE014_PAIS` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge014_pais` (
   `CD_PAIS` INT(9) NOT NULL AUTO_INCREMENT,
   `NB_PAIS` VARCHAR(50) NOT NULL,
   `NB_NACIONALIDAD` VARCHAR(50) NOT NULL,
@@ -716,11 +716,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE015_PRIORIDAD`
+-- Table `gestion_factoria`.`thge015_prioridad`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE015_PRIORIDAD` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge015_prioridad` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE015_PRIORIDAD` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge015_prioridad` (
   `CD_PRIORIDAD` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_PRIORIDAD` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_PRIORIDAD`),
@@ -729,24 +729,24 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE019_ORIGEN`
+-- Table `gestion_factoria`.`thge019_origen`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE019_ORIGEN` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge019_origen` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE019_ORIGEN` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge019_origen` (
   `CD_ORIGEN` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_ORIGEN` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`CD_ORIGEN`),
-  UNIQUE INDEX `THGE019_ORIGENcol_UNIQUE` (`NB_ORIGEN` ASC))
+  UNIQUE INDEX `thge019_origencol_UNIQUE` (`NB_ORIGEN` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE020_CLASIF_REC`
+-- Table `gestion_factoria`.`thge020_clasif_rec`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE020_CLASIF_REC` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge020_clasif_rec` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE020_CLASIF_REC` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge020_clasif_rec` (
   `CD_CLASIF_REC` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_CLASIF_REC` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`CD_CLASIF_REC`),
@@ -755,11 +755,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE021_SBCLAS_REC`
+-- Table `gestion_factoria`.`thge021_sbclas_rec`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE021_SBCLAS_REC` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge021_sbclas_rec` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE021_SBCLAS_REC` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge021_sbclas_rec` (
   `CD_SBCLAS_REC` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_SBCLAS_REC` VARCHAR(45) NOT NULL,
   `CD_CLASIF_REC` INT(4) NOT NULL,
@@ -767,18 +767,18 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE021_SBCLAS_REC` (
   INDEX `R0210201_idx` (`CD_CLASIF_REC` ASC),
   CONSTRAINT `R0210201`
     FOREIGN KEY (`CD_CLASIF_REC`)
-    REFERENCES `GESTION_FACTORIA`.`THGE020_CLASIF_REC` (`CD_CLASIF_REC`)
+    REFERENCES `gestion_factoria`.`thge020_clasif_rec` (`CD_CLASIF_REC`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE025_SEDE`
+-- Table `gestion_factoria`.`thge025_sede`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE025_SEDE` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge025_sede` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE025_SEDE` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge025_sede` (
   `CD_SEDE` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_SEDE` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_SEDE`),
@@ -787,11 +787,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE066_TP_PROY`
+-- Table `gestion_factoria`.`thge066_tp_proy`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE066_TP_PROY` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge066_tp_proy` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE066_TP_PROY` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge066_tp_proy` (
   `CD_TP_PROYECTO` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_TP_PROYECTO` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_TP_PROYECTO`),
@@ -800,11 +800,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE067_ESQ_PAGO`
+-- Table `gestion_factoria`.`thge067_esq_pago`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE067_ESQ_PAGO` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge067_esq_pago` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE067_ESQ_PAGO` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge067_esq_pago` (
   `CD_ESQUEMA_PAGO` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_ESQ_PAGO` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_ESQUEMA_PAGO`),
@@ -813,11 +813,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE064_TP_IDENTIF`
+-- Table `gestion_factoria`.`thge064_tp_identif`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE064_TP_IDENTIF` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge064_tp_identif` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE064_TP_IDENTIF` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge064_tp_identif` (
   `CD_IDENTIFICACION` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_IDENTIFICACION` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_IDENTIFICACION`),
@@ -826,11 +826,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE024_CTRL_EXT`
+-- Table `gestion_factoria`.`thge024_ctrl_ext`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE024_CTRL_EXT` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge024_ctrl_ext` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE024_CTRL_EXT` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge024_ctrl_ext` (
   `CD_EXTERNO_CORP` VARCHAR(10) NOT NULL,
   `NB_REC_EXTERNO` VARCHAR(50) NOT NULL,
   `NB_APELL_PAT` VARCHAR(30) NOT NULL,
@@ -884,78 +884,78 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE024_CTRL_EXT` (
   INDEX `R0240655_idx` (`CD_PROYECTO_AG` ASC),
   CONSTRAINT `R0240141`
     FOREIGN KEY (`CD_PAIS`)
-    REFERENCES `GESTION_FACTORIA`.`THGE014_PAIS` (`CD_PAIS`)
+    REFERENCES `gestion_factoria`.`thge014_pais` (`CD_PAIS`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0240052`
     FOREIGN KEY (`ST_REC_EXT`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0240163`
     FOREIGN KEY (`CD_PERFIL_REC`)
-    REFERENCES `GESTION_FACTORIA`.`THGE016_PERF_USU` (`CD_TIPO_PERFIL`)
+    REFERENCES `gestion_factoria`.`thge016_perf_usu` (`CD_TIPO_PERFIL`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0240214`
     FOREIGN KEY (`CD_SBCLAS_REC`)
-    REFERENCES `GESTION_FACTORIA`.`THGE021_SBCLAS_REC` (`CD_SBCLAS_REC`)
+    REFERENCES `gestion_factoria`.`thge021_sbclas_rec` (`CD_SBCLAS_REC`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0240115`
     FOREIGN KEY (`CD_USUARIO_GESTOR`)
-    REFERENCES `GESTION_FACTORIA`.`THGE011_USUARIO` (`CD_USUARIO_CORP`)
+    REFERENCES `gestion_factoria`.`thge011_usuario` (`CD_USUARIO_CORP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0240037`
     FOREIGN KEY (`CD_EMPRESA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE003_EMPRESA` (`CD_EMPRESA`)
+    REFERENCES `gestion_factoria`.`thge003_empresa` (`CD_EMPRESA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0240308`
     FOREIGN KEY (`CD_AREA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE030_AREA` (`CD_AREA`)
+    REFERENCES `gestion_factoria`.`thge030_area` (`CD_AREA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0240119`
     FOREIGN KEY (`CD_USUARIO_RESP`)
-    REFERENCES `GESTION_FACTORIA`.`THGE011_USUARIO` (`CD_USUARIO_CORP`)
+    REFERENCES `gestion_factoria`.`thge011_usuario` (`CD_USUARIO_CORP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R02402510`
     FOREIGN KEY (`CD_SEDE`)
-    REFERENCES `GESTION_FACTORIA`.`THGE025_SEDE` (`CD_SEDE`)
+    REFERENCES `gestion_factoria`.`thge025_sede` (`CD_SEDE`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0240666`
     FOREIGN KEY (`CD_TP_PROYECTO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE066_TP_PROY` (`CD_TP_PROYECTO`)
+    REFERENCES `gestion_factoria`.`thge066_tp_proy` (`CD_TP_PROYECTO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0240677`
     FOREIGN KEY (`CD_ESQUEMA_PAGO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE067_ESQ_PAGO` (`CD_ESQUEMA_PAGO`)
+    REFERENCES `gestion_factoria`.`thge067_esq_pago` (`CD_ESQUEMA_PAGO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0240643`
     FOREIGN KEY (`TP_IDENTIF`)
-    REFERENCES `GESTION_FACTORIA`.`THGE064_TP_IDENTIF` (`CD_IDENTIFICACION`)
+    REFERENCES `gestion_factoria`.`thge064_tp_identif` (`CD_IDENTIFICACION`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0240655`
     FOREIGN KEY (`CD_PROYECTO_AG`)
-    REFERENCES `GESTION_FACTORIA`.`THGE066_TP_PROY` (`CD_TP_PROYECTO`)
+    REFERENCES `gestion_factoria`.`thge066_tp_proy` (`CD_TP_PROYECTO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE026_MODIF`
+-- Table `gestion_factoria`.`thge026_modif`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE026_MODIF` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge026_modif` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE026_MODIF` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge026_modif` (
   `CD_MODIFICACION` INT(9) NOT NULL AUTO_INCREMENT,
   `TX_MOD_EN_VUELO` CHAR(2) NOT NULL,
   `TX_MOD_RZDA_DYD` CHAR(2) NOT NULL,
@@ -993,58 +993,58 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE026_MODIF` (
   INDEX `R0260034_idx` (`CD_TIPOLOGIA_EMP` ASC),
   CONSTRAINT `R0260091`
     FOREIGN KEY (`CD_COMPONENTE`)
-    REFERENCES `GESTION_FACTORIA`.`THGE009_COMPONENTE` (`CD_COMPONENTE`)
+    REFERENCES `gestion_factoria`.`thge009_componente` (`CD_COMPONENTE`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0260052`
     FOREIGN KEY (`ST_MODIFICACION`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0260053`
     FOREIGN KEY (`ST_TIPIF`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0260154`
     FOREIGN KEY (`CD_PRIORIDAD_USU`)
-    REFERENCES `GESTION_FACTORIA`.`THGE015_PRIORIDAD` (`CD_PRIORIDAD`)
+    REFERENCES `gestion_factoria`.`thge015_prioridad` (`CD_PRIORIDAD`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0260196`
     FOREIGN KEY (`CD_ORIGEN`)
-    REFERENCES `GESTION_FACTORIA`.`THGE019_ORIGEN` (`CD_ORIGEN`)
+    REFERENCES `gestion_factoria`.`thge019_origen` (`CD_ORIGEN`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0260117`
     FOREIGN KEY (`CD_RESP_RESOL`)
-    REFERENCES `GESTION_FACTORIA`.`THGE011_USUARIO` (`CD_USUARIO_CORP`)
+    REFERENCES `gestion_factoria`.`thge011_usuario` (`CD_USUARIO_CORP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0260115`
     FOREIGN KEY (`CD_USU_PETICION`)
-    REFERENCES `GESTION_FACTORIA`.`THGE011_USUARIO` (`CD_USUARIO_CORP`)
+    REFERENCES `gestion_factoria`.`thge011_usuario` (`CD_USUARIO_CORP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0260063`
     FOREIGN KEY (`CD_TIPOLOGIA_INI`)
-    REFERENCES `GESTION_FACTORIA`.`THGE006_TIPOLOGIA` (`CD_TIPOLOGIA`)
+    REFERENCES `gestion_factoria`.`thge006_tipologia` (`CD_TIPOLOGIA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0260034`
     FOREIGN KEY (`CD_TIPOLOGIA_EMP`)
-    REFERENCES `GESTION_FACTORIA`.`THGE006_TIPOLOGIA` (`CD_TIPOLOGIA`)
+    REFERENCES `gestion_factoria`.`thge006_tipologia` (`CD_TIPOLOGIA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE028_TIPO_DUDA`
+-- Table `gestion_factoria`.`thge028_tipo_duda`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE028_TIPO_DUDA` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge028_tipo_duda` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE028_TIPO_DUDA` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge028_tipo_duda` (
   `CD_TIPO_DUDA` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_TIPO_DUDA` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`CD_TIPO_DUDA`),
@@ -1053,11 +1053,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE027_DUDA`
+-- Table `gestion_factoria`.`thge027_duda`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE027_DUDA` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge027_duda` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE027_DUDA` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge027_duda` (
   `CD_DUDA` INT(9) NOT NULL AUTO_INCREMENT,
   `FH_ALTA` TIMESTAMP(0) NOT NULL,
   `TX_VENTREGA` CHAR(9) NOT NULL,
@@ -1081,43 +1081,43 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE027_DUDA` (
   INDEX `R0270116_idx` (`CD_USU_RESP` ASC),
   CONSTRAINT `R0270091`
     FOREIGN KEY (`CD_COMPONENTE`)
-    REFERENCES `GESTION_FACTORIA`.`THGE009_COMPONENTE` (`CD_COMPONENTE`)
+    REFERENCES `gestion_factoria`.`thge009_componente` (`CD_COMPONENTE`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0270052`
     FOREIGN KEY (`ST_DUDA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0270153`
     FOREIGN KEY (`CD_PRIORIDAD`)
-    REFERENCES `GESTION_FACTORIA`.`THGE015_PRIORIDAD` (`CD_PRIORIDAD`)
+    REFERENCES `gestion_factoria`.`thge015_prioridad` (`CD_PRIORIDAD`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0270284`
     FOREIGN KEY (`CD_TIPO_DUDA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE028_TIPO_DUDA` (`CD_TIPO_DUDA`)
+    REFERENCES `gestion_factoria`.`thge028_tipo_duda` (`CD_TIPO_DUDA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0270115`
     FOREIGN KEY (`CD_USU_PETICION`)
-    REFERENCES `GESTION_FACTORIA`.`THGE011_USUARIO` (`CD_USUARIO_CORP`)
+    REFERENCES `gestion_factoria`.`thge011_usuario` (`CD_USUARIO_CORP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0270116`
     FOREIGN KEY (`CD_USU_RESP`)
-    REFERENCES `GESTION_FACTORIA`.`THGE011_USUARIO` (`CD_USUARIO_CORP`)
+    REFERENCES `gestion_factoria`.`thge011_usuario` (`CD_USUARIO_CORP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE029_INCIDENCIA`
+-- Table `gestion_factoria`.`thge029_incidencia`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE029_INCIDENCIA` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge029_incidencia` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE029_INCIDENCIA` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge029_incidencia` (
   `CD_INCIDENCIA` INT(9) NOT NULL AUTO_INCREMENT,
   `FH_ALTA` TIMESTAMP(0) NOT NULL,
   `NB_DESC_INC_HIST` VARCHAR(1200) NOT NULL,
@@ -1139,38 +1139,38 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE029_INCIDENCIA` (
   INDEX `R0290195_idx` (`CD_ORIGEN` ASC),
   CONSTRAINT `R0290091`
     FOREIGN KEY (`CD_COMPONENTE`)
-    REFERENCES `GESTION_FACTORIA`.`THGE009_COMPONENTE` (`CD_COMPONENTE`)
+    REFERENCES `gestion_factoria`.`thge009_componente` (`CD_COMPONENTE`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0290052`
     FOREIGN KEY (`ST_INCIDENCIA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0290153`
     FOREIGN KEY (`CD_PRIORIDAD`)
-    REFERENCES `GESTION_FACTORIA`.`THGE015_PRIORIDAD` (`CD_PRIORIDAD`)
+    REFERENCES `gestion_factoria`.`thge015_prioridad` (`CD_PRIORIDAD`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0290114`
     FOREIGN KEY (`CD_USU_PETICION`)
-    REFERENCES `GESTION_FACTORIA`.`THGE011_USUARIO` (`CD_USUARIO_CORP`)
+    REFERENCES `gestion_factoria`.`thge011_usuario` (`CD_USUARIO_CORP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0290195`
     FOREIGN KEY (`CD_ORIGEN`)
-    REFERENCES `GESTION_FACTORIA`.`THGE019_ORIGEN` (`CD_ORIGEN`)
+    REFERENCES `gestion_factoria`.`thge019_origen` (`CD_ORIGEN`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE031_TARIFA`
+-- Table `gestion_factoria`.`thge031_tarifa`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE031_TARIFA` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge031_tarifa` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE031_TARIFA` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge031_tarifa` (
   `CD_TARIFA` INT(4) NOT NULL AUTO_INCREMENT,
   `IM_TARIFA` DOUBLE NOT NULL,
   `NU_ANO_TARIFA` INT(4) NOT NULL,
@@ -1185,33 +1185,33 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE031_TARIFA` (
   INDEX `R0310054_idx` (`ST_TARIFA` ASC),
   CONSTRAINT `R0310031`
     FOREIGN KEY (`CD_EMPRESA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE003_EMPRESA` (`CD_EMPRESA`)
+    REFERENCES `gestion_factoria`.`thge003_empresa` (`CD_EMPRESA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0310022`
     FOREIGN KEY (`CD_TECNOLOGIA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE002_TECNOLOGIA` (`CD_TECNOLOGIA`)
+    REFERENCES `gestion_factoria`.`thge002_tecnologia` (`CD_TECNOLOGIA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0310303`
     FOREIGN KEY (`CD_AREA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE030_AREA` (`CD_AREA`)
+    REFERENCES `gestion_factoria`.`thge030_area` (`CD_AREA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0310054`
     FOREIGN KEY (`ST_TARIFA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE032_TIPO_CONT`
+-- Table `gestion_factoria`.`thge032_tipo_cont`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE032_TIPO_CONT` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge032_tipo_cont` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE032_TIPO_CONT` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge032_tipo_cont` (
   `CD_TIPO_CONTRATO` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_TIPO_CONTRATO` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_TIPO_CONTRATO`),
@@ -1220,11 +1220,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE033_TIPO_ASIG`
+-- Table `gestion_factoria`.`thge033_tipo_asig`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE033_TIPO_ASIG` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge033_tipo_asig` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE033_TIPO_ASIG` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge033_tipo_asig` (
   `CD_TIPO_ASIG` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_TIPO_ASIG` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_TIPO_ASIG`),
@@ -1233,11 +1233,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE036_CONTRATO`
+-- Table `gestion_factoria`.`thge036_contrato`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE036_CONTRATO` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge036_contrato` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE036_CONTRATO` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge036_contrato` (
   `CD_CONTRATO` INT(4) NOT NULL AUTO_INCREMENT,
   `NU_POSICION` INT(4) NULL,
   `NU_ANO_CONTRATO` INT(4) NOT NULL,
@@ -1258,43 +1258,43 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE036_CONTRATO` (
   UNIQUE INDEX `CD_NATURALEZA_UNIQUE` (`CD_NATURALEZA` ASC),
   CONSTRAINT `R0360031`
     FOREIGN KEY (`CD_EMPRESA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE003_EMPRESA` (`CD_EMPRESA`)
+    REFERENCES `gestion_factoria`.`thge003_empresa` (`CD_EMPRESA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0360302`
     FOREIGN KEY (`CD_AREA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE030_AREA` (`CD_AREA`)
+    REFERENCES `gestion_factoria`.`thge030_area` (`CD_AREA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0360373`
     FOREIGN KEY (`CD_ENTIDAD`)
-    REFERENCES `GESTION_FACTORIA`.`THGE037_ENTIDAD` (`CD_ENTIDAD`)
+    REFERENCES `gestion_factoria`.`thge037_entidad` (`CD_ENTIDAD`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0360384`
     FOREIGN KEY (`CD_NATURALEZA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE038_NATURALEZA` (`CD_NATURALEZA`)
+    REFERENCES `gestion_factoria`.`thge038_naturaleza` (`CD_NATURALEZA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0360025`
     FOREIGN KEY (`CD_TECNOLOGIA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE002_TECNOLOGIA` (`CD_TECNOLOGIA`)
+    REFERENCES `gestion_factoria`.`thge002_tecnologia` (`CD_TECNOLOGIA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0360056`
     FOREIGN KEY (`ST_CONTRATO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE040_PEP_REQ`
+-- Table `gestion_factoria`.`thge040_pep_req`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE040_PEP_REQ` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge040_pep_req` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE040_PEP_REQ` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge040_pep_req` (
   `CD_PEP_REQ` INT(12) NOT NULL AUTO_INCREMENT,
   `IM_PEP` DOUBLE NULL,
   `HM_PEP` DOUBLE NULL,
@@ -1307,23 +1307,23 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE040_PEP_REQ` (
   INDEX `R0400172_idx` (`CD_REQUERIMIENTO` ASC),
   CONSTRAINT `R0400071`
     FOREIGN KEY (`CD_PEP`)
-    REFERENCES `GESTION_FACTORIA`.`THGE007_PEP` (`CD_PEP`)
+    REFERENCES `gestion_factoria`.`thge007_pep` (`CD_PEP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0400172`
     FOREIGN KEY (`CD_REQUERIMIENTO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE017_REQUERIM` (`CD_REQUERIMIENTO`)
+    REFERENCES `gestion_factoria`.`thge017_requerim` (`CD_REQUERIMIENTO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE039_FACTURA`
+-- Table `gestion_factoria`.`thge039_factura`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE039_FACTURA` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge039_factura` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE039_FACTURA` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge039_factura` (
   `CD_FACTURA` INT(4) NOT NULL AUTO_INCREMENT,
   `FH_CORTE` DATE NOT NULL,
   `IM_TARIFA` DOUBLE NOT NULL,
@@ -1356,38 +1356,38 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE039_FACTURA` (
   INDEX `R0390055_idx` (`ST_FACT_HRS_PROY` ASC),
   CONSTRAINT `R0390171`
     FOREIGN KEY (`CD_REQUERIMIENTO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE017_REQUERIM` (`CD_REQUERIMIENTO`)
+    REFERENCES `gestion_factoria`.`thge017_requerim` (`CD_REQUERIMIENTO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0390402`
     FOREIGN KEY (`CD_PEP_REQ`)
-    REFERENCES `GESTION_FACTORIA`.`THGE040_PEP_REQ` (`CD_PEP_REQ`)
+    REFERENCES `gestion_factoria`.`thge040_pep_req` (`CD_PEP_REQ`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0390053`
     FOREIGN KEY (`ST_PEP_FACT`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0390054`
     FOREIGN KEY (`ST_PAGO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0390055`
     FOREIGN KEY (`ST_FACT_HRS_PROY`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE041_SEG_PAGO`
+-- Table `gestion_factoria`.`thge041_seg_pago`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE041_SEG_PAGO` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge041_seg_pago` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE041_SEG_PAGO` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge041_seg_pago` (
   `CD_SEG_PAGO` CHAR(10) NOT NULL,
   `NU_POS_SOL_PEDIDO` INT(4) NULL,
   `NU_PEDIDO` CHAR(10) NULL,
@@ -1398,22 +1398,22 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE041_SEG_PAGO` (
   `FH_AVISO_PROV` DATE NULL,
   `CD_FACTURA` INT(4) NOT NULL,
   PRIMARY KEY (`CD_SEG_PAGO`),
-  UNIQUE INDEX `THGE041_SEG_PAGOcol_UNIQUE` (`CD_SEG_PAGO` ASC),
+  UNIQUE INDEX `thge041_seg_pagocol_UNIQUE` (`CD_SEG_PAGO` ASC),
   INDEX `R0410391_idx` (`CD_FACTURA` ASC),
   CONSTRAINT `R0410391`
     FOREIGN KEY (`CD_FACTURA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE039_FACTURA` (`CD_FACTURA`)
+    REFERENCES `gestion_factoria`.`thge039_factura` (`CD_FACTURA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE043_CRITICIDAD`
+-- Table `gestion_factoria`.`thge043_criticidad`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE043_CRITICIDAD` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge043_criticidad` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE043_CRITICIDAD` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge043_criticidad` (
   `CD_CRITICIDAD` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_CRITICIDAD` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`CD_CRITICIDAD`),
@@ -1422,11 +1422,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE042_T926`
+-- Table `gestion_factoria`.`thge042_t926`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE042_T926` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge042_t926` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE042_T926` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge042_t926` (
   `CD_T926` INT(12) NOT NULL AUTO_INCREMENT,
   `CD_FUNCION` VARCHAR(5) NOT NULL,
   `NB_FUNCION` VARCHAR(120) NOT NULL,
@@ -1440,23 +1440,23 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE042_T926` (
   INDEX `R0420432_idx` (`CD_CRITICIDAD` ASC),
   CONSTRAINT `R0420171`
     FOREIGN KEY (`CD_REQUERIMIENTO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE017_REQUERIM` (`CD_REQUERIMIENTO`)
+    REFERENCES `gestion_factoria`.`thge017_requerim` (`CD_REQUERIMIENTO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0420432`
     FOREIGN KEY (`CD_CRITICIDAD`)
-    REFERENCES `GESTION_FACTORIA`.`THGE043_CRITICIDAD` (`CD_CRITICIDAD`)
+    REFERENCES `gestion_factoria`.`thge043_criticidad` (`CD_CRITICIDAD`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE045_PRIORIDAD_CP`
+-- Table `gestion_factoria`.`thge045_prioridad_cp`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE045_PRIORIDAD_CP` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge045_prioridad_cp` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE045_PRIORIDAD_CP` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge045_prioridad_cp` (
   `CD_PRIORIDAD_CP` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_PRIORIDAD_CP` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_PRIORIDAD_CP`),
@@ -1465,11 +1465,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE046_CAT_CASO`
+-- Table `gestion_factoria`.`thge046_cat_caso`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE046_CAT_CASO` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge046_cat_caso` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE046_CAT_CASO` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge046_cat_caso` (
   `CD_CATEGORIA_CASO` INT NOT NULL AUTO_INCREMENT,
   `NB_CATEGORIA_CASO` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`CD_CATEGORIA_CASO`),
@@ -1478,11 +1478,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE047_RESULT_OBT`
+-- Table `gestion_factoria`.`thge047_result_obt`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE047_RESULT_OBT` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge047_result_obt` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE047_RESULT_OBT` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge047_result_obt` (
   `CD_RESUL_OBTENIDO` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_RESUL_ONTENIDO` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_RESUL_OBTENIDO`),
@@ -1491,11 +1491,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE044_C204`
+-- Table `gestion_factoria`.`thge044_c204`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE044_C204` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge044_c204` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE044_C204` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge044_c204` (
   `CD_C204` INT(12) NOT NULL AUTO_INCREMENT,
   `CD_CASO_PRUEBA` VARCHAR(12) NOT NULL,
   `TX_COND_DTO_ENTR` VARCHAR(200) NULL,
@@ -1513,33 +1513,33 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE044_C204` (
   INDEX `R0440424_idx` (`CD_T926` ASC),
   CONSTRAINT `R0440451`
     FOREIGN KEY (`CD_PRIORIDAD_CP`)
-    REFERENCES `GESTION_FACTORIA`.`THGE045_PRIORIDAD_CP` (`CD_PRIORIDAD_CP`)
+    REFERENCES `gestion_factoria`.`thge045_prioridad_cp` (`CD_PRIORIDAD_CP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0440462`
     FOREIGN KEY (`CD_CATEGORIA_CASO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE046_CAT_CASO` (`CD_CATEGORIA_CASO`)
+    REFERENCES `gestion_factoria`.`thge046_cat_caso` (`CD_CATEGORIA_CASO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0440473`
     FOREIGN KEY (`CD_RESUL_OBTENIDO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE047_RESULT_OBT` (`CD_RESUL_OBTENIDO`)
+    REFERENCES `gestion_factoria`.`thge047_result_obt` (`CD_RESUL_OBTENIDO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0440424`
     FOREIGN KEY (`CD_T926`)
-    REFERENCES `GESTION_FACTORIA`.`THGE042_T926` (`CD_T926`)
+    REFERENCES `gestion_factoria`.`thge042_t926` (`CD_T926`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE049_ENTORNO`
+-- Table `gestion_factoria`.`thge049_entorno`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE049_ENTORNO` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge049_entorno` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE049_ENTORNO` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge049_entorno` (
   `CD_ENTORNO` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_ENTORNO` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_ENTORNO`),
@@ -1548,11 +1548,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE050_SEVERIDAD`
+-- Table `gestion_factoria`.`thge050_severidad`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE050_SEVERIDAD` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge050_severidad` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE050_SEVERIDAD` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge050_severidad` (
   `CD_SEVERIDAD` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_SEVERIDAD` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_SEVERIDAD`),
@@ -1561,11 +1561,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE051_AC_RES_COR`
+-- Table `gestion_factoria`.`thge051_ac_res_cor`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE051_AC_RES_COR` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge051_ac_res_cor` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE051_AC_RES_COR` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge051_ac_res_cor` (
   `CD_ACEPTA_RES_COR` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_ACEPTA_RES_COR` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_ACEPTA_RES_COR`),
@@ -1575,11 +1575,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE052_CAUSA_RECH`
+-- Table `gestion_factoria`.`thge052_causa_rech`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE052_CAUSA_RECH` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge052_causa_rech` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE052_CAUSA_RECH` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge052_causa_rech` (
   `CD_CAUSA_RECHAZO` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_CAUSA_RECHAZO` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`CD_CAUSA_RECHAZO`),
@@ -1589,11 +1589,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE048_T955`
+-- Table `gestion_factoria`.`thge048_t955`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE048_T955` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge048_t955` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE048_T955` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge048_t955` (
   `CD_DEFECTO` INT(12) NOT NULL,
   `CD_REQUERIMIENTO` INT(12) NOT NULL,
   `TX_NIVEL_PBA` VARCHAR(50) NOT NULL,
@@ -1630,58 +1630,58 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE048_T955` (
   INDEX `R04800511_idx` (`CD_EDO_DEFECTO` ASC),
   CONSTRAINT `R0480171`
     FOREIGN KEY (`CD_REQUERIMIENTO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE017_REQUERIM` (`CD_REQUERIMIENTO`)
+    REFERENCES `gestion_factoria`.`thge017_requerim` (`CD_REQUERIMIENTO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0480492`
     FOREIGN KEY (`CD_ENTORNO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE049_ENTORNO` (`CD_ENTORNO`)
+    REFERENCES `gestion_factoria`.`thge049_entorno` (`CD_ENTORNO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0480113`
     FOREIGN KEY (`CD_USUARIO_RESP`)
-    REFERENCES `GESTION_FACTORIA`.`THGE011_USUARIO` (`CD_USUARIO_CORP`)
+    REFERENCES `gestion_factoria`.`thge011_usuario` (`CD_USUARIO_CORP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0480424`
     FOREIGN KEY (`CD_T926`)
-    REFERENCES `GESTION_FACTORIA`.`THGE042_T926` (`CD_T926`)
+    REFERENCES `gestion_factoria`.`thge042_t926` (`CD_T926`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0480505`
     FOREIGN KEY (`CD_SEVERIDAD`)
-    REFERENCES `GESTION_FACTORIA`.`THGE050_SEVERIDAD` (`CD_SEVERIDAD`)
+    REFERENCES `gestion_factoria`.`thge050_severidad` (`CD_SEVERIDAD`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0480446`
     FOREIGN KEY (`CD_C204`)
-    REFERENCES `GESTION_FACTORIA`.`THGE044_C204` (`CD_C204`)
+    REFERENCES `gestion_factoria`.`thge044_c204` (`CD_C204`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0480517`
     FOREIGN KEY (`CD_ACEPTA_RES_COR`)
-    REFERENCES `GESTION_FACTORIA`.`THGE051_AC_RES_COR` (`CD_ACEPTA_RES_COR`)
+    REFERENCES `gestion_factoria`.`thge051_ac_res_cor` (`CD_ACEPTA_RES_COR`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0480528`
     FOREIGN KEY (`CD_CAUSA_RECHAZO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE052_CAUSA_RECH` (`CD_CAUSA_RECHAZO`)
+    REFERENCES `gestion_factoria`.`thge052_causa_rech` (`CD_CAUSA_RECHAZO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R04800511`
     FOREIGN KEY (`CD_EDO_DEFECTO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE053_CAUSA_CIER`
+-- Table `gestion_factoria`.`thge053_causa_cier`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE053_CAUSA_CIER` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge053_causa_cier` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE053_CAUSA_CIER` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge053_causa_cier` (
   `CD_CAUSA_CIERRE` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_CAUSA_CIERRE` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_CAUSA_CIERRE`),
@@ -1691,11 +1691,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE054_RES_VERIF`
+-- Table `gestion_factoria`.`thge054_res_verif`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE054_RES_VERIF` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge054_res_verif` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE054_RES_VERIF` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge054_res_verif` (
   `CD_RESULT_VERIF` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_RESULT_VERIF` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_RESULT_VERIF`),
@@ -1705,11 +1705,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE055_CTA_OPER`
+-- Table `gestion_factoria`.`thge055_cta_oper`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE055_CTA_OPER` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge055_cta_oper` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE055_CTA_OPER` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge055_cta_oper` (
   `CD_CTA_OPER` INT(4) NOT NULL AUTO_INCREMENT,
   `NU_CTA_OPERATIVA` CHAR(8) NOT NULL,
   PRIMARY KEY (`CD_CTA_OPER`),
@@ -1719,11 +1719,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE058_CTRL_ACC`
+-- Table `gestion_factoria`.`thge058_ctrl_acc`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE058_CTRL_ACC` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge058_ctrl_acc` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE058_CTRL_ACC` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge058_ctrl_acc` (
   `CD_ACCESO` INT(9) NOT NULL AUTO_INCREMENT,
   `CD_EXTERNO` INT(9) NOT NULL,
   `FH_VIG_ACC_LOG` DATE NOT NULL,
@@ -1736,23 +1736,23 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE058_CTRL_ACC` (
   INDEX `R0580052_idx` (`ST_ACCESO_LOG` ASC),
   CONSTRAINT `R0580251`
     FOREIGN KEY (`CD_SEDE`)
-    REFERENCES `GESTION_FACTORIA`.`THGE025_SEDE` (`CD_SEDE`)
+    REFERENCES `gestion_factoria`.`thge025_sede` (`CD_SEDE`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0580052`
     FOREIGN KEY (`ST_ACCESO_LOG`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE062_EVAL_SERV`
+-- Table `gestion_factoria`.`thge062_eval_serv`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE062_EVAL_SERV` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge062_eval_serv` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE062_EVAL_SERV` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge062_eval_serv` (
   `FH_INICIO` DATE NOT NULL,
   `FH_FIN` DATE NOT NULL,
   `TO_CALIF` VARCHAR(45) NOT NULL,
@@ -1762,23 +1762,23 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE062_EVAL_SERV` (
   INDEX `R0620022_idx` (`CD_TECNOLOGIA` ASC),
   CONSTRAINT `R0620031`
     FOREIGN KEY (`CD_EMPRESA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE003_EMPRESA` (`CD_EMPRESA`)
+    REFERENCES `gestion_factoria`.`thge003_empresa` (`CD_EMPRESA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0620022`
     FOREIGN KEY (`CD_TECNOLOGIA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE002_TECNOLOGIA` (`CD_TECNOLOGIA`)
+    REFERENCES `gestion_factoria`.`thge002_tecnologia` (`CD_TECNOLOGIA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE060_TP_METRICA`
+-- Table `gestion_factoria`.`thge060_tp_metrica`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE060_TP_METRICA` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge060_tp_metrica` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE060_TP_METRICA` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge060_tp_metrica` (
   `CD_TP_METRICA` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_TP_METRICA` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`CD_TP_METRICA`),
@@ -1787,11 +1787,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE061_METRICA`
+-- Table `gestion_factoria`.`thge061_metrica`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE061_METRICA` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge061_metrica` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE061_METRICA` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge061_metrica` (
   `CD_METRICA` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_METRICA` VARCHAR(50) NOT NULL,
   `FA_LMT_INF` FLOAT NULL,
@@ -1803,18 +1803,18 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE061_METRICA` (
   INDEX `R0610601_idx` (`CD_TP_METRICA` ASC),
   CONSTRAINT `R0610601`
     FOREIGN KEY (`CD_TP_METRICA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE060_TP_METRICA` (`CD_TP_METRICA`)
+    REFERENCES `gestion_factoria`.`thge060_tp_metrica` (`CD_TP_METRICA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE059_H_C_MANDO`
+-- Table `gestion_factoria`.`thge059_h_c_mando`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE059_H_C_MANDO` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge059_h_c_mando` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE059_H_C_MANDO` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge059_h_c_mando` (
   `FH_INICIO` DATE NOT NULL,
   `FH_FIN` DATE NOT NULL,
   `HM_MIL` DOUBLE NOT NULL,
@@ -1828,28 +1828,28 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE059_H_C_MANDO` (
   INDEX `R0590613_idx` (`CD_METRICA` ASC),
   CONSTRAINT `R0590031`
     FOREIGN KEY (`CD_EMPRESA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE003_EMPRESA` (`CD_EMPRESA`)
+    REFERENCES `gestion_factoria`.`thge003_empresa` (`CD_EMPRESA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0590022`
     FOREIGN KEY (`CD_TECNOLOGIA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE002_TECNOLOGIA` (`CD_TECNOLOGIA`)
+    REFERENCES `gestion_factoria`.`thge002_tecnologia` (`CD_TECNOLOGIA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0590613`
     FOREIGN KEY (`CD_METRICA`)
-    REFERENCES `GESTION_FACTORIA`.`THGE061_METRICA` (`CD_METRICA`)
+    REFERENCES `gestion_factoria`.`thge061_metrica` (`CD_METRICA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE063_SEG_REQ`
+-- Table `gestion_factoria`.`thge063_seg_req`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE063_SEG_REQ` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge063_seg_req` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE063_SEG_REQ` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge063_seg_req` (
   `CD_SEG_REQ` INT(12) NOT NULL AUTO_INCREMENT,
   `TM_SEG_REQ` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `NB_DEPENDENCIA` VARCHAR(500) NULL,
@@ -1861,23 +1861,23 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE063_SEG_REQ` (
   INDEX `R0630052_idx` (`ST_SEG_REQ` ASC),
   CONSTRAINT `R0630171`
     FOREIGN KEY (`CD_REQUERIMIENTO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE017_REQUERIM` (`CD_REQUERIMIENTO`)
+    REFERENCES `gestion_factoria`.`thge017_requerim` (`CD_REQUERIMIENTO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0630052`
     FOREIGN KEY (`ST_SEG_REQ`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE065_NB_PROY_AG`
+-- Table `gestion_factoria`.`thge065_nb_proy_ag`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE065_NB_PROY_AG` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge065_nb_proy_ag` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE065_NB_PROY_AG` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge065_nb_proy_ag` (
   `CD_PROY_AGRUP` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_PROY_AGRUP` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`CD_PROY_AGRUP`),
@@ -1886,11 +1886,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE070_TP_FH`
+-- Table `gestion_factoria`.`thge070_tp_fh`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE070_TP_FH` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge070_tp_fh` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE070_TP_FH` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge070_tp_fh` (
   `CD_TP_FH` INT(9) NOT NULL AUTO_INCREMENT,
   `TP_FH` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`CD_TP_FH`),
@@ -1899,11 +1899,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE068_LOG_FH_COM`
+-- Table `gestion_factoria`.`thge068_log_fh_com`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE068_LOG_FH_COM` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge068_log_fh_com` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE068_LOG_FH_COM` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge068_log_fh_com` (
   `CD_CAMBIO` INT(12) NOT NULL AUTO_INCREMENT,
   `CD_COMPONENTE` INT(12) NULL,
   `CD_TP_FH` INT(9) NULL,
@@ -1914,18 +1914,18 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE068_LOG_FH_COM` (
   INDEX `R0680702_idx` (`CD_TP_FH` ASC),
   CONSTRAINT `R0680702`
     FOREIGN KEY (`CD_TP_FH`)
-    REFERENCES `GESTION_FACTORIA`.`THGE070_TP_FH` (`CD_TP_FH`)
+    REFERENCES `gestion_factoria`.`thge070_tp_fh` (`CD_TP_FH`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE071_CTRL_PROY`
+-- Table `gestion_factoria`.`thge071_ctrl_proy`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE071_CTRL_PROY` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge071_ctrl_proy` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE071_CTRL_PROY` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge071_ctrl_proy` (
   `CD_CTRL_PROY` INT(12) NOT NULL AUTO_INCREMENT,
   `CD_EXTERNO` VARCHAR(10) NULL,
   `CD_REQUERIMIENTO` INT(12) NULL,
@@ -1934,23 +1934,23 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE071_CTRL_PROY` (
   INDEX `R0710241_idx` (`CD_EXTERNO` ASC),
   CONSTRAINT `R0710172`
     FOREIGN KEY (`CD_REQUERIMIENTO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE017_REQUERIM` (`CD_REQUERIMIENTO`)
+    REFERENCES `gestion_factoria`.`thge017_requerim` (`CD_REQUERIMIENTO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `R0710241`
     FOREIGN KEY (`CD_EXTERNO`)
-    REFERENCES `GESTION_FACTORIA`.`THGE024_CTRL_EXT` (`CD_EXTERNO_CORP`)
+    REFERENCES `gestion_factoria`.`thge024_ctrl_ext` (`CD_EXTERNO_CORP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `GESTION_FACTORIA`.`THGE100_CTRL_CAT`
+-- Table `gestion_factoria`.`thge100_ctrl_cat`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `GESTION_FACTORIA`.`THGE100_CTRL_CAT` ;
+DROP TABLE IF EXISTS `gestion_factoria`.`thge100_ctrl_cat` ;
 
-CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE100_CTRL_CAT` (
+CREATE TABLE IF NOT EXISTS `gestion_factoria`.`thge100_ctrl_cat` (
   `CD_CTRL_CAT` INT(4) NOT NULL AUTO_INCREMENT,
   `NB_CTRL_CAT` VARCHAR(150) NULL,
   `TX_CTRL_CAT_TABLA` VARCHAR(100) NULL,
@@ -1962,7 +1962,7 @@ CREATE TABLE IF NOT EXISTS `GESTION_FACTORIA`.`THGE100_CTRL_CAT` (
   INDEX `fk_ctrl_cat_status_idx` (`ST_CTRL_CAT` ASC),
   CONSTRAINT `fk_ctrl_cat_status`
     FOREIGN KEY (`ST_CTRL_CAT`)
-    REFERENCES `GESTION_FACTORIA`.`THGE005_ESTADO` (`CD_ESTADO`)
+    REFERENCES `gestion_factoria`.`thge005_estado` (`CD_ESTADO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

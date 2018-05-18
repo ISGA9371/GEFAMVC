@@ -4,7 +4,6 @@ function init() {
     addButtonEvents();
     loadSelects2();
     userLog();
-    loadSelects();
 
     $("#hidden-status").val("11");
     $("#hidden-doubtType").val("13");
@@ -34,13 +33,7 @@ function init() {
 
 }
 
-function status() {
-    var statu = $('#hidden-estado').val();
-    if(statu === 11){
-        $('#incidencia-estado-js-text2').val("ENVIADA A DYD");
-    }
 
-}
 
 /*demoReady(function() {
     var rootEst = document.getElementById('incidencia-js-select');
@@ -53,13 +46,13 @@ function status() {
 });*/
 
 function userLog() {
-    var user=0;
-    $.ajax({
+    var user=4;
+   /* $.ajax({
         url: "/users/info"
     }).done(function(data) {
         var subs = data.data;
         user=subs.profileType.profileTypeId;
-
+*/
     if(user === 7){
         //alert("entro en dyd");
         new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
@@ -70,8 +63,6 @@ function userLog() {
         new mdc.textField.MDCTextField(document.getElementById("tecnologia-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
-        new mdc.textField.MDCTextField(document.getElementById("prioridad-js-text")).disabled = true;
-        new mdc.textField.MDCTextField(document.getElementById("tioDuda-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("peticionario-js-text")).disabled = true;
@@ -80,19 +71,13 @@ function userLog() {
         new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = true;
-        //document.getElementById("")
+        new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textfabrica")).disabled = true;
+
         $('#boton-cerrar').show();
-
-        //tioDuda-js-text
-
         $('#Duda-js-select').hide(); //combo origen
-        $('#tioDuda-js-text').show(); //input origen
-        //$('#Origen-input').val($('#Origen-js-select2').val());
-
-        //prioridad
+        $('#descripcion-js-textfabrica').hide(); //combo descripcion edita fabrica
         $('#prioridad').hide(); //combo prioridad
-        $('#prioridad-js-text').show(); //input prioridad
-        //$('#Prioridad-input').val($('#prioridad-sel-text').val());
+
     }else if(user === 8){
         //alert("fabrica");
         new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
@@ -103,27 +88,20 @@ function userLog() {
         new mdc.textField.MDCTextField(document.getElementById("tecnologia-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
-        new mdc.textField.MDCTextField(document.getElementById("prioridad-js-text")).disabled = true;
-        new mdc.textField.MDCTextField(document.getElementById("tioDuda-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("peticionario-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcionedit-js-text")).disabled = false;
-        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = true;
         $('#boton-cerrar').hide();
-        //tioDuda-js-text
 
         $('#Duda-js-select').hide(); //combo origen
-        $('#tioDuda-js-text').show(); //input origen
-        //$('#Origen-input').val($('#Origen-js-select2').val());
 
         //prioridad
         $('#prioridad').hide(); //combo prioridad
-        $('#prioridad-js-text').show(); //input prioridad
         //$('#Prioridad-input').val($('#hidden-prioridad').val());
     }else if(user === 1){
         //alert("gestor");
@@ -135,8 +113,6 @@ function userLog() {
         new mdc.textField.MDCTextField(document.getElementById("tecnologia-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
-        new mdc.textField.MDCTextField(document.getElementById("prioridad-js-text")).disabled = true;
-        new mdc.textField.MDCTextField(document.getElementById("tioDuda-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("peticionario-js-text")).disabled = true;
@@ -145,22 +121,16 @@ function userLog() {
         new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-textfabrica")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("descripcionedit-js-text")).disabled = false;
-        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = true;
         $('#boton-cerrar').hide();
-        //tioDuda-js-text
 
         $('#Duda-js-select').hide(); //combo origen
-        $('#tioDuda-js-text').show(); //input origen
-        //$('#Origen-input').val($('#Origen-js-select2').val());
 
         //prioridad
         $('#prioridad').hide(); //combo prioridad
         $('#descripcion-js-textfabrica').hide(); //describe fabrica
         $('#descripcionedit-js-text').hide(); //describe fabrica
-        $('#prioridad-js-text').show(); //input prioridad
-        //$('#Prioridad-input').val($('#prioridad').val());
     }else if(user === 5){
         //alert("infikltrado");
         new mdc.textField.MDCTextField(document.getElementById("nombre-js-text")).disabled = true;
@@ -171,27 +141,21 @@ function userLog() {
         new mdc.textField.MDCTextField(document.getElementById("tecnologia-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
-        new mdc.textField.MDCTextField(document.getElementById("prioridad-js-text")).disabled = true;
-        new mdc.textField.MDCTextField(document.getElementById("tioDuda-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("peticionario-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcionedit-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = false;
-        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = true;
         $('#boton-cerrar').hide();
-        //tioDuda-js-text
 
         $('#Duda-js-select').hide(); //combo origen
-        $('#tioDuda-js-text').show(); //input origen
         //$('#Origen-input').val($('#Origen-js-select2').val());
 
         //prioridad
         $('#prioridad').hide(); //combo prioridad
-        $('#prioridad-js-text').show(); //input prioridad
         //$('#Prioridad-input').val($('#prioridad').val());
     }else if(user === 4){
         //alert("administrador");
@@ -203,32 +167,25 @@ function userLog() {
         new mdc.textField.MDCTextField(document.getElementById("tecnologia-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("tipologia-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
-        new mdc.textField.MDCTextField(document.getElementById("prioridad-js-text")).disabled = true;
-        new mdc.textField.MDCTextField(document.getElementById("tioDuda-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcion-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("fechaAlta-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("peticionario-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("descripcionedit-js-text")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = false;
         new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = false;
-        new mdc.textField.MDCTextField(document.getElementById("descripcion-fabrica-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Fecha-js-text")).disabled = true;
         new mdc.textField.MDCTextField(document.getElementById("Resoluciones-js-text")).disabled = true;
-        new mdc.textField.MDCTextField(document.getElementById("incidencia-estado-js-text")).disabled = true;
         $('#boton-cerrar').show();
-        //tioDuda-js-text
 
         $('#Duda-js-select').show(); //combo origen
-        $('#tioDuda-js-text').show(); //input origen
 
         //prioridad
         $('#prioridad').show(); //combo prioridad
-        $('#prioridad-js-text').show(); //input prioridad
     }else {
         holder("Cargando...usuario sin acceso");
         window.location.href = "/";
     }
-    });
+    //});
 }
 
 demoReady(function() {
@@ -363,45 +320,82 @@ function customHolder(type, msg, fctn) {
     });
 }
 
-function loadSelects() {
-    //mdc.select.MDCSelect.attachTo(document.getElementById('usuario-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('incidencia-js-select'));
-}
-
 function loadSelects2() {
-    const prioridad = new mdc.select.MDCSelect(document.querySelector('#prioridad'));
+  
     $.ajax({
+        async: false,
         url: "/api/prioritys"
-    }).done(function(data) {
-        let subs = data.data;
-        $("#prioridad-sel-text").html("");
-        prioridad.selectedIndex = -1;
-        prioridad.value = "";
-        if (typeof subs !== 'undefined' && subs.length > 0) {
-            $("#prioridad-select").html("");
-            $.each(subs, function( index, value ) {
-                $("#prioridad-select").append(
-                    "<li class='mdc-list-item' role='option' tabindex='0' " +
-                    "id='"+value.priorityId+"' value='"+value.priorityId+"'>"+value.priorityName+"</li>");
-            });
-        }else $("#prioridad-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+    }).done(function (json) {
+        $.each(json.data, function (i, data) {
+            $liElement = $("<li>");
+            $liElement.attr("class", "mdc-list-item");
+            $liElement.attr("role", "option");
+            $liElement.attr("id", data.priorityId);
+            $liElement.append(data.priorityName);
+            $("#prioridad").find("ul:first").append($liElement);
+        });
+        mdc.select.MDCSelect.attachTo(document.getElementById('prioridad'));
+    }).fail(function (xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        new mdc.select.MDCSelect(document.getElementById('prioridad')).disabled = true;
+        customHolder('error', '¡Error al consultar combos!');
+        showingError = true;
+        $('#hidden-prioridad').val("");
     });
 
-    const DudaType = new mdc.select.MDCSelect(document.querySelector('#Duda-js-select'));
     $.ajax({
+        async: false,
         url: "/api/doubt-types"
-    }).done(function(data) {
-        let subs = data.data;
-        $("#Duda-sel-text").html("");
-        DudaType.selectedIndex = -1;
-        DudaType.value = "";
-        if (typeof subs !== 'undefined' && subs.length > 0) {
-            $("#Duda-select").html("");
-            $.each(subs, function( index, value ) {
-                $("#Duda-select").append(
-                    "<li class='mdc-list-item' role='option' tabindex='0' " +
-                    "id='"+value.doubtTypeId+"' value='"+value.doubtTypeId+"'>"+value.doubtTypeName+"</li>");
-            });
-        }else $("#Duda-select").html("<li class='mdc-list-item' role='option' tabindex='0'>SIN DATOS</li>");
+    }).done(function (json) {
+        $.each(json.data, function (i, data) {
+            $liElement = $("<li>");
+            $liElement.attr("class", "mdc-list-item");
+            $liElement.attr("role", "option");
+            $liElement.attr("id", data.doubtTypeId);
+            $liElement.append(data.doubtTypeName);
+            $("#Duda-js-select").find("ul:first").append($liElement);
+        });
+        mdc.select.MDCSelect.attachTo(document.getElementById('Duda-js-select'));
+    }).fail(function (xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        new mdc.select.MDCSelect(document.getElementById('Duda-js-select')).disabled = true;
+        customHolder('error', '¡Error al consultar combos!');
+        showingError = true;
+        $('#hidden-dudaSelect').val("");
     });
+
+    $.ajax({
+        async: false,
+        url: "/api/status-types/4/status"
+    }).done(function (json) {
+        $.each(json.data, function (i, data) {
+            $liElement = $("<li>");
+            $liElement.attr("class", "mdc-list-item");
+            $liElement.attr("role", "option");
+            $liElement.attr("id", data.statusId);
+            $liElement.append(data.statusName);
+            $("#estatus-componente-js-select").find("ul:first").append($liElement);
+        });
+        mdc.select.MDCSelect.attachTo(document.getElementById('estatus-componente-js-select'));
+    }).fail(function (xhr, status, error) {
+        console.log('¡Error al consultar combos!');
+        new mdc.select.MDCSelect(document.getElementById('estatus-componente-js-select')).disabled = true;
+        customHolder('error', '¡Error al consultar combos!');
+        showingError = true;
+        $('#hidden-estado').val("");
+    });
+
+    selectByValue(mdcSelectStsComponent,"estatus-componente-js-select",$("#hidden-estado").val());
+    selectByValue(mdcSelectDudaTipo,"Duda-js-select",$("#hidden-dudaSelect").val());
+    selectByValue(mdcSelectPrioridad,"prioridad",$("#hidden-prioridad").val());
 }
+
+function selectByValue(mdcSelect, mdcSelectId,  value){
+    $option = $("#"+mdcSelectId).parent().find("li[id='" + value + "']");
+    mdcSelect.item($option.parent().find("li").index($option)).click();
+    $(mdcSelect.label_).addClass("mdc-select__label--float-above");
+}
+
+mdcSelectStsComponent = new mdc.select.MDCSelect($('#estatus-componente-js-select')[0]);
+mdcSelectDudaTipo = new mdc.select.MDCSelect($('#Duda-js-select')[0]);
+mdcSelectPrioridad = new mdc.select.MDCSelect($('#prioridad')[0]);
