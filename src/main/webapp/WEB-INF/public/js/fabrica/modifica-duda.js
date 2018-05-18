@@ -321,7 +321,7 @@ function customHolder(type, msg, fctn) {
 }
 
 function loadSelects2() {
-  
+
     $.ajax({
         async: false,
         url: "/api/prioritys"
