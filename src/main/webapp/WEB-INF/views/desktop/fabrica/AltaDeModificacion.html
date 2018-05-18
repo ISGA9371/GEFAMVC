@@ -37,7 +37,7 @@
                             <label for="demo-input" class="mdc-text-field__label">Nombre de Componente</label>
                         </div>
                     </td>
-                    <td class="col-md-4" align="center">,
+                    <td class="col-md-4" align="center">
                         <div id="direccion-js-text" class="mdc-text-field"   data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
                             <input type="text" th:value="${componentData.requirement.level.levelName}" disabled class="mdc-text-field__input" style="border-bottom-color:rgba(28, 59, 224, 0.5)" id="direccion">
                             <label for="demo-input" class="mdc-text-field__label">Dirección</label>
@@ -154,7 +154,7 @@
                             <label for="demo-input" class="mdc-text-field__label">Costo</label>
                         </div>
                     </td>
-                  </tr>
+                </tr>
               </table>
               <table class="col-md-12" >
                   <tr style="height:72px">
@@ -206,7 +206,7 @@
                             </div>
                         </div>
                     </td>
-                </tr>
+                  </tr>
                   <tr>
                     <td class="col-md-4" align="center">
                         <div class="dog1">
@@ -241,7 +241,7 @@
                               <label for="demo-input" class="mdc-text-field__label">Modificación en Vuelo</label>
                           </div>
                       </td>
-                    <td class="col-md-4" align="center">
+                      <td class="col-md-4" align="center">
                         <input id="hidden-dyd" type="text" value="" name="modificationDoneDyd" th:field="*{modificationDoneDyd}" style="width: 1px; opacity: 0;height: 1px;margin: -3px;padding: 0px;">
                         <div id="moddyd-js-select" class="mdc-select" role="listbox" style="background-color:#F4F4F4; width:90%">
                             <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0">
@@ -257,13 +257,18 @@
                             </div>
                         </div>
                     </td>
+                      <!--<td class="col-md-4" align="center">
+                          <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
+                              <input type="file" name="sfile" class="btn btn-primary" required  id="sendFile" >
+                          </div>
+                      </td>
                   </tr>
                   </table>
                   <!--<table class="col-md-12" >
                       <tr style="height:62px">
                           <td class="col-md-3" align="center">
                               <div class="mdc-text-field" data-mdc-auto-init="MDCTextField" style="background-color:#F4F4F4; width:90%">
-                                  <input type="file" name="fileData" class="btn btn-primary" required  id="fileData" >
+                                  <input type="file" name="sfile" class="btn btn-primary" required  id="sendFile" >
                               </div>
                           </td>
                           <td>
@@ -275,10 +280,6 @@
                       </tr>
                   </table>-->
             </div>
-        <div class="row">
-
-            </tr>
-        </div>
         <br>
         <br>
         <div class="row">
@@ -290,7 +291,6 @@
                             <button type="button" id="cancelar-btn" class="btn btn-primary">Cancelar</button>
                         </div>
                     </div>
-                    <!-- .// row -->
                 </tr>
             </table>
         </div>
@@ -308,7 +308,10 @@
 
 
 <script>mdc.autoInit();
-init();
+demoReady(function () {
+    init();
+    initGlobal();
+});
 </script>
 
 

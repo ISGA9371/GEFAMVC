@@ -3,11 +3,13 @@
 
 function init(){
 
+    initGlobal();
     crearCombos();
     asignarCombos();
     addCalendars();
     //add default values
     addMissing();
+    camp();
 
 }
 
@@ -20,11 +22,7 @@ function crearCombos(){
     mdc.select.MDCSelect.attachTo(document.getElementById('solicitante-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('estado-js-select'));
     mdc.select.MDCSelect.attachTo(document.getElementById('ig-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('direccion-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('director-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('grupo-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('respArea-js-select'));
-    mdc.select.MDCSelect.attachTo(document.getElementById('respDyD-js-select'));
+
 }
 
 function asignarCombos(){
@@ -59,13 +57,7 @@ function funcionCancelar(){
 
 function addCalendars(){
 
-    $('#fechaTranspaso').datetimepicker({
-        format: 'DD/MM/YYYY',
-        widgetPositioning: {
-            horizontal: 'auto',
-            vertical: 'top'
-        }
-    });
+    $('#fechaTranspaso').datepicker({dateFormat: "dd/mm/yy"});
 
 }
 
@@ -75,3 +67,9 @@ function addMissing(){
     $('#hdStatusDyd').val(42);
 
 }
+
+function camp() {
+
+    new mdc.textField.MDCTextField(document.getElementById('pepIdDiv-js-text')).disabled = true;
+}
+

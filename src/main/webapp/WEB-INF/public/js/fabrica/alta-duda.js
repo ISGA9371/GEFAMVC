@@ -149,53 +149,39 @@ function addButtonEvents() {
     })
 }
 
-function getBase64(file) {
+/*function getBase64(file) {
     var reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
-        //console.log(reader.result);
+        console.log(reader.result);
+        return reader;
     };
     reader.onerror = function (error) {
-        //console.log('Error: ', error);
+        console.log('Error: ', error);
     };
-}
+}*/
 
 function ajaxGuardar() {
     var $form = $("form");
     var url = $form.attr("action");
     var formData = $($form).serializeArray();
 
-    //var file = document.querySelector('#files > input[type="file"]').files[0];
     var file = document.querySelector('input[type=file]').files[0];
-    var base = getBase64(file)
-    $("#fileData").val(base);
 
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        //console.log(reader.result);
 
-    //console.log(base);
-
-    /*var data = new FormData();
-    jQuery.each($('input[type=file]')[0].files, function(i, file) {
-        //data.append('file-'+i, file);
-        data.append('DoubtFile', file);
-    });
-    var other_data = $('form').serializeArray();
-    $.each(other_data,function(key,input){
-        data.append(input.name,input.value);
-    });*/
-
-
+    formData.push($.parseJSON('{"name":"stringValue","value":"'+reader.result+'"}'));
 
     $.ajax({
         cache: false,
-        //contentType: false,
-        //processData: false,
+
         url: url,
         type: 'post',
         data: formData
-        //data: data,
-        /*success: function(data){
-            alert(data);
-        }*/
+
     }).done(function (data) {
         customHolder("info", "Modificacion Registrada Exitosamente.","window.location.href = '/components/filters'; holder('Cargando...')");
         //customHolder("info", "Componente Dado de Alta Exitosamente.","$('html').html(okData);");
@@ -203,6 +189,7 @@ function ajaxGuardar() {
         console.log("fail");
         customHolder("error", xhr.responseJSON.message);
     });
+    };
 }
 
 function customHolder(type, msg, fctn) {
@@ -251,3 +238,5 @@ function userLog() {
         }
     });
 }
+
+var baseGlobal;

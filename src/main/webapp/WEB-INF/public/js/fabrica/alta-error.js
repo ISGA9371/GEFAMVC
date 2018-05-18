@@ -210,8 +210,13 @@ function ajaxGuardar() {
     var formData = $($form).serializeArray();
 
     var file = document.querySelector('input[type=file]').files[0];
-    var base = getBase64(file)
-    $("#fileData").val(base);
+
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        //console.log(reader.result);
+
+        formData.push($.parseJSON('{"name":"stringValue","value":"'+reader.result+'"}'));
 
     //var data= new FormData (this);
     $.ajax({
@@ -226,6 +231,7 @@ function ajaxGuardar() {
         console.log("fail");
         customHolder("error", xhr.responseJSON.message);
     });
+    };
 }
 
 function customHolder(type, msg, fctn) {

@@ -11,6 +11,7 @@ function init() {
     loadSelects2();
     userLog();
     //cargarTipologias();
+    //addSelectEvents();
 
     var today = new Date();
     var day = today.getDate();
@@ -217,7 +218,7 @@ function ajaxGuardar() {
     var url = $form.attr("action");
     var formData = $($form).serializeArray();
 
-    $.ajax({
+        $.ajax({
         cache: false,
         //contentType: false,
         //processData: false,
@@ -274,4 +275,3 @@ function camposBloqueadosF() {
     }
 
 }
-

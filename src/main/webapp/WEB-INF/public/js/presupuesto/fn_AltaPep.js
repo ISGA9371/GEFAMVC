@@ -357,6 +357,8 @@ function addCalendars(){
         dateFormat: "dd/mm/yy"
     });
 
+    $("#componentDesignRealDeliverDate").datepicker("option", "maxDate", getDate());
+
     $("#componentDesignRealDeliverDate").change(function () {
         if ("" != componentDesignRealDeliverDate.value) {
             $("#mdc-group-componentDesignRealDeliverDate > label").addClass("mdc-text-field__label--float-above");
@@ -366,6 +368,11 @@ function addCalendars(){
     });
 
 
+}
+
+function getDate(element) {
+    var fecha = new Date();
+    return fecha;
 }
 
 function addMissing(){
